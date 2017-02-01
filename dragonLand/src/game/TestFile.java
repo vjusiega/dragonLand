@@ -1,0 +1,19 @@
+/**
+ * 
+ */
+package game;
+
+/**
+ * @author Jenniber
+ *
+ */
+public class TestFile {
+
+	/**
+	 * 
+	 */
+	public TestFile() {
+		// TODO Auto-generated constructor stub
+	}
+
+}
