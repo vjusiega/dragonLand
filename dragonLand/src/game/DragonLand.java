@@ -4,6 +4,7 @@
 package game;
 
 import guiPractice.GUIApplication;
+import guiPractice.Screen;
 
 /**
  * @author Kat
@@ -14,6 +15,11 @@ public class DragonLand extends GUIApplication {
 	 * Static Fields
 	 */
 	public static DragonLand game;
+	public static Dragon[] DragonList; //list of all dragons in the game
+	public static int coins; 
+	public static Screen mainScreen;
+	
+	
 	/**
 	 * 
 	 */
