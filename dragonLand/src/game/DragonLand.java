@@ -10,7 +10,10 @@ import guiPractice.GUIApplication;
  *
  */
 public class DragonLand extends GUIApplication {
-
+	/**
+	 * Static Fields
+	 */
+	public static DragonLand game;
 	/**
 	 * 
 	 */
@@ -32,7 +35,9 @@ public class DragonLand extends GUIApplication {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		game = new DragonLand();
+		Thread go = new Thread(game);
+		go.start();
 	}
 
 }
