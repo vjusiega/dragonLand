@@ -14,6 +14,10 @@ import guiPractice.components.Button;
  *
  */
 public class XButton extends Button {
+	
+//	private static final Color _BUTTON_COLOR = new Color();
+//	private static final int _BUTTON_WIDTH = 80;
+//	private static final int _BUTTON_HEIGHT = 40;
 
 	/**
 	 * @param x

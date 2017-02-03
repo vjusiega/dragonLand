@@ -20,7 +20,7 @@ import guiPractice.components.Visible;
 public class GameScreen extends ClickableScreen implements MouseListener{
 
 	private XButton exit;
-	
+
 	public GameScreen(int width, int height) {
 		super(width, height);
 		// TODO Auto-generated constructor stub
@@ -31,7 +31,7 @@ public class GameScreen extends ClickableScreen implements MouseListener{
 	 */
 
 	@Override
-	public void initAllObjects(ArrayList<Visible> arg0) {
+	public void initAllObjects(ArrayList<Visible> view) {
 		exit = new XButton(20, 20, 40, 40, "", null, new Action() {
 			
 			@Override
@@ -40,7 +40,8 @@ public class GameScreen extends ClickableScreen implements MouseListener{
 				DragonLand.game.setScreen(DragonLand.mainScreen);
 			}
 		});
-		arg0.add(exit);
+		
+		view.add(exit);
 	}
 
 }
