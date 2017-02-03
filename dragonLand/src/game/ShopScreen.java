@@ -36,13 +36,13 @@ public class ShopScreen extends ClickableScreen {
 		Button buy = new Button(getWidth()/2 - buttonWidth/2, getHeight()/2 - buttonHeight/2, buttonWidth, buttonHeight, "BUY", Color.cyan, new Action(){
 			public void act()
 			{
-				
+				DragonLand.game.setScreen(screen);
 			}
 		});
 		Button sell = new Button(getWidth()/2 - buttonWidth/2, getHeight()/2 - buttonHeight/2, buttonWidth, buttonHeight, "SELL", Color.cyan, new Action(){
 			public void act()
 			{
-				
+				DragonLand.game.setScreen(screen);
 			}
 		});
 		
