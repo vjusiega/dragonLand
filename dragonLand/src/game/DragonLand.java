@@ -40,10 +40,10 @@ public class DragonLand extends GUIApplication {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		game = new DragonLand();
 		Thread go = new Thread(game);
 		go.start();
+
 	}
 
 }
