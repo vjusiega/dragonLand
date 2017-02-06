@@ -29,7 +29,14 @@ public class HungryBox extends Button {
 	 * @param action
 	 */
 	public HungryBox(int x, int y, Color color, Action action) {
-		super(x, y, W, H, TEXT, color, new Action);
+		super(x, y, W, H, TEXT, color, new Action(){
+
+			@Override
+			public void act() {
+				// Make a thread
+				
+			}
+		});
 
 	}
 
