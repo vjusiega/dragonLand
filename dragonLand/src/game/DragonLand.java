@@ -42,7 +42,8 @@ public class DragonLand extends GUIApplication {
 		Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
 		int monitorWidth=(int)screenSize.getWidth();
 		int monitorHeight=(int)screenSize.getHeight();
-		
+		setWidth(monitorWidth);
+		setHeight(monitorHeight);
 	}
 
 	/* (non-Javadoc)
