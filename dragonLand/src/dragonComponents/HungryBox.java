@@ -12,7 +12,7 @@ import guiPractice.components.Button;
  * @author Jenniber Franco
  *
  */
-public class HungryBox extends Button {
+public class HungryBox extends Button, Aimated Compo {
 
 	private static final int W = 50;
 	private static final int H = 25;
