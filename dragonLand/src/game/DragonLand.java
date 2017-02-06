@@ -17,7 +17,13 @@ public class DragonLand extends GUIApplication {
 	public static DragonLand game;
 	public static Dragon[] DragonList; //list of all dragons in the game
 	public static int coins; 
-	public static Screen mainScreen;
+	public static Screen homeScreen;
+	public static Screen shopMain; // shop 1
+	public static Screen sellScreen; // shop 2
+	public static Screen buyScreen; // shop 3
+	public static Screen highscoreScreen; // high score
+	public static Screen miniGameScreen; // minigame
+	
 	
 	
 	/**
@@ -32,8 +38,16 @@ public class DragonLand extends GUIApplication {
 	 */
 	@Override
 	protected void initScreen() {
-		// TODO Auto-generated method stub
-
+		homeScreen = new HomeScreen(getWidth(),getHeight());
+//		shopMain = new (getWidth(),getHeight());
+//		sellScreen = new (getWidth(),getHeight());
+//		buyScreen = new (getWidth(),getHeight());
+//		highscoreScreen = new (getWidth(),getHeight());
+//		miniGameScreen = new (getWidth(),getHeight());
+		//uncomment your line once u have a class, input class name before get width()/height()
+		setScreen(homeScreen);
+		//////////!!!!!!!!! if u want to test only your screen change the above lines^
+		// but before you push to develop/ merge from develop always change it back plz
 	}
 
 	/**
