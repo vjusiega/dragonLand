@@ -1,4 +1,4 @@
-package game;
+package DragonLabelComponent;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

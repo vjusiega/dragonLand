@@ -1,4 +1,4 @@
-package game;
+package DragonLabelComponent;
 
 import java.awt.Graphics2D;
 
