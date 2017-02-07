@@ -41,7 +41,7 @@ public class DragonLand extends GUIApplication {
 		homeScreen = new HomeScreen(getWidth(),getHeight());
 //		shopMain = new (getWidth(),getHeight());
 //		sellScreen = new (getWidth(),getHeight());
-//		buyScreen = new (getWidth(),getHeight());
+		buyScreen = new BuyScreenW(getWidth(),getHeight());
 //		highscoreScreen = new (getWidth(),getHeight());
 //		miniGameScreen = new (getWidth(),getHeight());
 		//uncomment your line once u have a class, input class name before get width()/height()
