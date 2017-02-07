@@ -33,7 +33,7 @@ public class DragonLabel extends Component {
 		Graphic dragonImage = new Graphic(LEFT_MARGIN , TOP_MARGIN, imageSide, imageSide, dragon.getImage());
 		
 		int column2X = 2 * LEFT_MARGIN + imageSide;
-		int nameWidth = LABEL_WIDTH - nameX - LEFT_MARGIN;
+		int nameWidth = LABEL_WIDTH - column2X - LEFT_MARGIN;
 		int nameHeight = (int)(0.3 * imageSide);
 		TextLabel dragonName = new TextLabel(column2X, TOP_MARGIN, nameWidth, nameHeight, dragon.getName());
 		
@@ -45,9 +45,11 @@ public class DragonLabel extends Component {
 		
 		int column3X = column2X + 2 * row2Width;
 		int buttonHeight = LABEL_HEIGHT - row2Y - TOP_MARGIN;
-		
+		ShopActionButton button;
 		if(buttonType.toUpperCase().equals("BUY"))
-			shopActionButton button = new shopActionButton(column3X, row2Y, row2Width, buttonHeight, "BUY", color, action);
+			button = new ShopActionButton(column3X, row2Y, row2Width, buttonHeight, "BUY", action);
+		else if(buttonType.toUpperCase().equals("SELL"))
+			button = new ShopActionButton(column3X, row2Y, row2Width, buttonHeight, "BUY", action);
 
 	}
 

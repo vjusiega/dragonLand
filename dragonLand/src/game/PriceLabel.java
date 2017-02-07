@@ -20,7 +20,7 @@ public class PriceLabel extends Component {
 	}
 
 	@Override
-	public void update(Graphics2D viewObjects) {
+	public void update(Graphics2D g) {
 		int coinSide = getHeight() - 2 * TOP_MARGIN;
 		Graphic coin = new Graphic(LEFT_MARGIN, TOP_MARGIN, coinSide, coinSide, "img/Coin.png");
 		
@@ -29,7 +29,6 @@ public class PriceLabel extends Component {
 		int priceHeight = getHeight() - 2 * TOP_MARGIN;
 		TextLabel priceLabel = new TextLabel(priceX, TOP_MARGIN, priceWidth, priceHeight, "" + price);
 		
-		view
 
 	}
 
