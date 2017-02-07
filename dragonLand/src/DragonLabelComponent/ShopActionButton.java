@@ -16,9 +16,12 @@ public class ShopActionButton extends Button {
 	
 	public ShopActionButton(int x, int y, int w, int h, String text, Action action) {
 		super(x, y, w, h, text, null, action);
-		// TODO Auto-generated constructor stub
 	}
 	
+	public ShopActionButton(int x, int y, int w, int h, String text, Color color, Action action) {
+		super(x, y, w, h, text, color, action);
+	}
+
 	public void update(Graphics2D g)
 	{
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);

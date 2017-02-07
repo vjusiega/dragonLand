@@ -3,6 +3,8 @@ package game;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import DragonLabelComponent.ShopActionButton;
+import ShopComponents.ShopLabel;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
@@ -37,18 +39,18 @@ public class ShopScreen extends ClickableScreen {
 		int titleHeight = 65;
 		
 
-		TextLabel shopTitle = new TextLabel(getWidth()/2 - titleWidth/2, getHeight()/2 - titleHeight/2, titleWidth, titleHeight, "Dragon Shop");
+		ShopLabel shopTitle = new ShopLabel(getWidth()/2 - titleWidth/2, getHeight()/2 - titleHeight/2, titleWidth, titleHeight, "Dragon Shop");
 
 		int buttonWidth = 90;
 		int buttonHeight = 55;
 		
-		Button buy = new Button(getWidth()/2 - buttonWidth/2, getHeight()/2 - buttonHeight/2, buttonWidth, buttonHeight, "BUY", new Color(230,195,147), new Action(){
+		ShopActionButton buy = new ShopActionButton(getWidth()/2 - buttonWidth/2, getHeight()/2 - buttonHeight/2, buttonWidth, buttonHeight, "BUY", new Color(230,195,147), new Action(){
 			public void act()
 			{
 				DragonLand.game.setScreen(DragonLand.buyScreen);
 			}
 		});
-		Button sell = new Button(getWidth()/2 - buttonWidth/2, getHeight()/2 - buttonHeight/2, buttonWidth, buttonHeight, "SELL", new Color(230,195,147), new Action(){
+		ShopActionButton sell = new ShopActionButton(getWidth()/2 - buttonWidth/2, getHeight()/2 - buttonHeight/2, buttonWidth, buttonHeight, "SELL", new Color(230,195,147), new Action(){
 			public void act()
 			{
 				DragonLand.game.setScreen(DragonLand.sellScreen);
