@@ -22,17 +22,22 @@ public class BuyScreenW extends ClickableScreen {
 	@Override
 	public void initAllObjects(ArrayList<Visible> arg0) {
 		// TODO Auto-generated method stub
+		
 		Dragons[] dragons = DragonLand.DragonList;
-		for(int i = 0; i<dragons.length;i++)
+		for(int i = 0; i<dragons[3];i++)
 		{
 			label = new DragonLabel(0,0, dragons[i],"BUY", new Action(){
 				@Override
 				public void act() {
 					// TODO Auto-generated method stub
-					
+					shoplabels.remove(label);
+					dragonsInShop.remove(dragons[i]);	
+					remove(label);
 				}
 			});
 			shoplabels.add(label);
+			dragonsInShop.add(dragons[i]);
+			addObject(label);
 		}
 		
 	}
