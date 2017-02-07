@@ -18,6 +18,7 @@ public class ShopScreen extends ClickableScreen {
 	 * Color of title,catalog in buy screen and sell screen (222,195,166)
 	 * Color of buy/sell button (244,215,183)
 	 */
+	
 
 	public ShopScreen(int width, int height) {
 		super(width, height);
