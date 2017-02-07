@@ -15,7 +15,7 @@ public class DragonLand extends GUIApplication {
 	 * Static Fields
 	 */
 	public static DragonLand game;
-	public static Dragon[] DragonList; //list of all dragons in the game
+	public static Dragon[] dragonList; //list of all dragons in the game
 	public static int coins; 
 	public static Screen homeScreen;
 	public static Screen shopMain; // shop 1
@@ -23,8 +23,6 @@ public class DragonLand extends GUIApplication {
 	public static Screen buyScreen; // shop 3
 	public static Screen highscoreScreen; // high score
 	public static Screen miniGameScreen; // minigame
-	
-	
 	
 	/**
 	 * 
@@ -59,5 +57,23 @@ public class DragonLand extends GUIApplication {
 		Thread go = new Thread(game);
 		go.start();
 	}
+	
+	//public coin getter + setter
+		public void setCoins(int x){
+			coins = x;
+		}
+		public int getCoins(){
+			return coins;
+		}
+		
+	//not sure if this will work
+	public Dragon[] getDragonArray(){
+		return dragonList;
+	}
+	
+	public Dragon getDragon(int index){
+		return dragonList[index];
+	}
+		
 
 }
