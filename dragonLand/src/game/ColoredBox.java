@@ -3,6 +3,7 @@
  */
 package game;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 import guiPractice.components.Component;
@@ -28,9 +29,11 @@ public class ColoredBox extends Component {
 	 * @see guiPractice.components.Component#update(java.awt.Graphics2D)
 	 */
 	@Override
-	public void update(Graphics2D arg0) {
-		// TODO Auto-generated method stub
-
+	public void update(Graphics2D g) {
+		g.setColor(Color.black);
+		g.drawRoundRect(0,0,getWidth(),getHeight(),50,50);
+		g.setColor(new Color(244,215,183));
+		g.fillRoundRect(0,0,getWidth() - 1, getHeight() - 1, 50, 50);
 	}
 
 }
