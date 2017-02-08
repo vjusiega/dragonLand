@@ -21,7 +21,7 @@ import guiPractice.components.TextLabel;
  */
 public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	
-	private TextLabel test;
+	private TextLabel title;
 	private BufferedImage image;
 	/**
 	 * 
@@ -33,23 +33,38 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
 		System.out.println(getWidth());
-		test = new TextLabel((getWidth()/2)-100, 50, 150, 20, "High Scores");
-		viewObjects.add(test);
+		title = new TextLabel((getWidth()/2)-100, 50, 150, 20, "High Scores");
+		
+		viewObjects.add(title);
 	}
 	
-	public void update(){
-		image = new BufferedImage(getWidth(), getHeight(), 
-				BufferedImage.TYPE_INT_ARGB);
-		Graphics2D g = image.createGraphics();
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setColor(Color.white);
-		g.fillRect(0, 0, image.getWidth(), image.getHeight());
-		g.setColor(Color.red);
-		g.fillRect(40,40, 150, 20);
-		for(int i = 0; i < viewObjects.size(); i++){
-			Visible v = viewObjects.get(i);
-			g.drawImage(v.getImage(), v.getX(), v.getY(), null);
-		}
-	}
+//	public void update(){
+//		image = new BufferedImage(getWidth(), getHeight(), 
+//				BufferedImage.TYPE_INT_ARGB);
+//		Graphics2D g = image.createGraphics();
+//		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+//				RenderingHints.VALUE_ANTIALIAS_ON);
+//		g.setColor(Color.black);
+//		g.drawRect(0, 0, image.getWidth(), image.getHeight());
+//		g.fillRect(0, 0, image.getWidth(), image.getHeight());
+//		g.setColor(Color.black);
+//		//draw all visible components
+//		for(int i = 0; i < viewObjects.size(); i++){
+//			Visible v = viewObjects.get(i);
+//			g.drawImage(v.getImage(), v.getX(), v.getY(), null);
+//		}
+//		image = new BufferedImage(getWidth(), getHeight(), 
+//				BufferedImage.TYPE_INT_ARGB);
+//		Graphics2D g = image.createGraphics();
+//		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+//				RenderingHints.VALUE_ANTIALIAS_ON);
+//		g.setColor(Color.white);
+//		g.fillRect(0, 0, image.getWidth(), image.getHeight());
+//		g.setColor(Color.red);
+//		g.fillRect(40,40, 150, 20);
+//		for(int i = 0; i < viewObjects.size(); i++){
+//			Visible v = viewObjects.get(i);
+//			g.drawImage(v.getImage(), v.getX(), v.getY(), null);
+//		}
+//	}
 }
