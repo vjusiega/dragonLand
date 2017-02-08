@@ -12,7 +12,7 @@ import guiPractice.components.Button;
  * @author Jenniber Franco
  *
  */
-public class HungryBox extends Button, Aimated Compo {
+public class HungryBox extends Button {
 
 	private static final int W = 50;
 	private static final int H = 25;
@@ -29,7 +29,15 @@ public class HungryBox extends Button, Aimated Compo {
 	 * @param action
 	 */
 	public HungryBox(int x, int y, Color color, Action action) {
-		super(x, y, W, H, TEXT, color, new Action);
+		super(x, y, W, H, TEXT, color, new Action(){
+
+			@Override
+			public void act() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 
 	}
 
