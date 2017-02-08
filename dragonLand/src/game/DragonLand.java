@@ -57,7 +57,7 @@ public class DragonLand extends GUIApplication {
 	protected void initScreen() {
 		initColors();
 		homeScreen = new HomeScreen(getWidth(),getHeight());
-		shopMain = new ShopScreen(getWidth(),getHeight());
+		shopMain = new HomeShopScreen(getWidth(),getHeight());
 //		sellScreen = new (getWidth(),getHeight());
 //		buyScreen = new BuyScreenW(getWidth(),getHeight());
 //		highscoreScreen = new (getWidth(),getHeight());

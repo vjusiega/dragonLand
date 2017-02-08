@@ -10,10 +10,11 @@ import java.awt.RenderingHints;
 import guiPractice.components.TextLabel;
 
 public class ShopLabel extends TextLabel {
-
+	
+	private Color color;
+	
 	public ShopLabel(int x, int y, int w, int h, String text) {
 		super(x, y, w, h, text);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void update(Graphics2D g) {
