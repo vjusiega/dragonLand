@@ -41,7 +41,7 @@ public class ShopLabel extends TextLabel {
 			
 			
 			g.setFont(new Font(getFont(), Font.PLAIN, getSize()));
-			g.drawString(t, ((getWidth() - fm.stringWidth(t)))/3, (getHeight() + fm.getHeight() - fm.getDescent())/2);
+			g.drawString(t, ((getWidth() - fm.stringWidth(t)))/2 - 20, (getHeight() + fm.getHeight() - fm.getDescent())/2);
 		}
 	}
 }

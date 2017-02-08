@@ -3,6 +3,7 @@ package game;
 import java.util.ArrayList;
 
 import guiPractice.ClickableScreen;
+import guiPractice.components.Graphic;
 import guiPractice.components.Visible;
 
 /**
@@ -14,6 +15,8 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 	
 	
 
+	private Graphic background;
+
 	public HomeScreen(int width, int height) {
 		super(width, height);
 		
@@ -23,9 +26,9 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 	}
 
 	@Override
-	public void initAllObjects(ArrayList<Visible> arg0) {
-		// TODO Auto-generated method stub
-
+	public void initAllObjects(ArrayList<Visible> viewObjects) {
+		background=new Graphic(0,0,getWidth(),getHeight(),"img/Grassland.png");
+		viewObjects.add(background);
 	}
 
 	@Override
