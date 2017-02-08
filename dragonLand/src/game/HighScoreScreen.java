@@ -32,13 +32,12 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
-		System.out.println(getWidth());
-		title = new TextLabel((getWidth()/2)-100, 50, 150, 20, "High Scores");
-		test = new ColoredBox((getWidth()/2)-100,50,150,20);
+		title = new TextLabel((getWidth()/2)-90, 60, 150, 20, "High Scores");
+		test = new ColoredBox((getWidth()/2)-100,45,150,50);
 		viewObjects.add(test);
 		viewObjects.add(title);
 	}
-	
+	//178, 228, 255 for light blue
 //	public void update(){
 //		image = new BufferedImage(getWidth(), getHeight(), 
 //				BufferedImage.TYPE_INT_ARGB);
