@@ -1,7 +1,7 @@
 /**
  * 
  */
-package dragoncomponents;
+package dragonComponents;
 
 import java.awt.Color;
 

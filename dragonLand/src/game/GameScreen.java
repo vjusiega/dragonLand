@@ -8,7 +8,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
-import dragoncomponents.XButton;
+import dragonComponents.XButton;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Visible;
