@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 import guiPractice.components.Component;
@@ -12,10 +13,13 @@ public class ShopBackBoxW extends Component {
 	}
 
 	@Override
-	public void update(Graphics2D arg0) {
+	public void update(Graphics2D g) {
 		// TODO Auto-generated method stub
 
-		
+		g.setColor(Color.black);
+		g.drawRoundRect(0,0,getWidth(),getHeight(),50,50);
+		g.setColor(new Color(244,215,183));
+		g.fillRoundRect(0,0,getWidth() - 1, getHeight() - 1, 50, 50);
 	}
 
 }
