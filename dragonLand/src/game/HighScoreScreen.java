@@ -42,11 +42,17 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		test = new ColoredBox((getWidth()/2)-100,45,150,50);
 		background = new Background(0,0, getWidth(), getHeight());
 		back = new XButton(40, 100, 50, 50, "Go Back", Color.black, new Action(){
+
+			@Override
+			public void act() {
+				
+			}
 			
 		});
 		viewObjects.add(background);
 		viewObjects.add(test);
 		viewObjects.add(title);
+		viewObjects.add(back);
 	}
 //	public void update(){
 //		image = new BufferedImage(getWidth(), getHeight(), 
