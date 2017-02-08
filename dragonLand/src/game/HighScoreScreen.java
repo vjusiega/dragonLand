@@ -22,7 +22,7 @@ import guiPractice.components.TextLabel;
 public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	
 	private TextLabel title;
-	private BufferedImage image;
+	private ColoredBox test;
 	/**
 	 * 
 	 */
@@ -34,7 +34,8 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
 		System.out.println(getWidth());
 		title = new TextLabel((getWidth()/2)-100, 50, 150, 20, "High Scores");
-		
+		test = new ColoredBox((getWidth()/2)-100,50,150,20);
+		viewObjects.add(test);
 		viewObjects.add(title);
 	}
 	
