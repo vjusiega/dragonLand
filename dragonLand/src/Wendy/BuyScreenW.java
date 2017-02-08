@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import dragonComponents.DragonLabel;
 import dragonComponents.PriceLabel;
+import dragonComponents.ShopLabel;
 import game.DragonLand;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
@@ -12,14 +13,14 @@ import guiPractice.components.Visible;
 
 public class BuyScreenW extends ClickableScreen {
 
-    private ArrayList<Dragons> dragonsInShop;
+   // private ArrayList<Dragons> dragonsInShop;
     private ArrayList<DragonLabel> shoplabels; 
     private DragonLabel label;
-    private Dragon[] dragons;
+   // private Dragon[] dragons;
     
     private int price;
     private PriceLabel priceLabel;
-    private Dragon sold;
+   // private Dragon sold;
     private int x;
 	private	int y;
 
@@ -29,20 +30,20 @@ public class BuyScreenW extends ClickableScreen {
 	}
 
 	@Override
-	public void initAllObjects(ArrayList<Visible> arg0) {
+	public void initAllObjects(ArrayList<Visible> visible) {
 		// TODO Auto-generated method stub
 		
 		int titleWidth = 100;
 		int titleHeight = 65;
 
-		TextLabel shopTitle = new TextLabel(getWidth()/2 - titleWidth/2, getHeight()/2 - titleHeight/2, titleWidth, titleHeight, "Dragon Shop");
+		ShopLabel shopTitle = new ShopLabel(50, 50, titleWidth*4, titleHeight, "Dragon Shop");
 		
-		addObject(shopTitle);
+		visible.add(shopTitle);
 		
 		price = DragonLand.coins;
 		priceLabel = new PriceLabel(getWidth() - titleWidth, getHeight()/2 - titleHeight/2, 100, 50, price);
 		
-		addObject(priceLabel);
+		visible.add(priceLabel);
 		
 		x = 0;
 		y = 0;
@@ -89,4 +90,5 @@ public class BuyScreenW extends ClickableScreen {
 		
 	}
 
+	}
 }
