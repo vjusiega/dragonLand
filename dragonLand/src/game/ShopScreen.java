@@ -3,8 +3,8 @@ package game;
 import java.awt.Color;
 import java.util.ArrayList;
 
-import ShopComponents.ShopLabel;
 import dragonComponents.ShopActionButton;
+import dragonComponents.ShopLabel;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
