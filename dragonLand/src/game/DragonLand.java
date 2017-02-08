@@ -3,6 +3,7 @@
  */
 package game;
 
+import Wendy.BuyScreenW;
 import guiPractice.GUIApplication;
 import guiPractice.Screen;
 

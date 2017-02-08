@@ -1,9 +1,10 @@
-package game;
+package Wendy;
 
 import java.util.ArrayList;
 
 import dragonComponents.DragonLabel;
 import dragonComponents.PriceLabel;
+import game.DragonLand;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.TextLabel;
