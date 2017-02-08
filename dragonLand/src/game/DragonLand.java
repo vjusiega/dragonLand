@@ -15,7 +15,7 @@ public class DragonLand extends GUIApplication {
 	 * Static Fields
 	 */
 	public static DragonLand game;
-	public static Dragon[] DragonList; //list of all dragons in the game
+	//public static Dragon[] DragonList; //list of all dragons in the game
 	public static int coins; 
 	public static Screen homeScreen;
 	public static Screen shopMain; // shop 1
@@ -50,9 +50,6 @@ public class DragonLand extends GUIApplication {
 		// but before you push to develop/ merge from develop always change it back plz
 	}
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		game = new DragonLand();
 		Thread go = new Thread(game);
