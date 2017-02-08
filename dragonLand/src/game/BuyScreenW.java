@@ -82,7 +82,7 @@ public class BuyScreenW extends ClickableScreen {
 				}
 			});
 			shoplabels.add(label);
-			dragonsInShop.add(dragons[i]);
+			dragonsInShop.add(sold);
 			addObject(label);
 		}
 	}
