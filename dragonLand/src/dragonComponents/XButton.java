@@ -1,5 +1,6 @@
 package dragonComponents;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
@@ -7,7 +8,7 @@ import guiPractice.components.Action;
 import guiPractice.components.Button;
 
 /**
- * @author Student 8
+ * @author Tamanna Hussain and Violetta Jusiega
  *
  */
 public class XButton extends Button {
@@ -32,6 +33,7 @@ public class XButton extends Button {
 	
 	public void update(Graphics2D g){
 		g.setColor(Color.black);
+		g.setStroke(new BasicStroke(5));
 		g.drawLine(0, 0, getWidth(), getHeight()); //we might have to change this stuff to make it look better 
 		g.drawLine(getWidth(), 0, 0, getHeight());
 	}

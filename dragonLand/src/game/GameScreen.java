@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import guiPractice.components.ClickableGraphic;
-	
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.KeyListener;
@@ -18,20 +18,20 @@ import guiPractice.components.Action;
 import guiPractice.components.Button;
 import guiPractice.components.Visible;
 
-	/**
-	 * @author Tamanna Hussain and Violetta Jusiega
-	 *
-	 */
+/**
+ * @author Tamanna Hussain and Violetta Jusiega
+ *
+ */
 public class GameScreen extends ClickableScreen implements KeyListener, MouseListener{
-	
+
 	private XButton exit;
 	private Button helpButton;
-	
-	
+
+
 	//private ArrayList<Star> starArray;
-		//star will be its own class (made by Tamanna), we will then have an array of stars that will appear on the screen
+	//star will be its own class (made by Tamanna), we will then have an array of stars that will appear on the screen
 	//private ArrayList<Dragon> dragonArray;
-		//Dragon should be its own array as well, we will have an array of dragons that are on the screen
+	//Dragon should be its own array as well, we will have an array of dragons that are on the screen
 
 	public GameScreen(int width, int height) {
 		super(width, height);
@@ -53,34 +53,42 @@ public class GameScreen extends ClickableScreen implements KeyListener, MouseLis
 				DragonLand.game.setScreen(DragonLand.miniGameScreen);
 			}
 		});
-		
-		helpButton = new Button(100, 100, 50, 50, "?", )
-		
+
+		helpButton = new Button(getWidth()-100, 50, 50, 50, "?", DragonLand.DARKER_NUDE, new Action() {
+			@Override
+			public void act() {
+				DragonLand.game.setScreen(DragonLand.miniGameScreen);
+				//helpScreen
+			}
+
+		});
+
 		view.add(exit);
+		view.add(helpButton);
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
 		System.out.println("A key was typed!");	
 	}
-	
+
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_LEFT){ 
 			System.out.println("Left Arrow Key pressed");
-			}else if(e.getKeyCode() == KeyEvent.VK_RIGHT){ 
+		}else if(e.getKeyCode() == KeyEvent.VK_RIGHT){ 
 			System.out.println("Right Arrow Key pressed");
 		}
 	}
-	
+
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-	
-		}
-	
-	public ClickableScreen getKeyListener(KeyEvent e){
-		return this;
-		}
-	
+
 	}
+
+	public KeyListener getKeyListener(){
+		return this;
+	}
+
+}
