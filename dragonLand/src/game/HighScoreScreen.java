@@ -28,7 +28,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	private TextLabel title;
 	private ColoredBox test;
 	private Background background;
-	private XButton back;
+	private Button back;
 	/**
 	 * 
 	 */
@@ -41,7 +41,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		title = new TextLabel((getWidth()/2)-90, 60, 150, 20, "High Scores");
 		test = new ColoredBox((getWidth()/2)-100,45,150,50);
 		background = new Background(0,0, getWidth(), getHeight());
-		back = new XButton(40, 100, 50, 50, "Go Back", Color.black, new Action(){
+		back = new Button(40, 100, 100, 50, "Go Back", new Color(244,215,183), new Action(){
 
 			@Override
 			public void act() {
