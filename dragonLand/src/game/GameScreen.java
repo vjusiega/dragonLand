@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import guiPractice.components.ClickableGraphic;
+import guiPractice.components.Graphic;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -26,7 +27,7 @@ public class GameScreen extends ClickableScreen implements KeyListener, MouseLis
 
 	private XButton exit;
 	private Button helpButton;
-
+	private Graphic background;
 
 	//private ArrayList<Star> starArray;
 	//star will be its own class (made by Tamanna), we will then have an array of stars that will appear on the screen
@@ -45,6 +46,9 @@ public class GameScreen extends ClickableScreen implements KeyListener, MouseLis
 	@Override
 	public void initAllObjects(ArrayList<Visible> view) {
 		//int xCoord = DragonLand.x * .05; 
+		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
+		viewObjects.add(background);
+		
 		System.out.println("This is working");
 		exit = new XButton(30, 50, 40, 40, "", null, new Action() {
 			@Override

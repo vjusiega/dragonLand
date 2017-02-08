@@ -32,7 +32,7 @@ public class XButton extends Button {
 	}
 	
 	public void update(Graphics2D g){
-		g.setColor(Color.black);
+		g.setColor(Color.white);
 		g.setStroke(new BasicStroke(5));
 		g.drawLine(0, 0, getWidth(), getHeight()); //we might have to change this stuff to make it look better 
 		g.drawLine(getWidth(), 0, 0, getHeight());
