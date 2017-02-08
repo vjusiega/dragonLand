@@ -7,6 +7,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
+import javax.swing.JFrame;
+
 import guiPractice.GUIApplication;
 import guiPractice.Screen;
 
@@ -39,11 +41,13 @@ public class DragonLand extends GUIApplication {
 	 * 
 	 */
 	public DragonLand() {
-		Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
-		int monitorWidth=(int)screenSize.getWidth();
-		int monitorHeight=(int)screenSize.getHeight();
-		setWidth(monitorWidth);
-		setHeight(monitorHeight);
+//		Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
+//		int monitorWidth=(int)screenSize.getWidth();
+//		int monitorHeight=(int)screenSize.getHeight();
+//		setSize(WIDTH, HEIGHT);
+//		setLocation((monitorWidth-WIDTH)/2,(monitorHeight-HEIGHT)/2);
+//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		
 	}
 
 	/* (non-Javadoc)
