@@ -53,4 +53,14 @@ public class DragonLabel extends Component {
 
 	}
 
+	public static int getLabelWidth() {
+		return LABEL_WIDTH;
+	}
+
+	public static int getLabelHeight() {
+		return LABEL_HEIGHT;
+	}
+	
+	
+
 }

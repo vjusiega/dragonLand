@@ -11,14 +11,17 @@ import guiPractice.components.Visible;
 
 public class BuyScreenW extends ClickableScreen {
 
-   // private ArrayList<Dragons> dragonsInShop;
+    private ArrayList<Dragons> dragonsInShop;
     private ArrayList<DragonLabel> shoplabels; 
     private DragonLabel label;
-   // private Dragon[] dragons;
-    private SellScreenInterface sold;
+    private Dragon[] dragons;
+    
     private ShopBackBoxW back;
     private int price;
     private PriceLabel priceLabel;
+    private Dragon sold;
+    private int x;
+	private	int y;
 
 	public BuyScreenW(int width, int height) {
 		super(width, height);
@@ -43,24 +46,49 @@ public class BuyScreenW extends ClickableScreen {
 		
 		addObject(priceLabel);
 		
-//		Dragons[] dragons = DragonLand.DragonList;
-//		for(int i = 0; i<dragons[3];i++)
-//		{
-//			label = new DragonLabel(0,0, dragons[i],"BUY", new Action(){
-//				@Override
-//				public void act() {
-//					// TODO Auto-generated method stub
-//					shoplabels.remove(label);
-//					dragonsInShop.remove(dragons[i]);	
-//					remove(label);
-//				}
-//			});
-//			shoplabels.add(label);
-//			dragonsInShop.add(dragons[i]);
-//			addObject(label);
-//		}
+		x = 0;
+		y = 0;
 		
+		Dragons[] dragons = DragonLand.DragonList;
+		for(int i = 0; i<dragons[3];i++)
+		{
+			label = new DragonLabel(x,y, dragons[i],"BUY", new Action(){
+				@Override
+				public void act() {
+					// TODO Auto-generated method stub
+					shoplabels.remove(label);
+					dragonsInShop.remove(dragons[i]);	
+					remove(label);
+					DragonLand.coins -= dragons[i].price;
+				}
+			});
+			shoplabels.add(label);
+			dragonsInShop.add(dragons[i]);
+			addObject(label);
+			
+			y = y + DragonLabel.getLabelHeight();
+		}	
+		
+		if(sold != null)
+		{
+			label = new DragonLabel(x,y,sold,"BUY", new Action(){
+				@Override
+				public void act() {
+					// TODO Auto-generated method stub
+					shoplabels.remove(label);
+					dragonsInShop.remove(dragons[i]);	
+					remove(label);
+					DragonLand.coins -= dragons[i].price;
+				}
+			});
+			shoplabels.add(label);
+			dragonsInShop.add(dragons[i]);
+			addObject(label);
+		}
 	}
 	
+	private SellScreenInterface getSoldDragon(){
+		
+	}
 
 }
