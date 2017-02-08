@@ -89,6 +89,4 @@ public class BuyScreenW extends ClickableScreen {
 	private SellScreenInterface getSoldDragon(){
 		
 	}
-
-	}
 }
