@@ -20,6 +20,7 @@ public class ShopScreen extends ClickableScreen {
 	 * Color of title,catalog in buy screen and sell screen (222,195,166)
 	 * Color of buy/sell button (244,215,183)
 	 */
+	
 
 	public ShopScreen(int width, int height) {
 		super(width, height);
@@ -48,12 +49,15 @@ public class ShopScreen extends ClickableScreen {
 			public void act()
 			{
 				DragonLand.game.setScreen(DragonLand.buyScreen);
+
 			}
 		});
 		ShopActionButton sell = new ShopActionButton(getWidth()/2 - buttonWidth/2, getHeight()/2 + topMargin, buttonWidth, buttonHeight, "SELL", new Color(230,195,147), new Action(){
 			public void act()
 			{
+
 				DragonLand.game.setScreen(DragonLand.sellScreen);
+
 			}
 		});
 
