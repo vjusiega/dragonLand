@@ -13,8 +13,8 @@ public abstract class GUIApplication extends JFrame implements Runnable{
 		//setUndecorated(true);
 		int x=40;
 		int y=40;
-		int width=600;
-		int height=400;
+		int width=1000;
+		int height=640;
 		setBounds(x,y,width,height);
 		initScreen();
 		setVisible(true);
@@ -68,7 +68,7 @@ public abstract class GUIApplication extends JFrame implements Runnable{
 			repaint();
 			try {
 				Thread.sleep(40);
-				repaint();
+				
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
