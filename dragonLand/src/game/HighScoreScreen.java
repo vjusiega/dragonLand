@@ -35,18 +35,21 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		System.out.println(getWidth());
 		test = new TextLabel((getWidth()/2)-100, 50, 150, 20, "High Scores");
 		viewObjects.add(test);
-		//update();
 	}
 	
-//	public void update(){
-//		image = new BufferedImage(getWidth(), getHeight(), 
-//				BufferedImage.TYPE_INT_ARGB);
-//		Graphics2D g = image.createGraphics();
-//		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-//				RenderingHints.VALUE_ANTIALIAS_ON);
-//		g.setColor(Color.white);
-//		g.fillRect(0, 0, image.getWidth(), image.getHeight());
-//		g.setColor(Color.red);
-//		g.fillRect(40,40, 150, 20);
-//	}
+	public void update(){
+		image = new BufferedImage(getWidth(), getHeight(), 
+				BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g = image.createGraphics();
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		g.setColor(Color.white);
+		g.fillRect(0, 0, image.getWidth(), image.getHeight());
+		g.setColor(Color.red);
+		g.fillRect(40,40, 150, 20);
+		for(int i = 0; i < viewObjects.size(); i++){
+			Visible v = viewObjects.get(i);
+			g.drawImage(v.getImage(), v.getX(), v.getY(), null);
+		}
+	}
 }
