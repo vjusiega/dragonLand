@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import dragonComponents.Background;
 import dragonComponents.XButton;
 
 import java.awt.Color;
@@ -28,6 +29,8 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	private Button title;
 	private Background background;
 	private Button back;
+	private Button layerOne;
+	private Button layerTwo;
 	/**
 	 * 
 	 */
@@ -37,9 +40,12 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
-		title = new Button((getWidth()/2)-60, 40, 120, 50, "High Scores", DragonLand.DARKER_NUDE, null);
+		layerOne = new Button(50,70,getWidth()-100, getHeight()-110,null,DragonLand.LIGHT_NUDE, null);
+		layerTwo = new Button(100, 150, getWidth()-200, getHeight()-240, null, DragonLand.BRIGHT_PINK, null);
+		title = new Button((getWidth()/2)-125, 40, 250, 60, "High Scores", DragonLand.DARKER_NUDE, null);
+		title.setSize(40);
 		background = new Background(0,0, getWidth(), getHeight());
-		back = new Button(getWidth()-110-(getWidth()*2/100),(getHeight()*5/100),  120,  50, "Go Back", DragonLand.DARKER_NUDE, new Action(){
+		back = new Button(30,40,  40,  40, "X", DragonLand.DARKER_NUDE, new Action(){
 
 			@Override
 			public void act() {
@@ -48,6 +54,8 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 			
 		});
 		viewObjects.add(background);
+		viewObjects.add(layerOne);
+		viewObjects.add(layerTwo);
 		viewObjects.add(title);
 		viewObjects.add(back);
 	}
