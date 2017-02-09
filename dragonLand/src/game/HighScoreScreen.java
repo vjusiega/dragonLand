@@ -25,8 +25,7 @@ import guiPractice.components.TextLabel;
  */
 public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	
-	private TextLabel title;
-	private ColoredBox test;
+	private Button title;
 	private Background background;
 	private Button back;
 	/**
@@ -38,10 +37,9 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
-		title = new TextLabel((getWidth()/2)-90, 60, 150, 20, "High Scores");
-		test = new ColoredBox((getWidth()/2)-100,45,150,50);
+		title = new Button((getWidth()/2)-60, 40, 120, 50, "High Scores", DragonLand.DARKER_NUDE, null);
 		background = new Background(0,0, getWidth(), getHeight());
-		back = new Button(40, 100, 100, 50, "Go Back", DragonLand.DARKER_NUDE, new Action(){
+		back = new Button(getWidth()-110-(getWidth()*2/100),(getHeight()*5/100),  120,  50, "Go Back", DragonLand.DARKER_NUDE, new Action(){
 
 			@Override
 			public void act() {
@@ -50,7 +48,6 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 			
 		});
 		viewObjects.add(background);
-		viewObjects.add(test);
 		viewObjects.add(title);
 		viewObjects.add(back);
 	}
