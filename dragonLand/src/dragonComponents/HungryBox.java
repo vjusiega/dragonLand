@@ -33,7 +33,6 @@ public class HungryBox extends Button {
 
 			@Override
 			public void act() {
-				// Make a thread
 				
 			}
 
