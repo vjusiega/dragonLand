@@ -7,6 +7,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
+import game.DragonLand;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
 
@@ -27,7 +28,7 @@ public class ShopActionButton extends Button {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		FontMetrics fm = g.getFontMetrics();
 		
-		g.setColor(new Color(244, 215, 183));
+		g.setColor(DragonLand.DARKER_NUDE);
 		g.fillRoundRect(0, 0, getWidth() - 2, getHeight() - 2, ARC_WIDTH, ARC_WIDTH);
 		
 		g.setStroke(new BasicStroke(2));
@@ -46,7 +47,7 @@ public class ShopActionButton extends Button {
 			
 			
 			g.setFont(new Font(getFont(), Font.PLAIN, getSize()));
-			g.drawString(t, (getWidth() - fm.stringWidth(t))/3, (getHeight() + fm.getHeight() - fm.getDescent())/2);
+			g.drawString(t, (getWidth() - fm.stringWidth(t))/2 - 10, (getHeight() + fm.getHeight() - fm.getDescent())/2);
 		}
 	}
 

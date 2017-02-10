@@ -10,10 +10,11 @@ import java.awt.RenderingHints;
 import guiPractice.components.TextLabel;
 
 public class ShopLabel extends TextLabel {
-
+	
+	private Color color;
+	
 	public ShopLabel(int x, int y, int w, int h, String text) {
 		super(x, y, w, h, text);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void update(Graphics2D g) {
@@ -41,7 +42,7 @@ public class ShopLabel extends TextLabel {
 			
 			
 			g.setFont(new Font(getFont(), Font.PLAIN, getSize()));
-			g.drawString(t, ((getWidth() - fm.stringWidth(t)))/3, (getHeight() + fm.getHeight() - fm.getDescent())/2);
+			g.drawString(t, ((getWidth() - fm.stringWidth(t)))/2 - 20, (getHeight() + fm.getHeight() - fm.getDescent())/2);
 		}
 	}
 }
