@@ -67,7 +67,7 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 		AnimatedComponent a = new Dragon(x,y,100,100,name, price, imgSrc);
 		
 		try{
-			ImageIcon icon = new ImageIcon("img/dragonOne.png");
+			ImageIcon icon = new ImageIcon("img/dragonSeven.png");
 			int numberRow =3 ;
 			int rows =4;
 			int w =48;
