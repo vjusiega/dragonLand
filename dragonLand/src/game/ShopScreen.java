@@ -2,6 +2,7 @@ package game;
 
 import java.util.ArrayList;
 
+import dragonComponents.ShopBackdrop;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Visible;
@@ -20,6 +21,7 @@ public class ShopScreen extends ClickableScreen {
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
 		
+		ShopBackdrop back = new ShopBackdrop(50,50,getWidth()-100,getHeight()-100);
 
 	}
 
