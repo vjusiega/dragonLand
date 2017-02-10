@@ -6,6 +6,8 @@ package game;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import dragonComponents.Background;
 import dragonComponents.CurvedButton;
@@ -47,6 +49,12 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
+		highScores = new ArrayList<Integer>();
+		highScores.add(50);
+		highScores.add(400);
+		highScores.add(32);
+		highScores.add(0);
+		sortScores(highScores);
 		yourScore = new Button(345, 190, 300, 50, "Your score: " + GameScreen.getScore(), DragonLand.DARKER_NUDE, null);
 		yourScore.setSize(30);
 		layerOne = new CurvedButton(50,70,getWidth()-100, getHeight()-95,null,DragonLand.LIGHT_NUDE, null);
@@ -56,7 +64,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		background = new Background(0,0, getWidth(), getHeight());
 		coinsWon = new Button(345, 465, 300, 60, "Coins Won: WON", DragonLand.DARKER_NUDE, null);
 		coinsWon.setSize(30);
-		scores = new Button(295,252,400,200,"Scores", DragonLand.DARKER_NUDE,null);
+		scores = new Button(295,252,400,200,printScores(highScores), DragonLand.DARKER_NUDE,null);
 		totalCoins = new Button(700,87,180,50,"Total Coins: COINS", DragonLand.DARKER_NUDE,null);
 		back = new Button(50,50, 40, 40, "X", DragonLand.DARKER_NUDE, new Action(){	
 
@@ -75,6 +83,31 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		viewObjects.add(coinsWon);
 		viewObjects.add(scores);
 		viewObjects.add(totalCoins);
+		
 	}
 
+	public void sortScores(ArrayList<Integer> scores){
+		Comparator comparator = Collections.reverseOrder();
+		Collections.sort(scores,comparator);
+		System.out.println(scores);
+	}
+	
+	public void printScores(ArrayList<Integer> sortedScores){
+		for(int i = 0; i < sortedScores.size(); i++){
+			String score = "";
+			Button temp = new Button(20+(100*i), 20+(100*i), 50, 50, score+=sortedScores.get(i), Color.black, null);
+			viewObjects.add(temp);		
+		}
+		
+//		String printedScores = "";
+//		String placeholder = "";
+//		for(int i = 0; i < 10; i++){
+//			placeholder += " ";
+//		}
+//		for(int i = 0; i < sortedScores.size(); i++){
+//			printedScores += (i+1) + ") " + sortedScores.get(i) + placeholder;
+//		}
+//		System.out.println(printedScores);
+//		return printedScores;
+	}
 }
