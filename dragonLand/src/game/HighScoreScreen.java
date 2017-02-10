@@ -53,7 +53,12 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		title = new Button((getWidth()/2)-125, 40, 250, 60, "High Scores", DragonLand.DARKER_NUDE, null);
 		title.setSize(40);
 		background = new Background(0,0, getWidth(), getHeight());
-		coinsWon = new Button(345, 450, 300, 60, "Coins Won: WON", DragonLand.DARKER_NUDE, null);
+		coinsWon = new Button(345, 450, 300, 60, "Coins Won: WON", DragonLand.DARKER_NUDE, new Action(){
+			@Override
+			public void act(){
+				
+			}
+		});
 		coinsWon.setSize(30);
 		scores = new Button(295,237,400,200,"Scores", DragonLand.DARKER_NUDE,null);
 		totalCoins = new Button(700,87,180,50,"Total Coins: COINS", DragonLand.DARKER_NUDE,null);
