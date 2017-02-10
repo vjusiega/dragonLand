@@ -9,7 +9,7 @@ public class AnimatedComponent extends MovingComponent{
 	private ArrayList<BufferedImage> frame; //the images that can be displayed
 	private ArrayList<Integer> times; //the time each image is displayed
 	private long displayTime; //the time when the last image switched
-	private int currentFrame; //the frame that is currently being displayed
+	protected int currentFrame; //the frame that is currently being displayed
 	private boolean repeat;
 
 	public static final int REFRESH_RATE = 20;
