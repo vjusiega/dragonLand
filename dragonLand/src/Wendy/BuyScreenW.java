@@ -1,5 +1,6 @@
 package Wendy;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import dragonComponents.DragonLabel;
@@ -8,6 +9,7 @@ import dragonComponents.ShopLabel;
 import game.DragonLand;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
+import guiPractice.components.Button;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
 
@@ -32,6 +34,16 @@ public class BuyScreenW extends ClickableScreen {
 	@Override
 	public void initAllObjects(ArrayList<Visible> visible) {
 		// TODO Auto-generated method stub
+		
+		Button exit = new Button(getWidth() - 100,  60, 50, 40, "X", new Color(230,195,147), new Action(){
+			
+			public void act() {
+				// TODO Auto-generated method stub
+				DragonLand.game.setScreen(DragonLand.homeScreen);
+			}
+		});
+		
+		visible.add(exit);
 		
 		int titleWidth = 100;
 		int titleHeight = 65;
