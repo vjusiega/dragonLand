@@ -21,9 +21,6 @@ public class ShopScreen extends ClickableScreen {
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
-		back = new ShopBackdrop(0,0,getWidth(),getHeight());
-		
-		viewObjects.add(back);
 
 	}
 
