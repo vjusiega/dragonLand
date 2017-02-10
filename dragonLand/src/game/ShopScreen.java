@@ -22,6 +22,9 @@ public class ShopScreen extends ClickableScreen {
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
 
+		ShopBackdrop back = new ShopBackdrop(50,50,getWidth()-100,getHeight()-100);
+
+
 	}
 
 }
