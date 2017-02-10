@@ -28,7 +28,7 @@ public class GameScreen extends ClickableScreen implements KeyListener, MouseLis
 	private XButton exit;
 	private Button helpButton;
 	private Graphic background;
-	private int score;
+	private static int score;
 
 	//private ArrayList<Star> starArray;
 	//star will be its own class (made by Tamanna), we will then have an array of stars that will appear on the screen
@@ -46,6 +46,7 @@ public class GameScreen extends ClickableScreen implements KeyListener, MouseLis
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> view) {
+		setScore(10);
 		//int xCoord = DragonLand.x * .05; 
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
 		viewObjects.add(background);
@@ -94,6 +95,14 @@ public class GameScreen extends ClickableScreen implements KeyListener, MouseLis
 
 	public KeyListener getKeyListener(){
 		return this;
+	}
+
+	public static int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
 	}
 
 }
