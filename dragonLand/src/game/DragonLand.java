@@ -56,8 +56,9 @@ public class DragonLand extends GUIApplication {
 	@Override
 	protected void initScreen() {
 		initColors();
-		homeScreen = new HomeScreen(getWidth(),getHeight());
+		//homeScreen = new HomeScreen(getWidth(),getHeight());
 		miniGameScreen = new GameScreen(getWidth(),getHeight());
+		//System.out.println(miniGameScreen.getWidth());
 //		shopMain = new (getWidth(),getHeight());
 //		sellScreen = new (getWidth(),getHeight());
 //		buyScreen = new (getWidth(),getHeight());

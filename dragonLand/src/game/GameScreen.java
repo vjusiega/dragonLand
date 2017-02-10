@@ -23,12 +23,13 @@ import guiPractice.components.Visible;
  * @author Tamanna Hussain and Violetta Jusiega
  *
  */
-public class GameScreen extends ClickableScreen implements KeyListener, MouseListener{
+public class GameScreen extends ClickableScreen implements KeyListener{
 
 	private XButton exit;
 	private Button helpButton;
 	private Graphic background;
 	private static int score;
+	private GameDragon testDragon;
 
 	//private ArrayList<Star> starArray;
 	//star will be its own class (made by Tamanna), we will then have an array of stars that will appear on the screen
@@ -46,6 +47,17 @@ public class GameScreen extends ClickableScreen implements KeyListener, MouseLis
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> view) {
+	//	int xPos = (int)(DragonLand.miniGameScreen.getWidth())/2;
+		//int yPos = (int)(DragonLand.miniGameScreen.getHeight() * 0.75);
+		
+		
+		int xPos = getWidth();
+		int yPos = getHeight();
+		
+		
+		//need to figure out the height of the dragons, or their proportions to the screen
+		
+		testDragon = new GameDragon(xPos/2, (int)(yPos*0.75), 200, 200);
 		setScore(10);
 		//int xCoord = DragonLand.x * .05; 
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
@@ -71,30 +83,8 @@ public class GameScreen extends ClickableScreen implements KeyListener, MouseLis
 
 		view.add(exit);
 		view.add(helpButton);
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		System.out.println("A key was typed!");	
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_LEFT){ 
-			System.out.println("Left Arrow Key pressed");
-		}else if(e.getKeyCode() == KeyEvent.VK_RIGHT){ 
-			System.out.println("Right Arrow Key pressed");
-		}
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public KeyListener getKeyListener(){
-		return this;
+		view.add(testDragon);
+		
 	}
 
 	public static int getScore() {
@@ -104,5 +94,38 @@ public class GameScreen extends ClickableScreen implements KeyListener, MouseLis
 	public void setScore(int score) {
 		this.score = score;
 	}
+	
+	
+
+	
+	/**
+	 * key controls by Violetta
+	 */
+	
+	@Override
+	public void keyTyped(KeyEvent e) {
+		System.out.println("A key was typed!");	
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_LEFT){ 
+			testDragon.setX(testDragon.getX() - 5);
+		}else if(e.getKeyCode() == KeyEvent.VK_RIGHT){ 
+			testDragon.setX(testDragon.getX() + 5);
+		}
+		testDragon.setVx(testDragon.getxSpeed());
+		testDragon.setRunning(true);
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e){	
+		testDragon.setRunning(false);
+	}
+
+	public KeyListener getKeyListener(){
+		return this;
+	}
+
 
 }
