@@ -34,8 +34,6 @@ public class AnimatedComponent extends MovingComponent{
 		return true;
 	}
 	
-
-
 	public void addFrame(BufferedImage image, Integer time){
 		frame.add(image);
 		this.times.add(time);
