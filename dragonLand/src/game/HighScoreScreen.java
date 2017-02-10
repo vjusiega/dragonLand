@@ -43,7 +43,8 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
-		yourScore = new Button(200, 200, 300, 50, "Your score + SCORE", DragonLand.LIGHT_NUDE, null);
+		yourScore = new Button(345, 175, 300, 50, "Your score + SCORE", DragonLand.LIGHT_NUDE, null);
+		yourScore.setSize(30);
 		layerOne = new CurvedButton(50,70,getWidth()-100, getHeight()-110,null,DragonLand.LIGHT_NUDE, null);
 		layerTwo = new Button(100, 150, getWidth()-200, getHeight()-240, null, DragonLand.BRIGHT_PINK, null);
 		title = new Button((getWidth()/2)-125, 40, 250, 60, "High Scores", DragonLand.DARKER_NUDE, null);
