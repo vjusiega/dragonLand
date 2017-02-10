@@ -21,11 +21,7 @@ public class DragonLand extends GUIApplication {
 	 * Static Fields
 	 */
 	public static DragonLand game;
-<<<<<<< HEAD
-	public static Dragon[] dragonList; //list of all dragons in the game
-=======
 	//public static Dragon[] DragonList; //list of all dragons in the game
->>>>>>> refs/heads/mainScreen
 	public static int coins; 
 	public static Screen homeScreen;
 	public static Screen shopMain; // shop 1
@@ -33,16 +29,13 @@ public class DragonLand extends GUIApplication {
 	public static Screen buyScreen; // shop 3
 	public static Screen highscoreScreen; // high score
 	public static Screen miniGameScreen; // minigame
-<<<<<<< HEAD
-=======
+
 	public static Color NAVY;
 	public static Color BRIGHT_PINK;
 	public static Color LIGHT_PINK;
 	public static Color LIGHT_NUDE;
 	public static Color DARKER_NUDE;
 	
-	
->>>>>>> refs/heads/mainScreen
 	
 	/**
 	 * 
