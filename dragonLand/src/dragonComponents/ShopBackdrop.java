@@ -2,6 +2,7 @@ package dragonComponents;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 import guiPractice.components.Component;
 
@@ -15,10 +16,10 @@ public class ShopBackdrop extends Component {
 	@Override
 	public void update(Graphics2D g) {
 		// TODO Auto-generated method stub
-		
-		g.drawRoundRect(getX(), getY(), getWidth(), getHeight(), 50, 50);
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g.drawRoundRect(0, 0, getWidth(), getHeight(), 50, 50);
 		g.setColor(new Color(244,215,183));
-		g.fillRoundRect(getX(), getY(), getWidth(), getHeight(), 50, 50);
+		g.fillRoundRect(0, 0, getWidth(), getHeight(), 50, 50);
 	}
 
 }
