@@ -28,6 +28,7 @@ public class GameScreen extends ClickableScreen implements KeyListener, MouseLis
 	private XButton exit;
 	private Button helpButton;
 	private Graphic background;
+	private int score;
 
 	//private ArrayList<Star> starArray;
 	//star will be its own class (made by Tamanna), we will then have an array of stars that will appear on the screen
