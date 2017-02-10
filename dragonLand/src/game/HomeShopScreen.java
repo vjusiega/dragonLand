@@ -30,12 +30,16 @@ public class HomeShopScreen extends ClickableScreen {
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> visible) {
-//		Button exit = new Button(getWidth() - 60,  10, 50, 50, "X", Color.RED, new Action(){
-//			public void Act()
-//			{
-//				
-//			}
-//		});
+		Button exit = new Button(getWidth() - 100,  60, 50, 40, "X", new Color(230,195,147), new Action(){
+			
+			public void act() {
+				// TODO Auto-generated method stub
+				DragonLand.game.setScreen(DragonLand.homeScreen);
+			}
+		});
+		
+		visible.add(exit);
+		
 		int shopTopMargin = 50;
 		int titleWidth = 300;
 		int titleHeight = 50;
