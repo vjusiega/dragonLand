@@ -42,6 +42,7 @@ public class ShopScreen extends ClickableScreen {
 		viewObjects.add(back);
 		viewObjects.add(ppp.getCoin());
 		viewObjects.add(ppp.getPriceLabel());
+
 	}
 
 }

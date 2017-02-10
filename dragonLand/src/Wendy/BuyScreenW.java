@@ -7,13 +7,14 @@ import dragonComponents.DragonLabel;
 import dragonComponents.PriceLabel;
 import dragonComponents.ShopLabel;
 import game.DragonLand;
+import game.ShopScreen;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
 
-public class BuyScreenW extends ClickableScreen {
+public class BuyScreenW extends ShopScreen {
 
    // private ArrayList<Dragons> dragonsInShop;
     private ArrayList<DragonLabel> shoplabels; 
@@ -52,10 +53,6 @@ public class BuyScreenW extends ClickableScreen {
 		
 		visible.add(shopTitle);
 		
-		price = DragonLand.coins;
-		priceLabel = new PriceLabel(getWidth() - titleWidth, getHeight()/2 - titleHeight/2, 100, 50, price);
-		
-		visible.add(priceLabel);
 		
 		x = 0;
 		y = 0;
@@ -80,6 +77,7 @@ public class BuyScreenW extends ClickableScreen {
 			y = y + DragonLabel.getLabelHeight();
 		}	
 		
+		sold = SellScreenZ.getSold();
 		if(sold != null)
 		{
 			label = new DragonLabel(x,y,sold,"BUY", new Action(){
@@ -98,7 +96,5 @@ public class BuyScreenW extends ClickableScreen {
 		}
 	}
 	
-	private SellScreenInterface getSoldDragon(){
-		
-	}
+
 }

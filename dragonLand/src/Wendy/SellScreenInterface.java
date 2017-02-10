@@ -1,5 +1,5 @@
 package Wendy;
 
 public interface SellScreenInterface {
-	Dragon sold();
+	Dragon getSold();
 }
