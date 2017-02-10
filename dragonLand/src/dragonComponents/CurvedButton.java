@@ -16,17 +16,12 @@ import guiPractice.components.Button;
 public class CurvedButton extends Button {
 
 	private Color color;
-	private String font;
 	
 	public CurvedButton(int x, int y, int w, int h, String text, Color color, Action action) {
 		super(x, y, w, h, text, color, action);
 		this.color=color;
 		update();
 		// TODO Auto-generated constructor stub
-	}
-	
-	public CurvedButton(int x, int y, int w, int h, String text, Color color, Action action, String font){
-		super(x,y,w,h,text,color,action,font);
 	}
 	
 	public Color getColor() {
