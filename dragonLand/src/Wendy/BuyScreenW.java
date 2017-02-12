@@ -58,15 +58,18 @@ public class BuyScreenW extends ShopScreen {
 		int titleWidth = 100;
 		int titleHeight = 65;
 
-		ShopLabel shopTitle = new ShopLabel(50, 50, titleWidth*4, titleHeight, "Dragon Shop");
+		ShopLabel shopTitle = new ShopLabel(60, 60, titleWidth*4, titleHeight, "Dragon Shop");
 		
 		visible.add(shopTitle);
 		
+		PriceLabel priceL = new PriceLabel(800,70,50);
+		visible.add(priceL.getPriceLabel());
+		visible.add(priceL.getCoin());
 		
 		x = 0;
 		y = 0;
 		
-		Dragons[] dragons = DragonLand.DragonList;
+		//Dragons[] dragons = DragonLand.DragonList;
 		for(int i = 0; i<dragons[3];i++)
 		{
 			label = new DragonLabel(x,y, dragons[i],"BUY", new Action(){
@@ -104,6 +107,4 @@ public class BuyScreenW extends ShopScreen {
 			addObject(label);
 		}
 	}
-	
-
 }
