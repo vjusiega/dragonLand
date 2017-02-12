@@ -5,12 +5,14 @@ import java.util.ArrayList;
 
 import dragonComponents.DragonLabel;
 import dragonComponents.PriceLabel;
+import dragonComponents.ShopBackdrop;
 import dragonComponents.ShopLabel;
 import game.DragonLand;
 import game.ShopScreen;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
+import guiPractice.components.Graphic;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
 
@@ -34,7 +36,14 @@ public class BuyScreenW extends ShopScreen {
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> visible) {
-		// TODO Auto-generated method stub
+		
+		Graphic background=new Graphic(0,0,getWidth(),getHeight(),"img/Grassland.png");
+		ShopBackdrop back = new ShopBackdrop(50,50,getWidth()-100,getHeight()-100);
+		
+		
+		viewObjects.add(background);
+		viewObjects.add(back);
+
 		
 		Button exit = new Button(getWidth() - 100,  60, 50, 40, "X", new Color(230,195,147), new Action(){
 			
