@@ -43,7 +43,7 @@ public class HungryBox extends Button {
 
 	}
 	
-	private void addHungry() {
+	public void addHungry() {
 		for(int i= 0; i<hungryTimes.size(); i++){
 			double probability = .2*(30.0-hungryTime)/30;
 			if(Math.random()>probability){
@@ -61,7 +61,7 @@ public class HungryBox extends Button {
 		}
 	}
 	
-	private void removeHungry(){
+	public void removeHungry(){
 		for(int i=0; i<hungryTimes.size(); i++){
 			HungryTimesInterface d = hungryTimes.get(i);
 			d.setAppearanceTime(d.getAppearanceTime()-10);

@@ -1,3 +1,5 @@
+package dragonComponents;
+
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +22,7 @@ public class JenniberDemo extends GUIApplication {
 	 * 
 	 */
 	public JenniberDemo() {
-		fluctuation = new HungryBox();
+		fluctuation = new HungryBox(0, 0, game.DragonLand.LIGHT_NUDE, null);
 	}
 
 	/* (non-Javadoc)
@@ -60,9 +62,8 @@ public class JenniberDemo extends GUIApplication {
 				
 				@Override
 				public void act() {
-					JenniberDemo.fluctuation.outputEvent();
-					rewardDisplay.setText("You earned a reward! Total points = "
-							+ JenniberDemo.fluctuation.outputEvent());
+					JenniberDemo.fluctuation.addHungry();
+					rewardDisplay.setText("You earned a reward! Total points = ");
 				}
 			});
 			view.add(rewardDisplay);
