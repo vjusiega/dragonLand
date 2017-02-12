@@ -2,7 +2,7 @@ package dragonComponents;
 
 import java.awt.Graphics2D;
 
-import Wendy.Dragon;
+import dragonComponents.Dragon;
 import guiPractice.components.Action;
 import guiPractice.components.Component;
 import guiPractice.components.Graphic;

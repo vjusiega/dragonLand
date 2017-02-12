@@ -3,6 +3,7 @@ package Wendy;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import dragonComponents.Dragon;
 import dragonComponents.DragonLabel;
 import dragonComponents.PriceLabel;
 import dragonComponents.ShopBackdrop;

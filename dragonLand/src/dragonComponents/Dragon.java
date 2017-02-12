@@ -8,12 +8,13 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 
+import game.DragonToShop;
 import guiPractice.components.AnimatedComponent;
 import guiPractice.components.MovingComponent;
 import guiPractice.components.Visible;
 
 
-public class Dragon extends AnimatedComponent {
+public class Dragon extends AnimatedComponent implements DragonToShop{
 
 	
 	/**
@@ -106,6 +107,7 @@ public class Dragon extends AnimatedComponent {
 	public void animationRight(){
 		direction = RIGHT;
 	}
+	
 	public String getName() {
 		return name;
 	}
@@ -134,5 +136,8 @@ public class Dragon extends AnimatedComponent {
 	public void setImgSrc(String imgSrc) {
 		this.imgSrc = imgSrc;
 	}
+
+
+
 
 }
