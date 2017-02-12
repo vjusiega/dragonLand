@@ -18,10 +18,10 @@ import guiPractice.components.Visible;
 
 public class BuyScreenW extends ShopScreen {
 
-   // private ArrayList<Dragons> dragonsInShop;
+    private ArrayList<Dragon> dragonsInShop;
     private ArrayList<DragonLabel> shoplabels; 
     private DragonLabel label;
-   // private Dragon[] dragons;
+    private Dragon[] dragons;
     
     private int price;
     private PriceLabel priceLabel;
@@ -37,12 +37,17 @@ public class BuyScreenW extends ShopScreen {
 	@Override
 	public void initAllObjects(ArrayList<Visible> visible) {
 		
+		dragons = new Dragon[5];
+		for(int i= 0; i< dragons.length;i++)
+		{
+			dragons[i] = new Dragon(50, 50, 50, 50, "Nice Dragon", 100, "img/dragonNine.jpg");
+		}
+		
 		Graphic background=new Graphic(0,0,getWidth(),getHeight(),"img/Grassland.png");
 		ShopBackdrop back = new ShopBackdrop(50,50,getWidth()-100,getHeight()-100);
 		
-		
-		viewObjects.add(background);
-		viewObjects.add(back);
+		visible.add(background);
+		visible.add(back);
 
 		
 		Button exit = new Button(getWidth() - 100,  60, 50, 40, "X", new Color(230,195,147), new Action(){
@@ -66,45 +71,51 @@ public class BuyScreenW extends ShopScreen {
 		visible.add(priceL.getPriceLabel());
 		visible.add(priceL.getCoin());
 		
+		
 		x = 0;
 		y = 0;
 		
-		//Dragons[] dragons = DragonLand.DragonList;
-		for(int i = 0; i<dragons[3];i++)
+		for(int i = 0; i<dragons.length;i++)
 		{
 			label = new DragonLabel(x,y, dragons[i],"BUY", new Action(){
 				@Override
 				public void act() {
 					// TODO Auto-generated method stub
-					shoplabels.remove(label);
-					dragonsInShop.remove(dragons[i]);	
-					remove(label);
-					DragonLand.coins -= dragons[i].price;
+//					shoplabels.remove(label);
+//					dragonsInShop.remove(this);	
+//					remove(label);
+//					DragonLand.coins -= this.Dragon.getPrice();
 				}
 			});
-			shoplabels.add(label);
-			dragonsInShop.add(dragons[i]);
-			addObject(label);
+			//shoplabels.add(label);
+			//dragonsInShop.add(dragons[i]);
+			//addObject(label);
+			visible.add(label.getDragonImg());
+			visible.add(label.getDragonName());
+			//System.out.println(label.getDragonName().getText());
+			visible.add(label.getDragonPrice());
+			visible.add(label.getButton());
 			
 			y = y + DragonLabel.getLabelHeight();
 		}	
 		
-		sold = SellScreenZ.getSold();
-		if(sold != null)
-		{
-			label = new DragonLabel(x,y,sold,"BUY", new Action(){
-				@Override
-				public void act() {
-					// TODO Auto-generated method stub
-					shoplabels.remove(label);
-					dragonsInShop.remove(dragons[i]);	
-					remove(label);
-					DragonLand.coins -= dragons[i].price;
-				}
-			});
-			shoplabels.add(label);
-			dragonsInShop.add(sold);
-			addObject(label);
-		}
+//		sold = SellScreenZ.getSold();
+//		if(sold != null)
+//		{
+//			label = new DragonLabel(x,y,sold,"BUY", new Action(){
+//				@Override
+//				public void act() {
+//					// TODO Auto-generated method stub
+//					shoplabels.remove(label);
+//					dragonsInShop.remove(dragons[i]);	
+//					remove(label);
+//					DragonLand.coins -= dragons[i].price;
+//				}
+//			});
+//			shoplabels.add(label);
+//			dragonsInShop.add(sold);
+//			addObject(label);
+//		}
 	}
+	
 }
