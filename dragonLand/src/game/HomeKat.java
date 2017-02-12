@@ -85,31 +85,31 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 			addAnimation(viewObjects,0,0, names[i], price+i*50, "img/dragon"+i+".png");
 		}
 	}
-	public void dragonsOnScreen(ArrayList<Visible> viewObjects){
-		String[] purchased = StoreSellInterfaceK.getNamesOfPurchased();
-		checkToRemove(purchased, viewObjects);
-		addNewDragons(purchased,viewObjects);
-	}
-
-	private void addNewDragons(String[] purchased, ArrayList<Visible> viewObjects) {
-		for(int i=0;i<purchased.length;i++){
-			for(int j=0;j<dragonsOnScreen.size();j++){
-				
-			}
-		}
-	}
-
-	private void checkToRemove(String[] purchased,ArrayList<Visible> viewObjects) {
-		for(int i=0;i<dragonsOnScreen.size();i++){
-			for(int j=0;j<purchased.length;j++){
-				if(dragonsOnScreen.get(i).getName()!=purchased[j]){
-					viewObjects.remove(dragonsOnScreen.get(i));
-					dragonsOnScreen.remove(dragonsOnScreen.get(i));
-					j=-1;
-				}
-			}	
-		}
-	}
+//	public void dragonsOnScreen(ArrayList<Visible> viewObjects){
+//		String[] purchased = StoreSellInterfaceK.getNamesOfPurchased();
+//		checkToRemove(purchased, viewObjects);
+//		addNewDragons(purchased,viewObjects);
+//	}
+//
+//	private void addNewDragons(String[] purchased, ArrayList<Visible> viewObjects) {
+//		for(int i=0;i<purchased.length;i++){
+//			for(int j=0;j<dragonsOnScreen.size();j++){
+//				
+//			}
+//		}
+//	}
+//
+//	private void checkToRemove(String[] purchased,ArrayList<Visible> viewObjects) {
+//		for(int i=0;i<dragonsOnScreen.size();i++){
+//			for(int j=0;j<purchased.length;j++){
+//				if(dragonsOnScreen.get(i).getName()!=purchased[j]){
+//					viewObjects.remove(dragonsOnScreen.get(i));
+//					dragonsOnScreen.remove(dragonsOnScreen.get(i));
+//					j=-1;
+//				}
+//			}	
+//		}
+//	}
 
 	
 }
