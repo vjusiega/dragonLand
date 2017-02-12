@@ -2,6 +2,7 @@ package dragonComponents;
 
 import java.awt.Graphics2D;
 
+import game.DragonLand;
 import guiPractice.components.Component;
 import guiPractice.components.Graphic;
 import guiPractice.components.TextLabel;
@@ -31,7 +32,7 @@ public class PriceLabel extends Component {
 		int priceX = coinSide + 2 * LEFT_MARGIN;
 		int priceWidth = getWidth() - priceX - LEFT_MARGIN;
 		int priceHeight = getHeight() - 2 * TOP_MARGIN;
-		priceLabel = new TextLabel(getX() + priceX, getY() + TOP_MARGIN, priceWidth, priceHeight, "" + price);
+		priceLabel = new ShopLabel(getX() + priceX, getY() + TOP_MARGIN, priceWidth, priceHeight, "" + price, DragonLand.LIGHT_NUDE);
 		
 		
 	}
