@@ -33,8 +33,8 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 	
 	//Violetta's fields
 	//private GameDragon testDragon;
-	private int dragonHeight; //int for the height of dragon based on screen
-	private ArrayList<GameDragon> dragonArray = new ArrayList<GameDragon>();
+	private static int dragonHeight; //int for the height of dragon based on screen
+	private static ArrayList<GameDragon> dragonArray = new ArrayList<GameDragon>();
 	
 	//Tamanna's fields
 	//private ArrayList<Star> starArray;
@@ -55,19 +55,8 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 	//	int xPos = (int)(DragonLand.miniGameScreen.getWidth())/2;
 		//int yPos = (int)(DragonLand.miniGameScreen.getHeight() * 0.75);
 		dragonArray = new ArrayList<GameDragon>();
+		addDragon();
 		
-		
-		dragonHeight = 50;
-		
-		int xPos = getWidth() / 2;
-		int yPos = getHeight() - dragonHeight;
-		
-		
-		//need to figure out the height of the dragons, or their proportions to the screen
-		
-		//the starting xPos for the dragon should be xPos/2 + half the width of the object
-		GameDragon temp = new GameDragon(xPos/2, (int)(yPos*0.75), 200, 200);
-		dragonArray.add(temp);
 		setScore(10);
 		//int xCoord = DragonLand.x * .05; 
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
@@ -101,6 +90,16 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 		
 	}
 
+	public static void addDragon(){
+		dragonHeight = 50;
+		
+		int xPos = getWidth() / 2;
+		int yPos = getHeight() - dragonHeight;
+		
+		GameDragon temp = new GameDragon(xPos/2, (int)(yPos*0.75), 200, 200);
+		dragonArray.add(temp);
+	}
+	
 	public static int getScore() {
 		return score;
 	}
@@ -118,20 +117,13 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
-		System.out.println("A key was typed!");	
-		
-		int xPos = getWidth() / 2;
-		int yPos = getHeight() - dragonHeight;
-		GameDragon temp = new GameDragon(xPos/2, (int)(yPos*0.75), 200, 200);
-		dragonArray.add(temp);
+		//This only responds to when a letter is typed not a key, so 
+		//we can add a popup that says "Please use the arrow keys"
+		//but we would have to pause the entire thing and idk how to do that
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		//The other keys will not work until this code is run
-		//might want to add a text label that says press any key to begin
-		
-		
 		if(e.getKeyCode() == KeyEvent.VK_LEFT){ 
 			changeDragonPos(-5);
 		}else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
