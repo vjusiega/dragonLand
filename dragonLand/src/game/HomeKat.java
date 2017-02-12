@@ -15,28 +15,101 @@ public class HomeKat {
 	private int price;
 	private ArrayList<Integer> locationsX;
 	private ArrayList<Integer> locationsY;
-
+	private static ArrayList<AnimatedComponent> dragonList; 
+	private ArrayList<Dragon> dragonsOnScreen;
+	
 	public HomeKat() {
-		//flyingLocations=new int[]{100,100,130,800,150,450};
-		//walkingLocations = new int[]{120,500,350,350,700,450};
 		makeLocations();
 		}
 	
 	private void makeLocations() {
 		
 		locationsX.add(100);
-		locationsX.add(120);
-		locationsX.add(800);
-		locationsX.add(450);
-		locationsX.add(350);
+		locationsX.add(250);
+		locationsX.add(400);
+		locationsX.add(550);
 		locationsX.add(700);
+		locationsX.add(850);
+		
+		locationsY.add(300);
+		locationsY.add(200);
+		locationsY.add(250);
+		locationsY.add(400);
+		locationsY.add(500);
+		locationsY.add(600);
+		
+		
 	}
-
-	public void makeDragon(){
+public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, String name, int price,String imgSrc) {
+		
+		AnimatedComponent a = new Dragon(x,y,100,100,name, price, imgSrc);
+		
+		try{
+			ImageIcon icon = new ImageIcon(imgSrc);
+			int numberRow =3 ;
+			int rows =4;
+			int w =48;
+			int h = 48;
+			for(int i=0;i<numberRow*rows;i++){
+				
+				//declare cropped image
+				BufferedImage cropped = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
+				int leftMargin=0;
+				int topMargin =0 ;
+				int x1 = leftMargin + w*(i%numberRow);
+				int y1=topMargin +h*(i/numberRow);
+				Graphics g = cropped.createGraphics();
+				g.drawImage(icon.getImage(),0,0,w,h,x1,y1,x1+w,y1+h,null);
+				a.addFrame(cropped, 300);
+				if(i==numberRow*rows-1)
+					i++;
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		viewObjects.add(a);
+		//dragonList.add(a);
+		a.update();
+		a.setX(x);
+		a.setY(y);
+		a.play();
+		
+	}
+	public void makeDragons(ArrayList<Visible> viewObjects){
+		String[] names = new String[] {"Rowdy","Thorn","Mushu","Falcor","Elliot","Puff","Spyro","Sandy",
+				"Scaly","Nessie","Nymph","Sparky","Flambi","Drago","Viper","Moon","Saphira","Scorch","Toothless","Stormfly"};
+		price=50;
+		
 		for(int i=0;i<20;i++){
-			DragonLand.dragonList[i]=(new Dragon(flyingLocations[0], flyingLocations[1], 100, 100, "red", "red", price, "img/dragon"+i));
-			price+=100;
+			addAnimation(viewObjects,0,0, names[i], price+i*50, "img/dragon"+i+".png");
 		}
 	}
+	public void dragonsOnScreen(ArrayList<Visible> viewObjects){
+		String[] purchased = StoreSellInterfaceK.getNamesOfPurchased();
+		checkToRemove(purchased, viewObjects);
+		addNewDragons(purchased,viewObjects);
+	}
+
+	private void addNewDragons(String[] purchased, ArrayList<Visible> viewObjects) {
+		for(int i=0;i<purchased.length;i++){
+			for(int j=0;j<dragonsOnScreen.size();j++){
+				
+			}
+		}
+	}
+
+	private void checkToRemove(String[] purchased,ArrayList<Visible> viewObjects) {
+		for(int i=0;i<dragonsOnScreen.size();i++){
+			for(int j=0;j<purchased.length;j++){
+				if(dragonsOnScreen.get(i).getName()!=purchased[j]){
+					viewObjects.remove(dragonsOnScreen.get(i));
+					dragonsOnScreen.remove(dragonsOnScreen.get(i));
+					j=-1;
+				}
+			}	
+		}
+	}
+
 	
 }
