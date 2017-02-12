@@ -12,6 +12,7 @@ import game.ShopScreen;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
+import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
@@ -77,6 +78,7 @@ public class BuyScreenW extends ShopScreen {
 		
 		for(int i = 0; i<dragons.length;i++)
 		{
+			ShopBackdrop labelBack = new ShopBackdrop(50,y-2,getWidth()-100,getHeight()/7);
 			label = new DragonLabel(x,y, dragons[i],"BUY", new Action(){
 				
 				public void act() {
@@ -85,12 +87,13 @@ public class BuyScreenW extends ShopScreen {
 //					dragonsInShop.remove(this);	
 //					remove(label);
 //					DragonLand.coins -= this.Dragon.getPrice();
-					DragonLand.game.setScreen(DragonLand.homeScreen);
+					DragonLand.game.setScreen(DragonLand.homeScreen);//was using this for test don't know why doesn't work :(
 				}
 			});
 			//shoplabels.add(label);
 			//dragonsInShop.add(dragons[i]);
 			//addObject(label);
+			visible.add(labelBack);
 			visible.add(label.getDragonImg());
 			visible.add(label.getDragonName());
 			//System.out.println(label.getDragonName().getText());
@@ -100,6 +103,17 @@ public class BuyScreenW extends ShopScreen {
 			
 			y = y + DragonLabel.getLabelHeight();
 		}	
+		
+		ClickableGraphic nextPage = new ClickableGraphic(900,550,0.15,"img/Arrow.png");
+		nextPage.setAction(new Action(){
+
+			@Override
+			public void act() {
+				// TODO Auto-generated method stub
+				DragonLand.game.setScreen(DragonLand.shopMain);
+			}
+		});
+		visible.add(nextPage);
 		
 	}
 	
