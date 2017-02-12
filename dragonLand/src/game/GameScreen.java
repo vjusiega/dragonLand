@@ -37,6 +37,7 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 	private static ArrayList<GameDragon> dragonArray = new ArrayList<GameDragon>();
 	
 	//Tamanna's fields
+
 	//private ArrayList<Star> starArray;
 	//star will be its own class (made by Tamanna), we will then have an array of stars that will appear on the screen
 	

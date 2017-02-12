@@ -4,8 +4,11 @@
 package game;
 
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 
+import guiPractice.components.Graphic;
 import guiPractice.components.MovingComponent;
+import guiPractice.components.Visible;
 
 /**
  * @author Tamanna Hussain
@@ -13,33 +16,46 @@ import guiPractice.components.MovingComponent;
  */
 public class Star extends MovingComponent {
 
-	/**
-	 * @param x
-	 * @param y
-	 * @param w
-	 * @param h
-	 */
+	private int starSpeed;
+	private ArrayList<Star> starArray;
+	private Graphic starImage;
+	
 	public Star(int x, int y, int w, int h) {
 		super(x, y, w, h);
-		// TODO Auto-generated constructor stub
+		setX(x);
+		setY(y);
+		starSpeed = 3;
 	}
-
-	/* (non-Javadoc)
-	 * @see guiPractice.components.MovingComponent#checkBehaviors()
-	 */
+	
+	public void initAllObjects(ArrayList<Visible> viewObjects) {
+		starArray = new ArrayList<Star>();
+		
+		starImage = new Graphic(0, 0, getWidth(), getHeight(), "img/star.png");
+		viewObjects.add(starImage);
+		
+	}
+	
 	@Override
 	public void checkBehaviors() {
-		// TODO Auto-generated method stub
-
+		//If the stars, fall after a certain point (y = 100), they disappear
+		if(getY() > 100){
+			setY(100);
+			starSpeed *= -5;
+		}
 	}
 
-	/* (non-Javadoc)
-	 * @see guiPractice.components.MovingComponent#drawImage(java.awt.Graphics2D)
-	 */
 	@Override
 	public void drawImage(Graphics2D g) {
 		// TODO Auto-generated method stub
 
 	}
-
+	
+	public void setStarSpeed(int x){
+		starSpeed = x;
+	}
+	
+	public int getStarSpeed(){
+		return starSpeed;
+	}
+	
 }
