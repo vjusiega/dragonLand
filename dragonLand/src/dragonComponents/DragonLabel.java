@@ -22,37 +22,53 @@ public class DragonLabel extends Component {
 	private TextLabel dragonName;
 	private PriceLabel dragonPrice;
 	private ShopActionButton button;
+	private Graphic dragonImage;
 
 	public DragonLabel(int x, int y, Dragon d, String t, Action act) {
 		super(x, y, LABEL_WIDTH, LABEL_HEIGHT);
 		dragon = d;
 		buttonType = t;
 		action = act;
+		
+		update();
 	}
 
 	@Override
 	public void update(Graphics2D visible) {
 		
-		int imageSide = LABEL_HEIGHT - 2 * TOP_MARGIN;
-		Graphic dragonImage = new Graphic(LEFT_MARGIN , TOP_MARGIN, imageSide, imageSide, dragon.getImage());
+		(if dragon != null)
+		{
+			
+			int imageSide = LABEL_HEIGHT - 2 * TOP_MARGIN;
+			//Graphic dragonImage = new Graphic(LEFT_MARGIN , TOP_MARGIN, imageSide, imageSide, dragon.getImage());
+			dragonImage = new Graphic(100 , this.getY(), imageSide, imageSide, dragon.getImgSrc());
+
+			
+			int column2X = 2 * LEFT_MARGIN + imageSide;
+			int nameWidth = LABEL_WIDTH - column2X - LEFT_MARGIN;
+			int nameHeight = (int)(0.3 * imageSide);
+			//dragonName = new TextLabel(column2X, TOP_MARGIN, nameWidth, nameHeight, dragon.getName());
+			dragonName = new TextLabel(this.getX()+300, this.getY(), nameWidth, nameHeight, dragon.getName());
+
+			
+			int row2Y = nameHeight + (int)(1.5 * TOP_MARGIN);
+			int row2Width = nameWidth/3;
+			int priceHeight = 9 * nameHeight/10;
+			//dragonPrice = new PriceLabel(column2X, row2Y, row2Width, priceHeight, dragon.getPrice());
+			dragonPrice = new PriceLabel(this.getX() + 300, this.getY() + 50, dragon.getPrice());
+
+			
+			
+			int column3X = column2X + 2 * row2Width;
+			int buttonHeight = LABEL_HEIGHT - row2Y - TOP_MARGIN;
+			if(buttonType.toUpperCase().equals("BUY"))
+				//button = new ShopActionButton(column3X, row2Y, row2Width, buttonHeight, "BUY", action);
+				button = new ShopActionButton(this.getX() + 600, this.getY(), row2Width, buttonHeight, "BUY", action);
+			else if(buttonType.toUpperCase().equals("SELL"))
+				//button = new ShopActionButton(column3X, row2Y, row2Width, buttonHeight, "BUY", action);
+				button = new ShopActionButton(this.getX() + 600, this.getY(), row2Width, buttonHeight, "SELL", action);
+		}
 		
-		int column2X = 2 * LEFT_MARGIN + imageSide;
-		int nameWidth = LABEL_WIDTH - column2X - LEFT_MARGIN;
-		int nameHeight = (int)(0.3 * imageSide);
-		dragonName = new TextLabel(column2X, TOP_MARGIN, nameWidth, nameHeight, dragon.getName());
-		
-		int row2Y = nameHeight + (int)(1.5 * TOP_MARGIN);
-		int row2Width = nameWidth/3;
-		int priceHeight = 9 * nameHeight/10;
-		dragonPrice = new PriceLabel(column2X, row2Y, row2Width, priceHeight, dragon.getPrice());
-		
-		
-		int column3X = column2X + 2 * row2Width;
-		int buttonHeight = LABEL_HEIGHT - row2Y - TOP_MARGIN;
-		if(buttonType.toUpperCase().equals("BUY"))
-			button = new ShopActionButton(column3X, row2Y, row2Width, buttonHeight, "BUY", action);
-		else if(buttonType.toUpperCase().equals("SELL"))
-			button = new ShopActionButton(column3X, row2Y, row2Width, buttonHeight, "BUY", action);
 
 	}
 
@@ -74,5 +90,9 @@ public class DragonLabel extends Component {
 
 	public ShopActionButton getButton() {
 		return button;
+	}
+	
+	public Graphic getDragonImage(){
+		return dragonImage;
 	}
 }
