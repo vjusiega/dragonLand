@@ -2,6 +2,6 @@ package game;
 
 public interface DragonToShop {
 	String getName();
-	String getImage();
+	String getImageSrc();
 	int getPrice();
 }

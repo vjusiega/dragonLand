@@ -1,10 +1,12 @@
 package Wendy;
 
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
+import game.DragonToShop;
 import guiPractice.components.AnimatedComponent;
 
-public class Dragon extends AnimatedComponent {
+public class Dragon extends AnimatedComponent implements DragonToShop{
 
 	private String name;
 	private int price;
@@ -24,6 +26,22 @@ public class Dragon extends AnimatedComponent {
 
 	}
 
+	public String getImageSrc() {
+		// TODO Auto-generated method stub
+		return imgSrc;
+	}
+	
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return name;
+	}
+	
+	@Override
+	public int getPrice() {
+		// TODO Auto-generated method stub
+		return price;
+	}
 	@Override
 	public void checkBehaviors() {
 //		if(true){
@@ -48,15 +66,7 @@ public class Dragon extends AnimatedComponent {
 	public void animationRight(){
 	}
 
-	public String getName() {
-		return name;
-	}
-	
-	public int getPrice() {
-		return price;
-	}
-	
-	public String getImgSrc() {
-		return imgSrc;
-	}
+
+
+
 }
