@@ -12,23 +12,22 @@ public class GameDragon extends MovingComponent{
 	
 	//this field should eventually be replaced with a field from the main class
 		private int screenWidth;
+		
+	private int dragonSpeed;
 	
-	private static int xSpeed;
 	
 	
-	public int getxSpeed(){
-		return xSpeed;
-	}
 
 	public GameDragon(int x, int y, int w, int h) {
 		super(x, y, w, h);
 		setX(x);
 		setY(y);
+		dragonSpeed = 5;
 	}
 
 	@Override
 	public void checkBehaviors() {
-		if(getX() > screenWidth + xSpeed || getX() < 0){			
+		if(getX() > screenWidth + dragonSpeed || getX() < 0){			
 			setVx(0);
 		}
 		
@@ -40,6 +39,14 @@ public class GameDragon extends MovingComponent{
 		g.drawRect(getX(), getY(), getWidth(), getHeight());
 		g.fillRect(getX(), getY(), getWidth(), getHeight());
 		
+	}
+	
+	public void setDragonSpeed(int x){
+		dragonSpeed = x;
+	}
+	
+	public int getDragonSpeed(){
+		return dragonSpeed;
 	}
 	
 	

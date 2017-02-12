@@ -29,14 +29,18 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 	private Button helpButton;
 	private Graphic background;
 	private static int score;
-	private GameDragon testDragon;
+	
+	
+	//Violetta's fields
+	//private GameDragon testDragon;
 	private int dragonHeight; //int for the height of dragon based on screen
-
+	private ArrayList<GameDragon> dragonArray = new ArrayList<GameDragon>();
+	
+	//Tamanna's fields
 	//private ArrayList<Star> starArray;
 	//star will be its own class (made by Tamanna), we will then have an array of stars that will appear on the screen
-	//private ArrayList<Dragon> dragonArray;
-	//Dragon should be its own array as well, we will have an array of dragons that are on the screen
-
+	
+	
 	public GameScreen(int width, int height) {
 		super(width, height);
 		// TODO Auto-generated constructor stub
@@ -50,6 +54,8 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 	public void initAllObjects(ArrayList<Visible> view) {
 	//	int xPos = (int)(DragonLand.miniGameScreen.getWidth())/2;
 		//int yPos = (int)(DragonLand.miniGameScreen.getHeight() * 0.75);
+		dragonArray = new ArrayList<GameDragon>();
+		
 		
 		dragonHeight = 50;
 		
@@ -59,7 +65,9 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 		
 		//need to figure out the height of the dragons, or their proportions to the screen
 		
-		testDragon = new GameDragon(xPos/2, (int)(yPos*0.75), 200, 200);
+		//the starting xPos for the dragon should be xPos/2 + half the width of the object
+		GameDragon temp = new GameDragon(xPos/2, (int)(yPos*0.75), 200, 200);
+		dragonArray.add(temp);
 		setScore(10);
 		//int xCoord = DragonLand.x * .05; 
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
@@ -85,7 +93,11 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 
 		view.add(exit);
 		view.add(helpButton);
-		view.add(testDragon);
+		System.out.println(dragonArray.size());
+		for(GameDragon d : dragonArray){
+			view.add(d);
+		}
+		System.out.println(dragonArray.size());
 		
 	}
 
@@ -107,22 +119,42 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {
 		System.out.println("A key was typed!");	
+		
+		int xPos = getWidth() / 2;
+		int yPos = getHeight() - dragonHeight;
+		GameDragon temp = new GameDragon(xPos/2, (int)(yPos*0.75), 200, 200);
+		dragonArray.add(temp);
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		//The other keys will not work until this code is run
+		//might want to add a text label that says press any key to begin
+		
+		
 		if(e.getKeyCode() == KeyEvent.VK_LEFT){ 
-			testDragon.setX(testDragon.getX() - 5);
-		}else if(e.getKeyCode() == KeyEvent.VK_RIGHT){ 
-			testDragon.setX(testDragon.getX() + 5);
+			changeDragonPos(-5);
+		}else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+			changeDragonPos(5);
 		}
-//		testDragon.setVx(testDragon.getxSpeed());
-//		testDragon.setRunning(true);
+	}
+
+	private void changeDragonPos(int i) {
+		//System.out.println("I got this");
+		System.out.println(dragonArray.size());
+		
+		
+		//THIS ISN'T WORKING IDK WHY
+			//It says that the position is always zero. WHY YOU LIE. 
+		for(GameDragon d : dragonArray){
+			d.setX(d.getX() + i);
+			System.out.println(d.getX());
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e){	
-		testDragon.setRunning(false);
+		
 	}
 
 	public KeyListener getKeyListener(){
