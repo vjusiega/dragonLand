@@ -2,10 +2,16 @@ package game;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+
+import dragonComponents.Dragon;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
+import guiPractice.components.AnimatedComponent;
 import guiPractice.components.Button;
 import guiPractice.components.Graphic;
 import guiPractice.components.TextLabel;
@@ -51,8 +57,15 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 		Button title = new Button((getWidth()*2/100),(getHeight()*5/100),  350,  50,  "Welcome to Dragon Land!",DragonLand.DARKER_NUDE,  null);
 		title.setSize(26);
 		viewObjects.add(title);
-	}
 
+		
+		HomeKat.addAnimation(viewObjects,200,200,"h",10,"img/dragon7.png");
+		
+	}
+	
+	
+	
+	
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub

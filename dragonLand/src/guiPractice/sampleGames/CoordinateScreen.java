@@ -42,9 +42,9 @@ public class CoordinateScreen extends Screen implements MouseMotionListener, Mou
 				MouseFollower.game.setScreen(MouseFollower.graphicsMove);
 			}
 			});
-		picture=new Graphic(0,0,getWidth(),getHeight(),"resourses/sampleImages/blueBack.jpg");
+		//picture=new Graphic(0,0,getWidth(),getHeight(),"resourses/sampleImages/blueBack.jpg");
 		
-		viewObjects.add(picture);
+		//viewObjects.add(picture);
 		//viewObjects.add(label);
 		viewObjects.add(button);
 //		MovingComponent mc= new MovingComponent(30,60,80,80);
@@ -58,9 +58,9 @@ public class CoordinateScreen extends Screen implements MouseMotionListener, Mou
 
 	
 	private void addAnimation(ArrayList<Visible> viewObjects) {
-		AnimatedComponent a = new AnimatedComponent(200,200,170,180);
+		AnimatedComponent a = new AnimatedComponent(400,400,170,180);
 		try{
-			ImageIcon icon = new ImageIcon("resourses/sampleImages/bird.png");
+			ImageIcon icon = new ImageIcon("img/bird.png");
 			int numberRow =5 ;
 			int rows =3;
 			int w =160;

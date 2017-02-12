@@ -8,12 +8,14 @@ import Wendy.BuyScreenW;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-
+import dragonComponents.Dragon;
 import guiPractice.GUIApplication;
 import guiPractice.Screen;
+import guiPractice.components.AnimatedComponent;
 
 /**
  * @author Kat
@@ -24,7 +26,7 @@ public class DragonLand extends GUIApplication {
 	 * Static Fields
 	 */
 	public static DragonLand game;
-	//public static Dragon[] DragonList; //list of all dragons in the game
+	//public static ArrayList<AnimatedComponent> dragonList; //list of all dragons in the game
 	public static int coins; 
 	public static Screen homeScreen;
 	public static Screen shopMain; // shop 1
@@ -44,7 +46,11 @@ public class DragonLand extends GUIApplication {
 	/**
 	 * 
 	 */
+//	public static void addDragon(AnimatedComponent a){
+//		dragonList.add(a);
+//	}
 	public DragonLand() {
+		
 //		Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
 //		int monitorWidth=(int)screenSize.getWidth();
 //		int monitorHeight=(int)screenSize.getHeight();
