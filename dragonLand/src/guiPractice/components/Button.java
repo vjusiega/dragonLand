@@ -1,10 +1,15 @@
 package guiPractice.components;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.Stroke;
+import java.awt.Toolkit;
+
+import game.DragonLand;
 
 
 
@@ -35,14 +40,18 @@ public class Button extends TextLabel implements Clickable{
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setColor(color);
+		double thickness = 2;
+		Stroke oldStroke = g.getStroke();
+		g.setStroke(new BasicStroke((float) thickness));
 		g.fillRoundRect(0, 0, getWidth(), getHeight(), 35, 25);
-		g.setColor(Color.black);
+		g.setColor(DragonLand.NAVY);
 		g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 35, 25);
-		g.setFont(new Font(getFont(),Font.PLAIN,getSize()));
+		
+		g.setFont(new Font("Dialog",Font.BOLD,getSize()));
 		FontMetrics fm = g.getFontMetrics();
 		
 		if(getText()!= null){
-			g.setColor(Color.white);
+			
 			String t = getText();
 			//just in case text is too wide, cut off
 			int cutoff = t.length();
@@ -65,9 +74,8 @@ public class Button extends TextLabel implements Clickable{
 
 	@Override
 	public void act() {
-		action.act();
+		if(action!=null){
+			action.act();			
+		}
 	}
-	
-
-
 }
