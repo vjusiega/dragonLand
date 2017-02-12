@@ -30,6 +30,7 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 	private Graphic background;
 	private static int score;
 	private GameDragon testDragon;
+	private int dragonHeight; //int for the height of dragon based on screen
 
 	//private ArrayList<Star> starArray;
 	//star will be its own class (made by Tamanna), we will then have an array of stars that will appear on the screen
@@ -50,9 +51,10 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 	//	int xPos = (int)(DragonLand.miniGameScreen.getWidth())/2;
 		//int yPos = (int)(DragonLand.miniGameScreen.getHeight() * 0.75);
 		
+		dragonHeight = 50;
 		
-		int xPos = getWidth();
-		int yPos = getHeight();
+		int xPos = getWidth() / 2;
+		int yPos = getHeight() - dragonHeight;
 		
 		
 		//need to figure out the height of the dragons, or their proportions to the screen
@@ -114,8 +116,8 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 		}else if(e.getKeyCode() == KeyEvent.VK_RIGHT){ 
 			testDragon.setX(testDragon.getX() + 5);
 		}
-		testDragon.setVx(testDragon.getxSpeed());
-		testDragon.setRunning(true);
+//		testDragon.setVx(testDragon.getxSpeed());
+//		testDragon.setRunning(true);
 	}
 
 	@Override
