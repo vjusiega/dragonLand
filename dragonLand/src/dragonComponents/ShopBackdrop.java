@@ -28,7 +28,7 @@ public class ShopBackdrop extends Component {
 		g.setColor(color);
 		g.fillRoundRect(0, 0, getWidth(), getHeight(), 50, 50);
 		g.setColor(Color.BLACK);
-		g.drawRoundRect(0, 0, getWidth(), getHeight(), 50, 50);
+		g.drawRoundRect(0, 0, getWidth()-2, getHeight()-2, 50, 50);
 	}
 
 }
