@@ -40,6 +40,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	private Button scores;
 	private Button totalCoins;
 	private ArrayList highScores;
+	private ArrayList buttons;
 	/**
 	 * 
 	 */
@@ -49,6 +50,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
+		buttons = new ArrayList<Button>();
 		highScores = new ArrayList<Integer>();
 		highScores.add(50);
 		highScores.add(400);
@@ -62,9 +64,9 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		title = new Button((getWidth()/2)-125, 80, 250, 60, "High Scores", DragonLand.DARKER_NUDE, null);
 		title.setSize(40);
 		background = new Background(0,0, getWidth(), getHeight());
-		coinsWon = new Button(345, 465, 300, 60, "Coins Won: WON", DragonLand.DARKER_NUDE, null);
+		coinsWon = new Button(345, 465, 300, 60, "Coins Won: WON"/*getCoins(GameScreen.getScore())*/, DragonLand.DARKER_NUDE, null);
 		coinsWon.setSize(30);
-		scores = new Button(295,252,400,200,printScores(highScores), DragonLand.DARKER_NUDE,null);
+		scores = new Button(295,252,400,200,null, DragonLand.DARKER_NUDE,null);
 		totalCoins = new Button(700,87,180,50,"Total Coins: COINS", DragonLand.DARKER_NUDE,null);
 		back = new Button(50,50, 40, 40, "X", DragonLand.DARKER_NUDE, new Action(){	
 
@@ -83,13 +85,36 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		viewObjects.add(coinsWon);
 		viewObjects.add(scores);
 		viewObjects.add(totalCoins);
+		createButtons();
+		printButtons(buttons);
 		
 	}
 
 	public void sortScores(ArrayList<Integer> scores){
 		Comparator comparator = Collections.reverseOrder();
 		Collections.sort(scores,comparator);
+		highScores = scores;
 		System.out.println(scores);
+	}
+	
+	public void createButtons(){
+		Integer count = 1;
+		for(int i = 0; i < 3; i++){
+			Button temp = new Button(440,267+(60*i),125,50,count.toString() + ") " + highScores.get(i).toString(),DragonLand.LIGHT_NUDE,null);
+			temp.setSize(30);
+			buttons.add(temp);
+			count++;
+		}
+	}
+	
+	public void printButtons(ArrayList<Button> buttons){
+		for(int i = 0; i < buttons.size(); i++){
+			viewObjects.add(buttons.get(i));
+		}
+	}
+	
+	public int getCoins(int score){
+		return 0;//going to have formula for coins
 	}
 	
 	public void printScores(ArrayList<Integer> sortedScores){
