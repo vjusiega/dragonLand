@@ -27,10 +27,10 @@ public class Dragon extends AnimatedComponent {
 	int initialX;
 	int initialY;
 	
-	int UP=0;
-	int LEFT=1;
-	int RIGHT =2;
-	int DOWN=3;
+	private int UP=0;
+ 	private int LEFT=1;
+ 	private int RIGHT =2;
+ 	private int DOWN=4;
 
 	public Dragon(int x, int y, int w, int h,  String name, int price, String imgSrc) {
 		super(x, y, w, h);
@@ -42,10 +42,11 @@ public class Dragon extends AnimatedComponent {
 		initialX=x;
 
 		if(y<350){
-			direction=UP;
-			setVy(-1);
+			direction=DOWN;
+			setVy(1);
 		}else{
 			direction=RIGHT;
+			currentFrame=6;
 			setVx(1);
 		}
 			
@@ -54,21 +55,23 @@ public class Dragon extends AnimatedComponent {
 
 	@Override
 	public void checkBehaviors() {
-		
+		//System.out.println(direction);
 		if(direction ==UP){
+			setVy(-2);
 			if(currentFrame==2)
 				currentFrame=0;
-			if(Math.abs(getY()-initialY)>30){
+			if((initialY-getY())>=30){
 				direction=DOWN;
-				setVy(1);
+				
 			}
 		}
 		if(direction ==DOWN){
+			setVy(1);
 			if(currentFrame==2)
 				currentFrame=0;
-			if(Math.abs(getY()-initialY)>=20){
+			if(Math.abs(getY()-initialY)>=30){
 				direction=UP;
-				setVy(-1);
+				
 			}
 		}
 		if(direction ==LEFT){
@@ -80,7 +83,7 @@ public class Dragon extends AnimatedComponent {
 			}
 		}
 		if(direction ==RIGHT){
-			if(currentFrame<6||currentFrame==8)
+			if(currentFrame<6||currentFrame>8)
 				currentFrame=6;
 			if(Math.abs(getX()-initialX)>=30){
 				direction=LEFT;
