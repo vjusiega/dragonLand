@@ -55,7 +55,7 @@ public class HungryBox extends Button implements Runnable {
 			hungryTime--;
 			Thread.sleep(1000);
 			if(hungryTime<=0){
-				Thread.
+				Thread.;
 			}
 		}catch(InterruptedException e){
 			e.printStackTrace();
