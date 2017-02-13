@@ -9,7 +9,7 @@ import guiPractice.components.Component;
 public class ShopBackdrop extends Component {
 	
 	private Color color = new Color(244,215,183);
-	
+	private int arc = 50;
 	public ShopBackdrop(int x, int y, int w, int h) {
 		super(x, y, w, h);
 		update();
@@ -21,14 +21,23 @@ public class ShopBackdrop extends Component {
 		update();
 	}
 	
+	public void setArc(int a)
+	{
+		arc = a;
+		update();
+	}
+	
 	@Override
 	public void update(Graphics2D g) {
-		// TODO Auto-generated method stub
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setColor(color);
-		g.fillRoundRect(0, 0, getWidth(), getHeight(), 50, 50);
-		g.setColor(Color.BLACK);
-		g.drawRoundRect(0, 0, getWidth()-2, getHeight()-2, 50, 50);
+
+		if(arc > 0)
+		{
+			g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+			g.setColor(color);
+			g.fillRoundRect(0, 0, getWidth(), getHeight(), arc, arc);
+			g.setColor(new Color(62, 74, 99));
+			g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, arc, arc);
+		}
 	}
 
 }
