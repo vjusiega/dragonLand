@@ -3,8 +3,17 @@
  */
 package game;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.util.ArrayList;
+
+import javax.swing.JFrame;
+
+import dragonComponents.Dragon;
 import guiPractice.GUIApplication;
 import guiPractice.Screen;
+import guiPractice.components.AnimatedComponent;
 
 /**
  * @author Kat
@@ -15,7 +24,7 @@ public class DragonLand extends GUIApplication {
 	 * Static Fields
 	 */
 	public static DragonLand game;
-	//public static Dragon[] DragonList; //list of all dragons in the game
+	//public static ArrayList<AnimatedComponent> dragonList; //list of all dragons in the game
 	public static int coins; 
 	public static Screen homeScreen;
 	public static Screen shopMain; // shop 1
@@ -23,14 +32,30 @@ public class DragonLand extends GUIApplication {
 	public static Screen buyScreen; // shop 3
 	public static Screen highscoreScreen; // high score
 	public static Screen miniGameScreen; // minigame
+	public static Color NAVY;
+	public static Color BRIGHT_PINK;
+	public static Color LIGHT_PINK;
+	public static Color LIGHT_NUDE;
+	public static Color DARKER_NUDE;
 	
+	public static Screen testShop;
 	
 	
 	/**
 	 * 
 	 */
+//	public static void addDragon(AnimatedComponent a){
+//		dragonList.add(a);
+//	}
 	public DragonLand() {
-		// TODO Auto-generated constructor stub
+		
+//		Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
+//		int monitorWidth=(int)screenSize.getWidth();
+//		int monitorHeight=(int)screenSize.getHeight();
+//		setSize(WIDTH, HEIGHT);
+//		setLocation((monitorWidth-WIDTH)/2,(monitorHeight-HEIGHT)/2);
+//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		
 	}
 
 	/* (non-Javadoc)
@@ -38,19 +63,33 @@ public class DragonLand extends GUIApplication {
 	 */
 	@Override
 	protected void initScreen() {
+		initColors();
 		homeScreen = new HomeScreen(getWidth(),getHeight());
-		shopMain = new ShopScreen(getWidth(),getHeight());
+		shopMain = new HomeShopScreen(getWidth(),getHeight());
+		testShop = new ShopScreen(getWidth(),getHeight());
 //		sellScreen = new (getWidth(),getHeight());
-//		buyScreen = new (getWidth(),getHeight());
+//		buyScreen = new BuyScreenW(getWidth(),getHeight());
 //		highscoreScreen = new (getWidth(),getHeight());
 //		miniGameScreen = new (getWidth(),getHeight());
 		//uncomment your line once u have a class, input class name before get width()/height()
-		setScreen(shopMain);
+		setScreen(testShop);
 		//////////!!!!!!!!! if u want to test only your screen change the above lines^
 		// but before you push to develop/ merge from develop always change it back plz
 	}
 
+	private void initColors() {
+		NAVY = new Color(62,74,99);
+		BRIGHT_PINK = new Color(224,102,102);
+		LIGHT_PINK = new Color(248,186,182);
+		LIGHT_NUDE = new Color(244,215,183);
+		DARKER_NUDE = new Color(230,195,147);
+	}
+
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
+		// TODO Auto-generated method stub
 		game = new DragonLand();
 		Thread go = new Thread(game);
 		go.start();

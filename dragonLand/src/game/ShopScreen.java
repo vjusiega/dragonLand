@@ -3,62 +3,110 @@ package game;
 import java.awt.Color;
 import java.util.ArrayList;
 
+<<<<<<< HEAD
 import dragonComponents.ShopActionButton;
+=======
+import dragonComponents.CoinLabel;
+import dragonComponents.Dragon;
+import dragonComponents.DragonLabel;
+import dragonComponents.PriceLabel;
+import dragonComponents.ShopBackdrop;
+>>>>>>> refs/remotes/origin/shop
 import dragonComponents.ShopLabel;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
-import guiPractice.components.Button;
+import guiPractice.components.ClickableGraphic;
+import guiPractice.components.Graphic;
+import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
 
-public class ShopScreen extends ClickableScreen {
+public /*abstract*/ class ShopScreen extends ClickableScreen {
 	
-	public Button myButton;
-	/*
-	 * Color of title (224, 102, 102)
-	 * Color of buttons (230,195,147)
-	 * 
-	 * Color of title,catalog in buy screen and sell screen (222,195,166)
-	 * Color of buy/sell button (244,215,183)
-	 */
-
+	//private ArrayList<Dragon> dragonList;
+	private final static int DRAGONS_PER_PAGE = 3;
+	private final static int SHOP_LEFT_MARGIN = 50;
+	private final static int SHOP_TOP_MARGIN = 50;
+	
+	private final static int LEFT_MARGIN = 15;
+	private final static int TOP_MARGIN = 15;
+	
+	private int currentPage = 1;
+	private int totalPages = 1;
+	private Action action;
+	
 	public ShopScreen(int width, int height) {
 		super(width, height);
-		// TODO Auto-generated constructor stub
+	}
+	
+	public ShopScreen(int width, int height, /*ArrayList<Dragon> dl,*/ Action act) {
+		super(width, height);
+		//dragonList = dl;
+		action = act;
+		update();
 	}
 
 	@Override
-	public void initAllObjects(ArrayList<Visible> visible) {
-//		Button exit = new Button(getWidth() - 60,  10, 50, 50, "X", Color.RED, new Action(){
-//			public void Act()
-//			{
-//				
-//			}
-//		});
+	public void initAllObjects(ArrayList<Visible> viewObjects) {
+		Graphic background=new Graphic(0,0,getWidth(),getHeight(),"img/Grassland.png");
+		int backWidth = getWidth()-100;
+		int backHeight = getHeight()-100;
+		ShopBackdrop back = new ShopBackdrop(SHOP_LEFT_MARGIN, SHOP_TOP_MARGIN,backWidth,backHeight);
 		
-		int titleWidth = 200;
-		int titleHeight = 50;
+		int titleWidth = backWidth - 2 * LEFT_MARGIN;
+		int titleHeight = 70;
+		int titleX = SHOP_LEFT_MARGIN + LEFT_MARGIN;
+		int titleY = SHOP_TOP_MARGIN + TOP_MARGIN;
 		
-
-		ShopLabel shopTitle = new ShopLabel(getWidth()/2 - titleWidth/2, getHeight()/10, titleWidth, titleHeight, "Dragon Shop");
-
-		int buttonWidth = 90;
-		int buttonHeight = 55;
-		int topMargin = 40;
-		ShopActionButton buy = new ShopActionButton(getWidth()/2 - buttonWidth/2, getHeight()/4 + topMargin, buttonWidth, buttonHeight, "BUY", new Color(230,195,147), new Action(){
-			public void act()
-			{
-				DragonLand.game.setScreen(DragonLand.buyScreen);
-			}
-		});
-		ShopActionButton sell = new ShopActionButton(getWidth()/2 - buttonWidth/2, getHeight()/2 + topMargin, buttonWidth, buttonHeight, "SELL", new Color(230,195,147), new Action(){
-			public void act()
-			{
-				DragonLand.game.setScreen(DragonLand.sellScreen);
-			}
-		});
-
-		visible.add(shopTitle);
-		visible.add(buy);
-		visible.add(sell);
-}
+		ShopLabel shopTitleBack = new ShopLabel(titleX, titleY, titleWidth, titleHeight, "", DragonLand.DARKER_NUDE);
+		shopTitleBack.setArc(25);
+		
+		int shopNameY = titleY + (int)(TOP_MARGIN * 0.5);
+		TextLabel shopName = new TextLabel(titleX + LEFT_MARGIN * 2, shopNameY, titleWidth/3, titleHeight - TOP_MARGIN * 2, "Dragon Shop");
+		shopName.setSize(26);
+		
+		int coinX = titleX + titleWidth - CoinLabel.getWdith() - LEFT_MARGIN * 2;
+		CoinLabel coins = new CoinLabel(coinX, shopNameY, 100);
+		ShopLabel dragonAmount = new ShopLabel(coinX, shopNameY + CoinLabel.getHeight2() + 2, CoinLabel.getWdith(), CoinLabel.getHeight2(), /*DragonLand.dragons.length() +*/ "0/6 Dragons", DragonLand.LIGHT_NUDE);
+		dragonAmount.setArc(15);
+		
+		int back2Width = backWidth - 100;
+		int back2Height = backHeight - titleHeight - 100;
+		int back2X = SHOP_LEFT_MARGIN + 50;
+		int back2Y = SHOP_TOP_MARGIN + titleHeight + 25;
+		
+		ShopBackdrop back2 = new ShopBackdrop(back2X, back2Y, back2Width, back2Height, DragonLand.BRIGHT_PINK);
+		
+		int bottomBarY = backHeight - TOP_MARGIN * 2 + 10;
+		int pageWidth = 300;
+		ShopLabel page = new ShopLabel(SHOP_LEFT_MARGIN + backWidth/2 - pageWidth/2, bottomBarY + TOP_MARGIN, pageWidth, 30, "Page " + currentPage + " of " + totalPages, DragonLand.LIGHT_NUDE);
+		
+		ClickableGraphic arrowRight = new ClickableGraphic(backWidth - LEFT_MARGIN - 25, bottomBarY, 0.12, "img/arrowRight.png");
+		ClickableGraphic arrowLeft = new ClickableGraphic(SHOP_LEFT_MARGIN + LEFT_MARGIN, bottomBarY, 0.12, "img/arrowLeft.png");
+		
+//		Dragon d = new Dragon(0, 0, 50, 50, "EPIC DRAGON", 100, "img/dragon1.png");
+//		DragonLabel dragon = new DragonLabel(back2X + LEFT_MARGIN, back2Y + 8, d, "BUY", null);
+		
+		
+		viewObjects.add(background);
+		viewObjects.add(back);
+		
+		viewObjects.add(shopTitleBack);
+		viewObjects.add(shopName);
+		for(Visible v : coins.getVisible())
+			viewObjects.add(v);
+		viewObjects.add(dragonAmount);
+		
+		viewObjects.add(back2);
+//		for(Visible v : dragon.getVisible())
+//			viewObjects.add(v);
+		
+		//addDragonLabels(viewObjects);
+		
+		viewObjects.add(arrowRight);
+		viewObjects.add(arrowLeft);
+		viewObjects.add(page);
+	}
+	
+	
+	//public abstract void addDragonLabels(ArrayList<Visible> viewObjects);
 }
