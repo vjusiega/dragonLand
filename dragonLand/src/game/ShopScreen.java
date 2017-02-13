@@ -1,28 +1,17 @@
 package game;
 
-import java.awt.Color;
 import java.util.ArrayList;
-
-<<<<<<< HEAD
-import dragonComponents.ShopActionButton;
-=======
 import dragonComponents.CoinLabel;
-import dragonComponents.Dragon;
-import dragonComponents.DragonLabel;
-import dragonComponents.PriceLabel;
 import dragonComponents.ShopBackdrop;
->>>>>>> refs/remotes/origin/shop
 import dragonComponents.ShopLabel;
 import guiPractice.ClickableScreen;
-import guiPractice.components.Action;
 import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
 
-public /*abstract*/ class ShopScreen extends ClickableScreen {
+public abstract class ShopScreen extends ClickableScreen {
 	
-	//private ArrayList<Dragon> dragonList;
 	private final static int DRAGONS_PER_PAGE = 3;
 	private final static int SHOP_LEFT_MARGIN = 50;
 	private final static int SHOP_TOP_MARGIN = 50;
@@ -32,16 +21,9 @@ public /*abstract*/ class ShopScreen extends ClickableScreen {
 	
 	private int currentPage = 1;
 	private int totalPages = 1;
-	private Action action;
 	
 	public ShopScreen(int width, int height) {
 		super(width, height);
-	}
-	
-	public ShopScreen(int width, int height, /*ArrayList<Dragon> dl,*/ Action act) {
-		super(width, height);
-		//dragonList = dl;
-		action = act;
 		update();
 	}
 
@@ -100,7 +82,7 @@ public /*abstract*/ class ShopScreen extends ClickableScreen {
 //		for(Visible v : dragon.getVisible())
 //			viewObjects.add(v);
 		
-		//addDragonLabels(viewObjects);
+		addDragonLabels(viewObjects);
 		
 		viewObjects.add(arrowRight);
 		viewObjects.add(arrowLeft);
@@ -108,5 +90,5 @@ public /*abstract*/ class ShopScreen extends ClickableScreen {
 	}
 	
 	
-	//public abstract void addDragonLabels(ArrayList<Visible> viewObjects);
+	public abstract void addDragonLabels(ArrayList<Visible> viewObjects);
 }
