@@ -16,7 +16,7 @@ import guiPractice.components.Graphic;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
 
-public /*abstract*/ class ShopScreen extends ClickableScreen {
+public abstract class ShopScreen extends ClickableScreen {
 	
 	//private ArrayList<Dragon> dragonList;
 	private Action action;
@@ -47,8 +47,6 @@ public /*abstract*/ class ShopScreen extends ClickableScreen {
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
 
-
-		PriceLabel ppp = new PriceLabel(50, 50, 100000);
 
 		Graphic background=new Graphic(0,0,getWidth(),getHeight(),"img/Grassland.png");
 		int backWidth = getWidth()-100;
@@ -94,9 +92,6 @@ public /*abstract*/ class ShopScreen extends ClickableScreen {
 		viewObjects.add(background);
 		viewObjects.add(back);
 
-		viewObjects.add(ppp.getCoin());
-		viewObjects.add(ppp.getPriceLabel());
-
 		
 		viewObjects.add(shopTitleBack);
 		viewObjects.add(shopName);
@@ -116,5 +111,5 @@ public /*abstract*/ class ShopScreen extends ClickableScreen {
 	}
 	
 	
-	//public abstract void addDragonLabels(ArrayList<Visible> viewObjects);
+	public abstract void addDragonLabels(ArrayList<Visible> viewObjects);
 }

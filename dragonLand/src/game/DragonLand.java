@@ -4,6 +4,7 @@
 package game;
 
 import Wendy.BuyScreenW;
+import Wendy.BuyScreenWendy;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -70,7 +71,7 @@ public class DragonLand extends GUIApplication {
 		shopMain = new HomeShopScreen(getWidth(),getHeight());
 		//testShop = new ShopScreen(getWidth(),getHeight());
 //		sellScreen = new (getWidth(),getHeight());
-		buyScreen = new BuyScreenW(getWidth(),getHeight());
+		buyScreen = new BuyScreenWendy(getWidth(),getHeight(), null);
 //		highscoreScreen = new (getWidth(),getHeight());
 //		miniGameScreen = new (getWidth(),getHeight());
 		//uncomment your line once u have a class, input class name before get width()/height()
