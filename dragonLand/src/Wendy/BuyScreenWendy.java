@@ -30,8 +30,6 @@ public class BuyScreenWendy extends ShopScreen{
 
 	@Override
 	public void addDragonLabels(ArrayList<Visible> visible) {
-<<<<<<< HEAD
-=======
 		// TODO Auto-generated method stub
 		inLists();
 		
@@ -40,57 +38,8 @@ public class BuyScreenWendy extends ShopScreen{
 		
 		shoplabels = new ArrayList<DragonLabel>();
 		
-		for(int i = 0; i<dragons.length;i++)
-		{
-			if(dragonsInShop.contains(dragons[i]))
-			{
-				System.out.println("hi");
-				ShopBackdrop labelBack = new ShopBackdrop(150,y,getWidth()-300,getHeight()/7);
-				label = new DragonLabel(x,y, dragons[i],"BUY", new Action(){
-					
-					public void act() {
-						// TODO Auto-generated method stub
-						shoplabels.remove(label);
-						dragonsInShop.remove(this);	
-						visible.remove(labelBack);
-						visible.remove(label.getDragonImg());
-						visible.remove(label.getDragonName());
-						visible.remove(label.getDragonPrice().getCoin());
-						visible.remove(label.getDragonPrice().getPriceLabel());
-						visible.remove(label.getButton());
-						//DragonLand.coins -= this.priceLabel.getPrice();
-						//DragonLand.game.setScreen(DragonLand.homeScreen);
-					}
-				});
-				//addObject(label);
-				visible.add(labelBack);
-				visible.add(label.getDragonImg());
-				visible.add(label.getDragonName());
-				//System.out.println(label.getDragonName().getText());
-				visible.add(label.getDragonPrice().getCoin());
-				visible.add(label.getDragonPrice().getPriceLabel());
-				visible.add(label.getButton());
-				
-				y = y + DragonLabel.getLabelHeight()+20;
-			}	
-					
-		}
-		
-	}
-	
-	public void inLists(){
-		
-		dragonsInShop = new ArrayList<Dragon>();
->>>>>>> branch 'buyShopW' of https://github.com/katsemenova/dragonLand.git
-		dragons = new Dragon[3];
 		for(int i= 0; i< dragons.length;i++)
 		{
-			dragons[i] = new Dragon(50, 50, 50, 50, "Nice Dragon" + i, 100, "img/dragon9.png");
-		}
-		
-		for(int i= 0; i< dragons.length;i++)
-		{
-<<<<<<< HEAD
 			 DragonLabel label = new DragonLabel(x,y, dragons[i],"BUY", new Action(){
 				
 				public void act() {
@@ -104,22 +53,24 @@ public class BuyScreenWendy extends ShopScreen{
 				}
 			});
 			shoplabels.add(label);
-=======
->>>>>>> branch 'buyShopW' of https://github.com/katsemenova/dragonLand.git
+
 			dragonsInShop.add(dragons[i]);
-<<<<<<< HEAD
+
 			for(Visible v: label.getVisible())
 				visible.add(v);
 			
 			y = y + DragonLabel.getLabelHeight()+20;
-		}	
-=======
 		}
->>>>>>> branch 'buyShopW' of https://github.com/katsemenova/dragonLand.git
 		
 	}
 	
-
-
-
+	public void inLists(){
+		
+		dragonsInShop = new ArrayList<Dragon>();
+		dragons = new Dragon[3];
+		for(int i= 0; i< dragons.length;i++)
+		{
+			dragons[i] = new Dragon(50, 50, 50, 50, "Nice Dragon" + i, 100, "img/dragon9.png");
+		}
+	}
 }
