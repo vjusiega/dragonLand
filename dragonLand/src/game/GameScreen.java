@@ -80,9 +80,12 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 			}
 
 		});
-
+		
 		view.add(exit);
 		view.add(helpButton);
+		view.add(new Star(100, 100, 100, 100));
+		
+		
 		System.out.println(dragonArray.size());
 		for(GameDragon d : dragonArray){
 			view.add(d);
