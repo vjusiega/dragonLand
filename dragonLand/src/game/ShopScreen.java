@@ -11,6 +11,7 @@ import dragonComponents.ShopBackdrop;
 import dragonComponents.ShopLabel;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
+import guiPractice.components.Button;
 import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
 import guiPractice.components.TextLabel;
@@ -35,6 +36,7 @@ public abstract class ShopScreen extends ClickableScreen {
 	
 	public ShopScreen(int width, int height) {
 		super(width, height);
+		update();
 }
 	
 	public ShopScreen(int width, int height, /*ArrayList<Dragon> dl,*/ Action act) {
@@ -60,6 +62,14 @@ public abstract class ShopScreen extends ClickableScreen {
 		
 		ShopLabel shopTitleBack = new ShopLabel(titleX, titleY, titleWidth, titleHeight, "", DragonLand.DARKER_NUDE);
 		shopTitleBack.setArc(25);
+		
+		Button exit = new Button(getWidth() - 65,  40, 50, 40, "X", new Color(230,195,147), new Action(){
+			
+			public void act() {
+				// TODO Auto-generated method stub
+				DragonLand.game.setScreen(DragonLand.homeScreen);
+			}
+		});
 		
 		int shopNameY = titleY + (int)(TOP_MARGIN * 0.5);
 		TextLabel shopName = new TextLabel(titleX + LEFT_MARGIN * 2, shopNameY, titleWidth/3, titleHeight - TOP_MARGIN * 2, "Dragon Shop");
@@ -91,10 +101,10 @@ public abstract class ShopScreen extends ClickableScreen {
 		
 		viewObjects.add(background);
 		viewObjects.add(back);
-
 		
 		viewObjects.add(shopTitleBack);
 		viewObjects.add(shopName);
+		viewObjects.add(exit);
 		for(Visible v : coins.getVisible())
 			viewObjects.add(v);
 		viewObjects.add(dragonAmount);
@@ -108,6 +118,8 @@ public abstract class ShopScreen extends ClickableScreen {
 		viewObjects.add(arrowRight);
 		viewObjects.add(arrowLeft);
 		viewObjects.add(page);
+		
+		addDragonLabels(viewObjects);
 	}
 	
 	

@@ -18,7 +18,7 @@ import guiPractice.components.Graphic;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
 
-public class BuyScreenW extends ShopScreen {
+public class BuyScreenW extends ClickableScreen {
 
     private ArrayList<Dragon> dragonsInShop;
     private ArrayList<DragonLabel> shoplabels; 
