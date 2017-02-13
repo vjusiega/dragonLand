@@ -77,6 +77,8 @@ public class BuyScreenW extends ShopScreen {
 		x = 0;
 		y = 150;
 		
+		shoplabels = new ArrayList<DragonLabel>();
+		dragonsInShop = new ArrayList<Dragon>();
 		for(int i = 0; i<dragons.length;i++)
 		{
 			ShopBackdrop labelBack = new ShopBackdrop(50,y-2,getWidth()-100,getHeight()/7);
@@ -84,15 +86,20 @@ public class BuyScreenW extends ShopScreen {
 				
 				public void act() {
 					// TODO Auto-generated method stub
-//					shoplabels.remove(label);
-//					dragonsInShop.remove(this);	
-//					remove(label);
-//					DragonLand.coins -= this.Dragon.getPrice();
-					DragonLand.game.setScreen(DragonLand.homeScreen);//was using this for test don't know why doesn't work :(
+					shoplabels.remove(label);
+					dragonsInShop.remove(this);	
+					visible.remove(labelBack);
+					visible.remove(label.getDragonImg());
+					visible.remove(label.getDragonName());
+					visible.remove(label.getDragonPrice().getCoin());
+					visible.remove(label.getDragonPrice().getPriceLabel());
+					visible.remove(label.getButton());
+					//DragonLand.coins -= this.priceLabel.getPrice();
+					//DragonLand.game.setScreen(DragonLand.homeScreen);
 				}
 			});
-			//shoplabels.add(label);
-			//dragonsInShop.add(dragons[i]);
+			shoplabels.add(label);
+			dragonsInShop.add(dragons[i]);
 			//addObject(label);
 			visible.add(labelBack);
 			visible.add(label.getDragonImg());

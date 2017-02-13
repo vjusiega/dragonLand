@@ -37,7 +37,7 @@ public class DragonLabel extends Component {
 		super(x, y, LABEL_WIDTH, LABEL_HEIGHT);
 		this.dragon = d;
 		this.buttonType = t;
-		action = act;
+		this.action = act;
 		
 		update();
 		
@@ -112,5 +112,6 @@ public class DragonLabel extends Component {
 	{
 		return new Visible[] {labelBack, dragonName, dragonPrice.getCoin(), dragonPrice.getPriceLabel(), button, dragonImage};
 	}
+
 
 }
