@@ -32,6 +32,9 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 	private Button helpButton;
 	private Graphic background;
 	
+	private static int score; 
+	
+	
 	//Tamanna's fields
 	//private ArrayList<Star> starArray;
 	//star will be its own class (made by Tamanna), we will then have an array of stars that will appear on the screen
@@ -104,6 +107,19 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 
 	public KeyListener getKeyListener(){
 		return this;
+	}
+	
+	
+	/*
+	 * Getter and setter for score
+	 */
+	
+	public static void setScore(int x){
+		score = x;
+	}
+	
+	public static int getScore(){
+		return score; 
 	}
 
 

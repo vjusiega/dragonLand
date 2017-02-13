@@ -38,7 +38,7 @@ public class GameVioletta {
 		int xPos = screenWidth / 2;
 		int yPos = screenHeight - dragonHeight;
 		
-		GameDragon temp = new GameDragon(xPos/2, (int)(yPos*0.75), 200, 200);
+		GameDragon temp = new GameDragon(xPos/2, (int)(yPos*0.75), 200, 200, "temp");
 		dragonArray.add(temp);
 	}
 
