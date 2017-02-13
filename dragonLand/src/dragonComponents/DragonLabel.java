@@ -32,7 +32,16 @@ public class DragonLabel extends Component {
 	private PriceLabel dragonPrice;
 	private ShopActionButton button;
 	private Graphic dragonImage;
-
+	
+	public DragonLabel(int x, int y, Dragon d, String t) {
+		super(x, y, LABEL_WIDTH, LABEL_HEIGHT);
+		this.dragon = d;
+		this.buttonType = t;
+		
+		update();
+		
+	}
+	
 	public DragonLabel(int x, int y, Dragon d, String t, Action act) {
 		super(x, y, LABEL_WIDTH, LABEL_HEIGHT);
 		this.dragon = d;
@@ -49,7 +58,7 @@ public class DragonLabel extends Component {
 		if(dragon != null)
 		{
 			int imageSide = LABEL_HEIGHT - 2 * TOP_MARGIN;
-			
+			labelBack = new ShopBackdrop(LABEL_LEFT_MARGIN + 15,getY(),LABEL_WIDTH,LABEL_HEIGHT, DragonLand.DARKER_NUDE);
 			dragonImage = new Graphic(LABEL_LEFT_MARGIN + LEFT_MARGIN +30, this.getY() + TOP_MARGIN, imageSide, imageSide, dragon.getImgSrc());
 			
 			int column2X = 2 * LEFT_MARGIN + imageSide + LABEL_LEFT_MARGIN;
@@ -77,7 +86,12 @@ public class DragonLabel extends Component {
 		}
 
 	}
-
+	
+	public void setAction(Action a)
+	{
+		action = a;
+	}
+	
 	public static int getLabelWidth() {
 		return LABEL_WIDTH;
 	}
