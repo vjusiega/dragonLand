@@ -40,26 +40,30 @@ public class BuyScreenWendy extends ShopScreen{
 		
 		for(int i= 0; i< dragons.length;i++)
 		{
-			 DragonLabel label = new DragonLabel(x,y, dragons[i],"BUY", new Action(){
-				
-				public void act() {
-					// TODO Auto-generated method stub
+			if(dragonsInShop.contains(dragons[i]))
+			{
+				DragonLabel label = new DragonLabel(x,y, dragons[i],"BUY", new Action(){
+
+					public void act() {
+						// TODO Auto-generated method stub
 //					shoplabels.remove(label);
 //					dragonsInShop.remove(label);	
-					for(Visible v: label.getVisible())
-						visible.remove(v);
-					//DragonLand.coins -= this.priceLabel.getPrice();
-					//DragonLand.game.setScreen(DragonLand.homeScreen);
-				}
-			});
-			shoplabels.add(label);
-
-			dragonsInShop.add(dragons[i]);
-
-			for(Visible v: label.getVisible())
-				visible.add(v);
-			
-			y = y + DragonLabel.getLabelHeight()+20;
+						for(Visible v: label.getVisible())
+							visible.remove(v);
+						//DragonLand.coins -= this.priceLabel.getPrice();
+						//DragonLand.game.setScreen(DragonLand.homeScreen);
+					}
+				});
+				shoplabels.add(label);
+				
+				dragonsInShop.add(dragons[i]);
+				
+				for(Visible v: label.getVisible())
+					visible.add(v);
+				
+				y = y + DragonLabel.getLabelHeight()+20;
+			}
+				
 		}
 		
 	}
@@ -71,6 +75,7 @@ public class BuyScreenWendy extends ShopScreen{
 		for(int i= 0; i< dragons.length;i++)
 		{
 			dragons[i] = new Dragon(50, 50, 50, 50, "Nice Dragon" + i, 100, "img/dragon9.png");
+			dragonsInShop.add(dragons[i]);
 		}
 	}
 }
