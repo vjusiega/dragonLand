@@ -13,11 +13,14 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
+import dragonComponents.GameDragon;
 import dragonComponents.XButton;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
 import guiPractice.components.Visible;
+//import miniGames.GameDragon;
+//import miniGames.GameVioletta;
 
 /**
  * @author Tamanna Hussain and Violetta Jusiega
@@ -28,16 +31,8 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 	private XButton exit;
 	private Button helpButton;
 	private Graphic background;
-	private static int score;
-	
-	
-	//Violetta's fields
-	//private GameDragon testDragon;
-	private static int dragonHeight; //int for the height of dragon based on screen
-	private static ArrayList<GameDragon> dragonArray = new ArrayList<GameDragon>();
 	
 	//Tamanna's fields
-
 	//private ArrayList<Star> starArray;
 	//star will be its own class (made by Tamanna), we will then have an array of stars that will appear on the screen
 	
@@ -47,19 +42,12 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * 
-	 */
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> view) {
-	//	int xPos = (int)(DragonLand.miniGameScreen.getWidth())/2;
-		//int yPos = (int)(DragonLand.miniGameScreen.getHeight() * 0.75);
-		dragonArray = new ArrayList<GameDragon>();
-		addDragon();
+	
+		GameVioletta.addDragon();
 		
-		setScore(10);
-		//int xCoord = DragonLand.x * .05; 
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
 		viewObjects.add(background);
 		
@@ -86,38 +74,12 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 		view.add(new Star(100, 100, 100, 100));
 		
 		
-		System.out.println(dragonArray.size());
-		for(GameDragon d : dragonArray){
+		//System.out.println(GameVioletta.dragonArray.size());
+		for(GameDragon d : GameVioletta.getDragonArray()){
 			view.add(d);
 		}
-		System.out.println(dragonArray.size());
 		
 	}
-
-	public static void addDragon(){
-		dragonHeight = 50;
-		
-		int xPos = getWidth() / 2;
-		int yPos = getHeight() - dragonHeight;
-		
-		GameDragon temp = new GameDragon(xPos/2, (int)(yPos*0.75), 200, 200);
-		dragonArray.add(temp);
-	}
-	
-	public static int getScore() {
-		return score;
-	}
-
-	public void setScore(int score) {
-		this.score = score;
-	}
-	
-	
-
-	
-	/**
-	 * key controls by Violetta
-	 */
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -129,22 +91,9 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_LEFT){ 
-			changeDragonPos(-5);
+			GameVioletta.changeDragonPos(-5);
 		}else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-			changeDragonPos(5);
-		}
-	}
-
-	private void changeDragonPos(int i) {
-		//System.out.println("I got this");
-		System.out.println(dragonArray.size());
-		
-		
-		//THIS ISN'T WORKING IDK WHY
-			//It says that the position is always zero. WHY YOU LIE. 
-		for(GameDragon d : dragonArray){
-			d.setX(d.getX() + i);
-			System.out.println(d.getX());
+			GameVioletta.changeDragonPos(5);
 		}
 	}
 
