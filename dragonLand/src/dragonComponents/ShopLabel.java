@@ -11,10 +11,24 @@ import guiPractice.components.TextLabel;
 
 public class ShopLabel extends TextLabel {
 	
-	private Color color;
+	private Color color = new Color(224, 102, 102);
+	private int arc= 5;
 	
 	public ShopLabel(int x, int y, int w, int h, String text) {
 		super(x, y, w, h, text);
+		update();
+	}
+	
+	public ShopLabel(int x, int y, int w, int h, String text, Color c) {
+		super(x, y, w, h, text);
+		color = c;
+		update();
+	}
+	
+	public void setArc(int a)
+	{
+		arc = a;
+		update();
 	}
 	
 	public void update(Graphics2D g) {
@@ -22,12 +36,11 @@ public class ShopLabel extends TextLabel {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		FontMetrics fm = g.getFontMetrics();
 		
-		g.setColor(new Color(224, 102, 102));
-		g.fillRoundRect(0, 0, getWidth() - 2, getHeight() - 2, 5, 5);
+		g.setColor(color);
+		g.fillRoundRect(0, 0, getWidth() - 2, getHeight() - 2, arc, arc);
 		
-		g.setStroke(new BasicStroke(2));
 		g.setColor(new Color(62, 74, 99));
-		g.drawRoundRect(0, 0, getWidth() - 2, getHeight() - 2, 5, 5);
+		g.drawRoundRect(0, 0, getWidth() - 2, getHeight() - 2, arc, arc);
 		
 		
 		g.setColor(Color.BLACK);
