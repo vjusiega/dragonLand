@@ -15,6 +15,7 @@ public class BuyScreenWendy extends ShopScreen{
 	 private ArrayList<Dragon> dragonsInShop;
 	    private ArrayList<DragonLabel> shoplabels; 
 	    private Dragon[] dragons;
+	    private DragonLabel label;
 	    
 	    private int price;
 	    private PriceLabel priceLabel;
@@ -42,7 +43,7 @@ public class BuyScreenWendy extends ShopScreen{
 		{
 			if(dragonsInShop.contains(dragons[i]))
 			{
-				DragonLabel label = new DragonLabel(x,y, dragons[i],"BUY", new Action(){
+				 label = new DragonLabel(x,y, dragons[i],"BUY", new Action(){
 
 					public void act() {
 						// TODO Auto-generated method stub
