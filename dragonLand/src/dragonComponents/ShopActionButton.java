@@ -13,7 +13,7 @@ import guiPractice.components.Button;
 
 public class ShopActionButton extends Button {
 	
-	private static final int ARC_WIDTH = 5;
+	private static final int ARC_WIDTH = 15;
 	public ShopActionButton(int x, int y, int w, int h, String text, Action action) {
 		super(x, y, w, h, text, DragonLand.DARKER_NUDE, action);
 	}

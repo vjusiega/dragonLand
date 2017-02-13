@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import dragonComponents.CoinLabel;
+import dragonComponents.Dragon;
 import dragonComponents.DragonLabel;
 import dragonComponents.PriceLabel;
 import dragonComponents.ShopBackdrop;
@@ -66,8 +67,10 @@ public /*abstract*/ class ShopScreen extends ClickableScreen {
 		
 		int back2Width = backWidth - 100;
 		int back2Height = backHeight - titleHeight - 100;
+		int back2X = SHOP_LEFT_MARGIN + 50;
+		int back2Y = SHOP_TOP_MARGIN + titleHeight + 25;
 		
-		ShopBackdrop back2 = new ShopBackdrop(SHOP_LEFT_MARGIN + 50, SHOP_TOP_MARGIN + titleHeight + 25, back2Width, back2Height, DragonLand.BRIGHT_PINK);
+		ShopBackdrop back2 = new ShopBackdrop(back2X, back2Y, back2Width, back2Height, DragonLand.BRIGHT_PINK);
 		
 		int bottomBarY = backHeight - TOP_MARGIN * 2 + 10;
 		int pageWidth = 300;
@@ -75,6 +78,9 @@ public /*abstract*/ class ShopScreen extends ClickableScreen {
 		
 		ClickableGraphic arrowRight = new ClickableGraphic(backWidth - LEFT_MARGIN - 25, bottomBarY, 0.12, "img/arrowRight.png");
 		ClickableGraphic arrowLeft = new ClickableGraphic(SHOP_LEFT_MARGIN + LEFT_MARGIN, bottomBarY, 0.12, "img/arrowLeft.png");
+		
+//		Dragon d = new Dragon(0, 0, 50, 50, "EPIC DRAGON", 100, "img/dragon1.png");
+//		DragonLabel dragon = new DragonLabel(back2X + LEFT_MARGIN, back2Y + 8, d, "BUY", null);
 		
 		
 		viewObjects.add(background);
@@ -87,6 +93,9 @@ public /*abstract*/ class ShopScreen extends ClickableScreen {
 		viewObjects.add(dragonAmount);
 		
 		viewObjects.add(back2);
+//		for(Visible v : dragon.getVisible())
+//			viewObjects.add(v);
+		
 		//addDragonLabels(viewObjects);
 		
 		viewObjects.add(arrowRight);

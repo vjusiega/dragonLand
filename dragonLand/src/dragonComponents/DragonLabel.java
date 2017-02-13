@@ -3,6 +3,7 @@ package dragonComponents;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import game.DragonLand;
 import guiPractice.components.Action;
 import guiPractice.components.Component;
 import guiPractice.components.Graphic;
@@ -11,7 +12,7 @@ import guiPractice.components.Visible;
 
 public class DragonLabel extends Component {
 	
-	private static final int LABEL_WIDTH = 800;
+	private static final int LABEL_WIDTH = 770;
 	private static final int LABEL_HEIGHT = 100;
 	
 	private static final int LABEL_LEFT_MARGIN = 100;
@@ -44,7 +45,8 @@ public class DragonLabel extends Component {
 		
 		if(dragon != null)
 		{
-			labelBack = new ShopBackdrop(getX() + LABEL_LEFT_MARGIN,getY(),LABEL_WIDTH,LABEL_HEIGHT);
+			//labelBack = new ShopBackdrop(getX() + LABEL_LEFT_MARGIN,getY(),LABEL_WIDTH,LABEL_HEIGHT);
+			labelBack = new ShopBackdrop(LABEL_LEFT_MARGIN + 15,getY(),LABEL_WIDTH,LABEL_HEIGHT, DragonLand.DARKER_NUDE);
 			
 			int imageSide = LABEL_HEIGHT - 2 * TOP_MARGIN;
 			
@@ -54,20 +56,22 @@ public class DragonLabel extends Component {
 			int nameWidth = LABEL_WIDTH - column2X - imageSide - LEFT_MARGIN;
 			int nameHeight = (int)(0.5 * imageSide);
 			
-			dragonName = new ShopLabel(this.getX()+ column2X, this.getY() + TOP_MARGIN, nameWidth, nameHeight, dragon.getName(), Color.WHITE);
+			//dragonName = new ShopLabel(this.getX()+ column2X, this.getY() + TOP_MARGIN, nameWidth, nameHeight, dragon.getName(), Color.WHITE);
+			dragonName = new ShopLabel(column2X, this.getY() + TOP_MARGIN, nameWidth, nameHeight, dragon.getName(), Color.WHITE);
 			
 			int row2Y = nameHeight + (int)(1.5 * TOP_MARGIN);
 			int row2Width = nameWidth/3;
 			int priceHeight = 9 * nameHeight/10;
 			
-			dragonPrice = new PriceLabel(this.getX() + column2X, this.getY() + nameHeight + TOP_MARGIN, dragon.getPrice());
+			//dragonPrice = new PriceLabel(this.getX() + column2X, this.getY() + nameHeight + TOP_MARGIN, dragon.getPrice());
+			dragonPrice = new PriceLabel(column2X, this.getY() + nameHeight + TOP_MARGIN, dragon.getPrice());
 			
-			int column3X = column2X + nameWidth + LEFT_MARGIN;
-			int buttonHeight = nameHeight + priceHeight - 2 * TOP_MARGIN;
+			int column3X = LABEL_WIDTH - LEFT_MARGIN;
+			int buttonHeight = (int)(LABEL_HEIGHT * 0.70);
 			
 			//if(buttonType.toUpperCase().equals("BUY"))
-			//button = new ShopActionButton(column3X, row2Y, row2Width, buttonHeight, "BUY", action);
-			button = new ShopActionButton(this.getX() + column3X, this.getY() + TOP_MARGIN, row2Width, buttonHeight, "BUY", action);
+			//button = new ShopActionButton(this.getX() + column3X, this.getY() + (int)(LABEL_HEIGHT * 0.15), row2Width, buttonHeight, "BUY", action);
+			button = new ShopActionButton(column3X, this.getY() + (int)(LABEL_HEIGHT * 0.15), row2Width, buttonHeight, "BUY", DragonLand.LIGHT_NUDE, action);
 			//else if(buttonType.toUpperCase().equals("SELL"))
 			//	button = new ShopActionButton(column3X, row2Y, row2Width, buttonHeight, "BUY", action);
 		}
@@ -105,6 +109,6 @@ public class DragonLabel extends Component {
 	
 	public Visible[] getVisible()
 	{
-		return new Visible[] {labelBack, dragonName, dragonPrice, button, dragonImage};
+		return new Visible[] {labelBack, dragonName, dragonPrice.getCoin(), dragonPrice.getPriceLabel(), button, dragonImage};
 	}
 }
