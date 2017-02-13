@@ -58,48 +58,12 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 		title.setSize(26);
 		viewObjects.add(title);
 
-		addAnimation(viewObjects,100,100, "Jack", 130, "img/dragonOne.png");
-	
-	}
-	
-	private void addAnimation(ArrayList<Visible> viewObjects,int x,int y, String name, int price,String imgSrc) {
 		
-		AnimatedComponent a = new Dragon(x,y,100,100,name, price, imgSrc);
-		
-		try{
-			ImageIcon icon = new ImageIcon("img/dragonSeven.png");
-			int numberRow =3 ;
-			int rows =4;
-			int w =48;
-			int h = 48;
-			for(int i=0;i<numberRow*rows;i++){
-				
-				//declare cropped image
-				BufferedImage cropped = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
-				int leftMargin=0;
-				int topMargin =0 ;
-				int x1 = leftMargin + w*(i%numberRow);
-				int y1=topMargin +h*(i/numberRow);
-				Graphics g = cropped.createGraphics();
-				g.drawImage(icon.getImage(),0,0,w,h,x1,y1,x1+w,y1+h,null);
-				a.addFrame(cropped, 300);
-				if(i==numberRow*rows-1)
-					i++;
-			}
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-	//	a.setVx(1);
-		viewObjects.add(a);
-
-		
-		a.update();
-		a.setX(x);
-		a.setY(y);
-		a.play();
+		HomeKat.addAnimation(viewObjects,200,200,"h",10,"img/dragon7.png");
 		
 	}
+	
+	
 	
 	
 	@Override
