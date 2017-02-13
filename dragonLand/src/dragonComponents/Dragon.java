@@ -43,11 +43,11 @@ public class Dragon extends AnimatedComponent {
 
 		if(y<350){
 			direction=DOWN;
-			setVy(1);
+			//setVy(1);
 		}else{
 			direction=RIGHT;
 			currentFrame=6;
-			setVx(1);
+			//setVx(1);
 		}
 			
 	}
@@ -57,10 +57,10 @@ public class Dragon extends AnimatedComponent {
 	public void checkBehaviors() {
 		//System.out.println(direction);
 		if(direction ==UP){
-			setVy(-2);
+			setVy(-1);
 			if(currentFrame==2)
 				currentFrame=0;
-			if((initialY-getY())>=30){
+			if((initialY-getY())>30){
 				direction=DOWN;
 				
 			}
@@ -69,25 +69,30 @@ public class Dragon extends AnimatedComponent {
 			setVy(1);
 			if(currentFrame==2)
 				currentFrame=0;
-			if(Math.abs(getY()-initialY)>=30){
+			if((getY()-initialY)>30){
 				direction=UP;
 				
 			}
 		}
 		if(direction ==LEFT){
+			
+			setVx(-1);
 			if(currentFrame<3||currentFrame==5)
 				currentFrame=3;
-			if(Math.abs(getX()-initialX)>=30){
+			if((initialX-getX())>=30){
+				currentFrame=6;
 				direction=RIGHT;
-				setVx(1);
+				
 			}
 		}
 		if(direction ==RIGHT){
-			if(currentFrame<6||currentFrame>8)
+			setVx(1);
+			if(currentFrame<6||currentFrame==8)
 				currentFrame=6;
-			if(Math.abs(getX()-initialX)>=30){
+			if((getX()-initialX)>30){
+				currentFrame=3;
 				direction=LEFT;
-				setVx(-1);
+				
 			}
 		}
 		
