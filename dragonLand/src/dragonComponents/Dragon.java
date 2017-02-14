@@ -39,24 +39,37 @@ public class Dragon extends AnimatedComponent implements DragonToShop{
 		this.name=name;
 		this.price=price;
 		this.imgSrc=imgSrc;
-		initialY=y;
+		
 		initialX=x;
 
-		if(y<350){
-			direction=DOWN;
-		}else{
-			direction=RIGHT;
-			currentFrame=6;
-		}
+//		if(y<350){
+//			direction=DOWN;
+//		}else{
+//			direction=RIGHT;
+//			currentFrame=6;
+//		}
 			
 	}
 
-
+	public void setY(int y){
+		initialY=y;
+		super.setY(y);
+		if(y<350){
+			direction=DOWN;
+		}else{
+			direction=(int)(Math.random()*1+1);
+			currentFrame=6;
+		}
+	}
+	public void setX(int x){
+		initialX=x;
+		super.setX(x);
+	}
 	@Override
 	public void checkBehaviors() {
 		//System.out.println(direction);
 		if(direction ==UP){
-			setVy(-1);
+			setVy(-0.5);
 			if(currentFrame==2)
 				currentFrame=0;
 			if((initialY-getY())>30){
@@ -64,7 +77,7 @@ public class Dragon extends AnimatedComponent implements DragonToShop{
 			}
 		}
 		if(direction ==DOWN){
-			setVy(1);
+			setVy(0.5);
 			if(currentFrame==2)
 				currentFrame=0;
 			if((getY()-initialY)>30){
@@ -72,7 +85,7 @@ public class Dragon extends AnimatedComponent implements DragonToShop{
 			}
 		}
 		if(direction ==LEFT){
-			setVx(-1);
+			setVx(-0.5);
 			if(currentFrame<3||currentFrame==5)
 				currentFrame=3;
 			if((initialX-getX())>=30){
@@ -82,7 +95,7 @@ public class Dragon extends AnimatedComponent implements DragonToShop{
 			}
 		}
 		if(direction ==RIGHT){
-			setVx(1);
+			setVx(0.5);
 			if(currentFrame<6||currentFrame==8)
 				currentFrame=6;
 			if((getX()-initialX)>30){
