@@ -16,7 +16,7 @@ import guiPractice.components.Visible;
  */
 public class Star extends Graphic {
 
-	private int starSpeed;
+	private double vy;
 	private ArrayList<Star> starArray;
 	private Graphic starImage;
 	
@@ -25,7 +25,7 @@ public class Star extends Graphic {
 		System.out.println("star");
 		setX(getRandomX());
 		setY(y);
-		starSpeed = 3;
+		vy = 0;
 	}
 	
 	private int getRandomX() {
@@ -57,12 +57,50 @@ public class Star extends Graphic {
 //
 //	}
 	
-	public void setStarSpeed(int x){
-		starSpeed = x;
-	}
+// 	public void setStarSpeed(int x){
+// 		starSpeed = x;
+// 	}
 	
-	public int getStarSpeed(){
-		return starSpeed;
-	}
+// 	public int getStarSpeed(){
+// 		return starSpeed;
+// 	}
 	
+// 	public void run() {
+// 		posx = getX();
+// 		posy = getY();
+// 		running = true;
+// 		moveTime = System.currentTimeMillis();
+// 		while(running){
+// 			try {
+// 				Thread.sleep(REFRESH_RATE);
+// 				checkBehaviors();
+// 				update();
+// 			} catch (InterruptedException e) {
+// 				e.printStackTrace();
+// 			}
+// 		}
+// 	}
+
+	public double getVy() {
+		return vy;
+	}
+
+	public void setVy(double vy) {
+		this.vy = vy;
+	}
+
+// 	public boolean isRunning() {
+// 		return running;
+// 	}
+
+// 	public void setRunning(boolean running) {
+// 		this.running = running;
+// 	}
+
+// 	public void play() {
+// 		if(!running){
+// 			Thread go = new Thread(this);
+// 			go.start();
+// 		}
+// 	}
 }
