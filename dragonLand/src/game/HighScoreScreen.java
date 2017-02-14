@@ -39,8 +39,14 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	private Button coinsWon;
 	private Button scores;
 	private Button totalCoins;
+	private Button clearScores;
 	private ArrayList highScores;
 	private ArrayList buttons;
+	
+	//fields for individual button scores
+	private Button score1;
+	private Button score2;
+	private Button score3;
 	/**
 	 * 
 	 */
@@ -67,7 +73,16 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		coinsWon = new Button(345, 465, 300, 60, "Coins Won: WON"/*getCoins(GameScreen.getScore())*/, DragonLand.DARKER_NUDE, null);
 		coinsWon.setSize(30);
 		scores = new Button(295,252,400,200,null, DragonLand.DARKER_NUDE,null);
-		totalCoins = new Button(700,87,180,50,"Total Coins: COINS", DragonLand.DARKER_NUDE,null);
+		totalCoins = new Button(100,87,180,50,"Total Coins: COINS", DragonLand.DARKER_NUDE,null);
+		clearScores = new Button(800, 50, 150, 40, "Clear Scores?", DragonLand.DARKER_NUDE, new Action(){
+			
+			@Override
+			public void act(){
+				viewObjects.remove(score1);
+				viewObjects.remove(score2);
+				viewObjects.remove(score3);
+			}
+		});
 		back = new Button(50,50, 40, 40, "X", DragonLand.DARKER_NUDE, new Action(){	
 
 			@Override
@@ -87,6 +102,8 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		viewObjects.add(totalCoins);
 		createButtons();
 		printButtons(buttons);
+		viewObjects.add(clearScores);
+		System.out.println(viewObjects);
 		
 	}
 
@@ -98,12 +115,49 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	}
 	
 	public void createButtons(){
-		Integer count = 1;
-		for(int i = 0; i < 3; i++){
-			Button temp = new Button(440,267+(60*i),125,50,count.toString() + ") " + highScores.get(i).toString(),DragonLand.LIGHT_NUDE,null);
+		if(highScores.size() == 0){
+			return;
+		}
+		if(highScores.size() == 1){
+			Button temp = new Button(440,327,125,50, "1) " + highScores.get(0).toString(),DragonLand.LIGHT_NUDE,null);
 			temp.setSize(30);
-			buttons.add(temp);
-			count++;
+			score1 = temp;
+			buttons.add(score1);
+			return;
+		}
+		if(highScores.size() == 2){
+			for(int i = 0; i < highScores.size(); i++){
+				Button temp = new Button(440,295+(60*i),125,50,(i+1) + ") " + highScores.get(i).toString(),DragonLand.LIGHT_NUDE,null);
+				temp.setSize(30);
+				if(i == 0){
+					score1 = temp;
+					buttons.add(score1);
+				}
+				if(i == 1){
+					score2 = temp;
+					buttons.add(score2);
+				}
+			}
+			return;
+		}
+		if(highScores.size() >= 3){
+			for(int i = 0; i < 3; i++){
+				Button temp = new Button(440,267+(60*i),125,50,(i+1) + ") " + highScores.get(i).toString(),DragonLand.LIGHT_NUDE,null);
+				temp.setSize(30);
+				if(i == 0){
+					score1 = temp;
+					buttons.add(score1);
+				}
+				if(i == 1){
+					score2 = temp;
+					buttons.add(score2);
+				}
+				if(i == 2){
+					score3 = temp;
+					buttons.add(score3);
+				}
+			}			
+			return;
 		}
 	}
 	
@@ -115,24 +169,5 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	
 	public int getCoins(int score){
 		return 0;//going to have formula for coins
-	}
-	
-	public void printScores(ArrayList<Integer> sortedScores){
-		for(int i = 0; i < sortedScores.size(); i++){
-			String score = "";
-			Button temp = new Button(20+(100*i), 20+(100*i), 50, 50, score+=sortedScores.get(i), Color.black, null);
-			viewObjects.add(temp);		
-		}
-		
-//		String printedScores = "";
-//		String placeholder = "";
-//		for(int i = 0; i < 10; i++){
-//			placeholder += " ";
-//		}
-//		for(int i = 0; i < sortedScores.size(); i++){
-//			printedScores += (i+1) + ") " + sortedScores.get(i) + placeholder;
-//		}
-//		System.out.println(printedScores);
-//		return printedScores;
 	}
 }
