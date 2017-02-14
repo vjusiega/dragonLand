@@ -21,9 +21,9 @@ import guiPractice.components.Visible;
  * @author Jenniber Franco
  *
  */
-public class HungryBox extends Button implements Runnable, HungryTimesInterface {
+public class HungryBox extends Button implements HungryTimesInterface {
 
-	private ArrayList<HungryTimesInterface> hungryBoxTimes;
+	private int[] dragonNumbers;
 	private static final int W = 50;
 	private static final int H = 25;
 	private static final String TEXT = "Hungry!";
@@ -41,43 +41,45 @@ public class HungryBox extends Button implements Runnable, HungryTimesInterface 
 	 */
 	public HungryBox(int x, int y, int dragonNum) {
 		super(x, y, W, H, TEXT+"\n"+hungryTime+" sec", DragonLand.DARKER_NUDE, null);
-		createHungryThread(HomeKat.getDragonsOnScreen().get(dragonNum), dragonNum);
+		//createHungryThread(HomeKat.getDragonsOnScreen().get(dragonNum), dragonNum);
 	}
 
 	
-	public void createHungryThread(Dragon d, int dragonNum){
-		//d is a dragon from HomeKat.onScreenDragons
-		HungryBox hungryDragon = new HungryBox(d.getX(),d.getY()+100, dragonNum);
-		hungryBoxTimes.add(hungryDragon);
-		Thread hungry = new Thread(hungryDragon);
-		hungry.start();
-	}
 	
-	private void changeHungryTime(){
-		try{
-			while(hungryTime>=0){
-				Thread.sleep(1000);
-			}
-		}catch(InterruptedException e){
-			e.printStackTrace();
-		}
+	
+//HomeKat.removeDragon(Dragon d, viewObjects)
+	@Override
+	public ArrayList<Dragon> getDragonsOnScreen() {
+		return HomeKat.getDragonsOnScreen();
 	}
+
 
 	@Override
-	public void run() {
-		changeHungryTime();
-		hungryTime--;
-		update();
-		checkRemoveDragon();
+	public Dragon setDragonsOnScreen() {
+		return null;
+	}
+
+
+	@Override
+	public void removeDragon(Dragon d, ArrayList<Visible> viewObjects) {
+		HomeKat.removeDragon(d, viewObjects);
+		
+	}
+
+
+	@Override
+	public int getHungryTime() {
+		// TODO Auto-generated method stub
+		return hungryTime;
+	}
+
+
+	@Override
+	public void setHungryTime(int num) {
+		hungryTime = num;
+		
 	}
 	
-	private void checkRemoveDragon() {
-		if(hungryTime<=0){
-			removeDragon();
-		}
-	}
-
-
 	@Override
 	public void update(Graphics2D g){
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -110,83 +112,5 @@ public class HungryBox extends Button implements Runnable, HungryTimesInterface 
 			g.drawString(t, (getWidth()-fm.stringWidth(t))/2, (getHeight()+fm.getHeight()-fm.getDescent())/2);
 		}
 	}
-	
-	public int getRandDragon(){
-		int randNum = (int) Math.random()*getDragonsOnScreen().size();
-		return randNum;
-	}
-	
-//HomeKat.removeDragon(Dragon d, viewObjects)
-	
-//	public void addHungry() {
-//		for(int i= 0; i<hungryTimes.size(); i++){
-//			double probability = (double).2*(15-hungryTime)/15;
-//			if(Math.random()>probability){
-//				final HungryTimesInterface dragon = hungryTimes.get(i);
-//				dragon.setHungryTime((int)(500+Math.random()*2000));
-//				dragon.setAction(new Action(){
-//					public void act(){
-//						remove(dragon.hungryBox);
-//						dragon.remove(hungryBox);
-//					}
-//				});
-//				addObject(hungryBox);
-//				dragon.add(hungryBox);   
-//			}
-//		}
-//	}
-//	
-//	public void removeHungry(){
-//		for(int i=0; i<hungryTimes.size(); i++){
-//			HungryTimesInterface d = hungryTimes.get(i);
-//			d.setAppearanceTime(d.getAppearanceTime()-10);
-//			if(d.getAppearanceTime()<=0){
-//				//remove from visible screen
-//				remove(d);
-//				i--;//compensate for i++
-//				
-//			}
-//		}
-//	}
-
-
-
-	@Override
-	public ArrayList<Dragon> getDragonsOnScreen() {
-		// TODO Auto-generated method stub
-		return HomeKat.getDragonsOnScreen();
-	}
-
-
-	@Override
-	public Dragon setDragonsOnScreen() {
-		return null;
-	}
-
-
-	@Override
-	public void removeDragon(Dragon d, ArrayList<Visible> viewObjects) {
-		HomeKat.removeDragon(d, viewObjects);
-		
-	}
-
-
-	@Override
-	public int getHungryTime() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
-	public void setHungryTime(int num) {
-		// TODO Auto-generated method stub
-		
-	}
-
-//	private void remove(HungryTimesInterface d) {
-//		// TODO Auto-generated method stub
-//		
-//	}
 
 }
