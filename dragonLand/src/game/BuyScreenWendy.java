@@ -15,7 +15,7 @@ public class BuyScreenWendy extends ShopScreen{
 	
 	 private ArrayList<Dragon> dragonsInShop;
 	    private ArrayList<DragonLabel> shoplabels; 
-	    private Dragon[] dragons;
+	    private ArrayList<Dragon> dragons;
 	    private DragonLabel label;
 	    
 	    private int price;
@@ -64,16 +64,17 @@ public class BuyScreenWendy extends ShopScreen{
 		
 		shoplabels = new ArrayList<DragonLabel>();
 		
-		for(int i= 0; i< 3;i++)
+		for(Dragon d: dragons)
 		{
-			if(dragonsInShop.contains(dragons[i]))
+			
+			if(dragonsInShop.contains(d))
 			{
-				 label = new DragonLabel(x,y, dragons[i],"BUY", new Action(){
-
+				label = new DragonLabel(x,y, d,"BUY", new Action(){
+					
 					public void act() {
 						// TODO Auto-generated method stub
 //					shoplabels.remove(label);
-					dragonsInShop.remove(label);	
+						dragonsInShop.remove(label);	
 						for(Visible v: label.getVisible())
 						{
 							visible.remove(v);							
@@ -86,33 +87,30 @@ public class BuyScreenWendy extends ShopScreen{
 				});
 				shoplabels.add(label);
 				
-				dragonsInShop.add(dragons[i]);
+				dragonsInShop.add(d);
 				
 				for(Visible v: label.getVisible())
 					visible.add(v);
 				
 				y = y + DragonLabel.getLabelHeight()+20;
+				System.out.println(dragons.size());
 			}
-				
+			
 		}
 		
 	}
 	
+	
 	public void inLists(){
 		
 		dragonsInShop = new ArrayList<Dragon>();
-		dragons = new Dragon[20];
+		dragons = new ArrayList<Dragon>();
 		
-		String[] names = new String[] {"Rowdy","Thorn","Mushu","Falcor","Elliot","Puff","Spyro","Sandy",
-				"Scaly","Nessie","Nymph","Sparky","Flambi","Drago","Viper","Moon","Saphira","Scorch","Toothless","Stormfly"};
-		price=50;
+		dragons = HomeKat.getDragons();
 		
-		for(int i=1;i<20;i++){
-			
-			//dragons[i] = new Dragon(50, 50, 50, 50, "Nice Dragon" + i, 100, "img/dragon9.png");
-			dragons[i] = new Dragon(0,0,50,50, names[i], price+i*50, "img/dragon"+i+".png");
-			//dragons[i] = HomeKat.getDragonList().[i];
-			dragonsInShop.add(dragons[i]);
+		for(int i = 0; i<2; i++)
+		{
+			dragonsInShop.add(dragons.get(i));
 		}
 
 		

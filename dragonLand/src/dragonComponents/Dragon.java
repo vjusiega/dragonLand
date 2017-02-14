@@ -44,11 +44,9 @@ public class Dragon extends AnimatedComponent implements DragonToShop{
 
 		if(y<350){
 			direction=DOWN;
-			//setVy(1);
 		}else{
 			direction=RIGHT;
 			currentFrame=6;
-			//setVx(1);
 		}
 			
 	}
@@ -63,7 +61,6 @@ public class Dragon extends AnimatedComponent implements DragonToShop{
 				currentFrame=0;
 			if((initialY-getY())>30){
 				direction=DOWN;
-				
 			}
 		}
 		if(direction ==DOWN){
@@ -72,11 +69,9 @@ public class Dragon extends AnimatedComponent implements DragonToShop{
 				currentFrame=0;
 			if((getY()-initialY)>30){
 				direction=UP;
-				
 			}
 		}
 		if(direction ==LEFT){
-			
 			setVx(-1);
 			if(currentFrame<3||currentFrame==5)
 				currentFrame=3;
@@ -96,7 +91,6 @@ public class Dragon extends AnimatedComponent implements DragonToShop{
 				
 			}
 		}
-		
 	}
 
 	@Override

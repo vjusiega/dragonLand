@@ -49,6 +49,7 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 			
 		});
 		viewObjects.add(shop);
+		Button minigame = new Button(getWidth()-110-(getWidth()*2/100),(getHeight()*5/100)+53,  110,  50,  "Minigame",DragonLand.DARKER_NUDE, null);
 //		Button minigame = new Button(getWidth()-110-(getWidth()*2/100),(getHeight()*5/100)+53,  110,  50,  "Minigame",DragonLand.DARKER_NUDE,  new Action(){
 //
 //			@Override
@@ -57,7 +58,7 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 //			}
 //		
 //		});
-//		viewObjects.add(minigame);
+		viewObjects.add(minigame);
 		Button help = new Button(getWidth()-50-(getWidth()*2/100),getHeight()-50-(getHeight()*2/100),  50,  50,  "?",DragonLand.DARKER_NUDE,  null);
 		viewObjects.add(help);
 		Button title = new Button((getWidth()*2/100),(getHeight()*5/100),  350,  50,  "Welcome to Dragon Land!",DragonLand.DARKER_NUDE,  null);
