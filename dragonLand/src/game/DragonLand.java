@@ -69,10 +69,10 @@ public class DragonLand extends GUIApplication {
 //		shopMain = new (getWidth(),getHeight());
 //		sellScreen = new (getWidth(),getHeight());
 //		buyScreen = new (getWidth(),getHeight());
-		highscoreScreen = new HighScoreScreen(getWidth(),getHeight());
+		//highscoreScreen = new HighScoreScreen(getWidth(),getHeight());
 //		miniGameScreen = new (getWidth(),getHeight());
 		//uncomment your line once u have a class, input class name before get width()/height()
-		setScreen(highscoreScreen);
+		setScreen(miniGameScreen);
 		//////////!!!!!!!!! if u want to test only your screen change the above lines^
 		// but before you push to develop/ merge from develop always change it back plz
 	}
