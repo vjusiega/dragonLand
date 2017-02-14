@@ -12,5 +12,8 @@ public interface HungryTimesInterface extends Clickable {
 	int getAppearanceTime();
 
 	void setAppearanceTime(int i);
+	
+	Dragon getDragonsOnScreen();
+	
 
 }
