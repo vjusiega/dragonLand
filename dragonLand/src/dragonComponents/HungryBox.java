@@ -21,7 +21,7 @@ import guiPractice.components.Visible;
  * @author Jenniber Franco
  *
  */
-public class HungryBox extends Button implements HungryTimesInterface {
+public class HungryBox extends Button implements HungryTimesInterface, Runnable {
 
 	private int[] dragonNumbers;
 	private static final int W = 50;
