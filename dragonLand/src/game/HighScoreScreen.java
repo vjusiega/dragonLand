@@ -41,7 +41,8 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	private Button totalCoins;
 	private Button clearScores;
 	private ArrayList<Integer> highScores;
-	private ArrayList buttons;
+	private ArrayList<Button> buttons;
+	private int tCoins;
 	
 	//fields for individual button scores
 	private Button score1;
@@ -56,6 +57,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
+		tCoins = 10;
 		buttons = new ArrayList<Button>();
 		highScores = new ArrayList<Integer>();
 		highScores.add(GameScreen.getScore());
@@ -73,7 +75,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		coinsWon = new Button(345, 465, 300, 60, "Coins Won: " + getCoins(GameScreen.getScore()), DragonLand.DARKER_NUDE, null);
 		coinsWon.setSize(30);
 		scores = new Button(295,252,400,200,null, DragonLand.DARKER_NUDE,null);
-		totalCoins = new Button(100,87,180,50,"Total Coins: COINS", DragonLand.DARKER_NUDE,null);
+		totalCoins = new Button(100,87,180,50,"Total Coins: " + (getCoins(GameScreen.getScore()) + tCoins), DragonLand.DARKER_NUDE,null);
 		clearScores = new Button(800, 50, 150, 40, "Clear Scores?", DragonLand.DARKER_NUDE, new Action(){
 			
 			@Override
@@ -103,15 +105,12 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		createButtons();
 		printButtons(buttons);
 		viewObjects.add(clearScores);
-		System.out.println(viewObjects);
-		
 	}
 
 	public void sortScores(ArrayList<Integer> scores){
 		Comparator comparator = Collections.reverseOrder();
 		Collections.sort(scores,comparator);
 		highScores = scores;
-		System.out.println(scores);
 	}
 	
 	public void createButtons(){
