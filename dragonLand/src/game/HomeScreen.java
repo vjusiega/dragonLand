@@ -63,6 +63,7 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 		HomeKat.addAnimation(viewObjects,200,200,"h",10,"img/dragon7.png");
 		HomeKat.addAnimation(viewObjects,400,400,"h",10,"img/dragon11.png");
 		
+	//	HomeKat.addAnimation(viewObjects,200,200,"h",10,"img/dragon7.png");
 	}
 	
 	
