@@ -62,17 +62,18 @@ public class BuyScreenWendy extends ShopScreen{
 		x = 0;
 		y = 170;
 		
-		shoplabels = new ArrayList<DragonLabel>();
 		
-		for(Dragon d: dragons)
-		{
-			if(dragonsInShop.contains(d))
-			{
-				label = new DragonLabel(x,y, d,"BUY", new Action(){
+		
+		//for(Dragon d: dragons)
+		//for(int i = 0; i< dragonsInShop.size(); i++)
+		//{
+			//if(dragonsInShop.contains(d))
+			//{
+				label = new DragonLabel(x,y, dragonsInShop.get(0),"BUY", new Action(){//realization that in dragons some dragons repeat...
 					
 					public void act() {
 						// TODO Auto-generated method stub
-//					shoplabels.remove(label);
+
 						dragonsInShop.remove(label);	
 						for(Visible v: label.getVisible())//ask Mr.Nockles for help
 						{
@@ -83,7 +84,7 @@ public class BuyScreenWendy extends ShopScreen{
 						update();
 					}
 				});
-				shoplabels.add(label);
+
 				
 				for(Visible v: label.getVisible())
 					visible.add(v);
@@ -91,11 +92,12 @@ public class BuyScreenWendy extends ShopScreen{
 				y = y + DragonLabel.getLabelHeight()+20;
 				//System.out.println(dragons.size());
 				System.out.println(dragonsInShop.size());
+				
 			}
 			
-		}
+		//}
 		
-	}
+	//}
 	
 	
 	public void inLists(){
@@ -103,7 +105,7 @@ public class BuyScreenWendy extends ShopScreen{
 		dragonsInShop = new ArrayList<Dragon>();
 		dragons = new ArrayList<Dragon>();
 		
-		dragons = HomeKat.getDragons();//ask Kat if there are only two dragons and why is the name "h"...
+		dragons = HomeKat.getDragons();
 		
 		for(int i = 0; i<1; i++)
 		{
