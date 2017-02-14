@@ -32,6 +32,7 @@ public class DragonLand extends GUIApplication {
 	public static Screen buyScreen; // shop 3
 	public static Screen highscoreScreen; // high score
 	public static Screen miniGameScreen; // minigame
+	public static Screen HelpScreen;
 	public static Color NAVY;
 	public static Color BRIGHT_PINK;
 	public static Color LIGHT_PINK;
@@ -64,14 +65,16 @@ public class DragonLand extends GUIApplication {
 	protected void initScreen() {
 		initColors();
 		homeScreen = new HomeScreen(getWidth(),getHeight());
+		miniGameScreen = new GameScreen(getWidth(),getHeight());
+		//System.out.println(miniGameScreen.getWidth());
 //		shopMain = new (getWidth(),getHeight());
 //		sellScreen = new (getWidth(),getHeight());
 //		buyScreen = new (getWidth(),getHeight());
-//		highscoreScreen = new (getWidth(),getHeight());
+		highscoreScreen = new HighScoreScreen(getWidth(),getHeight());
 //		miniGameScreen = new (getWidth(),getHeight());
 		//uncomment your line once u have a class, input class name before get width()/height()
-		setScreen(homeScreen);
-		//////////!!!!!!!!! if u want to test only your screen change the above lines^
+		setScreen(highscoreScreen);
+		//////////!!!!!!!!! if uwant to test only your screen change the above lines^
 		// but before you push to develop/ merge from develop always change it back plz
 	}
 

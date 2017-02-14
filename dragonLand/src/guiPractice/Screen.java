@@ -15,8 +15,8 @@ import guiPractice.components.Visible;
 
 public abstract class Screen {
 	
-	private int width;
-	private int height;
+	private static int width;
+	private static int height;
 	protected ArrayList<Visible> viewObjects;
 	
 	protected BufferedImage image;
@@ -155,11 +155,11 @@ public abstract class Screen {
 		return null;
 	}
 	
-	public int getWidth() {
+	public static int getWidth() {
 		return width;
 	}
 
-	public int getHeight() {
+	public static int getHeight() {
 		return height;
 	}
 

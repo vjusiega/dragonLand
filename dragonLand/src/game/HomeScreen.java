@@ -58,16 +58,18 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 		Button title = new Button((getWidth()*2/100),(getHeight()*5/100),  350,  50,  "Welcome to Dragon Land!",DragonLand.DARKER_NUDE,  null);
 		title.setSize(26);
 		viewObjects.add(title);
-		
-		HomeKat.makeDragons(viewObjects);
-		HomeKat.makeLocations();
-		
+
 		for(int i=10;i<15;i++){
 		HomeKat.addDragon(HomeKat.getDragons().get(i), viewObjects);
 		}
 		HomeKat.addDragon(HomeKat.getDragons().get(14), viewObjects);
 		run();
+
+
+		//HomeKat.makeDragons(viewObjects);
+	
 		
+	//	HomeKat.addAnimation(viewObjects,200,200,"h",10,"img/dragon7.png");
 	}
 
 	
