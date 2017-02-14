@@ -16,9 +16,9 @@ public class BuyScreenWendy extends ShopScreen{
 	 private ArrayList<Dragon> dragonsInShop = new ArrayList<Dragon>();
 	    private ArrayList<DragonLabel> shoplabels; 
 	    private ArrayList<Dragon> dragons = new ArrayList<Dragon>();
-	    private DragonLabel label;
+//	   private DragonLabel label;
 	    
-	    private int price = label.getDragonPrice().getPrice();
+//	    private int price = label.getDragonPrice().getPrice();
 	    //private Dragon sold;
 	    private int x;
 		private	int y;
@@ -68,17 +68,18 @@ public class BuyScreenWendy extends ShopScreen{
 		{
 			if(dragonsInShop.contains(d))
 			{
-				label = new DragonLabel(x,y, dragonsInShop.get(0),"BUY", new Action(){//realization that in dragons some dragons repeat...
+				DragonLabel label = new DragonLabel(DragonLabel.LABEL_LEFT_MARGIN,y, d,"BUY");
+				label.setAction( new Action(){//realization that in dragons some dragons repeat...
 					
 					public void act() {
 						// TODO Auto-generated method stub
 
-						//dragonsInShop.remove(label);	
-						for(Visible v: label.getVisible())//ask Mr.Nockles for help
-						{
-							visible.remove(v);							
-						}
-						DragonLand.coins -= price;
+//						dragonsInShop.remove(d);	
+//						for(Visible v: label.getVisible())//ask Mr.Nockles for help
+//						{
+							visible.remove(label);							
+						
+						DragonLand.coins -= d.getPrice();
 						getCoins().setCoins(DragonLand.coins);
 						//System.out.println(DragonLand.coins);//don't know why it doesn't change in display
 						update();
@@ -86,8 +87,11 @@ public class BuyScreenWendy extends ShopScreen{
 				});
 
 				
-				for(Visible v: label.getVisible())
-					visible.add(v);
+//				for(Visible v: label.getVisible())
+//					visible.add(v);
+				
+				visible.add(label);
+				
 				
 				y = y + DragonLabel.getLabelHeight()+20;
 				//System.out.println(dragons.size());
@@ -107,7 +111,7 @@ public class BuyScreenWendy extends ShopScreen{
 		
 		dragons = HomeKat.getDragons();
 		
-		for(int i = 0; i<1; i++)
+		for(int i = 0; i<3; i++)
 		{
 			dragonsInShop.add(dragons.get(i));
 		}
