@@ -90,6 +90,7 @@ public class BuyScreenWendy2 extends ShopScreen {
 		for(int i= 0; i< dragons.length;i++)
 		{
 			dragons[i] = new Dragon(50, 50, 50, 50, "Nice Dragon" + i, 100, "img/dragon9.png");
+			//dragons[i] = HomeKat.getDragonList().[i];
 			dragonsInShop.add(dragons[i]);
 		}
 	}
