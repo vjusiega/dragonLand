@@ -3,8 +3,7 @@
  */
 package game;
 
-import Wendy.BuyScreenW;
-import Wendy.BuyScreenWendy;
+
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -28,7 +27,7 @@ public class DragonLand extends GUIApplication {
 	 */
 	public static DragonLand game;
 	//public static ArrayList<AnimatedComponent> dragonList; //list of all dragons in the game
-	public static int coins; 
+	public static int coins = 110; 
 	public static Screen homeScreen;
 	public static Screen shopMain; // shop 1
 	public static Screen sellScreen; // shop 2

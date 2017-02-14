@@ -76,7 +76,7 @@ public abstract class ShopScreen extends ClickableScreen {
 		shopName.setSize(26);
 		
 		int coinX = titleX + titleWidth - CoinLabel.getWdith() - LEFT_MARGIN * 2;
-		CoinLabel coins = new CoinLabel(coinX, shopNameY, 100);
+		CoinLabel coins = new CoinLabel(coinX, shopNameY, DragonLand.coins);
 		ShopLabel dragonAmount = new ShopLabel(coinX, shopNameY + CoinLabel.getHeight2() + 2, CoinLabel.getWdith(), CoinLabel.getHeight2(), /*DragonLand.dragons.length() +*/ "0/6 Dragons", DragonLand.LIGHT_NUDE);
 		dragonAmount.setArc(15);
 		

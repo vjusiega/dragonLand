@@ -1,4 +1,4 @@
-package Wendy;
+package game;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,7 @@ import dragonComponents.Dragon;
 import dragonComponents.DragonLabel;
 import dragonComponents.PriceLabel;
 import dragonComponents.ShopBackdrop;
+import game.DragonLand;
 import game.ShopScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Visible;
@@ -18,8 +19,7 @@ public class BuyScreenWendy extends ShopScreen{
 	    private DragonLabel label;
 	    
 	    private int price;
-	    private PriceLabel priceLabel;
-	   // private Dragon sold;
+	    //private Dragon sold;
 	    private int x;
 		private	int y;
 
@@ -33,6 +33,11 @@ public class BuyScreenWendy extends ShopScreen{
 	public void addDragonLabels(ArrayList<Visible> visible) {
 		// TODO Auto-generated method stub
 		inLists();
+//		sold = SellShopZheng.getSold();
+//		if(sold != null)
+//		{
+//			dragonsInShop.add(sold);
+//		}
 		
 		x = 0;
 		y = 170;
@@ -48,11 +53,15 @@ public class BuyScreenWendy extends ShopScreen{
 					public void act() {
 						// TODO Auto-generated method stub
 //					shoplabels.remove(label);
-//					dragonsInShop.remove(label);	
+					dragonsInShop.remove(label);	
 						for(Visible v: label.getVisible())
-							visible.remove(v);
-						//DragonLand.coins -= this.priceLabel.getPrice();
-						//DragonLand.game.setScreen(DragonLand.homeScreen);
+						{
+							visible.remove(v);							
+						}
+						price = label.getDragonPrice().getPrice();
+						DragonLand.coins -= price;
+						System.out.println(DragonLand.coins);//don't know why it doesn't change in display
+						update();
 					}
 				});
 				shoplabels.add(label);
