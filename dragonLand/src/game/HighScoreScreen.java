@@ -40,6 +40,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	private Button scores;
 	private Button totalCoins;
 	private Button clearScores;
+	private Button help;
 	private ArrayList<Integer> highScores;
 	private ArrayList<Button> buttons;
 	private int tCoins;
@@ -65,6 +66,11 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		highScores.add(32);
 		highScores.add(0);
 		sortScores(highScores);
+		help = new Button(getWidth()-100, 50, 50, 50, "?", DragonLand.DARKER_NUDE, new Action() {
+			@Override
+			public void act() {
+				DragonLand.game.setScreen(DragonLand.HelpScreen);
+			}});
 		yourScore = new Button(345, 190, 300, 50, "Your score: " + GameScreen.getScore(), DragonLand.DARKER_NUDE, null);
 		yourScore.setSize(30);
 		layerOne = new CurvedButton(50,70,getWidth()-100, getHeight()-95,null,DragonLand.LIGHT_NUDE, null);
@@ -83,6 +89,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 				viewObjects.remove(score1);
 				viewObjects.remove(score2);
 				viewObjects.remove(score3);
+				yourScore.setText("Scores Cleared");
 			}
 		});
 		back = new Button(50,50, 40, 40, "X", DragonLand.DARKER_NUDE, new Action(){	
