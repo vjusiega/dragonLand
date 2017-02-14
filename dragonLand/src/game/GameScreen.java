@@ -74,11 +74,12 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 		view.add(helpButton);
 		view.add(new Star(100, 100, 100, 100));
 		
-		GameVioletta.addDragon("dragon1.png");
+		GameVioletta.addDragon("img/dragon1.png");
 		
 		//System.out.println(GameVioletta.dragonArray.size());
 		for(GameDragon d : GameVioletta.getDragonArray()){
 			view.add(d);
+			System.out.println(d.getImageLocation());
 		}
 		
 	}

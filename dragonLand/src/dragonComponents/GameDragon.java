@@ -22,10 +22,6 @@ public class GameDragon extends Graphic{
 	
 	public GameDragon(int x, int y, int w, int h, String imgSrc) {
 		super(10, 10, 200, 200, imgSrc);
-		System.out.println("star");
-		//setX(getRandomX());
-		setY(y);
-//		vy = 0;
 	}
 
 }
