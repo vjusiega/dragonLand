@@ -44,6 +44,7 @@ public class CoinLabel extends Component {
 	
 	public void setCoins(int coins) {
 		this.coins = coins;
+		coinLabel.setText("Coins: " + coins);
 	}
 	
 	public ShopBackdrop getCoinBack()

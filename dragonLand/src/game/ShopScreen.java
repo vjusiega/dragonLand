@@ -30,6 +30,8 @@ public abstract class ShopScreen extends ClickableScreen {
 	private final static int LEFT_MARGIN = 15;
 	private final static int TOP_MARGIN = 15;
 	
+	
+	private CoinLabel coins;
 	private int currentPage = 1;
 	private int totalPages = 1;
 
@@ -80,7 +82,7 @@ public abstract class ShopScreen extends ClickableScreen {
 		shopName.setSize(26);
 		
 		int coinX = titleX + titleWidth - CoinLabel.getWdith() - LEFT_MARGIN * 2;
-		CoinLabel coins = new CoinLabel(coinX, shopNameY, DragonLand.coins);
+		coins = new CoinLabel(coinX, shopNameY, DragonLand.coins);
 		ShopLabel dragonAmount = new ShopLabel(coinX, shopNameY + CoinLabel.getHeight2() + 2, CoinLabel.getWdith(), CoinLabel.getHeight2(), /*DragonLand.dragons.length() +*/ "0/6 Dragons", DragonLand.LIGHT_NUDE);
 		dragonAmount.setArc(15);
 		
@@ -130,6 +132,11 @@ public abstract class ShopScreen extends ClickableScreen {
 
 	public abstract void addDragonLabels(ArrayList<Visible> viewObjects);
 	//public abstract void addDragonLabels(ArrayList<Visible> viewObjects);
+	
+	public CoinLabel getCoins()
+	{
+		return coins;
+	}
 	
 	public ClickableGraphic getArrowRight()
 	{

@@ -67,7 +67,7 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 
 		System.out.println(HomeKat.getDragons().size());
 		HomeKat.makeDragons(viewObjects);
-		System.out.println(HomeKat.getDragons().size());
+		System.out.println("h"+HomeKat.getDragons().size());
 		HomeKat.makeLocations();
 		for(int i=0;i<6;i++){
 		HomeKat.addDragon(HomeKat.getDragons().get(i), viewObjects);

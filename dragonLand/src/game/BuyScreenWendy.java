@@ -18,7 +18,7 @@ public class BuyScreenWendy extends ShopScreen{
 	    private ArrayList<Dragon> dragons = new ArrayList<Dragon>();
 	    private DragonLabel label;
 	    
-	    private int price = label.getDragonPrice().getPrice();;
+	    private int price = label.getDragonPrice().getPrice();
 	    //private Dragon sold;
 	    private int x;
 		private	int y;
@@ -64,22 +64,23 @@ public class BuyScreenWendy extends ShopScreen{
 		
 		
 		
-		//for(Dragon d: dragons)
+		for(Dragon d: dragons)
 		//for(int i = 0; i< dragonsInShop.size(); i++)
-		//{
-			//if(dragonsInShop.contains(d))
-			//{
+		{
+			if(dragonsInShop.contains(d))
+			{
 				label = new DragonLabel(x,y, dragonsInShop.get(0),"BUY", new Action(){//realization that in dragons some dragons repeat...
 					
 					public void act() {
 						// TODO Auto-generated method stub
 
-						dragonsInShop.remove(label);	
+						//dragonsInShop.remove(label);	
 						for(Visible v: label.getVisible())//ask Mr.Nockles for help
 						{
 							visible.remove(v);							
 						}
 						DragonLand.coins -= price;
+						getCoins().setCoins(DragonLand.coins);
 						//System.out.println(DragonLand.coins);//don't know why it doesn't change in display
 						update();
 					}
@@ -95,9 +96,9 @@ public class BuyScreenWendy extends ShopScreen{
 				
 			}
 			
-		//}
+		}
 		
-	//}
+	}
 	
 	
 	public void inLists(){
