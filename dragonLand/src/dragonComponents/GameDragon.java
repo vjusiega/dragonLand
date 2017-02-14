@@ -11,31 +11,17 @@ import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 
 import guiPractice.components.AnimatedComponent;
+import guiPractice.components.Graphic;
 import guiPractice.components.MovingComponent;
 
-public class GameDragon extends AnimatedComponent{
+public class GameDragon extends Graphic{
 	
-	private String imgSrc;
+	//private String imgSrc;
 	
 	//must add picture and animate
 	
 	public GameDragon(int x, int y, int w, int h, String imgSrc) {
-		super(x, y, w, h);
-		setX(x);
-		setY(y);
-		this.imgSrc=imgSrc;
+		super(10, 10, 200, 200, imgSrc);
 	}
 
-	@Override
-	public void checkBehaviors() {
-		if(true){
-			if(currentFrame==2)
-				currentFrame=0;
-		}
-	}
-
-	@Override
-	public void drawImage(Graphics2D g){
-		super.drawImage(g);
-	}
 }

@@ -48,8 +48,6 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> view) {
-	
-		GameVioletta.addDragon(view, "dragon1.png");
 		
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
 		viewObjects.add(background);
@@ -76,10 +74,12 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 		view.add(helpButton);
 		view.add(new Star(100, 100, 100, 100));
 		
+		GameVioletta.addDragon("img/dragon1.png");
 		
 		//System.out.println(GameVioletta.dragonArray.size());
 		for(GameDragon d : GameVioletta.getDragonArray()){
 			view.add(d);
+			System.out.println(d.getImageLocation());
 		}
 		
 	}
