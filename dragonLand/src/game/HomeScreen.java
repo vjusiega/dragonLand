@@ -41,7 +41,13 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 		background=new Graphic(0,0,getWidth(),getHeight(),"img/Grassland.png");
 		viewObjects.add(background);
 		//addbuttons
-		Button shop = new Button(getWidth()-110-(getWidth()*2/100),(getHeight()*5/100),  110,  50,  "Shop",DragonLand.DARKER_NUDE,  null);
+		Button shop = new Button(getWidth()-110-(getWidth()*2/100),(getHeight()*5/100),  110,  50,  "Shop",DragonLand.DARKER_NUDE,  new Action(){
+			
+			public void act(){
+				DragonLand.game.setScreen(DragonLand.game.shopMain);
+			}
+			
+		});
 		viewObjects.add(shop);
 //		Button minigame = new Button(getWidth()-110-(getWidth()*2/100),(getHeight()*5/100)+53,  110,  50,  "Minigame",DragonLand.DARKER_NUDE,  new Action(){
 //
@@ -59,7 +65,7 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 		viewObjects.add(title);
 
 		
-	//	HomeKat.addAnimation(viewObjects,200,200,"h",10,"img/dragon7.png");
+		HomeKat.addAnimation(viewObjects,200,200,"h",10,"img/dragon7.png");
 		
 	}
 	
