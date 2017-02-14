@@ -31,7 +31,7 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 	private XButton exit;
 	private Button helpButton;
 	private Graphic background;
-	
+	private ArrayList<Star> starArray;
 	private static int score; 
 	
 	

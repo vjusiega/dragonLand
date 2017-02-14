@@ -3,12 +3,9 @@
  */
 package game;
 
-import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import guiPractice.components.Graphic;
-import guiPractice.components.MovingComponent;
-import guiPractice.components.Visible;
 
 /**
  * @author Tamanna Hussain
@@ -17,8 +14,11 @@ import guiPractice.components.Visible;
 public class Star extends Graphic {
 
 	private double vy;
-	private ArrayList<Star> starArray;
 	private Graphic starImage;
+	private boolean running;
+	private long moveTime;
+	
+	public static final int REFRESH_RATE = 20;
 	
 	public Star(int x, int y, int w, int h) {
 		super(x, y, w, h, "img/star.png");
@@ -26,6 +26,7 @@ public class Star extends Graphic {
 		setX(getRandomX());
 		setY(y);
 		vy = 0;
+		running = false;
 	}
 	
 	private int getRandomX() {
@@ -42,16 +43,14 @@ public class Star extends Graphic {
 //		
 //	}
 	
-//	@Override
-//	public void checkBehaviors() {
-//		//If the stars, fall after a certain point (y = 100), they disappear
-//		if(getY() > 100){
-//			setY(100);
-//			starSpeed *= -5;
-//		}
-//	}
-//
-//	@Override
+	public void checkBehaviors() {
+		//If the stars, fall after a certain point (y = 100), they disappear
+		if(getY() > 100){
+			setY(100);
+			vy *= -5;
+		}
+	}
+
 //	public void drawImage(Graphics2D g) {
 //		// TODO Auto-generated method stub
 //
@@ -65,21 +64,21 @@ public class Star extends Graphic {
 // 		return starSpeed;
 // 	}
 	
-// 	public void run() {
+ 	public void run() {
 // 		posx = getX();
 // 		posy = getY();
-// 		running = true;
-// 		moveTime = System.currentTimeMillis();
-// 		while(running){
-// 			try {
-// 				Thread.sleep(REFRESH_RATE);
-// 				checkBehaviors();
-// 				update();
-// 			} catch (InterruptedException e) {
-// 				e.printStackTrace();
-// 			}
-// 		}
-// 	}
+ 		running = true;
+ 		moveTime = System.currentTimeMillis();
+ 		while(running){
+ 			try {
+ 				Thread.sleep(REFRESH_RATE);
+ 				checkBehaviors();
+ 				update();
+ 			} catch (InterruptedException e) {
+ 				e.printStackTrace();
+ 			}
+ 		}
+ 	}
 
 	public double getVy() {
 		return vy;
@@ -89,18 +88,18 @@ public class Star extends Graphic {
 		this.vy = vy;
 	}
 
-// 	public boolean isRunning() {
-// 		return running;
-// 	}
+ 	public boolean isRunning() {
+ 		return running;
+ 	}
 
-// 	public void setRunning(boolean running) {
-// 		this.running = running;
-// 	}
+ 	public void setRunning(boolean running) {
+ 		this.running = running;
+ 	}
 
-// 	public void play() {
-// 		if(!running){
-// 			Thread go = new Thread(this);
-// 			go.start();
-// 		}
-// 	}
+ 	public void play() {
+ 		if(!running){
+ 			Thread go = new Thread();
+ 			go.start();
+ 		}
+ 	}
 }
