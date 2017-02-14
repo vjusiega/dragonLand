@@ -19,4 +19,10 @@ public interface HungryTimesInterface extends Clickable {
 	int getHungryTime();
 	
 	void setHungryTime(int num);
+	
+	HungryBox hungryBox;
+	
+	HungryBox getHungryBox();
+	
+	void setHungryBox();
 }
