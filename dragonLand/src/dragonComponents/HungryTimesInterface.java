@@ -10,7 +10,9 @@ public interface HungryTimesInterface extends Clickable {
 	
 	ArrayList<Dragon> getDragonsOnScreen();
 	
-	Dragon setDragonsOnScreen();
+	ArrayList<Dragon> setDragonsOnScreen();
+	
+	boolean hasHungryBox();
 	
 	void removeDragon(Dragon d, ArrayList<Visible>viewObjects);
 	
