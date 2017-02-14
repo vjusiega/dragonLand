@@ -38,15 +38,15 @@ public class HungryBox extends Button implements Runnable {
 	 * @param color
 	 * @param action
 	 */
-	public HungryBox(int x, int y) {
+	public HungryBox(int x, int y, int dragonNum) {
 		super(x, y, W, H, TEXT+"\n"+hungryTime+" sec", DragonLand.DARKER_NUDE, null);
-		createHungryThread(HomeKat.dragonsOnScreen);
+		createHungryThread(HomeKat.getDragonsOnScreen().get(dragonNum), dragonNum);
 	}
 
 	
-	public void createHungryThread(Dragon d){
+	public void createHungryThread(Dragon d,int dragonNum){
 		//d is a dragon from HomeKat.onScreenDragons
-		HungryBox hungryDragon = new HungryBox(d.getX(),d.getY()+100);
+		HungryBox hungryDragon = new HungryBox(d.getX(),d.getY()+100, dragonNum);
 		Thread hungry = new Thread(hungryDragon);
 		hungry.start();
 	}

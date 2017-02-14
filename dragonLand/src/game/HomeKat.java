@@ -16,7 +16,7 @@ public class HomeKat {
 	private ArrayList<Integer> locationsX;
 	private ArrayList<Integer> locationsY;
 	private static ArrayList<AnimatedComponent> dragonList; 
-	private ArrayList<Dragon> dragonsOnScreen;
+	private static ArrayList<Dragon> dragonsOnScreen;
 	
 	public HomeKat() {
 		makeLocations();
@@ -93,22 +93,30 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 
 	private void addNewDragons(String[] purchased, ArrayList<Visible> viewObjects) {
 		for(int i=0;i<purchased.length;i++){
-			for(int j=0;j<dragonsOnScreen.size();j++){
+			for(int j=0;j<getDragonsOnScreen().size();j++){
 				
 			}
 		}
 	}
 
 	private void checkToRemove(String[] purchased,ArrayList<Visible> viewObjects) {
-		for(int i=0;i<dragonsOnScreen.size();i++){
+		for(int i=0;i<getDragonsOnScreen().size();i++){
 			for(int j=0;j<purchased.length;j++){
-				if(dragonsOnScreen.get(i).getName()!=purchased[j]){
-					viewObjects.remove(dragonsOnScreen.get(i));
-					dragonsOnScreen.remove(dragonsOnScreen.get(i));
+				if(getDragonsOnScreen().get(i).getName()!=purchased[j]){
+					viewObjects.remove(getDragonsOnScreen().get(i));
+					getDragonsOnScreen().remove(getDragonsOnScreen().get(i));
 					j=-1;
 				}
 			}	
 		}
+	}
+
+	public static ArrayList<Dragon> getDragonsOnScreen() {
+		return dragonsOnScreen;
+	}
+
+	public void setDragonsOnScreen(ArrayList<Dragon> dragonsOnScreen) {
+		this.dragonsOnScreen = dragonsOnScreen;
 	}
 
 	
