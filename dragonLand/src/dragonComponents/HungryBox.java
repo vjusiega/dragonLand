@@ -16,13 +16,14 @@ import game.DragonLand;
 import game.HomeKat;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
+import guiPractice.components.Visible;
 /**
  * @author Jenniber Franco
  *
  */
-public class HungryBox extends Button implements Runnable {
+public class HungryBox extends Button implements Runnable, HungryTimesInterface {
 
-	private ArrayList<HungryTimesInterface> hungryTimes;
+	private ArrayList<HungryTimesInterface> hungryBoxTimes;
 	private static final int W = 50;
 	private static final int H = 25;
 	private static final String TEXT = "Hungry!";
@@ -44,9 +45,10 @@ public class HungryBox extends Button implements Runnable {
 	}
 
 	
-	public void createHungryThread(Dragon d,int dragonNum){
+	public void createHungryThread(Dragon d, int dragonNum){
 		//d is a dragon from HomeKat.onScreenDragons
 		HungryBox hungryDragon = new HungryBox(d.getX(),d.getY()+100, dragonNum);
+		hungryBoxTimes.add(hungryDragon);
 		Thread hungry = new Thread(hungryDragon);
 		hungry.start();
 	}
@@ -66,8 +68,16 @@ public class HungryBox extends Button implements Runnable {
 		changeHungryTime();
 		hungryTime--;
 		update();
+		checkRemoveDragon();
 	}
 	
+	private void checkRemoveDragon() {
+		if(hungryTime<=0){
+			removeDragon();
+		}
+	}
+
+
 	@Override
 	public void update(Graphics2D g){
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -101,6 +111,15 @@ public class HungryBox extends Button implements Runnable {
 		}
 	}
 	
+	public int getRandDragon(){
+		int randNum = (int) Math.random()*getDragonsOnScreen().size();
+		return randNum;
+	}
+	
+	
+	
+//HomeKat.removeDragon(Dragon d, viewObjects)
+	
 //	public void addHungry() {
 //		for(int i= 0; i<hungryTimes.size(); i++){
 //			double probability = (double).2*(15-hungryTime)/15;
@@ -131,6 +150,10 @@ public class HungryBox extends Button implements Runnable {
 //			}
 //		}
 //	}
+
+
+
+
 
 //	private void remove(HungryTimesInterface d) {
 //		// TODO Auto-generated method stub
