@@ -4,14 +4,10 @@ import java.util.ArrayList;
 
 import dragonComponents.Dragon;
 import dragonComponents.DragonLabel;
-import dragonComponents.PriceLabel;
-import dragonComponents.ShopBackdrop;
-import game.DragonLand;
-import game.ShopScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Visible;
 
-public class BuyScreenWendy extends ShopScreen{
+public class BuyScreenWendy2 extends ShopScreen {
 	
 	 private ArrayList<Dragon> dragonsInShop;
 	    private ArrayList<DragonLabel> shoplabels; 
@@ -23,10 +19,9 @@ public class BuyScreenWendy extends ShopScreen{
 	    private int x;
 		private	int y;
 
-	public BuyScreenWendy(int width, int height) {
+	public BuyScreenWendy2(int width, int height) {
 		super(width, height);
 		// TODO Auto-generated constructor stub
-
 	}
 
 	@Override
@@ -37,20 +32,11 @@ public class BuyScreenWendy extends ShopScreen{
 			@Override
 			public void act() {
 				// TODO Auto-generated method stub
-				DragonLand.game.setScreen(DragonLand.game.homeScreen);
+				DragonLand.game.setScreen(DragonLand.game.buyScreen);
 			}
 			
 		});
 		
-		getArrowRight().setAction(new Action(){
-
-			@Override
-			public void act() {
-				// TODO Auto-generated method stub
-				DragonLand.game.setScreen(DragonLand.game.buyScreen2);
-			}
-			
-		});
 		inLists();
 //		sold = SellShopZheng.getSold();
 //		if(sold != null)
