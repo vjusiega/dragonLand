@@ -31,8 +31,8 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 	private XButton exit;
 	private Button helpButton;
 	private Graphic background;
-	
-	private static int score; 
+
+	private static int score;
 	
 	
 	//Tamanna's fields
@@ -51,6 +51,7 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 	
 		GameVioletta.addDragon(view, "dragon1.png");
 		
+		score = 20;
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
 		viewObjects.add(background);
 		

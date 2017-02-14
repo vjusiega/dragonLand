@@ -40,7 +40,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	private Button scores;
 	private Button totalCoins;
 	private Button clearScores;
-	private ArrayList highScores;
+	private ArrayList<Integer> highScores;
 	private ArrayList buttons;
 	
 	//fields for individual button scores
@@ -58,7 +58,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
 		buttons = new ArrayList<Button>();
 		highScores = new ArrayList<Integer>();
-		highScores.add(50);
+		highScores.add(GameScreen.getScore());
 		highScores.add(400);
 		highScores.add(32);
 		highScores.add(0);
@@ -70,7 +70,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		title = new Button((getWidth()/2)-125, 80, 250, 60, "High Scores", DragonLand.DARKER_NUDE, null);
 		title.setSize(40);
 		background = new Background(0,0, getWidth(), getHeight());
-		coinsWon = new Button(345, 465, 300, 60, "Coins Won: WON"/*getCoins(GameScreen.getScore())*/, DragonLand.DARKER_NUDE, null);
+		coinsWon = new Button(345, 465, 300, 60, "Coins Won: " + getCoins(GameScreen.getScore()), DragonLand.DARKER_NUDE, null);
 		coinsWon.setSize(30);
 		scores = new Button(295,252,400,200,null, DragonLand.DARKER_NUDE,null);
 		totalCoins = new Button(100,87,180,50,"Total Coins: COINS", DragonLand.DARKER_NUDE,null);
@@ -168,6 +168,6 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	}
 	
 	public int getCoins(int score){
-		return 0;//going to have formula for coins
+		return (((score*5)/2)+14);
 	}
 }
