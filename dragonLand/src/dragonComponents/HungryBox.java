@@ -23,7 +23,6 @@ import guiPractice.components.Visible;
  */
 public class HungryBox extends Button implements HungryTimesInterface, Runnable {
 
-	private int[] dragonNumbers;
 	private static final int W = 50;
 	private static final int H = 25;
 	private static final String TEXT = "Hungry!";
@@ -42,10 +41,7 @@ public class HungryBox extends Button implements HungryTimesInterface, Runnable 
 	public HungryBox(int x, int y, int dragonNum) {
 		super(x, y, W, H, TEXT+"\n"+hungryTime+" sec", DragonLand.DARKER_NUDE, null);
 		//createHungryThread(HomeKat.getDragonsOnScreen().get(dragonNum), dragonNum);
-	}
-
-	
-	
+	}	
 	
 //HomeKat.removeDragon(Dragon d, viewObjects)
 	@Override
@@ -58,14 +54,6 @@ public class HungryBox extends Button implements HungryTimesInterface, Runnable 
 	public Dragon setDragonsOnScreen() {
 		return null;
 	}
-
-
-	@Override
-	public void removeDragon(Dragon d, ArrayList<Visible> viewObjects) {
-		HomeKat.removeDragon(d, viewObjects);
-		
-	}
-
 
 	@Override
 	public int getHungryTime() {
