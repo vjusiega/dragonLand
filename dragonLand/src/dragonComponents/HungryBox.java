@@ -116,8 +116,6 @@ public class HungryBox extends Button implements Runnable, HungryTimesInterface 
 		return randNum;
 	}
 	
-	
-	
 //HomeKat.removeDragon(Dragon d, viewObjects)
 	
 //	public void addHungry() {
@@ -153,7 +151,38 @@ public class HungryBox extends Button implements Runnable, HungryTimesInterface 
 
 
 
+	@Override
+	public ArrayList<Dragon> getDragonsOnScreen() {
+		// TODO Auto-generated method stub
+		return HomeKat.getDragonsOnScreen();
+	}
 
+
+	@Override
+	public Dragon setDragonsOnScreen() {
+		return null;
+	}
+
+
+	@Override
+	public void removeDragon(Dragon d, ArrayList<Visible> viewObjects) {
+		HomeKat.removeDragon(d, viewObjects);
+		
+	}
+
+
+	@Override
+	public int getHungryTime() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public void setHungryTime(int num) {
+		// TODO Auto-generated method stub
+		
+	}
 
 //	private void remove(HungryTimesInterface d) {
 //		// TODO Auto-generated method stub
