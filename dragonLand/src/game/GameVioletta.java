@@ -36,7 +36,7 @@ public class GameVioletta {
 		return dragonArray;
 	}
 	
-	public static void addDragon(ArrayList<Visible> viewObjects, String imgSrc){
+	public static void addDragon(String imgSrc){
 		dragonArray = new ArrayList<GameDragon>();
 		int dragonHeight = 50;
 		
@@ -44,46 +44,12 @@ public class GameVioletta {
 		int yPos = screenHeight - dragonHeight;
 		
 		//GameDragon temp = new GameDragon(xPos/2, (int)(yPos*0.75), 200, 200, "dragon1.png");
-		GameDragon temp = new GameDragon(100, 100, 200, 200, imgSrc);
-		
-		addAnimation(viewObjects, imgSrc, temp);
+		GameDragon temp = new GameDragon(100, 100, 100, 100, imgSrc);
 		
 		dragonArray.add(temp);
 	}
 
-	private static void addAnimation(ArrayList<Visible> viewObjects, String imgSrc, GameDragon temp) {
-		//Kat code
-				try{
-					ImageIcon icon = new ImageIcon(imgSrc);
-					int numberRow =3 ;
-					int rows =4;
-					int w =48;
-					int h = 48;
-					for(int i=0;i<numberRow*rows;i++){
-						
-						//declare cropped image
-						BufferedImage cropped = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
-						int leftMargin=0;
-						int topMargin =0 ;
-						int x1 = leftMargin + w*(i%numberRow);
-						int y1=topMargin +h*(i/numberRow);
-						Graphics g = cropped.createGraphics();
-						g.drawImage(icon.getImage(),0,0,w,h,x1,y1,x1+w,y1+h,null);
-						temp.addFrame(cropped, 300);
-						if(i==numberRow*rows-1)
-							i++;
-					}
-				}
-				catch(Exception e){
-					e.printStackTrace();
-				}
-				viewObjects.add(temp);
-				temp.update();
-				//temp.setX(100);
-				//temp.setY(100);
-				
-				temp.play();
-	}
+	
 
 	public static void changeDragonPos(int i) {
 		int leadDragon = findLeadDragon(i);
