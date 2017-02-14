@@ -13,12 +13,12 @@ import guiPractice.components.Visible;
 
 public class BuyScreenWendy extends ShopScreen{
 	
-	 private ArrayList<Dragon> dragonsInShop;
+	 private ArrayList<Dragon> dragonsInShop = new ArrayList<Dragon>();
 	    private ArrayList<DragonLabel> shoplabels; 
-	    private ArrayList<Dragon> dragons;
+	    private ArrayList<Dragon> dragons = new ArrayList<Dragon>();
 	    private DragonLabel label;
 	    
-	    private int price;
+	    private int price = label.getDragonPrice().getPrice();;
 	    //private Dragon sold;
 	    private int x;
 		private	int y;
@@ -66,7 +66,6 @@ public class BuyScreenWendy extends ShopScreen{
 		
 		for(Dragon d: dragons)
 		{
-			
 			if(dragonsInShop.contains(d))
 			{
 				label = new DragonLabel(x,y, d,"BUY", new Action(){
@@ -79,21 +78,19 @@ public class BuyScreenWendy extends ShopScreen{
 						{
 							visible.remove(v);							
 						}
-						price = label.getDragonPrice().getPrice();
 						DragonLand.coins -= price;
-						System.out.println(DragonLand.coins);//don't know why it doesn't change in display
+						//System.out.println(DragonLand.coins);//don't know why it doesn't change in display
 						update();
 					}
 				});
 				shoplabels.add(label);
 				
-				dragonsInShop.add(d);
-				
 				for(Visible v: label.getVisible())
 					visible.add(v);
 				
 				y = y + DragonLabel.getLabelHeight()+20;
-				System.out.println(dragons.size());
+				//System.out.println(dragons.size());
+				System.out.println(dragonsInShop.size());
 			}
 			
 		}
@@ -108,7 +105,7 @@ public class BuyScreenWendy extends ShopScreen{
 		
 		dragons = HomeKat.getDragons();//ask Kat if there are only two dragons and why is the name "h"...
 		
-		for(int i = 0; i<2; i++)
+		for(int i = 0; i<1; i++)
 		{
 			dragonsInShop.add(dragons.get(i));
 		}
