@@ -97,8 +97,9 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 				if(purchased[i]==dragonsOnScreen.get(j).getName())
 					exists=true;
 			}
-			if(!exists)
+			if(!exists){
 				addDragon(searchByName(purchased[i]),viewObjects);
+			}
 		}
 	}
 
