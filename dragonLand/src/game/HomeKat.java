@@ -72,15 +72,7 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 		dragons.add((Dragon) a);
 		a.setX(x);
 		a.setY(y);
-		
-
-		dragons.add((Dragon) a);
-		//System.out.println(dragons.size());
-
-		a.play();
-
-		
-		
+				
 	}
 	public static void makeDragons(ArrayList<Visible> viewObjects){
 		String[] names = new String[] {"Rowdy","Thorn","Mushu","Falcor","Elliot","Puff","Spyro","Sandy",

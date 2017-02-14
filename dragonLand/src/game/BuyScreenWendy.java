@@ -36,7 +36,6 @@ public class BuyScreenWendy extends ShopScreen{
 			@Override
 			public void act() {
 				// TODO Auto-generated method stub
-				DragonLand.game.setScreen(DragonLand.game.homeScreen);
 			}
 			
 		});
