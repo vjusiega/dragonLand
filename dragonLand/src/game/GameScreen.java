@@ -49,7 +49,7 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 	@Override
 	public void initAllObjects(ArrayList<Visible> view) {
 	
-		GameVioletta.addDragon();
+		GameVioletta.addDragon(view, "dragon1.png");
 		
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
 		viewObjects.add(background);
