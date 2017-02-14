@@ -70,7 +70,6 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 			e.printStackTrace();
 		}
 		dragons.add((Dragon) a);
-		
 		a.setX(x);
 		a.setY(y);
 		
