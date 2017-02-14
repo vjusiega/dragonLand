@@ -25,15 +25,22 @@ public class HomeKat {
 		clicked =true;
 		Button shop = new Button(width-110-(width*2/100),(height*5/100),  110,  50,  "Shop",DragonLand.DARKER_NUDE,  null);
 		viewObjects.add(shop);
-		//Button minigame = new Button(width-110-(width*2/100),(height*5/100)+53,  110,  50,  "Minigame",DragonLand.DARKER_NUDE, null);
-		Button minigame = new Button(getWidth()-110-(getWidth()*2/100),(getHeight()*5/100)+53,  110,  50,  "Minigame",DragonLand.DARKER_NUDE,  new Action(){
+		Button minigame = new Button(width-110-(width*2/100),(height*5/100)+53,  110,  50,  "Minigame",DragonLand.DARKER_NUDE, new Action(){
 
 			@Override
 			public void act() {
-				DragonLand.game.setScreen(miniGameScreen);
+				DragonLand.game.setScreen(DragonLand.miniGameScreen);
 			}
 		
 		});
+//		Button minigame = new Button(getWidth()-110-(getWidth()*2/100),(getHeight()*5/100)+53,  110,  50,  "Minigame",DragonLand.DARKER_NUDE,  new Action(){
+//
+//			@Override
+//			public void act() {
+//				DragonLand.game.setScreen(miniGameScreen);
+//			}
+//		
+//		});
 		viewObjects.add(minigame);
 		Button helpLayer = new Button((int)(width*0.1),(int)(height*0.1),(int)(width*0.8),(int)(height*0.8),  "Hello welcome",DragonLand.DARKER_NUDE,  null);
 		Button help = new Button(width-50-(width*2/100),height-50-(height*2/100),  50,  50,  "?",DragonLand.DARKER_NUDE,  new Action(){

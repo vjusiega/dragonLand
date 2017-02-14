@@ -69,7 +69,7 @@ public class DragonLand extends GUIApplication {
 		
 		shopMain = new HomeShopScreen(getWidth(),getHeight());
 		//sellScreen = new (getWidth(),getHeight());
-		buyScreen = new (getWidth(),getHeight());
+		//buyScreen = new (getWidth(),getHeight());
 		highscoreScreen = new HighScoreScreen(getWidth(),getHeight());
 		setScreen(homeScreen);
 		
