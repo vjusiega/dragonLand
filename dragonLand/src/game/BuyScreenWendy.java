@@ -101,13 +101,13 @@ public class BuyScreenWendy extends ShopScreen{
 	public void inLists(){
 		
 		dragonsInShop = new ArrayList<Dragon>();
-		dragons = new Dragon[10];
+		dragons = new Dragon[20];
 		
 		String[] names = new String[] {"Rowdy","Thorn","Mushu","Falcor","Elliot","Puff","Spyro","Sandy",
 				"Scaly","Nessie","Nymph","Sparky","Flambi","Drago","Viper","Moon","Saphira","Scorch","Toothless","Stormfly"};
 		price=50;
 		
-		for(int i=1;i<10;i++){
+		for(int i=1;i<20;i++){
 			
 			//dragons[i] = new Dragon(50, 50, 50, 50, "Nice Dragon" + i, 100, "img/dragon9.png");
 			dragons[i] = new Dragon(0,0,50,50, names[i], price+i*50, "img/dragon"+i+".png");

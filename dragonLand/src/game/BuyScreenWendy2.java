@@ -49,7 +49,7 @@ public class BuyScreenWendy2 extends ShopScreen {
 		
 		shoplabels = new ArrayList<DragonLabel>();
 		
-		for(int i= 0; i< dragons.length;i++)
+		for(int i= 3; i< 6;i++)
 		{
 			if(dragonsInShop.contains(dragons[i]))
 			{
@@ -86,10 +86,16 @@ public class BuyScreenWendy2 extends ShopScreen {
 	public void inLists(){
 		
 		dragonsInShop = new ArrayList<Dragon>();
-		dragons = new Dragon[3];
-		for(int i= 0; i< dragons.length;i++)
-		{
-			dragons[i] = new Dragon(50, 50, 50, 50, "Nice Dragon" + i, 100, "img/dragon9.png");
+		dragons = new Dragon[20];
+		
+		String[] names = new String[] {"Rowdy","Thorn","Mushu","Falcor","Elliot","Puff","Spyro","Sandy",
+				"Scaly","Nessie","Nymph","Sparky","Flambi","Drago","Viper","Moon","Saphira","Scorch","Toothless","Stormfly"};
+		price=50;
+		
+		for(int i=1;i<20;i++){
+			
+			//dragons[i] = new Dragon(50, 50, 50, 50, "Nice Dragon" + i, 100, "img/dragon9.png");
+			dragons[i] = new Dragon(0,0,50,50, names[i], price+i*50, "img/dragon"+i+".png");
 			//dragons[i] = HomeKat.getDragonList().[i];
 			dragonsInShop.add(dragons[i]);
 		}
