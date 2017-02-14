@@ -22,12 +22,16 @@ import dragonComponents.HungryTimesInterface;
 public class HomeJenniber implements Runnable{
 	
 	private static int hungryTime;
+	//private int[] dragonNumbers;
+	private ArrayList<Dragon> hungryDragons;
 	private ArrayList<HungryTimesInterface> hungryBoxTimes;
 	/**
 	 * 
 	 */
-	public HomeJenniber() {
-		// TODO Auto-generated constructor stub
+	public HomeJenniber(Dragon d) {
+		
+		int randNum = getRandDragon();
+		createHungryThread();
 	}
 	
 	public void createHungryThread(Dragon d, int dragonNum){
@@ -36,6 +40,13 @@ public class HomeJenniber implements Runnable{
 		hungryBoxTimes.add(hungryDragon);
 		Thread hungry = new Thread(hungryDragon);
 		hungry.start();
+	}
+	
+	@Override
+	public void removeHungryAndDragon(int HungryNum) {
+		
+		HomeKat.removeDragon(, viewObjects);
+		
 	}
 	
 	private void changeHungryTime(){
@@ -58,15 +69,20 @@ public class HomeJenniber implements Runnable{
 	
 	private void checkRemoveDragon() {
 		for(int i=0; i< hungryBoxTimes.size();i++){
-			if(hungryBoxTimes.get(i).getHungryTime()<=0){
-				removeDragon(, null);
+			HungryBox d = HomeKat.getDragonsOnScreen().get(i).getHungryBox();
+			if(d.getHungryTime()<=0){
+				removeHungryandDragon(i);
 			}
 		}
 		
 	}
 	
 	public int getRandDragon(){
-		int randNum = (int) Math.random()*getDragonsOnScreen().size();
+		do{
+			int randNum = (int) Math.random()*getDragonsOnScreen().size();
+		}
+		while(!getDragonsOnScreen().get(randNum).hasHungryBox());
+		
 		return randNum;
 	}
 
