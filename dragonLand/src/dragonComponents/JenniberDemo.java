@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import game.DragonLand;
+import game.HomeKat;
 import guiPractice.GUIApplication;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
@@ -22,7 +24,7 @@ public class JenniberDemo extends GUIApplication {
 	 * 
 	 */
 	public JenniberDemo() {
-		fluctuation = new HungryBox(0, 0, game.DragonLand.LIGHT_NUDE, null);
+		fluctuation = new HungryBox(100, 100, DragonLand.LIGHT_NUDE);
 	}
 
 	/* (non-Javadoc)
@@ -42,38 +44,23 @@ public class JenniberDemo extends GUIApplication {
 		JenniberDemo demo = new JenniberDemo();
 		Thread app = new Thread(demo);
 		app.start();
-
 	}
 	
 	//nested inner class;
 	private class DemoScreen extends ClickableScreen{
 
-		private TextLabel rewardDisplay;
-		private Button beatAMonster;
+		private HungryBox hungryBox1;
 		
 		public DemoScreen(int width, int height) {
 			super(width, height);
 			// TODO Auto-generated constructor stub
 		}
 
-		public void initAllObjects(List<Visible> view) {
-			rewardDisplay = new TextLabel(20, 40, 800, 25, "");
-			beatAMonster = new Button(40, 100, 190, 40, "Beat a monster", Color.blue, new Action() {
-				
-				@Override
-				public void act() {
-					JenniberDemo.fluctuation.addHungry();
-					rewardDisplay.setText("You earned a reward! Total points = ");
-				}
-			});
-			view.add(rewardDisplay);
-			view.add(beatAMonster);
-		}
-
-		@Override
 		public void initAllObjects(ArrayList<Visible> viewObjects) {
-			// TODO Auto-generated method stub
-			
+			hungryBox1 = new HungryBox(40, 100);
+			//JenniberDemo.fluctuation.createHungryThread(HomeKat.getDragonsOnScreen().get(1));
+			hungryBox1.update();
+			viewObjects.add(hungryBox1);
 		}
 		
 	}

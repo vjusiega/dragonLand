@@ -3,7 +3,13 @@
  */
 package dragonComponents;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.Stroke;
 import java.util.ArrayList;
 
 import game.DragonLand;
@@ -32,14 +38,15 @@ public class HungryBox extends Button implements Runnable {
 	 * @param color
 	 * @param action
 	 */
-	public HungryBox(int x, int y, Color color) {
-		super(x, y, W, H, TEXT+"\n"+hungryTime+" sec", color, null);
+	public HungryBox(int x, int y) {
+		super(x, y, W, H, TEXT+"\n"+hungryTime+" sec", DragonLand.DARKER_NUDE, null);
+		createHungryThread(HomeKat.dragonsOnScreen);
 	}
 
 	
 	public void createHungryThread(Dragon d){
 		//d is a dragon from HomeKat.onScreenDragons
-		HungryBox hungryDragon = new HungryBox(d.getX(),d.getY()+100,DragonLand.DARKER_NUDE);
+		HungryBox hungryDragon = new HungryBox(d.getX(),d.getY()+100);
 		Thread hungry = new Thread(hungryDragon);
 		hungry.start();
 	}
@@ -58,6 +65,7 @@ public class HungryBox extends Button implements Runnable {
 	public void run() {
 		changeHungryTime();
 		hungryTime--;
+		update();
 	}
 	
 	@Override
