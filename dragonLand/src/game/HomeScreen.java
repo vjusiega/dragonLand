@@ -41,17 +41,15 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 		background=new Graphic(0,0,getWidth(),getHeight(),"img/Grassland.png");
 		viewObjects.add(background);
 
-		for(int i=10;i<15;i++){
-		HomeKat.addDragon(HomeKat.getDragons().get(i), viewObjects);
-		}
-		HomeKat.addDragon(HomeKat.getDragons().get(14), viewObjects);
-		run();
-
-
-		//HomeKat.makeDragons(viewObjects);
-	
 		
-	//	HomeKat.addAnimation(viewObjects,200,200,"h",10,"img/dragon7.png");
+//		run();
+		HomeKat init = new HomeKat(viewObjects, getWidth(), getHeight());
+		for(int i=10;i<15;i++){
+			HomeKat.addDragon(HomeKat.getDragons().get(i), viewObjects);
+			}
+			HomeKat.addDragon(HomeKat.getDragons().get(14), viewObjects);
+
+		
 	}
 
 	

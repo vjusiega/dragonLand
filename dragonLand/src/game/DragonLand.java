@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import Wendy.BuyScreenW;
 import dragonComponents.Dragon;
 import guiPractice.GUIApplication;
 import guiPractice.Screen;
@@ -69,7 +70,7 @@ public class DragonLand extends GUIApplication {
 		
 		shopMain = new HomeShopScreen(getWidth(),getHeight());
 		//sellScreen = new (getWidth(),getHeight());
-		//buyScreen = new (getWidth(),getHeight());
+		buyScreen = new BuyScreenW(getWidth(),getHeight());
 		highscoreScreen = new HighScoreScreen(getWidth(),getHeight());
 		setScreen(homeScreen);
 		
