@@ -75,7 +75,7 @@ public class BuyScreenWendy extends ShopScreen{
 						// TODO Auto-generated method stub
 //					shoplabels.remove(label);
 						dragonsInShop.remove(label);	
-						for(Visible v: label.getVisible())
+						for(Visible v: label.getVisible())//ask Mr.Nockles for help
 						{
 							visible.remove(v);							
 						}
@@ -106,7 +106,7 @@ public class BuyScreenWendy extends ShopScreen{
 		dragonsInShop = new ArrayList<Dragon>();
 		dragons = new ArrayList<Dragon>();
 		
-		dragons = HomeKat.getDragons();
+		dragons = HomeKat.getDragons();//ask Kat if there are only two dragons and why is the name "h"...
 		
 		for(int i = 0; i<2; i++)
 		{
