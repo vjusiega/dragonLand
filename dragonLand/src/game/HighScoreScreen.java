@@ -4,25 +4,17 @@
 package game;
 
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
 import dragonComponents.Background;
 import dragonComponents.CurvedButton;
-import dragonComponents.XButton;
-
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
 import guiPractice.components.Visible;
-import guiPractice.components.TextLabel;
 
 /**
  * @author Veeraj
@@ -41,6 +33,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	private Button totalCoins;
 	private Button clearScores;
 	private Button help;
+	private Button helpBox;
 	private ArrayList<Integer> highScores;
 	private ArrayList<Button> buttons;
 	private int tCoins;
@@ -49,9 +42,9 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	private Button score1;
 	private Button score2;
 	private Button score3;
-	/**
-	 * 
-	 */
+	
+	
+	
 	public HighScoreScreen(int width, int height) {
 		super(width, height);
 	}
@@ -66,18 +59,26 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		highScores.add(32);
 		highScores.add(0);
 		sortScores(highScores);
+		//helpBox = new Button()
+		help = new Button(getWidth()-90, 580, 40, 40, "?", DragonLand.DARKER_NUDE, new Action() {
+			@Override
+			public void act() {
+				
+			}
+
+		});
 		yourScore = new Button(345, 183, 300, 60, "Your score: " + GameScreen.getScore(), DragonLand.DARKER_NUDE, null);
 		yourScore.setSize(30);
-		layerOne = new CurvedButton(50,70,getWidth()-100, getHeight()-95,null,DragonLand.LIGHT_NUDE, null);
+		layerOne = new CurvedButton(50,75,getWidth()-100, getHeight()-100,null,DragonLand.LIGHT_NUDE, null);
 		layerTwo = new Button(100, 160, getWidth()-200, getHeight()-225, null, DragonLand.BRIGHT_PINK, null);
-		title = new Button((getWidth()/2)-125, 80, 250, 70, "High Scores", DragonLand.DARKER_NUDE, null);
+		title = new Button((getWidth()/2)-125, 85, 250, 65, "High Scores", DragonLand.DARKER_NUDE, null);
 		title.setSize(40);
 		background = new Background(0,0, getWidth(), getHeight());
 		coinsWon = new Button(345, 480, 300, 60, "Coins Won: " + getCoins(GameScreen.getScore()), DragonLand.DARKER_NUDE, null);
 		coinsWon.setSize(30);
 		scores = new Button(295,262,400,200,null, DragonLand.DARKER_NUDE,null);
 		totalCoins = new Button(100,87,180,55,"Total Coins: " + (getCoins(GameScreen.getScore()) + tCoins), DragonLand.DARKER_NUDE,null);
-		clearScores = new Button(800, 50, 150, 40, "Clear Scores?", DragonLand.DARKER_NUDE, new Action(){
+		clearScores = new Button(795, 33, 150, 40, "Clear Scores?", DragonLand.DARKER_NUDE, new Action(){
 			
 			@Override
 			public void act(){
@@ -87,7 +88,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 				yourScore.setText("Scores Cleared");
 			}
 		});
-		back = new Button(50,50, 40, 40, "X", DragonLand.DARKER_NUDE, new Action(){	
+		back = new Button(50,37, 40, 40, "X", DragonLand.DARKER_NUDE, new Action(){	
 
 			@Override
 			public void act() {
@@ -104,6 +105,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		viewObjects.add(coinsWon);
 		viewObjects.add(scores);
 		viewObjects.add(totalCoins);
+		viewObjects.add(help);
 		createButtons();
 		printButtons(buttons);
 		viewObjects.add(clearScores);
@@ -128,7 +130,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		}
 		if(highScores.size() == 2){
 			for(int i = 0; i < highScores.size(); i++){
-				Button temp = new Button(440,295+(60*i),125,50,(i+1) + ") " + highScores.get(i).toString(),DragonLand.LIGHT_NUDE,null);
+				Button temp = new Button(440,305+(60*i),125,50,(i+1) + ") " + highScores.get(i).toString(),DragonLand.LIGHT_NUDE,null);
 				temp.setSize(30);
 				if(i == 0){
 					score1 = temp;
