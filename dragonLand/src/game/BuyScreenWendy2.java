@@ -82,7 +82,8 @@ public class BuyScreenWendy2 extends ShopScreen{
 						{
 							dragonsInShop.remove(d);	
 							visible.remove(label);							
-							
+							numOfDragons++;
+							System.out.println(numOfDragons + "/6 dragons");
 							DragonLand.coins -= d.getPrice();
 							getCoins().setCoins(DragonLand.coins);
 							//System.out.println(DragonLand.coins);
@@ -116,7 +117,7 @@ public class BuyScreenWendy2 extends ShopScreen{
 		
 		dragons = HomeKat.getDragons();
 		
-		for(int i = 1; i<4; i++)
+		for(int i = 3; i<6; i++)
 		{
 			dragonsInShop.add(dragons.get(i));
 		}

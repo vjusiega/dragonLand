@@ -81,7 +81,8 @@ public class BuyScreenWendy extends ShopScreen{
 						{
 							dragonsInShop.remove(d);	
 							visible.remove(label);							
-							
+							numOfDragons++;
+							System.out.println(numOfDragons + "/6 dragons");
 							DragonLand.coins -= d.getPrice();
 							getCoins().setCoins(DragonLand.coins);
 							System.out.println(DragonLand.coins);
