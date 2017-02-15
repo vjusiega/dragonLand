@@ -116,7 +116,7 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 			else
 				labelY = DragonLabel2.LABEL_TOP_MARGIN  + DragonLabel2.getLabelHeight() * (i - 3) + ((i - 3) * 10);
 			
-			DragonLabel2 label = new DragonLabel2(DragonLabel2.LABEL_LEFT_MARGIN, labelY, dragon, "SELL");
+			DragonLabel2 label = new  DragonLabel2(DragonLabel2.LABEL_LEFT_MARGIN, labelY, dragon, "SELL");
 			label.setAction(new Action(){
 				public void act()
 				{
