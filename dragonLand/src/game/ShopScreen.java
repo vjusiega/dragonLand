@@ -16,9 +16,9 @@ import guiPractice.components.Visible;
 public abstract class ShopScreen extends ClickableScreen {
 
 	//private ArrayList<Dragon> dragonList;
-	private Action action;
-	private ShopBackdrop back;
-	private final static int DRAGONS_PER_PAGE = 3;
+//	private Action action;
+//	private ShopBackdrop back;
+//	private final static int DRAGONS_PER_PAGE = 3;
 	private final static int SHOP_LEFT_MARGIN = 50;
 	private final static int SHOP_TOP_MARGIN = 50;
 	
@@ -27,14 +27,11 @@ public abstract class ShopScreen extends ClickableScreen {
 	
 	
 	private CoinLabel coins;
-	private int currentPage = 1;
-	private int totalPages = 1;
-	
-	
+	private ShopLabel dragonAmount;
+	private ShopLabel page;
 	private ClickableGraphic arrowRight;
 	private ClickableGraphic arrowLeft;
-	
-	public static int numOfDragons;
+
 	public ShopScreen(int width, int height) {
 		super(width, height);
 		update();
@@ -71,7 +68,7 @@ public abstract class ShopScreen extends ClickableScreen {
 		
 		int coinX = titleX + titleWidth - CoinLabel.getWdith() - LEFT_MARGIN * 2;
 		coins = new CoinLabel(coinX, shopNameY, DragonLand.coins);
-		ShopLabel dragonAmount = new ShopLabel(coinX, shopNameY + CoinLabel.getHeight2() + 2, CoinLabel.getWdith(), CoinLabel.getHeight2(), /*DragonLand.dragons.length() +*/ numOfDragons+"/6 Dragons", DragonLand.LIGHT_NUDE);
+		dragonAmount = new ShopLabel(coinX, shopNameY + CoinLabel.getHeight2() + 2, CoinLabel.getWdith(), CoinLabel.getHeight2(),"0/6 Dragons", DragonLand.LIGHT_NUDE);
 		dragonAmount.setArc(15);
 		
 		int back2Width = backWidth - 100;
@@ -83,7 +80,7 @@ public abstract class ShopScreen extends ClickableScreen {
 		
 		int bottomBarY = backHeight - TOP_MARGIN * 2 + 10;
 		int pageWidth = 300;
-		ShopLabel page = new ShopLabel(SHOP_LEFT_MARGIN + backWidth/2 - pageWidth/2, bottomBarY + TOP_MARGIN, pageWidth, 30, "Page " + currentPage + " of " + totalPages, DragonLand.LIGHT_NUDE);
+		page = new ShopLabel(SHOP_LEFT_MARGIN + backWidth/2 - pageWidth/2, bottomBarY + TOP_MARGIN, pageWidth, 30, "Page 1 of 1", DragonLand.LIGHT_NUDE);
 		
 		arrowRight = new ClickableGraphic(backWidth - LEFT_MARGIN - 25, bottomBarY, 0.12, "img/arrowRight.png");
 		arrowLeft = new ClickableGraphic(SHOP_LEFT_MARGIN + LEFT_MARGIN, bottomBarY, 0.12, "img/arrowLeft.png");	
@@ -114,6 +111,16 @@ public abstract class ShopScreen extends ClickableScreen {
 	public CoinLabel getCoins()
 	{
 		return coins;
+	}
+	
+	public ShopLabel getDragonAmount()
+	{
+		return dragonAmount;
+	}
+	
+	public ShopLabel getPage()
+	{
+		return page;
 	}
 	
 	public ClickableGraphic getArrowRight()

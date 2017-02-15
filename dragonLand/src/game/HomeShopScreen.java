@@ -62,7 +62,7 @@ public class HomeShopScreen extends ClickableScreen {
 			public void act()
 			{
 				DragonLand.game.setScreen(DragonLand.buyScreen);
-
+				((ShopScreen) DragonLand.sellScreen).getCoins().setCoins();
 			}
 		});
 		ShopActionButton sell = new ShopActionButton(getWidth()/2 - buttonWidth/2, shopTopMargin + getHeight()/2 - topMargin, buttonWidth, buttonHeight, "SELL", new Color(230,195,147), new Action(){
@@ -70,7 +70,7 @@ public class HomeShopScreen extends ClickableScreen {
 			{
 
 				DragonLand.game.setScreen(DragonLand.sellScreen);
-
+				((ShopScreen) DragonLand.sellScreen).getCoins().setCoins();
 			}
 		});
 		
