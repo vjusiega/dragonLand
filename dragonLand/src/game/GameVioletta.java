@@ -41,22 +41,29 @@ public class GameVioletta {
 		int xPos;
 		int dragonHeight = 500;
 		xPos = screenWidth / 2;
+		int yPos = screenHeight - 125;
 		if(dragonArray.size() >= 1){
 			dragonHeight = 250;
+			yPos = screenHeight - 70;
 			if(dragonArray.size() == 1){
 				xPos = dragonArray.get(0).getX() - 50;
-				System.out.println(dragonArray.get(0).getX());
+				
 			}
 			else{
-				xPos = dragonArray.get(0).getX() + 150;
+				xPos = dragonArray.get(0).getX() + 135;
+				//System.out.println("This is the dragon width: " + dragonArray.get(1).getWidth());
 			}
 		}
 		
-		int yPos = screenHeight - 130;
+		
+		
+		
 		
 		GameDragon temp = new GameDragon(xPos, yPos, dragonHeight, dragonHeight, imgSrc);
 		
 		dragonArray.add(temp);
+		
+		
 		return temp;
 	}
 	
