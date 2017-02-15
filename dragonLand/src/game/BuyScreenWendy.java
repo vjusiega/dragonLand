@@ -10,6 +10,9 @@ import game.DragonLand;
 import game.ShopScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Visible;
+/*
+ * @author Wendy
+ * */
 
 public class BuyScreenWendy extends ShopScreen{
 	
@@ -69,33 +72,34 @@ public class BuyScreenWendy extends ShopScreen{
 			if(dragonsInShop.contains(d))
 			{
 				DragonLabel label = new DragonLabel(DragonLabel.LABEL_LEFT_MARGIN,y, d,"BUY");
-				label.setAction( new Action(){//realization that in dragons some dragons repeat...
+				label.setAction( new Action(){
 					
 					public void act() {
 						// TODO Auto-generated method stub
 
-//						dragonsInShop.remove(d);	
-//						for(Visible v: label.getVisible())//ask Mr.Nockles for help
-//						{
+						if(DragonLand.coins > d.getPrice())
+						{
+							dragonsInShop.remove(d);	
 							visible.remove(label);							
-						
-						DragonLand.coins -= d.getPrice();
-						getCoins().setCoins(DragonLand.coins);
-						//System.out.println(DragonLand.coins);//don't know why it doesn't change in display
-						update();
+							
+							DragonLand.coins -= d.getPrice();
+							getCoins().setCoins(DragonLand.coins);
+							System.out.println(DragonLand.coins);
+							update();
+						}
+						else
+						{
+							System.out.println("You donot have enough coins. Go play our minigame to win more coins");
+						}
 					}
 				});
 
 				
-//				for(Visible v: label.getVisible())
-//					visible.add(v);
-				
 				visible.add(label);
 				
-				
-				y = y + DragonLabel.getLabelHeight()+20;
+				y += DragonLabel.getLabelHeight()+20;
 				//System.out.println(dragons.size());
-				System.out.println(dragonsInShop.size());
+				//System.out.println(dragonsInShop.size());
 				
 			}
 			

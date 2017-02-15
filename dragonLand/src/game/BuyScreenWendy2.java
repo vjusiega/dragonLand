@@ -4,17 +4,24 @@ import java.util.ArrayList;
 
 import dragonComponents.Dragon;
 import dragonComponents.DragonLabel;
+import dragonComponents.PriceLabel;
+import dragonComponents.ShopBackdrop;
+import game.DragonLand;
+import game.ShopScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Visible;
+/*
+ * @author Wendy
+ * */
 
-public class BuyScreenWendy2 extends ShopScreen {
+public class BuyScreenWendy2 extends ShopScreen{
 	
-	 private ArrayList<Dragon> dragonsInShop;
+	 private ArrayList<Dragon> dragonsInShop = new ArrayList<Dragon>();
 	    private ArrayList<DragonLabel> shoplabels; 
-	    private Dragon[] dragons;
-	    private DragonLabel label;
+	    private ArrayList<Dragon> dragons = new ArrayList<Dragon>();
+//	   private DragonLabel label;
 	    
-	    private int price;
+//	    private int price = label.getDragonPrice().getPrice();
 	    //private Dragon sold;
 	    private int x;
 		private	int y;
@@ -37,7 +44,18 @@ public class BuyScreenWendy2 extends ShopScreen {
 			
 		});
 		
+		getArrowRight().setAction(new Action(){
+
+			@Override
+			public void act() {
+				// TODO Auto-generated method stub
+
+			}
+			
+		});
+		
 		inLists();
+		
 //		sold = SellShopZheng.getSold();
 //		if(sold != null)
 //		{
@@ -47,57 +65,62 @@ public class BuyScreenWendy2 extends ShopScreen {
 		x = 0;
 		y = 170;
 		
-		shoplabels = new ArrayList<DragonLabel>();
 		
-		for(int i= 3; i< 6;i++)
+		
+		for(Dragon d: dragons)
+		//for(int i = 0; i< dragonsInShop.size(); i++)
 		{
-			if(dragonsInShop.contains(dragons[i]))
+			if(dragonsInShop.contains(d))
 			{
-				 label = new DragonLabel(x,y, dragons[i],"BUY", new Action(){
-
+				DragonLabel label = new DragonLabel(DragonLabel.LABEL_LEFT_MARGIN,y, d,"BUY");
+				label.setAction( new Action(){
+					
 					public void act() {
 						// TODO Auto-generated method stub
-//					shoplabels.remove(label);
-					dragonsInShop.remove(label);	
-						for(Visible v: label.getVisible())
+
+						if(DragonLand.coins > d.getPrice())
 						{
-							visible.remove(v);							
+							dragonsInShop.remove(d);	
+							visible.remove(label);							
+							
+							DragonLand.coins -= d.getPrice();
+							getCoins().setCoins(DragonLand.coins);
+							//System.out.println(DragonLand.coins);
+							update();
 						}
-						price = label.getDragonPrice().getPrice();
-						DragonLand.coins -= price;
-						System.out.println(DragonLand.coins);//don't know why it doesn't change in display
-						update();
+						else
+						{
+							System.out.println("You donot have enough coins. Go play our minigame to win more coins");
+						}
 					}
 				});
-				shoplabels.add(label);
+
 				
-				dragonsInShop.add(dragons[i]);
-				
-				for(Visible v: label.getVisible())
-					visible.add(v);
+				visible.add(label);
 				
 				y = y + DragonLabel.getLabelHeight()+20;
-			}
+				//System.out.println(dragons.size());
+				//System.out.println(dragonsInShop.size());
 				
+			}
+			
 		}
 		
 	}
 	
+	
 	public void inLists(){
 		
 		dragonsInShop = new ArrayList<Dragon>();
-		dragons = new Dragon[20];
+		dragons = new ArrayList<Dragon>();
 		
-		String[] names = new String[] {"Rowdy","Thorn","Mushu","Falcor","Elliot","Puff","Spyro","Sandy",
-				"Scaly","Nessie","Nymph","Sparky","Flambi","Drago","Viper","Moon","Saphira","Scorch","Toothless","Stormfly"};
-		price=50;
+		dragons = HomeKat.getDragons();
 		
-		for(int i=1;i<20;i++){
-			
-			//dragons[i] = new Dragon(50, 50, 50, 50, "Nice Dragon" + i, 100, "img/dragon9.png");
-			dragons[i] = new Dragon(0,0,50,50, names[i], price+i*50, "img/dragon"+i+".png");
-			//dragons[i] = HomeKat.getDragonList().[i];
-			dragonsInShop.add(dragons[i]);
+		for(int i = 1; i<4; i++)
+		{
+			dragonsInShop.add(dragons.get(i));
 		}
+
+		
 	}
 }
