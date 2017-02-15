@@ -1,3 +1,4 @@
+
 package game;
 
 import java.awt.Graphics;
@@ -13,16 +14,16 @@ import guiPractice.components.Visible;
 public class HomeKat {
 
 	private int price;
-	private ArrayList<Integer> locationsX;
-	private ArrayList<Integer> locationsY;
-	private static ArrayList<AnimatedComponent> dragonList; 
-	private ArrayList<Dragon> dragonsOnScreen;
+	private static ArrayList<Integer> locationsX=new ArrayList<Integer>();
+	private static ArrayList<Integer> locationsY=new ArrayList<Integer>();
+	private static ArrayList<Dragon> dragons=new ArrayList<Dragon>(); 
+	private static ArrayList<Dragon> dragonsOnScreen = new ArrayList<Dragon>();
 	
 	public HomeKat() {
 		makeLocations();
 		}
 	
-	private void makeLocations() {
+	public static void makeLocations() {
 		
 		locationsX.add(100);
 		locationsX.add(250);
@@ -31,12 +32,12 @@ public class HomeKat {
 		locationsX.add(700);
 		locationsX.add(850);
 		
-		locationsY.add(300);
+		locationsY.add(150);
 		locationsY.add(200);
 		locationsY.add(250);
 		locationsY.add(400);
+		locationsY.add(450);
 		locationsY.add(500);
-		locationsY.add(600);
 		
 		
 	}
@@ -68,48 +69,123 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		viewObjects.add(a);
-		//dragonList.add(a);
-		a.update();
+		dragons.add((Dragon) a);
 		a.setX(x);
 		a.setY(y);
-		a.play();
-		
+				
 	}
-	public void makeDragons(ArrayList<Visible> viewObjects){
+	public static void makeDragons(ArrayList<Visible> viewObjects){
 		String[] names = new String[] {"Rowdy","Thorn","Mushu","Falcor","Elliot","Puff","Spyro","Sandy",
 				"Scaly","Nessie","Nymph","Sparky","Flambi","Drago","Viper","Moon","Saphira","Scorch","Toothless","Stormfly"};
-		price=50;
+		int price=50;
 		
 		for(int i=0;i<20;i++){
 			addAnimation(viewObjects,0,0, names[i], price+i*50, "img/dragon"+i+".png");
 		}
 	}
+
+	
+//	public void dragonsOnScreen(ArrayList<Visible> viewObjects){
+//		String[] purchased = Shop.getNamesOfPurchased();
+//		checkToRemove(purchased, viewObjects);
+//		addNewDragons(purchased,viewObjects);
+//	}
+//
+//	private void addNewDragons(String[] purchased, ArrayList<Visible> viewObjects) {
+//		for(int i=0;i<purchased.length;i++){
+//			for(int j=0;j<dragonsOnScreen.size();j++){
+//				
+//			}
+//		}
+//	}
+//
+//	private void checkToRemove(String[] purchased,ArrayList<Visible> viewObjects) {
+//		for(int i=0;i<dragonsOnScreen.size();i++){
+//			for(int j=0;j<purchased.length;j++){
+//				if(dragonsOnScreen.get(i).getName()!=purchased[j]){
+//					viewObjects.remove(dragonsOnScreen.get(i));
+//					dragonsOnScreen.remove(dragonsOnScreen.get(i));
+//					j=-1;
+//				}
+//			}	
+//		}
+//	}
+
 	public void dragonsOnScreen(ArrayList<Visible> viewObjects){
-		String[] purchased = StoreSellInterfaceK.getNamesOfPurchased();
-		checkToRemove(purchased, viewObjects);
-		addNewDragons(purchased,viewObjects);
+		//String[] purchased = Shop.getNamesOfPurchased();
+		//checkToRemove(purchased, viewObjects);
+		//addNewDragons(purchased, viewObjects);
 	}
 
+//	public void dragonsOnScreen(ArrayList<Visible> viewObjects){
+//		String[] purchased = Shop.getNamesOfPurchased();
+//		checkToRemove(purchased, viewObjects);
+//		addNewDragons(purchased, viewObjects);
+//	}
+
+
 	private void addNewDragons(String[] purchased, ArrayList<Visible> viewObjects) {
+		boolean exists = false;
 		for(int i=0;i<purchased.length;i++){
 			for(int j=0;j<dragonsOnScreen.size();j++){
-				
+				if(purchased[i]==dragonsOnScreen.get(j).getName())
+					exists=true;
 			}
+			if(!exists)
+				addDragon(searchByName(purchased[i]),viewObjects);
 		}
+	}
+
+	private Dragon searchByName(String name) {
+		for(Dragon d: dragons){
+			if(d.getName()==name)
+				return d;
+		}
+		return null;
 	}
 
 	private void checkToRemove(String[] purchased,ArrayList<Visible> viewObjects) {
+		boolean exist = false;
 		for(int i=0;i<dragonsOnScreen.size();i++){
 			for(int j=0;j<purchased.length;j++){
-				if(dragonsOnScreen.get(i).getName()!=purchased[j]){
-					viewObjects.remove(dragonsOnScreen.get(i));
-					dragonsOnScreen.remove(dragonsOnScreen.get(i));
-					j=-1;
-				}
-			}	
+				if(dragonsOnScreen.get(i).getName()==purchased[j])
+					exist = true;
+			}
+			if(!exist){
+				removeDragon(dragonsOnScreen.get(i),viewObjects);
+				i--;
+			}
 		}
+	}
+	public void removeDragon(Dragon d,ArrayList<Visible> viewObjects){
+		//allows 
+		locationsX.add(d.getX());
+		locationsY.add(d.getY());
+		//adds dragons
+		dragonsOnScreen.remove(d);
+		viewObjects.remove(d);
+	}
+	public static void addDragon(Dragon d,ArrayList<Visible> viewObjects){
+		//adds back the available dragon spot in the field
+		
+		int randomInt=(int)(Math.random()*locationsX.size());
+		d.setX(locationsX.get(randomInt));
+		locationsX.remove(randomInt);
+		
+		randomInt=(int)(Math.random()*(locationsY.size()));
+		d.setY(locationsY.get(randomInt));
+		locationsY.remove(randomInt);
+		//adds dragons
+		d.update();
+		d.play();
+		dragonsOnScreen.add(d);
+		viewObjects.add(d);
+	}
+
+	public static ArrayList<Dragon> getDragons() {
+		return dragons;
 	}
 
 	
 }
+
