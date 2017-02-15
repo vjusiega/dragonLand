@@ -45,5 +45,4 @@ public class ShopBackdrop extends Component {
 			g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, arc, arc);
 		}
 	}
-
 }
