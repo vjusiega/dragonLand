@@ -36,21 +36,19 @@ public class HomeKat {
 //		
 //		});
 		viewObjects.add(minigame);
-		Button helpLayer = new Button((int)(width*0.1),(int)(height*0.1),(int)(width*0.8),(int)(height*0.8),  "Hello welcome",DragonLand.DARKER_NUDE,  null);
+		Button helpLayer = new Button((int)(width*0.1),(int)(height*0.1),(int)(width*0.8),(int)(height*0.8),  "These will be rules",DragonLand.DARKER_NUDE,  new Action(){
+
+			@Override
+			public void act() {
+				viewObjects.remove(this);
+			}});
+		
 		Button help = new Button(width-50-(width*2/100),height-50-(height*2/100),  50,  50,  "?",DragonLand.DARKER_NUDE,  new Action(){
 			@Override
 			public void act() {
-				
-				if(clicked){
-					
-					viewObjects.add(helpLayer);
-					clicked=false;
-				}
-				if(!clicked){
-					viewObjects.remove(helpLayer);
-					clicked=true;
-				}
+					viewObjects.add(helpLayer);			
 			}});
+		
 		viewObjects.add(help);
 		Button title = new Button((width*2/100),(height*5/100),  350,  50,  "Welcome to Dragon Land!",DragonLand.DARKER_NUDE,  null);
 		title.setSize(26);
@@ -58,6 +56,7 @@ public class HomeKat {
 		
 		makeLocations();
 		makeDragons(viewObjects);
+		dragonsOnScreen(viewObjects);
 		}
 	
 	public static void makeLocations() {
@@ -116,17 +115,19 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 	public static void makeDragons(ArrayList<Visible> viewObjects){
 		String[] names = new String[] {"Rowdy","Thorn","Mushu","Falcor","Elliot","Puff","Spyro","Sandy",
 				"Scaly","Nessie","Nymph","Sparky","Flambi","Drago","Viper","Moon","Saphira","Scorch","Toothless","Stormfly"};
+		
 		int price=50;
 		
 		for(int i=0;i<20;i++){
 			addAnimation(viewObjects,0,0, names[i], price+i*50, "img/dragon"+i+".png");
 		}
 	}
-//	public void dragonsOnScreen(ArrayList<Visible> viewObjects){
-//		String[] purchased = Shop.getNamesOfPurchased();
-//		checkToRemove(purchased, viewObjects);
-//		addNewDragons(purchased, viewObjects);
-//	}
+	public void dragonsOnScreen(ArrayList<Visible> viewObjects){
+		//String[] purchased = Shop.getNamesOfPurchased();
+		String[] purchased = {"Thorn","Mushu","Falcor","Elliot","Puff","Toothless"};
+		checkToRemove(purchased, viewObjects);
+		addNewDragons(purchased, viewObjects);
+	}
 
 	private void addNewDragons(String[] purchased, ArrayList<Visible> viewObjects) {
 		boolean exists = false;
