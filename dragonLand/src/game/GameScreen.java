@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import dragonComponents.GameDragon;
 import dragonComponents.XButton;
 import guiPractice.ClickableScreen;
+import guiPractice.Screen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
 import guiPractice.components.Visible;
@@ -26,7 +27,7 @@ import guiPractice.components.Visible;
  * @author Tamanna Hussain and Violetta Jusiega
  *
  */
-public class GameScreen extends ClickableScreen implements KeyListener{
+public class GameScreen extends Screen implements KeyListener{
 
 	private XButton exit;
 	private Button helpButton;
@@ -44,15 +45,12 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 		super(width, height);
 		// TODO Auto-generated constructor stub
 	}
-
-
+	
 	@Override
-	public void initAllObjects(ArrayList<Visible> view) {
-		
+	public void initObjects(ArrayList<Visible> view) {
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
 		viewObjects.add(background);
 		
-		System.out.println("This is working");
 		exit = new XButton(30, 50, 40, 40, "", null, new Action() {
 			@Override
 			public void act() {
@@ -76,13 +74,17 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 		
 		GameVioletta.addDragon("img/dragon1.png");
 		
-		//System.out.println(GameVioletta.dragonArray.size());
 		for(GameDragon d : GameVioletta.getDragonArray()){
 			view.add(d);
-			System.out.println(d.getImageLocation());
 		}
 		
+		
+		
+		//System.out.println(GameVioletta.getDragonArray().size());
 	}
+
+
+	
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -97,6 +99,12 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 			GameVioletta.changeDragonPos(-5);
 		}else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
 			GameVioletta.changeDragonPos(5);
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_UP){
+			addObject(GameVioletta.addDragon("img/dragon1.png"));
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_DOWN){
+			remove(GameVioletta.removeDragon());
 		}
 	}
 
@@ -121,6 +129,9 @@ public class GameScreen extends ClickableScreen implements KeyListener{
 	public static int getScore(){
 		return score; 
 	}
+
+
+	
 
 
 }

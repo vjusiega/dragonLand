@@ -36,27 +36,42 @@ public class GameVioletta {
 		return dragonArray;
 	}
 	
-	public static void addDragon(String imgSrc){
-		dragonArray = new ArrayList<GameDragon>();
-		int dragonHeight = 50;
+	public static GameDragon addDragon(String imgSrc){
+		//dragonArray = new ArrayList<GameDragon>();
+		int xPos;
+		int dragonHeight = 500;
+		xPos = screenWidth / 2;
+		if(dragonArray.size() >= 1){
+			dragonHeight = 250;
+			if(dragonArray.size() == 1){
+				xPos = dragonArray.get(0).getX() - 50;
+				System.out.println(dragonArray.get(0).getX());
+			}
+			else{
+				xPos = dragonArray.get(0).getX() + 150;
+			}
+		}
 		
-		int xPos = screenWidth / 2;
-		int yPos = screenHeight - dragonHeight;
+		int yPos = screenHeight - 130;
 		
-		//GameDragon temp = new GameDragon(xPos/2, (int)(yPos*0.75), 200, 200, "dragon1.png");
-		GameDragon temp = new GameDragon(100, 100, 100, 100, imgSrc);
+		GameDragon temp = new GameDragon(xPos, yPos, dragonHeight, dragonHeight, imgSrc);
 		
 		dragonArray.add(temp);
+		return temp;
+	}
+	
+	public static GameDragon removeDragon(){
+		GameDragon deadDragon = dragonArray.get(dragonArray.size() - 1);
+		dragonArray.remove(dragonArray.size() - 1);
+		return(deadDragon);
 	}
 
-	
-
-	public static void changeDragonPos(int i) {
-		int leadDragon = findLeadDragon(i);
-		int leadDragonPos =  (dragonArray.get(leadDragon)).getX();
-		if(leadDragonPos + i > 0 && leadDragonPos + i < screenWidth){
+	public static void changeDragonPos(int x) {
+		int leadDragon = findLeadDragon(x);
+		int leadDragonPos = (dragonArray.get(leadDragon)).getX();
+		if(leadDragonPos + x > 0 && leadDragonPos + x < screenWidth){
 			for(GameDragon d : dragonArray){
-				d.setX(d.getX() + i);
+				d.setX(d.getX() + x);
 			}
 		}
 	}
@@ -69,7 +84,7 @@ public class GameVioletta {
 			else return 1; 
 		}
 		if(direction > 0){
-			if(dragonArray.size() == 1){
+			if(dragonArray.size() == 1 || dragonArray.size() == 2){
 				return 0; 
 			}
 			else return 2; 

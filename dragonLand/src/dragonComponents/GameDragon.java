@@ -13,15 +13,18 @@ import javax.swing.ImageIcon;
 import guiPractice.components.AnimatedComponent;
 import guiPractice.components.Graphic;
 import guiPractice.components.MovingComponent;
+import guiPractice.components.Visible;
 
-public class GameDragon extends Graphic{
+public class GameDragon extends DragonGameGraphic implements Visible{
 	
 	//private String imgSrc;
 	
 	//must add picture and animate
 	
 	public GameDragon(int x, int y, int w, int h, String imgSrc) {
-		super(10, 10, 200, 200, imgSrc);
+		super(x, y, w, h, imgSrc);
 	}
+
+	
 
 }
