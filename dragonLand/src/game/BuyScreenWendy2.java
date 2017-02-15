@@ -117,7 +117,7 @@ public class BuyScreenWendy2 extends ShopScreen{
 		
 		dragons = HomeKat.getDragons();
 		
-		for(int i = 3; i<6; i++)
+		for(int i = BuyScreenWendy.getNum(); i<BuyScreenWendy.getNum()+3; i++)
 		{
 			dragonsInShop.add(dragons.get(i));
 		}

@@ -25,6 +25,7 @@ public class BuyScreenWendy extends ShopScreen{
 	    //private Dragon sold;
 	    private int x;
 		private	int y;
+		private static int num = 3;
 
 	public BuyScreenWendy(int width, int height) {
 		super(width, height);
@@ -54,12 +55,6 @@ public class BuyScreenWendy extends ShopScreen{
 		});
 		
 		inLists();
-		
-//		sold = SellShopZheng.getSold();
-//		if(sold != null)
-//		{
-//			dragonsInShop.add(sold);
-//		}
 		
 		x = 0;
 		y = 170;
@@ -116,11 +111,26 @@ public class BuyScreenWendy extends ShopScreen{
 		
 		dragons = HomeKat.getDragons();
 		
-		for(int i = 0; i<3; i++)
-		{
-			dragonsInShop.add(dragons.get(i));
-		}
-
+//		sold = SellShopZheng.getSold();
+//		if(sold != null)
+//		{
+//			dragonsInShop.add(sold);
+//			for(int i = 0; i<num-1; i++)
+//			{
+//				dragonsInShop.add(dragons.get(i));
+//			}
+//		}
+//		else
+//		{
+			for(int i = 0; i<num; i++)
+			{
+				dragonsInShop.add(dragons.get(i));
+			}
+//		}
 		
+	}
+	
+	public static int getNum(){
+		return num;
 	}
 }
