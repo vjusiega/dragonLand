@@ -6,6 +6,7 @@ import dragonComponents.Dragon;
 import dragonComponents.DragonLabel;
 import dragonComponents.DragonLabel2;
 import guiPractice.components.Action;
+import guiPractice.components.Clickable;
 import guiPractice.components.Visible;
 
 public class SellShopZheng extends ShopScreen implements SellScreenInterface, StoreSellInterfaceK{
@@ -25,7 +26,7 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 		pageNumber = 1;
 		setPageDisplay();
 		
-		drawDragons(viewObjects);
+		drawDragons();
 	}
 
 	private void setArrowAction() {
@@ -36,7 +37,10 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 				if(pageNumber == 2)
 				{
 					pageNumber --;
-					update();
+					//update();
+					
+					removeDragons();
+					drawDragons();
 					getPage().setText("Page " + pageNumber + " of 2");
 				}
 			}
@@ -50,8 +54,10 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 				if(pageNumber == 1 && dragonsInSellShop.size() > 3)
 				{
 					pageNumber ++;
-					System.out.println("DASASDDS");
-					update();
+					//update();
+					
+					removeDragons();
+					drawDragons();
 					getPage().setText("Page " + pageNumber + " of 2");
 				}
 			}
@@ -68,18 +74,20 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 
 	@Override
 	public String[] getNamesOfPurchased() {
-		// TODO Auto-generated method stub
-		return null;
+		String[] names = new String[dragonsSold.size()];
+		for(int i = 0; i < dragonsSold.size(); i++)
+			names[i] = dragonsSold.get(i).getName();
+			
+		return names;
 	}
 	
 	public void inLists()
 	{
-		System.out.println("DASASDDSD");
 		dragonsInSellShop = new ArrayList<Dragon>();
 		dragonsSold = new ArrayList<Dragon>();
-		for(int i = 0; i < 3; i++)
+		for(int i = 0; i < HomeKat.getDragonsOnScreen().size(); i++)
 		{
-			dragonsInSellShop.add(HomeKat.getDragons().get(i));
+			dragonsInSellShop.add(HomeKat.getDragonsOnScreen().get(i));
 		}
 		
 		getDragonAmount().setText(dragonsInSellShop.size() + "/6 Dragons");
@@ -92,8 +100,9 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 		else getPage().setText("Page " + pageNumber + " of 1");
 	}
 	
-	public void drawDragons(ArrayList<Visible> viewObjects)
+	public void drawDragons()
 	{
+		int labelY = 0;
 		int endi;
 		if((pageNumber) * 3 > dragonsInSellShop.size())
 			endi = dragonsInSellShop.size();
@@ -102,7 +111,12 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 		for(int i = (pageNumber - 1)* 3; i < endi; i++)
 		{
 			Dragon dragon = dragonsInSellShop.get(i);
-			DragonLabel2 label = new DragonLabel2(DragonLabel2.LABEL_LEFT_MARGIN, DragonLabel2.LABEL_TOP_MARGIN  + DragonLabel2.getLabelHeight() * i + (i * 10), dragon, "SELL");
+			if(pageNumber == 1)
+				labelY = DragonLabel2.LABEL_TOP_MARGIN  + DragonLabel2.getLabelHeight() * i + (i * 10);
+			else
+				labelY = DragonLabel2.LABEL_TOP_MARGIN  + DragonLabel2.getLabelHeight() * (i - 3) + ((i - 3) * 10);
+			
+			DragonLabel2 label = new DragonLabel2(DragonLabel2.LABEL_LEFT_MARGIN, labelY, dragon, "SELL");
 			label.setAction(new Action(){
 				public void act()
 				{
@@ -110,8 +124,8 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 					
 					dragonsInSellShop.remove(dragon);
 					//remove(label);
-					removeDragons(viewObjects);
-					drawDragons(viewObjects);
+					removeDragons();
+					drawDragons();
 					
 					System.out.println(dragon.getName());
 					System.out.println(dragonsInSellShop.toString());
@@ -128,7 +142,7 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 		}
 	}
 	
-	public void removeDragons(ArrayList<Visible> viewObjects)
+	public void removeDragons()
 	{
 		for(int i = 0; i  < viewObjects.size(); i++)
 		{
