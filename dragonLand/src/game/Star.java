@@ -34,14 +34,6 @@ public class Star extends Graphic {
 		System.out.println(randomX);
 		return randomX;		
 	}
-
-//	public void initAllObjects(ArrayList<Visible> viewObjects) {
-//		starArray = new ArrayList<Star>();
-//		
-//		starImage = new Graphic(10, 10, getWidth(), getHeight(), "img/star.png");
-//		viewObjects.add(starImage);
-//		
-//	}
 	
 	public void checkBehaviors() {
 		//If the stars, fall after a certain point (y = 100), they disappear

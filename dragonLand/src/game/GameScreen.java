@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
 import java.awt.event.KeyListener;
@@ -33,11 +34,16 @@ public class GameScreen extends Screen implements KeyListener{
 	private Button helpButton;
 	private Graphic background;
 	private ArrayList<Star> starArray;
-	private static int score; 
+	private static int score;
+	private boolean running;
 	
+	private double vy; //the vertical velocity
+	private int posx; //the actual x-coordinate of the object
+	private int posy;
+	private long moveTime;//time when the image last moved
 	
+	public static final int REFRESH_RATE = 20;
 	//Tamanna's fields
-	//private ArrayList<Star> starArray;
 	//star will be its own class (made by Tamanna), we will then have an array of stars that will appear on the screen
 	
 	
@@ -73,9 +79,10 @@ public class GameScreen extends Screen implements KeyListener{
 		
 		//temporary
 		int randomNum = (int)(Math.random() * 5 + 1);
-		for (int i = 0; i < randomNum; i++){
+		for (int i = 0; i < 5; i++){
 			view.add(new Star(100, 100, 100, 100));
 		}
+		//run();
 		
 		GameVioletta.addDragon("img/dragon1.png");
 		
@@ -87,10 +94,6 @@ public class GameScreen extends Screen implements KeyListener{
 		
 		//stars = new ArrayList<Star>();
 	}
-
-	public void run(){
-		
-	}
 	
 	public void addStar(){
 	
@@ -101,29 +104,109 @@ public class GameScreen extends Screen implements KeyListener{
 		//This method will remove the star from the screen
 	}
 	
+	public void run() {
+		posx = getX();
+		running = true;
+		moveTime = System.currentTimeMillis();
+		
+		while(running){
+			try{
+				Thread.sleep(REFRESH_RATE);
+				checkBehaviors();
+				//update();
+			} catch (InterruptedException e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void updateStars(Graphics2D g) {
+		
+		long currentTime = System.currentTimeMillis();
+		//calculates time since last move
+		long difference = currentTime - moveTime;
+		if(difference >= REFRESH_RATE){
+			//an update is happening, so update moveTime
+			moveTime = currentTime;
+			//calculate new position
+			posy += vy*(double)difference/REFRESH_RATE;
+			//set only the location on the screen
+			//NOT the actual position
+			setY((int)posy);	
+		}
+		drawImage(g);
+	}
+	
+	private void drawImage(Graphics2D g) {
+		Graphic star = new Graphic(posx, posy, "img/star.png"); 
+	}
+
+	private void checkBehaviors() {
+		if(posy > 100){
+			//setY((getY() + getVy()));
+		}
+	}
+
+
+	public int getX(){
+		posx = (int) (Math.random()*GameScreen.getWidth());
+		return posx; 
+	}
+	
+	public void setX(int x){
+		posx = x;
+	}
+	
+	public void setY(int y){
+		posy = y;
+	}
+	
+	public double getVy() {
+		return vy;
+	}
+
+	public void setVy(double vy) {
+		this.vy = vy;
+	}
+	
+	public boolean isRunning() {
+		return running;
+	}
+
+	public void setRunning(boolean running) {
+		this.running = running;
+	}
+
+	public void play() {
+		if(!running){
+			Thread go = new Thread((Runnable) this);
+			go.start();
+		}
+	}
+	
 	/*
 	public void paintComponent(Graphics g){
-        	private int lastY = 0;
+    	private int lastY = 0;
 		Graphics2D gg = (Graphics2D) g;
 
-        	int w = getWidth();
-        	int h = getHeight();
+    	int w = getWidth();
+    	int h = getHeight();
 
-        	int starW = 20;
-        	int starH = 20;
-        	int starSpeed = 3;
+    	int starW = 20;
+    	int starH = 20;
+    	int starSpeed = 3;
 
-       		int y = lastY + starSpeed;
+   		int y = lastY + starSpeed;
 
-        	if (y > h + starH) {
-         	   y = -starH;
-        	}
-
-        	gg.setColor(Color.BLACK);
-       	 	gg.fillRect(x, h/2 + starH, starW, starH);
-
-       		lastY = y;
+    	if (y > h + starH) {
+     	   y = -starH;
     	}
+
+    	gg.setColor(Color.BLACK);
+   	 	gg.fillRect(x, h/2 + starH, starW, starH);
+
+   		lastY = y;
+	}
 	*/
 	
 	@Override
