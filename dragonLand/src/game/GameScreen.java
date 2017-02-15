@@ -70,21 +70,61 @@ public class GameScreen extends Screen implements KeyListener{
 		
 		view.add(exit);
 		view.add(helpButton);
-		view.add(new Star(100, 100, 100, 100));
+		
+		//temporary
+		int randomNum = (int)(Math.random() * 5 + 1);
+		for (int i = 0; i < randomNum; i++){
+			view.add(new Star(100, 100, 100, 100));
+		}
 		
 		GameVioletta.addDragon("img/dragon1.png");
 		
 		for(GameDragon d : GameVioletta.getDragonArray()){
 			view.add(d);
 		}
-		
-		
-		
+
 		//System.out.println(GameVioletta.getDragonArray().size());
+		
+		//stars = new ArrayList<Star>();
 	}
 
-
+	public void run(){
+		
+	}
 	
+	public void addStar(){
+	
+	}
+	
+	public void removeStar(){
+		//If the y-value of the star reaches a certain point
+		//This method will remove the star from the screen
+	}
+	
+	/*
+	public void paintComponent(Graphics g){
+        	private int lastY = 0;
+		Graphics2D gg = (Graphics2D) g;
+
+        	int w = getWidth();
+        	int h = getHeight();
+
+        	int starW = 20;
+        	int starH = 20;
+        	int starSpeed = 3;
+
+       		int y = lastY + starSpeed;
+
+        	if (y > h + starH) {
+         	   y = -starH;
+        	}
+
+        	gg.setColor(Color.BLACK);
+       	 	gg.fillRect(x, h/2 + starH, starW, starH);
+
+       		lastY = y;
+    	}
+	*/
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -129,9 +169,4 @@ public class GameScreen extends Screen implements KeyListener{
 	public static int getScore(){
 		return score; 
 	}
-
-
-	
-
-
 }
