@@ -10,7 +10,7 @@ public interface HungryTimesInterface extends Clickable {
 	
 	ArrayList<Dragon> getDragonsOnScreen();
 	
-	ArrayList<Dragon> setDragonsOnScreen();
+	Dragon setDragonsOnScreen();
 	
 	boolean hasHungryBox();
 	
@@ -19,8 +19,6 @@ public interface HungryTimesInterface extends Clickable {
 	int getHungryTime();
 	
 	void setHungryTime(int num);
-	
-	HungryBox hungryBox;
 	
 	HungryBox getHungryBox();
 	

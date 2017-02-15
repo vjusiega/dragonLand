@@ -31,12 +31,10 @@ public class HomeJenniber implements Runnable, HungryTimesInterface{
 	 * 
 	 */
 	public HomeJenniber(Dragon d) {
-		
-		int randNum = getRandDragon();
-		createHungryThread(d, randNum);
+		createHungryThread(getRandDragon());
 	}
 	
-	public void createHungryThread(Dragon d, int dragonNum){
+	public void createHungryThread(Dragon d){
 		//d is a dragon from HomeKat.onScreenDragons
 		HungryBox hungryDragon = new HungryBox(d.getX(),d.getY()+100, dragonNum);
 		hungryBoxTimes.add(hungryDragon);
@@ -79,14 +77,14 @@ public class HomeJenniber implements Runnable, HungryTimesInterface{
 		
 	}
 	
-	public int getRandDragon(){
+	Dragon getRandDragon(){
 		int randNum = 1;
 		do{
 			randNum = (int) Math.random()*getDragonsOnScreen().size();
 		}
 		while(!getDragonsOnScreen().get(randNum).hasHungryBox());
 		
-		return randNum;
+		return getDragonsOnScreen().get(randNum);
 	}
 
 	@Override
@@ -150,7 +148,7 @@ public class HomeJenniber implements Runnable, HungryTimesInterface{
 	}
 
 	@Override
-	public ArrayList<Dragon> setDragonsOnScreen() {
+	public Dragon setDragonsOnScreen() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -180,7 +178,7 @@ public class HomeJenniber implements Runnable, HungryTimesInterface{
 	public HungryBox getHungryBox() {
 		int num = getRandDragon();
 		Dragon d = getDragonsOnScreen().get(num);
-		return new HungryBox(d.getX(),d.getY(),num);
+		return new HungryBox(d.getX(),d.getY());
 	}
 
 	@Override

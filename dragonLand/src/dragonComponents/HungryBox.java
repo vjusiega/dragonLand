@@ -38,9 +38,8 @@ public class HungryBox extends Button implements HungryTimesInterface, Runnable 
 	 * @param color
 	 * @param action
 	 */
-	public HungryBox(int x, int y, int dragonNum) {
+	public HungryBox(int x, int y) {
 		super(x, y, W, H, TEXT+"\n"+hungryTime+" sec", DragonLand.DARKER_NUDE, null);
-		//createHungryThread(HomeKat.getDragonsOnScreen().get(dragonNum), dragonNum);
 	}	
 	
 //HomeKat.removeDragon(Dragon d, viewObjects)
@@ -49,15 +48,8 @@ public class HungryBox extends Button implements HungryTimesInterface, Runnable 
 		return HomeKat.getDragonsOnScreen();
 	}
 
-
-	@Override
-	public Dragon setDragonsOnScreen() {
-		return null;
-	}
-
 	@Override
 	public int getHungryTime() {
-		// TODO Auto-generated method stub
 		return hungryTime;
 	}
 
@@ -99,6 +91,42 @@ public class HungryBox extends Button implements HungryTimesInterface, Runnable 
 			}
 			g.drawString(t, (getWidth()-fm.stringWidth(t))/2, (getHeight()+fm.getHeight()-fm.getDescent())/2);
 		}
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Dragon setDragonsOnScreen() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean hasHungryBox() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void removeDragon(Dragon d, ArrayList<Visible> viewObjects) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public HungryBox getHungryBox() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setHungryBox() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
