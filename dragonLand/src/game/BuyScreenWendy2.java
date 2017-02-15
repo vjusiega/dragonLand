@@ -66,7 +66,6 @@ public class BuyScreenWendy2 extends ShopScreen{
 		y = 170;
 		
 		
-		
 		for(Dragon d: dragons)
 		//for(int i = 0; i< dragonsInShop.size(); i++)
 		{
@@ -80,13 +79,14 @@ public class BuyScreenWendy2 extends ShopScreen{
 
 						if(DragonLand.coins > d.getPrice())
 						{
+							update();
 							dragonsInShop.remove(d);	
 							visible.remove(label);							
 							numOfDragons++;
 							System.out.println(numOfDragons + "/6 dragons");
 							DragonLand.coins -= d.getPrice();
 							getCoins().setCoins(DragonLand.coins);
-							//System.out.println(DragonLand.coins);
+							System.out.println(DragonLand.coins);
 							update();
 						}
 						else

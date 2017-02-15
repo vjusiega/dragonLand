@@ -53,7 +53,7 @@ public class BuyScreenWendy extends ShopScreen{
 			
 		});
 		
-		inLists();
+		inLists(0);
 		
 //		sold = SellShopZheng.getSold();
 //		if(sold != null)
@@ -79,7 +79,9 @@ public class BuyScreenWendy extends ShopScreen{
 
 						if(DragonLand.coins > d.getPrice())
 						{
+							update();
 							dragonsInShop.remove(d);	
+							
 							visible.remove(label);							
 							numOfDragons++;
 							System.out.println(numOfDragons + "/6 dragons");
@@ -109,14 +111,14 @@ public class BuyScreenWendy extends ShopScreen{
 	}
 	
 	
-	public void inLists(){
+	public void inLists(int num){
 		
 		dragonsInShop = new ArrayList<Dragon>();
 		dragons = new ArrayList<Dragon>();
 		
 		dragons = HomeKat.getDragons();
 		
-		for(int i = 0; i<3; i++)
+		for(int i = num; i<num+3; i++)
 		{
 			dragonsInShop.add(dragons.get(i));
 		}
