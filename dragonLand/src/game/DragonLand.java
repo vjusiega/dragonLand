@@ -101,15 +101,5 @@ public class DragonLand extends GUIApplication {
 		public int getCoins(){
 			return coins;
 		}
-		
-	//not sure if this will work
-	public Dragon[] getDragonArray(){
-		return dragonList;
-	}
-	
-	public Dragon getDragon(int index){
-		return dragonList[index];
-	}
-		
 
 }
