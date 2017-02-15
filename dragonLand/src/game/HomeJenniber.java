@@ -9,17 +9,19 @@ import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Stroke;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import dragonComponents.Dragon;
 import dragonComponents.HungryBox;
 import dragonComponents.HungryTimesInterface;
+import guiPractice.components.Visible;
 
 /**
  * @author Jenniber
  *
  */
-public class HomeJenniber implements Runnable{
+public class HomeJenniber implements Runnable, HungryTimesInterface{
 	
 	private static int hungryTime;
 	//private int[] dragonNumbers;
@@ -31,7 +33,7 @@ public class HomeJenniber implements Runnable{
 	public HomeJenniber(Dragon d) {
 		
 		int randNum = getRandDragon();
-		createHungryThread();
+		createHungryThread(d, randNum);
 	}
 	
 	public void createHungryThread(Dragon d, int dragonNum){
@@ -42,13 +44,13 @@ public class HomeJenniber implements Runnable{
 		hungry.start();
 	}
 	
-	@Override
-	public void removeHungryAndDragon(int HungryNum) {
+	public void removeHungryAndDragon(int HungryNum, ArrayList<Visible> viewObjects) {
 		
-		HomeKat.removeDragon(, viewObjects);
+		Dragon d = getDragonsOnScreen().get(HungryNum);
+		removeDragon(d,viewObjects);
 		
 	}
-	
+
 	private void changeHungryTime(){
 		try{
 			while(hungryTime>=0){
@@ -69,21 +71,122 @@ public class HomeJenniber implements Runnable{
 	
 	private void checkRemoveDragon() {
 		for(int i=0; i< hungryBoxTimes.size();i++){
-			HungryBox d = HomeKat.getDragonsOnScreen().get(i).getHungryBox();
+			HungryBox d = getDragonsOnScreen().get(i).getHungryBox();
 			if(d.getHungryTime()<=0){
-				removeHungryandDragon(i);
+				removeHungryAndDragon(i,HomeKat.getViewObjects());
 			}
 		}
 		
 	}
 	
 	public int getRandDragon(){
+		int randNum = 1;
 		do{
-			int randNum = (int) Math.random()*getDragonsOnScreen().size();
+			randNum = (int) Math.random()*getDragonsOnScreen().size();
 		}
 		while(!getDragonsOnScreen().get(randNum).hasHungryBox());
 		
 		return randNum;
+	}
+
+	@Override
+	public boolean isHovered(int x, int y) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void act() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public BufferedImage getImage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getY() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getWidth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getHeight() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean isAnimated() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<Dragon> getDragonsOnScreen() {
+		// TODO Auto-generated method stub
+		return HomeKat.getDragonsOnScreen();
+	}
+
+	@Override
+	public ArrayList<Dragon> setDragonsOnScreen() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean hasHungryBox() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void removeDragon(Dragon d, ArrayList<Visible> viewObjects) {
+		HomeKat.removeDragon(d,viewObjects);	
+	}
+
+	@Override
+	public int getHungryTime() {
+		return hungryTime;
+	}
+
+	@Override
+	public void setHungryTime(int num) {
+		hungryTime = num;
+	}
+
+	@Override
+	public HungryBox getHungryBox() {
+		int num = getRandDragon();
+		Dragon d = getDragonsOnScreen().get(num);
+		return new HungryBox(d.getX(),d.getY(),num);
+	}
+
+	@Override
+	public void setHungryBox() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
