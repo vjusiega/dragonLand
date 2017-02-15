@@ -36,7 +36,7 @@ public class HomeJenniber implements Runnable, HungryTimesInterface{
 	
 	public void createHungryThread(Dragon d){
 		//d is a dragon from HomeKat.onScreenDragons
-		HungryBox hungryDragon = new HungryBox(d.getX(),d.getY()+100, dragonNum);
+		HungryBox hungryDragon = getHungryBox();
 		hungryBoxTimes.add(hungryDragon);
 		Thread hungry = new Thread(hungryDragon);
 		hungry.start();
@@ -67,11 +67,12 @@ public class HomeJenniber implements Runnable, HungryTimesInterface{
 		checkRemoveDragon();
 	}
 	
-	private void checkRemoveDragon() {
+	//fix this
+	private void checkRemoveDragon(ArrayList<Visible> viewObjects) {
 		for(int i=0; i< hungryBoxTimes.size();i++){
 			HungryBox d = getDragonsOnScreen().get(i).getHungryBox();
 			if(d.getHungryTime()<=0){
-				removeHungryAndDragon(i,HomeKat.getViewObjects());
+				removeHungryAndDragon(i,viewObjects);
 			}
 		}
 		
@@ -176,9 +177,8 @@ public class HomeJenniber implements Runnable, HungryTimesInterface{
 
 	@Override
 	public HungryBox getHungryBox() {
-		int num = getRandDragon();
-		Dragon d = getDragonsOnScreen().get(num);
-		return new HungryBox(d.getX(),d.getY());
+		Dragon d = getRandDragon();
+		return new HungryBox(d.getX()-30,d.getY()+100);
 	}
 
 	@Override
