@@ -16,6 +16,7 @@ import dragonComponents.Dragon;
 import guiPractice.GUIApplication;
 import guiPractice.Screen;
 import guiPractice.components.AnimatedComponent;
+import zheng.SellShopZ;
 
 /**
  * @author Kat
@@ -69,8 +70,8 @@ public class DragonLand extends GUIApplication {
 		initColors();
 		homeScreen = new HomeScreen(getWidth(),getHeight());
 		shopMain = new HomeShopScreen(getWidth(),getHeight());
+		sellScreen = new SellShopZheng(getWidth(),getHeight());
 		//testShop = new ShopScreen(getWidth(),getHeight());
-//		sellScreen = new (getWidth(),getHeight());
 		buyScreen = new BuyScreenWendy(getWidth(),getHeight());
 		buyScreen2 = new BuyScreenWendy2(getWidth(),getHeight());
 //		highscoreScreen = new (getWidth(),getHeight());

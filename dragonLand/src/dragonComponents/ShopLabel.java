@@ -10,7 +10,6 @@ import java.awt.RenderingHints;
 import guiPractice.components.TextLabel;
 
 public class ShopLabel extends TextLabel {
-	
 	private Color color = new Color(224, 102, 102);
 	private int arc= 5;
 	

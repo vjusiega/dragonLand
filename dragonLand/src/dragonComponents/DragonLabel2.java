@@ -2,11 +2,8 @@ package dragonComponents;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 
-import dragonComponents.Dragon;
 import game.DragonLand;
-
 import guiPractice.components.Action;
 import guiPractice.components.Clickable;
 import guiPractice.components.Component;
@@ -14,11 +11,12 @@ import guiPractice.components.Graphic;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
 
-public class DragonLabel extends Component implements Clickable{
-	
+public class DragonLabel2 extends Component implements Clickable{
+
 	private static final int LABEL_WIDTH = 770;
 	private static final int LABEL_HEIGHT = 100;
 	
+	public static final int LABEL_TOP_MARGIN = 160;
 	public static final int LABEL_LEFT_MARGIN = 110;
 	
 	private static final int LEFT_MARGIN = 0;
@@ -34,23 +32,19 @@ public class DragonLabel extends Component implements Clickable{
 	private ShopActionButton button;
 	private Graphic dragonImage;
 	
-	public DragonLabel(int x, int y, Dragon d, String t) {
+	public DragonLabel2(int x, int y, Dragon d, String t) {
 		super(x, y, LABEL_WIDTH, LABEL_HEIGHT);
 		this.dragon = d;
 		this.buttonType = t;
-		
 		update();
-		
 	}
 	
-	public DragonLabel(int x, int y, Dragon d, String t, Action act) {
+	public DragonLabel2(int x, int y, Dragon d, String t, Action act) {
 		super(x, y, LABEL_WIDTH, LABEL_HEIGHT);
 		this.dragon = d;
 		this.buttonType = t;
 		this.action = act;
-		
 		update();
-		
 	}
 	
 
@@ -59,43 +53,31 @@ public class DragonLabel extends Component implements Clickable{
 		
 		if(dragon != null)
 		{
+			int column1X = 30;
+			int column2X = 145;
+			int column3x = 590;
 			
+			labelBack = new ShopBackdrop(0,0,LABEL_WIDTH,LABEL_HEIGHT, DragonLand.DARKER_NUDE);
+			dragonImage = new Graphic(column1X, TOP_MARGIN, 85, 85, dragon.getImgSrc());
+			dragonName = new ShopLabel(column2X, TOP_MARGIN, 420, 40, dragon.getName(), Color.WHITE);
 			
-			int imageSide = LABEL_HEIGHT - 2 * TOP_MARGIN;
-			labelBack = new ShopBackdrop(LABEL_LEFT_MARGIN + 15,getY(),LABEL_WIDTH,LABEL_HEIGHT, DragonLand.DARKER_NUDE);
-			dragonImage = new Graphic(LABEL_LEFT_MARGIN - 80,  TOP_MARGIN, imageSide, imageSide, dragon.getImgSrc());
-			
-			int column2X = 2 * LEFT_MARGIN + imageSide;
-			int nameWidth = LABEL_WIDTH - column2X - imageSide;
-			int nameHeight = (int)(0.5 * imageSide);
-			
-			//dragonName = new ShopLabel(this.getX()+ column2X, this.getY() + TOP_MARGIN, nameWidth, nameHeight, dragon.getName(), Color.WHITE);
-			dragonName = new ShopLabel(column2X+50, TOP_MARGIN, nameWidth-200, nameHeight, dragon.getName(), Color.WHITE);
-			
-			int row2Y = nameHeight + (int)(1.5 * TOP_MARGIN);
-			int row2Width = nameWidth/3;
-			int priceHeight = 9 * nameHeight/10;
-			
-			//dragonPrice = new PriceLabel(this.getX() + column2X, this.getY() + nameHeight + TOP_MARGIN, dragon.getPrice());
-			dragonPrice = new PriceLabel(column2X+40, nameHeight + TOP_MARGIN, dragon.getPrice());
-			
-			int column3X = LABEL_WIDTH - LEFT_MARGIN;
-			int buttonHeight = (int)(LABEL_HEIGHT * 0.70);
-			
-			button = new ShopActionButton(column3X-180, (int)(LABEL_HEIGHT * 0.15), row2Width-40, buttonHeight-5, buttonType, DragonLand.LIGHT_NUDE, action);
+			if(buttonType.toUpperCase().equals("BUY"))
+				dragonPrice = new PriceLabel(column2X, 50, dragon.getPrice());
+			else dragonPrice = new PriceLabel(column2X, 50, dragon.getPrice()/5);
+				
+			button = new ShopActionButton(column3x, TOP_MARGIN * 2, 150, 80, buttonType, DragonLand.LIGHT_NUDE, null);
 			
 			g.drawImage(labelBack.getImage(), 0, 0, null);
 			g.drawImage(dragonImage.getImage(), dragonImage.getX(), dragonImage.getY(), null);
 			g.drawImage(dragonName.getImage(), dragonName.getX(), dragonName.getY(), null);
-			g.drawImage(dragonPrice.getCoin().getImage(), dragonPrice.getX(), dragonPrice.getY(), null);
-			g.drawImage(dragonPrice.getPriceLabel().getImage(), dragonPrice.getX(), dragonPrice.getY(), null);
+			g.drawImage(dragonPrice.getCoin().getImage(), dragonPrice.getCoin().getX(), dragonPrice.getCoin().getY(), null);
+			g.drawImage(dragonPrice.getPriceLabel().getImage(), dragonPrice.getPriceLabel().getX(), dragonPrice.getPriceLabel().getY(), null);
 			g.drawImage(button.getImage(), button.getX(), button.getY(), null);
 		}
 
 	}
 	
-	public void setAction(Action a)
-	{
+	public void setAction(Action a){
 		action = a;
 	}
 	
@@ -136,15 +118,11 @@ public class DragonLabel extends Component implements Clickable{
 
 	@Override
 	public boolean isHovered(int x, int y) {
-
-		return x > button.getX()+100 && x < button.getX()+100 + button.getWidth() && y > getY() && y < getY() +getHeight();
-
+		return x > button.getX() + LABEL_LEFT_MARGIN && x < button.getX() + button.getWidth() + LABEL_LEFT_MARGIN && y > getY() + button.getY() && y < getY() + button.getY() + button.getHeight();
 	}
 
 	@Override
 	public void act() {
 		this.action.act();
 	}
-
-
 }
