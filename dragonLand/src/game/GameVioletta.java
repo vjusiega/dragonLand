@@ -55,14 +55,9 @@ public class GameVioletta {
 			}
 		}
 		
-		
-		
-		
-		
 		GameDragon temp = new GameDragon(xPos, yPos, dragonHeight, dragonHeight, imgSrc);
 		
 		dragonArray.add(temp);
-		
 		
 		return temp;
 	}

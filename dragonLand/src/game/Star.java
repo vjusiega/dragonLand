@@ -22,7 +22,7 @@ public class Star extends Graphic {
 	
 	public Star(int x, int y, int w, int h) {
 		super(x, y, w, h, "img/star.png");
-		System.out.println("star");
+	//	System.out.println("star");
 		setX(getRandomX());
 		setY(y);
 		vy = 0;
@@ -31,7 +31,7 @@ public class Star extends Graphic {
 	
 	private int getRandomX() {
 		int randomX = (int) (Math.random()*GameScreen.getWidth()); 
-		System.out.println(randomX);
+		//System.out.println(randomX);
 		return randomX;		
 	}
 	

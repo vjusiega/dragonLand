@@ -7,6 +7,7 @@ import java.awt.event.KeyListener;
 
 import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
+import guiPractice.components.TextLabel;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -32,9 +33,10 @@ public class GameScreen extends Screen implements KeyListener{
 
 	private XButton exit;
 	private Button helpButton;
+	private Button scoreButton;
 	private Graphic background;
 	private ArrayList<Star> starArray;
-	private static int score;
+	private int score;
 	private boolean running;
 	
 	private double vy; //the vertical velocity
@@ -54,6 +56,7 @@ public class GameScreen extends Screen implements KeyListener{
 	
 	@Override
 	public void initObjects(ArrayList<Visible> view) {
+		score = 0;
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
 		viewObjects.add(background);
 		
@@ -65,7 +68,7 @@ public class GameScreen extends Screen implements KeyListener{
 			}
 		});
 
-		helpButton = new Button(getWidth()-100, 50, 50, 50, "?", DragonLand.DARKER_NUDE, new Action() {
+		helpButton = new Button(getWidth()-75, getHeight()-75, 50, 50, "?", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
 				DragonLand.game.setScreen(DragonLand.miniGameScreen);
@@ -74,8 +77,11 @@ public class GameScreen extends Screen implements KeyListener{
 
 		});
 		
+		scoreButton = new Button(getWidth()-150, 50, 125, 50, "Score: " + score, DragonLand.DARKER_NUDE, null);
+		
 		view.add(exit);
 		view.add(helpButton);
+		view.add(scoreButton);
 		
 		//temporary
 		int randomNum = (int)(Math.random() * 5 + 1);
@@ -104,21 +110,6 @@ public class GameScreen extends Screen implements KeyListener{
 		//This method will remove the star from the screen
 	}
 	
-	public void run() {
-		posx = getX();
-		running = true;
-		moveTime = System.currentTimeMillis();
-		
-		while(running){
-			try{
-				Thread.sleep(REFRESH_RATE);
-				checkBehaviors();
-				//update();
-			} catch (InterruptedException e){
-				e.printStackTrace();
-			}
-		}
-	}
 	
 	public void updateStars(Graphics2D g) {
 		
@@ -146,7 +137,6 @@ public class GameScreen extends Screen implements KeyListener{
 			//setY((getY() + getVy()));
 		}
 	}
-
 
 	public int getX(){
 		posx = (int) (Math.random()*GameScreen.getWidth());
@@ -184,36 +174,12 @@ public class GameScreen extends Screen implements KeyListener{
 		}
 	}
 	
-	/*
-	public void paintComponent(Graphics g){
-    	private int lastY = 0;
-		Graphics2D gg = (Graphics2D) g;
-
-    	int w = getWidth();
-    	int h = getHeight();
-
-    	int starW = 20;
-    	int starH = 20;
-    	int starSpeed = 3;
-
-   		int y = lastY + starSpeed;
-
-    	if (y > h + starH) {
-     	   y = -starH;
-    	}
-
-    	gg.setColor(Color.BLACK);
-   	 	gg.fillRect(x, h/2 + starH, starW, starH);
-
-   		lastY = y;
-	}
-	*/
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
-		//This only responds to when a letter is typed not a key, so 
-		//we can add a popup that says "Please use the arrow keys"
-		//but we would have to pause the entire thing and idk how to do that
+		setScore(score + 1);
+		scoreButton.setText("Score: " + score);
+		System.out.print("im here");
 	}
 
 	@Override
@@ -233,7 +199,7 @@ public class GameScreen extends Screen implements KeyListener{
 
 	@Override
 	public void keyReleased(KeyEvent e){	
-		
+	
 	}
 
 	public KeyListener getKeyListener(){
@@ -245,11 +211,11 @@ public class GameScreen extends Screen implements KeyListener{
 	 * Getter and setter for score
 	 */
 	
-	public static void setScore(int x){
+	public void setScore(int x){
 		score = x;
 	}
 	
-	public static int getScore(){
+	public int getScore(){
 		return score; 
 	}
 }
