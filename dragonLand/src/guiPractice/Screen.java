@@ -15,8 +15,8 @@ import guiPractice.components.Visible;
 
 public abstract class Screen {
 	
-	private int width;
-	private int height;
+	private static int width;
+	private static int height;
 	protected ArrayList<Visible> viewObjects;
 	
 	protected BufferedImage image;
@@ -45,6 +45,9 @@ public abstract class Screen {
 		//draw all visible componenets
 		for(int i=0;i<viewObjects.size();i++){
 			Visible v=viewObjects.get(i);
+			if(v.isAnimated()){
+				v.update();
+			}
 			g.drawImage(v.getImage(), v.getX(), v.getY(), null);
 		}
 //		g.setFont(new Font("Helvetica", Font.PLAIN,20));
@@ -155,11 +158,11 @@ public abstract class Screen {
 		return null;
 	}
 	
-	public int getWidth() {
+	public static int getWidth() {
 		return width;
 	}
 
-	public int getHeight() {
+	public static int getHeight() {
 		return height;
 	}
 
