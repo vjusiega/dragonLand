@@ -113,6 +113,7 @@ public class Dragon extends AnimatedComponent implements DragonInterface{
 	@Override
 	public void drawImage(Graphics2D g) {
 		super.drawImage(g);
+//		if(hungryBox)....
 	}
 	public void animationUp(){
 		direction=UP;
