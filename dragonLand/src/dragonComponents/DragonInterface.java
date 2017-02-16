@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public interface DragonInterface {
 	
-	ArrayList<Dragon> getDragonsOnScreen();
+	public void setHungryBox(boolean hungryBox);
 	
 	boolean hasHungryBox();
 }

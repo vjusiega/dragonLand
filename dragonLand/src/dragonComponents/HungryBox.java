@@ -21,7 +21,7 @@ import guiPractice.components.Visible;
  * @author Jenniber Franco
  *
  */
-public class HungryBox extends Button implements HungryTimesInterface, Runnable {
+public class HungryBox extends Button implements  Runnable {
 
 	private static final int W = 50;
 	private static final int H = 25;
@@ -44,13 +44,13 @@ public class HungryBox extends Button implements HungryTimesInterface, Runnable 
 	
 //HomeKat.removeDragon(Dragon d, viewObjects)
 
-	@Override
+
 	public int getHungryTime() {
 		return hungryTime;
 	}
 
 
-	@Override
+	
 	public void setHungryTime(int num) {
 		hungryTime = num;
 	}
@@ -92,16 +92,4 @@ public class HungryBox extends Button implements HungryTimesInterface, Runnable 
 	public void run() {
 		
 	}
-
-	@Override
-	public void removeDragon(Dragon d, ArrayList<Visible> viewObjects) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public HungryBox getHungryBox() {
-		return null;
-	}
-
 }

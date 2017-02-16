@@ -11,21 +11,22 @@ import javax.swing.ImageIcon;
 import guiPractice.components.AnimatedComponent;
 import guiPractice.components.MovingComponent;
 import guiPractice.components.Visible;
+/**
+ * @author Kat 
+ *
+ */
 
-
-public class Dragon extends AnimatedComponent {
+public class Dragon extends AnimatedComponent implements DragonInterface{
 
 	
-	/**
-	 * @author Kat 
-	 *
-	 */
+	
 	private String name;
 	private int price;
 	private String imgSrc;
 	int direction;
 	int initialX;
 	int initialY;
+	private boolean hungryBox;
 	
 	
 	private int UP=0;
@@ -39,6 +40,7 @@ public class Dragon extends AnimatedComponent {
 		
 		this.name=name;
 		this.price=price;
+		hungryBox=false;
 		this.imgSrc=imgSrc;
 
 //		if(y<350){
@@ -153,4 +155,14 @@ public class Dragon extends AnimatedComponent {
 		this.imgSrc = imgSrc;
 	}
 
+
+
+	@Override
+	public boolean hasHungryBox() {
+		
+		return hungryBox;
+	}
+	public void setHungryBox(boolean hungryBox){
+		this.hungryBox=hungryBox;
+	}
 }

@@ -7,12 +7,14 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import dragonComponents.Dragon;
+import dragonComponents.DragonArrayInterface;
 import guiPractice.components.Action;
 import guiPractice.components.AnimatedComponent;
 import guiPractice.components.Button;
 import guiPractice.components.Visible;
 
-public class HomeKat {
+
+public class HomeKat implements DragonArrayInterface {
 
 	private int price;
 
@@ -123,7 +125,7 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 		}
 	}
 	public void dragonsOnScreen(ArrayList<Visible> viewObjects){
-		//String[] purchased = Shop.getNamesOfPurchased();
+		//String[] purchased = ShopSell.getNamesOfPurchased();
 		String[] purchased = {"Thorn","Mushu","Falcor","Elliot","Puff","Toothless"};
 		checkToRemove(purchased, viewObjects);
 		addNewDragons(purchased, viewObjects);
@@ -165,7 +167,7 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 		}
 	}
 	public void removeDragon(Dragon d,ArrayList<Visible> viewObjects){
-		//allows 
+		
 		locationsX.add(d.getX());
 		locationsY.add(d.getY());
 		//adds dragons
@@ -193,13 +195,22 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 		return dragons;
 	}
 
-	public static ArrayList<Dragon> getDragonsOnScreen() {
+	public  ArrayList<Dragon> getDragonsOnScreen() {
 		return dragonsOnScreen;
 	}
 
-	public void setDragonsOnScreen(ArrayList<Dragon> dragonsOnScreen) {
-		this.dragonsOnScreen = dragonsOnScreen;
+	@Override
+	public void removeHungryDragon(Dragon d, ArrayList<Visible> viewObjects) {
+		locationsX.add(d.getX());
+		locationsY.add(d.getY());
+		//adds dragons
+		dragonsOnScreen.remove(d);
+		viewObjects.remove(d);
+		//ShopBuy.addFlownAwayDragon(d);
+		//ShopSell.removeFlownAwayDragon(d);
 	}
+
+	
 
 	
 }

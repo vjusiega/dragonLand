@@ -1,5 +1,7 @@
 package game;
 
+import dragonComponents.Dragon;
+
 public interface StoreSellInterfaceK {
 
 	/**
@@ -8,5 +10,5 @@ public interface StoreSellInterfaceK {
 	 */
 	 String[] getNamesOfPurchased();
 	
-
+	 void removeFlownAwayDragon(Dragon d);
 }
