@@ -26,6 +26,8 @@ public class BuyScreenWendy extends ShopScreen{
 	    private int x; 
 		private	int y;
 		private static int num = 3;
+		private int numOfDragons;
+		private static int pageNum;
 
 	public BuyScreenWendy(int width, int height) {
 		super(width, height);
@@ -35,6 +37,7 @@ public class BuyScreenWendy extends ShopScreen{
 	@Override
 	public void addDragonLabels(ArrayList<Visible> visible) {
 		// TODO Auto-generated method stub
+		pageNum = 1;
 		getArrowLeft().setAction(new Action(){
 
 			@Override
@@ -49,7 +52,10 @@ public class BuyScreenWendy extends ShopScreen{
 			@Override
 			public void act() {
 				// TODO Auto-generated method stub
+				pageNum = 2;
+				System.out.println(pageNum);
 				DragonLand.game.setScreen(DragonLand.game.buyScreen2);
+				update();
 			}
 			
 		});
@@ -85,8 +91,10 @@ public class BuyScreenWendy extends ShopScreen{
 							dragonsInShop.remove(d);	
 							
 							visible.remove(label);							
-							numOfDragons++;
+							numOfDragons ++;
+							getDragonAmount().setText(numOfDragons+"/6 dragons");
 							System.out.println(numOfDragons + "/6 dragons");
+
 							DragonLand.coins -= d.getPrice();
 							getCoins().setCoins(DragonLand.coins);
 							System.out.println(DragonLand.coins);
@@ -144,5 +152,9 @@ public class BuyScreenWendy extends ShopScreen{
 	
 	public static int getNum(){
 		return num;
+	}
+	
+	public static int getPageNum(){
+		return pageNum;
 	}
 }
