@@ -6,13 +6,11 @@ import guiPractice.components.Action;
 import guiPractice.components.Clickable;
 import guiPractice.components.Visible;
 
+/**
+ * @author Jenniber Franco
+ *
+ */
 public interface HungryTimesInterface extends Clickable {
-	
-	ArrayList<Dragon> getDragonsOnScreen();
-	
-	Dragon setDragonsOnScreen();
-	
-	boolean hasHungryBox();
 	
 	void removeDragon(Dragon d, ArrayList<Visible>viewObjects);
 	
@@ -22,5 +20,4 @@ public interface HungryTimesInterface extends Clickable {
 	
 	HungryBox getHungryBox();
 	
-	void setHungryBox();
 }

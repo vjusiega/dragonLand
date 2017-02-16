@@ -43,10 +43,6 @@ public class HungryBox extends Button implements HungryTimesInterface, Runnable 
 	}	
 	
 //HomeKat.removeDragon(Dragon d, viewObjects)
-	@Override
-	public ArrayList<Dragon> getDragonsOnScreen() {
-		return HomeKat.getDragonsOnScreen();
-	}
 
 	@Override
 	public int getHungryTime() {
@@ -57,7 +53,6 @@ public class HungryBox extends Button implements HungryTimesInterface, Runnable 
 	@Override
 	public void setHungryTime(int num) {
 		hungryTime = num;
-		
 	}
 	
 	@Override
@@ -95,20 +90,7 @@ public class HungryBox extends Button implements HungryTimesInterface, Runnable 
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public Dragon setDragonsOnScreen() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean hasHungryBox() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override
@@ -119,14 +101,7 @@ public class HungryBox extends Button implements HungryTimesInterface, Runnable 
 
 	@Override
 	public HungryBox getHungryBox() {
-		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public void setHungryBox() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
