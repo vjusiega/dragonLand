@@ -71,9 +71,9 @@ public class HomeKat {
 		locationsY.add(150);
 		locationsY.add(200);
 		locationsY.add(250);
-		locationsY.add(400);
-		locationsY.add(450);
-		locationsY.add(500);
+		locationsY.add(360);
+		locationsY.add(420);
+		locationsY.add(480);
 		
 		
 	}
