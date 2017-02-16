@@ -90,7 +90,8 @@ public class DragonLabel extends Component implements Clickable{
 			g.drawImage(labelBack.getImage(), 0, 0, null);
 			g.drawImage(dragonImage.getImage(), dragonImage.getX(), dragonImage.getY(), null);
 			g.drawImage(dragonName.getImage(), dragonName.getX(), dragonName.getY(), null);
-			g.drawImage(dragonPrice.getImage(), dragonPrice.getX(), dragonPrice.getY(), null);
+			g.drawImage(dragonPrice.getCoin().getImage(), dragonPrice.getX()+5, dragonPrice.getY(), null);
+			g.drawImage(dragonPrice.getPriceLabel().getImage(), dragonPrice.getX()+30, dragonPrice.getY(), null);
 			g.drawImage(button.getImage(), button.getX(), button.getY(), null);
 		}
 

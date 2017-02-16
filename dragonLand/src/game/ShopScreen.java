@@ -36,7 +36,6 @@ public abstract class ShopScreen extends ClickableScreen {
 	private int totalPages = 1;
 
 	
-	
 	private ClickableGraphic arrowRight;
 	private ClickableGraphic arrowLeft;
 	
@@ -128,6 +127,7 @@ public abstract class ShopScreen extends ClickableScreen {
 		viewObjects.add(page);
 		
 		addDragonLabels(viewObjects);
+		
 	}
 	
 	

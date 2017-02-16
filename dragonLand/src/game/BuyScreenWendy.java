@@ -53,8 +53,15 @@ public class BuyScreenWendy extends ShopScreen{
 			}
 			
 		});
+
+		inLists(0);
 		
-		inLists();
+//		sold = SellShopZheng.getSold();
+//		if(sold != null)
+//		{
+//			dragonsInShop.add(sold);
+//		}
+
 		
 		x = 0;
 		y = 170;
@@ -74,7 +81,9 @@ public class BuyScreenWendy extends ShopScreen{
 
 						if(DragonLand.coins > d.getPrice())
 						{
+							update();
 							dragonsInShop.remove(d);	
+							
 							visible.remove(label);							
 							numOfDragons++;
 							System.out.println(numOfDragons + "/6 dragons");
@@ -104,7 +113,7 @@ public class BuyScreenWendy extends ShopScreen{
 	}
 	
 	
-	public void inLists(){
+	public void inLists(int num){
 		
 		dragonsInShop = new ArrayList<Dragon>();
 		dragons = new ArrayList<Dragon>();
@@ -127,6 +136,8 @@ public class BuyScreenWendy extends ShopScreen{
 				dragonsInShop.add(dragons.get(i));
 			}
 //		}
+
+
 		
 	}
 	
