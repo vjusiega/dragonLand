@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 
 public class DragonGameGraphic {
 
-
 		private int x;
 		private int y;
 		private BufferedImage image;
