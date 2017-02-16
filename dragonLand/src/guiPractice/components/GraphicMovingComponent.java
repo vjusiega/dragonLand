@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
-public class GraphicMovingComponent extends MovingComponent {
+public abstract class GraphicMovingComponent extends MovingComponent {
 
 	private int x;
 	private int y;
@@ -19,12 +19,6 @@ public class GraphicMovingComponent extends MovingComponent {
 		img = imageLocation;
 		loadedImages=false;
 		loadImages(img, w, h);
-	}
-
-	@Override
-	public void checkBehaviors() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -65,6 +59,10 @@ public class GraphicMovingComponent extends MovingComponent {
 
 	public void setY(int y) {
 		this.y=y;
+	}
+	
+	public boolean isAnimated(){
+		return true;
 	}
 
 	@Override

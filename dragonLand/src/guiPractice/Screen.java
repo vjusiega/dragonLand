@@ -45,6 +45,9 @@ public abstract class Screen {
 		//draw all visible componenets
 		for(int i=0;i<viewObjects.size();i++){
 			Visible v=viewObjects.get(i);
+			if(v.isAnimated()){
+				v.update();
+			}
 			g.drawImage(v.getImage(), v.getX(), v.getY(), null);
 		}
 //		g.setFont(new Font("Helvetica", Font.PLAIN,20));
