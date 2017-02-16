@@ -68,7 +68,10 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 
 	@Override
 	public Dragon getSold() {
-		// TODO Auto-generated method stub
+		
+		if(dragonsSold.size() > 0)
+			return dragonsSold.get(dragonsSold.size() - 1);
+		
 		return null;
 	}
 
@@ -123,12 +126,11 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 					dragonsSold.add(dragon);
 					
 					dragonsInSellShop.remove(dragon);
-					//remove(label);
 					removeDragons();
 					drawDragons();
 					
-					System.out.println(dragon.getName());
-					System.out.println(dragonsInSellShop.toString());
+//					System.out.println(dragon.getName());
+//					System.out.println(dragonsInSellShop.toString());
 					
 					DragonLand.coins += label.getDragonPrice().getPrice();
 					getCoins().setCoins();
@@ -138,7 +140,7 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 					setPageDisplay();
 				}
 			});
-			viewObjects.add(label);
+			addObject(label);
 		}
 	}
 	
