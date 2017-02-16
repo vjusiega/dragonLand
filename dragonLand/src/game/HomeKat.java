@@ -140,8 +140,8 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 			}
 			if(!exists){
 				addDragon(searchByName(purchased[i]),viewObjects);
-
 			}
+			exists=false;
 		}
 	}
 
