@@ -65,9 +65,4 @@ public abstract class GraphicMovingComponent extends MovingComponent {
 		return true;
 	}
 
-	@Override
-	public void update() {
-		// does nothing image doesnt change
-
-	}
 }

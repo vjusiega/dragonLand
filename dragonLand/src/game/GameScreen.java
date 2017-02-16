@@ -84,7 +84,7 @@ public class GameScreen extends Screen implements KeyListener{
 		//run();
 		
 		//stars = new ArrayList<Star>();
-		view.add(new Star1(100, 100, 100, 100));
+		view.add(new Star1(100, 100, 100, 100, this));
 		
 		GameVioletta.addDragon("img/dragon1.png");
 		
@@ -106,81 +106,9 @@ public class GameScreen extends Screen implements KeyListener{
 		//This method will remove the star from the screen
 	}
 	
-	public void run() {
-		posx = getX();
-		running = true;
-		moveTime = System.currentTimeMillis();
-		
-		while(running){
-			try{
-				Thread.sleep(REFRESH_RATE);
-				checkBehaviors();
-				//update();
-			} catch (InterruptedException e){
-				e.printStackTrace();
-			}
-		}
-	}
 	
-	public void updateStars(Graphics2D g) {
-		
-		long currentTime = System.currentTimeMillis();
-		//calculates time since last move
-		long difference = currentTime - moveTime;
-		if(difference >= REFRESH_RATE){
-			//an update is happening, so update moveTime
-			moveTime = currentTime;
-			//calculate new position
-			posy += vy*(double)difference/REFRESH_RATE;
-			//set only the location on the screen
-			//NOT the actual position
-			setY((int)posy);	
-		}
-	//	drawImage(g);
-	}
 	
-	private void checkBehaviors() {
-		if(posy > 100){
-			//setY((getY() + getVy()));
-		}
-	}
 
-
-	public int getX(){
-		posx = (int) (Math.random()*GameScreen.getWidth());
-		return posx; 
-	}
-	
-	public void setX(int x){
-		posx = x;
-	}
-	
-	public void setY(int y){
-		posy = y;
-	}
-	
-	public double getVy() {
-		return vy;
-	}
-
-	public void setVy(double vy) {
-		this.vy = vy;
-	}
-	
-	public boolean isRunning() {
-		return running;
-	}
-
-	public void setRunning(boolean running) {
-		this.running = running;
-	}
-
-	public void play() {
-		if(!running){
-			Thread go = new Thread((Runnable) this);
-			go.start();
-		}
-	}
 	
 	/*
 	public void paintComponent(Graphics g){
