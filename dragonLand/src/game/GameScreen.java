@@ -78,11 +78,14 @@ public class GameScreen extends Screen implements KeyListener{
 		view.add(helpButton);
 		
 		//temporary
-		int randomNum = (int)(Math.random() * 5 + 1);
-		for (int i = 0; i < 5; i++){
-			view.add(new Star(100, 100, 100, 100));
-		}
+//		int randomNum = (int)(Math.random() * 5 + 1);
+//		for (int i = 0; i < 5; i++){
+//			view.add(new Star(100, 100, 100, 100));
+//		}
 		//run();
+		
+		//stars = new ArrayList<Star>();
+		view.add(new Star1(100, 100, 100, 100));
 		
 		GameVioletta.addDragon("img/dragon1.png");
 		
@@ -92,7 +95,7 @@ public class GameScreen extends Screen implements KeyListener{
 
 		//System.out.println(GameVioletta.getDragonArray().size());
 		
-		//stars = new ArrayList<Star>();
+		
 	}
 	
 	public void addStar(){
@@ -134,13 +137,9 @@ public class GameScreen extends Screen implements KeyListener{
 			//NOT the actual position
 			setY((int)posy);	
 		}
-		drawImage(g);
+	//	drawImage(g);
 	}
 	
-	private void drawImage(Graphics2D g) {
-		Graphic star = new Graphic(posx, posy, "img/star.png"); 
-	}
-
 	private void checkBehaviors() {
 		if(posy > 100){
 			//setY((getY() + getVy()));
