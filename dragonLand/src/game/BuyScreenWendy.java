@@ -54,7 +54,7 @@ public class BuyScreenWendy extends ShopScreen{
 			
 		});
 
-		inLists(0);
+		inLists();
 		
 //		sold = SellShopZheng.getSold();
 //		if(sold != null)
@@ -114,7 +114,7 @@ public class BuyScreenWendy extends ShopScreen{
 	}
 	
 	
-	public void inLists(int num){
+	public void inLists(){
 		
 		dragonsInShop = new ArrayList<Dragon>();
 		dragons = new ArrayList<Dragon>();
