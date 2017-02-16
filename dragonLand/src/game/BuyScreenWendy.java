@@ -26,7 +26,7 @@ public class BuyScreenWendy extends ShopScreen{
 	    private int x; 
 		private	int y;
 		private static int num = 3;
-		private int numOfDragons;
+		private static int numOfDragons;
 		private static int pageNum;
 
 	public BuyScreenWendy(int width, int height) {
@@ -152,6 +152,16 @@ public class BuyScreenWendy extends ShopScreen{
 	
 	public static int getNum(){
 		return num;
+	}
+
+	public static int getNumOfDragon()
+	{
+		return numOfDragons;
+	}
+	
+	public static void setNumOfDragon()
+	{
+		numOfDragons ++;
 	}
 	
 	public static int getPageNum(){
