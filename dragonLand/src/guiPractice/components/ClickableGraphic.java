@@ -34,4 +34,10 @@ public class ClickableGraphic extends Graphic implements Clickable {
 			action.act();
 	}
 
+	@Override
+	public Action getAction() {
+		// TODO Auto-generated method stub
+		return action;
+	}
+
 }

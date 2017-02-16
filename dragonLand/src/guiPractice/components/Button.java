@@ -78,4 +78,10 @@ public class Button extends TextLabel implements Clickable{
 			action.act();			
 		}
 	}
+
+	@Override
+	public Action getAction() {
+		// TODO Auto-generated method stub
+		return action;
+	}
 }
