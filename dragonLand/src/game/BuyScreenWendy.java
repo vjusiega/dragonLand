@@ -23,7 +23,7 @@ public class BuyScreenWendy extends ShopScreen{
 	    
 //	    private int price = label.getDragonPrice().getPrice();
 	    //private Dragon sold;
-	    private int x;
+	    private int x; 
 		private	int y;
 		private static int num = 3;
 
