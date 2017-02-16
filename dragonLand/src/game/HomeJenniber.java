@@ -22,7 +22,7 @@ import guiPractice.components.Visible;
  * @author Jenniber Franco
  *
  */
-public class HomeJenniber implements Runnable, HungryTimesInterface, DragonInterface{
+public class HomeJenniber implements Runnable{
 	
 	private static int hungryTime;
 	//private int[] dragonNumbers;
@@ -99,87 +99,14 @@ public class HomeJenniber implements Runnable, HungryTimesInterface, DragonInter
 		return getDragonsOnScreen().get(randNum);
 	}
 
-	@Override
-	public boolean isHovered(int x, int y) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void act() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public BufferedImage getImage() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getX() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getY() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public boolean isAnimated() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public ArrayList<Dragon> getDragonsOnScreen() {
-		// TODO Auto-generated method stub
-		return HomeKat.getDragonsOnScreen();
-	}
-
-	@Override
-	public boolean hasHungryBox() {
-		return HomeKat.hasHungryBox();
-	}
-
-	@Override
-	public void removeDragon(Dragon d, ArrayList<Visible> viewObjects) {
-		HomeKat.removeDragon(d,viewObjects);	
-	}
-
-	@Override
 	public int getHungryTime() {
 		return hungryTime;
 	}
 
-	@Override
 	public void setHungryTime(int num) {
 		hungryTime = num;
 	}
 
-	@Override
 	public HungryBox getHungryBox() {
 		Dragon d = getRandDragon();
 		return new HungryBox(d.getX()-30,d.getY()+100);
