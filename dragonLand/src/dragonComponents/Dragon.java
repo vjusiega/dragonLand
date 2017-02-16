@@ -57,7 +57,10 @@ public class Dragon extends AnimatedComponent {
 			direction=DOWN;
 		}else{
 			direction=(int)(Math.random()*1+1);
-			currentFrame=6;
+			if(direction == 1 )
+				currentFrame=3;
+			else
+				currentFrame=6;
 		}
 	}
 	public void setX(int x){
@@ -85,7 +88,7 @@ public class Dragon extends AnimatedComponent {
 		}
 		if(direction ==LEFT){
 			setVx(-VY);
-			if(currentFrame<3||currentFrame==5)
+			if(currentFrame<3||currentFrame>=5)
 				currentFrame=3;
 			if((initialX-getX())>=30){
 				currentFrame=6;
