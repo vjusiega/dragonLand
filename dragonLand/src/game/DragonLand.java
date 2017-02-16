@@ -63,7 +63,7 @@ public class DragonLand extends GUIApplication {
 	@Override
 	protected void initScreen() {
 		initColors();
-		//homeScreen = new HomeScreen(getWidth(),getHeight());
+		homeScreen = new HomeScreen(getWidth(),getHeight());
 		miniGameScreen = new GameScreen(getWidth(),getHeight());
 		//System.out.println(miniGameScreen.getWidth());
 //		shopMain = new (getWidth(),getHeight());
@@ -72,7 +72,7 @@ public class DragonLand extends GUIApplication {
 		//highscoreScreen = new HighScoreScreen(getWidth(),getHeight());
 //		miniGameScreen = new (getWidth(),getHeight());
 		//uncomment your line once u have a class, input class name before get width()/height()
-		setScreen(miniGameScreen);
+		setScreen(homeScreen);
 		//////////!!!!!!!!! if u want to test only your screen change the above lines^
 		// but before you push to develop/ merge from develop always change it back plz
 	}
