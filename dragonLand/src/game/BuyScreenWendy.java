@@ -101,6 +101,7 @@ public class BuyScreenWendy extends ShopScreen{
 
 				
 				visible.add(label);
+				//addObject(label);
 				
 				y += DragonLabel.getLabelHeight()+20;
 				//System.out.println(dragons.size());
