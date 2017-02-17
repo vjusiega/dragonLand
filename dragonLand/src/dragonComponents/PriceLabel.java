@@ -35,11 +35,6 @@ public class PriceLabel extends Component {
 		int priceHeight = getHeight() - 2 * TOP_MARGIN;
 		priceLabel = new ShopLabel(getX() + priceX, getY() + TOP_MARGIN, priceWidth, priceHeight, "" + price, DragonLand.LIGHT_NUDE);
 		
-
-		g.drawImage(coin.getImage(), coin.getX(), coin.getY(), coin.getWidth(), coin.getHeight(), null);
-		g.drawImage(priceLabel.getImage(), priceLabel.getX(), priceLabel.getY(), priceLabel.getWidth(), priceLabel.getHeight(), null);
-
-
 		
 	}
 	

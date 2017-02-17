@@ -2,7 +2,11 @@ package game;
 
 import java.awt.Color;
 import java.util.ArrayList;
+
 import dragonComponents.CoinLabel;
+import dragonComponents.Dragon;
+import dragonComponents.DragonLabel;
+import dragonComponents.PriceLabel;
 import dragonComponents.ShopBackdrop;
 import dragonComponents.ShopLabel;
 import guiPractice.ClickableScreen;
@@ -14,32 +18,36 @@ import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
 
 public abstract class ShopScreen extends ClickableScreen {
-
+	
 	//private ArrayList<Dragon> dragonList;
-//	private Action action;
-//	private ShopBackdrop back;
-//	private final static int DRAGONS_PER_PAGE = 3;
+	private Action action;
+	private ShopBackdrop back;
+
+	private final static int DRAGONS_PER_PAGE = 3;
 	private final static int SHOP_LEFT_MARGIN = 50;
 	private final static int SHOP_TOP_MARGIN = 50;
 	
 	private final static int LEFT_MARGIN = 15;
 	private final static int TOP_MARGIN = 15;
 	
-	
 	private CoinLabel coins;
 	private ShopLabel dragonAmount;
 	private ShopLabel page;
 	private int currentPage = 1;
 	private int totalPages = 2;
-
-
-
 	private ClickableGraphic arrowRight;
 	private ClickableGraphic arrowLeft;
 
 
 	public ShopScreen(int width, int height) {
 		super(width, height);
+		update();
+}
+	
+	public ShopScreen(int width, int height, /*ArrayList<Dragon> dl,*/ Action act) {
+		super(width, height);
+		//dragonList = dl;
+		action = act;
 		update();
 	}
 
@@ -73,9 +81,12 @@ public abstract class ShopScreen extends ClickableScreen {
 		shopName.setSize(26);
 		
 		int coinX = titleX + titleWidth - CoinLabel.getWdith() - LEFT_MARGIN * 2;
+
 		coins = new CoinLabel(coinX, shopNameY, DragonLand.coins);
 
 		dragonAmount = new ShopLabel(coinX, shopNameY + CoinLabel.getHeight2() + 2, CoinLabel.getWdith(), CoinLabel.getHeight2(),"0/6 Dragons", DragonLand.LIGHT_NUDE);
+		coins = new CoinLabel(coinX, shopNameY, DragonLand.coins);
+		dragonAmount = new ShopLabel(coinX, shopNameY + CoinLabel.getHeight2() + 2, CoinLabel.getWdith(), CoinLabel.getHeight2(), /*DragonLand.dragons.length() +*/ "0/6 Dragons", DragonLand.LIGHT_NUDE);
 
 		dragonAmount.setArc(15);
 		
@@ -93,8 +104,13 @@ public abstract class ShopScreen extends ClickableScreen {
 		page = new ShopLabel(SHOP_LEFT_MARGIN + backWidth/2 - pageWidth/2, bottomBarY + TOP_MARGIN, pageWidth, 30, "Page 1 of " + totalPages , DragonLand.LIGHT_NUDE);
 
 		
-		arrowRight = new ClickableGraphic(backWidth - LEFT_MARGIN - 25, bottomBarY, 0.12, "img/arrowRight.png");
-		arrowLeft = new ClickableGraphic(SHOP_LEFT_MARGIN + LEFT_MARGIN, bottomBarY, 0.12, "img/arrowLeft.png");	
+		ClickableGraphic arrowRight = new ClickableGraphic(backWidth - LEFT_MARGIN - 25, bottomBarY, 0.12, "img/arrowRight.png");
+		ClickableGraphic arrowLeft = new ClickableGraphic(SHOP_LEFT_MARGIN + LEFT_MARGIN, bottomBarY, 0.12, "img/arrowLeft.png");
+		
+//		Dragon d = new Dragon(0, 0, 50, 50, "EPIC DRAGON", 100, "img/dragon1.png");
+//		DragonLabel dragon = new DragonLabel(back2X + LEFT_MARGIN, back2Y + 8, d, "BUY", null);
+
+		
 		
 		viewObjects.add(background);
 		viewObjects.add(back);
@@ -102,23 +118,24 @@ public abstract class ShopScreen extends ClickableScreen {
 		viewObjects.add(shopTitleBack);
 		viewObjects.add(shopName);
 		viewObjects.add(exit);
-		viewObjects.add(coins);
+		for(Visible v : coins.getVisible())
+			viewObjects.add(v);
 		viewObjects.add(dragonAmount);
 		
 		viewObjects.add(back2);
+//		for(Visible v : dragon.getVisible())
+//			viewObjects.add(v);
 		
-		addDragonLabels(viewObjects);
+		//addDragonLabels(viewObjects);
 		
 		viewObjects.add(arrowRight);
 		viewObjects.add(arrowLeft);
 		viewObjects.add(page);
-		
-
+	
 		addDragonLabels(viewObjects);
 		
 	}
 	
-
 
 	public abstract void addDragonLabels(ArrayList<Visible> viewObjects);
 	//public abstract void addDragonLabels(ArrayList<Visible> viewObjects);
@@ -126,16 +143,6 @@ public abstract class ShopScreen extends ClickableScreen {
 	public CoinLabel getCoins()
 	{
 		return coins;
-	}
-	
-	public ShopLabel getDragonAmount()
-	{
-		return dragonAmount;
-	}
-	
-	public ShopLabel getPage()
-	{
-		return page;
 	}
 	
 	public ClickableGraphic getArrowRight()
@@ -146,5 +153,16 @@ public abstract class ShopScreen extends ClickableScreen {
 	public ClickableGraphic getArrowLeft()
 	{
 		return arrowLeft;
+
 	}
+	
+	public ShopLabel getDragonAmount(){
+		return dragonAmount;
+		
+	}
+	
+	public ShopLabel getPage(){
+		return page;
+	}
+
 }

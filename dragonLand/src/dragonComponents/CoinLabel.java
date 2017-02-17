@@ -34,25 +34,16 @@ public class CoinLabel extends Component {
 		int priceWidth = getWidth() - priceX - LEFT_MARGIN;
 		int priceHeight = getHeight() - 2 * TOP_MARGIN;
 		
-		coinBack = new ShopBackdrop(0, 0, WIDTH, HEIGHT, DragonLand.LIGHT_NUDE);
+		coinBack = new ShopBackdrop(getX(), getY(), WIDTH, HEIGHT, DragonLand.LIGHT_NUDE);
 		coinBack.setArc(15);
-		coinLabel = new TextLabel(LEFT_MARGIN * 2,TOP_MARGIN, priceWidth, priceHeight, "Coins: " + coins);
-		coin = new Graphic(LEFT_MARGIN + priceWidth,TOP_MARGIN, coinSide, coinSide, "img/Coin.png");
+		coinLabel = new TextLabel(getX() + LEFT_MARGIN * 2, getY() + TOP_MARGIN, priceWidth, priceHeight, "Coins: " + coins);
+		coin = new Graphic(getX() + LEFT_MARGIN + priceWidth, getY() + TOP_MARGIN, coinSide, coinSide, "img/Coin.png");
 		
-		g.drawImage(coinBack.getImage(), coinBack.getX(), coinBack.getY(), coinBack.getWidth(), coinBack.getHeight(), null);
-		g.drawImage(coinLabel.getImage(), coinLabel.getX(), coinLabel.getY(), coinLabel.getWidth(), coinLabel.getHeight(), null);
-		g.drawImage(coin.getImage(), coin.getX(), coin.getY(), coin.getWidth(), coin.getHeight(), null);
+		
 	}
 	
 	public void setCoins(int coins) {
 		this.coins = coins;
-		coinLabel.setText("Coins: " + coins);
-	}
-	
-	public void setCoins() {
-		coins = DragonLand.coins;
-		coinLabel.setText("Coins: " + coins);
-		update();
 	}
 	
 	public ShopBackdrop getCoinBack()

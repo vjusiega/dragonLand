@@ -3,8 +3,6 @@
  */
 package game;
 
-
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -16,7 +14,6 @@ import dragonComponents.Dragon;
 import guiPractice.GUIApplication;
 import guiPractice.Screen;
 import guiPractice.components.AnimatedComponent;
-import zheng.SellShopZ;
 
 /**
  * @author Kat
@@ -26,23 +23,26 @@ public class DragonLand extends GUIApplication {
 	/**
 	 * Static Fields
 	 */
+
 	public static DragonLand game;
+
 	//public static ArrayList<AnimatedComponent> dragonList; //list of all dragons in the game
-	public static int coins = 1100; 
+	public static int coins; 
+
 	public static Screen homeScreen;
 	public static Screen shopMain; // shop 1
 	public static Screen sellScreen; // shop 2
 	public static Screen buyScreen; // shop 3
-	public static Screen buyScreen2; // shop 3
 	public static Screen highscoreScreen; // high score
 	public static Screen miniGameScreen; // minigame
+
+	public static Screen HelpScreen;
+
 	public static Color NAVY;
 	public static Color BRIGHT_PINK;
 	public static Color LIGHT_PINK;
 	public static Color LIGHT_NUDE;
 	public static Color DARKER_NUDE;
-	
-	public static Screen testShop;
 	
 	
 	/**
@@ -68,17 +68,16 @@ public class DragonLand extends GUIApplication {
 	@Override
 	protected void initScreen() {
 		initColors();
-		homeScreen = new HomeScreen(getWidth(),getHeight());
-		shopMain = new HomeShopScreen(getWidth(),getHeight());
-		sellScreen = new SellShopZheng(getWidth(),getHeight());
-		//testShop = new ShopScreen(getWidth(),getHeight());
-		buyScreen = new BuyScreenWendy(getWidth(),getHeight());
-		buyScreen2 = new BuyScreenWendy2(getWidth(),getHeight());
-//		highscoreScreen = new (getWidth(),getHeight());
-//		miniGameScreen = new (getWidth(),getHeight());
+		//homeScreen = new HomeScreen(getWidth(),getHeight());
+		miniGameScreen = new GameScreen(getWidth(),getHeight());
+		//shopMain = new HomeShopScreen(getWidth(),getHeight());
+		//sellScreen = new (getWidth(),getHeight());
+		//buyScreen = new BuyScreenWendy(getWidth(),getHeight());
+		highscoreScreen = new HighScoreScreen(getWidth(),getHeight());
+		//miniGameScreen = new GameScreen(getWidth(),getHeight());
 		//uncomment your line once u have a class, input class name before get width()/height()
-		setScreen(sellScreen);
-		//////////!!!!!!!!! if u want to test only your screen change the above lines^
+		setScreen(miniGameScreen);
+
 		// but before you push to develop/ merge from develop always change it back plz
 	}
 
@@ -98,7 +97,14 @@ public class DragonLand extends GUIApplication {
 		game = new DragonLand();
 		Thread go = new Thread(game);
 		go.start();
-
 	}
+	
+	//public coin getter + setter
+		public void setCoins(int x){
+			coins = x;
+		}
+		public int getCoins(){
+			return coins;
+		}
 
 }

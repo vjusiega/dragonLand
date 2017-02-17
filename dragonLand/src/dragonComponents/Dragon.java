@@ -8,25 +8,27 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 
-import game.DragonToShop;
 import guiPractice.components.AnimatedComponent;
 import guiPractice.components.MovingComponent;
 import guiPractice.components.Visible;
+/**
+ * @author Kat 
+ *
+ */
 
 
-public class Dragon extends AnimatedComponent implements DragonToShop{
+public class Dragon extends AnimatedComponent implements DragonInterface,DragonToShop{
+
 
 	
-	/**
-	 * @author Kat 
-	 *
-	 */
+	
 	private String name;
 	private int price;
 	private String imgSrc;
 	int direction;
 	int initialX;
 	int initialY;
+	private boolean hungryBox;
 	
 	
 	private int UP=0;
@@ -40,6 +42,7 @@ public class Dragon extends AnimatedComponent implements DragonToShop{
 		
 		this.name=name;
 		this.price=price;
+		hungryBox=false;
 		this.imgSrc=imgSrc;
 
 //		if(y<350){
@@ -112,6 +115,7 @@ public class Dragon extends AnimatedComponent implements DragonToShop{
 	@Override
 	public void drawImage(Graphics2D g) {
 		super.drawImage(g);
+//		if(hungryBox)....
 	}
 	public void animationUp(){
 		direction=UP;
@@ -155,6 +159,17 @@ public class Dragon extends AnimatedComponent implements DragonToShop{
 		this.imgSrc = imgSrc;
 	}
 
+
+
+
+	@Override
+	public boolean hasHungryBox() {
+		
+		return hungryBox;
+	}
+	public void setHungryBox(boolean hungryBox){
+		this.hungryBox=hungryBox;
+	}
 
 
 
