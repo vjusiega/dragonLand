@@ -35,12 +35,15 @@ public class BuyScreenWendy2 extends ShopScreen{
 	@Override
 	public void addDragonLabels(ArrayList<Visible> visible) {
 		// TODO Auto-generated method stub
-		getPage().setText("Page " + BuyScreenWendy.getPageNum() + "/2");
+//		getPage().setText("Page " + BuyScreenWendy.getPageNum() + "/2");
+//		getDragonAmount().setText( BuyScreenWendy.getNumOfDragon() +"/6 dragons");
+		
 		getArrowLeft().setAction(new Action(){
 
 			@Override
 			public void act() {
 				// TODO Auto-generated method stub
+				update();
 				DragonLand.game.setScreen(DragonLand.game.buyScreen);
 			}
 			
@@ -85,9 +88,16 @@ public class BuyScreenWendy2 extends ShopScreen{
 							dragonsInShop.remove(d);	
 							visible.remove(label);			
 							
+<<<<<<< HEAD
 							BuyScreenWendy.setNumOfDragon();
 							//getDragonAmount().setText( BuyScreenWendy.getNumOfDragon() +"/6 dragons");
 							//System.out.println(BuyScreenWendy.getNumOfDragon() + "/6 dragons");
+=======
+//							BuyScreenWendy.setNumOfDragon();
+//							update();
+//							getDragonAmount().setText( BuyScreenWendy.getNumOfDragon() +"/6 dragons");
+//							System.out.println(BuyScreenWendy.getNumOfDragon() + "/6 dragons");
+>>>>>>> branch 'buyShopW' of https://github.com/katsemenova/dragonLand.git
 							DragonLand.coins -= d.getPrice();
 							getCoins().setCoins(DragonLand.coins);
 							System.out.println(DragonLand.coins);

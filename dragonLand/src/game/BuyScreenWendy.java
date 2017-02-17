@@ -38,14 +38,35 @@ public class BuyScreenWendy extends ShopScreen{
 	@Override
 	public void addDragonLabels(ArrayList<Visible> visible) {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 		//pageNum = 1;
 		dragonsInShop = new ArrayList<Dragon>();
 		dragons = new ArrayList<Dragon>();
 		dragons = HomeKat.getDragons();
 		dragonsInShop = HomeKat.getDragons();
+=======
+		inLists(3);
+		pageNum = 1;
+		getArrowLeft().setAction(new Action(){
 
 		buttonArrows();
 		
+
+		getArrowRight().setAction(new Action(){
+
+			@Override
+			public void act() {
+				// TODO Auto-generated method stub
+				//DragonLand.game.setScreen(DragonLand.game.buyScreen2);
+				inLists(6);
+				System.out.println(dragonsInShop.size());
+				pageNum++;
+				System.out.println(pageNum);
+				update();
+			}
+			
+		});
+
 		
 //		sold = SellShopZheng.getSold();
 //		if(sold != null)
@@ -107,9 +128,7 @@ public class BuyScreenWendy extends ShopScreen{
 			
 		}
 		
-	}
-	
-	
+
 private void buttonArrows() {
 		// TODO Auto-generated method stub
 	getArrowLeft().setAction(new Action(){
@@ -121,7 +140,35 @@ private void buttonArrows() {
 			addDragonLabels(viewObjects);
 		}
 	});
+=======
+	public void inLists(int num){
+		
+		dragonsInShop = new ArrayList<Dragon>();
+		dragons = new ArrayList<Dragon>();
+		
+		dragons = HomeKat.getDragons();
+		
+//		sold = SellShopZheng.getSold();
+//		if(sold != null)
+//		{
+//			dragonsInShop.add(sold);
+//			for(int i = 0; i<num-1; i++)
+//			{
+//				dragonsInShop.add(dragons.get(i));
+//			}
+//		}
+//		else
+//		{
+			for(int i = 0; i<num; i++)
+			{
+				dragonsInShop.add(dragons.get(i));
+			}
+//		}
+		
+	}
+>>>>>>> branch 'buyShopW' of https://github.com/katsemenova/dragonLand.git
 	
+<<<<<<< HEAD
 	getArrowRight().setAction(new Action(){
 		@Override
 		public void act() {
@@ -145,4 +192,23 @@ private void buttonArrows() {
 	public static int getPageNum(){
 		return pageNum;
 	}
+=======
+//	public static int getNum(){
+//		return num;
+//	}
+//
+//	public static int getNumOfDragon()
+//	{
+//		return numOfDragons;
+//	}
+//	
+//	public static void setNumOfDragon()
+//	{
+//		numOfDragons ++;
+//	}
+//	
+//	public static int getPageNum(){
+//		return pageNum;
+//	}
+>>>>>>> branch 'buyShopW' of https://github.com/katsemenova/dragonLand.git
 }
