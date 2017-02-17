@@ -54,7 +54,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		tCoins = 10;
 		buttons = new ArrayList<Button>();
 		highScores = new ArrayList<Integer>();
-		highScores.add(GameScreen.getScore());
+		//highScores.add(GameScreen.getScore());
 		highScores.add(400);
 		highScores.add(32);
 		highScores.add(0);

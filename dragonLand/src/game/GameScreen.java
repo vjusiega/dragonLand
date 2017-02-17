@@ -46,11 +46,7 @@ public class GameScreen extends Screen implements KeyListener {
 
 	@Override
 	public void initObjects(ArrayList<Visible> view) {
-		score = 0;
-
-		//GameVioletta.addDragon( "dragon1.png");
-		
-		score = 0;
+		score = 100;
 
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
 		viewObjects.add(background);
@@ -105,7 +101,7 @@ public class GameScreen extends Screen implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		setScore(score + 1);
-		if(score == 10 || score == 20){
+		if(score == 105 || score == 205){
 			addObject(GameVioletta.addDragon("img/dragon1.png"));
 		}
 		scoreButton.setText("Score: " + score);
