@@ -42,31 +42,31 @@ public class BuyScreenWendy extends ShopScreen{
 		inLists(3);
 		pageNum = 1;
 
-		getArrowLeft().setAction(new Action(){
-
-			@Override
-			public void act() {
-				// TODO Auto-generated method stub
-			}
-			
-		});
-		
-		getArrowRight().setAction(new Action(){
-
-			@Override
-			public void act() {
-				// TODO Auto-generated method stub
-				//DragonLand.game.setScreen(DragonLand.game.buyScreen2);
-				inLists(6);
-				System.out.println(dragonsInShop.size());
-				pageNum++;
-				System.out.println(pageNum);
-				//DragonLand.game.setScreen(DragonLand.game.buyScreen2);
-
-				update();
-			}
-			
-		});
+//		getArrowLeft().setAction(new Action(){
+//
+//			@Override
+//			public void act() {
+//				// TODO Auto-generated method stub
+//			}
+//			
+//		});
+//		
+//		getArrowRight().setAction(new Action(){
+//
+//			@Override
+//			public void act() {
+//				// TODO Auto-generated method stub
+//				//DragonLand.game.setScreen(DragonLand.game.buyScreen2);
+//				inLists(6);
+//				System.out.println(dragonsInShop.size());
+//				pageNum++;
+//				System.out.println(pageNum);
+//				//DragonLand.game.setScreen(DragonLand.game.buyScreen2);
+//
+//				update();
+//			}
+//			
+//		});
 
 		
 //		sold = SellShopZheng.getSold();

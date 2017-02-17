@@ -138,8 +138,8 @@ public abstract class ShopScreen extends ClickableScreen {
 	
 
 
-	public abstract void addDragonLabels(ArrayList<Visible> viewObjects);
 	//public abstract void addDragonLabels(ArrayList<Visible> viewObjects);
+	public abstract void addDragonLabels(ArrayList<Visible> viewObjects);
 	
 	public CoinLabel getCoins()
 	{
