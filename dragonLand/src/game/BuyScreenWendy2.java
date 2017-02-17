@@ -86,8 +86,8 @@ public class BuyScreenWendy2 extends ShopScreen{
 							visible.remove(label);			
 							
 							BuyScreenWendy.setNumOfDragon();
-							getDragonAmount().setText( BuyScreenWendy.getNumOfDragon() +"/6 dragons");
-							System.out.println(BuyScreenWendy.getNumOfDragon() + "/6 dragons");
+							//getDragonAmount().setText( BuyScreenWendy.getNumOfDragon() +"/6 dragons");
+							//System.out.println(BuyScreenWendy.getNumOfDragon() + "/6 dragons");
 							DragonLand.coins -= d.getPrice();
 							getCoins().setCoins(DragonLand.coins);
 							System.out.println(DragonLand.coins);
@@ -121,10 +121,10 @@ public class BuyScreenWendy2 extends ShopScreen{
 		
 		dragons = HomeKat.getDragons();
 		
-		for(int i = BuyScreenWendy.getNum(); i<BuyScreenWendy.getNum()+3; i++)
-		{
-			dragonsInShop.add(dragons.get(i));
-		}
+//		for(int i = BuyScreenWendy.getNum(); i<BuyScreenWendy.getNum()+3; i++)
+//		{
+//			dragonsInShop.add(dragons.get(i));
+//		}
 
 		
 	}
