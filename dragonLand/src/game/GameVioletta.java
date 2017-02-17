@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import dragonComponents.GameDragon;
+import dragonComponents.GameScreenFromVioletta;
 import guiPractice.components.Visible;
 
 /**
@@ -25,7 +26,7 @@ import guiPractice.components.Visible;
  * 		Max number of extra dragons is two (three in total)
  */
 
-public class GameVioletta {
+public class GameVioletta implements GameScreenFromVioletta{
 	
 	private static ArrayList<GameDragon> dragonArray = new ArrayList<GameDragon>();
 	
@@ -55,14 +56,9 @@ public class GameVioletta {
 			}
 		}
 		
-		
-		
-		
-		
 		GameDragon temp = new GameDragon(xPos, yPos, dragonHeight, dragonHeight, imgSrc);
 		
 		dragonArray.add(temp);
-		
 		
 		return temp;
 	}

@@ -7,6 +7,7 @@ import java.awt.event.KeyListener;
 
 import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
+import guiPractice.components.TextLabel;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -28,10 +29,11 @@ import guiPractice.components.Visible;
  * @author Tamanna Hussain and Violetta Jusiega
  *
  */
-public class GameScreen extends Screen implements KeyListener, {
+public class GameScreen extends Screen implements KeyListener {
 
 	private XButton exit;
 	private Button helpButton;
+	private Button scoreButton;
 	private Graphic background;
 	private ArrayList<Star> starArray;
 	private static int score;
@@ -50,6 +52,7 @@ public class GameScreen extends Screen implements KeyListener, {
 	
 	@Override
 	public void initObjects(ArrayList<Visible> view) {
+		score = 0;
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
 		viewObjects.add(background);
 		
@@ -57,11 +60,11 @@ public class GameScreen extends Screen implements KeyListener, {
 			@Override
 			public void act() {
 				// TODO Auto-generated method stub
-				DragonLand.game.setScreen(DragonLand.miniGameScreen);
+				DragonLand.game.setScreen(DragonLand.highscoreScreen);
 			}
 		});
 
-		helpButton = new Button(getWidth()-100, 50, 50, 50, "?", DragonLand.DARKER_NUDE, new Action() {
+		helpButton = new Button(getWidth()-75, getHeight()-75, 50, 50, "?", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
 				DragonLand.game.setScreen(DragonLand.miniGameScreen);
@@ -70,8 +73,11 @@ public class GameScreen extends Screen implements KeyListener, {
 
 		});
 		
+		scoreButton = new Button(getWidth()-150, 50, 125, 50, "Score: " + score, DragonLand.DARKER_NUDE, null);
+		
 		view.add(exit);
 		view.add(helpButton);
+		view.add(scoreButton);
 		
 		//temporary
 //		int randomNum = (int)(Math.random() * 5 + 1);
@@ -106,9 +112,12 @@ public class GameScreen extends Screen implements KeyListener, {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		//This only responds to when a letter is typed not a key, so 
-		//we can add a popup that says "Please use the arrow keys"
-		//but we would have to pause the entire thing and idk how to do that
+		setScore(score + 1);
+		if(score == 10 || score == 20){
+			addObject(GameVioletta.addDragon("img/dragon1.png"));
+		}
+		scoreButton.setText("Score: " + score);
+		System.out.print("im here");
 	}
 
 	@Override
@@ -128,7 +137,7 @@ public class GameScreen extends Screen implements KeyListener, {
 
 	@Override
 	public void keyReleased(KeyEvent e){	
-		
+	
 	}
 
 	public KeyListener getKeyListener(){
@@ -140,7 +149,7 @@ public class GameScreen extends Screen implements KeyListener, {
 	 * Getter and setter for score
 	 */
 	
-	public static void setScore(int x){
+	public void setScore(int x){
 		score = x;
 	}
 	
