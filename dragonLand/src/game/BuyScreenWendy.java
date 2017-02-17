@@ -23,8 +23,11 @@ public class BuyScreenWendy extends ShopScreen{
 	    
 //	    private int price = label.getDragonPrice().getPrice();
 	    //private Dragon sold;
-	    private int x;
+	    private int x; 
 		private	int y;
+		private static int num = 3;
+		private static int numOfDragons;
+		private static int pageNum;
 
 	public BuyScreenWendy(int width, int height) {
 		super(width, height);
@@ -34,6 +37,8 @@ public class BuyScreenWendy extends ShopScreen{
 	@Override
 	public void addDragonLabels(ArrayList<Visible> visible) {
 		// TODO Auto-generated method stub
+		inLists(3);
+		pageNum = 1;
 		getArrowLeft().setAction(new Action(){
 
 			@Override
@@ -48,18 +53,23 @@ public class BuyScreenWendy extends ShopScreen{
 			@Override
 			public void act() {
 				// TODO Auto-generated method stub
-				DragonLand.game.setScreen(DragonLand.game.buyScreen2);
+				//DragonLand.game.setScreen(DragonLand.game.buyScreen2);
+				inLists(6);
+				System.out.println(dragonsInShop.size());
+				pageNum++;
+				System.out.println(pageNum);
+				update();
 			}
 			
 		});
-		
-		inLists();
+
 		
 //		sold = SellShopZheng.getSold();
 //		if(sold != null)
 //		{
 //			dragonsInShop.add(sold);
 //		}
+
 		
 		x = 0;
 		y = 170;
@@ -79,10 +89,14 @@ public class BuyScreenWendy extends ShopScreen{
 
 						if(DragonLand.coins > d.getPrice())
 						{
+							update();
 							dragonsInShop.remove(d);	
+							
 							visible.remove(label);							
-							numOfDragons++;
+							numOfDragons ++;
+							getDragonAmount().setText(numOfDragons+"/6 dragons");
 							System.out.println(numOfDragons + "/6 dragons");
+
 							DragonLand.coins -= d.getPrice();
 							getCoins().setCoins(DragonLand.coins);
 							System.out.println(DragonLand.coins);
@@ -97,6 +111,7 @@ public class BuyScreenWendy extends ShopScreen{
 
 				
 				visible.add(label);
+				//addObject(label);
 				
 				y += DragonLabel.getLabelHeight()+20;
 				//System.out.println(dragons.size());
@@ -109,18 +124,47 @@ public class BuyScreenWendy extends ShopScreen{
 	}
 	
 	
-	public void inLists(){
+	public void inLists(int num){
 		
 		dragonsInShop = new ArrayList<Dragon>();
 		dragons = new ArrayList<Dragon>();
 		
 		dragons = HomeKat.getDragons();
 		
-		for(int i = 0; i<3; i++)
-		{
-			dragonsInShop.add(dragons.get(i));
-		}
-
+//		sold = SellShopZheng.getSold();
+//		if(sold != null)
+//		{
+//			dragonsInShop.add(sold);
+//			for(int i = 0; i<num-1; i++)
+//			{
+//				dragonsInShop.add(dragons.get(i));
+//			}
+//		}
+//		else
+//		{
+			for(int i = 0; i<num; i++)
+			{
+				dragonsInShop.add(dragons.get(i));
+			}
+//		}
 		
 	}
+	
+//	public static int getNum(){
+//		return num;
+//	}
+//
+//	public static int getNumOfDragon()
+//	{
+//		return numOfDragons;
+//	}
+//	
+//	public static void setNumOfDragon()
+//	{
+//		numOfDragons ++;
+//	}
+//	
+//	public static int getPageNum(){
+//		return pageNum;
+//	}
 }
