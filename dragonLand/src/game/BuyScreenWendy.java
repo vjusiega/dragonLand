@@ -38,6 +38,7 @@ public class BuyScreenWendy extends ShopScreen{
 	public void addDragonLabels(ArrayList<Visible> visible) {
 		// TODO Auto-generated method stub
 		pageNum = 1;
+		
 		getArrowLeft().setAction(new Action(){
 
 			@Override
