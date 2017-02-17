@@ -35,6 +35,7 @@ public class GameScreen extends Screen implements KeyListener {
 	private Button helpButton;
 	private Button scoreButton;
 	private Graphic background;
+
 	private ArrayList<Star> starArray;
 	private static int score;
 	private boolean running;
@@ -43,6 +44,7 @@ public class GameScreen extends Screen implements KeyListener {
 	private int posx; //the actual x-coordinate of the object
 	private int posy;
 	private long moveTime;//time when the image last moved
+
 	
 	public static final int REFRESH_RATE = 20;
 	
@@ -50,9 +52,15 @@ public class GameScreen extends Screen implements KeyListener {
 		super(width, height);
 	}
 	
+
 	@Override
 	public void initObjects(ArrayList<Visible> view) {
 		score = 0;
+
+		GameVioletta.addDragon( "dragon1.png");
+		
+		score = 20;
+
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
 		viewObjects.add(background);
 		

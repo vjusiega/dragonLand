@@ -3,8 +3,10 @@
  */
 package dragonComponents;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Stroke;
 
 import guiPractice.components.Action;
 import guiPractice.components.Button;
@@ -35,6 +37,10 @@ public class CurvedButton extends Button {
 
 	
 	public void update(Graphics2D g){
+		double thickness = 2;
+		Stroke oldStroke = g.getStroke();
+		g.setStroke(new BasicStroke((float) thickness));
+		
 		g.setColor(color);
 		g.fillRoundRect(0, 0, getWidth(), getHeight(), 100, 100);
 		g.setColor(Color.black);

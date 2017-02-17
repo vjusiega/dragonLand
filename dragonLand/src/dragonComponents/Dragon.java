@@ -11,21 +11,24 @@ import javax.swing.ImageIcon;
 import guiPractice.components.AnimatedComponent;
 import guiPractice.components.MovingComponent;
 import guiPractice.components.Visible;
+/**
+ * @author Kat 
+ *
+ */
 
 
-public class Dragon extends AnimatedComponent {
+public class Dragon extends AnimatedComponent implements DragonInterface,DragonToShop{
+
 
 	
-	/**
-	 * @author Kat 
-	 *
-	 */
+	
 	private String name;
 	private int price;
 	private String imgSrc;
 	int direction;
 	int initialX;
 	int initialY;
+	private boolean hungryBox;
 	
 	
 	private int UP=0;
@@ -39,6 +42,7 @@ public class Dragon extends AnimatedComponent {
 		
 		this.name=name;
 		this.price=price;
+		hungryBox=false;
 		this.imgSrc=imgSrc;
 
 //		if(y<350){
@@ -57,7 +61,10 @@ public class Dragon extends AnimatedComponent {
 			direction=DOWN;
 		}else{
 			direction=(int)(Math.random()*1+1);
-			currentFrame=6;
+			if(direction == 1 )
+				currentFrame=3;
+			else
+				currentFrame=6;
 		}
 	}
 	public void setX(int x){
@@ -85,7 +92,7 @@ public class Dragon extends AnimatedComponent {
 		}
 		if(direction ==LEFT){
 			setVx(-VY);
-			if(currentFrame<3||currentFrame==5)
+			if(currentFrame<3||currentFrame>=5)
 				currentFrame=3;
 			if((initialX-getX())>=30){
 				currentFrame=6;
@@ -108,6 +115,7 @@ public class Dragon extends AnimatedComponent {
 	@Override
 	public void drawImage(Graphics2D g) {
 		super.drawImage(g);
+//		if(hungryBox)....
 	}
 	public void animationUp(){
 		direction=UP;
@@ -121,6 +129,7 @@ public class Dragon extends AnimatedComponent {
 	public void animationRight(){
 		direction = RIGHT;
 	}
+	
 	public String getName() {
 		return name;
 	}
@@ -149,5 +158,19 @@ public class Dragon extends AnimatedComponent {
 	public void setImgSrc(String imgSrc) {
 		this.imgSrc = imgSrc;
 	}
+
+
+
+
+	@Override
+	public boolean hasHungryBox() {
+		
+		return hungryBox;
+	}
+	public void setHungryBox(boolean hungryBox){
+		this.hungryBox=hungryBox;
+	}
+
+
 
 }
