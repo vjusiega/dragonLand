@@ -1,6 +1,4 @@
-package game;
-
-import dragonComponents.Dragon;
+package dragonComponents;
 
 public interface StoreSellInterfaceK {
 

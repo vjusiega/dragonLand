@@ -31,10 +31,7 @@ public abstract class ShopScreen extends ClickableScreen {
 	private final static int TOP_MARGIN = 15;
 	
 	private int currentPage = 1;
-<<<<<<< HEAD
-	private int totalPages = 1;
 
-=======
 	private int totalPages = 2;
 	private ShopLabel dragonAmount;
 	private ShopLabel page;
@@ -43,7 +40,6 @@ public abstract class ShopScreen extends ClickableScreen {
 	private ClickableGraphic arrowRight;
 	private ClickableGraphic arrowLeft;
 	
->>>>>>> refs/remotes/origin/buyShopW
 	
 	public ShopScreen(int width, int height) {
 		super(width, height);

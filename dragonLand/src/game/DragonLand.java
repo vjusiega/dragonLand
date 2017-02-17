@@ -25,13 +25,10 @@ public class DragonLand extends GUIApplication {
 	 */
 
 	public static DragonLand game;
-<<<<<<< HEAD
+
 	//public static ArrayList<AnimatedComponent> dragonList; //list of all dragons in the game
 	public static int coins; 
-=======
-	//public static ArrayList<AnimatedComponent> dragonList; //list of all dragons in the game
-	public static int coins = 1100; 
->>>>>>> refs/remotes/origin/buyShopW
+
 	public static Screen homeScreen;
 	public static Screen shopMain; // shop 1
 	public static Screen sellScreen; // shop 2
@@ -73,14 +70,13 @@ public class DragonLand extends GUIApplication {
 		initColors();
 		homeScreen = new HomeScreen(getWidth(),getHeight());
 		miniGameScreen = new GameScreen(getWidth(),getHeight());
-		//System.out.println(miniGameScreen.getWidth());
-//		shopMain = new (getWidth(),getHeight());
-//		sellScreen = new (getWidth(),getHeight());
-//		buyScreen = new (getWidth(),getHeight());
+		shopMain = new HomeShopScreen(getWidth(),getHeight());
+		//sellScreen = new (getWidth(),getHeight());
+		buyScreen = new BuyScreenWendy(getWidth(),getHeight());
 		highscoreScreen = new HighScoreScreen(getWidth(),getHeight());
-//		miniGameScreen = new (getWidth(),getHeight());
+		miniGameScreen = new GameScreen(getWidth(),getHeight());
 		//uncomment your line once u have a class, input class name before get width()/height()
-		setScreen(highscoreScreen);
+		setScreen(homeScreen);
 		//////////!!!!!!!!! if uwant to test only your screen change the above lines^
 		// but before you push to develop/ merge from develop always change it back plz
 	}
