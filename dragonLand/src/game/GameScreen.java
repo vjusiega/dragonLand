@@ -28,7 +28,7 @@ import guiPractice.components.Visible;
  * @author Tamanna Hussain and Violetta Jusiega
  *
  */
-public class GameScreen extends Screen implements KeyListener{
+public class GameScreen extends Screen implements KeyListener, {
 
 	private XButton exit;
 	private Button helpButton;
@@ -43,9 +43,6 @@ public class GameScreen extends Screen implements KeyListener{
 	private long moveTime;//time when the image last moved
 	
 	public static final int REFRESH_RATE = 20;
-	//Tamanna's fields
-	//star will be its own class (made by Tamanna), we will then have an array of stars that will appear on the screen
-	
 	
 	public GameScreen(int width, int height) {
 		super(width, height);
@@ -83,7 +80,7 @@ public class GameScreen extends Screen implements KeyListener{
 //		}
 		//run();
 		
-		//stars = new ArrayList<Star>();
+		starArray = new ArrayList<Star>();
 		view.add(new Star1(100, 100, 100, 100, this));
 		
 		GameVioletta.addDragon("img/dragon1.png");
@@ -98,43 +95,15 @@ public class GameScreen extends Screen implements KeyListener{
 	}
 	
 	public void addStar(){
-	
+		Star starImage = new Star(100, 100, 100, 100);
+		
 	}
 	
-	public void removeStar(){
+	public void removeStar(Star1 star){
 		//If the y-value of the star reaches a certain point
 		//This method will remove the star from the screen
 	}
-	
-	
-	
 
-	
-	/*
-	public void paintComponent(Graphics g){
-    	private int lastY = 0;
-		Graphics2D gg = (Graphics2D) g;
-
-    	int w = getWidth();
-    	int h = getHeight();
-
-    	int starW = 20;
-    	int starH = 20;
-    	int starSpeed = 3;
-
-   		int y = lastY + starSpeed;
-
-    	if (y > h + starH) {
-     	   y = -starH;
-    	}
-
-    	gg.setColor(Color.BLACK);
-   	 	gg.fillRect(x, h/2 + starH, starW, starH);
-
-   		lastY = y;
-	}
-	*/
-	
 	@Override
 	public void keyTyped(KeyEvent e) {
 		//This only responds to when a letter is typed not a key, so 

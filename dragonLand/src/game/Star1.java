@@ -22,9 +22,9 @@ public class Star1 extends GraphicMovingComponent {
 	 */
 	public Star1(int x, int y, int w, int h, GameScreen game) {
 		super(x, y, w, h, "img/star.png");
-		setVy(5);
+		setVy(2);
 		this.game = game;
-		setVx(1);
+		setVx(0);
 		play();
 	}
 	
