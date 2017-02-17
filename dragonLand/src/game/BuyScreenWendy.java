@@ -54,7 +54,7 @@ public class BuyScreenWendy extends ShopScreen{
 				// TODO Auto-generated method stub
 				pageNum = 2;
 				System.out.println(pageNum);
-				DragonLand.game.setScreen(DragonLand.game.buyScreen2);
+				//DragonLand.game.setScreen(DragonLand.game.buyScreen2);
 				update();
 			}
 			
@@ -79,7 +79,7 @@ public class BuyScreenWendy extends ShopScreen{
 		{
 			if(dragonsInShop.contains(d))
 			{
-				DragonLabel label = new DragonLabel(DragonLabel.LABEL_LEFT_MARGIN,y, d,"BUY");
+				DragonLabel label = new DragonLabel(DragonLabel.getLabelLeftMargin(),y, d,"BUY");
 				label.setAction( new Action(){
 					
 					public void act() {

@@ -35,6 +35,8 @@ public abstract class ShopScreen extends ClickableScreen {
 	private int totalPages = 2;
 	private ShopLabel dragonAmount;
 	private ShopLabel page;
+	private CoinLabel coins;
+	private ShopLabel dragonAmounts;
 
 	
 	private ClickableGraphic arrowRight;
@@ -83,13 +85,10 @@ public abstract class ShopScreen extends ClickableScreen {
 		shopName.setSize(26);
 		
 		int coinX = titleX + titleWidth - CoinLabel.getWdith() - LEFT_MARGIN * 2;
-<<<<<<< HEAD
-		CoinLabel coins = new CoinLabel(coinX, shopNameY, 100);
-		ShopLabel dragonAmount = new ShopLabel(coinX, shopNameY + CoinLabel.getHeight2() + 2, CoinLabel.getWdith(), CoinLabel.getHeight2(), /*DragonLand.dragons.length() +*/ "0/6 Dragons", DragonLand.LIGHT_NUDE);
-=======
+
 		coins = new CoinLabel(coinX, shopNameY, DragonLand.coins);
 		dragonAmount = new ShopLabel(coinX, shopNameY + CoinLabel.getHeight2() + 2, CoinLabel.getWdith(), CoinLabel.getHeight2(), /*DragonLand.dragons.length() +*/ "0/6 Dragons", DragonLand.LIGHT_NUDE);
->>>>>>> refs/remotes/origin/buyShopW
+
 		dragonAmount.setArc(15);
 		
 		int back2Width = backWidth - 100;
@@ -137,9 +136,7 @@ public abstract class ShopScreen extends ClickableScreen {
 	}
 	
 	
-<<<<<<< HEAD
-	public abstract void addDragonLabels(ArrayList<Visible> viewObjects);
-=======
+
 
 	public abstract void addDragonLabels(ArrayList<Visible> viewObjects);
 	//public abstract void addDragonLabels(ArrayList<Visible> viewObjects);
@@ -167,5 +164,4 @@ public abstract class ShopScreen extends ClickableScreen {
 	public ShopLabel getPage(){
 		return page;
 	}
->>>>>>> refs/remotes/origin/buyShopW
 }
