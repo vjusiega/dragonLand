@@ -37,8 +37,11 @@ public class BuyScreenWendy extends ShopScreen{
 	@Override
 	public void addDragonLabels(ArrayList<Visible> visible) {
 		// TODO Auto-generated method stub
-		pageNum = 1;
 		
+
+		inLists(3);
+		pageNum = 1;
+
 		getArrowLeft().setAction(new Action(){
 
 			@Override
@@ -53,15 +56,18 @@ public class BuyScreenWendy extends ShopScreen{
 			@Override
 			public void act() {
 				// TODO Auto-generated method stub
-				pageNum = 2;
+				//DragonLand.game.setScreen(DragonLand.game.buyScreen2);
+				inLists(6);
+				System.out.println(dragonsInShop.size());
+				pageNum++;
 				System.out.println(pageNum);
 				//DragonLand.game.setScreen(DragonLand.game.buyScreen2);
+
 				update();
 			}
 			
 		});
 
-		inLists();
 		
 //		sold = SellShopZheng.getSold();
 //		if(sold != null)
@@ -123,7 +129,7 @@ public class BuyScreenWendy extends ShopScreen{
 	}
 	
 	
-	public void inLists(){
+	public void inLists(int num){
 		
 		dragonsInShop = new ArrayList<Dragon>();
 		dragons = new ArrayList<Dragon>();
@@ -146,26 +152,24 @@ public class BuyScreenWendy extends ShopScreen{
 				dragonsInShop.add(dragons.get(i));
 			}
 //		}
-
-
 		
 	}
 	
-	public static int getNum(){
-		return num;
-	}
-
-	public static int getNumOfDragon()
-	{
-		return numOfDragons;
-	}
-	
-	public static void setNumOfDragon()
-	{
-		numOfDragons ++;
-	}
-	
-	public static int getPageNum(){
-		return pageNum;
-	}
+//	public static int getNum(){
+//		return num;
+//	}
+//
+//	public static int getNumOfDragon()
+//	{
+//		return numOfDragons;
+//	}
+//	
+//	public static void setNumOfDragon()
+//	{
+//		numOfDragons ++;
+//	}
+//	
+//	public static int getPageNum(){
+//		return pageNum;
+//	}
 }
