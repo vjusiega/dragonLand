@@ -3,6 +3,8 @@
  */
 package game;
 
+
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -14,6 +16,7 @@ import dragonComponents.Dragon;
 import guiPractice.GUIApplication;
 import guiPractice.Screen;
 import guiPractice.components.AnimatedComponent;
+import zheng.SellShopZ;
 
 /**
  * @author Kat
@@ -25,11 +28,12 @@ public class DragonLand extends GUIApplication {
 	 */
 	public static DragonLand game;
 	//public static ArrayList<AnimatedComponent> dragonList; //list of all dragons in the game
-	public static int coins; 
+	public static int coins = 110; 
 	public static Screen homeScreen;
 	public static Screen shopMain; // shop 1
 	public static Screen sellScreen; // shop 2
 	public static Screen buyScreen; // shop 3
+	public static Screen buyScreen2; // shop 3
 	public static Screen highscoreScreen; // high score
 	public static Screen miniGameScreen; // minigame
 	public static Color NAVY;
@@ -38,6 +42,7 @@ public class DragonLand extends GUIApplication {
 	public static Color LIGHT_NUDE;
 	public static Color DARKER_NUDE;
 	
+	public static Screen testShop;
 	
 	
 	/**
@@ -64,13 +69,15 @@ public class DragonLand extends GUIApplication {
 	protected void initScreen() {
 		initColors();
 		homeScreen = new HomeScreen(getWidth(),getHeight());
-//		shopMain = new (getWidth(),getHeight());
-//		sellScreen = new (getWidth(),getHeight());
-//		buyScreen = new (getWidth(),getHeight());
+		shopMain = new HomeShopScreen(getWidth(),getHeight());
+		sellScreen = new SellShopZheng(getWidth(),getHeight());
+		//testShop = new ShopScreen(getWidth(),getHeight());
+		buyScreen = new BuyScreenWendy(getWidth(),getHeight());
+		buyScreen2 = new BuyScreenWendy2(getWidth(),getHeight());
 //		highscoreScreen = new (getWidth(),getHeight());
 //		miniGameScreen = new (getWidth(),getHeight());
 		//uncomment your line once u have a class, input class name before get width()/height()
-		setScreen(homeScreen);
+		setScreen(sellScreen);
 		//////////!!!!!!!!! if u want to test only your screen change the above lines^
 		// but before you push to develop/ merge from develop always change it back plz
 	}
@@ -91,6 +98,7 @@ public class DragonLand extends GUIApplication {
 		game = new DragonLand();
 		Thread go = new Thread(game);
 		go.start();
+
 	}
 
 }

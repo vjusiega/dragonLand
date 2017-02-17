@@ -1,3 +1,4 @@
+
 package game;
 
 import java.awt.Graphics;
@@ -107,9 +108,7 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 		dragons.add((Dragon) a);
 		a.setX(x);
 		a.setY(y);
-		
-		
-		
+				
 	}
 	public static void makeDragons(ArrayList<Visible> viewObjects){
 		String[] names = new String[] {"Rowdy","Thorn","Mushu","Falcor","Elliot","Puff","Spyro","Sandy",
@@ -121,12 +120,14 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 			addAnimation(viewObjects,0,0, names[i], price+i*50, "img/dragon"+i+".png");
 		}
 	}
+
 	public void dragonsOnScreen(ArrayList<Visible> viewObjects){
 		//String[] purchased = Shop.getNamesOfPurchased();
 		String[] purchased = {"Thorn","Mushu","Falcor","Elliot","Puff","Toothless"};
 		checkToRemove(purchased, viewObjects);
 		addNewDragons(purchased, viewObjects);
 	}
+
 
 	private void addNewDragons(String[] purchased, ArrayList<Visible> viewObjects) {
 		boolean exists = false;
@@ -191,5 +192,8 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 		return dragons;
 	}
 
-	
+	public static ArrayList<Dragon> getDragonsOnScreen() {
+		return dragonsOnScreen;
+	}
 }
+
