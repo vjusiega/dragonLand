@@ -68,15 +68,15 @@ public class DragonLand extends GUIApplication {
 	@Override
 	protected void initScreen() {
 		initColors();
-		homeScreen = new HomeScreen(getWidth(),getHeight());
+		//homeScreen = new HomeScreen(getWidth(),getHeight());
 		miniGameScreen = new GameScreen(getWidth(),getHeight());
-		shopMain = new HomeShopScreen(getWidth(),getHeight());
+		//shopMain = new HomeShopScreen(getWidth(),getHeight());
 		//sellScreen = new (getWidth(),getHeight());
-		buyScreen = new BuyScreenWendy(getWidth(),getHeight());
+		//buyScreen = new BuyScreenWendy(getWidth(),getHeight());
 		highscoreScreen = new HighScoreScreen(getWidth(),getHeight());
-		miniGameScreen = new GameScreen(getWidth(),getHeight());
+		//miniGameScreen = new GameScreen(getWidth(),getHeight());
 		//uncomment your line once u have a class, input class name before get width()/height()
-		setScreen(homeScreen);
+		setScreen(miniGameScreen);
 
 		// but before you push to develop/ merge from develop always change it back plz
 	}

@@ -30,7 +30,7 @@ public class Star1 extends GraphicMovingComponent {
 	
 	@Override
 	public void checkBehaviors() {
-		System.out.println("Updated star");
+		//System.out.println("Updated star");
 		if(getY() >= 540){
 			game.removeStar(this);
 		}
