@@ -53,15 +53,15 @@ public class DragonLabel extends Component {
 	}
 
 	@Override
-	public void update(Graphics2D visible) {
+	public void update(Graphics2D g) {
 		
 		if(dragon != null)
 		{
 			int imageSide = LABEL_HEIGHT - 2 * TOP_MARGIN;
-			labelBack = new ShopBackdrop(LABEL_LEFT_MARGIN + 15,getY(),LABEL_WIDTH,LABEL_HEIGHT, DragonLand.DARKER_NUDE);
-			dragonImage = new Graphic(LABEL_LEFT_MARGIN + LEFT_MARGIN +30, this.getY() + TOP_MARGIN, imageSide, imageSide, dragon.getImgSrc());
+			labelBack = new ShopBackdrop(getLabelLeftMargin() + 15,getY(),LABEL_WIDTH,LABEL_HEIGHT, DragonLand.DARKER_NUDE);
+			dragonImage = new Graphic(getLabelLeftMargin() + LEFT_MARGIN +30, this.getY() + TOP_MARGIN, imageSide, imageSide, dragon.getImgSrc());
 			
-			int column2X = 2 * LEFT_MARGIN + imageSide + LABEL_LEFT_MARGIN;
+			int column2X = 2 * LEFT_MARGIN + imageSide + getLabelLeftMargin();
 			int nameWidth = LABEL_WIDTH - column2X - imageSide - LEFT_MARGIN;
 			int nameHeight = (int)(0.5 * imageSide);
 			
@@ -133,6 +133,10 @@ public class DragonLabel extends Component {
 	public Visible[] getVisible()
 	{
 		return new Visible[] {labelBack, dragonName, dragonPrice.getCoin(), dragonPrice.getPriceLabel(), button, dragonImage};
+	}
+
+	public static int getLabelLeftMargin() {
+		return LABEL_LEFT_MARGIN;
 	}
 
 
