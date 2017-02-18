@@ -33,6 +33,8 @@ public class GameVioletta implements GameScreenFromVioletta{
 	private static int screenWidth = DragonLand.miniGameScreen.getWidth();
 	private static int screenHeight = DragonLand.miniGameScreen.getHeight();
 	
+	private boolean play;
+	
 	public static ArrayList<GameDragon> getDragonArray(){
 		return dragonArray;
 	}
@@ -93,5 +95,13 @@ public class GameVioletta implements GameScreenFromVioletta{
 			else return 2; 
 		}
 		else return 0;
+	}
+	
+	public void setPlay(boolean b){
+		play = b;
+	}
+	
+	public boolean getPlay(){
+		return play; 
 	}
 }

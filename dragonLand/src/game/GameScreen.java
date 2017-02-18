@@ -16,7 +16,6 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import dragonComponents.GameDragon;
-import dragonComponents.XButton;
 import guiPractice.ClickableScreen;
 import guiPractice.Screen;
 import guiPractice.components.Action;
@@ -29,9 +28,9 @@ import guiPractice.components.Visible;
  * @author Tamanna Hussain and Violetta Jusiega
  *
  */
-public class GameScreen extends Screen implements KeyListener {
+public class GameScreen extends ClickableScreen implements KeyListener {
 
-	private XButton exit;
+	private Button exit;
 	private Button helpButton;
 	private Button scoreButton;
 	private Graphic background;
@@ -43,18 +42,16 @@ public class GameScreen extends Screen implements KeyListener {
 		super(width, height);
 	}
 	
-
 	@Override
-	public void initObjects(ArrayList<Visible> view) {
+	public void initAllObjects(ArrayList<Visible> view) {
 		score = 100;
 
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
 		viewObjects.add(background);
 		
-		exit = new XButton(30, 50, 40, 40, "", null, new Action() {
+		exit = new Button(30, 50, 40, 40, "X", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
-				// TODO Auto-generated method stub
 				DragonLand.game.setScreen(DragonLand.highscoreScreen);
 			}
 		});
@@ -62,8 +59,8 @@ public class GameScreen extends Screen implements KeyListener {
 		helpButton = new Button(getWidth()-75, getHeight()-75, 50, 50, "?", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
-				DragonLand.game.setScreen(DragonLand.miniGameScreen);
-				//helpScreen
+				pause();
+				displayInstructions();
 			}
 
 		});
@@ -82,9 +79,6 @@ public class GameScreen extends Screen implements KeyListener {
 		for(GameDragon d : GameVioletta.getDragonArray()){
 			view.add(d);
 		}
-
-		//System.out.println(GameVioletta.getDragonArray().size());
-		
 		
 	}
 	
@@ -144,4 +138,22 @@ public class GameScreen extends Screen implements KeyListener {
 	public static int getScore(){
 		return score; 
 	}
+	
+	/*
+	 * Methods for instructions
+	 */
+	public void pause() {
+		for(Star s: starArray){
+			s.setVy(0);
+		}
+	}
+	
+	public void displayInstructions(){
+		
+	}
+	
+	public void unpause(){
+		
+	}
+
 }
