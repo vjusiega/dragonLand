@@ -18,7 +18,7 @@ import guiPractice.components.Visible;
  * @author Violetta Jusiega
  *
  */
-
+//
 /*
  * Rules of the game:
  * 		Player starts off with one dragon
