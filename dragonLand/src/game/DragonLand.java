@@ -77,7 +77,6 @@ public class DragonLand extends GUIApplication {
 		
 		setScreen(homeScreen);
 
-		
 	}
 
 	private void initColors() {

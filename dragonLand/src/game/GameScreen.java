@@ -15,7 +15,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
-import dragonComponents.GameDragon;
+import dragonComponents.Dragon;
 import guiPractice.ClickableScreen;
 import guiPractice.Screen;
 import guiPractice.components.Action;
@@ -76,7 +76,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		
 		GameVioletta.addDragon("img/dragon1.png");
 		
-		for(GameDragon d : GameVioletta.getDragonArray()){
+		for(Dragon d : GameVioletta.getDragonArray()){
 			view.add(d);
 		}
 		
@@ -99,14 +99,14 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 			addObject(GameVioletta.addDragon("img/dragon1.png"));
 		}
 		scoreButton.setText("Score: " + score);
-		System.out.print("im here");
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_LEFT){ 
 			GameVioletta.changeDragonPos(-5);
-		}else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
 			GameVioletta.changeDragonPos(5);
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_UP){
@@ -114,6 +114,10 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_DOWN){
 			remove(GameVioletta.removeDragon());
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_SPACE){
+			System.out.println("The space button");
+			pause();
 		}
 	}
 
@@ -142,6 +146,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	/*
 	 * Methods for instructions
 	 */
+	
+	//Pause is not working
 	public void pause() {
 		for(Star s: starArray){
 			s.setVy(0);
