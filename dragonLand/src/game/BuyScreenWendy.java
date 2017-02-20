@@ -85,7 +85,7 @@ private void addLabels(ArrayList<Visible> visible) {
 					{
 						update();
 						dragonsInShop.remove(d);	
-						visible.remove(label);							
+						remove(label);							
 						numOfDragons ++;
 						getDragonAmount().setText(numOfDragons+"/6 dragons");
 						System.out.println(numOfDragons + "/6 dragons");
