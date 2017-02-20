@@ -28,7 +28,7 @@ public class BuyScreenWendy extends ShopScreen{
 		private static int startIndex = 0;
 		private static int numOfDragons;
 		private static int pageNum;
-		private boolean clicked;
+		private boolean clicked = false;
 
 	public BuyScreenWendy(int width, int height) {
 		super(width, height);
@@ -44,8 +44,7 @@ public class BuyScreenWendy extends ShopScreen{
 		dragons = HomeKat.getDragons();
 		dragonsInShop = HomeKat.getDragons();
 
-		pageNum = 1;
-
+		addLabels(visible);
 		buttonArrows();
 		
 		
@@ -56,59 +55,65 @@ public class BuyScreenWendy extends ShopScreen{
 //		}
 
 		
-		x = 0;
-		y = 170;
+			
+	}
 		
-		int endIndex = startIndex +3;
-		
-		if(endIndex > dragons.size())
-		{
-			endIndex = dragons.size();
-		}
-		for(int i = startIndex; i< endIndex; i++)
-		{
-			if(dragonsInShop.contains(dragons.get(i)))
-			{
-				Dragon d = dragons.get(i);
-				DragonLabel label = new DragonLabel(DragonLabel.LABEL_LEFT_MARGIN,y, d,"BUY");
-				label.setAction( new Action(){
-					
-					public void act() {
-						// TODO Auto-generated method stub
 
-						if(DragonLand.coins > d.getPrice())
-						{
-							update();
-							dragonsInShop.remove(d);	
-							visible.remove(label);							
-							numOfDragons ++;
-							getDragonAmount().setText(numOfDragons+"/6 dragons");
-							System.out.println(numOfDragons + "/6 dragons");
+private void addLabels(ArrayList<Visible> visible) {
+		// TODO Auto-generated method stub
+	x = 0;
+	y = 170;
+	
+	int endIndex = startIndex +3;
+	
+	if(endIndex > dragons.size())
+	{
+		endIndex = dragons.size();
+	}
+	for(int i = startIndex; i< endIndex; i++)
+	{
+		if(dragonsInShop.contains(dragons.get(i)))
+		{
+			Dragon d = dragons.get(i);
+			DragonLabel label = new DragonLabel(DragonLabel.LABEL_LEFT_MARGIN,y, d,"BUY");
+			label.setAction( new Action(){
+				
+				public void act() {
+					// TODO Auto-generated method stub
 
-							DragonLand.coins -= d.getPrice();
-							getCoins().setCoins(DragonLand.coins);
-							System.out.println(DragonLand.coins);
-							update();
-						}
-						else
-						{
-							System.out.println("You donot have enough coins. Go play our minigame to win more coins");
-						}
+					if(DragonLand.coins > d.getPrice())
+					{
+						update();
+						dragonsInShop.remove(d);	
+						visible.remove(label);							
+						numOfDragons ++;
+						getDragonAmount().setText(numOfDragons+"/6 dragons");
+						System.out.println(numOfDragons + "/6 dragons");
+
+						System.out.println("This dragon is " + d.getPrice());
+						DragonLand.coins -= d.getPrice();
+						getCoins().setCoins(DragonLand.coins);
+						System.out.println(DragonLand.coins);
+						update();
 					}
-				});
+					else
+					{
+						System.out.println("You donot have enough coins. Go play our minigame to win more coins");
+					}
+				}
+			});
 
-				
-				//visible.add(label);
-				addObject(label);
-				
-				y += DragonLabel.getLabelHeight()+20;
-				//System.out.println(dragons.size());
-				//System.out.println(dragonsInShop.size());
-				
-			}
+			
+			//visible.add(label);
+			addObject(label);
+			
+			y += DragonLabel.getLabelHeight()+20;
+			//System.out.println(dragons.size());
+			//System.out.println(dragonsInShop.size());
 			
 		}
-		
+	}
+	}
 
 private void buttonArrows() {
 		// TODO Auto-generated method stub
@@ -117,8 +122,17 @@ private void buttonArrows() {
 		@Override
 		public void act() {
 			// TODO Auto-generated method stub
-			clicked = false;
+			if(startIndex -3 < 0)
+			{
+				startIndex = 0;
+			}
+			else
+			{
+				startIndex-=3;				
+			}
+			
 			addDragonLabels(viewObjects);
+			update();
 		}
 	});
 	
@@ -127,9 +141,18 @@ private void buttonArrows() {
 		public void act() {
 			// TODO Auto-generated method stub
 			clicked = true;
-			addDragonLabels(viewObjects);
-			pageNum = 2;
+			if(clicked)
+			{	
+				startIndex+=3;
+			}
+			else
+			{
+				startIndex+=6;
+			}
+			
 			System.out.println(pageNum);
+			System.out.println(startIndex);
+			addDragonLabels(viewObjects);
 			//DragonLand.game.setScreen(DragonLand.game.buyScreen2);
 			update();
 		}
@@ -145,7 +168,7 @@ private void buttonArrows() {
 	public static int getPageNum(){
 		return pageNum;
 	}
-=======
+
 //	public static int getNum(){
 //		return num;
 //	}

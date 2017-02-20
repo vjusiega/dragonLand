@@ -88,16 +88,16 @@ public class BuyScreenWendy2 extends ShopScreen{
 							dragonsInShop.remove(d);	
 							visible.remove(label);			
 							
-<<<<<<< HEAD
+
 							BuyScreenWendy.setNumOfDragon();
 							//getDragonAmount().setText( BuyScreenWendy.getNumOfDragon() +"/6 dragons");
 							//System.out.println(BuyScreenWendy.getNumOfDragon() + "/6 dragons");
-=======
+
 //							BuyScreenWendy.setNumOfDragon();
 //							update();
 //							getDragonAmount().setText( BuyScreenWendy.getNumOfDragon() +"/6 dragons");
 //							System.out.println(BuyScreenWendy.getNumOfDragon() + "/6 dragons");
->>>>>>> branch 'buyShopW' of https://github.com/katsemenova/dragonLand.git
+
 							DragonLand.coins -= d.getPrice();
 							getCoins().setCoins(DragonLand.coins);
 							System.out.println(DragonLand.coins);
