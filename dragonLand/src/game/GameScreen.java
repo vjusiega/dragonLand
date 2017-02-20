@@ -52,7 +52,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		exit = new Button(30, 50, 40, 40, "X", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
-				DragonLand.game.setScreen(DragonLand.highscoreScreen);
+				//DragonLand.game.setScreen(DragonLand.mainScreen);
 			}
 		});
 
@@ -66,10 +66,17 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		});
 		
 		scoreButton = new Button(getWidth()-150, 50, 125, 50, "Score: " + score, DragonLand.DARKER_NUDE, null);
+		highScoreButton = new Button(getWidth()-200, 50, 125, 50, "High Scores", DragonLand.DARKER_NUDE, new Action() {
+			@Override
+			public void act() {
+				//DragonLand.game.setScreen(DragonLand.highscoreScreen);
+			}
+		});
 		
 		view.add(exit);
 		view.add(helpButton);
 		view.add(scoreButton);
+		view.add(highScoreButton);
 		
 		starArray = new ArrayList<Star>();
 		view.add(new Star1(100, 100, 100, 100, this));
@@ -82,14 +89,28 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		
 	}
 	
-	public void addStar(){
-		Star starImage = new Star(100, 100, 100, 100);
+	public static ArrayList<Star1> getStarArray(){
+		return starArray;
+	}
+	
+	public void addStar(String imgSrc){
+		//Star starImage = new Star(100, 100, 100, 100);
+		/*
+		int xPos = (int) (Math.random()*GameScreen.getWidth()); 
+		int yPos = 10;
+		int starH = 100;
+		int starW = 100;
 		
+		Star starImage = new Star(xPos, yPos, starW, starH);		
+		starArray.add(starImage);
+		return starImage;
+		*/
 	}
 	
 	public void removeStar(Star1 star){
 		//If the y-value of the star reaches a certain point
 		//This method will remove the star from the screen
+		//return(star);
 	}
 
 	@Override
@@ -130,7 +151,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		return this;
 	}
 	
-	
 	/*
 	 * Getter and setter for score
 	 */
@@ -161,5 +181,4 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	public void unpause(){
 		
 	}
-
 }
