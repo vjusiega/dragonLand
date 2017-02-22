@@ -52,7 +52,7 @@ public class GameVioletta implements GameScreenFromVioletta{
 				
 			}
 			else{
-				xPos = dragonArray.get(0).getX() + dragonHeight + 20;
+				xPos = dragonArray.get(0).getX() + dragonHeight + 25;
 			}
 		}
 		

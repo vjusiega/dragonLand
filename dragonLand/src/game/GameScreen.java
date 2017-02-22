@@ -35,7 +35,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	private Button scoreButton;
 	private Graphic background;
 
-	private ArrayList<Star> starArray;
+	private static ArrayList<Star> starArray;
 	private static int score;
 	
 	public GameScreen(int width, int height) {
@@ -52,7 +52,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		exit = new Button(30, 50, 40, 40, "X", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
-				//DragonLand.game.setScreen(DragonLand.mainScreen);
+				DragonLand.game.setScreen(DragonLand.highscoreScreen);
 			}
 		});
 
@@ -66,17 +66,17 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		});
 		
 		scoreButton = new Button(getWidth()-150, 50, 125, 50, "Score: " + score, DragonLand.DARKER_NUDE, null);
-		highScoreButton = new Button(getWidth()-200, 50, 125, 50, "High Scores", DragonLand.DARKER_NUDE, new Action() {
-			@Override
-			public void act() {
-				//DragonLand.game.setScreen(DragonLand.highscoreScreen);
-			}
-		});
+//		highScoreButton = new Button(getWidth()-200, 50, 125, 50, "High Scores", DragonLand.DARKER_NUDE, new Action() {
+//			@Override
+//			public void act() {
+//				//DragonLand.game.setScreen(DragonLand.highscoreScreen);
+//			}
+//		});
 		
 		view.add(exit);
 		view.add(helpButton);
 		view.add(scoreButton);
-		view.add(highScoreButton);
+//		view.add(highScoreButton);
 		
 		starArray = new ArrayList<Star>();
 		view.add(new Star1(100, 100, 100, 100, this));
@@ -89,7 +89,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		
 	}
 	
-	public static ArrayList<Star1> getStarArray(){
+	public static ArrayList<Star> getStarArray(){
 		return starArray;
 	}
 	
