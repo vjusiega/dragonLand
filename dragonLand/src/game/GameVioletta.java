@@ -41,7 +41,6 @@ public class GameVioletta implements GameScreenFromVioletta{
 	}
 	
 	public static Dragon addDragon(String imgSrc){
-		//dragonArray = new ArrayList<GameDragon>();
 		int xPos;
 		int dragonHeight = 100;
 		xPos = screenWidth / 2;
@@ -59,34 +58,11 @@ public class GameVioletta implements GameScreenFromVioletta{
 		int yPos = screenHeight - dragonHeight;
 		
 		Dragon d = new Dragon(xPos, yPos, dragonHeight, dragonHeight, "whatever", 0, imgSrc);
-		d.setInGame(true);
+		//d.setInGame(true);
+		//System.out.println(d.getInGame());
 		
 		AnimatedComponent a = d;
-		
-		try{
-			ImageIcon icon = new ImageIcon(imgSrc);
-			int numberRow = 3;
-			int rows = 4;
-			int w = 48;
-			int h = 48;
-			for(int i = 0; i<numberRow*rows; i++){
-				BufferedImage cropped = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
-				int leftMargin = 0;
-				int topMargin = 0;
-				int x1 = leftMargin + w*(i%numberRow);
-				int y1 = topMargin +h*(i/numberRow);
-				Graphics g = cropped.createGraphics();
-				g.drawImage(icon.getImage(),0,0,w,h,x1,y1,x1+w,y1+h,null);
-				a.addFrame(cropped, 300);
-				if(i==numberRow*rows-1){
-					i++;
-				}
-			}
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-		
+		setDragonAnimation(a, imgSrc);
 		
 		dragonArray.add(d);
 		a.setX(xPos);
@@ -94,6 +70,7 @@ public class GameVioletta implements GameScreenFromVioletta{
 		
 		return d;
 	}
+	
 	
 	public static Dragon removeDragon(){
 		Dragon deadDragon = dragonArray.get(dragonArray.size() - 1);
@@ -133,5 +110,32 @@ public class GameVioletta implements GameScreenFromVioletta{
 	
 	public boolean getPlay(){
 		return play; 
+	}
+	
+	public static void setDragonAnimation(AnimatedComponent a, String imgSrc){
+		try{
+			ImageIcon icon = new ImageIcon(imgSrc);
+			int numberRow = 3;
+			int rows = 4;
+			int w = 48;
+			int h = 48;
+			for(int j = 0; j < 2; j ++){
+				for(int i = 0; i < numberRow*rows; i++){
+					if(i > 8 && i < 12){
+						BufferedImage cropped = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
+						int leftMargin = 0;
+						int topMargin = 0;
+						int x1 = leftMargin + w*(i%numberRow);
+						int y1 = topMargin +h*(i/numberRow);
+						Graphics g = cropped.createGraphics();
+						g.drawImage(icon.getImage(),0,0,w,h,x1,y1,x1+w,y1+h,null);
+						a.addFrame(cropped, 300);
+					}
+				}
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 }
