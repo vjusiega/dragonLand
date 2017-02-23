@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import dragonComponents.Dragon;
-import dragonComponents.GameScreenFromVioletta;
+
+import dragonComponents.gameDragonInterface;
 import guiPractice.components.AnimatedComponent;
 import guiPractice.components.Visible;
 
@@ -27,14 +28,14 @@ import guiPractice.components.Visible;
  * 		Max number of extra dragons is two (three in total)
  */
 
-public class GameVioletta implements GameScreenFromVioletta{
+public class GameVioletta implements gameDragonInterface{
 	
 	private static ArrayList<Dragon> dragonArray = new ArrayList<Dragon>();
 	
 	private static int screenWidth = DragonLand.miniGameScreen.getWidth();
 	private static int screenHeight = DragonLand.miniGameScreen.getHeight();
 	
-	private boolean play;
+	private boolean play; //supposed to work for if the game is paused
 	
 	public static ArrayList<Dragon> getDragonArray(){
 		return dragonArray;
@@ -104,6 +105,30 @@ public class GameVioletta implements GameScreenFromVioletta{
 		else return 0;
 	}
 	
+	public static boolean checkStarContact(int starX, int starWidth){
+		int starEnd = starX + starWidth;
+		int dragonStart = (dragonArray.get(findLeadDragon(-1))).getX();
+		int dragonEnd = (dragonArray.get(findLeadDragon(-1))).getX() + (dragonArray.get(findLeadDragon(-1))).getWidth();
+		if((starX > dragonStart && starX < dragonEnd) || (starEnd > dragonStart && starEnd < dragonEnd)){
+			return true; 
+		}
+		else{
+			return false; 
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public void setPlay(boolean b){
 		play = b;
 	}
@@ -111,6 +136,18 @@ public class GameVioletta implements GameScreenFromVioletta{
 	public boolean getPlay(){
 		return play; 
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public static void setDragonAnimation(AnimatedComponent a, String imgSrc){
 		try{

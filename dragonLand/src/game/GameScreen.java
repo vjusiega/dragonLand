@@ -16,6 +16,7 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import dragonComponents.Dragon;
+import dragonComponents.gameDragonInterface;
 import guiPractice.ClickableScreen;
 import guiPractice.Screen;
 import guiPractice.components.Action;
@@ -35,8 +36,11 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	private Button scoreButton;
 	private Graphic background;
 
-	private static ArrayList<Star> starArray;
+	private static ArrayList<Star1> starArray;
 	private static int score;
+	
+	private boolean paused;
+	
 	
 	public GameScreen(int width, int height) {
 		super(width, height);
@@ -44,7 +48,9 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	
 	@Override
 	public void initAllObjects(ArrayList<Visible> view) {
-		score = 100;
+		//initial score is 0 and it should count the number of stars caught
+		score = 0;
+		paused = false; 
 
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
 		viewObjects.add(background);
@@ -78,7 +84,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		view.add(scoreButton);
 //		view.add(highScoreButton);
 		
-		starArray = new ArrayList<Star>();
+		starArray = new ArrayList<Star1>();
 		view.add(new Star1(100, 100, 100, 100, this));
 		
 		GameVioletta.addDragon("img/dragon1.png");
@@ -86,14 +92,18 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		for(Dragon d : GameVioletta.getDragonArray()){
 			view.add(d);
 		}
-		
 	}
 	
-	public static ArrayList<Star> getStarArray(){
+	public static ArrayList<Star1> getStarArray(){
 		return starArray;
 	}
 	
-	public void addStar(String imgSrc){
+	public void addStar(){
+		int randomX = (int) (Math.random()*GameScreen.getWidth()); 
+		System.out.println(randomX);
+		addObject(new Star1(randomX, 100, 100, 100, this));
+		
+		
 		//Star starImage = new Star(100, 100, 100, 100);
 		/*
 		int xPos = (int) (Math.random()*GameScreen.getWidth()); 
@@ -106,7 +116,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		return starImage;
 		*/
 	}
-	
+
 	public void removeStar(Star1 star){
 		//If the y-value of the star reaches a certain point
 		//This method will remove the star from the screen
@@ -115,11 +125,12 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		setScore(score + 1);
-		if(score == 105 || score == 205){
-			addObject(GameVioletta.addDragon("img/dragon1.png"));
-		}
-		scoreButton.setText("Score: " + score);
+//		setScore(score + 1);
+//		if(score == 10 || score == 20){
+//			addObject(GameVioletta.addDragon("img/dragon1.png"));
+//		}
+//		scoreButton.setText("Score: " + score);
+		addStar();
 	}
 
 	@Override
@@ -169,7 +180,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	
 	//Pause is not working
 	public void pause() {
-		for(Star s: starArray){
+		for(Star1 s: starArray){
 			s.setVy(0);
 		}
 	}

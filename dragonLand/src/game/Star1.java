@@ -34,6 +34,5 @@ public class Star1 extends GraphicMovingComponent {
 		if(getY() >= 540){
 			game.removeStar(this);
 		}
-
 	}
 }
