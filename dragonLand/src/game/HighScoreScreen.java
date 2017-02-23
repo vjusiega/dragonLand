@@ -60,25 +60,30 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		highScores.add(0);
 		sortScores(highScores);
 		//helpBox = new Button()
-		help = new Button(getWidth()-90, 580, 40, 40, "?", DragonLand.DARKER_NUDE, new Action() {
+		help = new Button(getWidth()-105, 565, 40, 40, "?", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
-				
+				if(viewObjects.contains(helpBox)){
+					viewObjects.remove(helpBox);
+				}
+				else viewObjects.add(helpBox);
 			}
 
 		});
-		yourScore = new Button(345, 183, 300, 60, "Your score: " + GameScreen.getScore(), DragonLand.DARKER_NUDE, null);
+		helpBox = new Button(100, 150, getWidth()-200, getHeight()-225, "This is the help dialog", DragonLand.BRIGHT_PINK, null);
+		helpBox.setSize(40);
+		yourScore = new Button(345, 173, 300, 60, "Your score: " + GameScreen.getScore(), DragonLand.DARKER_NUDE, null);
 		yourScore.setSize(30);
-		layerOne = new CurvedButton(50,75,getWidth()-100, getHeight()-100,null,DragonLand.LIGHT_NUDE, null);
-		layerTwo = new Button(100, 160, getWidth()-200, getHeight()-225, null, DragonLand.BRIGHT_PINK, null);
-		title = new Button((getWidth()/2)-125, 85, 250, 65, "High Scores", DragonLand.DARKER_NUDE, null);
+		layerOne = new CurvedButton(35,50,getWidth()-75, getHeight()-75,null,DragonLand.LIGHT_NUDE, null);
+		layerTwo = new Button(100, 150, getWidth()-200, getHeight()-225, null, DragonLand.BRIGHT_PINK, null);
+		title = new Button((getWidth()/2)-125, 65, 250, 65, "High Scores", DragonLand.DARKER_NUDE, null);
 		title.setSize(40);
 		background = new Background(0,0, getWidth(), getHeight());
-		coinsWon = new Button(345, 480, 300, 60, "Coins Won: " + getCoins(GameScreen.getScore()), DragonLand.DARKER_NUDE, null);
+		coinsWon = new Button(345, 470, 300, 60, "Coins Won: " + getCoins(GameScreen.getScore()), DragonLand.DARKER_NUDE, null);
 		coinsWon.setSize(30);
-		scores = new Button(295,262,400,200,null, DragonLand.DARKER_NUDE,null);
-		totalCoins = new Button(100,87,180,55,"Total Coins: " + (getCoins(GameScreen.getScore()) + tCoins), DragonLand.DARKER_NUDE,null);
-		clearScores = new Button(795, 33, 150, 40, "Clear Scores?", DragonLand.DARKER_NUDE, new Action(){
+		scores = new Button(295,252,400,200,null, DragonLand.DARKER_NUDE,null);
+		totalCoins = new Button(120,65,180,55,"Total Coins: " + (getCoins(GameScreen.getScore()) + tCoins), DragonLand.DARKER_NUDE,null);
+		clearScores = new Button(795, 75, 150, 40, "Clear Scores?", DragonLand.DARKER_NUDE, new Action(){
 			
 			@Override
 			public void act(){
@@ -88,7 +93,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 				yourScore.setText("Scores Cleared");
 			}
 		});
-		back = new Button(50,37, 40, 40, "X", DragonLand.DARKER_NUDE, new Action(){	
+		back = new Button(50,75, 40, 40, "X", DragonLand.DARKER_NUDE, new Action(){	
 
 			@Override
 			public void act() {
