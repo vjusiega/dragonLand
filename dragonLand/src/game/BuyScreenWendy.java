@@ -160,31 +160,5 @@ private void buttonArrows() {
 }
 
 	
-	public static void setNumOfDragon()
-	{
-		numOfDragons ++;
-	}
-	
-	public static int getPageNum(){
-		return pageNum;
-	}
-
-//	public static int getNum(){
-//		return num;
-//	}
-//
-//	public static int getNumOfDragon()
-//	{
-//		return numOfDragons;
-//	}
-//	
-//	public static void setNumOfDragon()
-//	{
-//		numOfDragons ++;
-//	}
-//	
-//	public static int getPageNum(){
-//		return pageNum;
-//	}
 
 }
