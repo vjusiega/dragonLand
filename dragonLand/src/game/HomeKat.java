@@ -175,7 +175,7 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 			}
 		}
 	}
-	public void removeDragon(Dragon d,ArrayList<Visible> viewObjects){
+	public static void removeDragon(Dragon d,ArrayList<Visible> viewObjects){
 		
 		locationsX.add(d.getX());
 		locationsY.add(d.getY());
@@ -204,7 +204,7 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 		return dragons;
 	}
 
-	public ArrayList<Dragon> getDragonsOnScreen() {
+	public static ArrayList<Dragon> getDragonsOnScreen() {
 		return dragonsOnScreen;
 	}
 
