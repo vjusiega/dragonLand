@@ -53,8 +53,6 @@ public class BuyScreenWendy extends ShopScreen{
 //		{
 //			dragonsInShop.add(sold);
 //		}
-
-		
 			
 	}
 		
