@@ -125,4 +125,9 @@ public class DragonLabel2 extends Component implements Clickable{
 	public void act() {
 		this.action.act();
 	}
+
+	@Override
+	public Action getAction() {
+		return action;
+	}
 }

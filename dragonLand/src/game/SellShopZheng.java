@@ -135,7 +135,7 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 //					System.out.println(dragonsInSellShop.toString());
 					
 					DragonLand.coins += label.getDragonPrice().getPrice();
-					//getCoins().setCoins();
+					getCoins().setCoins();
 					
 					getDragonAmount().setText(dragonsInSellShop.size() + "/6 Dragons");
 					
