@@ -34,6 +34,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	private Button exit;
 	private Button helpButton;
 	private Button scoreButton;
+	private Button highScoreButton;
 	private Graphic background;
 
 	private static ArrayList<Star1> starArray;
@@ -58,7 +59,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		exit = new Button(30, 50, 40, 40, "X", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
-				DragonLand.game.setScreen(DragonLand.highscoreScreen);
+				DragonLand.game.setScreen(DragonLand.homeScreen);
 			}
 		});
 
@@ -71,21 +72,22 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 
 		});
 		
-		scoreButton = new Button(getWidth()-150, 50, 125, 50, "Score: " + score, DragonLand.DARKER_NUDE, null);
-//		highScoreButton = new Button(getWidth()-200, 50, 125, 50, "High Scores", DragonLand.DARKER_NUDE, new Action() {
-//			@Override
-//			public void act() {
-//				//DragonLand.game.setScreen(DragonLand.highscoreScreen);
-//			}
-//		});
+		scoreButton = new Button(getWidth()-150, 50, 120, 50, "Score: " + score, DragonLand.DARKER_NUDE, null);
+		highScoreButton = new Button(getWidth()-150, 105, 120, 50, "High Scores", DragonLand.DARKER_NUDE, new Action() {
+			@Override
+			public void act() {
+				DragonLand.game.setScreen(DragonLand.highscoreScreen);
+			}
+		});
 		
 		view.add(exit);
 		view.add(helpButton);
+		view.add(highScoreButton);
 		view.add(scoreButton);
-//		view.add(highScoreButton);
 		
 		starArray = new ArrayList<Star1>();
-		view.add(new Star1(100, 100, 100, 100, this));
+		//addStar();
+		view.add(addStar());
 		
 		GameVioletta.addDragon("img/dragon1.png");
 		
@@ -98,31 +100,24 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		return starArray;
 	}
 	
-	public void addStar(){
-		int randomX = (int) (Math.random()*GameScreen.getWidth()); 
-		System.out.println(randomX);
-		addObject(new Star1(randomX, 100, 100, 100, this));
-		
-		
-		//Star starImage = new Star(100, 100, 100, 100);
-		/*
+	public Star1 addStar(){
 		int xPos = (int) (Math.random()*GameScreen.getWidth()); 
 		int yPos = 10;
 		int starH = 100;
 		int starW = 100;
-		
-		Star starImage = new Star(xPos, yPos, starW, starH);		
+		Star1 starImage = new Star1(xPos, yPos, starW, starH, this);
 		starArray.add(starImage);
-		return starImage;
-		*/
+		return starImage;	
 	}
 
-	public void removeStar(Star1 star){
+	public Star1 removeStar(Star1 star){
+		return star;
+		
 		//If the y-value of the star reaches a certain point
 		//This method will remove the star from the screen
 		//return(star);
 	}
-
+	
 	@Override
 	public void keyTyped(KeyEvent e) {
 //		setScore(score + 1);
