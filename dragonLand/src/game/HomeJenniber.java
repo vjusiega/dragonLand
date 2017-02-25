@@ -24,10 +24,9 @@ import guiPractice.components.Visible;
  */
 public class HomeJenniber implements Runnable{
 	
-	private static int hungryTime;
 	//private int[] dragonNumbers;
 	//private ArrayList<Dragon> hungryDragons;
-	private ArrayList<HungryTimesInterface> hungryBoxTimes;
+	private ArrayList<HungryBox> hungryBoxTimes;
 	/**
 	 * 
 	 */
@@ -45,15 +44,16 @@ public class HomeJenniber implements Runnable{
 	
 	@Override
 	public void run() {
-		sleepHungryTime();
-		hungryTime--;
-		HomeScreen.update();
+		HungryBox hungryBox = hungryBoxTimes.get(hungryBoxTimes.size()-1);
+		hungryBox.setHungryTime(hungryBox.getHungryTime()-1);
+		sleepHungryTime(hungryBox);
+		hungryBox.update();
 		checkRemoveDragon(null);
 	}
 	
-	private void sleepHungryTime(){
+	private void sleepHungryTime(HungryBox hungryBox){
 		try{
-			while(hungryTime>=0){
+			while(hungryBox.getHungryTime()>=0){
 				Thread.sleep(1000);
 			}
 		}catch(InterruptedException e){
@@ -63,9 +63,9 @@ public class HomeJenniber implements Runnable{
 	
 	public void removeHungryAndDragon(int HungryNum, ArrayList<Visible> viewObjects) {
 		
-		Dragon d = HomeKat.getDragonsOnScreen().get(HungryNum);
+		Dragon d = HomeKat.dragonsOnScreen.get(HungryNum);
 		for(int i=0; i<hungryBoxTimes.size();i++){
-			HungryTimesInterface hungry = hungryBoxTimes.get(i);
+			HungryBox hungry = hungryBoxTimes.get(i);
 			if(hungry.getX()+30==d.getX() && hungry.getY()-100==d.getY()){
 				hungryBoxTimes.remove(hungry);
 			}
@@ -76,8 +76,8 @@ public class HomeJenniber implements Runnable{
 
 	//fix this
 	private void checkRemoveDragon(ArrayList<Visible> viewObjects) {
-		for(int i=0; i< HomeKat.getDragonsOnScreen().size();i++){
-			Dragon d = HomeKat.getDragonsOnScreen().get(i);
+		for(int i=0; i< HomeKat.dragonsOnScreen.size();i++){
+			Dragon d = HomeKat.dragonsOnScreen.get(i);
 			if(d.hasHungryBox()){
 				for(int j=0; j<hungryBoxTimes.size(); j++){
 					if(hungryBoxTimes.get(j).getX()+30==d.getX() && hungryBoxTimes.get(j).getY()-100==d.getY()){
@@ -92,19 +92,11 @@ public class HomeJenniber implements Runnable{
 	Dragon getRandDragon(){
 		int randNum = 1;
 		do{
-			randNum = (int) Math.random()*HomeKat.getDragonsOnScreen().size();
+			randNum = (int) Math.random()*HomeKat.dragonsOnScreen.size();
 		}
-		while(!HomeKat.getDragonsOnScreen().get(randNum).hasHungryBox());
+		while(!HomeKat.dragonsOnScreen.get(randNum).hasHungryBox());
 		
-		return HomeKat.getDragonsOnScreen().get(randNum);
-	}
-
-	public int getHungryTime() {
-		return hungryTime;
-	}
-
-	public void setHungryTime(int num) {
-		hungryTime = num;
+		return HomeKat.dragonsOnScreen.get(randNum);
 	}
 
 	public HungryBox getHungryBox() {

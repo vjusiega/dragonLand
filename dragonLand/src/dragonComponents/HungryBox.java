@@ -21,10 +21,10 @@ import guiPractice.components.Visible;
  * @author Jenniber Franco
  *
  */
-public class HungryBox extends Button implements  Runnable {
+public class HungryBox extends Button implements Runnable{
 
-	private static final int W = 50;
-	private static final int H = 25;
+	private static final int W = 100;
+	private static final int H = 50;
 	private static final String TEXT = "Hungry!";
 	private static int hungryTime=15;
 	
@@ -90,6 +90,8 @@ public class HungryBox extends Button implements  Runnable {
 
 	@Override
 	public void run() {
+		// TODO Auto-generated method stub
 		
 	}
+	
 }
