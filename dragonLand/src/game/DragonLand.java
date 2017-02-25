@@ -32,7 +32,6 @@ public class DragonLand extends GUIApplication {
 	public static Screen shopMain; // shop 1
 	public static Screen sellScreen; // shop 2
 	public static Screen buyScreen; // shop 3
-	public static Screen buyScreen2; // shop 3
 	public static Screen highscoreScreen; // high score
 	public static Screen miniGameScreen; // minigame
 	public static Color NAVY;
@@ -72,7 +71,6 @@ public class DragonLand extends GUIApplication {
 		sellScreen = new SellShopZheng(getWidth(),getHeight());
 		//testShop = new ShopScreen(getWidth(),getHeight());
 		buyScreen = new BuyScreenWendy(getWidth(),getHeight());
-		buyScreen2 = new BuyScreenWendy2(getWidth(),getHeight());
 //		highscoreScreen = new (getWidth(),getHeight());
 //		miniGameScreen = new (getWidth(),getHeight());
 		//uncomment your line once u have a class, input class name before get width()/height()
