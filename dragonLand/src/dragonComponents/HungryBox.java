@@ -12,10 +12,14 @@ import guiPractice.components.Button;
  * @author Jenniber Franco
  *
  */
+<<<<<<< HEAD
 public class HungryBox extends Button {
+=======
+public class HungryBox extends Button implements Runnable{
+>>>>>>> refs/remotes/origin/mainScreenJenniber
 
-	private static final int W = 50;
-	private static final int H = 25;
+	private static final int W = 100;
+	private static final int H = 50;
 	private static final String TEXT = "Hungry!";
 	
 	
@@ -41,12 +45,23 @@ public class HungryBox extends Button {
 
 	}
 
+<<<<<<< HEAD
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
+=======
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+>>>>>>> refs/remotes/origin/mainScreenJenniber
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> refs/remotes/origin/mainScreenJenniber
 }

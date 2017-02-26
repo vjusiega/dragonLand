@@ -16,7 +16,12 @@ public class HomeKat {
 	private ArrayList<Integer> locationsX;
 	private ArrayList<Integer> locationsY;
 	private static ArrayList<Dragon> dragons=new ArrayList<Dragon>(); 
+<<<<<<< HEAD
 	private ArrayList<Dragon> dragonsOnScreen = new ArrayList<Dragon>();
+=======
+	public static ArrayList<Dragon> dragonsOnScreen = new ArrayList<Dragon>();
+	private boolean clicked;
+>>>>>>> refs/remotes/origin/mainScreenJenniber
 	
 	public HomeKat() {
 		makeLocations();
@@ -88,6 +93,7 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 			addAnimation(viewObjects,0,0, names[i], price+i*50, "img/dragon"+i+".png");
 		}
 	}
+<<<<<<< HEAD
 //	public void dragonsOnScreen(ArrayList<Visible> viewObjects){
 //		String[] purchased = Shop.getNamesOfPurchased();
 //		checkToRemove(purchased, viewObjects);
@@ -113,6 +119,95 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 //			}	
 //		}
 //	}
+=======
+	public void dragonsOnScreen(ArrayList<Visible> viewObjects){
+		//String[] purchased = ShopSell.getNamesOfPurchased();
+		String[] purchased = {"Thorn","Mushu","Falcor","Elliot","Puff","Toothless"};
+		checkToRemove(purchased, viewObjects);
+		addNewDragons(purchased, viewObjects);
+	}
+
+	private void addNewDragons(String[] purchased, ArrayList<Visible> viewObjects) {
+		boolean exists = false;
+		for(int i=0;i<purchased.length;i++){
+			for(int j=0;j<dragonsOnScreen.size();j++){
+				if(purchased[i]==dragonsOnScreen.get(j).getName())
+					exists=true;
+			}
+			if(!exists){
+				addDragon(searchByName(purchased[i]),viewObjects);
+			}
+			exists=false;
+		}
+	}
+
+	private Dragon searchByName(String name) {
+		for(Dragon d: dragons){
+			if(d.getName()==name)
+				return d;
+		}
+		return null;
+	}
+
+	private void checkToRemove(String[] purchased,ArrayList<Visible> viewObjects) {
+		boolean exist = false;
+		for(int i=0;i<dragonsOnScreen.size();i++){
+			for(int j=0;j<purchased.length;j++){
+				if(dragonsOnScreen.get(i).getName()==purchased[j])
+					exist = true;
+			}
+			if(!exist){
+				removeDragon(dragonsOnScreen.get(i),viewObjects);
+				i--;
+			}
+		}
+	}
+	public static void removeDragon(Dragon d,ArrayList<Visible> viewObjects){
+		
+		locationsX.add(d.getX());
+		locationsY.add(d.getY());
+		//adds dragons
+		dragonsOnScreen.remove(d);
+		viewObjects.remove(d);
+	}
+	public static void addDragon(Dragon d,ArrayList<Visible> viewObjects){
+		//adds back the available dragon spot in the field
+		
+		int randomInt=(int)(Math.random()*locationsX.size());
+		d.setX(locationsX.get(randomInt));
+		locationsX.remove(randomInt);
+		
+		randomInt=(int)(Math.random()*(locationsY.size()));
+		d.setY(locationsY.get(randomInt));
+		locationsY.remove(randomInt);
+		//adds dragons
+		d.update();
+		d.play();
+		dragonsOnScreen.add(d);
+		viewObjects.add(d);
+	}
+
+	public static ArrayList<Dragon> getDragons() {
+		return dragons;
+	}
+
+	public ArrayList<Dragon> getDragonsOnScreen() {
+		return dragonsOnScreen;
+	}
+
+	@Override
+	public void removeHungryDragon(Dragon d, ArrayList<Visible> viewObjects) {
+		locationsX.add(d.getX());
+		locationsY.add(d.getY());
+		//adds dragons
+		dragonsOnScreen.remove(d);
+		viewObjects.remove(d);
+		//ShopBuy.addFlownAwayDragon(d);
+		//ShopSell.removeFlownAwayDragon(d);
+	}
+
+	
+>>>>>>> refs/remotes/origin/mainScreenJenniber
 
 	
 }
