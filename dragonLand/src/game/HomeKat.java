@@ -7,27 +7,58 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import dragonComponents.Dragon;
+import guiPractice.components.Action;
 import guiPractice.components.AnimatedComponent;
+import guiPractice.components.Button;
 import guiPractice.components.Visible;
 
 public class HomeKat {
 
 	private int price;
-	private ArrayList<Integer> locationsX;
-	private ArrayList<Integer> locationsY;
-	private static ArrayList<Dragon> dragons=new ArrayList<Dragon>(); 
-<<<<<<< HEAD
-	private ArrayList<Dragon> dragonsOnScreen = new ArrayList<Dragon>();
-=======
+	private static ArrayList<Integer> locationsX=new ArrayList<Integer>();
+	private static ArrayList<Integer> locationsY=new ArrayList<Integer>();
+	public static ArrayList<Dragon> dragons=new ArrayList<Dragon>(); 
 	public static ArrayList<Dragon> dragonsOnScreen = new ArrayList<Dragon>();
 	private boolean clicked;
->>>>>>> refs/remotes/origin/mainScreenJenniber
 	
-	public HomeKat() {
+	public HomeKat(ArrayList<Visible> viewObjects,int width,int height) {
+		clicked =true;
+		Button shop = new Button(width-110-(width*2/100),(height*5/100),  110,  50,  "Shop",DragonLand.DARKER_NUDE,  null);
+		viewObjects.add(shop);
+		Button minigame = new Button(width-110-(width*2/100),(height*5/100)+53,  110,  50,  "Minigame",DragonLand.DARKER_NUDE, null);
+//		Button minigame = new Button(getWidth()-110-(getWidth()*2/100),(getHeight()*5/100)+53,  110,  50,  "Minigame",DragonLand.DARKER_NUDE,  new Action(){
+//
+//			@Override
+//			public void act() {
+//				DragonLand.game.setScreen(miniGameScreen);
+//			}
+//		
+//		});
+		viewObjects.add(minigame);
+		Button helpLayer = new Button((int)(width*0.1),(int)(height*0.1),(int)(width*0.8),(int)(height*0.8),  "These will be rules",DragonLand.DARKER_NUDE,  new Action(){
+
+			@Override
+			public void act() {
+				viewObjects.remove(this);
+			}});
+		
+		Button help = new Button(width-50-(width*2/100),height-50-(height*2/100),  50,  50,  "?",DragonLand.DARKER_NUDE,  new Action(){
+			@Override
+			public void act() {
+					viewObjects.add(helpLayer);			
+			}});
+		
+		viewObjects.add(help);
+		Button title = new Button((width*2/100),(height*5/100),  350,  50,  "Welcome to Dragon Land!",DragonLand.DARKER_NUDE,  null);
+		title.setSize(26);
+		viewObjects.add(title);
+		
 		makeLocations();
+		makeDragons(viewObjects);
+		dragonsOnScreen(viewObjects);
 		}
 	
-	private void makeLocations() {
+	public static void makeLocations() {
 		
 		locationsX.add(100);
 		locationsX.add(250);
@@ -36,12 +67,12 @@ public class HomeKat {
 		locationsX.add(700);
 		locationsX.add(850);
 		
-		locationsY.add(300);
+		locationsY.add(150);
 		locationsY.add(200);
 		locationsY.add(250);
-		locationsY.add(400);
-		locationsY.add(500);
-		locationsY.add(600);
+		locationsY.add(360);
+		locationsY.add(420);
+		locationsY.add(480);
 		
 		
 	}
@@ -73,55 +104,25 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		viewObjects.add(a);
-		a.update();
+		dragons.add((Dragon) a);
 		a.setX(x);
 		a.setY(y);
 		
-		//dragons.add((Dragon) a);
-		//System.out.println(dragons.size());
-		a.play();
 		
 		
 	}
 	public static void makeDragons(ArrayList<Visible> viewObjects){
 		String[] names = new String[] {"Rowdy","Thorn","Mushu","Falcor","Elliot","Puff","Spyro","Sandy",
 				"Scaly","Nessie","Nymph","Sparky","Flambi","Drago","Viper","Moon","Saphira","Scorch","Toothless","Stormfly"};
+		
 		int price=50;
 		
 		for(int i=0;i<20;i++){
 			addAnimation(viewObjects,0,0, names[i], price+i*50, "img/dragon"+i+".png");
 		}
 	}
-<<<<<<< HEAD
-//	public void dragonsOnScreen(ArrayList<Visible> viewObjects){
-//		String[] purchased = Shop.getNamesOfPurchased();
-//		checkToRemove(purchased, viewObjects);
-//		addNewDragons(purchased,viewObjects);
-//	}
-//
-//	private void addNewDragons(String[] purchased, ArrayList<Visible> viewObjects) {
-//		for(int i=0;i<purchased.length;i++){
-//			for(int j=0;j<dragonsOnScreen.size();j++){
-//				
-//			}
-//		}
-//	}
-//
-//	private void checkToRemove(String[] purchased,ArrayList<Visible> viewObjects) {
-//		for(int i=0;i<dragonsOnScreen.size();i++){
-//			for(int j=0;j<purchased.length;j++){
-//				if(dragonsOnScreen.get(i).getName()!=purchased[j]){
-//					viewObjects.remove(dragonsOnScreen.get(i));
-//					dragonsOnScreen.remove(dragonsOnScreen.get(i));
-//					j=-1;
-//				}
-//			}	
-//		}
-//	}
-=======
 	public void dragonsOnScreen(ArrayList<Visible> viewObjects){
-		//String[] purchased = ShopSell.getNamesOfPurchased();
+		//String[] purchased = Shop.getNamesOfPurchased();
 		String[] purchased = {"Thorn","Mushu","Falcor","Elliot","Puff","Toothless"};
 		checkToRemove(purchased, viewObjects);
 		addNewDragons(purchased, viewObjects);
@@ -137,7 +138,6 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 			if(!exists){
 				addDragon(searchByName(purchased[i]),viewObjects);
 			}
-			exists=false;
 		}
 	}
 
@@ -163,7 +163,7 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 		}
 	}
 	public static void removeDragon(Dragon d,ArrayList<Visible> viewObjects){
-		
+		//allows 
 		locationsX.add(d.getX());
 		locationsY.add(d.getY());
 		//adds dragons
@@ -190,24 +190,6 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 	public static ArrayList<Dragon> getDragons() {
 		return dragons;
 	}
-
-	public ArrayList<Dragon> getDragonsOnScreen() {
-		return dragonsOnScreen;
-	}
-
-	@Override
-	public void removeHungryDragon(Dragon d, ArrayList<Visible> viewObjects) {
-		locationsX.add(d.getX());
-		locationsY.add(d.getY());
-		//adds dragons
-		dragonsOnScreen.remove(d);
-		viewObjects.remove(d);
-		//ShopBuy.addFlownAwayDragon(d);
-		//ShopSell.removeFlownAwayDragon(d);
-	}
-
-	
->>>>>>> refs/remotes/origin/mainScreenJenniber
 
 	
 }
