@@ -110,9 +110,9 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		return starImage;	
 	}
 
-	public Star1 removeStar(Star1 star){
-		return star;
-		
+	public void removeStar(Star1 star){
+		System.out.println("here");
+		starArray.remove(star);
 		//If the y-value of the star reaches a certain point
 		//This method will remove the star from the screen
 		//return(star);
