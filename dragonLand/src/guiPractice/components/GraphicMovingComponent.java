@@ -23,7 +23,7 @@ public abstract class GraphicMovingComponent extends MovingComponent {
 
 	@Override
 	public void drawImage(Graphics2D g) {
-		Graphic star = new Graphic(100, 100, 100, 100, "img/star.png");
+		Graphic star = new Graphic(00, 100, 100, 100, "img/star.png");
 		g.drawImage(star.getImage(), star.getX(), star.getY(), star.getWidth(), star.getHeight(), null);
 	}
 	
