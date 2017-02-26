@@ -42,7 +42,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	
 	private boolean paused;
 	
-	
 	public GameScreen(int width, int height) {
 		super(width, height);
 	}
@@ -109,7 +108,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		int starH = 100;
 		int starW = 100;
 		Star1 starImage = new Star1(xPos, yPos, starW, starH, this);
-		starArray.add(starImage);
+		//starArray.add(starImage);
+		addObject(starImage);
 		return starImage;	
 	}
 
