@@ -33,7 +33,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 
 	private Button exit;
 	private Button helpButton;
-	private Button scoreButton;
+	private static Button scoreButton;
 	private Button highScoreButton;
 	private Graphic background;
 
@@ -41,7 +41,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	private static int score;
 	
 	private boolean paused;
-	
 	
 	public GameScreen(int width, int height) {
 		super(width, height);
@@ -59,7 +58,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		exit = new Button(30, 50, 40, 40, "X", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
-				DragonLand.game.setScreen(DragonLand.homeScreen);
+				DragonLand.game.setScreen(DragonLand.highscoreScreen);
 			}
 		});
 
@@ -72,7 +71,10 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 
 		});
 		
+		//displays the score on screen
 		scoreButton = new Button(getWidth()-150, 50, 120, 50, "Score: " + score, DragonLand.DARKER_NUDE, null);
+		
+		//allows the player to see the high scores
 		highScoreButton = new Button(getWidth()-150, 105, 120, 50, "High Scores", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
@@ -86,7 +88,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		view.add(scoreButton);
 		
 		starArray = new ArrayList<Star1>();
-		//addStar();
 		view.add(addStar());
 		
 		GameVioletta.addDragon("img/dragon1.png");
@@ -95,6 +96,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 			view.add(d);
 		}
 	}
+	
 	
 	public static ArrayList<Star1> getStarArray(){
 		return starArray;
@@ -106,7 +108,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		int starH = 100;
 		int starW = 100;
 		Star1 starImage = new Star1(xPos, yPos, starW, starH, this);
-		starArray.add(starImage);
+		//starArray.add(starImage);
+		addObject(starImage);
 		return starImage;	
 	}
 
@@ -120,12 +123,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
-//		setScore(score + 1);
-//		if(score == 10 || score == 20){
-//			addObject(GameVioletta.addDragon("img/dragon1.png"));
-//		}
-//		scoreButton.setText("Score: " + score);
-		addStar();
+		addObject(addStar());
 	}
 
 	@Override
@@ -161,12 +159,16 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	 * Getter and setter for score
 	 */
 	
-	public void setScore(int x){
+	public static void setScore(int x){
 		score = x;
 	}
 	
 	public static int getScore(){
 		return score; 
+	}
+	
+	public static void setScoreDisplay(){
+		scoreButton.setText("Score: " + score);
 	}
 	
 	/*
