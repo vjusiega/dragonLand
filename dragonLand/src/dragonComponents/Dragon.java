@@ -28,6 +28,7 @@ public class Dragon extends AnimatedComponent {
 	int direction;
 	int initialX;
 	int initialY;
+	boolean hungryBox;
 	
 	
 	private int UP=0;
@@ -42,6 +43,7 @@ public class Dragon extends AnimatedComponent {
 		this.name=name;
 		this.price=price;
 		this.imgSrc=imgSrc;
+		this.hungryBox = false;
 
 	}
 
@@ -146,6 +148,14 @@ public class Dragon extends AnimatedComponent {
 
 	public void setImgSrc(String imgSrc) {
 		this.imgSrc = imgSrc;
+	}
+
+	public boolean getHungryBox() {
+		return hungryBox;
+	}
+	
+	public void setHungryBox(boolean hungryBox){
+		this.hungryBox = hungryBox; 
 	}
 
 }
