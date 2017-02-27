@@ -202,7 +202,7 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 		return dragons;
 	}
 
-	public static ArrayList<Dragon> getDragonsOnScreen() {
+	public ArrayList<Dragon> getDragonsOnScreen() {
 		return dragonsOnScreen;
 	}
 
