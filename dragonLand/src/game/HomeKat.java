@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 
 import dragonComponents.Dragon;
 import dragonComponents.DragonArrayInterface;
+import dragonComponents.NoBorderButton;
 import guiPractice.components.Action;
 import guiPractice.components.AnimatedComponent;
 import guiPractice.components.Button;
@@ -20,9 +21,40 @@ public class HomeKat implements DragonArrayInterface {
 	private static ArrayList<Integer> locationsY=new ArrayList<Integer>();
 	private static ArrayList<Dragon> dragons=new ArrayList<Dragon>(); 
 	private static ArrayList<Dragon> dragonsOnScreen = new ArrayList<Dragon>();
-
+	
+	//fields for help dialog
+	private NoBorderButton help1;
+	private String thelp1;
+	private NoBorderButton help2;
+	private String thelp2;
+	private NoBorderButton help3;
+	private String thelp3;
+	private NoBorderButton help4;
+	private String thelp4;
+	private NoBorderButton help5;
+	private String thelp5;
 	
 	public HomeKat(ArrayList<Visible> viewObjects, int width,int height) {
+		
+		thelp1 = "Welcome to Dragon Land!";
+		help1 = new NoBorderButton(300,75,400,50,  thelp1,DragonLand.DARKER_NUDE,null);
+		help1.setSize(30);
+		
+		thelp2 = "You can have up to 6 dragons on the home screen";
+		help2 = new NoBorderButton(250,150,500,35,  thelp2,DragonLand.DARKER_NUDE,null);
+		help2.setSize(20);
+		
+		thelp3 = "You can buy more dragons or sell them in the shop";
+		help3 = new NoBorderButton(250,200,500,35,  thelp3,DragonLand.DARKER_NUDE,null);
+		help3.setSize(20);
+		
+		thelp4 = "To buy dragons, you must play the minigame to get coins";
+		help4 = new NoBorderButton(225,250,550,35,  thelp4,DragonLand.DARKER_NUDE,null);
+		help4.setSize(20);
+		
+		thelp5 = "Your top 3 scores will be recorded as high scores";
+		help5 = new NoBorderButton(250,300,500,35,  thelp5,DragonLand.DARKER_NUDE,null);
+		help5.setSize(20);
 		
 		Button shop = new Button(width-110-(width*2/100),(height*5/100),  110,  50,  "Shop",DragonLand.DARKER_NUDE,  new Action(){
 
@@ -42,7 +74,7 @@ public class HomeKat implements DragonArrayInterface {
 		});
 		viewObjects.add(minigame);
 		
-		Button helpLayer = new Button((int)(width*0.1),(int)(height*0.1),(int)(width*0.8),(int)(height*0.8),  "These will be rules /n hello \n hello",DragonLand.DARKER_NUDE,  new Action(){
+		Button helpLayer = new Button((int)(width*0.1),(int)(height*0.1),(int)(width*0.8),(int)(height*0.8),  null,DragonLand.DARKER_NUDE,  new Action(){
 
 			@Override
 			public void act() {
@@ -54,9 +86,19 @@ public class HomeKat implements DragonArrayInterface {
 			public void act() {
 					if(viewObjects.contains(helpLayer)){
 						viewObjects.remove(helpLayer);
+						viewObjects.remove(help1);
+						viewObjects.remove(help2);
+						viewObjects.remove(help3);
+						viewObjects.remove(help4);
+						viewObjects.remove(help5);
 					}
 					else
 						viewObjects.add(helpLayer);	
+						viewObjects.add(help1);
+						viewObjects.add(help2);
+						viewObjects.add(help3);
+						viewObjects.add(help4);
+						viewObjects.add(help5);
 			}});
 		
 		viewObjects.add(help);
