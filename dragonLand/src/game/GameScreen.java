@@ -103,6 +103,15 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	}
 	
 	public Star1 addStar(){
+		int xPos = (int) (Math.random()*GameScreen.getWidth()); 
+		int yPos = 10;
+		int starH = 100;
+		int starW = 100;
+		Star1 starImage = new Star1(xPos, yPos, starW, starH, this);
+		addObject(starImage);
+		return starImage;
+		
+		/*
 		Random rand = new Random();
 		int val = rand.nextInt(4) + 1;
 		int xPos = (int) (Math.random()*GameScreen.getWidth()); 
@@ -128,6 +137,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		
 		//try to constantly produce stars and randomize number of seconds that the stars fall
 		return starImage;
+		*/
 	}
 
 	public void removeStar(Star1 star){
