@@ -5,6 +5,7 @@ package game;
 
 import java.util.Random;
 
+import dragonComponents.starInterface;
 import guiPractice.components.GraphicMovingComponent;
 
 
@@ -12,7 +13,7 @@ import guiPractice.components.GraphicMovingComponent;
  * @author Tamanna
  *
  */
-public class Star1 extends GraphicMovingComponent {
+public class Star1 extends GraphicMovingComponent implements starInterface{
 
 	private GameScreen game;
 	
@@ -30,13 +31,11 @@ public class Star1 extends GraphicMovingComponent {
 		this.game = game;
 		setVx(0);
 		touched = false; 
-		play();
-		run();
+//		run();
 	}
 	
 	@Override
 	public void checkBehaviors() {
-		//System.out.println("Updated star");
 		if(getY() >= 560){
 			if(!touched && GameVioletta.checkStarContact(getX(), getWidth())){
 				System.out.println(getY());
@@ -50,9 +49,13 @@ public class Star1 extends GraphicMovingComponent {
 		}
 	}
 	
-	@Override
-	public void run() {
-		Random rand = new Random();
+	
+	
+	
+	
+//	@Override
+//	public void run() {
+//		Random rand = new Random();
 //		int val = rand.nextInt(4) + 1;
 //		int chance = (int) ((Math.random() * 8) + 1);
 //		if (val == 1) { 
@@ -66,26 +69,26 @@ public class Star1 extends GraphicMovingComponent {
 //				
 //			}
 //		}
-		try {
-			Thread.sleep(1);
-			int val = rand.nextInt(4) + 1;
-			int chance = (int) ((Math.random() * 8) + 1);
-			if (val == 1) { 
-				System.out.println(chance);
+//		try {
+//			Thread.sleep(1);
+//			int val = rand.nextInt(4) + 1;
+//			int chance = (int) ((Math.random() * 8) + 1);
+//			if (val == 1) { 
+//				System.out.println(chance);
 				//1/4 of the time
 //				for(int i = 0; i < chance; i++){
 //					
 //				}
-			} else { 
+//			} else { 
 				//3/4 of the time
 //				for(int i = 0; i < chance; i++){
 //					
 //				}
-			}
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			System.out.println("not working");
-			e.printStackTrace();
-		}
-	}
+//			}
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			System.out.println("not working");
+//			e.printStackTrace();
+//		}
+//	}
 }
