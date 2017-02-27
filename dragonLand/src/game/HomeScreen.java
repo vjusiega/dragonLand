@@ -42,7 +42,7 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 		viewObjects.add(background);
 
 		HomeKat katCode=new HomeKat(viewObjects, getWidth(), getHeight());
-		
+		HomeJenniber jenCode = new HomeJenniber(viewObjects);
 
 		run();
 

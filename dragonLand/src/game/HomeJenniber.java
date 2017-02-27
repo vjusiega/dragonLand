@@ -21,7 +21,7 @@ public class HomeJenniber implements Runnable{
 	/**
 	 * 
 	 */
-	public HomeJenniber(Dragon d, ArrayList<Visible> viewObjects) {
+	public HomeJenniber(ArrayList<Visible> viewObjects) {
 		createHungryThread(getRandDragon(), viewObjects);
 	}
 	
