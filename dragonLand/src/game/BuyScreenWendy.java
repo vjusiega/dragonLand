@@ -88,6 +88,7 @@ public class BuyScreenWendy extends ShopScreen{
 			if(dragonsInShop.contains(d))
 			{
 				DragonLabel label = new DragonLabel(DragonLabel2.LABEL_LEFT_MARGIN,y, d,"BUY");
+
 				label.setAction( new Action(){
 					
 					public void act() {

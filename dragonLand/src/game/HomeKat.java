@@ -16,8 +16,6 @@ import guiPractice.components.Visible;
 
 public class HomeKat implements DragonArrayInterface {
 
-	private int price;
-
 	private static ArrayList<Integer> locationsX=new ArrayList<Integer>();
 	private static ArrayList<Integer> locationsY=new ArrayList<Integer>();
 	private static ArrayList<Dragon> dragons=new ArrayList<Dragon>(); 
@@ -44,7 +42,7 @@ public class HomeKat implements DragonArrayInterface {
 		});
 		viewObjects.add(minigame);
 		
-		Button helpLayer = new Button((int)(width*0.1),(int)(height*0.1),(int)(width*0.8),(int)(height*0.8),  "These will be rules",DragonLand.DARKER_NUDE,  new Action(){
+		Button helpLayer = new Button((int)(width*0.1),(int)(height*0.1),(int)(width*0.8),(int)(height*0.8),  "These will be rules /n hello \n hello",DragonLand.DARKER_NUDE,  new Action(){
 
 			@Override
 			public void act() {
@@ -54,7 +52,11 @@ public class HomeKat implements DragonArrayInterface {
 		Button help = new Button(width-50-(width*2/100),height-50-(height*2/100),  50,  50,  "?",DragonLand.DARKER_NUDE,  new Action(){
 			@Override
 			public void act() {
-					viewObjects.add(helpLayer);			
+					if(viewObjects.contains(helpLayer)){
+						viewObjects.remove(helpLayer);
+					}
+					else
+						viewObjects.add(helpLayer);	
 			}});
 		
 		viewObjects.add(help);
@@ -204,7 +206,7 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 		return dragons;
 	}
 
-	public static ArrayList<Dragon> getDragonsOnScreen() {
+	public ArrayList<Dragon> getDragonsOnScreen() {
 		return dragonsOnScreen;
 	}
 

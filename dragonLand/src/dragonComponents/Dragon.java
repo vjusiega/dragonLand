@@ -18,9 +18,7 @@ import guiPractice.components.Visible;
  */
 
 
-public class Dragon extends AnimatedComponent implements DragonInterface,DragonToShop{
-
-
+public class Dragon extends AnimatedComponent {
 	
 	
 	private String name;
@@ -30,6 +28,7 @@ public class Dragon extends AnimatedComponent implements DragonInterface,DragonT
 	int initialX;
 	int initialY;
 	private boolean hungryBox;
+	
 	
 	
 	private int UP=0;
@@ -43,16 +42,7 @@ public class Dragon extends AnimatedComponent implements DragonInterface,DragonT
 		
 		this.name=name;
 		this.price=price;
-		hungryBox=false;
 		this.imgSrc=imgSrc;
-
-//		if(y<350){
-//			direction=DOWN;
-//		}else{
-//			direction=RIGHT;
-//			currentFrame=6;
-//		}
-			
 	}
 
 	public void setY(int y){
@@ -130,7 +120,6 @@ public class Dragon extends AnimatedComponent implements DragonInterface,DragonT
 	public void animationRight(){
 		direction = RIGHT;
 	}
-	
 	public String getName() {
 		return name;
 	}
@@ -159,19 +148,4 @@ public class Dragon extends AnimatedComponent implements DragonInterface,DragonT
 	public void setImgSrc(String imgSrc) {
 		this.imgSrc = imgSrc;
 	}
-
-
-
-
-	@Override
-	public boolean hasHungryBox() {
-		
-		return hungryBox;
-	}
-	public void setHungryBox(boolean hungryBox){
-		this.hungryBox=hungryBox;
-	}
-
-
-
 }
