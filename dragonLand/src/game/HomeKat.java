@@ -22,10 +22,10 @@ public class HomeKat implements DragonArrayInterface {
 	private static ArrayList<Integer> locationsY=new ArrayList<Integer>();
 	private static ArrayList<Dragon> dragons=new ArrayList<Dragon>(); 
 	private static ArrayList<Dragon> dragonsOnScreen = new ArrayList<Dragon>();
-	private boolean clicked;
+
 	
 	public HomeKat(ArrayList<Visible> viewObjects, int width,int height) {
-		clicked =true;
+		
 		Button shop = new Button(width-110-(width*2/100),(height*5/100),  110,  50,  "Shop",DragonLand.DARKER_NUDE,  new Action(){
 
 			@Override
