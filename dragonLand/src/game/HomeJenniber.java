@@ -44,9 +44,9 @@ public class HomeJenniber implements Runnable{
 		checkRemoveDragon(null);
 	}
 	
-	private void sleepHungryTime(){
+	private void sleepHungryTime(HungryBox hungryBox){
 		try{
-			while(hungryTime>=0){
+			while(hungryBox.getHungryTime()>=0){
 				Thread.sleep(1000);
 			}
 		}catch(InterruptedException e){
