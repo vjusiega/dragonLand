@@ -16,6 +16,7 @@ import guiPractice.components.Visible;
 
 public class HomeKat implements DragonArrayInterface {
 
+	public static HomeKat dragonHome;
 	private static ArrayList<Integer> locationsX=new ArrayList<Integer>();
 	private static ArrayList<Integer> locationsY=new ArrayList<Integer>();
 	private static ArrayList<Dragon> dragons=new ArrayList<Dragon>(); 
@@ -67,6 +68,7 @@ public class HomeKat implements DragonArrayInterface {
 		makeLocations();
 		makeDragons(viewObjects);
 		dragonsOnScreen(viewObjects);
+		dragonHome = this;
 		}
 	
 	public static void makeLocations() {
