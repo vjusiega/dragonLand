@@ -15,6 +15,7 @@ import guiPractice.components.Visible;
  */
 public class HomeJenniber implements Runnable{
 	
+	private static int hungryTime;
 	//private int[] dragonNumbers;
 	//private ArrayList<Dragon> hungryDragons;
 	private ArrayList<HungryBox> hungryBoxTimes;
@@ -43,9 +44,9 @@ public class HomeJenniber implements Runnable{
 		checkRemoveDragon(null);
 	}
 	
-	private void sleepHungryTime(HungryBox hungryBox){
+	private void sleepHungryTime(){
 		try{
-			while(hungryBox.getHungryTime()>=0){
+			while(hungryTime>=0){
 				Thread.sleep(1000);
 			}
 		}catch(InterruptedException e){
@@ -85,7 +86,6 @@ public class HomeJenniber implements Runnable{
 			randNum = (int) Math.random()*HomeKat.getDragonsOnScreen().size();
 		}
 		while(!HomeKat.getDragonsOnScreen().get(randNum).hasHungryBox());
-		
 		return HomeKat.getDragonsOnScreen().get(randNum);
 	}
 
@@ -94,3 +94,4 @@ public class HomeJenniber implements Runnable{
 		return new HungryBox(d.getX()-30,d.getY()+100);
 	}
 }
+
