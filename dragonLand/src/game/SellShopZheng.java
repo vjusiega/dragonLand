@@ -12,6 +12,7 @@ import guiPractice.components.Visible;
 public class SellShopZheng extends ShopScreen implements SellScreenInterface, StoreSellInterfaceK{
 	
 	private ArrayList<Dragon> dragonsInSellShop;
+
 	private ArrayList<Dragon> dragonsSold;
 	private int pageNumber;
 	
@@ -105,6 +106,7 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 	
 	public void drawDragons()
 	{
+		System.out.println("hi");
 		int labelY = 0;
 		int endi;
 		if((pageNumber) * 3 > dragonsInSellShop.size())
@@ -140,6 +142,7 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 					setPageDisplay();
 				}
 			});
+			
 			addObject(label);
 		}
 	}
@@ -156,5 +159,14 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 			}
 		}
 			
+	}
+	public ArrayList<Dragon> getDragonsInSellShop() {
+		return dragonsInSellShop;
+	}
+	
+	public void addToDragonsInSellShop(Dragon d) {
+		dragonsInSellShop.add(d);
+		drawDragons();
+		System.out.println(dragonsInSellShop.size());
 	}
 }
