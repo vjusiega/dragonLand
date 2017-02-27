@@ -8,91 +8,77 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 
+import game.DragonToShop;
 import guiPractice.components.AnimatedComponent;
 import guiPractice.components.MovingComponent;
 import guiPractice.components.Visible;
-/**
- * @author Kat 
- *
- */
 
 
-public class Dragon extends AnimatedComponent implements DragonInterface,DragonToShop{
-
+public class Dragon extends AnimatedComponent implements DragonToShop{
 
 	
-	
+	/**
+	 * @author Kat 
+	 *
+	 */
 	private String name;
 	private int price;
 	private String imgSrc;
 	int direction;
 	int initialX;
 	int initialY;
-	private boolean hungryBox;
-	
 	
 	private int UP=0;
  	private int LEFT=1;
  	private int RIGHT =2;
  	private int DOWN=4;
- 	private double VY= Math.random();
- 	
+
 	public Dragon(int x, int y, int w, int h,  String name, int price, String imgSrc) {
 		super(x, y, w, h);
 		
 		this.name=name;
 		this.price=price;
-		hungryBox=false;
 		this.imgSrc=imgSrc;
+		initialY=y;
+		initialX=x;
 
-//		if(y<350){
-//			direction=DOWN;
-//		}else{
-//			direction=RIGHT;
-//			currentFrame=6;
-//		}
+		if(y<350){
+			direction=DOWN;
+			//setVy(1);
+		}else{
+			direction=RIGHT;
+			currentFrame=6;
+			//setVx(1);
+		}
 			
 	}
 
-	public void setY(int y){
-		initialY=y;
-		super.setY(y);
-		if(y<350){
-			direction=DOWN;
-		}else{
-			direction=(int)(Math.random()*1+1);
-			if(direction == 1 )
-				currentFrame=3;
-			else
-				currentFrame=6;
-		}
-	}
-	public void setX(int x){
-		initialX=x;
-		super.setX(x);
-	}
-	
+
+	@Override
 	public void checkBehaviors() {
 		//System.out.println(direction);
 		if(direction ==UP){
-			setVy(-VY);
+			setVy(-1);
 			if(currentFrame==2)
 				currentFrame=0;
 			if((initialY-getY())>30){
 				direction=DOWN;
+				
 			}
 		}
 		if(direction ==DOWN){
-			setVy(VY);
+			setVy(1);
 			if(currentFrame==2)
 				currentFrame=0;
 			if((getY()-initialY)>30){
 				direction=UP;
+				
 			}
 		}
 		if(direction ==LEFT){
-			setVx(-VY);
-			if(currentFrame<3||currentFrame>=5)
+			
+			setVx(-1);
+			if(currentFrame<3||currentFrame==5)
 				currentFrame=3;
 			if((initialX-getX())>=30){
 				currentFrame=6;
@@ -101,7 +87,7 @@ public class Dragon extends AnimatedComponent implements DragonInterface,DragonT
 			}
 		}
 		if(direction ==RIGHT){
-			setVx(VY);
+			setVx(1);
 			if(currentFrame<6||currentFrame==8)
 				currentFrame=6;
 			if((getX()-initialX)>30){
@@ -110,12 +96,12 @@ public class Dragon extends AnimatedComponent implements DragonInterface,DragonT
 				
 			}
 		}
+		
 	}
 
 	@Override
 	public void drawImage(Graphics2D g) {
 		super.drawImage(g);
-//		if(hungryBox)....
 	}
 	public void animationUp(){
 		direction=UP;
@@ -159,17 +145,6 @@ public class Dragon extends AnimatedComponent implements DragonInterface,DragonT
 		this.imgSrc = imgSrc;
 	}
 
-
-
-
-	@Override
-	public boolean hasHungryBox() {
-		
-		return hungryBox;
-	}
-	public void setHungryBox(boolean hungryBox){
-		this.hungryBox=hungryBox;
-	}
 
 
 

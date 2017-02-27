@@ -1,4 +1,4 @@
-package dragonComponents;
+package game;
 
 public interface StoreSellInterfaceK {
 
@@ -8,5 +8,5 @@ public interface StoreSellInterfaceK {
 	 */
 	 String[] getNamesOfPurchased();
 	
-	 void removeFlownAwayDragon(Dragon d);
+
 }

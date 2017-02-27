@@ -31,13 +31,15 @@ public abstract class ShopScreen extends ClickableScreen {
 	private final static int TOP_MARGIN = 15;
 	
 	private CoinLabel coins;
-	private ShopLabel dragonAmount;
-	private ShopLabel page;
 	private int currentPage = 1;
 	private int totalPages = 2;
+	private ShopLabel page;
+	private ShopLabel dragonAmount;
+
+	
+
 	private ClickableGraphic arrowRight;
 	private ClickableGraphic arrowLeft;
-
 
 	public ShopScreen(int width, int height) {
 		super(width, height);
@@ -128,7 +130,6 @@ public abstract class ShopScreen extends ClickableScreen {
 		addDragonLabels(viewObjects);
 		
 	}
-	
 
 	public abstract void addDragonLabels(ArrayList<Visible> viewObjects);
 	
@@ -158,3 +159,4 @@ public abstract class ShopScreen extends ClickableScreen {
 	}
 
 }
+

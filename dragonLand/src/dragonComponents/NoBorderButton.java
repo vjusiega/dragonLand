@@ -1,6 +1,3 @@
-/**
- * 
- */
 package dragonComponents;
 
 import java.awt.BasicStroke;
@@ -10,67 +7,29 @@ import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Stroke;
-import java.util.ArrayList;
 
 import game.DragonLand;
-import game.HomeKat;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
-import guiPractice.components.Visible;
-/**
- * @author Jenniber Franco
- *
- */
-public class HungryBox extends Button implements Runnable{
 
-	private static final int W = 100;
-	private static final int H = 50;
-	private static final String TEXT = "Hungry!";
-	private static int hungryTime=15;
-	
-	
-	/**
-	 * @param x
-	 * @param y
-	 * @param w
-	 * @param h
-	 * @param text
-	 * @param color
-	 * @param action
-	 */
-	public HungryBox(int x, int y) {
-		super(x, y, W, H, TEXT+"\n"+hungryTime+" sec", DragonLand.DARKER_NUDE, null);
-	}	
-	
-//HomeKat.removeDragon(Dragon d, viewObjects)
+public class NoBorderButton extends Button{
 
-
-	public int getHungryTime() {
-		return hungryTime;
-	}
-
-
-	
-	public void setHungryTime(int num) {
-		hungryTime = num;
+	public NoBorderButton(int x, int y, int w, int h, String text, Color color, Action action) {
+		super(x, y, w, h, text, color, action);
+		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
 	public void update(Graphics2D g){
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
-		if(hungryTime<5){
-			g.setColor(DragonLand.LIGHT_PINK);
-		}
-		else{
-			g.setColor(DragonLand.DARKER_NUDE);
-		}
+		g.setColor(getColor());
 		double thickness = 2;
 		Stroke oldStroke = g.getStroke();
 		g.setStroke(new BasicStroke((float) thickness));
 		g.fillRoundRect(0, 0, getWidth(), getHeight(), 35, 25);
-		g.setColor(DragonLand.NAVY);
 		g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 35, 25);
+		g.setColor(DragonLand.NAVY);
 		
 		g.setFont(new Font("Dialog",Font.BOLD,getSize()));
 		FontMetrics fm = g.getFontMetrics();
@@ -87,11 +46,4 @@ public class HungryBox extends Button implements Runnable{
 			g.drawString(t, (getWidth()-fm.stringWidth(t))/2, (getHeight()+fm.getHeight()-fm.getDescent())/2);
 		}
 	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }

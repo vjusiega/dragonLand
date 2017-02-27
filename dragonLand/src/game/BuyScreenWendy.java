@@ -38,31 +38,36 @@ public class BuyScreenWendy extends ShopScreen{
 	@Override
 	public void addDragonLabels(ArrayList<Visible> visible) {
 		// TODO Auto-generated method stub
+		
+
 		inLists(3);
 		pageNum = 1;
-		getArrowLeft().setAction(new Action(){
 
-			@Override
-			public void act() {
-				// TODO Auto-generated method stub
-			}
-			
-		});
-		
-		getArrowRight().setAction(new Action(){
-
-			@Override
-			public void act() {
-				// TODO Auto-generated method stub
-				//DragonLand.game.setScreen(DragonLand.game.buyScreen2);
-				inLists(6);
-				System.out.println(dragonsInShop.size());
-				pageNum++;
-				System.out.println(pageNum);
-				update();
-			}
-			
-		});
+//		getArrowLeft().setAction(new Action(){
+//
+//			@Override
+//			public void act() {
+//				// TODO Auto-generated method stub
+//			}
+//			
+//		});
+//		
+//		getArrowRight().setAction(new Action(){
+//
+//			@Override
+//			public void act() {
+//				// TODO Auto-generated method stub
+//				//DragonLand.game.setScreen(DragonLand.game.buyScreen2);
+//				inLists(6);
+//				System.out.println(dragonsInShop.size());
+//				pageNum++;
+//				System.out.println(pageNum);
+//				//DragonLand.game.setScreen(DragonLand.game.buyScreen2);
+//
+//				update();
+//			}
+//			
+//		});
 
 		
 //		sold = SellShopZheng.getSold();
@@ -83,6 +88,7 @@ public class BuyScreenWendy extends ShopScreen{
 			if(dragonsInShop.contains(d))
 			{
 				DragonLabel label = new DragonLabel(DragonLabel2.LABEL_LEFT_MARGIN,y, d,"BUY");
+
 				label.setAction( new Action(){
 					
 					public void act() {

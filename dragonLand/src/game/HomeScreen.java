@@ -24,7 +24,6 @@ import guiPractice.sampleGames.MouseFollower;
  *
  */
 public class HomeScreen extends ClickableScreen implements Runnable{
-	
 
 	private Graphic background;
 
