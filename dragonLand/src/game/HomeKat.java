@@ -21,7 +21,7 @@ public class HomeKat implements DragonArrayInterface {
 	private static ArrayList<Integer> locationsX=new ArrayList<Integer>();
 	private static ArrayList<Integer> locationsY=new ArrayList<Integer>();
 	private static ArrayList<Dragon> dragons=new ArrayList<Dragon>(); 
-	public static ArrayList<Dragon> dragonsOnScreen = new ArrayList<Dragon>();
+	private static ArrayList<Dragon> dragonsOnScreen = new ArrayList<Dragon>();
 	private boolean clicked;
 	
 	public HomeKat(ArrayList<Visible> viewObjects,int width,int height) {
@@ -195,7 +195,7 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 		return dragons;
 	}
 
-	public ArrayList<Dragon> getDragonsOnScreen() {
+	public static ArrayList<Dragon> getDragonsOnScreen() {
 		return dragonsOnScreen;
 	}
 

@@ -30,16 +30,17 @@ public class HomeJenniber implements Runnable{
 	/**
 	 * 
 	 */
-	public HomeJenniber(Dragon d) {
-		createHungryThread(getRandDragon());
+	public HomeJenniber(Dragon d, ArrayList<Visible> viewObjects) {
+		createHungryThread(getRandDragon(), viewObjects);
 	}
 	
-	public void createHungryThread(Dragon d){
+	public void createHungryThread(Dragon d, ArrayList<Visible> viewObjects){
 		//d is a dragon from HomeKat.onScreenDragons
 		HungryBox hungryDragon = getHungryBox();
-		hungryBoxTimes.add(hungryDragon);
 		Thread hungry = new Thread(hungryDragon);
 		hungry.start();
+		hungryBoxTimes.add(hungryDragon);
+		viewObjects.add(hungryDragon);
 	}
 	
 	@Override
@@ -62,8 +63,7 @@ public class HomeJenniber implements Runnable{
 	}
 	
 	public void removeHungryAndDragon(int HungryNum, ArrayList<Visible> viewObjects) {
-		
-		Dragon d = HomeKat.dragonsOnScreen.get(HungryNum);
+		Dragon d = HomeKat.getDragonsOnScreen().get(HungryNum);
 		for(int i=0; i<hungryBoxTimes.size();i++){
 			HungryBox hungry = hungryBoxTimes.get(i);
 			if(hungry.getX()+30==d.getX() && hungry.getY()-100==d.getY()){
@@ -71,13 +71,12 @@ public class HomeJenniber implements Runnable{
 			}
 		}
 		HomeKat.removeDragon(d,viewObjects);
-		
 	}
 
 	//fix this
 	private void checkRemoveDragon(ArrayList<Visible> viewObjects) {
-		for(int i=0; i< HomeKat.dragonsOnScreen.size();i++){
-			Dragon d = HomeKat.dragonsOnScreen.get(i);
+		for(int i=0; i< HomeKat.getDragonsOnScreen().size();i++){
+			Dragon d = HomeKat.getDragonsOnScreen().get(i);
 			if(d.hasHungryBox()){
 				for(int j=0; j<hungryBoxTimes.size(); j++){
 					if(hungryBoxTimes.get(j).getX()+30==d.getX() && hungryBoxTimes.get(j).getY()-100==d.getY()){
@@ -92,21 +91,15 @@ public class HomeJenniber implements Runnable{
 	Dragon getRandDragon(){
 		int randNum = 1;
 		do{
-			randNum = (int) Math.random()*HomeKat.dragonsOnScreen.size();
+			randNum = (int) Math.random()*HomeKat.getDragonsOnScreen().size();
 		}
-		while(!HomeKat.dragonsOnScreen.get(randNum).hasHungryBox());
+		while(!HomeKat.getDragonsOnScreen().get(randNum).hasHungryBox());
 		
-		return HomeKat.dragonsOnScreen.get(randNum);
+		return HomeKat.getDragonsOnScreen().get(randNum);
 	}
 
 	public HungryBox getHungryBox() {
 		Dragon d = getRandDragon();
 		return new HungryBox(d.getX()-30,d.getY()+100);
 	}
-
-	public void setHungryBox(boolean hungryBox) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
