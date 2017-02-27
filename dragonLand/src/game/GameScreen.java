@@ -14,6 +14,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 import dragonComponents.Dragon;
 import dragonComponents.gameDragonInterface;
@@ -97,20 +98,36 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		}
 	}
 	
-	
 	public static ArrayList<Star1> getStarArray(){
 		return starArray;
 	}
 	
 	public Star1 addStar(){
+		Random rand = new Random();
+		int val = rand.nextInt(4) + 1;
 		int xPos = (int) (Math.random()*GameScreen.getWidth()); 
 		int yPos = 10;
 		int starH = 100;
 		int starW = 100;
 		Star1 starImage = new Star1(xPos, yPos, starW, starH, this);
-		//starArray.add(starImage);
-		addObject(starImage);
-		return starImage;	
+		if (val == 1) { 
+			//--1/4 of the time
+			int chance = (int) ((Math.random() * 10) + 1);
+			for(int i = 0; i < chance; i++){
+				System.out.println("star" + i + "at" + xPos);
+				addObject(starImage);
+			}
+		} else { 
+			//--3/4 of the time
+			int chance = (int) ((Math.random() * 8) + 1);
+			for(int i = 0; i < chance; i++){
+				System.out.println("star star" + i + "at" + xPos);
+				addObject(starImage);
+			}
+		}
+		
+		//try to constantly produce stars and randomize number of seconds that the stars fall
+		return starImage;
 	}
 
 	public void removeStar(Star1 star){

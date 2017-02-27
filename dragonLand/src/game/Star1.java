@@ -53,24 +53,39 @@ public class Star1 extends GraphicMovingComponent {
 	@Override
 	public void run() {
 		Random rand = new Random();
-		int val = rand.nextInt(4) + 1;
-		int chance = (int) ((Math.random() * 8) + 1);
-		if (val == 1) { 
-			//1/4 of the time
-			for(int i = 0; i < chance; i++){
-				
-			}
-		} else { 
-			//3/4 of the time
-			for(int i = 0; i < chance; i++){
-				
-			}
-		}
-//		try {
-//			Thread.sleep(1);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
+//		int val = rand.nextInt(4) + 1;
+//		int chance = (int) ((Math.random() * 8) + 1);
+//		if (val == 1) { 
+//			//1/4 of the time
+//			for(int i = 0; i < chance; i++){
+//				
+//			}
+//		} else { 
+//			//3/4 of the time
+//			for(int i = 0; i < chance; i++){
+//				
+//			}
 //		}
+		try {
+			Thread.sleep(1);
+			int val = rand.nextInt(4) + 1;
+			int chance = (int) ((Math.random() * 8) + 1);
+			if (val == 1) { 
+				System.out.println(chance);
+				//1/4 of the time
+//				for(int i = 0; i < chance; i++){
+//					
+//				}
+			} else { 
+				//3/4 of the time
+//				for(int i = 0; i < chance; i++){
+//					
+//				}
+			}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			System.out.println("not working");
+			e.printStackTrace();
+		}
 	}
 }
