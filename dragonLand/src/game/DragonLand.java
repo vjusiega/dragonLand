@@ -35,6 +35,7 @@ public class DragonLand extends GUIApplication {
 	public static Screen buyScreen; // shop 3
 	public static Screen highscoreScreen; // high score
 	public static Screen miniGameScreen; // minigame
+	public static Screen gameInstructionsScreen;
 
 	public static Screen HelpScreen;
 
@@ -74,6 +75,7 @@ public class DragonLand extends GUIApplication {
 		//sellScreen = new (getWidth(),getHeight());
 		buyScreen = new BuyScreenWendy(getWidth(),getHeight());
 		highscoreScreen = new HighScoreScreen(getWidth(),getHeight());
+		gameInstructionsScreen = new GameInstructions(getWidth(), getHeight());
 		
 		setScreen(homeScreen);
 
