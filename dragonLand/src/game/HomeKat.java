@@ -7,34 +7,43 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import dragonComponents.Dragon;
+import dragonComponents.DragonArrayInterface;
 import guiPractice.components.Action;
 import guiPractice.components.AnimatedComponent;
 import guiPractice.components.Button;
 import guiPractice.components.Visible;
 
-public class HomeKat {
+
+public class HomeKat implements DragonArrayInterface {
 
 	private int price;
+
 	private static ArrayList<Integer> locationsX=new ArrayList<Integer>();
 	private static ArrayList<Integer> locationsY=new ArrayList<Integer>();
-	public static ArrayList<Dragon> dragons=new ArrayList<Dragon>(); 
-	public static ArrayList<Dragon> dragonsOnScreen = new ArrayList<Dragon>();
+	private static ArrayList<Dragon> dragons=new ArrayList<Dragon>(); 
+	private static ArrayList<Dragon> dragonsOnScreen = new ArrayList<Dragon>();
 	private boolean clicked;
 	
-	public HomeKat(ArrayList<Visible> viewObjects,int width,int height) {
+	public HomeKat(ArrayList<Visible> viewObjects, int width,int height) {
 		clicked =true;
-		Button shop = new Button(width-110-(width*2/100),(height*5/100),  110,  50,  "Shop",DragonLand.DARKER_NUDE,  null);
+		Button shop = new Button(width-110-(width*2/100),(height*5/100),  110,  50,  "Shop",DragonLand.DARKER_NUDE,  new Action(){
+
+			@Override
+			public void act() {
+				DragonLand.game.setScreen(DragonLand.shopMain);
+			}});
 		viewObjects.add(shop);
-		Button minigame = new Button(width-110-(width*2/100),(height*5/100)+53,  110,  50,  "Minigame",DragonLand.DARKER_NUDE, null);
-//		Button minigame = new Button(getWidth()-110-(getWidth()*2/100),(getHeight()*5/100)+53,  110,  50,  "Minigame",DragonLand.DARKER_NUDE,  new Action(){
-//
-//			@Override
-//			public void act() {
-//				DragonLand.game.setScreen(miniGameScreen);
-//			}
-//		
-//		});
+		
+		Button minigame = new Button(width-110-(width*2/100),(height*5/100)+53,  110,  50,  "Minigame",DragonLand.DARKER_NUDE,  new Action(){
+
+			@Override
+			public void act() {
+				DragonLand.game.setScreen(DragonLand.miniGameScreen);
+			}
+		
+		});
 		viewObjects.add(minigame);
+		
 		Button helpLayer = new Button((int)(width*0.1),(int)(height*0.1),(int)(width*0.8),(int)(height*0.8),  "These will be rules",DragonLand.DARKER_NUDE,  new Action(){
 
 			@Override
@@ -122,7 +131,7 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 		}
 	}
 	public void dragonsOnScreen(ArrayList<Visible> viewObjects){
-		//String[] purchased = Shop.getNamesOfPurchased();
+		//String[] purchased = ShopSell.getNamesOfPurchased();
 		String[] purchased = {"Thorn","Mushu","Falcor","Elliot","Puff","Toothless"};
 		checkToRemove(purchased, viewObjects);
 		addNewDragons(purchased, viewObjects);
@@ -138,6 +147,7 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 			if(!exists){
 				addDragon(searchByName(purchased[i]),viewObjects);
 			}
+			exists=false;
 		}
 	}
 
@@ -162,8 +172,8 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 			}
 		}
 	}
-	public static void removeDragon(Dragon d,ArrayList<Visible> viewObjects){
-		//allows 
+	public void removeDragon(Dragon d,ArrayList<Visible> viewObjects){
+		
 		locationsX.add(d.getX());
 		locationsY.add(d.getY());
 		//adds dragons
@@ -190,6 +200,23 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 	public static ArrayList<Dragon> getDragons() {
 		return dragons;
 	}
+
+	public ArrayList<Dragon> getDragonsOnScreen() {
+		return dragonsOnScreen;
+	}
+
+	@Override
+	public void removeHungryDragon(Dragon d, ArrayList<Visible> viewObjects) {
+		locationsX.add(d.getX());
+		locationsY.add(d.getY());
+		//adds dragons
+		dragonsOnScreen.remove(d);
+		viewObjects.remove(d);
+		//ShopBuy.addFlownAwayDragon(d);
+		//ShopSell.removeFlownAwayDragon(d);
+	}
+
+	
 
 	
 }

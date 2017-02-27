@@ -9,14 +9,17 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-import dragonComponents.GameDragon;
+import dragonComponents.Dragon;
+
+import dragonComponents.gameDragonInterface;
+import guiPractice.components.AnimatedComponent;
 import guiPractice.components.Visible;
 
 /**
  * @author Violetta Jusiega
  *
  */
-
+//
 /*
  * Rules of the game:
  * 		Player starts off with one dragon
@@ -25,72 +28,63 @@ import guiPractice.components.Visible;
  * 		Max number of extra dragons is two (three in total)
  */
 
-public class GameVioletta {
+public class GameVioletta implements gameDragonInterface{
 	
-	private static ArrayList<GameDragon> dragonArray = new ArrayList<GameDragon>();
+	private static ArrayList<Dragon> dragonArray = new ArrayList<Dragon>();
 	
 	private static int screenWidth = DragonLand.miniGameScreen.getWidth();
 	private static int screenHeight = DragonLand.miniGameScreen.getHeight();
 	
-	public static ArrayList<GameDragon> getDragonArray(){
+	private boolean play; //supposed to work for if the game is paused
+	
+	public static ArrayList<Dragon> getDragonArray(){
 		return dragonArray;
 	}
 	
-	public static void addDragon(ArrayList<Visible> viewObjects, String imgSrc){
-		dragonArray = new ArrayList<GameDragon>();
-		int dragonHeight = 50;
+	public static Dragon addDragon(String imgSrc){
+		int xPos;
+		int dragonHeight = 100;
+		xPos = screenWidth / 2;
+		if(dragonArray.size() >= 1){
+			dragonHeight = (int) (dragonHeight * 0.65);
+			if(dragonArray.size() == 1){
+				xPos = dragonArray.get(0).getX() - dragonHeight;
+				
+			}
+			else{
+				xPos = dragonArray.get(0).getX() + dragonHeight + 25;
+			}
+		}
 		
-		int xPos = screenWidth / 2;
 		int yPos = screenHeight - dragonHeight;
 		
-		//GameDragon temp = new GameDragon(xPos/2, (int)(yPos*0.75), 200, 200, "dragon1.png");
-		GameDragon temp = new GameDragon(100, 100, 200, 200, imgSrc);
+		Dragon d = new Dragon(xPos, yPos, dragonHeight, dragonHeight, "whatever", 0, imgSrc);
+		//d.setInGame(true);
+		//System.out.println(d.getInGame());
 		
-		addAnimation(viewObjects, imgSrc, temp);
+		AnimatedComponent a = d;
+		setDragonAnimation(a, imgSrc);
 		
-		dragonArray.add(temp);
+		dragonArray.add(d);
+		a.setX(xPos);
+		a.setY(yPos);
+		
+		return d;
+	}
+	
+	
+	public static Dragon removeDragon(){
+		Dragon deadDragon = dragonArray.get(dragonArray.size() - 1);
+		dragonArray.remove(dragonArray.size() - 1);
+		return(deadDragon);
 	}
 
-	private static void addAnimation(ArrayList<Visible> viewObjects, String imgSrc, GameDragon temp) {
-		//Kat code
-				try{
-					ImageIcon icon = new ImageIcon(imgSrc);
-					int numberRow =3 ;
-					int rows =4;
-					int w =48;
-					int h = 48;
-					for(int i=0;i<numberRow*rows;i++){
-						
-						//declare cropped image
-						BufferedImage cropped = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
-						int leftMargin=0;
-						int topMargin =0 ;
-						int x1 = leftMargin + w*(i%numberRow);
-						int y1=topMargin +h*(i/numberRow);
-						Graphics g = cropped.createGraphics();
-						g.drawImage(icon.getImage(),0,0,w,h,x1,y1,x1+w,y1+h,null);
-						temp.addFrame(cropped, 300);
-						if(i==numberRow*rows-1)
-							i++;
-					}
-				}
-				catch(Exception e){
-					e.printStackTrace();
-				}
-				viewObjects.add(temp);
-				temp.update();
-				//temp.setX(100);
-				//temp.setY(100);
-				
-				temp.play();
-	}
-
-	public static void changeDragonPos(int i) {
-		int leadDragon = findLeadDragon(i);
-		int leadDragonPos =  (dragonArray.get(leadDragon)).getX();
-		if(leadDragonPos + i > 0 && leadDragonPos + i < screenWidth){
-			for(GameDragon d : dragonArray){
-				d.setX(d.getX() + i);
+	public static void changeDragonPos(int x) {
+		int leadDragon = findLeadDragon(x);
+		int leadDragonPos = (dragonArray.get(leadDragon)).getX();
+		if(leadDragonPos + x > 0 && leadDragonPos + x < screenWidth){
+			for(Dragon d : dragonArray){
+				d.setX(d.getX() + x);
 			}
 		}
 	}
@@ -103,11 +97,82 @@ public class GameVioletta {
 			else return 1; 
 		}
 		if(direction > 0){
-			if(dragonArray.size() == 1){
+			if(dragonArray.size() == 1 || dragonArray.size() == 2){
 				return 0; 
 			}
 			else return 2; 
 		}
 		else return 0;
+	}
+	
+	public static boolean checkStarContact(int starX, int starWidth){
+		int starEnd = starX + starWidth;
+		int dragonStart = (dragonArray.get(findLeadDragon(-1))).getX();
+		int dragonEnd = (dragonArray.get(findLeadDragon(-1))).getX() + (dragonArray.get(findLeadDragon(-1))).getWidth();
+		if((starX > dragonStart && starX < dragonEnd) || (starEnd > dragonStart && starEnd < dragonEnd)){
+			return true; 
+		}
+		else{
+			return false; 
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public void setPlay(boolean b){
+		play = b;
+	}
+	
+	public boolean getPlay(){
+		return play; 
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static void setDragonAnimation(AnimatedComponent a, String imgSrc){
+		try{
+			ImageIcon icon = new ImageIcon(imgSrc);
+			int numberRow = 3;
+			int rows = 4;
+			int w = 48;
+			int h = 48;
+			for(int j = 0; j < 2; j ++){
+				for(int i = 0; i < numberRow*rows; i++){
+					if(i > 8 && i < 12){
+						BufferedImage cropped = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
+						int leftMargin = 0;
+						int topMargin = 0;
+						int x1 = leftMargin + w*(i%numberRow);
+						int y1 = topMargin +h*(i/numberRow);
+						Graphics g = cropped.createGraphics();
+						g.drawImage(icon.getImage(),0,0,w,h,x1,y1,x1+w,y1+h,null);
+						a.addFrame(cropped, 300);
+					}
+				}
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 }

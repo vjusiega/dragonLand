@@ -31,8 +31,17 @@ public abstract class ShopScreen extends ClickableScreen {
 	private final static int TOP_MARGIN = 15;
 	
 	private int currentPage = 1;
-	private int totalPages = 1;
 
+	private int totalPages = 2;
+	private ShopLabel dragonAmount;
+	private ShopLabel page;
+	private CoinLabel coins;
+	private ShopLabel dragonAmounts;
+
+	
+	private ClickableGraphic arrowRight;
+	private ClickableGraphic arrowLeft;
+	
 	
 	public ShopScreen(int width, int height) {
 		super(width, height);
@@ -76,8 +85,10 @@ public abstract class ShopScreen extends ClickableScreen {
 		shopName.setSize(26);
 		
 		int coinX = titleX + titleWidth - CoinLabel.getWdith() - LEFT_MARGIN * 2;
-		CoinLabel coins = new CoinLabel(coinX, shopNameY, 100);
-		ShopLabel dragonAmount = new ShopLabel(coinX, shopNameY + CoinLabel.getHeight2() + 2, CoinLabel.getWdith(), CoinLabel.getHeight2(), /*DragonLand.dragons.length() +*/ "0/6 Dragons", DragonLand.LIGHT_NUDE);
+
+		coins = new CoinLabel(coinX, shopNameY, DragonLand.coins);
+		dragonAmount = new ShopLabel(coinX, shopNameY + CoinLabel.getHeight2() + 2, CoinLabel.getWdith(), CoinLabel.getHeight2(), /*DragonLand.dragons.length() +*/ "0/6 Dragons", DragonLand.LIGHT_NUDE);
+
 		dragonAmount.setArc(15);
 		
 		int back2Width = backWidth - 100;
@@ -87,9 +98,10 @@ public abstract class ShopScreen extends ClickableScreen {
 		
 		ShopBackdrop back2 = new ShopBackdrop(back2X, back2Y, back2Width, back2Height, DragonLand.BRIGHT_PINK);
 		
+		totalPages = 2;
 		int bottomBarY = backHeight - TOP_MARGIN * 2 + 10;
 		int pageWidth = 300;
-		ShopLabel page = new ShopLabel(SHOP_LEFT_MARGIN + backWidth/2 - pageWidth/2, bottomBarY + TOP_MARGIN, pageWidth, 30, "Page " + currentPage + " of " + totalPages, DragonLand.LIGHT_NUDE);
+		page = new ShopLabel(SHOP_LEFT_MARGIN + backWidth/2 - pageWidth/2, bottomBarY + TOP_MARGIN, pageWidth, 30, "Page 1 of " + totalPages , DragonLand.LIGHT_NUDE);
 		
 		ClickableGraphic arrowRight = new ClickableGraphic(backWidth - LEFT_MARGIN - 25, bottomBarY, 0.12, "img/arrowRight.png");
 		ClickableGraphic arrowLeft = new ClickableGraphic(SHOP_LEFT_MARGIN + LEFT_MARGIN, bottomBarY, 0.12, "img/arrowLeft.png");
@@ -120,8 +132,36 @@ public abstract class ShopScreen extends ClickableScreen {
 		viewObjects.add(page);
 		
 		addDragonLabels(viewObjects);
+		
 	}
 	
 	
+
+
+	//public abstract void addDragonLabels(ArrayList<Visible> viewObjects);
 	public abstract void addDragonLabels(ArrayList<Visible> viewObjects);
+	
+	public CoinLabel getCoins()
+	{
+		return coins;
+	}
+	
+	public ClickableGraphic getArrowRight()
+	{
+		return arrowRight;
+	}
+	
+	public ClickableGraphic getArrowLeft()
+	{
+		return arrowLeft;
+	}
+	
+	public ShopLabel getDragonAmount(){
+		return dragonAmount;
+		
+	}
+	
+	public ShopLabel getPage(){
+		return page;
+	}
 }
