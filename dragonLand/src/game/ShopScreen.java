@@ -115,8 +115,7 @@ public abstract class ShopScreen extends ClickableScreen {
 		viewObjects.add(shopTitleBack);
 		viewObjects.add(shopName);
 		viewObjects.add(exit);
-		for(Visible v : coins.getVisible())
-			viewObjects.add(v);
+		viewObjects.add(coins);
 		viewObjects.add(dragonAmount);
 		
 		viewObjects.add(back2);
