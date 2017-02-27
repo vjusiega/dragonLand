@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import dragonComponents.Dragon;
 import dragonComponents.DragonLabel;
+import dragonComponents.DragonLabel2;
 import dragonComponents.PriceLabel;
 import dragonComponents.ShopBackdrop;
 import game.DragonLand;
@@ -27,7 +28,7 @@ public class BuyScreenWendy extends ShopScreen{
 		private	int y;
 		private static int startIndex = 0;
 		private static int numOfDragons;
-		private static int pageNum;
+		private int pageNum = 1;
 		private boolean clicked = false;
 
 	public BuyScreenWendy(int width, int height) {
@@ -39,28 +40,27 @@ public class BuyScreenWendy extends ShopScreen{
 	public void addDragonLabels(ArrayList<Visible> visible) {
 		// TODO Auto-generated method stub
 		
-		dragonsInShop = new ArrayList<Dragon>();
-		dragons = new ArrayList<Dragon>();
-		dragons = HomeKat.getDragons();
-		dragonsInShop = HomeKat.getDragons();
+		getPage().setText("Page " + pageNum);
 
 		addLabels(visible);
 		buttonArrows();
-		
-		
-		Dragon sold = ((SellShopZheng)DragonLand.sellScreen).getSold();
-		if(sold != null)
-		{
-			dragonsInShop.add(sold);
-		}
-			
 	}
 		
+
 
 private void addLabels(ArrayList<Visible> visible) {
 		// TODO Auto-generated method stub
 	x = 0;
 	y = 170;
+	
+	dragonsInShop = new ArrayList<Dragon>();
+	dragons = new ArrayList<Dragon>();
+	dragons = HomeKat.getDragons();
+	dragonsInShop = HomeKat.getDragons();
+	
+	getDragonAmount().setText(numOfDragons+"/"+dragons.size() + " dragons");
+	
+	getFromSell();
 	
 	int endIndex = startIndex +3;
 	
@@ -73,7 +73,7 @@ private void addLabels(ArrayList<Visible> visible) {
 		if(dragonsInShop.contains(dragons.get(i)))
 		{
 			Dragon d = dragons.get(i);
-			DragonLabel label = new DragonLabel(DragonLabel.LABEL_LEFT_MARGIN,y, d,"BUY");
+			DragonLabel2 label = new DragonLabel2(DragonLabel2.LABEL_LEFT_MARGIN,y, d,"BUY");
 			label.setAction( new Action(){
 				
 				public void act() {
@@ -81,22 +81,12 @@ private void addLabels(ArrayList<Visible> visible) {
 
 					if(DragonLand.coins > d.getPrice())
 					{
-						update();
-						dragonsInShop.remove(d);	
-						remove(label);							
-						numOfDragons ++;
-						getDragonAmount().setText(numOfDragons+"/6 dragons");
-						System.out.println(numOfDragons + "/6 dragons");
-
-						System.out.println("This dragon is " + d.getPrice());
-						DragonLand.coins -= d.getPrice();
-						getCoins().setCoins(DragonLand.coins);
-						System.out.println(DragonLand.coins);
-						update();
+						boughtDragon(d,label);
+						
 					}
 					else
 					{
-						System.out.println("You donot have enough coins. Go play our minigame to win more coins");
+						System.out.println("You donot have enough coins. Go play our minigame to win more coins You have " + DragonLand.coins + " coins");
 					}
 				}
 			});
@@ -112,6 +102,23 @@ private void addLabels(ArrayList<Visible> visible) {
 		}
 	}
 	}
+
+protected void boughtDragon(Dragon d, DragonLabel2 label) {
+	// TODO Auto-generated method stub
+	dragonsInShop.remove(d);	
+	remove(label);							
+	update();
+	//DragonLand.sellScreen.dragonsInSellShop.add(d); problem
+	numOfDragons ++;
+	getDragonAmount().setText(numOfDragons+"/"+dragons.size() + " dragons");
+	System.out.println(numOfDragons + "/" + dragons.size() + " dragons");
+	//why is dragons.size() = 0?
+	System.out.println("This dragon is " + d.getPrice());
+	DragonLand.coins -= d.getPrice();
+	getCoins().setCoins(DragonLand.coins);
+	System.out.println("You have " + DragonLand.coins + " coins");
+	update();
+}
 
 private void buttonArrows() {
 		// TODO Auto-generated method stub
@@ -130,6 +137,11 @@ private void buttonArrows() {
 			}
 			
 			addDragonLabels(viewObjects);
+			if(pageNum>1)
+			{
+				pageNum--;				
+			}
+			getPage().setText("Page " + pageNum);
 			update();
 		}
 	});
@@ -139,24 +151,34 @@ private void buttonArrows() {
 		public void act() {
 			// TODO Auto-generated method stub
 			clicked = true;
-			if(clicked)
+			if(clicked && startIndex < dragons.size())
 			{	
 				startIndex+=3;
 			}
-			else
-			{
-				startIndex+=6;
-			}
+
 			
-			System.out.println(pageNum);
 			System.out.println(startIndex);
 			addDragonLabels(viewObjects);
+			if(startIndex < dragons.size())
+			{
+				
+				pageNum++;
+			}
+			getPage().setText("Page " + pageNum);
 			//DragonLand.game.setScreen(DragonLand.game.buyScreen2);
 			update();
 		}
 	});
 }
 
+private void getFromSell() {
+	// TODO Auto-generated method stub
+	Dragon sold = ((SellShopZheng)DragonLand.sellScreen).getSold();
+	if(sold != null)
+	{
+		dragonsInShop.add(sold);
+	}
+}
 	
 
 }
