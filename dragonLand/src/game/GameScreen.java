@@ -114,23 +114,23 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		/*
 		Random rand = new Random();
 		int val = rand.nextInt(4) + 1;
-		int xPos = (int) (Math.random()*GameScreen.getWidth()); 
+		//int xPos = (int) (Math.random()*GameScreen.getWidth()); 
 		int yPos = 10;
 		int starH = 100;
 		int starW = 100;
-		Star1 starImage = new Star1(xPos, yPos, starW, starH, this);
+		Star1 starImage = new Star1(randomX(), yPos, starW, starH, this);
 		if (val == 1) { 
 			//--1/4 of the time
-			int chance = (int) ((Math.random() * 10) + 1);
-			for(int i = 0; i < chance; i++){
-				System.out.println("star" + i + "at" + xPos);
+			int num = (int) ((Math.random() * 8) + 1);
+			for(int i = 0; i < num; i++){
+				System.out.println("star" + i + "at");
 				addObject(starImage);
 			}
 		} else { 
 			//--3/4 of the time
-			int chance = (int) ((Math.random() * 8) + 1);
-			for(int i = 0; i < chance; i++){
-				System.out.println("star star" + i + "at" + xPos);
+			int num = (int) ((Math.random() * 5) + 1);
+			for(int i = 0; i < num; i++){
+				System.out.println("star star" + i + "at");
 				addObject(starImage);
 			}
 		}
@@ -146,6 +146,11 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		//If the y-value of the star reaches a certain point
 		//This method will remove the star from the screen
 		//return(star);
+	}
+	
+	public int randomX(){
+		int xPos = (int) (Math.random()*GameScreen.getWidth());
+		return xPos;
 	}
 	
 	@Override
