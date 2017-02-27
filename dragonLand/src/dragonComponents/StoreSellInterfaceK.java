@@ -1,4 +1,4 @@
-package game;
+package dragonComponents;
 
 public interface StoreSellInterfaceK {
 

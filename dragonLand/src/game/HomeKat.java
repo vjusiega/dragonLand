@@ -16,8 +16,6 @@ import guiPractice.components.Visible;
 
 public class HomeKat implements DragonArrayInterface {
 
-	private int price;
-
 	private static ArrayList<Integer> locationsX=new ArrayList<Integer>();
 	private static ArrayList<Integer> locationsY=new ArrayList<Integer>();
 	private static ArrayList<Dragon> dragons=new ArrayList<Dragon>(); 
@@ -204,7 +202,7 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 		return dragons;
 	}
 
-	public ArrayList<Dragon> getDragonsOnScreen() {
+	public static ArrayList<Dragon> getDragonsOnScreen() {
 		return dragonsOnScreen;
 	}
 
