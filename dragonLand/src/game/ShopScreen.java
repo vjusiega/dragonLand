@@ -30,19 +30,15 @@ public abstract class ShopScreen extends ClickableScreen {
 	private final static int LEFT_MARGIN = 15;
 	private final static int TOP_MARGIN = 15;
 	
-	private int currentPage = 1;
-
-	private int totalPages = 2;
+	private CoinLabel coins;
 	private ShopLabel dragonAmount;
 	private ShopLabel page;
-	private CoinLabel coins;
-	private ShopLabel dragonAmounts;
-
-	
+	private int currentPage = 1;
+	private int totalPages = 2;
 	private ClickableGraphic arrowRight;
 	private ClickableGraphic arrowLeft;
-	
-	
+
+
 	public ShopScreen(int width, int height) {
 		super(width, height);
 		update();
@@ -101,10 +97,12 @@ public abstract class ShopScreen extends ClickableScreen {
 		totalPages = 2;
 		int bottomBarY = backHeight - TOP_MARGIN * 2 + 10;
 		int pageWidth = 300;
+
 		page = new ShopLabel(SHOP_LEFT_MARGIN + backWidth/2 - pageWidth/2, bottomBarY + TOP_MARGIN, pageWidth, 30, "Page 1 of " + totalPages , DragonLand.LIGHT_NUDE);
+
 		
-		ClickableGraphic arrowRight = new ClickableGraphic(backWidth - LEFT_MARGIN - 25, bottomBarY, 0.12, "img/arrowRight.png");
-		ClickableGraphic arrowLeft = new ClickableGraphic(SHOP_LEFT_MARGIN + LEFT_MARGIN, bottomBarY, 0.12, "img/arrowLeft.png");
+		arrowRight = new ClickableGraphic(backWidth - LEFT_MARGIN - 25, bottomBarY, 0.12, "img/arrowRight.png");
+		arrowLeft = new ClickableGraphic(SHOP_LEFT_MARGIN + LEFT_MARGIN, bottomBarY, 0.12, "img/arrowLeft.png");
 		
 //		Dragon d = new Dragon(0, 0, 50, 50, "EPIC DRAGON", 100, "img/dragon1.png");
 //		DragonLabel dragon = new DragonLabel(back2X + LEFT_MARGIN, back2Y + 8, d, "BUY", null);
@@ -122,23 +120,16 @@ public abstract class ShopScreen extends ClickableScreen {
 		viewObjects.add(dragonAmount);
 		
 		viewObjects.add(back2);
-//		for(Visible v : dragon.getVisible())
-//			viewObjects.add(v);
-		
-		//addDragonLabels(viewObjects);
 		
 		viewObjects.add(arrowRight);
 		viewObjects.add(arrowLeft);
 		viewObjects.add(page);
-		
+	
 		addDragonLabels(viewObjects);
 		
 	}
 	
-	
 
-
-	//public abstract void addDragonLabels(ArrayList<Visible> viewObjects);
 	public abstract void addDragonLabels(ArrayList<Visible> viewObjects);
 	
 	public CoinLabel getCoins()
@@ -154,6 +145,7 @@ public abstract class ShopScreen extends ClickableScreen {
 	public ClickableGraphic getArrowLeft()
 	{
 		return arrowLeft;
+
 	}
 	
 	public ShopLabel getDragonAmount(){
@@ -164,4 +156,5 @@ public abstract class ShopScreen extends ClickableScreen {
 	public ShopLabel getPage(){
 		return page;
 	}
+
 }

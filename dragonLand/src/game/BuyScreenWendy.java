@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import dragonComponents.Dragon;
 import dragonComponents.DragonLabel;
+import dragonComponents.DragonLabel2;
 import dragonComponents.PriceLabel;
 import dragonComponents.ShopBackdrop;
 import game.DragonLand;
@@ -86,7 +87,7 @@ public class BuyScreenWendy extends ShopScreen{
 		{
 			if(dragonsInShop.contains(d))
 			{
-				DragonLabel label = new DragonLabel(DragonLabel.getLabelLeftMargin(),y, d,"BUY");
+				DragonLabel label = new DragonLabel(DragonLabel2.LABEL_LEFT_MARGIN,y, d,"BUY");
 				label.setAction( new Action(){
 					
 					public void act() {

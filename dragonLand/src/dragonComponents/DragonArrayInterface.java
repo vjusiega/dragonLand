@@ -11,5 +11,7 @@ public interface DragonArrayInterface {
 
 	void removeHungryDragon(Dragon d, ArrayList<Visible>viewObjects);
 	
-	ArrayList<Dragon> getDragonsOnScreen();
+	static ArrayList<Dragon> getDragonsOnScreen() {
+		return null;
+	}
 }
