@@ -16,7 +16,9 @@ import guiPractice.components.Visible;
  *
  */
 
-public class Dragon extends AnimatedComponent implements DragonInterface{
+
+public class Dragon extends AnimatedComponent implements DragonInterface,DragonToShop{
+
 
 	
 	
@@ -127,6 +129,7 @@ public class Dragon extends AnimatedComponent implements DragonInterface{
 	public void animationRight(){
 		direction = RIGHT;
 	}
+	
 	public String getName() {
 		return name;
 	}
@@ -158,6 +161,7 @@ public class Dragon extends AnimatedComponent implements DragonInterface{
 
 
 
+
 	@Override
 	public boolean hasHungryBox() {
 		
@@ -166,4 +170,7 @@ public class Dragon extends AnimatedComponent implements DragonInterface{
 	public void setHungryBox(boolean hungryBox){
 		this.hungryBox=hungryBox;
 	}
+
+
+
 }

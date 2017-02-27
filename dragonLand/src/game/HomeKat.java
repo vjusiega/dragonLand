@@ -24,20 +24,26 @@ public class HomeKat implements DragonArrayInterface {
 	private static ArrayList<Dragon> dragonsOnScreen = new ArrayList<Dragon>();
 	private boolean clicked;
 	
-	public HomeKat(ArrayList<Visible> viewObjects,int width,int height) {
+	public HomeKat(ArrayList<Visible> viewObjects, int width,int height) {
 		clicked =true;
-		Button shop = new Button(width-110-(width*2/100),(height*5/100),  110,  50,  "Shop",DragonLand.DARKER_NUDE,  null);
+		Button shop = new Button(width-110-(width*2/100),(height*5/100),  110,  50,  "Shop",DragonLand.DARKER_NUDE,  new Action(){
+
+			@Override
+			public void act() {
+				DragonLand.game.setScreen(DragonLand.shopMain);
+			}});
 		viewObjects.add(shop);
-		Button minigame = new Button(width-110-(width*2/100),(height*5/100)+53,  110,  50,  "Minigame",DragonLand.DARKER_NUDE, null);
-//		Button minigame = new Button(getWidth()-110-(getWidth()*2/100),(getHeight()*5/100)+53,  110,  50,  "Minigame",DragonLand.DARKER_NUDE,  new Action(){
-//
-//			@Override
-//			public void act() {
-//				DragonLand.game.setScreen(miniGameScreen);
-//			}
-//		
-//		});
+		
+		Button minigame = new Button(width-110-(width*2/100),(height*5/100)+53,  110,  50,  "Minigame",DragonLand.DARKER_NUDE,  new Action(){
+
+			@Override
+			public void act() {
+				DragonLand.game.setScreen(DragonLand.miniGameScreen);
+			}
+		
+		});
 		viewObjects.add(minigame);
+		
 		Button helpLayer = new Button((int)(width*0.1),(int)(height*0.1),(int)(width*0.8),(int)(height*0.8),  "These will be rules",DragonLand.DARKER_NUDE,  new Action(){
 
 			@Override
@@ -124,8 +130,11 @@ public static void addAnimation(ArrayList<Visible> viewObjects,int x,int y, Stri
 			addAnimation(viewObjects,0,0, names[i], price+i*50, "img/dragon"+i+".png");
 		}
 	}
+
+
 	public void dragonsOnScreen(ArrayList<Visible> viewObjects){
-		//String[] purchased = ShopSell.getNamesOfPurchased();
+		//String[] purchased = Shop.getNamesOfPurchased();
+
 		String[] purchased = {"Thorn","Mushu","Falcor","Elliot","Puff","Toothless"};
 		checkToRemove(purchased, viewObjects);
 		addNewDragons(purchased, viewObjects);

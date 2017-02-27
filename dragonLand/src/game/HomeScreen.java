@@ -40,17 +40,12 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
 		background=new Graphic(0,0,getWidth(),getHeight(),"img/Grassland.png");
 		viewObjects.add(background);
-		
-	
-		
+
 		HomeKat katCode=new HomeKat(viewObjects, getWidth(), getHeight());
 		
-//		for(int i=10;i<15;i++){
-//		HomeKat.addDragon(HomeKat.getDragons().get(i), viewObjects);
-//		}
-//		HomeKat.addDragon(HomeKat.getDragons().get(14), viewObjects);
+
 		run();
-		
+
 	}
 
 	

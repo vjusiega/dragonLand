@@ -11,8 +11,10 @@ public class Graphic implements Visible {
 	private int y;
 	private BufferedImage image;
 	private boolean loadedImages;
+	private String img;
 	
 	public Graphic(int x, int y, String imageLocation) {
+		img = imageLocation;
 		this.x=x;
 		this.y=y;
 		loadedImages=false;
@@ -24,7 +26,8 @@ public class Graphic implements Visible {
 		loadedImages=false;
 		loadImages(imageLocation,w,h);
 	}
-	public Graphic(int x, int y, double scale,String imageLocation) {
+	
+	public Graphic(int x, int y, double scale, String imageLocation) {
 		this.x=x;
 		this.y=y;
 		loadedImages=false;
@@ -120,6 +123,10 @@ public class Graphic implements Visible {
 	public void update() {
 		// does nothing image doesnt change
 
+	}
+	
+	public String getImageLocation(){
+		return img;
 	}
 
 }

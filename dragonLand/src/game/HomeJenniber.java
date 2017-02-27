@@ -3,19 +3,10 @@
  */
 package game;
 
-import java.awt.BasicStroke;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.Stroke;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import dragonComponents.Dragon;
-import dragonComponents.DragonInterface;
 import dragonComponents.HungryBox;
-import dragonComponents.HungryTimesInterface;
 import guiPractice.components.Visible;
 
 /**
