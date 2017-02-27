@@ -36,7 +36,7 @@ public class HomeKat implements DragonArrayInterface {
 	private String thelp5;
 	
 	public HomeKat(ArrayList<Visible> viewObjects, int width,int height) {
-		
+		//
 		thelp1 = "Welcome to Dragon Land!";
 		help1 = new NoBorderButton(300,75,400,50,  thelp1,DragonLand.DARKER_NUDE,null);
 		help1.setSize(30);
