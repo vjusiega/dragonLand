@@ -62,7 +62,7 @@ public class GameInstructions extends ClickableScreen {
 		viewObjects.add(skip);
 		
 	}
-	
+	//
 
 
 }
