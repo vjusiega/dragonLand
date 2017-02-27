@@ -15,7 +15,6 @@ import guiPractice.components.Visible;
  */
 public class HomeJenniber implements Runnable{
 	
-	private static int hungryTime;
 	//private int[] dragonNumbers;
 	//private ArrayList<Dragon> hungryDragons;
 	private ArrayList<HungryBox> hungryBoxTimes;
@@ -55,7 +54,7 @@ public class HomeJenniber implements Runnable{
 	}
 	
 	public void removeHungryAndDragon(int HungryNum, ArrayList<Visible> viewObjects) {
-		Dragon d = HomeKat.getDragonsOnScreen().get(HungryNum);
+		Dragon d = HomeKat.dragonHome.getDragonsOnScreen().get(HungryNum);
 		for(int i=0; i<hungryBoxTimes.size();i++){
 			HungryBox hungry = hungryBoxTimes.get(i);
 			if(hungry.getX()+30==d.getX() && hungry.getY()-100==d.getY()){
@@ -67,8 +66,8 @@ public class HomeJenniber implements Runnable{
 
 	//fix this
 	private void checkRemoveDragon(ArrayList<Visible> viewObjects) {
-		for(int i=0; i< HomeKat.getDragonsOnScreen().size();i++){
-			Dragon d = HomeKat.getDragonsOnScreen().get(i);
+		for(int i=0; i< HomeKat.dragonHome.getDragonsOnScreen().size();i++){
+			Dragon d = HomeKat.dragonHome.getDragonsOnScreen().get(i);
 			if(d.getHungryBox()){
 				for(int j=0; j<hungryBoxTimes.size(); j++){
 					if(hungryBoxTimes.get(j).getX()+30==d.getX() && hungryBoxTimes.get(j).getY()-100==d.getY()){
@@ -83,10 +82,11 @@ public class HomeJenniber implements Runnable{
 	Dragon getRandDragon(){
 		int randNum = 1;
 		do{
-			randNum = (int) Math.random()*HomeKat.getDragonsOnScreen().size();
+			randNum = (int) Math.random()*HomeKat.dragonHome.getDragonsOnScreen().size();
 		}
-		while(!HomeKat.getDragonsOnScreen().get(randNum).getHungryBox());
-		return HomeKat.getDragonsOnScreen().get(randNum);
+		while(!HomeKat.dragonHome.getDragonsOnScreen().get(randNum).getHungryBox());
+		
+		return HomeKat.dragonHome.getDragonsOnScreen().get(randNum);
 	}
 
 	public HungryBox getHungryBox() {
