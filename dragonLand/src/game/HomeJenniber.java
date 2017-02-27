@@ -22,16 +22,19 @@ public class HomeJenniber implements Runnable{
 	 * 
 	 */
 	public HomeJenniber(ArrayList<Visible> viewObjects) {
+		System.out.println("Thread");
 		createHungryThread(getRandDragon(), viewObjects);
+		
 	}
 	
 	public void createHungryThread(Dragon d, ArrayList<Visible> viewObjects){
 		//d is a dragon from HomeKat.onScreenDragons
-		HungryBox hungryDragon = getHungryBox();
-		Thread hungry = new Thread(hungryDragon);
-		hungry.start();
+		System.out.println("Add hungryBox");
+		HungryBox hungryDragon = getHungryBox(d);
 		hungryBoxTimes.add(hungryDragon);
 		viewObjects.add(hungryDragon);
+		Thread hungry = new Thread(hungryDragon);
+		hungry.start();
 	}
 	
 	@Override
@@ -79,19 +82,21 @@ public class HomeJenniber implements Runnable{
 		
 	}
 	
-	Dragon getRandDragon(){
-		int randNum = 1;
-		do{
-			randNum = (int) Math.random()*HomeKat.dragonHome.getDragonsOnScreen().size();
+	public Dragon getRandDragon(){
+		System.out.println("rand get");
+		int randNum = (int) (Math.random()*HomeKat.dragonHome.getDragonsOnScreen().size());
+		while(HomeKat.dragonHome.getDragonsOnScreen().get(randNum).getHungryBox()){
+			randNum = (int) (Math.random()*HomeKat.dragonHome.getDragonsOnScreen().size());
 		}
-		while(!HomeKat.dragonHome.getDragonsOnScreen().get(randNum).getHungryBox());
 		
+		HomeKat.dragonHome.getDragonsOnScreen().get(randNum).setHungryBox(true);
+		
+		System.out.println("return"+ HomeKat.dragonHome.getDragonsOnScreen().get(randNum).getName());
 		return HomeKat.dragonHome.getDragonsOnScreen().get(randNum);
 	}
 
-	public HungryBox getHungryBox() {
-		Dragon d = getRandDragon();
-		return new HungryBox(d.getX()-30,d.getY()+100);
+	public HungryBox getHungryBox(Dragon d) {
+		return new HungryBox(d.getX(),d.getY()+100);
 	}
 }
 
