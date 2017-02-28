@@ -29,7 +29,7 @@ import guiPractice.components.Visible;
  * @author Tamanna Hussain and Violetta Jusiega
  *
  */
-public class GameScreen extends ClickableScreen implements KeyListener,ScoreAccess {
+public class GameScreen extends ClickableScreen implements KeyListener {
 
 	private Button exit;
 	private Button helpButton;
