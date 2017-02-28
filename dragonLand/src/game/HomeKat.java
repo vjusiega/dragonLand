@@ -93,13 +93,14 @@ public class HomeKat implements DragonArrayInterface {
 						viewObjects.remove(help4);
 						viewObjects.remove(help5);
 					}
-					else
+					else{
 						viewObjects.add(helpLayer);	
 						viewObjects.add(help1);
 						viewObjects.add(help2);
 						viewObjects.add(help3);
 						viewObjects.add(help4);
 						viewObjects.add(help5);
+					}
 			}});
 		
 		viewObjects.add(help);
