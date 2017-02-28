@@ -17,19 +17,19 @@ import guiPractice.components.Visible;
 
 public class BuyScreenWendy extends ShopScreen{
 	
-	 private ArrayList<Dragon> dragonsInShop = new ArrayList<Dragon>();
-	    private ArrayList<DragonLabel> shoplabels; 
-	    private ArrayList<Dragon> dragons = new ArrayList<Dragon>();
-//	   private DragonLabel label;
-	    
-//	    private int price = label.getDragonPrice().getPrice();
-	    //private Dragon sold;
-	    private int x; 
-		private	int y;
-		private static int startIndex = 0;
-		private static int numOfDragons;
-		private int pageNum;
-		private boolean clicked = false;
+	private ArrayList<Dragon> dragonsInShop;
+	private ArrayList<Dragon> dragons;
+	private ArrayList<DragonLabel> shoplabels; 
+	//private DragonLabel label;
+	
+	//private int price = label.getDragonPrice().getPrice();
+	//private Dragon sold;
+	private int x; 
+	private	int y;
+	private static int startIndex = 0;
+	private static int numOfDragons;
+	private int pageNum;
+	private boolean clicked = false;
 
 	public BuyScreenWendy(int width, int height) {
 		super(width, height);
@@ -40,6 +40,8 @@ public class BuyScreenWendy extends ShopScreen{
 	public void addDragonLabels(ArrayList<Visible> visible) {
 		// TODO Auto-generated method stub
 		pageNum = 1;
+		dragons = HomeKat.getDragons();
+		dragonsInShop = getDragonsInBuyShop();
 		getPage().setText("Page " + pageNum);
 		addLabels(visible);
 		buttonArrows();
@@ -48,17 +50,12 @@ public class BuyScreenWendy extends ShopScreen{
 
 
 	private void addLabels(ArrayList<Visible> visible) {
-		
-		//System.out.println("bye");
 		x = 0;
 		y = 170;
-		//System.out.println(pageNum);
-		dragons = HomeKat.getDragons();
-		dragonsInShop = getDragonsInBuyShop();
 		
-		getDragonAmount().setText(numOfDragons+" / 6 dragons");
-		
+		getDragonAmount().setText(numOfDragons + " / 6 dragons");
 		getFromSell();
+		
 		startIndex = (pageNum - 1) * 3;
 		int endIndex = startIndex +3;
 		
@@ -69,32 +66,32 @@ public class BuyScreenWendy extends ShopScreen{
 		
 		for(int i = startIndex; i< endIndex; i++)
 		{
-				Dragon d = dragonsInShop.get(i);
-				DragonLabel2 label = new DragonLabel2(DragonLabel2.LABEL_LEFT_MARGIN,y, d,"BUY");
-				label.setAction( new Action(){
-					
-					public void act() {
-						if(DragonLand.coins > d.getPrice())
-						{
-							boughtDragon(d,label);	
-							removeDragons();
-							addLabels(visible);
-						}
-						else
-						{
-							System.out.println("You donot have enough coins. Go play our minigame to win more coins You have " + DragonLand.coins + " coins");
-						}
+			Dragon d = dragonsInShop.get(i);
+			DragonLabel2 label = new DragonLabel2(DragonLabel2.LABEL_LEFT_MARGIN,y, d,"BUY");
+			label.setAction( new Action(){
+				
+				public void act() {
+					if(DragonLand.coins > d.getPrice())
+					{
+						boughtDragon(d,label);	
+						removeDragons();
+						addLabels(visible);
 					}
-				});
-				
-				addObject(label);
+					else
+					{
+						System.out.println("You donot have enough coins. Go play our minigame to win more coins You have " + DragonLand.coins + " coins");
+					}
+				}
+			});
+			
+			addObject(label);
 
-				
-				y += DragonLabel.getLabelHeight()+20;
-				//System.out.println(dragons.size());
-				//System.out.println(dragonsInShop.size());
-				
-			}
+			
+			y += DragonLabel.getLabelHeight()+20;
+			//System.out.println(dragons.size());
+			//System.out.println(dragonsInShop.size());
+			
+		}
 	}
 
 private ArrayList<Dragon> getDragonsInBuyShop() {
@@ -143,8 +140,7 @@ private void buttonArrows() {
 	getArrowRight().setAction(new Action(){
 		@Override
 		public void act() {
-
-			if(dragons != null && pageNum * 3 < dragonsInShop.size())
+			if(pageNum * 3 < dragonsInShop.size())
 			{		
 				pageNum++;
 			}
