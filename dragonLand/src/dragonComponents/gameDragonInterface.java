@@ -8,4 +8,5 @@ public interface gameDragonInterface {
 	Dragon addDragon(String imgSrc);
 	Dragon removeDragon();
 	void changeDragonPos(int x);
+	ArrayList<Dragon> getDragonArray();
 }

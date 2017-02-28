@@ -94,9 +94,9 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		//view.add(addStar());
 		fallingStars();
 		
-		GameVioletta.vGame.addDragon("img/dragon1.png");
+		GameVioletta vGameObject = new GameVioletta("img/dragon1.png");
 		
-		for(Dragon d : GameVioletta.getDragonArray()){
+		for(Dragon d : GameVioletta.vGame.getDragonArray()){
 			view.add(d);
 		}
 	}

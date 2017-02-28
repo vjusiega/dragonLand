@@ -39,12 +39,10 @@ public class GameVioletta implements gameDragonInterface{
 		addDragon(imgSrc);
 	}
 	
-	
 	private static int screenWidth = DragonLand.miniGameScreen.getWidth();
 	private static int screenHeight = DragonLand.miniGameScreen.getHeight();
 	
-	
-	public static ArrayList<Dragon> getDragonArray(){
+	public ArrayList<Dragon> getDragonArray(){
 		return dragonArray;
 	}
 	
@@ -78,7 +76,6 @@ public class GameVioletta implements gameDragonInterface{
 		
 		return d;
 	}
-	
 	
 	public Dragon removeDragon(){
 		Dragon deadDragon = dragonArray.get(dragonArray.size() - 1);
