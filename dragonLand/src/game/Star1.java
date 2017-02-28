@@ -13,7 +13,7 @@ import guiPractice.components.GraphicMovingComponent;
  * @author Tamanna
  *
  */
-public class Star1 extends GraphicMovingComponent implements starInterface{
+public class Star1 extends GraphicMovingComponent{
 
 	private GameScreen game;
 	private int dragonXPos;
@@ -31,25 +31,25 @@ public class Star1 extends GraphicMovingComponent implements starInterface{
 		this.game = game;
 		setVx(0);
 		touched = false; 
-//		run();
 	}
 	
-	public int getDragonXPos(int dragonX){
-		dragonXPos = dragonX;
-	}
+//	public int getDragonXPos(int dragonX){
+//		dragonXPos = dragonX;
+//	}
 	
 	@Override
 	public void checkBehaviors() {
 		if(getY() >= 560){
-			if(!touched && GameVioletta.checkStarContact(getX(), getWidth())){
-				System.out.println(getY());
-				touched = true;
-				int score = GameScreen.getScore() + 1;
-				GameScreen.setScore(score);
-				GameScreen.setScoreDisplay();
-			}
-			touched = true;
+//			if(!touched && GameVioletta.checkStarContact(getX(), getWidth())){
+//				System.out.println(getY());
+//				touched = true;
+//				int score = GameScreen.getScore() + 1;
+//				GameScreen.setScore(score);
+//				GameScreen.setScoreDisplay();
+//			}
+//			touched = true;
 			game.removeStar(this);
+			System.out.println("removed");
 		}
 	}
 }
