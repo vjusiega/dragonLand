@@ -3,10 +3,8 @@ package game;
 import java.util.ArrayList;
 
 import dragonComponents.Dragon;
-import dragonComponents.DragonLabel;
 import dragonComponents.DragonLabel2;
 import guiPractice.components.Action;
-import guiPractice.components.Clickable;
 import guiPractice.components.Visible;
 
 public class SellShopZheng extends ShopScreen implements SellScreenInterface, StoreSellInterfaceK{

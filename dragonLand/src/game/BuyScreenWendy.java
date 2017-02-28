@@ -3,10 +3,7 @@ package game;
 import java.util.ArrayList;
 
 import dragonComponents.Dragon;
-import dragonComponents.DragonLabel;
 import dragonComponents.DragonLabel2;
-import dragonComponents.PriceLabel;
-import dragonComponents.ShopBackdrop;
 import game.DragonLand;
 import game.ShopScreen;
 import guiPractice.components.Action;
@@ -18,8 +15,7 @@ import guiPractice.components.Visible;
 public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 	
 	private ArrayList<Dragon> dragonsInShop;
-	private ArrayList<Dragon> dragons;
-	private ArrayList<DragonLabel> shoplabels; 
+	private ArrayList<Dragon> dragons; 
 	//private DragonLabel label;
 	
 	//private int price = label.getDragonPrice().getPrice();
@@ -40,7 +36,6 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 	public void addDragonLabels(ArrayList<Visible> visible) {
 		// TODO Auto-generated method stub
 		pageNum = 1;
-		numOfDragons = ((SellShopZheng)DragonLand.sellScreen).getDragonsInSellShop().size();
 		dragons = HomeKat.getDragons();
 		dragonsInShop = getDragonsInBuyShop();
 		getPage().setText("Page " + pageNum);
@@ -53,7 +48,7 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 	private void addLabels(ArrayList<Visible> visible) {
 		x = 0;
 		y = 170;
-		
+		numOfDragons = ((SellShopZheng)DragonLand.sellScreen).getDragonsInSellShop().size();
 		getDragonAmount().setText(numOfDragons + " / 6 dragons");
 		
 		startIndex = (pageNum - 1) * 3;
@@ -71,7 +66,7 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 			label.setAction( new Action(){
 				
 				public void act() {
-					if(DragonLand.coins > d.getPrice())
+					if(DragonLand.coins > d.getPrice() && ((SellShopZheng)DragonLand.sellScreen).getDragonsInSellShop().size() < 6)
 					{
 						boughtDragon(d,label);	
 						removeDragons();
@@ -87,7 +82,7 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 			addObject(label);
 
 			
-			y += DragonLabel.getLabelHeight()+20;
+			y += DragonLabel2.getLabelHeight()+20;
 			//System.out.println(dragons.size());
 			//System.out.println(dragonsInShop.size());
 			
