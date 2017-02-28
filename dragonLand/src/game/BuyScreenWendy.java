@@ -15,7 +15,7 @@ import guiPractice.components.Visible;
  * @author Wendy
  * */
 
-public class BuyScreenWendy extends ShopScreen{
+public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 	
 	private ArrayList<Dragon> dragonsInShop;
 	private ArrayList<Dragon> dragons;
@@ -40,6 +40,7 @@ public class BuyScreenWendy extends ShopScreen{
 	public void addDragonLabels(ArrayList<Visible> visible) {
 		// TODO Auto-generated method stub
 		pageNum = 1;
+		numOfDragons = ((SellShopZheng)DragonLand.sellScreen).getDragonsInSellShop().size();
 		dragons = HomeKat.getDragons();
 		dragonsInShop = getDragonsInBuyShop();
 		getPage().setText("Page " + pageNum);
@@ -54,7 +55,6 @@ public class BuyScreenWendy extends ShopScreen{
 		y = 170;
 		
 		getDragonAmount().setText(numOfDragons + " / 6 dragons");
-		getFromSell();
 		
 		startIndex = (pageNum - 1) * 3;
 		int endIndex = startIndex +3;
@@ -94,85 +94,78 @@ public class BuyScreenWendy extends ShopScreen{
 		}
 	}
 
-private ArrayList<Dragon> getDragonsInBuyShop() {
-		// TODO Auto-generated method stub
-		dragonsInShop = dragons;
-		for(Dragon d: HomeKat.getDragonsOnScreen())
-		{
-			dragonsInShop.remove(d);
-		}
-		return dragonsInShop;
-	}
-
-protected void boughtDragon(Dragon d, DragonLabel2 label) {
-	// TODO Auto-generated method stub
-	dragonsInShop.remove(d);	
-	remove(label);
-	System.out.println("adding to sell");
-	((SellShopZheng)DragonLand.sellScreen).addToDragonsInSellShop(d);
-	numOfDragons ++;
-	getDragonAmount().setText(numOfDragons+" / 6 dragons");
-	System.out.println(numOfDragons + " / 6 dragons");
-
-	System.out.println("This dragon is " + d.getPrice());
-	DragonLand.coins -= d.getPrice();
-	getCoins().setCoins();
-	System.out.println("You have " + DragonLand.coins + " coins");
-	update();
-}
-
-private void buttonArrows() {
-		// TODO Auto-generated method stub
-	getArrowLeft().setAction(new Action(){
-
-		@Override
-		public void act() {
-			if(pageNum > 1)
+	private ArrayList<Dragon> getDragonsInBuyShop() {
+			// TODO Auto-generated method stub
+			dragonsInShop = dragons;
+			for(Dragon d: HomeKat.getDragonsOnScreen())
 			{
-				pageNum--;				
+				dragonsInShop.remove(d);
 			}
-			getPage().setText("Page " + pageNum);
-			removeDragons();
-			addLabels(viewObjects);
+			return dragonsInShop;
 		}
-	});
 	
-	getArrowRight().setAction(new Action(){
-		@Override
-		public void act() {
-			if(pageNum * 3 < dragonsInShop.size())
-			{		
-				pageNum++;
+	private void boughtDragon(Dragon d, DragonLabel2 label) {
+		// TODO Auto-generated method stub
+		dragonsInShop.remove(d);	
+		remove(label);
+		System.out.println("adding to sell");
+		((SellShopZheng)DragonLand.sellScreen).addToDragonsInSellShop(d);
+		numOfDragons ++;
+		getDragonAmount().setText(numOfDragons+" / 6 dragons");
+		System.out.println(numOfDragons + " / 6 dragons");
+	
+		System.out.println("This dragon is " + d.getPrice());
+		DragonLand.coins -= d.getPrice();
+		getCoins().setCoins();
+		System.out.println("You have " + DragonLand.coins + " coins");
+		update();
+	}
+	
+	private void buttonArrows() {
+			// TODO Auto-generated method stub
+		getArrowLeft().setAction(new Action(){
+	
+			@Override
+			public void act() {
+				if(pageNum > 1)
+				{
+					pageNum--;				
+				}
+				getPage().setText("Page " + pageNum);
+				removeDragons();
+				addLabels(viewObjects);
 			}
-			removeDragons();
-			getPage().setText("Page " + pageNum);
-			addLabels(viewObjects);
-		}
-	});
-}
-
-private void getFromSell() {
-	// TODO Auto-generated method stub
-	Dragon sold = ((SellShopZheng)DragonLand.sellScreen).getSold();
-	if(sold != null)
-	{
-		dragonsInShop.add(sold);
-	}
-}
-
-public void removeDragons()
-{
-	for(int i = 0; i  < viewObjects.size(); i++)
-	{
-		Visible v = viewObjects.get(i);
-		if(v instanceof DragonLabel2)
-		{
-			remove(v);
-			i--;
-		}
-	}
+		});
 		
-}
-	
+		getArrowRight().setAction(new Action(){
+			@Override
+			public void act() {
+				if(pageNum * 3 < dragonsInShop.size())
+				{		
+					pageNum++;
+				}
+				removeDragons();
+				getPage().setText("Page " + pageNum);
+				addLabels(viewObjects);
+			}
+		});
+	}
 
+	public void removeDragons()
+	{
+		for(int i = 0; i  < viewObjects.size(); i++)
+		{
+			Visible v = viewObjects.get(i);
+			if(v instanceof DragonLabel2)
+			{
+				remove(v);
+				i--;
+			}
+		}
+	}
+
+	public void addToDragonsInBuyShop(Dragon dragon) {
+		dragonsInShop.add(dragon);
+		addLabels(viewObjects);
+	}
 }

@@ -7,5 +7,5 @@ import dragonComponents.Dragon;
  * */
 
 public interface SellScreenInterface {
-	Dragon getSold();
+	void addToDragonsInSellShop(Dragon d);
 }
