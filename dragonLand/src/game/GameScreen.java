@@ -128,14 +128,14 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 				Thread.sleep(10);
 				if (val == 1) { 
 					//--1/4 of the time
-					int num = (int) ((Math.random() * 8) + 1);
+					int num = (int) ((Math.random() * 5) + 1);
 					for(int i = 0; i < num; i++){
 						System.out.println("star" + i + "at" + randomX());
 						addObject(starImage);
 					}
 				} else { 
 					//--3/4 of the time
-					int num = (int) ((Math.random() * 5) + 1);
+					int num = (int) ((Math.random() * 3) + 1);
 					System.out.print(num);
 					for(int i = 0; i < num; i++){
 						System.out.println("star star" + i + "at" + randomX());
