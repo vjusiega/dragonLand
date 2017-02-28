@@ -30,6 +30,8 @@ import guiPractice.components.Visible;
 
 public class GameVioletta implements gameDragonInterface{
 	
+	public static GameVioletta vGame;
+	
 	private static ArrayList<Dragon> dragonArray = new ArrayList<Dragon>();
 	
 	private static int screenWidth = DragonLand.miniGameScreen.getWidth();
@@ -105,7 +107,7 @@ public class GameVioletta implements gameDragonInterface{
 		else return 0;
 	}
 	
-	public static boolean checkStarContact(int starX, int starWidth){
+	public boolean checkStarContact(int starX, int starWidth){
 		int starEnd = starX + starWidth;
 		int dragonStart = (dragonArray.get(findLeadDragon(-1))).getX();
 		int dragonEnd = (dragonArray.get(findLeadDragon(-1))).getX() + (dragonArray.get(findLeadDragon(-1))).getWidth();
@@ -116,39 +118,7 @@ public class GameVioletta implements gameDragonInterface{
 			return false; 
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public void setPlay(boolean b){
-		play = b;
-	}
-	
-	public boolean getPlay(){
-		return play; 
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	public static void setDragonAnimation(AnimatedComponent a, String imgSrc){
 		try{
 			ImageIcon icon = new ImageIcon(imgSrc);
