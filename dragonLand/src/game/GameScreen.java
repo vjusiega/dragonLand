@@ -92,7 +92,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		
 		starArray = new ArrayList<Star1>();
 		//view.add(addStar());
-		addStar();
+		fallingStars();
 		GameVioletta.addDragon("img/dragon1.png");
 		
 		for(Dragon d : GameVioletta.getDragonArray()){
@@ -105,16 +105,16 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	}
 	
 	public Star1 addStar(){
-//		int yPos = 0;
-//		int starH = 100;
-//		int starW = 100;
-//		Star1 starImage = new Star1(randomX(), yPos, starW, starH, this);
-//		starImage.play();
-//		addObject(starImage);
-//		return starImage;
+		int yPos = 0;
+		int starH = 100;
+		int starW = 100;
+		Star1 starImage = new Star1(randomX(), yPos, starW, starH, this);
+		starImage.play();
+		addObject(starImage);
+		return starImage;
 		
-		
-//		 while(running){
+		/*
+		while(running){
 			Random rand = new Random();
 			int val = rand.nextInt(4) + 1;
 			//int xPos = (int) (Math.random()*GameScreen.getWidth()); 
@@ -145,11 +145,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 			}catch (InterruptedException e){
 				e.printStackTrace();
 			}
-			
-//		}
-		 return starImage;
-		//try to constantly produce stars and randomize number of seconds that the stars fall
-		
+		}
+		*/
 	}
 
 	public void removeStar(Star1 star){
@@ -159,6 +156,15 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		//If the y-value of the star reaches a certain point
 		//This method will remove the star from the screen
 		//return(star);
+	}
+	
+	public void fallingStars(){
+		try{
+			Thread.sleep(1000);
+			addStar();
+		}catch (InterruptedException e){
+			e.printStackTrace();
+		}
 	}
 	
 	public int randomX(){
