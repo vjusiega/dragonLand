@@ -27,7 +27,7 @@ public class Star1 extends GraphicMovingComponent{
 	 */
 	public Star1(int x, int y, int w, int h, GameScreen game) {
 		super(x, y, w, h, "img/star.png");
-		setVy(2);
+		setVy(0.5);
 		this.game = game;
 		setVx(0);
 		touched = false; 
@@ -50,6 +50,8 @@ public class Star1 extends GraphicMovingComponent{
 //			touched = true;
 			game.removeStar(this);
 			System.out.println("removed");
-		}
+		//}
 	}
+// 		if(getScore() >= 25 && getScore() < 50)
+// 			setVy(1);
 }
