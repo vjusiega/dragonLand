@@ -49,7 +49,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	@Override
 	public void initAllObjects(ArrayList<Visible> view) {
 		//initial score is 0 and it should count the number of stars caught
-		score = 0;
+		score = 50;
 		paused = false; 
 
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
