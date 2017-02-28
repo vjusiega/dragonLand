@@ -71,7 +71,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 				pause();
 				displayInstructions();
 			}
-
 		});
 		
 		//displays the score on screen
@@ -104,7 +103,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	}
 	public void startGame(){
 		Thread start = new Thread(new Runnable() {
-			
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
@@ -113,7 +111,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 			}
 		});
 		start.start();
-		//fallingStars();
 	}
 	public static ArrayList<Star1> getStarArray(){
 		return starArray;
@@ -127,18 +124,12 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		starImage.play();
 		starArray.add(starImage);
 		addObject(starImage);
-		//return starImage;
-		
-
 	}
 
 	public void removeStar(Star1 star){
 		System.out.println("here");
 		starArray.remove(star);
 		//remove(star);
-		//If the y-value of the star reaches a certain point
-		//This method will remove the star from the screen
-		//return(star);
 	}
 	
 	public void fallingStars(){
@@ -147,11 +138,9 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 			System.out.println("star created");
 			Thread.sleep(1000);
 			addStar();
-			//System.out.println("d");
 			}
 		}catch (InterruptedException e){
 			e.printStackTrace();
-			System.out.println("snope");
 		}
 		
 	}
