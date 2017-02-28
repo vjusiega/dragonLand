@@ -78,6 +78,7 @@ public class HungryBox extends Button implements Runnable{
 		if(getText()!= null){
 			
 			String t = getText();
+			System.out.println(t);
 			//just in case text is too wide, cut off
 			int cutoff = t.length();
 			while(cutoff > 0 && fm.stringWidth(t) > getWidth()){
@@ -86,6 +87,7 @@ public class HungryBox extends Button implements Runnable{
 			}
 			g.drawString(t, (getWidth()-fm.stringWidth(t))/2, (getHeight()+fm.getHeight()-fm.getDescent())/2);
 		}
+		System.out.println("updated");
 	}
 
 	@Override

@@ -18,20 +18,23 @@ public class HomeJenniber implements Runnable{
 	//private int[] dragonNumbers;
 	//private ArrayList<Dragon> hungryDragons;
 	private ArrayList<HungryBox> hungryBoxTimes;
+	private ArrayList<Visible> viewObjects;
 	/**
 	 * 
 	 */
 	public HomeJenniber(ArrayList<Visible> viewObjects) {
 		System.out.println("Thread");
-		createHungryThread(getRandDragon(), viewObjects);
+		this.viewObjects = viewObjects;
+		createHungryThread(getRandDragon());
 		
 	}
 	
-	public void createHungryThread(Dragon d, ArrayList<Visible> viewObjects){
+	public void createHungryThread(Dragon d){
 		//d is a dragon from HomeKat.onScreenDragons
 		System.out.println("Add hungryBox");
 		HungryBox hungryDragon = getHungryBox(d);
 		hungryBoxTimes.add(hungryDragon);
+		System.out.println("x coord:"+hungryBoxTimes.get(hungryBoxTimes.size()-1).getX());
 		viewObjects.add(hungryDragon);
 		Thread hungry = new Thread(hungryDragon);
 		hungry.start();
@@ -41,9 +44,10 @@ public class HomeJenniber implements Runnable{
 	public void run() {
 		HungryBox hungryBox = hungryBoxTimes.get(hungryBoxTimes.size()-1);
 		hungryBox.setHungryTime(hungryBox.getHungryTime()-1);
+		System.out.println("run hungryTime"+hungryBox.getHungryTime());
 		sleepHungryTime(hungryBox);
 		hungryBox.update();
-		checkRemoveDragon(null);
+		checkRemoveDragon();
 	}
 	
 	private void sleepHungryTime(HungryBox hungryBox){
@@ -56,7 +60,7 @@ public class HomeJenniber implements Runnable{
 		}
 	}
 	
-	public void removeHungryAndDragon(int HungryNum, ArrayList<Visible> viewObjects) {
+	public void removeHungryAndDragon(int HungryNum) {
 		Dragon d = HomeKat.dragonHome.getDragonsOnScreen().get(HungryNum);
 		for(int i=0; i<hungryBoxTimes.size();i++){
 			HungryBox hungry = hungryBoxTimes.get(i);
@@ -67,14 +71,13 @@ public class HomeJenniber implements Runnable{
 		HomeKat.removeDragon(d,viewObjects);
 	}
 
-	//fix this
-	private void checkRemoveDragon(ArrayList<Visible> viewObjects) {
+	private void checkRemoveDragon() {
 		for(int i=0; i< HomeKat.dragonHome.getDragonsOnScreen().size();i++){
 			Dragon d = HomeKat.dragonHome.getDragonsOnScreen().get(i);
 			if(d.getHungryBox()){
 				for(int j=0; j<hungryBoxTimes.size(); j++){
-					if(hungryBoxTimes.get(j).getX()+30==d.getX() && hungryBoxTimes.get(j).getY()-100==d.getY()){
-						removeHungryAndDragon(i,viewObjects);
+					if(hungryBoxTimes.get(j).getX()==d.getX() && hungryBoxTimes.get(j).getY()-100==d.getY()){
+						removeHungryAndDragon(i);
 					}
 				}
 			}
