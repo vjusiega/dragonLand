@@ -13,12 +13,11 @@ import guiPractice.components.Visible;
  * @author Jenniber Franco
  *
  */
-public class HomeJenniber implements Runnable{
+public class HomeJenniber {
 	
-	//private int[] dragonNumbers;
-	//private ArrayList<Dragon> hungryDragons;
 	private ArrayList<HungryBox> hungryBoxTimes;
 	private ArrayList<Visible> viewObjects;
+	HungryBox hungryDragon;
 	/**
 	 * 
 	 */
@@ -26,38 +25,43 @@ public class HomeJenniber implements Runnable{
 		System.out.println("Thread");
 		this.viewObjects = viewObjects;
 		createHungryThread(getRandDragon());
-		
 	}
 	
 	public void createHungryThread(Dragon d){
 		//d is a dragon from HomeKat.onScreenDragons
 		System.out.println("Add hungryBox");
-		HungryBox hungryDragon = getHungryBox(d);
+		this.hungryBoxTimes = new ArrayList<HungryBox>();
+		hungryDragon = getHungryBox(d);
 		hungryBoxTimes.add(hungryDragon);
-		System.out.println("x coord:"+hungryBoxTimes.get(hungryBoxTimes.size()-1).getX());
+		System.out.println("x coord:"+hungryDragon.getX());
 		viewObjects.add(hungryDragon);
 		Thread hungry = new Thread(hungryDragon);
 		hungry.start();
 	}
 	
-	@Override
-	public void run() {
-		HungryBox hungryBox = hungryBoxTimes.get(hungryBoxTimes.size()-1);
-		hungryBox.setHungryTime(hungryBox.getHungryTime()-1);
-		System.out.println("run hungryTime"+hungryBox.getHungryTime());
-		sleepHungryTime(hungryBox);
-		hungryBox.update();
-		checkRemoveDragon();
-	}
+
 	
 	private void sleepHungryTime(HungryBox hungryBox){
-		try{
-			while(hungryBox.getHungryTime()>=0){
-				Thread.sleep(1000);
+		Thread countTime = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				try{
+					while(hungryBox.getHungryTime()>=0){
+						Thread.sleep(1000);
+						hungryBox.setHungryTime(hungryBox.getHungryTime()-1);
+						hungryBox.setText("Hungry!"+"\n"+hungryBox.getHungryTime()+" sec");
+						System.out.println("run hungryTime"+hungryBox.getHungryTime());
+						hungryBox.update();
+						checkRemoveDragon();
+					}
+				}catch(InterruptedException e){
+					e.printStackTrace();
+				}
 			}
-		}catch(InterruptedException e){
-			e.printStackTrace();
-		}
+		});
+		countTime.start();
 	}
 	
 	public void removeHungryAndDragon(int HungryNum) {
@@ -71,7 +75,7 @@ public class HomeJenniber implements Runnable{
 		HomeKat.removeDragon(d,viewObjects);
 	}
 
-	private void checkRemoveDragon() {
+	public void checkRemoveDragon() {
 		for(int i=0; i< HomeKat.dragonHome.getDragonsOnScreen().size();i++){
 			Dragon d = HomeKat.dragonHome.getDragonsOnScreen().get(i);
 			if(d.getHungryBox()){

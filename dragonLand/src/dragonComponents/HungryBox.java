@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import game.DragonLand;
 import game.HomeKat;
+import game.HomeScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
 import guiPractice.components.Visible;
@@ -87,13 +88,24 @@ public class HungryBox extends Button implements Runnable{
 			}
 			g.drawString(t, (getWidth()-fm.stringWidth(t))/2, (getHeight()+fm.getHeight()-fm.getDescent())/2);
 		}
+		System.out.println(getText());
 		System.out.println("updated");
 	}
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		
+		try{
+			while(hungryTime>=0){
+				Thread.sleep(1000);
+				setHungryTime(hungryTime-1);
+				setText("Hungry!"+"\n"+getHungryTime()+" sec");
+				System.out.println("run hungryTime"+getHungryTime());
+				update();
+				HomeScreen.jenCode.checkRemoveDragon();
+			}
+		}catch(InterruptedException e){
+			e.printStackTrace();
+		}
 	}
 	
 }
