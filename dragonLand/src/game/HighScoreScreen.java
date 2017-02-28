@@ -68,15 +68,15 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		btext1.setSize(30);
 		
 		text2 = "The coins won and total coins are also displayed";
-		btext2 = new NoBorderButton(getWidth()-870,getHeight()-480,getWidth()-250, getHeight()-540, text2, DragonLand.BRIGHT_PINK,null);
+		btext2 = new NoBorderButton(getWidth()-870,getHeight()-380,getWidth()-250, getHeight()-540, text2, DragonLand.BRIGHT_PINK,null);
 		btext2.setSize(30);
 		
 		text3 = "Click clear scores to reset the list";
-		btext3 = new NoBorderButton(getWidth()-870,getHeight()-480,getWidth()-250, getHeight()-540, text3, DragonLand.BRIGHT_PINK,null);
+		btext3 = new NoBorderButton(getWidth()-870,getHeight()-280,getWidth()-250, getHeight()-540, text3, DragonLand.BRIGHT_PINK,null);
 		btext3.setSize(30);
 		
 		text4 = "Click the X to return to the main screen";
-		btext4 = new NoBorderButton(getWidth()-870,getHeight()-480,getWidth()-250, getHeight()-540, text4, DragonLand.BRIGHT_PINK, null);
+		btext4 = new NoBorderButton(getWidth()-870,getHeight()-180,getWidth()-250, getHeight()-540, text4, DragonLand.BRIGHT_PINK, null);
 		btext4.setSize(30);
 		
 		tCoins = 10;
