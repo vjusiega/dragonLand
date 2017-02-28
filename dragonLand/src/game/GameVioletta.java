@@ -27,7 +27,7 @@ import guiPractice.components.Visible;
  * 		Next dragon after that is placed on the left
  * 		Max number of extra dragons is two (three in total)
  */
-
+//
 public class GameVioletta implements gameDragonInterface{
 	
 	public static GameVioletta vGame;
