@@ -103,7 +103,11 @@ public class HomeJenniber {
 	}
 
 	public HungryBox getHungryBox(Dragon d) {
-		return new HungryBox(d.getX(),d.getY()+100);
+		int yCoord = d.getY()+105;
+		if(d.getY()<350){
+			yCoord+=30;
+		}
+		return new HungryBox(d.getX()-10,yCoord);
 	}
 }
 
