@@ -24,7 +24,7 @@ import guiPractice.components.Visible;
  */
 public class HungryBox extends Button implements Runnable{
 
-	private static final int W = 100;
+	private static final int W = 120;
 	private static final int H = 50;
 	private static final String TEXT = "Hungry!";
 	private static int hungryTime=15;
