@@ -94,6 +94,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		//view.add(addStar());
 		fallingStars();
 		
+		//get dragon image from either Jen or Kat here
 		GameVioletta vGameObject = new GameVioletta("img/dragon1.png");
 		
 		for(Dragon d : GameVioletta.vGame.getDragonArray()){
