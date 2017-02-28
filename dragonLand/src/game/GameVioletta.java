@@ -31,13 +31,18 @@ import guiPractice.components.Visible;
 public class GameVioletta implements gameDragonInterface{
 	
 	public static GameVioletta vGame;
+	private static ArrayList<Dragon> dragonArray;
 	
-	private static ArrayList<Dragon> dragonArray = new ArrayList<Dragon>();
+	public GameVioletta(String imgSrc){
+		vGame = this;
+		dragonArray = new ArrayList<Dragon>();
+		addDragon(imgSrc);
+	}
+	
 	
 	private static int screenWidth = DragonLand.miniGameScreen.getWidth();
 	private static int screenHeight = DragonLand.miniGameScreen.getHeight();
 	
-	private boolean play; //supposed to work for if the game is paused
 	
 	public static ArrayList<Dragon> getDragonArray(){
 		return dragonArray;
