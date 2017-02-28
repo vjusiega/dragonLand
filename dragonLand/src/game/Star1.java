@@ -33,9 +33,15 @@ public class Star1 extends GraphicMovingComponent{
 		touched = false; 
 	}
 	
+
 //	public int getDragonXPos(int dragonX){
 //		dragonXPos = dragonX;
 //	}
+
+	public int getDragonXPos(int dragonX){
+		dragonXPos = dragonX;
+		return dragonXPos;
+	}
 	
 	@Override
 	public void checkBehaviors() {
@@ -48,6 +54,15 @@ public class Star1 extends GraphicMovingComponent{
 //				GameScreen.setScoreDisplay();
 //			}
 //			touched = true;
+
+			if(!touched && GameVioletta.vGame.checkStarContact(getX(), getWidth())){
+				System.out.println(getY());
+				touched = true;
+				int score = GameScreen.getScore() + 1;
+				GameScreen.setScore(score);
+				GameScreen.setScoreDisplay();
+			}
+			touched = true;
 			game.removeStar(this);
 			System.out.println("removed");
 		}

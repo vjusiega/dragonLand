@@ -92,9 +92,12 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		
 		starArray = new ArrayList<Star1>();
 		//view.add(addStar());
+
+		fallingStars();
 		
-		GameVioletta.addDragon("img/dragon1.png");
-		for(Dragon d : GameVioletta.getDragonArray()){
+		GameVioletta vGameObject = new GameVioletta("img/dragon1.png");
+		
+		for(Dragon d : GameVioletta.vGame.getDragonArray()){
 			view.add(d);
 		}
 		
@@ -167,16 +170,16 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_LEFT){ 
-			GameVioletta.changeDragonPos(-5);
+			GameVioletta.vGame.changeDragonPos(-5);
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-			GameVioletta.changeDragonPos(5);
+			GameVioletta.vGame.changeDragonPos(5);
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_UP){
-			addObject(GameVioletta.addDragon("img/dragon1.png"));
+			addObject(GameVioletta.vGame.addDragon("img/dragon1.png"));
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_DOWN){
-			remove(GameVioletta.removeDragon());
+			remove(GameVioletta.vGame.removeDragon());
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_SPACE){
 			System.out.println("The space button");
