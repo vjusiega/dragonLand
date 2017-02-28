@@ -38,7 +38,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	private Button highScoreButton;
 	private Graphic background;
 	private boolean running;
-
+	private int time;
+	
 	private static ArrayList<Star1> starArray;
 	private static int score;
 	
@@ -54,7 +55,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		//initial score is 0 and it should count the number of stars caught
 		score = 0;
 		paused = false; 
-
+		time = 2000;
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
 		viewObjects.add(background);
 		
@@ -134,8 +135,11 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	public void fallingStars(){
 		try{
 			while(true){
+			//while(GameVioletta.stillPlaying()){
+			//change true to a boolean that checks if dragons have anymore lives - game over
 			System.out.println("star created");
-			Thread.sleep(1000);
+			//setTime();
+			Thread.sleep(time);
 			addStar();
 			}
 		}catch (InterruptedException e){
@@ -144,6 +148,13 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		
 	}
 	
+	public void setTime(){
+		if(score >= 25 && score < 50){
+			time = 1500;
+			//setVy(1); --> put this in checkBehavior
+		}
+		//add more ifs
+	}
 	public int randomX(){
 		int xPos = (int) (Math.random()*GameScreen.getWidth());
 		return xPos;
