@@ -62,7 +62,7 @@ public abstract class ShopScreen extends ClickableScreen {
 			
 			public void act() {
 				// TODO Auto-generated method stub
-				DragonLand.game.setScreen(DragonLand.homeScreen);
+				DragonLand.game.setScreen(DragonLand.shopMain);
 			}
 		});
 		
