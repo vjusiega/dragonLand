@@ -12,23 +12,23 @@ import game.DragonToShop;
 import guiPractice.components.AnimatedComponent;
 import guiPractice.components.MovingComponent;
 import guiPractice.components.Visible;
-/**
- * @author Kat 
- *
- */
+
 
 
 public class Dragon extends AnimatedComponent {
+
 	
-	
+	/**
+	 * @author Kat 
+	 *
+	 */
 	private String name;
 	private int price;
 	private String imgSrc;
 	int direction;
 	int initialX;
 	int initialY;
-	private boolean hungryBox;
-	
+	boolean hungryBox;
 	
 	
 	private int UP=0;
@@ -43,6 +43,8 @@ public class Dragon extends AnimatedComponent {
 		this.name=name;
 		this.price=price;
 		this.imgSrc=imgSrc;
+		this.hungryBox = false;
+
 	}
 
 	public void setY(int y){
@@ -106,7 +108,6 @@ public class Dragon extends AnimatedComponent {
 	@Override
 	public void drawImage(Graphics2D g) {
 		super.drawImage(g);
-//		if(hungryBox)....
 	}
 	public void animationUp(){
 		direction=UP;
@@ -148,4 +149,13 @@ public class Dragon extends AnimatedComponent {
 	public void setImgSrc(String imgSrc) {
 		this.imgSrc = imgSrc;
 	}
+
+	public boolean getHungryBox() {
+		return hungryBox;
+	}
+	
+	public void setHungryBox(boolean hungryBox){
+		this.hungryBox = hungryBox; 
+	}
+
 }
