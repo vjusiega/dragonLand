@@ -43,7 +43,7 @@ public class GameVioletta implements gameDragonInterface{
 		return dragonArray;
 	}
 	
-	public static Dragon addDragon(String imgSrc){
+	public Dragon addDragon(String imgSrc){
 		int xPos;
 		int dragonHeight = 100;
 		xPos = screenWidth / 2;
@@ -75,13 +75,13 @@ public class GameVioletta implements gameDragonInterface{
 	}
 	
 	
-	public static Dragon removeDragon(){
+	public Dragon removeDragon(){
 		Dragon deadDragon = dragonArray.get(dragonArray.size() - 1);
 		dragonArray.remove(dragonArray.size() - 1);
 		return(deadDragon);
 	}
 
-	public static void changeDragonPos(int x) {
+	public void changeDragonPos(int x) {
 		int leadDragon = findLeadDragon(x);
 		int leadDragonPos = (dragonArray.get(leadDragon)).getX();
 		if(leadDragonPos + x > 0 && leadDragonPos + x < screenWidth){

@@ -36,12 +36,13 @@ public class Star1 extends GraphicMovingComponent implements starInterface{
 	
 	public int getDragonXPos(int dragonX){
 		dragonXPos = dragonX;
+		return dragonXPos;
 	}
 	
 	@Override
 	public void checkBehaviors() {
 		if(getY() >= 560){
-			if(!touched && GameVioletta.checkStarContact(getX(), getWidth())){
+			if(!touched && GameVioletta.vGame.checkStarContact(getX(), getWidth())){
 				System.out.println(getY());
 				touched = true;
 				int score = GameScreen.getScore() + 1;
