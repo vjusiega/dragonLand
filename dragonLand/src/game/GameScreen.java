@@ -67,7 +67,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		helpButton = new Button(getWidth()-75, getHeight()-75, 50, 50, "?", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
-				pause();
+				//pause();
 				displayInstructions();
 			}
 		});
@@ -183,7 +183,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_SPACE){
 			System.out.println("The space button");
-			pause();
+			//pause();
 		}
 	}
 
@@ -217,12 +217,12 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	 */
 	
 	//Pause is not working
-	public void pause() {
-		running = false;
-		for(Star1 s: starArray){
-			s.setVy(0);
-		}
-	}
+//	public void pause() {
+//		running = false;
+//		for(Star1 s: starArray){
+//			s.setVy(0);
+//		}
+//	}
 	
 	public void displayInstructions(){
 		

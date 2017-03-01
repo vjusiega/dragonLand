@@ -147,4 +147,12 @@ public class GameVioletta implements gameDragonInterface{
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public boolean stillPlaying() {
+		if(dragonArray.size() == 0){
+			return false;
+		}
+		return true;
+	}
 }

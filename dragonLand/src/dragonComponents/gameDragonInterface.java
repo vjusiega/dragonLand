@@ -9,4 +9,5 @@ public interface gameDragonInterface {
 	Dragon removeDragon();
 	void changeDragonPos(int x);
 	ArrayList<Dragon> getDragonArray();
+	boolean stillPlaying();
 }
