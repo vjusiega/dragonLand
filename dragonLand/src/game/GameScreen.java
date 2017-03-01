@@ -68,16 +68,16 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		//displays the score on screen
 		scoreButton = new Button(getWidth()-150, 50, 120, 50, "Score: " + score, DragonLand.DARKER_NUDE, null);
 		
-		//allows the player to see the high scores
-		highScoreButton = new Button(getWidth()-150, 105, 120, 50, "High Scores", DragonLand.DARKER_NUDE, new Action() {
-			@Override
-			public void act() {
-				DragonLand.game.setScreen(DragonLand.highscoreScreen);
-			}
-		});
+// 		//allows the player to see the high scores
+// 		highScoreButton = new Button(getWidth()-150, 105, 120, 50, "High Scores", DragonLand.DARKER_NUDE, new Action() {
+// 			@Override
+// 			public void act() {
+// 				DragonLand.game.setScreen(DragonLand.highscoreScreen);
+// 			}
+// 		});
 		
 		view.add(exit);
-		view.add(highScoreButton);
+// 		view.add(highScoreButton);
 		view.add(scoreButton);
 
 		GameVioletta vGameObject = new GameVioletta("img/dragon1.png");	
@@ -95,8 +95,17 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		});
 		start.start();
 	}
+	
 	public static ArrayList<Star1> getStarArray(){
 		return starArray;
+	}
+	
+	public int randomX(){
+		//80 through getWidth()-175
+		int max = getWidth()-175;
+		int min = 80;
+		int xPos = (int) (Math.random()*(max - min) + min);
+		return xPos;
 	}
 	
 	public void addStar(){
@@ -141,10 +150,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		if (score >= 125 && score < 150){
 			time = 500;
 		}
-	}
-	public int randomX(){
-		int xPos = (int) (Math.random()*GameScreen.getWidth());
-		return xPos;
 	}
 	
 	@Override
