@@ -131,8 +131,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	
 	public void fallingStars(){
 		try{
-			while(true){
-			//while(GameVioletta.stillPlaying()){
+			while(GameVioletta.stillPlaying()){
 			//change true to a boolean that checks if dragons have anymore lives - game over
 			System.out.println("star created");
 			//setTime();
