@@ -27,10 +27,10 @@ import guiPractice.components.Visible;
 //import miniGames.GameVioletta;
 
 /**
- * @author Tamanna Hussain and Violetta Jusiega
+ * @author Tamanna Hussain
  *
  */
-public class GameScreen extends ClickableScreen implements KeyListener {
+public class GameScreen extends ClickableScreen implements KeyListener, starInterface {
 
 	private Button exit;
 	private Button helpButton;
