@@ -33,10 +33,6 @@ public class Star1 extends GraphicMovingComponent{
 		touched = false; 
 	}
 	
-//	public int getDragonXPos(int dragonX){
-//		dragonXPos = dragonX;
-//	}
-	
 	@Override
 	public void checkBehaviors() {
 		if(getY() >= 560){
