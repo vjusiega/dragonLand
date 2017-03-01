@@ -88,6 +88,23 @@ public class HomeJenniber {
 //		HomeKat.removeDragon(d,viewObjects);
 //		viewObjects.remove(hungry);
 	}
+	
+//	public void removeHungry(HungryBox hungry){
+//		for(int i=0; i<HomeKat.dragonHome.getDragonsOnScreen().size();i++){
+//			Dragon d= HomeKat.dragonHome.getDragonsOnScreen().get(i);
+//			if(d.getY()<350 && hungry.getX()==d.getX()-25){
+//				System.out.println("remove!!!");
+//				d.setHungryBox(false);
+//			}
+//			else{
+//				if(hungry.getY()==d.getY()+105){
+//					d.setHungryBox(false);
+//				}
+//			}
+//		}
+//		hungryBoxTimes.remove(hungry);
+////		viewObjects.remove(hungry);
+//	}
 
 	public void checkRemoveDragon() {
 		for(int i=0; i< HomeKat.dragonHome.getDragonsOnScreen().size();i++){
