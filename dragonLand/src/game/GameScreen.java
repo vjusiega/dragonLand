@@ -111,7 +111,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	}
 
 	public void removeStar(Star1 star){
-		System.out.println("here");
 		starArray.remove(star);
 		remove(star);
 	}
@@ -120,7 +119,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		try{
 			while(GameVioletta.vGame.stillPlaying()){
 			//change true to a boolean that checks if dragons have anymore lives - game over
-			System.out.println("star created");
 			//setTime();
 			Thread.sleep(time);
 			addStar();

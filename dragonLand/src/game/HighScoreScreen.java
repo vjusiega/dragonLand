@@ -54,10 +54,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		tCoins = 10;
 		buttons = new ArrayList<Button>();
 		highScores = new ArrayList<Integer>();
-		//highScores.add(GameScreen.getScore());
-		highScores.add(400);
-		highScores.add(32);
-		highScores.add(0);
+		highScores.add(GameScreen.getScore());
 		sortScores(highScores);
 		//helpBox = new Button()
 		help = new Button(getWidth()-90, 580, 40, 40, "?", DragonLand.DARKER_NUDE, new Action() {

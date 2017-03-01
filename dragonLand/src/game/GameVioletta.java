@@ -109,12 +109,16 @@ public class GameVioletta implements gameDragonInterface{
 		else return 0;
 	}
 	
-	public boolean checkStarContact(int starX, int starWidth){
+	public boolean checkStarContact(Star1 star){
+		int starX = star.getX();
+		int starWidth = star.getWidth();
 		int starEnd = starX + starWidth;
 		int dragonStart = (dragonArray.get(findLeadDragon(-1))).getX();
 		int dragonEnd = (dragonArray.get(findLeadDragon(-1))).getX() + (dragonArray.get(findLeadDragon(-1))).getWidth();
 		if((starX > dragonStart && starX < dragonEnd) || (starEnd > dragonStart && starEnd < dragonEnd)){
+			System.out.println("touching");
 			return true; 
+			
 		}
 		else{
 			return false; 
@@ -155,4 +159,5 @@ public class GameVioletta implements gameDragonInterface{
 		}
 		return true;
 	}
+
 }
