@@ -84,4 +84,8 @@ public class Button extends TextLabel implements Clickable{
 		// TODO Auto-generated method stub
 		return action;
 	}
+	
+	public void setAction(Action action){
+		this.action = action;
+	}
 }

@@ -24,14 +24,45 @@ public class HomeJenniber {
 	public HomeJenniber(ArrayList<Visible> viewObjects) {
 		System.out.println("Thread");
 		this.viewObjects = viewObjects;
-		createHungryThread(getRandDragon());
+		this.hungryBoxTimes = new ArrayList<HungryBox>();
+		randomHunger();
+		//createHungryThread(getRandDragon());
+	}
+	
+	public void randomHunger(){
+		while(HomeKat.dragonHome.getDragonsOnScreen().size()>0 && hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size()){
+			double probability = .7;
+			if(Math.random()>probability){
+				createHungryThread(getRandDragon());
+			}
+		}
 	}
 	
 	public void createHungryThread(Dragon d){
 		//d is a dragon from HomeKat.onScreenDragons
 		System.out.println("Add hungryBox");
-		this.hungryBoxTimes = new ArrayList<HungryBox>();
 		HungryBox hungryDragon = getHungryBox(d);
+		hungryDragon.setAction(new Action(){
+
+			@Override
+			public void act() {
+				for(int i=0; i<HomeKat.dragonHome.getDragonsOnScreen().size();i++){
+					Dragon d= HomeKat.dragonHome.getDragonsOnScreen().get(i);
+					if(d.getY()<350 && hungryDragon.getX()==d.getX()-25){
+						System.out.println("remove!!!");
+						d.setHungryBox(false);
+					}
+					else{
+						if( hungryDragon.getY()==d.getY()+105){
+							d.setHungryBox(false);
+						}
+					}
+				}
+				hungryBoxTimes.remove(hungryDragon);
+				viewObjects.remove(hungryDragon);
+			}
+			
+		});
 		hungryBoxTimes.add(hungryDragon);
 		viewObjects.add(hungryDragon);
 		Thread hungry = new Thread(hungryDragon);
@@ -84,7 +115,7 @@ public class HomeJenniber {
 	}
 	
 	public Dragon getRandDragon(){
-		//Will return a randomly selected dragon from the ones currently being diplayed on the HomeScreen
+		//Will return a randomly selected dragon from the ones currently being displayed on the HomeScreen
 		int randNum = (int) (Math.random()*HomeKat.dragonHome.getDragonsOnScreen().size());
 		while(HomeKat.dragonHome.getDragonsOnScreen().get(randNum).getHungryBox()){
 			randNum = (int) (Math.random()*HomeKat.dragonHome.getDragonsOnScreen().size());

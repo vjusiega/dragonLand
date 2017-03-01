@@ -43,7 +43,6 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 
 		HomeKat katCode=new HomeKat(viewObjects, getWidth(), getHeight());
 		jenCode = new HomeJenniber(viewObjects);
-
 		run();
 
 	}

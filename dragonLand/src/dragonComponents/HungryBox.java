@@ -5,6 +5,7 @@ package dragonComponents;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
@@ -13,6 +14,7 @@ import java.awt.Stroke;
 import java.util.ArrayList;
 
 import game.DragonLand;
+import game.HomeJenniber;
 import game.HomeKat;
 import game.HomeScreen;
 import guiPractice.components.Action;
@@ -24,7 +26,6 @@ import guiPractice.components.Visible;
  */
 public class HungryBox extends Button implements Runnable{
 
-	public static HungryBox hungryBox;
 	private static final int W = 150;
 	private static final int H = 50;
 	private static final String TEXT = "Hungry!";
@@ -41,14 +42,7 @@ public class HungryBox extends Button implements Runnable{
 	 * @param action
 	 */
 	public HungryBox(int x, int y) {
-		super(x, y, W, H, TEXT+" "+hungryTime+" sec", DragonLand.DARKER_NUDE, new Action(){
-
-			@Override
-			public void act() {
-				HomeScreen.jenCode.removeHungry(hungryBox);
-			}
-			
-		});
+		super(x, y, W, H, TEXT+" "+hungryTime+" sec", DragonLand.DARKER_NUDE,null);
 	}	
 
 	public int getHungryTime() {
