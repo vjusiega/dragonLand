@@ -60,8 +60,9 @@ public class GameInstructions extends ClickableScreen {
 			@Override
 			public void act() {
 				DragonLand.game.setScreen(DragonLand.miniGameScreen);
+				//GameScreen.initializeScreen();
 				DragonLand.miniGameScreen.startGame();
-				DragonLand.miniGameScreen = new GameScreen(getWidth(), getHeight());
+				//DragonLand.miniGameScreen = new GameScreen(getWidth(), getHeight());
 //				DragonLand.game.miniGameScreen.initObjects(viewObjects);
 			}
 		});

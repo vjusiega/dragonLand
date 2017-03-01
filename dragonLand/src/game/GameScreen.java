@@ -33,7 +33,7 @@ import guiPractice.components.Visible;
 public class GameScreen extends ClickableScreen implements KeyListener {
 
 	private Button exit;
-	private static Button scoreButton;
+	private static Button scoreDisplay;
 	private Button highScoreButton;
 	private Graphic background;
 	private int time;
@@ -66,32 +66,27 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 			}
 		});
 		
-		//displays the score on screen
-		scoreButton = new Button(getWidth()-150, 50, 120, 50, "Score: " + score, DragonLand.DARKER_NUDE, null);
-		
-// 		//allows the player to see the high scores
-// 		highScoreButton = new Button(getWidth()-150, 105, 120, 50, "High Scores", DragonLand.DARKER_NUDE, new Action() {
-// 			@Override
-// 			public void act() {
-// 				DragonLand.game.setScreen(DragonLand.highscoreScreen);
-// 			}
-// 		});
+		scoreDisplay = new Button(getWidth()-150, 50, 120, 50, "Score: " + score, DragonLand.DARKER_NUDE, null);
 		
 		view.add(exit);
-// 		view.add(highScoreButton);
-		view.add(scoreButton);
+		view.add(scoreDisplay);
 
 		GameVioletta vGameObject = new GameVioletta("img/dragon1.png");	
 		for(Dragon d : GameVioletta.vGame.getDragonArray()){
 			view.add(d);
 		}	
 	}
+	
 	public void startGame(){
 		Thread start = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				fallingStars();
-				Thread.sleep(time/2);
+				try {
+					Thread.sleep(time/2);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				//maybe add thread.sleep in here too to make it slower
 			}
 		});
@@ -129,7 +124,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	public void fallingStars(){
 		try{
 			while(GameVioletta.vGame.stillPlaying()){
-			//change true to a boolean that checks if dragons have anymore lives - game over
 			//setTime();
 			Thread.sleep(time);
 			addStar();
@@ -153,11 +147,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 			time = 500;
 		}
 	}
-	
-	@Override
-	public void keyTyped(KeyEvent e) {
-		//addObject(addStar());
-	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -173,10 +162,10 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		else if(e.getKeyCode() == KeyEvent.VK_DOWN){
 			remove(GameVioletta.vGame.removeDragon());
 		}
-		else if(e.getKeyCode() == KeyEvent.VK_SPACE){
-			System.out.println("The space button");
-			//pause();
-		}
+	}
+	
+	@Override
+	public void keyTyped(KeyEvent e) {
 	}
 
 	@Override
@@ -200,16 +189,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	}
 	
 	public static void setScoreDisplay(){
-		scoreButton.setText("Score: " + score);
+		scoreDisplay.setText("Score: " + score);
 	}
-	
-	/*
-	 * Methods for instructions
-	 */
-	
-	public void displayInstructions(){
-	}
-	
-	public void unpause(){		
-	}
+
 }
