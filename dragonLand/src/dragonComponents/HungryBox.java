@@ -24,7 +24,8 @@ import guiPractice.components.Visible;
  */
 public class HungryBox extends Button implements Runnable{
 
-	private static final int W = 120;
+	public static HungryBox hungryBox;
+	private static final int W = 150;
 	private static final int H = 50;
 	private static final String TEXT = "Hungry!";
 	private static int hungryTime=15;
@@ -40,18 +41,20 @@ public class HungryBox extends Button implements Runnable{
 	 * @param action
 	 */
 	public HungryBox(int x, int y) {
-		super(x, y, W, H, TEXT+"\n"+hungryTime+" sec", DragonLand.DARKER_NUDE, null);
-	}	
-	
-//HomeKat.removeDragon(Dragon d, viewObjects)
+		super(x, y, W, H, TEXT+" "+hungryTime+" sec", DragonLand.DARKER_NUDE, new Action(){
 
+			@Override
+			public void act() {
+				HomeScreen.jenCode.removeHungry(hungryBox);
+			}
+			
+		});
+	}	
 
 	public int getHungryTime() {
 		return hungryTime;
 	}
 
-
-	
 	public void setHungryTime(int num) {
 		hungryTime = num;
 	}
@@ -88,6 +91,7 @@ public class HungryBox extends Button implements Runnable{
 			}
 			g.drawString(t, (getWidth()-fm.stringWidth(t))/2, (getHeight()+fm.getHeight()-fm.getDescent())/2);
 		}
+		
 		System.out.println(getText());
 		System.out.println("updated");
 	}
@@ -95,11 +99,11 @@ public class HungryBox extends Button implements Runnable{
 	@Override
 	public void run() {
 		try{
-			while(hungryTime>=0){
+			while(hungryTime>0){
 				Thread.sleep(1000);
 				setHungryTime(hungryTime-1);
-				setText("Hungry!"+"\n"+getHungryTime()+" sec");
-				System.out.println("run hungryTime"+getHungryTime());
+				setText("Hungry!"+" "+hungryTime+" sec");
+				System.out.println("run hungryTime"+hungryTime);
 				update();
 				HomeScreen.jenCode.checkRemoveDragon();
 			}
@@ -107,5 +111,4 @@ public class HungryBox extends Button implements Runnable{
 			e.printStackTrace();
 		}
 	}
-	
 }
