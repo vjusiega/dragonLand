@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import dragonComponents.CoinLabel;
 import dragonComponents.Dragon;
-import dragonComponents.DragonLabel;
 import dragonComponents.PriceLabel;
 import dragonComponents.ShopBackdrop;
 import dragonComponents.ShopLabel;
@@ -29,14 +28,12 @@ public abstract class ShopScreen extends ClickableScreen {
 	
 	private final static int LEFT_MARGIN = 15;
 	private final static int TOP_MARGIN = 15;
-	
+
 	private CoinLabel coins;
 	private int currentPage = 1;
 	private int totalPages = 2;
-	private ShopLabel page;
 	private ShopLabel dragonAmount;
-
-	
+	private ShopLabel page;
 
 	private ClickableGraphic arrowRight;
 	private ClickableGraphic arrowLeft;
@@ -74,7 +71,7 @@ public abstract class ShopScreen extends ClickableScreen {
 			
 			public void act() {
 				// TODO Auto-generated method stub
-				DragonLand.game.setScreen(DragonLand.homeScreen);
+				DragonLand.game.setScreen(DragonLand.shopMain);
 			}
 		});
 		
@@ -83,8 +80,8 @@ public abstract class ShopScreen extends ClickableScreen {
 		shopName.setSize(26);
 		
 		int coinX = titleX + titleWidth - CoinLabel.getWdith() - LEFT_MARGIN * 2;
-
 		coins = new CoinLabel(coinX, shopNameY, DragonLand.coins);
+
 		dragonAmount = new ShopLabel(coinX, shopNameY + CoinLabel.getHeight2() + 2, CoinLabel.getWdith(), CoinLabel.getHeight2(), /*DragonLand.dragons.length() +*/ "0/6 Dragons", DragonLand.LIGHT_NUDE);
 
 		dragonAmount.setArc(15);
@@ -125,11 +122,9 @@ public abstract class ShopScreen extends ClickableScreen {
 		viewObjects.add(arrowRight);
 		viewObjects.add(arrowLeft);
 		viewObjects.add(page);
-	
-		addDragonLabels(viewObjects);
-		
+		addDragonLabels(viewObjects);	
 	}
-
+	
 	public abstract void addDragonLabels(ArrayList<Visible> viewObjects);
 	
 	public CoinLabel getCoins()
@@ -158,4 +153,3 @@ public abstract class ShopScreen extends ClickableScreen {
 	}
 
 }
-

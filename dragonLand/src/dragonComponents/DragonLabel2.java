@@ -1,10 +1,15 @@
 package dragonComponents;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+
+import javax.swing.ImageIcon;
 
 import game.DragonLand;
 import guiPractice.components.Action;
+import guiPractice.components.AnimatedComponent;
 import guiPractice.components.Clickable;
 import guiPractice.components.Component;
 import guiPractice.components.Graphic;
@@ -25,12 +30,11 @@ public class DragonLabel2 extends Component implements Clickable{
 	private Dragon dragon;
 	private String buttonType;
 	private Action action;
-	
 	private ShopBackdrop labelBack;
 	private TextLabel dragonName;
 	private PriceLabel dragonPrice;
 	private ShopActionButton button;
-	private Graphic dragonImage;
+	private BufferedImage dragonImage;
 	
 	public DragonLabel2(int x, int y, Dragon d, String t) {
 		super(x, y, LABEL_WIDTH, LABEL_HEIGHT);
@@ -57,8 +61,8 @@ public class DragonLabel2 extends Component implements Clickable{
 			int column2X = 145;
 			int column3x = 590;
 			
-			labelBack = new ShopBackdrop(0,0,LABEL_WIDTH,LABEL_HEIGHT, DragonLand.DARKER_NUDE);
-			dragonImage = new Graphic(column1X, TOP_MARGIN, 85, 85, dragon.getImgSrc());
+			labelBack = new ShopBackdrop(0,0,LABEL_WIDTH,LABEL_HEIGHT, DragonLand.DARKER_NUDE);			
+			//dragonImage = new Graphic(column1X, TOP_MARGIN, 85, 85, dragon.getImgSrc());
 			dragonName = new ShopLabel(column2X, TOP_MARGIN, 420, 40, dragon.getName(), Color.WHITE);
 			
 			if(buttonType.toUpperCase().equals("BUY"))
@@ -68,11 +72,13 @@ public class DragonLabel2 extends Component implements Clickable{
 			button = new ShopActionButton(column3x, TOP_MARGIN * 2, 150, 80, buttonType, DragonLand.LIGHT_NUDE, null);
 			
 			g.drawImage(labelBack.getImage(), 0, 0, null);
-			g.drawImage(dragonImage.getImage(), dragonImage.getX(), dragonImage.getY(), null);
+			//g.drawImage(dragonImage.getImage(), dragonImage.getX(), dragonImage.getY(), null);
 			g.drawImage(dragonName.getImage(), dragonName.getX(), dragonName.getY(), null);
 			g.drawImage(dragonPrice.getCoin().getImage(), dragonPrice.getCoin().getX(), dragonPrice.getCoin().getY(), null);
 			g.drawImage(dragonPrice.getPriceLabel().getImage(), dragonPrice.getPriceLabel().getX(), dragonPrice.getPriceLabel().getY(), null);
 			g.drawImage(button.getImage(), button.getX(), button.getY(), null);
+			
+			g.drawImage(dragon.getFrame(1), column1X, TOP_MARGIN, 85, 85, null);
 		}
 
 	}
@@ -101,7 +107,7 @@ public class DragonLabel2 extends Component implements Clickable{
 		return button;
 	}
 	
-	public Graphic getDragonImg() {
+	public BufferedImage getDragonImg() {
 		return dragonImage;
 	}
 
@@ -109,11 +115,6 @@ public class DragonLabel2 extends Component implements Clickable{
 	public ShopBackdrop getBackdrop()
 	{
 		return labelBack;
-	}
-	
-	public Visible[] getVisible()
-	{
-		return new Visible[] {labelBack, dragonName, dragonPrice.getCoin(), dragonPrice.getPriceLabel(), button, dragonImage};
 	}
 
 	@Override
