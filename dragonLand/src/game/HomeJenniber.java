@@ -17,13 +17,13 @@ import guiPractice.components.Visible;
 public class HomeJenniber {
 	
 	private ArrayList<HungryBox> hungryBoxTimes;
-	private ArrayList<Visible> viewObjects;
+//	private ArrayList<Visible> viewObjects;
 	/**
 	 * 
 	 */
-	public HomeJenniber(ArrayList<Visible> viewObjects) {
+	public HomeJenniber() {
 		System.out.println("Thread");
-		this.viewObjects = viewObjects;
+//		this.viewObjects = viewObjects;
 		this.hungryBoxTimes = new ArrayList<HungryBox>();
 		randomHunger();
 		//createHungryThread(getRandDragon());
@@ -41,55 +41,52 @@ public class HomeJenniber {
 	public void createHungryThread(Dragon d){
 		//d is a dragon from HomeKat.onScreenDragons
 		System.out.println("Add hungryBox");
-		HungryBox hungryDragon = getHungryBox(d);
-		hungryDragon.setAction(new Action(){
+		HungryBox hungryBox = getHungryBox(d);
+		hungryBox.setAction(new Action(){
 
 			@Override
 			public void act() {
 				for(int i=0; i<HomeKat.dragonHome.getDragonsOnScreen().size();i++){
 					Dragon d= HomeKat.dragonHome.getDragonsOnScreen().get(i);
-					if(d.getY()<350 && hungryDragon.getX()==d.getX()-25){
-						System.out.println("remove!!!");
-						d.setHungryBox(false);
-					}
-					else{
-						if( hungryDragon.getY()==d.getY()+105){
+					if((d.getY()<350 && hungryBox.getX()==d.getX()-25) || hungryBox.getY()==d.getY()+105){
 							d.setHungryBox(false);
-						}
+							Thread waitUntilHungry = new Thread(new Runnable() {
+								
+								@Override
+								public void run() {
+									// TODO Auto-generated method stub
+									try {
+										Thread.sleep(2000);
+									} catch (InterruptedException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									createHungryThread(d);
+								}
+							});
+							waitUntilHungry.start();
 					}
 				}
-				hungryBoxTimes.remove(hungryDragon);
-				viewObjects.remove(hungryDragon);
+				
+				hungryBoxTimes.remove(hungryBox);
+				DragonLand.homeScreen.remove(hungryBox);
+				//viewObjects.remove(hungryBox);
 			}
 			
 		});
-		hungryBoxTimes.add(hungryDragon);
-		viewObjects.add(hungryDragon);
-		Thread hungry = new Thread(hungryDragon);
+		hungryBoxTimes.add(hungryBox);
+//		viewObjects.add(hungryBox);
+		DragonLand.homeScreen.addObject(hungryBox);
+		Thread hungry = new Thread(hungryBox);
 		hungry.start();
 	}
 	
 	public void removeHungryAndDragon(Dragon d, HungryBox hungry) {
 		hungryBoxTimes.remove(hungry);
-		HomeKat.removeDragon(d,viewObjects);
-		viewObjects.remove(hungry);
-	}
-	
-	public void removeHungry(HungryBox hungry){
-		for(int i=0; i<HomeKat.dragonHome.getDragonsOnScreen().size();i++){
-			Dragon d= HomeKat.dragonHome.getDragonsOnScreen().get(i);
-			if(d.getY()<350 && hungry.getX()==d.getX()-25){
-				System.out.println("remove!!!");
-				d.setHungryBox(false);
-			}
-			else{
-				if(hungry.getY()==d.getY()+105){
-					d.setHungryBox(false);
-				}
-			}
-		}
-		hungryBoxTimes.remove(hungry);
-		viewObjects.remove(hungry);
+		DragonLand.homeScreen.remove(d);
+		DragonLand.homeScreen.remove(hungry);
+//		HomeKat.removeDragon(d,viewObjects);
+//		viewObjects.remove(hungry);
 	}
 
 	public void checkRemoveDragon() {
@@ -100,12 +97,12 @@ public class HomeJenniber {
 					HungryBox hungry = hungryBoxTimes.get(j);
 					int yCoord = d.getY()+105;
 					if(d.getY()<350){
-						if(hungry.getX()==d.getX()-25 && hungry.getHungryTime()==0){
+						if(hungry.getX()==d.getX()-25 && hungry.getHungryTime()<=0){
 							removeHungryAndDragon(d,hungry);
 						}
 					}
 					else{
-						if(hungry.getY()==yCoord && hungry.getHungryTime()==0){
+						if(hungry.getY()==yCoord && hungry.getHungryTime()<=0){
 							removeHungryAndDragon(d,hungry);
 						}
 					}

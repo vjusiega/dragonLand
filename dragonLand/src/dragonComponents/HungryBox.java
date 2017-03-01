@@ -29,7 +29,8 @@ public class HungryBox extends Button implements Runnable{
 	private static final int W = 150;
 	private static final int H = 50;
 	private static final String TEXT = "Hungry!";
-	private static int hungryTime=15;
+	private static final int HUNGRY_LIMIT =15;
+	private int hungryTime;
 	
 	
 	/**
@@ -42,7 +43,9 @@ public class HungryBox extends Button implements Runnable{
 	 * @param action
 	 */
 	public HungryBox(int x, int y) {
-		super(x, y, W, H, TEXT+" "+hungryTime+" sec", DragonLand.DARKER_NUDE,null);
+		super(x, y, W, H, TEXT+" "+HUNGRY_LIMIT+" sec", DragonLand.DARKER_NUDE,null);
+		hungryTime = HUNGRY_LIMIT;
+		update();
 	}	
 
 	public int getHungryTime() {
@@ -57,7 +60,7 @@ public class HungryBox extends Button implements Runnable{
 	public void update(Graphics2D g){
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
-		if(hungryTime<5){
+		if(hungryTime<=5){
 			g.setColor(DragonLand.LIGHT_PINK);
 		}
 		else{

@@ -29,7 +29,7 @@ public class DragonLand extends GUIApplication {
 	//public static ArrayList<AnimatedComponent> dragonList; //list of all dragons in the game
 	public static int coins; 
 
-	public static Screen homeScreen;
+	public static HomeScreen homeScreen;
 	public static Screen shopMain; // shop 1
 	public static Screen sellScreen; // shop 2
 	public static Screen buyScreen; // shop 3
@@ -69,6 +69,7 @@ public class DragonLand extends GUIApplication {
 	protected void initScreen() {
 		initColors();
 		homeScreen = new HomeScreen(getWidth(),getHeight());
+		HomeScreen.jenCode = new HomeJenniber();
 		miniGameScreen = new GameScreen(getWidth(),getHeight());
 		shopMain = new HomeShopScreen(getWidth(),getHeight());
 		//sellScreen = new SellShopZheng(getWidth(),getHeight());
