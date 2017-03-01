@@ -223,7 +223,7 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 		locationsY.add(d.getY());
 		//adds dragons
 		dragonsOnScreen.remove(d);
-		DragonLand.homeScreen.remove(d);
+		viewObjects.remove(d);
 	}
 	public static void addDragon(Dragon d){
 		//adds back the available dragon spot in the field
