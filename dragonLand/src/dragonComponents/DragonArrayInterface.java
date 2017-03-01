@@ -9,8 +9,7 @@ import guiPractice.components.Visible;
  */
 public interface DragonArrayInterface {
 
-	void removeHungryDragon(Dragon d, ArrayList<Visible>viewObjects);
-	
+	void removeHungryDragon(Dragon d);
 
 	ArrayList<Dragon> getDragonsOnScreen();
 }

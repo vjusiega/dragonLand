@@ -18,11 +18,6 @@ import guiPractice.components.Visible;
 public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 
 	private ArrayList<Dragon> dragonsInShop;
-	private ArrayList<Dragon> dragons; 
-	//private DragonLabel label;
-	
-	//private int price = label.getDragonPrice().getPrice();
-	//private Dragon sold;
 	private int x; 
 	private	int y;
 	private static int startIndex = 0;
@@ -37,8 +32,8 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 	@Override
 	public void addDragonLabels(ArrayList<Visible> visible) {
 		pageNum = 1;
-		dragons = HomeKat.getDragons();
-		dragonsInShop = getDragonsInBuyShop();
+		dragonsInShop = new ArrayList<Dragon>();
+		getDragonsInBuyShop();
 		getPage().setText("Page " + pageNum);
 		addLabels(visible);
 		buttonArrows();
@@ -63,6 +58,7 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 			Dragon d = dragonsInShop.get(i);
 			DragonLabel2 label = new DragonLabel2(DragonLabel2.LABEL_LEFT_MARGIN,y, d,"BUY");
 			label.setAction( new Action(){
+				
 				public void act() {
 					if(DragonLand.coins > d.getPrice() && ((SellShopZheng)DragonLand.sellScreen).getDragonsInSellShop().size() < 6)
 					{
@@ -76,37 +72,25 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 					}
 				}
 			});
-		
-			addObject(label);	
-			y += DragonLabel2.getLabelHeight()+20;
-			
+
+			addObject(label);
+			y += DragonLabel2.getLabelHeight()+20;	
 		}
 	}
 	
-	
-	public void inLists(int num){
+	private void getDragonsInBuyShop() {
+		for(Dragon d: HomeKat.getDragons())
+			dragonsInShop.add(d);
 		
-		dragonsInShop = new ArrayList<Dragon>();
-		dragons = new ArrayList<Dragon>();
-		
-		dragons = HomeKat.getDragons();
-		for(int i = 0; i<num; i++)
-		{
-			dragonsInShop.add(dragons.get(i));
-		}
-	}
-	private ArrayList<Dragon> getDragonsInBuyShop() {
-		dragonsInShop = dragons;
-		for(Dragon d: HomeKat.getDragonsOnScreen())
+		for(Dragon d: ((SellShopZheng)DragonLand.sellScreen).getDragonsInSellShop())
 		{
 			dragonsInShop.remove(d);
 		}
-		return dragonsInShop;
 	}
 	
 	private void boughtDragon(Dragon d, DragonLabel2 label) {
 		// TODO Auto-generated method stub
-		dragonsInShop.remove(d);	
+		dragonsInShop.remove(d);
 		remove(label);
 		System.out.println("adding to sell");
 		((SellShopZheng)DragonLand.sellScreen).addToDragonsInSellShop(d);

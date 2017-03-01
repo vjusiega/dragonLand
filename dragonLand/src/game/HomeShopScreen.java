@@ -49,8 +49,9 @@ public class HomeShopScreen extends ClickableScreen {
 		Button exit = new Button(getWidth() - 100,  60, 50, 40, "X", new Color(230,195,147), new Action(){
 			
 			public void act() {
-				// TODO Auto-generated method stub
+				
 				DragonLand.game.setScreen(DragonLand.homeScreen);
+				HomeKat.dragonsOnScreen();
 			}
 		});
 		

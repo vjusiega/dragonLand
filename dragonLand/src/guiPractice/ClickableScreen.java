@@ -26,7 +26,7 @@ public abstract class ClickableScreen extends Screen implements MouseListener {
 	
 	public void addObject(Visible v){
 		 super.addObject(v);
-		 if(v instanceof Clickable){
+		 if(clickables != null && v instanceof Clickable){
 			 clickables.add((Clickable)v);
 		 }
 	}

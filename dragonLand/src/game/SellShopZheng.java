@@ -12,8 +12,6 @@ import guiPractice.components.Visible;
 public class SellShopZheng extends ShopScreen implements SellScreenInterface, StoreSellInterfaceK{
 	
 	private ArrayList<Dragon> dragonsInSellShop;
-
-	private ArrayList<Dragon> dragonsSold;
 	private int pageNumber;
 	
 	public SellShopZheng(int width, int height) {
@@ -23,9 +21,8 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 	@Override
 	public void addDragonLabels(ArrayList<Visible> viewObjects) {
 		dragonsInSellShop = new ArrayList<Dragon>();
-		dragonsSold = new ArrayList<Dragon>();
 		setArrowAction();
-		inLists();
+		//inLists();
 		pageNumber = 1;
 		drawDragons();
 	}
@@ -69,20 +66,14 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 
 	@Override
 	public String[] getNamesOfPurchased() {
-		String[] names = new String[dragonsSold.size()];
-		for(int i = 0; i < dragonsSold.size(); i++)
-			names[i] = dragonsSold.get(i).getName();
+		String[] names = new String[dragonsInSellShop.size()];
+		for(int i = 0; i < dragonsInSellShop.size(); i++){
+			names[i] = dragonsInSellShop.get(i).getName();
+		}
 			
 		return names;
 	}
 	
-	public void inLists()
-	{
-		for(int i = 0; i < HomeKat.getDragonsOnScreen().size(); i++)
-		{
-			dragonsInSellShop.add(HomeKat.getDragonsOnScreen().get(i));
-		}
-	}
 	
 	public void setPageDisplay()
 	{
@@ -113,7 +104,6 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 			label.setAction(new Action(){
 				public void act()
 				{
-					dragonsSold.add(dragon);
 					dragonsInSellShop.remove(dragon);
 					((BuyScreenWendy)DragonLand.buyScreen).addToDragonsInBuyShop(dragon);
 					removeDragons();
