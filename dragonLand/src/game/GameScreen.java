@@ -37,6 +37,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	private Button highScoreButton;
 	private Graphic background;
 	private int time;
+	//private int numOfStars;
 	
 	private static ArrayList<Star1> starArray;
 	private static int score;
@@ -90,6 +91,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 			@Override
 			public void run() {
 				fallingStars();
+				Thread.sleep(time/2);
 				//maybe add thread.sleep in here too to make it slower
 			}
 		});
