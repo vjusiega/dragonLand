@@ -48,6 +48,7 @@ public class HomeJenniber {
 		for(int i=0; i<HomeKat.dragonHome.getDragonsOnScreen().size();i++){
 			Dragon d= HomeKat.dragonHome.getDragonsOnScreen().get(i);
 			if(d.getY()<350 && hungry.getX()==d.getX()-25){
+				System.out.println("remove!!!");
 				d.setHungryBox(false);
 			}
 			else{

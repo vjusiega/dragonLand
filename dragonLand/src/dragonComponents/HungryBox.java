@@ -70,7 +70,6 @@ public class HungryBox extends Button implements Runnable{
 			g.setColor(DragonLand.DARKER_NUDE);
 		}
 		double thickness = 2;
-		Stroke oldStroke = g.getStroke();
 		g.setStroke(new BasicStroke((float) thickness));
 		g.fillRoundRect(0, 0, getWidth(), getHeight(), 35, 25);
 		g.setColor(DragonLand.NAVY);
@@ -82,7 +81,6 @@ public class HungryBox extends Button implements Runnable{
 		if(getText()!= null){
 			
 			String t = getText();
-			System.out.println(t);
 			//just in case text is too wide, cut off
 			int cutoff = t.length();
 			while(cutoff > 0 && fm.stringWidth(t) > getWidth()){
@@ -91,9 +89,6 @@ public class HungryBox extends Button implements Runnable{
 			}
 			g.drawString(t, (getWidth()-fm.stringWidth(t))/2, (getHeight()+fm.getHeight()-fm.getDescent())/2);
 		}
-		
-		System.out.println(getText());
-		System.out.println("updated");
 	}
 
 	@Override
@@ -103,8 +98,6 @@ public class HungryBox extends Button implements Runnable{
 				Thread.sleep(1000);
 				setHungryTime(hungryTime-1);
 				setText("Hungry!"+" "+hungryTime+" sec");
-				System.out.println("run hungryTime"+hungryTime);
-				update();
 				HomeScreen.jenCode.checkRemoveDragon();
 			}
 		}catch(InterruptedException e){
