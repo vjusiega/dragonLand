@@ -54,6 +54,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		score = 0;
 		paused = false; 
 		time = 2000;
+		starArray = new ArrayList<Star1>();
+	
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
 		viewObjects.add(background);
 		
@@ -87,24 +89,18 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		view.add(helpButton);
 		view.add(highScoreButton);
 		view.add(scoreButton);
-		
-		starArray = new ArrayList<Star1>();
-		//view.add(addStar());
 
-		GameVioletta vGameObject = new GameVioletta("img/dragon1.png");
-		
+		GameVioletta vGameObject = new GameVioletta("img/dragon1.png");	
 		for(Dragon d : GameVioletta.vGame.getDragonArray()){
 			view.add(d);
-		}
-		
-		
+		}	
 	}
 	public void startGame(){
 		Thread start = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				fallingStars();
-
+				//maybe add thread.sleep in here too to make it slower
 			}
 		});
 		start.start();
@@ -114,6 +110,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	}
 	
 	public void addStar(){
+		//adds one star object to the screen and the array
 		int yPos = 0;
 		int starH = 100;
 		int starW = 100;
@@ -188,7 +185,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e){	
-	
 	}
 
 	public KeyListener getKeyListener(){
@@ -224,10 +220,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 //	}
 	
 	public void displayInstructions(){
-		
 	}
 	
-	public void unpause(){
-		
+	public void unpause(){		
 	}
 }
