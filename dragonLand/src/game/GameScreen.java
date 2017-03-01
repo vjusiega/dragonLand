@@ -30,14 +30,13 @@ import guiPractice.components.Visible;
  * @author Tamanna Hussain
  *
  */
-public class GameScreen extends ClickableScreen implements KeyListener, starInterface {
+public class GameScreen extends ClickableScreen implements KeyListener {
 
 	private Button exit;
 	private Button helpButton;
 	private static Button scoreButton;
 	private Button highScoreButton;
 	private Graphic background;
-	private boolean running;
 	private int time;
 	
 	private static ArrayList<Star1> starArray;
@@ -47,7 +46,6 @@ public class GameScreen extends ClickableScreen implements KeyListener, starInte
 	
 	public GameScreen(int width, int height) {
 		super(width, height);
-//		running = true;
 	}
 	
 	@Override
@@ -105,7 +103,6 @@ public class GameScreen extends ClickableScreen implements KeyListener, starInte
 		Thread start = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				fallingStars();
 
 			}
@@ -149,11 +146,16 @@ public class GameScreen extends ClickableScreen implements KeyListener, starInte
 	}
 	
 	public void setTime(){
-		if(score >= 25 && score < 50){
+		if (score >= 25 && score < 50){
 			time = 1500;
 			//setVy(1); --> put this in checkBehavior
 		}
-		//add more ifs
+		if (score >= 75 && score < 100){
+			time = 1000;
+		}
+		if (score >= 125 && score < 150){
+			time = 500;
+		}
 	}
 	public int randomX(){
 		int xPos = (int) (Math.random()*GameScreen.getWidth());
