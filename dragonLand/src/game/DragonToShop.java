@@ -1,4 +1,4 @@
-package dragonComponents;
+package game;
 
 public interface DragonToShop {
 	String getName();

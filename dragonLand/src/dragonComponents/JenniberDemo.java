@@ -24,7 +24,7 @@ public class JenniberDemo extends GUIApplication {
 	 * 
 	 */
 	public JenniberDemo() {
-		fluctuation = new HungryBox(100, 100, DragonLand.LIGHT_NUDE);
+		fluctuation = new HungryBox(100, 100);
 	}
 
 	/* (non-Javadoc)

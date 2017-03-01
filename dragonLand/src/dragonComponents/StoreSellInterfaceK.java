@@ -8,5 +8,5 @@ public interface StoreSellInterfaceK {
 	 */
 	 String[] getNamesOfPurchased();
 	
-	 void removeFlownAwayDragon(Dragon d);
+
 }
