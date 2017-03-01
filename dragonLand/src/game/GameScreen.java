@@ -33,7 +33,6 @@ import guiPractice.components.Visible;
 public class GameScreen extends ClickableScreen implements KeyListener {
 
 	private Button exit;
-	private Button helpButton;
 	private static Button scoreButton;
 	private Button highScoreButton;
 	private Graphic background;
@@ -65,14 +64,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 				DragonLand.game.setScreen(DragonLand.highscoreScreen);
 			}
 		});
-
-		helpButton = new Button(getWidth()-75, getHeight()-75, 50, 50, "?", DragonLand.DARKER_NUDE, new Action() {
-			@Override
-			public void act() {
-				//pause();
-				displayInstructions();
-			}
-		});
 		
 		//displays the score on screen
 		scoreButton = new Button(getWidth()-150, 50, 120, 50, "Score: " + score, DragonLand.DARKER_NUDE, null);
@@ -86,7 +77,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		});
 		
 		view.add(exit);
-		view.add(helpButton);
 		view.add(highScoreButton);
 		view.add(scoreButton);
 
@@ -123,18 +113,19 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	public void removeStar(Star1 star){
 		System.out.println("here");
 		starArray.remove(star);
-		//remove(star);
+		remove(star);
 	}
 	
 	public void fallingStars(){
 		try{
-			while(GameVioletta.stillPlaying()){
+			while(GameVioletta.vGame.stillPlaying()){
 			//change true to a boolean that checks if dragons have anymore lives - game over
 			System.out.println("star created");
 			//setTime();
 			Thread.sleep(time);
 			addStar();
 			}
+			DragonLand.game.setScreen(DragonLand.highscoreScreen);
 		}catch (InterruptedException e){
 			e.printStackTrace();
 		}
@@ -210,14 +201,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	/*
 	 * Methods for instructions
 	 */
-	
-	//Pause is not working
-//	public void pause() {
-//		running = false;
-//		for(Star1 s: starArray){
-//			s.setVy(0);
-//		}
-//	}
 	
 	public void displayInstructions(){
 	}

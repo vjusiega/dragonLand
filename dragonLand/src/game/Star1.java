@@ -35,20 +35,19 @@ public class Star1 extends GraphicMovingComponent{
 	
 	@Override
 	public void checkBehaviors() {
-		if(getY() >= 560){
-//			if(!touched && GameVioletta.checkStarContact(getX(), getWidth())){
-//				System.out.println(getY());
-//				touched = true;
-//				int score = GameScreen.getScore() + 1;
-//				GameScreen.setScore(score);
-//				GameScreen.setScoreDisplay();
-//			}
-//			touched = true;
+		int border = GameScreen.getHeight() - 100;
+		if(getY() >= border){
+			if(!touched && GameVioletta.vGame.checkStarContact(getX(), getWidth())){
+				//System.out.println(getY());
+				touched = true;
+				int score = GameScreen.getScore() + 1;
+				GameScreen.setScore(score);
+				GameScreen.setScoreDisplay();
+			}
+			touched = true;
 			game.removeStar(this);
-			System.out.println("removed");
-		//}
+		}
 	}
 // 		if(getScore() >= 25 && getScore() < 50)
 // 			setVy(1);
-}
 }
