@@ -69,7 +69,7 @@ public class HomeKat implements DragonArrayInterface {
 
 			@Override
 			public void act() {
-				DragonLand.game.setScreen(DragonLand.miniGameScreen);
+				DragonLand.game.setScreen(DragonLand.gameInstructionsScreen);
 			}
 		
 		});

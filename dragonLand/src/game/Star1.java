@@ -5,6 +5,7 @@ package game;
 
 import java.util.Random;
 
+import dragonComponents.starInterface;
 import guiPractice.components.GraphicMovingComponent;
 
 
@@ -12,10 +13,10 @@ import guiPractice.components.GraphicMovingComponent;
  * @author Tamanna
  *
  */
-public class Star1 extends GraphicMovingComponent {
+public class Star1 extends GraphicMovingComponent{
 
 	private GameScreen game;
-	
+	private int dragonXPos;
 	private boolean touched;
 	/**
 	 * @param x
@@ -26,20 +27,18 @@ public class Star1 extends GraphicMovingComponent {
 	 */
 	public Star1(int x, int y, int w, int h, GameScreen game) {
 		super(x, y, w, h, "img/star.png");
-		setVy(2);
+		setVy(0.5);
 		this.game = game;
 		setVx(0);
 		touched = false; 
-		play();
-		run();
 	}
 	
 	@Override
 	public void checkBehaviors() {
-		//System.out.println("Updated star");
-		if(getY() >= 560){
-			if(!touched && GameVioletta.checkStarContact(getX(), getWidth())){
-				System.out.println(getY());
+		int border = GameScreen.getHeight() - 100;
+		if(getY() >= border){
+			if(!touched && GameVioletta.vGame.checkStarContact(getX(), getWidth())){
+				//System.out.println(getY());
 				touched = true;
 				int score = GameScreen.getScore() + 1;
 				GameScreen.setScore(score);
@@ -49,6 +48,7 @@ public class Star1 extends GraphicMovingComponent {
 			game.removeStar(this);
 		}
 	}
+<<<<<<< HEAD
 	
 	@Override
 	public void run() {
@@ -74,3 +74,8 @@ public class Star1 extends GraphicMovingComponent {
 //		}
 	}
 }
+=======
+// 		if(getScore() >= 25 && getScore() < 50)
+// 			setVy(1);
+}
+>>>>>>> refs/remotes/origin/miniGame

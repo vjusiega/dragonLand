@@ -34,7 +34,8 @@ public class DragonLand extends GUIApplication {
 	public static Screen sellScreen; // shop 2
 	public static Screen buyScreen; // shop 3
 	public static Screen highscoreScreen; // high score
-	public static Screen miniGameScreen; // minigame
+	public static GameScreen miniGameScreen; // minigame
+	public static Screen gameInstructionsScreen;
 
 	public static Screen HelpScreen;
 
