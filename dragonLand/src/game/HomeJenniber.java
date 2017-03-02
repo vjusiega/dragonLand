@@ -14,7 +14,7 @@ import guiPractice.components.Visible;
  * @author Jenniber Franco
  *
  */
-public class HomeJenniber {
+public class HomeJenniber implements Runnable {
 	
 	private ArrayList<HungryBox> hungryBoxTimes;
 //	private ArrayList<Visible> viewObjects;
@@ -25,17 +25,14 @@ public class HomeJenniber {
 		System.out.println("Thread");
 //		this.viewObjects = viewObjects;
 		this.hungryBoxTimes = new ArrayList<HungryBox>();
-		randomHunger();
-		//createHungryThread(getRandDragon());
+		Thread hungerBegins = new Thread(this);
+		hungerBegins.start();
+//		randomHunger();
+//		createHungryThread(getRandDragon());
 	}
 	
 	public void randomHunger(){
-		while(HomeKat.dragonHome.getDragonsOnScreen().size()>0 && hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size()){
-			double probability = .7;
-			if(Math.random()>probability){
-				createHungryThread(getRandDragon());
-			}
-		}
+		
 	}
 	
 	public void createHungryThread(Dragon d){
@@ -50,21 +47,22 @@ public class HomeJenniber {
 					Dragon d= HomeKat.dragonHome.getDragonsOnScreen().get(i);
 					if((d.getY()<350 && hungryBox.getX()==d.getX()-25) || hungryBox.getY()==d.getY()+105){
 							d.setHungryBox(false);
-							Thread waitUntilHungry = new Thread(new Runnable() {
-								
-								@Override
-								public void run() {
-									// TODO Auto-generated method stub
-									try {
-										Thread.sleep(2000);
-									} catch (InterruptedException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-									createHungryThread(d);
-								}
-							});
-							waitUntilHungry.start();
+//							Thread waitUntilHungry = new Thread(new Runnable() {
+//								
+//								@Override
+//								public void run() {
+//									// TODO Auto-generated method stub
+//									try {
+//										int sleepingTime = (int)(Math.random()*9000)+1000;
+//										Thread.sleep(20000+sleepingTime);
+//									} catch (InterruptedException e) {
+//										// TODO Auto-generated catch block
+//										e.printStackTrace();
+//									}
+//									createHungryThread(d);
+//								}
+//							});
+//							waitUntilHungry.start();
 					}
 				}
 				
@@ -88,23 +86,6 @@ public class HomeJenniber {
 //		HomeKat.removeDragon(d,viewObjects);
 //		viewObjects.remove(hungry);
 	}
-	
-//	public void removeHungry(HungryBox hungry){
-//		for(int i=0; i<HomeKat.dragonHome.getDragonsOnScreen().size();i++){
-//			Dragon d= HomeKat.dragonHome.getDragonsOnScreen().get(i);
-//			if(d.getY()<350 && hungry.getX()==d.getX()-25){
-//				System.out.println("remove!!!");
-//				d.setHungryBox(false);
-//			}
-//			else{
-//				if(hungry.getY()==d.getY()+105){
-//					d.setHungryBox(false);
-//				}
-//			}
-//		}
-//		hungryBoxTimes.remove(hungry);
-////		viewObjects.remove(hungry);
-//	}
 
 	public void checkRemoveDragon() {
 		for(int i=0; i< HomeKat.dragonHome.getDragonsOnScreen().size();i++){
@@ -145,6 +126,24 @@ public class HomeJenniber {
 			yCoord+=30;
 		}
 		return new HungryBox(d.getX()-25,yCoord);
+	}
+
+	@Override
+	public void run() {
+		while(HomeKat.dragonHome.getDragonsOnScreen().size()>0 && hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size()){
+			double probability = .7;
+			if(Math.random()>probability){
+				createHungryThread(getRandDragon());
+			}
+			try {
+				int sleepingTime = (int)(Math.random()*5000)+1000;
+				Thread.sleep(sleepingTime);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 	}
 }
 
