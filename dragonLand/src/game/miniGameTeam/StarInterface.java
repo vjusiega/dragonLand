@@ -1,4 +1,4 @@
-package dragonComponents;
+package game.miniGameTeam;
 
 /**
  * @author Violetta Jusiega

@@ -1,4 +1,4 @@
-package dragonComponents;
+package game.miniGameTeam;
 
 /**
  * @author Tamanna Hussain
@@ -7,7 +7,7 @@ package dragonComponents;
 
 import java.util.ArrayList;
 
-import game.Star1;
+import dragonComponents.Dragon;
 
 public interface gameDragonInterface {
 	

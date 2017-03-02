@@ -1,7 +1,7 @@
 /**
  * 
  */
-package game;
+package game.miniGameTeam;
 
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.Comparator;
 
 import dragonComponents.Background;
 import dragonComponents.CurvedButton;
-
+import game.DragonLand;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;

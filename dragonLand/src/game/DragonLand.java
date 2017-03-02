@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import dragonComponents.Dragon;
+import game.miniGameTeam.GameInstructions;
+import game.miniGameTeam.GameScreen;
+import game.miniGameTeam.HighScoreScreen;
 import guiPractice.GUIApplication;
 import guiPractice.Screen;
 import guiPractice.components.AnimatedComponent;

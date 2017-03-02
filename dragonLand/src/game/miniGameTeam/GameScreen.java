@@ -1,4 +1,4 @@
-package game;
+package game.miniGameTeam;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import dragonComponents.Dragon;
-import dragonComponents.gameDragonInterface;
+import game.DragonLand;
 import guiPractice.ClickableScreen;
 import guiPractice.Screen;
 import guiPractice.components.Action;

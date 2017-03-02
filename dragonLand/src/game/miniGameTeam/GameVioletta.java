@@ -1,7 +1,7 @@
 /**
  * 
  */
-package game;
+package game.miniGameTeam;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -10,8 +10,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import dragonComponents.Dragon;
-
-import dragonComponents.gameDragonInterface;
+import game.DragonLand;
 import guiPractice.components.AnimatedComponent;
 import guiPractice.components.Visible;
 
