@@ -65,6 +65,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		System.out.println(getWidth()); //1000 640
 		System.out.println(getHeight());
 		createHelpDialog();
+
 		tCoins = 10;
 		buttons = new ArrayList<Button>();
 		highScores = new ArrayList<Integer>();

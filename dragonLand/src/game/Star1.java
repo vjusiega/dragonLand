@@ -48,7 +48,6 @@ public class Star1 extends GraphicMovingComponent{
 			game.removeStar(this);
 		}
 	}
-<<<<<<< HEAD
 	
 	@Override
 	public void run() {
@@ -78,4 +77,3 @@ public class Star1 extends GraphicMovingComponent{
 // 		if(getScore() >= 25 && getScore() < 50)
 // 			setVy(1);
 }
->>>>>>> refs/remotes/origin/miniGame
