@@ -139,5 +139,14 @@ public class HomeJenniber implements Runnable {
 		}
 		
 	}
+	
+	public void setHungryBoxTimes(HungryBox hungryBox){
+		hungryBoxTimes.remove(hungryBox);
+		DragonLand.homeScreen.remove(hungryBox);
+	}
+	
+	public ArrayList<HungryBox> getHungryBoxTimes(){
+		return hungryBoxTimes; 
+	}
 }
 

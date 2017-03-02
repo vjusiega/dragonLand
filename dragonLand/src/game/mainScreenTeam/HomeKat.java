@@ -239,8 +239,15 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 		locationsX.add(d.getX());
 		locationsY.add(d.getY());
 		//adds dragons
+		for(int i=0; i<DragonLand.homeScreen.jenCode.getHungryBoxTimes().size();i++){
+			HungryBox hungryBox = DragonLand.homeScreen.jenCode.getHungryBoxTimes().get(i);
+			if((d.getY()<350 && hungryBox.getX()==d.getX()-25) || hungryBox.getY()==d.getY()+105){
+				DragonLand.homeScreen.jenCode.setHungryBoxTimes(hungryBox);				
+			}
+		}
 		dragonsOnScreen.remove(d);
 		viewObjects.remove(d);
+		
 	}
 	public static void addDragon(Dragon d){
 		//adds back the available dragon spot in the field
