@@ -78,8 +78,9 @@ public class HomeJenniber implements Runnable {
 	
 	public void removeHungryAndDragon(Dragon d, HungryBox hungry) {
 		hungryBoxTimes.remove(hungry);
-		DragonLand.homeScreen.remove(d);
-		((SellShopZheng)DragonLand.sellScreen).removeDragonsInSellShop(d);
+		HomeKat.dragonHome.removeHungryDragon(d);
+//		DragonLand.homeScreen.remove(d);
+//		((SellShopZheng)DragonLand.sellScreen).removeDragonsInSellShop(d);
 		DragonLand.homeScreen.remove(hungry);
 	}
 
@@ -126,14 +127,15 @@ public class HomeJenniber implements Runnable {
 
 	@Override
 	public void run() {
+		System.out.println("Hngers");
 		while(HomeKat.dragonHome.getDragonsOnScreen().size()>0 && hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size()){
-			double probability = .5;
+			double probability = .2;
 			if(Math.random()>probability){
 				createHungryThread(getRandDragon());
 			}
 			try {
 				int sleepingTime = (int)(Math.random()*5000)+1000;
-				Thread.sleep(sleepingTime);
+				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
