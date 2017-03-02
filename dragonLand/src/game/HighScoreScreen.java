@@ -221,6 +221,9 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	}
 	
 	public int getCoins(int score){
+		if(score == 0){
+			return 0;
+		}
 		return (((score*5)/2)+14);
 	}
 }
