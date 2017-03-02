@@ -23,7 +23,7 @@ public class DragonLand extends GUIApplication {
 
 	public static DragonLand game;
 	public static int coins = 2100; 
-	public static Screen homeScreen;
+	public static HomeScreen homeScreen;
 	public static Screen shopMain; // shop 1
 	public static Screen sellScreen; // shop 2
 	public static Screen buyScreen; // shop 3
@@ -66,7 +66,8 @@ public class DragonLand extends GUIApplication {
 		sellScreen = new SellShopZheng(getWidth(),getHeight());
 		homeScreen = new HomeScreen(getWidth(),getHeight());
 		buyScreen = new BuyScreenWendy(getWidth(),getHeight());
-		highscoreScreen = new HighScoreScreen(getWidth(),getHeight());	
+		highscoreScreen = new HighScoreScreen(getWidth(),getHeight());
+		HomeScreen.jenCode = new HomeJenniber();
 		setScreen(homeScreen);
 
 	}
