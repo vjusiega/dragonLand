@@ -23,7 +23,7 @@ public class GameInstructions extends ClickableScreen {
 	private Graphic background;
 	//private Button title;
 	private Button instructions;
-	private String[] instructionText;
+	
 	
 	private int sequenceNumber;
 	
@@ -96,7 +96,7 @@ public class GameInstructions extends ClickableScreen {
 		playButton = new Button((int) (getWidth() * 0.78), (int) (getHeight() * 0.9), (int) (getWidth() * 0.2), 50, "Play", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
-				GameScreen.tGame.initGame("img/Dragon1.png");
+				GameScreen.tGame.initGame("img/dragon1.png");
 				DragonLand.game.setScreen(DragonLand.miniGameScreen);
 				DragonLand.miniGameScreen.startGame();
 			}

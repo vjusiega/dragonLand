@@ -72,7 +72,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		view.add(exit);
 		view.add(scoreDisplay);
 		
-		GameVioletta vGameObject = new GameVioletta();	
+		GameVioletta vGameObject = new GameVioletta();
+		viewObjects.add(GameVioletta.vGame.addDragon("img/dragon1.png"));
 		//initDragonsOnScreen("img/dragon1.png");
 	}
 	
@@ -213,6 +214,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		//GameVioletta.vGame.setPlaying(true);
 		score = 0;
 		addObject(GameVioletta.vGame.addDragon(imgSrc));
-		GameVioletta.vGame.setPlaying(true);
+		//GameVioletta.vGame.setPlaying(true);
 	}
 }

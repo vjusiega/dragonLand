@@ -38,6 +38,7 @@ public class GameVioletta implements gameDragonInterface{
 		vGame = this;
 		dragonArray = new ArrayList<Dragon>();
 		playing = true;
+		addDragon("img/dragon1.png");
 	}
 	
 	private static int screenWidth = DragonLand.miniGameScreen.getWidth();
