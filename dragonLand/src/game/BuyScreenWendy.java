@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import dragonComponents.Dragon;
@@ -10,6 +11,7 @@ import dragonComponents.ShopBackdrop;
 import game.DragonLand;
 import game.ShopScreen;
 import guiPractice.components.Action;
+import guiPractice.components.Button;
 import guiPractice.components.Visible;
 /*
  * @author Wendy
@@ -31,6 +33,7 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 
 	@Override
 	public void addDragonLabels(ArrayList<Visible> visible) {
+		//initiates shop display
 		pageNum = 1;
 		dragonsInShop = new ArrayList<Dragon>();
 		getDragonsInBuyShop();
@@ -40,11 +43,15 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 	}
 	
 	private void addLabels(ArrayList<Visible> visible) {
+		//position of labels
 		x = 0;
 		y = 170;
+		
+		//controlling display of number of dragons in inventory
 		numOfDragons = ((SellShopZheng)DragonLand.sellScreen).getDragonsInSellShop().size();
 		getDragonAmount().setText(numOfDragons + " / 6 dragons");
 		
+		//dragons on display
 		startIndex = (pageNum - 1) * 3;
 		int endIndex = startIndex +3;
 		
@@ -60,17 +67,39 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 			label.setAction( new Action(){
 				
 				public void act() {
-					if(DragonLand.coins > d.getPrice() && ((SellShopZheng)DragonLand.sellScreen).getDragonsInSellShop().size() < 6)
+					if(DragonLand.coins > d.getPrice())
 					{
-						boughtDragon(d,label);	
-						removeDragons();
-						addLabels(visible);
+						if(((SellShopZheng)DragonLand.sellScreen).getDragonsInSellShop().size() < 6)
+						{
+							boughtDragon(d,label);	
+							removeDragons();
+							addLabels(visible);
+						}
+						else
+						{
+							//addError("You have already maxed out your inventory. Go sell a dragon before buying another");
+						}
 					}
 					else
 					{
+						//addError("You do not have enough coins. Go play our minigame to win more coins");
 						System.out.println("You donot have enough coins. Go play our minigame to win more coins You have " + DragonLand.coins + " coins");
 					}
 				}
+
+//				private void addError(String string) {
+//					Button error = new Button(100,100,850,100,string,new Color(244,215,183),new Action()
+//							{
+//								@Override
+//								public void act() {
+//									// TODO Auto-generated method stub
+//									
+//								}
+//						
+//							});
+//					addObject(error);
+//					
+//				}
 			});
 
 			addObject(label);
@@ -79,9 +108,11 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 	}
 	
 	private void getDragonsInBuyShop() {
+		//adds array with all dragons from Kat
 		for(Dragon d: HomeKat.getDragons())
 			dragonsInShop.add(d);
 		
+		//remove the dragons from array that is already in inventory from Zheng
 		for(Dragon d: ((SellShopZheng)DragonLand.sellScreen).getDragonsInSellShop())
 		{
 			dragonsInShop.remove(d);
@@ -89,24 +120,29 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 	}
 	
 	private void boughtDragon(Dragon d, DragonLabel2 label) {
-		// TODO Auto-generated method stub
+		// when buy button is clicked removing dragon from array and removing from display
 		dragonsInShop.remove(d);
 		remove(label);
-		System.out.println("adding to sell");
+		
+		//adding sold dragon to Zheng's array for inventory/selling
 		((SellShopZheng)DragonLand.sellScreen).addToDragonsInSellShop(d);
+		
+		//updating inventory amount
 		numOfDragons ++;
 		getDragonAmount().setText(numOfDragons+" / 6 dragons");
 		System.out.println(numOfDragons + " / 6 dragons");
 	
+		//updating the amount of coins 
 		System.out.println("This dragon is " + d.getPrice());
 		DragonLand.coins -= d.getPrice();
 		getCoins().setCoins();
 		System.out.println("You have " + DragonLand.coins + " coins");
+		
 		update();
 	}
 	
 	private void buttonArrows() {
-			// TODO Auto-generated method stub
+			// change "page"
 		getArrowLeft().setAction(new Action(){
 	
 			@Override
@@ -137,6 +173,7 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 	
 	public void removeDragons()
 	{
+		//remove all the labels on screen before re-adding and updating display
 		for(int i = 0; i  < viewObjects.size(); i++)
 		{
 			Visible v = viewObjects.get(i);
@@ -149,6 +186,7 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 	}
 
 	public void addToDragonsInBuyShop(Dragon dragon) {
+		//method for sell shop to add dragon in buy after selling the dragon
 		dragonsInShop.add(dragon);
 		addLabels(viewObjects);
 	}

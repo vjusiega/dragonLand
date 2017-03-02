@@ -151,5 +151,6 @@ public abstract class ShopScreen extends ClickableScreen {
 	public ShopLabel getPage(){
 		return page;
 	}
+	
 
 }
