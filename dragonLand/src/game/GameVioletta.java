@@ -49,7 +49,13 @@ public class GameVioletta implements gameDragonInterface{
 	}
 	
 	public void eraseDragons(){
-		dragonArray = new ArrayList<Dragon>();
+		int size = dragonArray.size();
+		System.out.println("The size is " + dragonArray.size()+"begin");
+		for(int i = size-1; i>-1; i--){
+			dragonArray.remove(i);
+			//size--;
+		}
+		System.out.println("The size is " + dragonArray.size());
 	}
 	
 	public Dragon addDragon(String imgSrc){
@@ -130,7 +136,7 @@ public class GameVioletta implements gameDragonInterface{
 		int dragonStart = (dragonArray.get(findLeadDragon(-1))).getX();
 		int dragonEnd = (dragonArray.get(findLeadDragon(-1))).getX() + (dragonArray.get(findLeadDragon(-1))).getWidth();
 		if((starX > dragonStart && starX < dragonEnd) || (starEnd > dragonStart && starEnd < dragonEnd)){
-			System.out.println("touching");
+			//System.out.println("touching");
 			return true; 
 			
 		}
