@@ -1,6 +1,6 @@
 package game;
 
-import dragonComponents.Dragon;
+import game.mainScreenTeam.Dragon;
 
 /*
  * @author Zheng

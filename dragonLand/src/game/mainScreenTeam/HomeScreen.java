@@ -1,4 +1,4 @@
-package game;
+package game.mainScreenTeam;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-import dragonComponents.Dragon;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.AnimatedComponent;

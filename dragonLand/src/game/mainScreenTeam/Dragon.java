@@ -1,4 +1,4 @@
-package dragonComponents;
+package game.mainScreenTeam;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;

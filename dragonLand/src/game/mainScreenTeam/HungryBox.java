@@ -1,7 +1,7 @@
 /**
  * 
  */
-package dragonComponents;
+package game.mainScreenTeam;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -14,9 +14,6 @@ import java.awt.Stroke;
 import java.util.ArrayList;
 
 import game.DragonLand;
-import game.HomeJenniber;
-import game.HomeKat;
-import game.HomeScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
 import guiPractice.components.Visible;

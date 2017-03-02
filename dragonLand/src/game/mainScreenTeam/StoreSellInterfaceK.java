@@ -1,4 +1,4 @@
-package dragonComponents;
+package game.mainScreenTeam;
 
 public interface StoreSellInterfaceK {
 

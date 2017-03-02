@@ -1,12 +1,11 @@
 /**
  * 
  */
-package game;
+package game.mainScreenTeam;
 
 import java.util.ArrayList;
 
-import dragonComponents.Dragon;
-import dragonComponents.HungryBox;
+import game.DragonLand;
 import guiPractice.components.Action;
 import guiPractice.components.Visible;
 

@@ -1,4 +1,4 @@
-package game;
+package game.mainScreenTeam;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -6,9 +6,10 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-import dragonComponents.Dragon;
 import dragonComponents.DragonArrayInterface;
 import dragonComponents.NoBorderButton;
+import game.DragonLand;
+import game.SellShopZheng;
 import guiPractice.components.Action;
 import guiPractice.components.AnimatedComponent;
 import guiPractice.components.Button;

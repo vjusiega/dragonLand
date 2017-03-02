@@ -15,8 +15,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
-import dragonComponents.Dragon;
 import dragonComponents.gameDragonInterface;
+import game.mainScreenTeam.Dragon;
 import guiPractice.ClickableScreen;
 import guiPractice.Screen;
 import guiPractice.components.Action;
