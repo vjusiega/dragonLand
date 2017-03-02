@@ -22,6 +22,7 @@ public class Background extends Component {
 	 */
 	public Background(int x, int y, int w, int h) {
 		super(x, y, w, h);
+		update(getImage().createGraphics());
 		// TODO Auto-generated constructor stub
 	}
 
