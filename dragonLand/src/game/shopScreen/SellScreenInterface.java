@@ -1,4 +1,4 @@
-package dragonComponents;
+package game.shopScreen;
 
 import game.mainScreenTeam.Dragon;
 

@@ -1,13 +1,10 @@
-package game;
+package game.shopScreen;
 
 import java.awt.Color;
 import java.util.ArrayList;
 
 import dragonComponents.DragonLabel2;
-import dragonComponents.PriceLabel;
-import dragonComponents.ShopBackdrop;
 import game.DragonLand;
-import game.ShopScreen;
 import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.HomeKat;
 import guiPractice.components.Action;

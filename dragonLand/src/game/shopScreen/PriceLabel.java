@@ -1,4 +1,4 @@
-package dragonComponents;
+package game.shopScreen;
 
 import java.awt.Graphics2D;
 
@@ -6,7 +6,9 @@ import game.DragonLand;
 import guiPractice.components.Component;
 import guiPractice.components.Graphic;
 import guiPractice.components.TextLabel;
-
+/*
+ * @author Wendy, Zheng
+ * */
 public class PriceLabel extends Component {
 	
 	

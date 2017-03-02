@@ -12,6 +12,9 @@ import javax.swing.JFrame;
 
 import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.HomeScreen;
+import game.shopScreen.BuyScreenWendy;
+import game.shopScreen.HomeShopScreen;
+import game.shopScreen.SellShopZheng;
 import guiPractice.GUIApplication;
 import guiPractice.Screen;
 import guiPractice.components.AnimatedComponent;
@@ -23,7 +26,7 @@ import guiPractice.components.AnimatedComponent;
 public class DragonLand extends GUIApplication {
 
 	public static DragonLand game;
-	public static int coins = 2100; 
+	public static int coins = 1500; 
 	public static HomeScreen homeScreen;
 	public static Screen shopMain; // shop 1
 	public static Screen sellScreen; // shop 2

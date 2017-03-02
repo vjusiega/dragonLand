@@ -1,12 +1,9 @@
-package game;
+package game.shopScreen;
 
 import java.awt.Color;
 import java.util.ArrayList;
 
-import dragonComponents.CoinLabel;
-import dragonComponents.PriceLabel;
-import dragonComponents.ShopBackdrop;
-import dragonComponents.ShopLabel;
+import game.DragonLand;
 import game.mainScreenTeam.Dragon;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
@@ -15,7 +12,9 @@ import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
-
+/*
+ * @author Wendy and Zheng
+ * */
 public abstract class ShopScreen extends ClickableScreen {
 	
 	//private ArrayList<Dragon> dragonList;

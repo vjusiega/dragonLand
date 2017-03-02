@@ -1,12 +1,9 @@
-package game;
+package game.shopScreen;
 
 import java.awt.Color;
 import java.util.ArrayList;
 
-import dragonComponents.CoinLabel;
-import dragonComponents.ShopActionButton;
-import dragonComponents.ShopBackdrop;
-import dragonComponents.ShopLabel;
+import game.DragonLand;
 import game.mainScreenTeam.HomeKat;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;

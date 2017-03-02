@@ -1,4 +1,4 @@
-package dragonComponents;
+package game.shopScreen;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -8,7 +8,9 @@ import guiPractice.components.Component;
 import guiPractice.components.Graphic;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
-
+/*
+ * @author Wendy, Zheng
+ * */
 public class CoinLabel extends Component {
 
 	private static final int TOP_MARGIN = 2;

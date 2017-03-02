@@ -6,7 +6,7 @@ package game.mainScreenTeam;
 import java.util.ArrayList;
 
 import game.DragonLand;
-import game.SellShopZheng;
+import game.shopScreen.SellShopZheng;
 import guiPractice.components.Action;
 import guiPractice.components.Visible;
 
