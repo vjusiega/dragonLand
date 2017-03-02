@@ -1,11 +1,13 @@
-package dragonComponents;
+package game.shopScreen;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
 import guiPractice.components.Component;
-
+/*
+ * @author Wendy, Zheng
+ * */
 public class ShopBackdrop extends Component {
 	
 	private Color color = new Color(244,215,183);

@@ -8,6 +8,8 @@ import javax.swing.ImageIcon;
 
 import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.DragonArrayInterface;
+import game.shopScreen.HomeShopScreen;
+import game.shopScreen.SellShopZheng;
 import dragonComponents.NoBorderButton;
 import guiPractice.components.Action;
 import guiPractice.components.AnimatedComponent;
@@ -80,7 +82,7 @@ public class HomeKat implements DragonArrayInterface {
 				((HomeShopScreen)DragonLand.shopMain).updateHomeShopLabels();
 				DragonLand.game.setScreen(DragonLand.shopMain);
 			}});
-		//viewObjects.add(shop);
+		viewObjects.add(shop);
 		
 		Button minigame = new Button(width-110-(width*2/100),(height*5/100)+53,  110,  50,  "Minigame",DragonLand.DARKER_NUDE,  new Action(){
 
@@ -90,7 +92,7 @@ public class HomeKat implements DragonArrayInterface {
 			}
 		
 		});
-		//viewObjects.add(minigame);
+		viewObjects.add(minigame);
 		
 		Button helpLayer = new Button((int)(width*0.1),(int)(height*0.1),(int)(width*0.8),(int)(height*0.8),  null,DragonLand.DARKER_NUDE,  new Action(){
 
@@ -155,6 +157,12 @@ public class HomeKat implements DragonArrayInterface {
 		
 		
 	}
+	/*
+	 * When called this creates a dragon along with the dragon's sprite frames
+	 * then the created dragon is added to the ListArray dragons
+	 * the x and y coordinates are temprary here
+	 * only called when screen intializes
+	 */
 public static void addAnimation(int x,int y, String name, int price,String imgSrc) {
 		
 		AnimatedComponent a = new Dragon(x,y,100,100,name, price, imgSrc);
@@ -166,7 +174,6 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 			int w =48;
 			int h = 48;
 			for(int i=0;i<numberRow*rows;i++){
-				
 				//declare cropped image
 				BufferedImage cropped = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
 				int leftMargin=0;
@@ -187,6 +194,11 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 		a.setX(x);
 		a.setY(y);
 	}
+
+/*
+ * called to create the 20 dragons, attaches a price,  name and src folder to the dragon
+ */
+
 	public static void makeDragons(){
 		String[] names = new String[] {"Rowdy","Thorn","Mushu","Falcor","Elliot","Puff","Spyro","Sandy",
 				"Scaly","Nessie","Nymph","Sparky","Flambi","Drago","Viper","Moon","Saphira","Scorch","Toothless","Stormfly"};
@@ -196,13 +208,18 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 		}
 	}
 
-
+	/* 
+	 * updates the dragons displayed based on the purchases from the shop
+	 * the purchased array is used to retrieve the names of dragon in shop from their label ListArray
+	 */
 	public static void dragonsOnScreen(){
 		String[] purchased =((SellShopZheng)DragonLand.sellScreen).getNamesOfPurchased();
 		checkToRemove(purchased);
 		addNewDragons(purchased);
 	}
-
+	/*
+	 * checks to see if any new dragons were purchased and adds to them to the screen
+	 */
 	private static void addNewDragons(String[] purchased) {
 		boolean exists = false;
 		for(int i=0;i<purchased.length;i++){
@@ -216,7 +233,8 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 			exists=false;
 		}
 	}
-
+	//returns the dragon with the specific name from the dragon listArray
+		//does not need a null exception because in accordance with code above, name will never be null
 	private static Dragon searchByName(String name) {
 		for(Dragon d: dragons){
 			if(d.getName().equals(name))
@@ -224,7 +242,10 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 		}
 		return null;
 	}
-
+	/*
+	 * checks to see if any dragons were sold
+	 * and removes them
+	 */
 	private static void checkToRemove(String[] purchased) {
 		for(int i=0;i<dragonsOnScreen.size();i++){
 			boolean exist = false;
@@ -238,6 +259,11 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 			}
 		}
 	}
+	/*
+	 * first it takes the dragons locations and adds it to the two location arrays
+	 * these arrays contain available coordinates for dragons to be placed in. 
+	 * then the dragon is removed from onScreen listArray and from  viewObjects
+	 */
 	public static void removeDragon(Dragon d){
 		locationsX.add(d.getX());
 		locationsY.add(d.getY());
@@ -245,6 +271,13 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 		dragonsOnScreen.remove(d);
 		viewObjects.remove(d);
 	}
+	/*
+	 * first it selects a random available x coordinate and then a Y coordinate
+	 * the ranomInt is done twice to create more combinations of possible locations if both
+	 * arrays have 6 possiblities (since only 6 dragons on screen max)
+	 * then it updates these coordinates andsets the animation to play and 
+	 * adds dragon to view objects and dragonOnScreen
+	 */
 	public static void addDragon(Dragon d){
 		//adds back the available dragon spot in the field
 		
