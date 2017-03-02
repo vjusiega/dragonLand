@@ -1,4 +1,4 @@
-package game;
+package game.mainScreenTeam;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -6,9 +6,10 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.DragonArrayInterface;
 import dragonComponents.NoBorderButton;
+import game.DragonLand;
+import game.SellShopZheng;
 import guiPractice.components.Action;
 import guiPractice.components.AnimatedComponent;
 import guiPractice.components.Button;
@@ -34,35 +35,46 @@ public class HomeKat implements DragonArrayInterface {
 	private String thelp4;
 	private NoBorderButton help5;
 	private String thelp5;
+	private String thelp6;
+	private NoBorderButton help6;
+	private String thelp7;
+	private NoBorderButton help7;
 	
 	public HomeKat(ArrayList<Visible> viewObjects, int width,int height) {
 		//
 		this.viewObjects=viewObjects;
 		thelp1 = "Welcome to Dragon Land!";
-		help1 = new NoBorderButton(300,75,400,50,  thelp1,DragonLand.DARKER_NUDE,null);
+		help1 = new NoBorderButton(300,75,500,50,  thelp1,DragonLand.DARKER_NUDE,null);
 		help1.setSize(30);
 		
-		thelp2 = "You can have up to 6 dragons on the home screen";
-		help2 = new NoBorderButton(250,150,500,35,  thelp2,DragonLand.DARKER_NUDE,null);
+		thelp2 = "This is your dragon pet land. Living here you can have up to 6";
+		help2 = new NoBorderButton(130,150,720,35,  thelp2,DragonLand.DARKER_NUDE,null);
 		help2.setSize(20);
 		
-		thelp3 = "You can buy more dragons or sell them in the shop";
-		help3 = new NoBorderButton(250,200,500,35,  thelp3,DragonLand.DARKER_NUDE,null);
+		thelp3 = "dragons. Be careful, when you see your dragons are hungry, quickly ";
+		help3 = new NoBorderButton(130,200,720,35,  thelp3,DragonLand.DARKER_NUDE,null);
 		help3.setSize(20);
 		
-		thelp4 = "To buy dragons, you must play the minigame to get coins";
-		help4 = new NoBorderButton(225,250,550,35,  thelp4,DragonLand.DARKER_NUDE,null);
+		thelp4 = "click the 'Hungry' button or the dragon will fly away back to the store. ";
+		help4 = new NoBorderButton(130,250,720,35,  thelp4,DragonLand.DARKER_NUDE,null);
 		help4.setSize(20);
 		
-		thelp5 = "Your top 3 scores will be recorded as high scores";
-		help5 = new NoBorderButton(250,300,500,35,  thelp5,DragonLand.DARKER_NUDE,null);
+		thelp5 = "To buy these dragons, visit the shop and check them out. Now as";
+		help5 = new NoBorderButton(130,300,720,35,  thelp5,DragonLand.DARKER_NUDE,null);
 		help5.setSize(20);
+		
+		thelp6 = "you notice you need coins to shop, so play the minigame to earn more.";
+		help6 = new NoBorderButton(130,350,740,35,  thelp6,DragonLand.DARKER_NUDE,null);
+		help6.setSize(20);
+
+		thelp7 = "Keep trying to beat your score. Have fun taking care of your dragons.";
+		help7= new NoBorderButton(130,400,720,35,  thelp7,DragonLand.DARKER_NUDE,null);
+		help7.setSize(20);
 		
 		Button shop = new Button(width-110-(width*2/100),(height*5/100),  110,  50,  "Shop",DragonLand.DARKER_NUDE,  new Action(){
 
 			@Override
 			public void act() {
-				((HomeShopScreen)DragonLand.shopMain).updateHomeShopLabels();
 				DragonLand.game.setScreen(DragonLand.shopMain);
 			}});
 		viewObjects.add(shop);
@@ -94,6 +106,8 @@ public class HomeKat implements DragonArrayInterface {
 						viewObjects.remove(help3);
 						viewObjects.remove(help4);
 						viewObjects.remove(help5);
+						viewObjects.remove(help6);
+						viewObjects.remove(help7);
 					}
 					else
 						viewObjects.add(helpLayer);	
@@ -102,6 +116,8 @@ public class HomeKat implements DragonArrayInterface {
 						viewObjects.add(help3);
 						viewObjects.add(help4);
 						viewObjects.add(help5);
+						viewObjects.add(help6);
+						viewObjects.add(help7);
 			}});
 		
 		viewObjects.add(help);
@@ -216,6 +232,7 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 				removeDragon(dragonsOnScreen.get(i));
 				i--;
 			}
+			exist=false;
 		}
 	}
 	public static void removeDragon(Dragon d){

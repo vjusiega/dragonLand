@@ -7,6 +7,7 @@ import dragonComponents.CoinLabel;
 import dragonComponents.ShopActionButton;
 import dragonComponents.ShopBackdrop;
 import dragonComponents.ShopLabel;
+import game.mainScreenTeam.HomeKat;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;

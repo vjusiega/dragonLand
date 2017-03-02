@@ -1,5 +1,7 @@
 package dragonComponents;
 
+import game.mainScreenTeam.Dragon;
+
 /*
  * @author Wendy
  * */

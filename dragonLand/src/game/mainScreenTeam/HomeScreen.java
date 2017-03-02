@@ -1,4 +1,4 @@
-package game;
+package game.mainScreenTeam;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-import dragonComponents.Dragon;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.AnimatedComponent;
@@ -26,6 +25,7 @@ import guiPractice.sampleGames.MouseFollower;
 public class HomeScreen extends ClickableScreen implements Runnable{
 
 	private Graphic background;
+	public static HomeJenniber jenCode;
 
 	public HomeScreen(int width, int height) {
 		super(width, height);
@@ -36,9 +36,11 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
-		background = new Graphic(0,0,getWidth(),getHeight(),"img/Grassland.png");
+
+		background=new Graphic(0,0,getWidth(),getHeight(),"img/Grassland.png");
 		viewObjects.add(background);
-		HomeKat katCode = new HomeKat(viewObjects, getWidth(), getHeight());
+		HomeKat katCode=new HomeKat(viewObjects, getWidth(), getHeight());
+		
 	}
 
 	

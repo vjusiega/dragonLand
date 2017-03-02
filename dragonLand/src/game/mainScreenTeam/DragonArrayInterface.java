@@ -1,7 +1,8 @@
-package dragonComponents;
+package game.mainScreenTeam;
 
 import java.util.ArrayList;
 
+import game.mainScreenTeam.Dragon;
 import guiPractice.components.Visible;
 /**
  * @author Jenniber Franco

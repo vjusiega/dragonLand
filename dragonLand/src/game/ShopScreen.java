@@ -4,10 +4,10 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import dragonComponents.CoinLabel;
-import dragonComponents.Dragon;
 import dragonComponents.PriceLabel;
 import dragonComponents.ShopBackdrop;
 import dragonComponents.ShopLabel;
+import game.mainScreenTeam.Dragon;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;

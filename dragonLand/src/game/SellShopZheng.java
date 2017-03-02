@@ -2,10 +2,10 @@ package game;
 
 import java.util.ArrayList;
 
-import dragonComponents.Dragon;
 import dragonComponents.DragonLabel2;
-import dragonComponents.StoreSellInterfaceK;
 import dragonComponents.SellScreenInterface;
+import game.mainScreenTeam.Dragon;
+import game.mainScreenTeam.StoreSellInterfaceK;
 import guiPractice.components.Action;
 import guiPractice.components.Visible;
 
