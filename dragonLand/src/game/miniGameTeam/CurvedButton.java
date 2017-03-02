@@ -1,7 +1,7 @@
 /**
  * 
  */
-package dragonComponents;
+package game.miniGameTeam;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

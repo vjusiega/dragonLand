@@ -1,11 +1,10 @@
 /**
  * 
  */
-package game;
+package game.miniGameTeam;
 
 import java.util.Random;
 
-import dragonComponents.StarInterface;
 import guiPractice.components.GraphicMovingComponent;
 
 

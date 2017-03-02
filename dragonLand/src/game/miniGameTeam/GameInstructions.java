@@ -1,4 +1,4 @@
-package game;
+package game.miniGameTeam;
 
 /**
  * @author Violetta Jusiega
@@ -7,7 +7,7 @@ package game;
 
 import java.util.ArrayList;
 
-import dragonComponents.NoBorderButton;
+import game.DragonLand;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
