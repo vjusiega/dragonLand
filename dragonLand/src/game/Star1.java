@@ -5,6 +5,7 @@ package game;
 
 import java.util.Random;
 
+import dragonComponents.StarInterface;
 import guiPractice.components.GraphicMovingComponent;
 
 
@@ -12,10 +13,12 @@ import guiPractice.components.GraphicMovingComponent;
  * @author Tamanna
  *
  */
-public class Star1 extends GraphicMovingComponent {
+public class Star1 extends GraphicMovingComponent implements StarInterface{
 
-	private GameScreen game;
+	public static Star1 tStar;
 	
+	private GameScreen game;
+	private int dragonXPos;
 	private boolean touched;
 	/**
 	 * @param x
@@ -30,47 +33,49 @@ public class Star1 extends GraphicMovingComponent {
 		this.game = game;
 		setVx(0);
 		touched = false; 
-		play();
-		run();
+		tStar = this;
 	}
 	
 	@Override
 	public void checkBehaviors() {
-		//System.out.println("Updated star");
-		if(getY() >= 560){
-			if(!touched && GameVioletta.checkStarContact(getX(), getWidth())){
-				System.out.println(getY());
+		int border = GameScreen.getHeight() - 200;
+		//System.out.println(GameVioletta.vGame.getPlaying());
+		if(GameVioletta.vGame.getPlaying()){
+			if(getY() >= border && !touched && GameVioletta.vGame.checkStarContact(this)){
 				touched = true;
+				game.removeStar(this);
 				int score = GameScreen.getScore() + 1;
 				GameScreen.setScore(score);
 				GameScreen.setScoreDisplay();
+				if(score == 5 || score == 10 || score == 15){
+					GameVioletta.vGame.addDragon("img/dragon1.png");
+				}
 			}
-			touched = true;
-			game.removeStar(this);
+			else if(getY() > GameScreen.getHeight() - 100){
+				touched = true;
+				game.removeStar(this);
+				GameVioletta.vGame.removeDragon();
+			}
+			if(GameScreen.getScore() >= 5 && GameScreen.getScore() < 10)
+				setVy(1);
+			if(GameScreen.getScore() >= 10 && GameScreen.getScore() < 15)
+				setVy(1.5);
+			if(GameScreen.getScore() >= 15 && GameScreen.getScore() < 20)
+				setVy(2);
+		
 		}
+		
+		
+		
 	}
-	
+
 	@Override
-	public void run() {
-		Random rand = new Random();
-		int val = rand.nextInt(4) + 1;
-		int chance = (int) ((Math.random() * 8) + 1);
-		if (val == 1) { 
-			//1/4 of the time
-			for(int i = 0; i < chance; i++){
-				
-			}
-		} else { 
-			//3/4 of the time
-			for(int i = 0; i < chance; i++){
-				
-			}
-		}
-//		try {
-//			Thread.sleep(1);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+	public int starStartPos() {
+		return this.getX();
+	}
+
+	@Override
+	public int starEndPos() {
+		return this.getX() + this.getWidth();
 	}
 }

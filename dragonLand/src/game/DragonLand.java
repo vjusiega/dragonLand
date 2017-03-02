@@ -32,7 +32,8 @@ public class DragonLand extends GUIApplication {
 	public static Screen sellScreen; // shop 2
 	public static Screen buyScreen; // shop 3
 	public static Screen highscoreScreen; // high score
-	public static Screen miniGameScreen; // minigame
+	public static GameScreen miniGameScreen; // minigame
+	public static Screen gameInstructionsScreen;
 	public static Screen HelpScreen;
 	public static Color NAVY;
 	public static Color BRIGHT_PINK;
@@ -58,6 +59,7 @@ public class DragonLand extends GUIApplication {
 	protected void initScreen() {
 		initColors();
 
+
 		miniGameScreen = new GameScreen(getWidth(),getHeight());
 		shopMain = new HomeShopScreen(getWidth(),getHeight());
 		sellScreen = new SellShopZheng(getWidth(),getHeight());
@@ -65,6 +67,8 @@ public class DragonLand extends GUIApplication {
 		buyScreen = new BuyScreenWendy(getWidth(),getHeight());
 		highscoreScreen = new HighScoreScreen(getWidth(),getHeight());
 		HomeScreen.jenCode = new game.mainScreenTeam.HomeJenniber();
+		gameInstructionsScreen = new GameInstructions(getWidth(), getHeight());
+
 		setScreen(homeScreen);
 
 	}

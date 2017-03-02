@@ -9,8 +9,9 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-import dragonComponents.gameDragonInterface;
 import game.mainScreenTeam.Dragon;
+
+import dragonComponents.gameDragonInterface;
 import guiPractice.components.AnimatedComponent;
 import guiPractice.components.Visible;
 
@@ -26,21 +27,38 @@ import guiPractice.components.Visible;
  * 		Next dragon after that is placed on the left
  * 		Max number of extra dragons is two (three in total)
  */
-
+//
 public class GameVioletta implements gameDragonInterface{
 	
-	private static ArrayList<Dragon> dragonArray = new ArrayList<Dragon>();
+	public static GameVioletta vGame;
+	private static ArrayList<Dragon> dragonArray;
+	
+	private boolean playing;
+	
+	public GameVioletta(){
+		vGame = this;
+		dragonArray = new ArrayList<Dragon>();
+		playing = true;
+	}
 	
 	private static int screenWidth = DragonLand.miniGameScreen.getWidth();
 	private static int screenHeight = DragonLand.miniGameScreen.getHeight();
 	
-	private boolean play; //supposed to work for if the game is paused
-	
-	public static ArrayList<Dragon> getDragonArray(){
+	public ArrayList<Dragon> getDragonArray(){
 		return dragonArray;
 	}
 	
-	public static Dragon addDragon(String imgSrc){
+	public void eraseDragons(){
+		int size = dragonArray.size();
+		System.out.println("The size is " + dragonArray.size()+"begin");
+		for(int i = size-1; i>-1; i--){
+			dragonArray.remove(i);
+			//size--;
+		}
+		System.out.println("The size is " + dragonArray.size());
+	}
+	
+	public Dragon addDragon(String imgSrc){
 		int xPos;
 		int dragonHeight = 100;
 		xPos = screenWidth / 2;
@@ -57,7 +75,7 @@ public class GameVioletta implements gameDragonInterface{
 		
 		int yPos = screenHeight - dragonHeight;
 		
-		Dragon d = new Dragon(xPos, yPos, dragonHeight, dragonHeight, "whatever", 0, imgSrc);
+		Dragon d = new Dragon(xPos, yPos, dragonHeight, dragonHeight, "", 0, imgSrc);
 		//d.setInGame(true);
 		//System.out.println(d.getInGame());
 		
@@ -71,19 +89,26 @@ public class GameVioletta implements gameDragonInterface{
 		return d;
 	}
 	
-	
-	public static Dragon removeDragon(){
-		Dragon deadDragon = dragonArray.get(dragonArray.size() - 1);
-		dragonArray.remove(dragonArray.size() - 1);
-		return(deadDragon);
+	public Dragon removeDragon(){
+		if(dragonArray.size() > 0){
+			Dragon deadDragon = dragonArray.get(dragonArray.size() - 1);
+			dragonArray.remove(dragonArray.size() - 1);
+			if(dragonArray.size() == 0){
+				playing = false;
+			}
+			return(deadDragon);
+		}
+		return null;
 	}
 
-	public static void changeDragonPos(int x) {
-		int leadDragon = findLeadDragon(x);
-		int leadDragonPos = (dragonArray.get(leadDragon)).getX();
-		if(leadDragonPos + x > 0 && leadDragonPos + x < screenWidth){
-			for(Dragon d : dragonArray){
-				d.setX(d.getX() + x);
+	public void changeDragonPos(int x) {
+		if(dragonArray.size() > 0){
+			int leadDragon = findLeadDragon(x);
+			int leadDragonPos = (dragonArray.get(leadDragon)).getX();
+			if(leadDragonPos + x > 0 && leadDragonPos + x < screenWidth){
+				for(Dragon d : dragonArray){
+					d.setX(d.getX() + x);
+				}
 			}
 		}
 	}
@@ -104,50 +129,22 @@ public class GameVioletta implements gameDragonInterface{
 		else return 0;
 	}
 	
-	public static boolean checkStarContact(int starX, int starWidth){
+	public boolean checkStarContact(Star1 star){
+		int starX = star.getX();
+		int starWidth = star.getWidth();
 		int starEnd = starX + starWidth;
 		int dragonStart = (dragonArray.get(findLeadDragon(-1))).getX();
 		int dragonEnd = (dragonArray.get(findLeadDragon(-1))).getX() + (dragonArray.get(findLeadDragon(-1))).getWidth();
 		if((starX > dragonStart && starX < dragonEnd) || (starEnd > dragonStart && starEnd < dragonEnd)){
+			//System.out.println("touching");
 			return true; 
+			
 		}
 		else{
 			return false; 
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public void setPlay(boolean b){
-		play = b;
-	}
-	
-	public boolean getPlay(){
-		return play; 
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	public static void setDragonAnimation(AnimatedComponent a, String imgSrc){
 		try{
 			ImageIcon icon = new ImageIcon(imgSrc);
@@ -174,4 +171,15 @@ public class GameVioletta implements gameDragonInterface{
 			e.printStackTrace();
 		}
 	}
+
+	public boolean getPlaying() {
+		return playing;
+	}
+
+	@Override
+	public void setPlaying(boolean b) {
+		playing = true;
+		
+	}
+
 }

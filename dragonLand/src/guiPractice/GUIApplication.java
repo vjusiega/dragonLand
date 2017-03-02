@@ -26,38 +26,38 @@ public abstract class GUIApplication extends JFrame implements Runnable{
 		//stop controls from previous screen
 		removeListeners();
 
-		currentScreen=screen;
+		setCurrentScreen(screen);
 		//add new controls
 		addListeners();
 	}
 
 	private void removeListeners(){
-		if(currentScreen != null){
-			if(currentScreen.getMouseListener() != null) removeMouseListener(currentScreen.getMouseListener());
-			if(currentScreen.getMouseMotionListener() != null) removeMouseMotionListener(currentScreen.getMouseMotionListener());
-			if(currentScreen.getKeyListener() != null) removeKeyListener(currentScreen.getKeyListener());
+		if(getCurrentScreen() != null){
+			if(getCurrentScreen().getMouseListener() != null) removeMouseListener(getCurrentScreen().getMouseListener());
+			if(getCurrentScreen().getMouseMotionListener() != null) removeMouseMotionListener(getCurrentScreen().getMouseMotionListener());
+			if(getCurrentScreen().getKeyListener() != null) removeKeyListener(getCurrentScreen().getKeyListener());
 			//		if(currentScreen.getMouseWheelListener() != null) removeMouseWheelListener(currentScreen.getMouseWheelListener());
 		}
 	}
 
 	private void addListeners(){
-		if(currentScreen != null){
-			if(currentScreen.getMouseListener() != null)addMouseListener(currentScreen.getMouseListener());
-			if(currentScreen.getMouseMotionListener() != null) addMouseMotionListener(currentScreen.getMouseMotionListener());
-			if(currentScreen.getKeyListener() != null){
-				addKeyListener(currentScreen.getKeyListener());
+		if(getCurrentScreen() != null){
+			if(getCurrentScreen().getMouseListener() != null)addMouseListener(getCurrentScreen().getMouseListener());
+			if(getCurrentScreen().getMouseMotionListener() != null) addMouseMotionListener(getCurrentScreen().getMouseMotionListener());
+			if(getCurrentScreen().getKeyListener() != null){
+				addKeyListener(getCurrentScreen().getKeyListener());
 			}
 			//		if(currentScreen.getMouseWheelListener() != null) addMouseWheelListener(currentScreen.getMouseWheelListener());
 		}
 	}
 
 	public void paint(Graphics g){
-		g.drawImage(currentScreen.getImage(), 0, 0, null);
+		g.drawImage(getCurrentScreen().getImage(), 0, 0, null);
 	}
 
 	public void run(){
 		while(true){
-			currentScreen.update();
+			getCurrentScreen().update();
 			repaint();
 			try {
 				Thread.sleep(40);
@@ -67,6 +67,12 @@ public abstract class GUIApplication extends JFrame implements Runnable{
 				e.printStackTrace();
 			}
 		}
+	}
+	public Screen getCurrentScreen() {
+		return currentScreen;
+	}
+	public void setCurrentScreen(Screen currentScreen) {
+		this.currentScreen = currentScreen;
 	}
 
 }

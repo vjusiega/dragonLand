@@ -1,3 +1,4 @@
+
 package dragonComponents;
 
 import java.awt.BasicStroke;
@@ -46,4 +47,5 @@ public class NoBorderButton extends Button{
 			g.drawString(t, (getWidth()-fm.stringWidth(t))/2, (getHeight()+fm.getHeight()-fm.getDescent())/2);
 		}
 	}
+
 }
