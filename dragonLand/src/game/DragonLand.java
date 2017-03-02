@@ -26,7 +26,7 @@ import guiPractice.components.AnimatedComponent;
 public class DragonLand extends GUIApplication {
 
 	public static DragonLand game;
-	public static int coins = 2100; 
+	public static int coins = 1500; 
 	public static HomeScreen homeScreen;
 	public static Screen shopMain; // shop 1
 	public static Screen sellScreen; // shop 2
