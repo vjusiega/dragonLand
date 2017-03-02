@@ -5,6 +5,7 @@ package dragonComponents;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
@@ -13,7 +14,9 @@ import java.awt.Stroke;
 import java.util.ArrayList;
 
 import game.DragonLand;
+import game.HomeJenniber;
 import game.HomeKat;
+import game.HomeScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
 import guiPractice.components.Visible;
@@ -23,10 +26,11 @@ import guiPractice.components.Visible;
  */
 public class HungryBox extends Button implements Runnable{
 
-	private static final int W = 100;
+	private static final int W = 150;
 	private static final int H = 50;
 	private static final String TEXT = "Hungry!";
-	private static int hungryTime=15;
+	private static final int HUNGRY_LIMIT =15;
+	private int hungryTime;
 	
 	
 	/**
@@ -39,18 +43,15 @@ public class HungryBox extends Button implements Runnable{
 	 * @param action
 	 */
 	public HungryBox(int x, int y) {
-		super(x, y, W, H, TEXT+"\n"+hungryTime+" sec", DragonLand.DARKER_NUDE, null);
+		super(x, y, W, H, TEXT+" "+HUNGRY_LIMIT+" sec", DragonLand.DARKER_NUDE,null);
+		hungryTime = HUNGRY_LIMIT;
+		update();
 	}	
-	
-//HomeKat.removeDragon(Dragon d, viewObjects)
-
 
 	public int getHungryTime() {
 		return hungryTime;
 	}
 
-
-	
 	public void setHungryTime(int num) {
 		hungryTime = num;
 	}
@@ -59,14 +60,13 @@ public class HungryBox extends Button implements Runnable{
 	public void update(Graphics2D g){
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
-		if(hungryTime<5){
+		if(hungryTime<=5){
 			g.setColor(DragonLand.LIGHT_PINK);
 		}
 		else{
 			g.setColor(DragonLand.DARKER_NUDE);
 		}
 		double thickness = 2;
-		Stroke oldStroke = g.getStroke();
 		g.setStroke(new BasicStroke((float) thickness));
 		g.fillRoundRect(0, 0, getWidth(), getHeight(), 35, 25);
 		g.setColor(DragonLand.NAVY);
@@ -90,8 +90,15 @@ public class HungryBox extends Button implements Runnable{
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		
+		try{
+			while(hungryTime>0){
+				Thread.sleep(1000);
+				setHungryTime(hungryTime-1);
+				setText("Hungry!"+" "+hungryTime+" sec");
+				HomeScreen.jenCode.checkRemoveDragon();
+			}
+		}catch(InterruptedException e){
+			e.printStackTrace();
+		}
 	}
-	
 }

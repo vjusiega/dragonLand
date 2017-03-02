@@ -22,7 +22,6 @@ import guiPractice.components.AnimatedComponent;
 public class DragonLand extends GUIApplication {
 
 	public static DragonLand game;
-	//public static ArrayList<AnimatedComponent> dragonList; //list of all dragons in the game
 	public static int coins = 2100; 
 	public static Screen homeScreen;
 	public static Screen shopMain; // shop 1
@@ -61,6 +60,7 @@ public class DragonLand extends GUIApplication {
 	@Override
 	protected void initScreen() {
 		initColors();
+
 		miniGameScreen = new GameScreen(getWidth(),getHeight());
 		shopMain = new HomeShopScreen(getWidth(),getHeight());
 		sellScreen = new SellShopZheng(getWidth(),getHeight());
