@@ -33,14 +33,10 @@ public class GameVioletta implements gameDragonInterface{
 	public static GameVioletta vGame;
 	private static ArrayList<Dragon> dragonArray;
 	
-	public GameVioletta(String imgSrc){
+	public GameVioletta(){
 		vGame = this;
 		dragonArray = new ArrayList<Dragon>();
-		System.out.println(dragonArray.size());
-		//addDragon(imgSrc);
 	}
-	
-	
 	
 	private static int screenWidth = DragonLand.miniGameScreen.getWidth();
 	private static int screenHeight = DragonLand.miniGameScreen.getHeight();
@@ -66,7 +62,7 @@ public class GameVioletta implements gameDragonInterface{
 		
 		int yPos = screenHeight - dragonHeight;
 		
-		Dragon d = new Dragon(xPos, yPos, dragonHeight, dragonHeight, "whatever", 0, imgSrc);
+		Dragon d = new Dragon(xPos, yPos, dragonHeight, dragonHeight, "", 0, imgSrc);
 		//d.setInGame(true);
 		//System.out.println(d.getInGame());
 		

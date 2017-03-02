@@ -1,5 +1,10 @@
 package dragonComponents;
 
+/**
+ * @author Tamanna Hussain
+ *
+ */
+
 import java.util.ArrayList;
 
 import game.Star1;

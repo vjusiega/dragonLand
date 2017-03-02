@@ -42,9 +42,11 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	private static ArrayList<Star1> starArray;
 	private static int score;
 	
+	public static GameScreen tGame;
 	
 	public GameScreen(int width, int height) {
 		super(width, height);
+		tGame = this;
 	}
 	
 	@Override
@@ -69,7 +71,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		view.add(exit);
 		view.add(scoreDisplay);
 		
-		GameVioletta vGameObject = new GameVioletta("img/dragon1.png");	
+		GameVioletta vGameObject = new GameVioletta();	
 		initDragonsOnScreen("img/dragon1.png");
 	}
 	
@@ -131,15 +133,16 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		
 	}
 	
+	//I changed the scores so that we effectively demonstrate while in class
 	public void setTime(){
-		if (score >= 25 && score < 50){
+		if (score >= 5 && score < 10){
 			time = 1500;
 			//setVy(1); --> put this in checkBehavior
 		}
-		if (score >= 75 && score < 100){
+		if (score >= 10 && score < 15){
 			time = 1000;
 		}
-		if (score >= 125 && score < 150){
+		if (score >= 15 && score < 20){
 			time = 500;
 		}
 	}
