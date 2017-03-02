@@ -62,11 +62,9 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
-		System.out.println(getWidth()); //1000 640
-		System.out.println(getHeight());
 		createHelpDialog();
 
-		tCoins = 10;
+		tCoins = DragonLand.coins;
 		buttons = new ArrayList<Button>();
 		highScores = new ArrayList<Integer>();
 		highScores.add(GameScreen.getScore());
