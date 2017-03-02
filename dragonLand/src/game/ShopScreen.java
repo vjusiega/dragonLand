@@ -70,7 +70,7 @@ public abstract class ShopScreen extends ClickableScreen {
 		Button exit = new Button(getWidth() - 65,  40, 50, 40, "X", new Color(230,195,147), new Action(){
 			
 			public void act() {
-				// TODO Auto-generated method stub
+				((HomeShopScreen)DragonLand.shopMain).updateHomeShopLabels();
 				DragonLand.game.setScreen(DragonLand.shopMain);
 			}
 		});

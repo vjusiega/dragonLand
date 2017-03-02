@@ -7,6 +7,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
+import game.DragonLand;
 import guiPractice.components.TextLabel;
 
 public class ShopLabel extends TextLabel {
@@ -42,8 +43,6 @@ public class ShopLabel extends TextLabel {
 		g.setColor(new Color(62, 74, 99));
 		g.drawRoundRect(0, 0, getWidth() - 2, getHeight() - 2, arc, arc);
 		
-		
-		g.setColor(Color.BLACK);
 		if(getText()!=null){
 			int cutoff = getText().length();
 			String t = getText();
@@ -52,10 +51,9 @@ public class ShopLabel extends TextLabel {
 				cutoff --;
 				t = t.substring(0, cutoff);
 			}
-			
-			
-			g.setFont(new Font(getFont(), Font.PLAIN, getSize()));
-			g.drawString(t, ((getWidth() - fm.stringWidth(t)))/2 - 20, (getHeight() + fm.getHeight() - fm.getDescent())/2);
+			g.setColor(DragonLand.NAVY);
+			g.setFont(new Font("Dialog",Font.BOLD,getSize()));
+			g.drawString(t, (getWidth() - fm.stringWidth(t))/3 - 10, (getHeight() + fm.getHeight() - fm.getDescent())/2);
 		}
 	}
 }

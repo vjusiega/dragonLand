@@ -62,6 +62,7 @@ public class HomeKat implements DragonArrayInterface {
 
 			@Override
 			public void act() {
+				((HomeShopScreen)DragonLand.shopMain).updateHomeShopLabels();
 				DragonLand.game.setScreen(DragonLand.shopMain);
 			}});
 		viewObjects.add(shop);
