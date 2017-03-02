@@ -78,7 +78,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	
 	protected void stopGame() {
 		
-		GameVioletta.vGame.stillPlaying(true);
+		GameVioletta.vGame.setPlaying(true);
 		
 		ArrayList<Dragon> dragonArray = GameVioletta.vGame.getDragonArray();
 		if(dragonArray.size() != 0){
@@ -96,7 +96,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		}
 		starArray = new ArrayList<Star1>();
 		
-		GameVioletta.vGame.stillPlaying(true);
+		//GameVioletta.vGame.stillPlaying(true);
 	}
 
 	public void startGame(){
@@ -139,7 +139,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	
 	public void fallingStars(){
 		try{
-			while(GameVioletta.vGame.stillPlaying(false)){
+			while(!GameVioletta.vGame.getPlaying()){
 			//setTime();
 			Thread.sleep(time);
 			addStar();
@@ -209,7 +209,9 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	}
 
 	public void initGame(String imgSrc){
+		//GameVioletta.vGame.setPlaying(true);
 		score = 0;
 		addObject(GameVioletta.vGame.addDragon(imgSrc));
+		GameVioletta.vGame.setPlaying(true);
 	}
 }

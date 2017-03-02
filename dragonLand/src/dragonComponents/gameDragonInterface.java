@@ -16,5 +16,6 @@ public interface gameDragonInterface {
 	Dragon removeDragon();
 	void changeDragonPos(int x);
 	ArrayList<Dragon> getDragonArray();
-	boolean stillPlaying(boolean end);
+	boolean getPlaying();
+	void setPlaying(boolean b);
 }

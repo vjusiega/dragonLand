@@ -33,9 +33,12 @@ public class GameVioletta implements gameDragonInterface{
 	public static GameVioletta vGame;
 	private static ArrayList<Dragon> dragonArray;
 	
+	private boolean playing;
+	
 	public GameVioletta(){
 		vGame = this;
 		dragonArray = new ArrayList<Dragon>();
+		playing = true;
 	}
 	
 	private static int screenWidth = DragonLand.miniGameScreen.getWidth();
@@ -81,17 +84,25 @@ public class GameVioletta implements gameDragonInterface{
 	}
 	
 	public Dragon removeDragon(){
-		Dragon deadDragon = dragonArray.get(dragonArray.size() - 1);
-		dragonArray.remove(dragonArray.size() - 1);
-		return(deadDragon);
+		if(dragonArray.size() > 0){
+			Dragon deadDragon = dragonArray.get(dragonArray.size() - 1);
+			dragonArray.remove(dragonArray.size() - 1);
+			if(dragonArray.size() == 0){
+				playing = false;
+			}
+			return(deadDragon);
+		}
+		return null;
 	}
 
 	public void changeDragonPos(int x) {
-		int leadDragon = findLeadDragon(x);
-		int leadDragonPos = (dragonArray.get(leadDragon)).getX();
-		if(leadDragonPos + x > 0 && leadDragonPos + x < screenWidth){
-			for(Dragon d : dragonArray){
-				d.setX(d.getX() + x);
+		if(dragonArray.size() > 0){
+			int leadDragon = findLeadDragon(x);
+			int leadDragonPos = (dragonArray.get(leadDragon)).getX();
+			if(leadDragonPos + x > 0 && leadDragonPos + x < screenWidth){
+				for(Dragon d : dragonArray){
+					d.setX(d.getX() + x);
+				}
 			}
 		}
 	}
@@ -155,12 +166,14 @@ public class GameVioletta implements gameDragonInterface{
 		}
 	}
 
+	public boolean getPlaying() {
+		return playing;
+	}
+
 	@Override
-	public boolean stillPlaying(boolean end) {
-		if (end || (dragonArray.size() == 0)){
-			return false;
-		}
-		return true;
+	public void setPlaying(boolean b) {
+		playing = true;
+		
 	}
 
 }

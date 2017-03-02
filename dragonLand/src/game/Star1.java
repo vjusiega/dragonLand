@@ -39,7 +39,8 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 	@Override
 	public void checkBehaviors() {
 		int border = GameScreen.getHeight() - 200;
-		if(GameVioletta.vGame.stillPlaying(false)){
+		System.out.println(GameVioletta.vGame.getPlaying());
+		if(GameVioletta.vGame.getPlaying()){
 			if(getY() >= border && !touched && GameVioletta.vGame.checkStarContact(this)){
 				touched = true;
 				game.removeStar(this);
@@ -51,6 +52,7 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 				}
 			}
 			else if(getY() > GameScreen.getHeight() - 100){
+				System.out.println("I am here");
 				touched = true;
 				game.removeStar(this);
 				GameVioletta.vGame.removeDragon();
