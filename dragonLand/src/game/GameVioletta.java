@@ -89,6 +89,9 @@ public class GameVioletta implements gameDragonInterface{
 			dragonArray.remove(dragonArray.size() - 1);
 			if(dragonArray.size() == 0){
 				playing = false;
+				DragonLand.game.setScreen(DragonLand.highscoreScreen);
+				GameScreen.tGame.stopGame();
+				//stopGame();
 			}
 			return(deadDragon);
 		}
@@ -172,7 +175,7 @@ public class GameVioletta implements gameDragonInterface{
 
 	@Override
 	public void setPlaying(boolean b) {
-		playing = true;
+		playing = b;
 		
 	}
 

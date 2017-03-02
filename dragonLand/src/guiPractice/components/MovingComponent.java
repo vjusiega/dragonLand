@@ -12,7 +12,7 @@ public abstract class MovingComponent extends Component
 	private double vy;
 	private double posx;
 	private double posy;
-	private boolean running;
+	protected boolean running;
 	private long moveTime;//time when the image last moved
 	
 	public static final int REFRESH_RATE = 20;
