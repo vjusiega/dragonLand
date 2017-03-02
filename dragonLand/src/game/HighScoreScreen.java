@@ -61,8 +61,6 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
-		System.out.println(getWidth()); //1000 640
-		System.out.println(getHeight());
 		text1 = "Your top 3 scores will be displayed here";
 		btext1 = new NoBorderButton(getWidth()-870,getHeight()-480,getWidth()-250, getHeight()-540, text1, DragonLand.BRIGHT_PINK,null);
 		btext1.setSize(30);
@@ -140,15 +138,15 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 			
 		});
 		viewObjects.add(background);
-		viewObjects.add(layerOne);
-		viewObjects.add(layerTwo);
-		viewObjects.add(yourScore);
-		viewObjects.add(title);
-		viewObjects.add(back);
-		viewObjects.add(coinsWon);
-		viewObjects.add(scores);
-		viewObjects.add(totalCoins);
-		viewObjects.add(help);
+//		viewObjects.add(layerOne);
+//		viewObjects.add(layerTwo);
+//		viewObjects.add(yourScore);
+//		viewObjects.add(title);
+//		viewObjects.add(back);
+//		viewObjects.add(coinsWon);
+//		viewObjects.add(scores);
+//		viewObjects.add(totalCoins);
+//		viewObjects.add(help);
 		createButtons();
 		printButtons(buttons);
 		viewObjects.add(clearScores);
