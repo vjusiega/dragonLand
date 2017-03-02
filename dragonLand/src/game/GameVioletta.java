@@ -49,7 +49,7 @@ public class GameVioletta implements gameDragonInterface{
 	}
 	
 	public void eraseDragons(){
-		dragonArray = new ArrayList<Dragon>();
+		dragonArray.clear();
 	}
 	
 	public Dragon addDragon(String imgSrc){
