@@ -128,19 +128,19 @@ public class HomeJenniber implements Runnable {
 	@Override
 	public void run() {
 		while(true){
-			System.out.println(HomeKat.dragonHome.getDragonsOnScreen().size()>0 && hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size());
+			//System.out.println(HomeKat.dragonHome.getDragonsOnScreen().size()>0 && hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size());
+			try {
+				int sleepingTime = (int)(Math.random()*5000)+1000;
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			if(HomeKat.dragonHome.getDragonsOnScreen().size()>0 && hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size())
 			{
 				double probability = 0;
 				if(Math.random()>probability){
 					createHungryThread(getRandDragon());
-				}
-				try {
-					int sleepingTime = (int)(Math.random()*5000)+1000;
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
 			}
 		}

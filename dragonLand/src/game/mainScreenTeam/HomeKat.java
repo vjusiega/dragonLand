@@ -309,9 +309,8 @@ public class HomeKat implements DragonArrayInterface {
 		//adds dragons
 		dragonsOnScreen.remove(d);
 		DragonLand.homeScreen.remove(d);
+		((SellShopZheng)DragonLand.sellScreen).removeDragonsInSellShop(d);
 		
-		//ShopBuy.addFlownAwayDragon(d);
-		//ShopSell.removeFlownAwayDragon(d);
 	}
 
 	
