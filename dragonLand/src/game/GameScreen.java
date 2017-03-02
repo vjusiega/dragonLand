@@ -80,11 +80,11 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 			@Override
 			public void run() {
 				fallingStars();
-				try {
-					Thread.sleep(time/2);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+// 				try {
+// 					Thread.sleep(time/2);
+// 				} catch (InterruptedException e) {
+// 					e.printStackTrace();
+// 				}
 				//maybe add thread.sleep in here too to make it slower
 			}
 		});
