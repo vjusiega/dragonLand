@@ -47,6 +47,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	private NoBorderButton btext3;
 	private String text4;
 	private NoBorderButton btext4;
+	private ArrayList<NoBorderButton> helparray;
 	
 	//fields for individual button scores
 	private Button score1;
@@ -63,22 +64,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
 		System.out.println(getWidth()); //1000 640
 		System.out.println(getHeight());
-		text1 = "Your top 3 scores will be displayed here";
-		btext1 = new NoBorderButton(getWidth()-870,getHeight()-480,getWidth()-250, getHeight()-540, text1, DragonLand.BRIGHT_PINK,null);
-		btext1.setSize(30);
-		
-		text2 = "The coins won and total coins are also displayed";
-		btext2 = new NoBorderButton(getWidth()-870,getHeight()-380,getWidth()-250, getHeight()-540, text2, DragonLand.BRIGHT_PINK,null);
-		btext2.setSize(30);
-		
-		text3 = "Click clear scores to reset the list";
-		btext3 = new NoBorderButton(getWidth()-870,getHeight()-280,getWidth()-250, getHeight()-540, text3, DragonLand.BRIGHT_PINK,null);
-		btext3.setSize(30);
-		
-		text4 = "Click the X to return to the main screen";
-		btext4 = new NoBorderButton(getWidth()-870,getHeight()-180,getWidth()-250, getHeight()-540, text4, DragonLand.BRIGHT_PINK, null);
-		btext4.setSize(30);
-		
+		createHelpDialog();
 		tCoins = 10;
 		buttons = new ArrayList<Button>();
 		highScores = new ArrayList<Integer>();
@@ -92,18 +78,16 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 			@Override
 			public void act() {
 				if(viewObjects.contains(helpBox)){
+					for(NoBorderButton b: helparray){
+						viewObjects.remove(b);
+					}
 					viewObjects.remove(helpBox);
-					viewObjects.remove(btext1);
-					viewObjects.remove(btext2);
-					viewObjects.remove(btext3);
-					viewObjects.remove(btext4);
 				}
 				else{
 					viewObjects.add(helpBox);
-					viewObjects.add(btext1);
-					viewObjects.add(btext2);
-					viewObjects.add(btext3);
-					viewObjects.add(btext4);
+					for(NoBorderButton b: helparray){
+						viewObjects.add(b);
+					}
 				}
 			}
 
@@ -154,6 +138,30 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		viewObjects.add(clearScores);
 	}
 
+	public void createHelpDialog(){
+		helparray = new ArrayList<NoBorderButton>();
+		text1 = "Your top 3 scores will be displayed here";
+		btext1 = new NoBorderButton(getWidth()-870,getHeight()-480,getWidth()-250, getHeight()-540, text1, DragonLand.BRIGHT_PINK,null);
+		btext1.setSize(30);
+		
+		text2 = "The coins won and total coins are also displayed";
+		btext2 = new NoBorderButton(getWidth()-870,getHeight()-380,getWidth()-250, getHeight()-540, text2, DragonLand.BRIGHT_PINK,null);
+		btext2.setSize(30);
+		
+		text3 = "Click clear scores to reset the list";
+		btext3 = new NoBorderButton(getWidth()-870,getHeight()-280,getWidth()-250, getHeight()-540, text3, DragonLand.BRIGHT_PINK,null);
+		btext3.setSize(30);
+		
+		text4 = "Click the X to return to the main screen";
+		btext4 = new NoBorderButton(getWidth()-870,getHeight()-180,getWidth()-250, getHeight()-540, text4, DragonLand.BRIGHT_PINK, null);
+		btext4.setSize(30);
+		
+		helparray.add(btext1);
+		helparray.add(btext2);
+		helparray.add(btext3);
+		helparray.add(btext4);
+	}
+	
 	public void sortScores(ArrayList<Integer> scores){
 		Comparator comparator = Collections.reverseOrder();
 		Collections.sort(scores,comparator);
