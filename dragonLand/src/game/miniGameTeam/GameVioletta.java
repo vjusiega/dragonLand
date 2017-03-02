@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+
 import game.DragonLand;
 import game.mainScreenTeam.Dragon;
 import guiPractice.components.AnimatedComponent;
@@ -48,13 +49,7 @@ public class GameVioletta implements gameDragonInterface{
 	}
 	
 	public void eraseDragons(){
-		int size = dragonArray.size();
-		System.out.println("The size is " + dragonArray.size()+"begin");
-		for(int i = size-1; i>-1; i--){
-			dragonArray.remove(i);
-			//size--;
-		}
-		System.out.println("The size is " + dragonArray.size());
+		dragonArray.clear();
 	}
 	
 	public Dragon addDragon(String imgSrc){
@@ -78,12 +73,12 @@ public class GameVioletta implements gameDragonInterface{
 		//d.setInGame(true);
 		//System.out.println(d.getInGame());
 		
-		AnimatedComponent a = d;
-		setDragonAnimation(a, imgSrc);
+//		AnimatedComponent a = d;
+		setDragonAnimation(d, imgSrc);
 		
 		dragonArray.add(d);
-		a.setX(xPos);
-		a.setY(yPos);
+		d.setX(xPos);
+		d.setY(yPos);
 		
 		return d;
 	}
@@ -94,6 +89,9 @@ public class GameVioletta implements gameDragonInterface{
 			dragonArray.remove(dragonArray.size() - 1);
 			if(dragonArray.size() == 0){
 				playing = false;
+				DragonLand.game.setScreen(DragonLand.highscoreScreen);
+				GameScreen.tGame.stopGame();
+				//stopGame();
 			}
 			return(deadDragon);
 		}
@@ -135,7 +133,7 @@ public class GameVioletta implements gameDragonInterface{
 		int dragonStart = (dragonArray.get(findLeadDragon(-1))).getX();
 		int dragonEnd = (dragonArray.get(findLeadDragon(-1))).getX() + (dragonArray.get(findLeadDragon(-1))).getWidth();
 		if((starX > dragonStart && starX < dragonEnd) || (starEnd > dragonStart && starEnd < dragonEnd)){
-			//System.out.println("touching");
+			System.out.println("touching");
 			return true; 
 			
 		}
@@ -177,7 +175,7 @@ public class GameVioletta implements gameDragonInterface{
 
 	@Override
 	public void setPlaying(boolean b) {
-		playing = true;
+		playing = b;
 		
 	}
 

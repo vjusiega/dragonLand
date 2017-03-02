@@ -7,6 +7,8 @@ package game.miniGameTeam;
 
 import java.util.ArrayList;
 
+
+import game.miniGameTeam.NoBorderButton;
 import game.DragonLand;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
@@ -96,9 +98,10 @@ public class GameInstructions extends ClickableScreen {
 		playButton = new Button((int) (getWidth() * 0.78), (int) (getHeight() * 0.9), (int) (getWidth() * 0.2), 50, "Play", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
-				GameScreen.tGame.initGame("img/Dragon1.png");
+//				GameScreen.tGame.initGame("img/Dragon1.png");
+				GameScreen.tGame.startGame();
+//				DragonLand.miniGameScreen.startGame();
 				DragonLand.game.setScreen(DragonLand.miniGameScreen);
-				DragonLand.miniGameScreen.startGame();
 			}
 		});
 		

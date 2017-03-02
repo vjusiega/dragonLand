@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+
 import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.HomeScreen;
 import game.miniGameTeam.GameInstructions;
@@ -18,6 +19,7 @@ import game.miniGameTeam.HighScoreScreen;
 import game.shopScreen.BuyScreenWendy;
 import game.shopScreen.HomeShopScreen;
 import game.shopScreen.SellShopZheng;
+
 import guiPractice.GUIApplication;
 import guiPractice.Screen;
 import guiPractice.components.AnimatedComponent;
