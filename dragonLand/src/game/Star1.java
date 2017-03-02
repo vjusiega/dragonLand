@@ -51,9 +51,14 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 			touched = true;
 			game.removeStar(this);
 		}
+		
+		if(getScore() >= 5 && getScore() < 10)
+			setVy(1);
+		if(getScore() >= 10 && getScore() < 15)
+			setVy(1.5);
+		if(getScore() >= 15 && getScore() < 20)
+			setVy(2);
 	}
-// 		if(getScore() >= 25 && getScore() < 50)
-// 			setVy(1);
 
 	@Override
 	public int starStartPos() {
