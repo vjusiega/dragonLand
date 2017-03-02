@@ -96,7 +96,7 @@ public class GameInstructions extends ClickableScreen {
 		playButton = new Button((int) (getWidth() * 0.78), (int) (getHeight() * 0.9), (int) (getWidth() * 0.2), 50, "Play", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
-				GameScreen.tGame.initDragonsOnScreen("img/Dragon1.png");
+				GameScreen.tGame.initGame("img/Dragon1.png");
 				DragonLand.game.setScreen(DragonLand.miniGameScreen);
 				DragonLand.miniGameScreen.startGame();
 			}
@@ -104,27 +104,7 @@ public class GameInstructions extends ClickableScreen {
 		
 		viewObjects.add(playButton);		
 	}
-	
-//	public void updateText(){
-//		if(sequenceNumber == 5){
-//			instructions.setText(instructionText[sequenceNumber]);
-//			remove(skip);
-//			next.setText("Play");
-//		}
-//		else{
-//			instructions.setText(instructionText[sequenceNumber]);
-//			sequenceNumber++;
-//		}
-//	}
-	
-	public void initiateText(){
-		instructionText[0] = "";
-		instructionText[1] = "";
-		instructionText[2] = "Stars are the best source of nutrients for dragons";
-		instructionText[3] = "The more stars you earn the more coins you get!";
-		instructionText[4] = "Finally, don't let a star fall or you lose a life.";
-		instructionText[5] = "Have fun!";
-	}
+
 
 
 }

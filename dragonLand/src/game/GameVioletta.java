@@ -45,6 +45,10 @@ public class GameVioletta implements gameDragonInterface{
 		return dragonArray;
 	}
 	
+	public void eraseDragons(){
+		dragonArray = new ArrayList<Dragon>();
+	}
+	
 	public Dragon addDragon(String imgSrc){
 		int xPos;
 		int dragonHeight = 100;
@@ -152,8 +156,8 @@ public class GameVioletta implements gameDragonInterface{
 	}
 
 	@Override
-	public boolean stillPlaying() {
-		if(dragonArray.size() == 0){
+	public boolean stillPlaying(boolean end) {
+		if (end || (dragonArray.size() == 0)){
 			return false;
 		}
 		return true;

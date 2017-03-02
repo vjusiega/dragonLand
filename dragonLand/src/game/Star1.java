@@ -39,24 +39,33 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 	@Override
 	public void checkBehaviors() {
 		int border = GameScreen.getHeight() - 200;
-		if(getY() >= border && !touched && GameVioletta.vGame.checkStarContact(this)){
-			touched = true;
-			game.removeStar(this);
-			int score = GameScreen.getScore() + 1;
-			GameScreen.setScore(score);
-			GameScreen.setScoreDisplay();
-		}
-		else if(getY() > GameScreen.getHeight() - 100){
-			touched = true;
-			game.removeStar(this);
+		if(GameVioletta.vGame.stillPlaying(false)){
+			if(getY() >= border && !touched && GameVioletta.vGame.checkStarContact(this)){
+				touched = true;
+				game.removeStar(this);
+				int score = GameScreen.getScore() + 1;
+				GameScreen.setScore(score);
+				GameScreen.setScoreDisplay();
+				if(score == 5 || score == 10 || score == 15){
+					GameVioletta.vGame.addDragon("img/dragon1.png");
+				}
+			}
+			else if(getY() > GameScreen.getHeight() - 100){
+				touched = true;
+				game.removeStar(this);
+				GameVioletta.vGame.removeDragon();
+			}
+			if(GameScreen.getScore() >= 5 && GameScreen.getScore() < 10)
+				setVy(1);
+			if(GameScreen.getScore() >= 10 && GameScreen.getScore() < 15)
+				setVy(1.5);
+			if(GameScreen.getScore() >= 15 && GameScreen.getScore() < 20)
+				setVy(2);
+		
 		}
 		
-		if(GameScreen.getScore() >= 5 && GameScreen.getScore() < 10)
-			setVy(1);
-		if(GameScreen.getScore() >= 10 && GameScreen.getScore() < 15)
-			setVy(1.5);
-		if(GameScreen.getScore() >= 15 && GameScreen.getScore() < 20)
-			setVy(2);
+		
+		
 	}
 
 	@Override
