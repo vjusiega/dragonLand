@@ -221,10 +221,10 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 	}
 
 	private static void checkToRemove(String[] purchased) {
-		boolean exist = false;
 		for(int i=0;i<dragonsOnScreen.size();i++){
+			boolean exist = false;
 			for(int j=0;j<purchased.length;j++){
-				if(dragonsOnScreen.get(i).getName()==purchased[j])
+				if(dragonsOnScreen.get(i).getName().equals(purchased[j]))
 					exist = true;
 			}
 			if(!exist){
@@ -235,7 +235,6 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 		}
 	}
 	public static void removeDragon(Dragon d){
-		
 		locationsX.add(d.getX());
 		locationsY.add(d.getY());
 		//adds dragons
