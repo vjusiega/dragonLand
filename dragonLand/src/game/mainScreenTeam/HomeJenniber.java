@@ -127,21 +127,33 @@ public class HomeJenniber implements Runnable {
 
 	@Override
 	public void run() {
-		System.out.println("Hngers");
-		while(HomeKat.dragonHome.getDragonsOnScreen().size()>0 && hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size()){
-			double probability = .2;
-			if(Math.random()>probability){
-				createHungryThread(getRandDragon());
-			}
-			try {
-				int sleepingTime = (int)(Math.random()*5000)+1000;
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		while(true){
+			System.out.println(HomeKat.dragonHome.getDragonsOnScreen().size()>0 && hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size());
+			if(HomeKat.dragonHome.getDragonsOnScreen().size()>0 && hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size())
+			{
+				double probability = 0;
+				if(Math.random()>probability){
+					createHungryThread(getRandDragon());
+				}
+				try {
+					int sleepingTime = (int)(Math.random()*5000)+1000;
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		
+	}
+	
+	public void editHungryBoxTimes(Dragon d){
+		for(int i=0; i<hungryBoxTimes.size();i++){
+			HungryBox hungryBox= hungryBoxTimes.get(i);
+			if((d.getY()<350 && hungryBox.getX()==d.getX()-25) || hungryBox.getY()==d.getY()+105){
+				hungryBoxTimes.remove(hungryBox);
+			}
+		}
 	}
 }
 

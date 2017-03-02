@@ -61,7 +61,7 @@ public class DragonLand extends GUIApplication {
 		homeScreen = new HomeScreen(getWidth(),getHeight());
 		buyScreen = new BuyScreenWendy(getWidth(),getHeight());
 		highscoreScreen = new HighScoreScreen(getWidth(),getHeight());
-//		HomeScreen.jenCode = new game.mainScreenTeam.HomeJenniber();
+		HomeScreen.jenCode = new game.mainScreenTeam.HomeJenniber();
 		setScreen(homeScreen);
 
 	}

@@ -244,6 +244,8 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 		//adds dragons
 		dragonsOnScreen.remove(d);
 		viewObjects.remove(d);
+		DragonLand.homeScreen.jenCode.editHungryBoxTimes(d);
+		
 	}
 	public static void addDragon(Dragon d){
 		//adds back the available dragon spot in the field
