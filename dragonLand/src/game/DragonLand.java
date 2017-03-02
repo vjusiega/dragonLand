@@ -10,7 +10,8 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-import dragonComponents.Dragon;
+import game.mainScreenTeam.Dragon;
+import game.mainScreenTeam.HomeScreen;
 import guiPractice.GUIApplication;
 import guiPractice.Screen;
 import guiPractice.components.AnimatedComponent;

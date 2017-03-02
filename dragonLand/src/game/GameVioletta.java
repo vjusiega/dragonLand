@@ -9,9 +9,8 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-import dragonComponents.Dragon;
-
 import dragonComponents.gameDragonInterface;
+import game.mainScreenTeam.Dragon;
 import guiPractice.components.AnimatedComponent;
 import guiPractice.components.Visible;
 
