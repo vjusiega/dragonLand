@@ -138,15 +138,15 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 			
 		});
 		viewObjects.add(background);
-//		viewObjects.add(layerOne);
-//		viewObjects.add(layerTwo);
-//		viewObjects.add(yourScore);
-//		viewObjects.add(title);
-//		viewObjects.add(back);
-//		viewObjects.add(coinsWon);
-//		viewObjects.add(scores);
-//		viewObjects.add(totalCoins);
-//		viewObjects.add(help);
+		viewObjects.add(layerOne);
+		viewObjects.add(layerTwo);
+		viewObjects.add(yourScore);
+		viewObjects.add(title);
+		viewObjects.add(back);
+		viewObjects.add(coinsWon);
+		viewObjects.add(scores);
+		viewObjects.add(totalCoins);
+		viewObjects.add(help);
 		createButtons();
 		printButtons(buttons);
 		viewObjects.add(clearScores);

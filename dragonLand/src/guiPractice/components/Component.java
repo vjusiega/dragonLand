@@ -17,7 +17,7 @@ public abstract class Component implements Visible {
 		this.w=w;
 		this.h=h;
 		image=new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
-		
+		update(image.createGraphics());
 	}
 	/**
 	 * draw the component
