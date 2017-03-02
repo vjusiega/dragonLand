@@ -20,25 +20,17 @@ import guiPractice.components.AnimatedComponent;
  *
  */
 public class DragonLand extends GUIApplication {
-	/**
-	 * Static Fields
-	 */
 
 	public static DragonLand game;
-
 	//public static ArrayList<AnimatedComponent> dragonList; //list of all dragons in the game
-
 	public static int coins = 2100; 
-
 	public static Screen homeScreen;
 	public static Screen shopMain; // shop 1
 	public static Screen sellScreen; // shop 2
 	public static Screen buyScreen; // shop 3
 	public static Screen highscoreScreen; // high score
 	public static Screen miniGameScreen; // minigame
-
 	public static Screen HelpScreen;
-
 	public static Color NAVY;
 	public static Color BRIGHT_PINK;
 	public static Color LIGHT_PINK;
@@ -91,7 +83,6 @@ public class DragonLand extends GUIApplication {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		game = new DragonLand();
 		Thread go = new Thread(game);
 		go.start();
