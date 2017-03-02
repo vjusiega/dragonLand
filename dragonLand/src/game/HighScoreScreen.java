@@ -136,7 +136,10 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		printButtons(buttons);
 		viewObjects.add(clearScores);
 	}
-
+	public void updaateOnEnter(){
+		//DragonLand.setCoins(DragonLand.coins+getCoins(GameScreen.getScore()));
+		//settext(fdghsdfgd)
+	}
 	public void createHelpDialog(){
 		helparray = new ArrayList<NoBorderButton>();
 		text1 = "Your top 3 scores will be displayed here";
