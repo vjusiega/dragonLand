@@ -72,7 +72,6 @@ public class DragonLand extends GUIApplication {
 		setScreen(homeScreen);
 
 	}
-
 	private void initColors() {
 		NAVY = new Color(62,74,99);
 		BRIGHT_PINK = new Color(224,102,102);
@@ -97,5 +96,9 @@ public class DragonLand extends GUIApplication {
 		public int getCoins(){
 			return coins;
 		}
+		
+	public static void beginHunger(){
+		HomeScreen.jenCode = new game.mainScreenTeam.HomeJenniber();		
+	}
 
 }
