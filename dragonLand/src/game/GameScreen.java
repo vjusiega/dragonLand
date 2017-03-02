@@ -85,7 +85,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 // 				} catch (InterruptedException e) {
 // 					e.printStackTrace();
 // 				}
-				//maybe add thread.sleep in here too to make it slower
 			}
 		});
 		start.start();
@@ -133,11 +132,9 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		
 	}
 	
-	//I changed the scores so that we effectively demonstrate while in class
 	public void setTime(){
 		if (score >= 5 && score < 10){
 			time = 1500;
-			//setVy(1); --> put this in checkBehavior
 		}
 		if (score >= 10 && score < 15){
 			time = 1000;
@@ -171,6 +168,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	public void keyReleased(KeyEvent e){	
 	}
 
+	@Override
 	public KeyListener getKeyListener(){
 		return this;
 	}
@@ -200,5 +198,4 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		}
 		addObject(GameVioletta.vGame.addDragon(imgSrc));
 	}
-
 }

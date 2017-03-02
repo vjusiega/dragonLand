@@ -101,9 +101,8 @@ public class GameInstructions extends ClickableScreen {
 				DragonLand.miniGameScreen.startGame();
 			}
 		});
-		viewObjects.add(playButton);
 		
-		
+		viewObjects.add(playButton);		
 	}
 	
 //	public void updateText(){

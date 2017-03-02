@@ -40,7 +40,6 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 	public void checkBehaviors() {
 		int border = GameScreen.getHeight() - 200;
 		if(getY() >= border && !touched && GameVioletta.vGame.checkStarContact(this)){
-			//System.out.println(getY());
 			touched = true;
 			game.removeStar(this);
 			int score = GameScreen.getScore() + 1;
@@ -52,11 +51,11 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 			game.removeStar(this);
 		}
 		
-		if(getScore() >= 5 && getScore() < 10)
+		if(GameScreen.getScore() >= 5 && GameScreen.getScore() < 10)
 			setVy(1);
-		if(getScore() >= 10 && getScore() < 15)
+		if(GameScreen.getScore() >= 10 && GameScreen.getScore() < 15)
 			setVy(1.5);
-		if(getScore() >= 15 && getScore() < 20)
+		if(GameScreen.getScore() >= 15 && GameScreen.getScore() < 20)
 			setVy(2);
 	}
 
