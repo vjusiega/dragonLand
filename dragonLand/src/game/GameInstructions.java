@@ -27,8 +27,8 @@ public class GameInstructions extends ClickableScreen {
 	private int sequenceNumber;
 	
 	private Button next;
-	private Button skip;
-	private Button playGame;
+	private Button playButton;
+	//private Button playGame;
 	private Button exit;
 	
 	@Override
@@ -56,39 +56,30 @@ public class GameInstructions extends ClickableScreen {
 		});
 		viewObjects.add(exit);
 		
-		skip = new Button((int) (getWidth() * 0.78), (int) (getHeight() * 0.9), (int) (getWidth() * 0.2), 50, "Skip Instructions", DragonLand.DARKER_NUDE, new Action() {
+		playButton = new Button((int) (getWidth() * 0.78), (int) (getHeight() * 0.9), (int) (getWidth() * 0.2), 50, "Play", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
 				DragonLand.game.setScreen(DragonLand.miniGameScreen);
-				//GameScreen.initializeScreen();
 				DragonLand.miniGameScreen.startGame();
-				//DragonLand.miniGameScreen = new GameScreen(getWidth(), getHeight());
-//				DragonLand.game.miniGameScreen.initObjects(viewObjects);
 			}
 		});
-		viewObjects.add(skip);
+		viewObjects.add(playButton);
 		
-		next = new Button((int) (getWidth() * 0.78), (int) (getHeight() * 0.7), (int) (getWidth() * 0.2), 50, "Continue", DragonLand.DARKER_NUDE, new Action() {
-			@Override
-			public void act() {
-				updateText();
-			}
-		});
-		viewObjects.add(next);
+		
 		
 	}
 	
-	public void updateText(){
-		if(sequenceNumber == 5){
-			instructions.setText(instructionText[sequenceNumber]);
-			remove(skip);
-			next.setText("Play");
-		}
-		else{
-			instructions.setText(instructionText[sequenceNumber]);
-			sequenceNumber++;
-		}
-	}
+//	public void updateText(){
+//		if(sequenceNumber == 5){
+//			instructions.setText(instructionText[sequenceNumber]);
+//			remove(skip);
+//			next.setText("Play");
+//		}
+//		else{
+//			instructions.setText(instructionText[sequenceNumber]);
+//			sequenceNumber++;
+//		}
+//	}
 	
 	public void initiateText(){
 		instructionText[0] = "Welcome to the feeding ground.";

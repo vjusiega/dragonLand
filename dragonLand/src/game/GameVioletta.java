@@ -36,8 +36,11 @@ public class GameVioletta implements gameDragonInterface{
 	public GameVioletta(String imgSrc){
 		vGame = this;
 		dragonArray = new ArrayList<Dragon>();
-		addDragon(imgSrc);
+		System.out.println(dragonArray.size());
+		//addDragon(imgSrc);
 	}
+	
+	
 	
 	private static int screenWidth = DragonLand.miniGameScreen.getWidth();
 	private static int screenHeight = DragonLand.miniGameScreen.getHeight();

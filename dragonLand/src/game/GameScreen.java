@@ -42,7 +42,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	private static ArrayList<Star1> starArray;
 	private static int score;
 	
-	private boolean paused;
 	
 	public GameScreen(int width, int height) {
 		super(width, height);
@@ -52,7 +51,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	public void initAllObjects(ArrayList<Visible> view) {
 		//initial score is 0 and it should count the number of stars caught
 		score = 0;
-		paused = false; 
 		time = 2000;
 		starArray = new ArrayList<Star1>();
 	
@@ -70,11 +68,9 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		
 		view.add(exit);
 		view.add(scoreDisplay);
-
+		
 		GameVioletta vGameObject = new GameVioletta("img/dragon1.png");	
-		for(Dragon d : GameVioletta.vGame.getDragonArray()){
-			view.add(d);
-		}	
+		initDragonsOnScreen("img/dragon1.png");
 	}
 	
 	public void startGame(){
@@ -190,6 +186,16 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	
 	public static void setScoreDisplay(){
 		scoreDisplay.setText("Score: " + score);
+	}
+	
+	public void initDragonsOnScreen(String imgSrc){
+		ArrayList<Dragon> dragonArray = GameVioletta.vGame.getDragonArray();
+		if(dragonArray.size() != 0){
+			for(Dragon d: dragonArray){
+				remove(GameVioletta.vGame.removeDragon());
+			}
+		}
+		addObject(GameVioletta.vGame.addDragon(imgSrc));
 	}
 
 }
