@@ -25,7 +25,7 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 	private static int startIndex = 0;
 	private static int numOfDragons;
 	private int pageNum;
-
+	private Button error;
 	public BuyScreenWendy(int width, int height) {
 		super(width, height);
 		// TODO Auto-generated constructor stub
@@ -77,29 +77,29 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 						}
 						else
 						{
-							//addError("You have already maxed out your inventory. Go sell a dragon before buying another");
+							addError("You have already maxed out your inventory. Go sell a dragon before buying another");
 						}
 					}
 					else
 					{
-						//addError("You do not have enough coins. Go play our minigame to win more coins");
+						addError("You do not have enough coins. Go play our minigame to win more coins");
 						System.out.println("You donot have enough coins. Go play our minigame to win more coins You have " + DragonLand.coins + " coins");
 					}
 				}
 
-//				private void addError(String string) {
-//					Button error = new Button(100,100,850,100,string,new Color(244,215,183),new Action()
-//							{
-//								@Override
-//								public void act() {
-//									// TODO Auto-generated method stub
-//									
-//								}
-//						
-//							});
-//					addObject(error);
-//					
-//				}
+				private void addError(String string) {
+					error = new Button(100,100,850,100,string,new Color(244,215,183),new Action()
+							{
+								@Override
+								public void act() {
+									remove(error);
+									
+								}
+						
+							});
+					addObject(error);
+					
+				}
 			});
 
 			addObject(label);

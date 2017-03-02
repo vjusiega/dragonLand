@@ -45,14 +45,7 @@ public class DragonLand extends GUIApplication {
 //		dragonList.add(a);
 //	}
 	public DragonLand() {
-		
-//		Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
-//		int monitorWidth=(int)screenSize.getWidth();
-//		int monitorHeight=(int)screenSize.getHeight();
-//		setSize(WIDTH, HEIGHT);
-//		setLocation((monitorWidth-WIDTH)/2,(monitorHeight-HEIGHT)/2);
-//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		
+
 	}
 
 	/* (non-Javadoc)
