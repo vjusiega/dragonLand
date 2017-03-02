@@ -35,7 +35,7 @@ public class Dragon extends AnimatedComponent {
  	private int LEFT=1;
  	private int RIGHT =2;
  	private int DOWN=4;
- 	private double VY= Math.random();
+ 	private double VY= Math.random(); //to randomize speed
  	
 	public Dragon(int x, int y, int w, int h,  String name, int price, String imgSrc) {
 		super(x, y, w, h);
@@ -46,7 +46,11 @@ public class Dragon extends AnimatedComponent {
 		this.hungryBox = false;
 
 	}
-
+	/*
+	 * set based on the y coordinate given
+	 * tells it how it will move
+	 * called in HomeKat when adding a dragon
+	 */
 	public void setY(int y){
 		initialY=y;
 		super.setY(y);
@@ -60,11 +64,14 @@ public class Dragon extends AnimatedComponent {
 				currentFrame=6;
 		}
 	}
+	
 	public void setX(int x){
 		initialX=x;
 		super.setX(x);
 	}
-	
+	/*
+	 * allows for directions to switch 
+	 */
 	public void checkBehaviors() {
 		//System.out.println(direction);
 		if(direction ==UP){
@@ -104,7 +111,9 @@ public class Dragon extends AnimatedComponent {
 			}
 		}
 	}
-
+/*
+ * getters and setters
+ */
 	@Override
 	public void drawImage(Graphics2D g) {
 		super.drawImage(g);
