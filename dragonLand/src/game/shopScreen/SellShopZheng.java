@@ -1,14 +1,16 @@
-package game;
+package game.shopScreen;
 
 import java.util.ArrayList;
 
 import dragonComponents.DragonLabel2;
-import dragonComponents.SellScreenInterface;
+import game.DragonLand;
 import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.StoreSellInterfaceK;
 import guiPractice.components.Action;
 import guiPractice.components.Visible;
-
+/*
+ * @author Zheng
+ * */
 public class SellShopZheng extends ShopScreen implements SellScreenInterface, StoreSellInterfaceK{
 	
 	private ArrayList<Dragon> dragonsInSellShop;

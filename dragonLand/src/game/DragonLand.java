@@ -12,6 +12,9 @@ import javax.swing.JFrame;
 
 import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.HomeScreen;
+import game.shopScreen.BuyScreenWendy;
+import game.shopScreen.HomeShopScreen;
+import game.shopScreen.SellShopZheng;
 import guiPractice.GUIApplication;
 import guiPractice.Screen;
 import guiPractice.components.AnimatedComponent;

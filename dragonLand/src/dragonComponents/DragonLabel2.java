@@ -9,6 +9,10 @@ import javax.swing.ImageIcon;
 
 import game.DragonLand;
 import game.mainScreenTeam.Dragon;
+import game.shopScreen.PriceLabel;
+import game.shopScreen.ShopActionButton;
+import game.shopScreen.ShopBackdrop;
+import game.shopScreen.ShopLabel;
 import guiPractice.components.Action;
 import guiPractice.components.AnimatedComponent;
 import guiPractice.components.Clickable;

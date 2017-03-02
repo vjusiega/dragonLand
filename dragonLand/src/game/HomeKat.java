@@ -8,6 +8,8 @@ import javax.swing.ImageIcon;
 
 import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.DragonArrayInterface;
+import game.shopScreen.HomeShopScreen;
+import game.shopScreen.SellShopZheng;
 import dragonComponents.NoBorderButton;
 import guiPractice.components.Action;
 import guiPractice.components.AnimatedComponent;

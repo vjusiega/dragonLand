@@ -1,4 +1,4 @@
-package dragonComponents;
+package game.shopScreen;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -9,7 +9,9 @@ import java.awt.RenderingHints;
 
 import game.DragonLand;
 import guiPractice.components.TextLabel;
-
+/*
+ * @author Wendy, Zheng
+ * */
 public class ShopLabel extends TextLabel {
 	
 	private Color color = new Color(224, 102, 102);
