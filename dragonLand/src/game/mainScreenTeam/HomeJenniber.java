@@ -6,6 +6,7 @@ package game.mainScreenTeam;
 import java.util.ArrayList;
 
 import game.DragonLand;
+import game.SellShopZheng;
 import guiPractice.components.Action;
 import guiPractice.components.Visible;
 
@@ -78,6 +79,7 @@ public class HomeJenniber implements Runnable {
 	public void removeHungryAndDragon(Dragon d, HungryBox hungry) {
 		hungryBoxTimes.remove(hungry);
 		DragonLand.homeScreen.remove(d);
+		((SellShopZheng)DragonLand.sellScreen).removeDragonsInSellShop(d);
 		DragonLand.homeScreen.remove(hungry);
 	}
 

@@ -84,7 +84,6 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 	
 	public void drawDragons()
 	{
-		getDragonAmount().setText(dragonsInSellShop.size() + "/6 Dragons");
 		setPageDisplay();
 		
 		int labelY = 0;
@@ -140,6 +139,14 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 		dragonsInSellShop.add(d);
 		drawDragons();
 	}
+	
+	public void removeDragonsInSellShop(Dragon d) {
+		dragonsInSellShop.remove(d);
+	}
 
+	@Override
+	public void updateDragonAmount() {
+		getDragonAmount().setText(dragonsInSellShop.size() + "/6 Dragons");
+	}
 
 }

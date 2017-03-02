@@ -190,5 +190,11 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 		dragonsInShop.add(dragon);
 		addLabels(viewObjects);
 	}
+
+	@Override
+	public void updateDragonAmount() {
+		numOfDragons = ((SellShopZheng)DragonLand.sellScreen).getDragonsInSellShop().size();
+		getDragonAmount().setText(numOfDragons + " / 6 dragons");
+	}
 }
 

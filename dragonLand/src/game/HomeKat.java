@@ -62,10 +62,11 @@ public class HomeKat implements DragonArrayInterface {
 
 			@Override
 			public void act() {
+				System.out.println("DSASDADS");
 				((HomeShopScreen)DragonLand.shopMain).updateHomeShopLabels();
 				DragonLand.game.setScreen(DragonLand.shopMain);
 			}});
-		viewObjects.add(shop);
+		//viewObjects.add(shop);
 		
 		Button minigame = new Button(width-110-(width*2/100),(height*5/100)+53,  110,  50,  "Minigame",DragonLand.DARKER_NUDE,  new Action(){
 
@@ -75,7 +76,7 @@ public class HomeKat implements DragonArrayInterface {
 			}
 		
 		});
-		viewObjects.add(minigame);
+		//viewObjects.add(minigame);
 		
 		Button helpLayer = new Button((int)(width*0.1),(int)(height*0.1),(int)(width*0.8),(int)(height*0.8),  null,DragonLand.DARKER_NUDE,  new Action(){
 

@@ -152,5 +152,11 @@ public abstract class ShopScreen extends ClickableScreen {
 		return page;
 	}
 	
-
+	public void updateShopLabels()
+	{
+		coins.setCoins();
+		updateDragonAmount();
+	}
+	
+	public abstract void updateDragonAmount();
 }
