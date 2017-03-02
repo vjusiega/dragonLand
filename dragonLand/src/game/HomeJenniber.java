@@ -17,28 +17,27 @@ import guiPractice.components.Visible;
 public class HomeJenniber implements Runnable {
 	
 	private ArrayList<HungryBox> hungryBoxTimes;
-//	private ArrayList<Visible> viewObjects;
-	/**
-	 * 
-	 */
+	
+	//Home Jenniber begins a Thread that will randomly add hungryBoxes
 	public HomeJenniber() {
-		System.out.println("Thread");
-//		this.viewObjects = viewObjects;
 		this.hungryBoxTimes = new ArrayList<HungryBox>();
 		Thread hungerBegins = new Thread(this);
 		hungerBegins.start();
-//		randomHunger();
-//		createHungryThread(getRandDragon());
 	}
 	
-	public void randomHunger(){
-		
-	}
-	
+	//Creates a new hungryBox Thread
+	//d parameter is a dragon from HomeKat.onScreenDragons
 	public void createHungryThread(Dragon d){
-		//d is a dragon from HomeKat.onScreenDragons
-		System.out.println("Add hungryBox");
+		/**
+		 * A hungryBox is created for the dragon that has been passed through the parameter
+		 */
 		HungryBox hungryBox = getHungryBox(d);
+		/**
+		 * When the hungryBox is clicked:
+		 *	The dragon's boolean value of whether it has a hungryBox is set to false
+		 *	The hungryBox is removed from the ArrayList<HungryBox> hungryBoxTimes
+		 *		and it is also removed from the ArrayList<Visible> viewObjects
+		 */
 		hungryBox.setAction(new Action(){
 
 			@Override
@@ -68,12 +67,10 @@ public class HomeJenniber implements Runnable {
 				
 				hungryBoxTimes.remove(hungryBox);
 				DragonLand.homeScreen.remove(hungryBox);
-				//viewObjects.remove(hungryBox);
 			}
 			
 		});
 		hungryBoxTimes.add(hungryBox);
-//		viewObjects.add(hungryBox);
 		DragonLand.homeScreen.addObject(hungryBox);
 		Thread hungry = new Thread(hungryBox);
 		hungry.start();
@@ -83,8 +80,6 @@ public class HomeJenniber implements Runnable {
 		hungryBoxTimes.remove(hungry);
 		DragonLand.homeScreen.remove(d);
 		DragonLand.homeScreen.remove(hungry);
-//		HomeKat.removeDragon(d,viewObjects);
-//		viewObjects.remove(hungry);
 	}
 
 	public void checkRemoveDragon() {
@@ -131,7 +126,7 @@ public class HomeJenniber implements Runnable {
 	@Override
 	public void run() {
 		while(HomeKat.dragonHome.getDragonsOnScreen().size()>0 && hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size()){
-			double probability = .7;
+			double probability = .5;
 			if(Math.random()>probability){
 				createHungryThread(getRandDragon());
 			}
