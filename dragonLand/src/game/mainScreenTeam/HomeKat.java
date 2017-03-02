@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-import dragonComponents.DragonArrayInterface;
+import game.mainScreenTeam.DragonArrayInterface;
 import dragonComponents.NoBorderButton;
 import game.DragonLand;
 import game.SellShopZheng;
