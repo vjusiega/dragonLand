@@ -258,6 +258,7 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 		d.play();
 		dragonsOnScreen.add(d);
 		viewObjects.add(d);
+		if(dragonsOnScreen.size()==1)DragonLand.beginHunger();
 	}
 
 	public static ArrayList<Dragon> getDragons() {
