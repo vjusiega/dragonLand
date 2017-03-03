@@ -7,6 +7,7 @@ public interface StoreSellInterfaceK {
 	 *
 	 */
 	 String[] getNamesOfPurchased();
-	
+	 void addToDragonsInSellShop(Dragon d);
+	 void removeDragonsInSellShop(Dragon d);
 
 }
