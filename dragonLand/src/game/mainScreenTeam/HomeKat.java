@@ -77,7 +77,6 @@ public class HomeKat implements DragonArrayInterface {
 
 			@Override
 			public void act() {
-				System.out.println("DSASDADS");
 				((HomeShopScreen)DragonLand.shopMain).updateHomeShopLabels();
 				DragonLand.game.setScreen(DragonLand.shopMain);
 			}});

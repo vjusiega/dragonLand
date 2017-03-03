@@ -87,7 +87,7 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 	public void drawDragons()
 	{
 		setPageDisplay();
-		
+		updateDragonAmount();
 		int labelY = 0;
 		int endi = (pageNumber)* 3;
 		if((pageNumber) * 3 > dragonsInSellShop.size())
@@ -106,7 +106,7 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 				public void act()
 				{
 					dragonsInSellShop.remove(dragon);
-					((BuyScreenWendy)DragonLand.buyScreen).addToDragonsInBuyShop(dragon);
+					((BuyScreenInterface)DragonLand.buyScreen).addToDragonsInBuyShop(dragon);
 					removeDragons();
 					drawDragons();
 					
