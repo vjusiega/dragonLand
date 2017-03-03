@@ -30,11 +30,11 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	private Button yourScore;
 	private Button coinsWon;
 	private Button scores;
-	private Button totalCoins;
+	private static Button totalCoins;
 	private Button clearScores;
 	private Button help;
 	private Button helpBox;
-	private ArrayList<Integer> highScores;
+	private static ArrayList<Integer> highScores;
 	private ArrayList<Button> buttons;
 	private int tCoins;
 	
@@ -138,10 +138,12 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		printButtons(buttons);
 		viewObjects.add(clearScores);
 	}
-	public void updaateOnEnter(){
-		//DragonLand.setCoins(DragonLand.coins+getCoins(GameScreen.getScore()));
-		//settext(fdghsdfgd)
+	
+	public static void updateOnEnter(){
+		totalCoins.setText("Total Coins: " + DragonLand.coins);
+		highScores.add(GameScreen.getScore());
 	}
+	
 	public void createHelpDialog(){
 		helparray = new ArrayList<NoBorderButton>();
 		text1 = "Your top 3 scores will be displayed here";
