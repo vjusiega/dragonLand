@@ -134,7 +134,7 @@ public class GameVioletta implements gameDragonInterface{
 		int dragonStart = (dragonArray.get(findLeadDragon(-1))).getX();
 		int dragonEnd = ((dragonArray.get(findLeadDragon(1))).getX() + (dragonArray.get(findLeadDragon(1))).getWidth());
 		if((starX > dragonStart && starX < dragonEnd) || (starEnd > dragonStart && starEnd < dragonEnd)){
-			System.out.println("touching");
+
 			return true; 
 			
 		}

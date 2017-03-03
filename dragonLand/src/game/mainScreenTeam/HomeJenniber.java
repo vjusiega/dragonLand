@@ -6,6 +6,7 @@ package game.mainScreenTeam;
 import java.util.ArrayList;
 
 import game.DragonLand;
+import game.miniGameTeam.GameScreen;
 import game.shopScreen.SellShopZheng;
 import guiPractice.components.Action;
 import guiPractice.components.Visible;
@@ -44,8 +45,10 @@ public class HomeJenniber implements Runnable {
 			public void act() {
 				for(int i=0; i<HomeKat.dragonHome.getDragonsOnScreen().size();i++){
 					Dragon d= HomeKat.dragonHome.getDragonsOnScreen().get(i);
+					System.out.println("B4 Clicked");
 					if((d.getY()<350 && hungryBox.getX()==d.getX()-25) || hungryBox.getY()==d.getY()+105){
 							d.setHungryBox(false);
+							System.out.println("Clicked");
 					}
 				}
 				
@@ -142,13 +145,14 @@ public class HomeJenniber implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			if(HomeKat.dragonHome.getDragonsOnScreen().size()>0 && hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size())
-			{
-				double probability = .5;
-				if(Math.random()>probability){
-					createHungryThread(getRandDragon());
+			System.out.println(!GameScreen.isInMiniGame);
+				if(HomeKat.dragonHome.getDragonsOnScreen().size()>0 && hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size())
+				{
+					double probability = .5;
+					if(Math.random()>probability){
+						createHungryThread(getRandDragon());
+					}
 				}
-			}
 		}
 		
 	}
@@ -163,4 +167,3 @@ public class HomeJenniber implements Runnable {
 		}
 	}
 }
-

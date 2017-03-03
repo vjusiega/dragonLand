@@ -80,7 +80,7 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 					else
 					{
 						addError("You do not have enough coins. Go play our minigame to win more coins");
-						System.out.println("You donot have enough coins. Go play our minigame to win more coins You have " + DragonLand.coins + " coins");
+						
 					}
 				}
 
@@ -127,14 +127,10 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 		//updating inventory amount
 		numOfDragons ++;
 		getDragonAmount().setText(numOfDragons+" / 6 dragons");
-		System.out.println(numOfDragons + " / 6 dragons");
 	
 		//updating the amount of coins 
-		System.out.println("This dragon is " + d.getPrice());
 		DragonLand.coins -= d.getPrice();
 		getCoins().setCoins();
-		System.out.println("You have " + DragonLand.coins + " coins");
-		
 		update();
 	}
 	
@@ -194,4 +190,3 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 		getDragonAmount().setText(numOfDragons + " / 6 dragons");
 	}
 }
-
