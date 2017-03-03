@@ -100,7 +100,14 @@ public class HomeKat implements DragonArrayInterface {
 			public void act() {
 				viewObjects.remove(this);
 			}});
-		
+		viewObjects.add(helpLayer);	
+		viewObjects.add(help1);
+		viewObjects.add(help2);
+		viewObjects.add(help3);
+		viewObjects.add(help4);
+		viewObjects.add(help5);
+		viewObjects.add(help6);
+		viewObjects.add(help7);
 		Button help = new Button(width-50-(width*2/100),height-50-(height*2/100),  50,  50,  "?",DragonLand.DARKER_NUDE,  new Action(){
 			@Override
 			public void act() {
