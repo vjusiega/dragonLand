@@ -79,7 +79,7 @@ public class HomeKat implements DragonArrayInterface {
 
 			@Override
 			public void act() {
-				GameScreen.isInMiniGame = true;
+				GameScreen.isNotHome = true;
 				((HomeShopScreen)DragonLand.shopMain).updateHomeShopLabels();
 				DragonLand.game.setScreen(DragonLand.shopMain);
 			}});
@@ -89,7 +89,7 @@ public class HomeKat implements DragonArrayInterface {
 
 			@Override
 			public void act() {
-				GameScreen.isInMiniGame = true;
+				GameScreen.isNotHome = true;
 				DragonLand.game.setScreen(DragonLand.gameInstructionsScreen);
 			}
 		

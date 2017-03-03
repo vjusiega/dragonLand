@@ -90,6 +90,7 @@ public class GameInstructions extends ClickableScreen {
 			@Override
 			public void act() {
 				DragonLand.game.setScreen(DragonLand.homeScreen);
+				GameScreen.isNotHome=false;
 			}
 		});
 		viewObjects.add(exit);

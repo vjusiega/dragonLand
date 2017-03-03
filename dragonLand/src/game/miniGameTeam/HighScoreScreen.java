@@ -121,7 +121,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 
 			@Override
 			public void act() {
-				GameScreen.isInMiniGame = false;
+				GameScreen.isNotHome = false;
 				DragonLand.game.setScreen(DragonLand.homeScreen);
 			}
 			

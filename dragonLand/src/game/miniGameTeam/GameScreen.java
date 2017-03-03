@@ -41,7 +41,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	private static ArrayList<Star1> starArray;
 	private static int score;
 	public static GameScreen tGame;
-	public static boolean isInMiniGame;
+	public static boolean isNotHome;
 	public GameScreen(int width, int height) {
 		super(width, height);
 		tGame = this;
