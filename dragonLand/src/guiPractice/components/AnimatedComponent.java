@@ -21,9 +21,11 @@ public class AnimatedComponent extends MovingComponent{
 		currentFrame = 0;
 		repeat = true;
 	}
+	
 	public BufferedImage getFrame(int index){
 		return frame.get(index);
 	}
+	
 	public void setRepeat(boolean repeat){
 		this.repeat = repeat;
 	}

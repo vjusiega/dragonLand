@@ -22,7 +22,7 @@ import guiPractice.components.Visible;
 //
 /*
  * Rules of the game:
- * 		Player starts off with one dragon
+ * 		Player starts off with one dragon,
  * 		Next dragon is placed on the player's right side
  * 		Next dragon after that is placed on the left
  * 		Max number of extra dragons is two (three in total)
@@ -53,7 +53,6 @@ public class GameVioletta implements gameDragonInterface{
 	}
 	
 	public Dragon addDragon(String imgSrc){
-		System.out.println("A dragon is being added");
 		int xPos;
 		int dragonHeight = 100;
 		xPos = screenWidth / 2;
@@ -74,18 +73,18 @@ public class GameVioletta implements gameDragonInterface{
 //		d.setInGame(true);
 //		System.out.println(d.getInGame());
 		
-		AnimatedComponent a = d;
-		setDragonAnimation(a, imgSrc);
+		setDragonAnimation(d, imgSrc);
 		
 		dragonArray.add(d);
-		a.setX(xPos);
-		a.setY(yPos);
+		d.setX(xPos);
+		d.setY(yPos);
+		
+		d.update();
 		
 		return d;
 	}
 	
 	public Dragon removeDragon(){
-		System.out.println("A dragon is being removed");
 		if(dragonArray.size() > 0){
 			Dragon deadDragon = dragonArray.get(dragonArray.size() - 1);
 			dragonArray.remove(dragonArray.size() - 1);
@@ -133,7 +132,7 @@ public class GameVioletta implements gameDragonInterface{
 		int starWidth = star.getWidth();
 		int starEnd = starX + starWidth;
 		int dragonStart = (dragonArray.get(findLeadDragon(-1))).getX();
-		int dragonEnd = (dragonArray.get(findLeadDragon(-1))).getX() + (dragonArray.get(findLeadDragon(-1))).getWidth();
+		int dragonEnd = ((dragonArray.get(findLeadDragon(1))).getX() + (dragonArray.get(findLeadDragon(1))).getWidth());
 		if((starX > dragonStart && starX < dragonEnd) || (starEnd > dragonStart && starEnd < dragonEnd)){
 			System.out.println("touching");
 			return true; 
@@ -145,7 +144,6 @@ public class GameVioletta implements gameDragonInterface{
 	}
 
 	public static void setDragonAnimation(AnimatedComponent a, String imgSrc){
-		System.out.println("A dragon is being animated");
 		try{
 			ImageIcon icon = new ImageIcon(imgSrc);
 			int numberRow = 3;
