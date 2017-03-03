@@ -15,7 +15,6 @@ import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
 import guiPractice.components.Visible;
-//
 /**
  * @author Veeraj
  *
