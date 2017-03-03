@@ -29,7 +29,7 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 	 */
 	public Star1(int x, int y, int w, int h, GameScreen game) {
 		super(x, y, w, h, "img/star.png");
-		setVy(1.5);
+		setVy(1);
 		this.game = game;
 		setVx(0);
 		touched = false; 
@@ -61,11 +61,11 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 			
 			//used these numbers for demonstration purposes
 			if(GameScreen.getScore() >= 5 && GameScreen.getScore() < 10)
-				setVy(2);
+				setVy(1.5);
 			if(GameScreen.getScore() >= 10 && GameScreen.getScore() < 15)
-				setVy(2.5);
+				setVy(2);
 			if(GameScreen.getScore() >= 15 && GameScreen.getScore() < 20)
-				setVy(3);
+				setVy(2.5);
 		
 		}else{
 			game.removeStar(this);
