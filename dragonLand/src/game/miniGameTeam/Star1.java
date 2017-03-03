@@ -66,7 +66,9 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 				setVy(2);
 			if(GameScreen.getScore() >= 15 && GameScreen.getScore() < 20)
 				setVy(2.5);
-		
+			if(GameScreen.getScore() >= 20){
+				setVy(2.5);
+			}		
 		}else{
 			//HighScoreScreen.setRoundScore(GameScreen.getScore());
 			//HighScoreScreen.updateOnEnter();

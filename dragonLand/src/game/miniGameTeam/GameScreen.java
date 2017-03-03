@@ -97,6 +97,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 
 	public void startGame(){
 		score = 0;
+		time = 2500;
 		isInMiniGame = true;
 		setScoreDisplay();
 		//starArray.clear();
