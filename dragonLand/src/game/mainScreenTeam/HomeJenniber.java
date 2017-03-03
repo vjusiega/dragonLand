@@ -146,12 +146,13 @@ public class HomeJenniber implements Runnable {
 		}
 		
 	}
-	
+
 	public void editHungryBoxTimes(Dragon d){
 		for(int i=0; i<hungryBoxTimes.size();i++){
 			HungryBox hungryBox= hungryBoxTimes.get(i);
 			if((d.getY()<350 && hungryBox.getX()==d.getX()-25) || hungryBox.getY()==d.getY()+105){
 				hungryBoxTimes.remove(hungryBox);
+				DragonLand.homeScreen.remove(hungryBox);
 			}
 		}
 	}

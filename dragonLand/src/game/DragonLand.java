@@ -101,9 +101,5 @@ public class DragonLand extends GUIApplication {
 		public int getCoins(){
 			return coins;
 		}
-		
-	public static void beginHunger(){
-		HomeScreen.jenCode = new game.mainScreenTeam.HomeJenniber();		
-	}
 
 }

@@ -77,7 +77,6 @@ public class HomeKat implements DragonArrayInterface {
 
 			@Override
 			public void act() {
-				System.out.println("DSASDADS");
 				((HomeShopScreen)DragonLand.shopMain).updateHomeShopLabels();
 				DragonLand.game.setScreen(DragonLand.shopMain);
 			}});
@@ -268,9 +267,10 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 		locationsX.add(d.getX());
 		locationsY.add(d.getY());
 		//adds dragons
+
 		dragonsOnScreen.remove(d);
 		viewObjects.remove(d);
-		DragonLand.homeScreen.jenCode.editHungryBoxTimes(d);
+		HomeScreen.jenCode.editHungryBoxTimes(d);
 		
 	}
 	/*

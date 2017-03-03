@@ -19,7 +19,6 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 	private GameScreen game;
 	private int dragonXPos;
 	private boolean touched;
-
 	private boolean test;
 	/**
 	 * @param x
@@ -30,7 +29,7 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 	 */
 	public Star1(int x, int y, int w, int h, GameScreen game) {
 		super(x, y, w, h, "img/star.png");
-		setVy(2);
+		setVy(1);
 		this.game = game;
 		setVx(0);
 		touched = false; 
@@ -41,7 +40,6 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 	@Override
 	public void checkBehaviors() {
 		int border = GameScreen.getHeight() - 200;
-//		System.out.println(GameVioletta.vGame.getPlaying());
 		if(GameVioletta.vGame.getPlaying()){
 			if(getY() >= border && !touched && GameVioletta.vGame.checkStarContact(this)){
 				touched = true;
@@ -51,35 +49,28 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 				GameScreen.setScore(score);
 				GameScreen.setScoreDisplay();
 				if(score == 5 || score == 10 || score == 15){
-					GameScreen.tGame.addDragon(GameVioletta.vGame.addDragon("img/dragon1.png"));
+					GameScreen.tGame.addDragonToScreen(GameVioletta.vGame.addDragon("img/dragon1.png"));
 				}
 			}
 			else if(getY() > GameScreen.getHeight() - 100){
-				System.out.println("I am here");
 				setRunning(false);
 				touched = true;
-//				if(!test){
-//					test = true;
-					game.removeStar(this);
-					GameScreen.tGame.removeDragon(GameVioletta.vGame.removeDragon());
-//				}
-				
-				
+				game.removeStar(this);
+				GameScreen.tGame.removeDragonToScreen(GameVioletta.vGame.removeDragon());
 			}
+			
+			//used these numbers for demonstration purposes
 			if(GameScreen.getScore() >= 5 && GameScreen.getScore() < 10)
-				setVy(1);
-			if(GameScreen.getScore() >= 10 && GameScreen.getScore() < 15)
 				setVy(1.5);
-			if(GameScreen.getScore() >= 15 && GameScreen.getScore() < 20)
+			if(GameScreen.getScore() >= 10 && GameScreen.getScore() < 15)
 				setVy(2);
+			if(GameScreen.getScore() >= 15 && GameScreen.getScore() < 20)
+				setVy(2.5);
 		
 		}else{
 			game.removeStar(this);
 			setRunning(false);
 		}
-		
-		
-		
 	}
 
 	@Override

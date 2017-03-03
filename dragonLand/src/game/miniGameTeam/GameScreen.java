@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
-import game.mainScreenTeam.Dragon;
 import game.DragonLand;
+import game.mainScreenTeam.Dragon;
 import guiPractice.ClickableScreen;
 import guiPractice.Screen;
 import guiPractice.components.Action;
@@ -38,11 +38,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	private Button highScoreButton;
 	private Graphic background;
 	private int time;
-	//private int numOfStars;
-
 	private static ArrayList<Star1> starArray;
 	private static int score;
-
 	public static GameScreen tGame;
 
 	public GameScreen(int width, int height) {
@@ -54,7 +51,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	public void initAllObjects(ArrayList<Visible> view) {
 		//initial score is 0 and it should count the number of stars caught
 		score = 0;
-		time = 2000;
+		time = 2500;
 		starArray = new ArrayList<Star1>();
 
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
@@ -74,21 +71,18 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		view.add(exit);
 		view.add(scoreDisplay);
 
-		GameVioletta vGameObject = new GameVioletta();	
-		//initDragonsOnScreen("img/dragon1.png");
+		GameVioletta vGameObject = new GameVioletta();
 	}
 
 	protected void stopGame() {
-
 		GameVioletta.vGame.setPlaying(false);
-
 		ArrayList<Dragon> dragonArray = GameVioletta.vGame.getDragonArray();
 		if(dragonArray.size() != 0){
 			for(Dragon d: dragonArray){
 				remove(d);
 			}
-
 			GameVioletta.vGame.eraseDragons();
+			System.out.println("A dragon is being erased - end game");
 		}
 
 		if(starArray.size() != 0){
@@ -97,13 +91,12 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 			}
 		}
 		starArray.clear();
-
-		//GameVioletta.vGame.stillPlaying(true);
 	}
 
 	public void startGame(){
-		starArray.clear();
-//		addObject(new TextLabel(50,50,200,50,"Dragon"));
+		score = 0;
+		setScoreDisplay();
+		//starArray.clear();
 		addObject(GameVioletta.vGame.addDragon("img/dragon1.png"));
 		Thread start = new Thread(new Runnable() {
 			@Override
@@ -116,14 +109,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 
 	public static ArrayList<Star1> getStarArray(){
 		return starArray;
-	}
-
-	public int randomX(){
-		//80 through getWidth()-175
-		int max = getWidth()-175;
-		int min = 80;
-		int xPos = (int) (Math.random()*(max - min) + min);
-		return xPos;
 	}
 
 	public void addStar(){
@@ -146,7 +131,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		GameVioletta.vGame.setPlaying(true);
 		while(GameVioletta.vGame.getPlaying()){
 			try{
-				//setTime();
+				setTime();
 				Thread.sleep(time);
 			}catch (InterruptedException e){
 				e.printStackTrace();
@@ -154,18 +139,26 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 			addStar();
 		}
 		DragonLand.game.setScreen(DragonLand.highscoreScreen);
-
 	}
 
+	public int randomX(){
+		//80 through getWidth()-175
+		int max = getWidth()-175;
+		int min = 80;
+		int xPos = (int) (Math.random()*(max - min) + min);
+		return xPos;
+	}
+	
 	public void setTime(){
+		//picked these numbers for demonstration purposes
 		if (score >= 5 && score < 10){
-			time = 10;
+			time = 2000;
 		}
 		if (score >= 10 && score < 15){
-			time = 1000;
+			time = 1500;
 		}
 		if (score >= 15 && score < 20){
-			time = 500;
+			time = 1000;
 		}
 	}
 
@@ -215,17 +208,15 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	}
 
 //	public void initGame(String imgSrc){
-//		//GameVioletta.vGame.setPlaying(true);
 //		score = 0;
 //		addObject(GameVioletta.vGame.addDragon(imgSrc));
-////		GameVioletta.vGame.setPlaying(true);
 //	}
 
-	public void removeDragon(Dragon d){
+	public void removeDragonToScreen(Dragon d){
 		remove(d);
 	}
 
-	public void addDragon(Dragon d){
+	public void addDragonToScreen(Dragon d){
 		addObject(d);
 	}
 }
