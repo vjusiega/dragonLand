@@ -38,7 +38,7 @@ public class DragonLand extends GUIApplication {
 	public static Screen gameInstructionsScreen;
 
 	public static Screen HelpScreen;
-
+//
 	public static Color NAVY;
 	public static Color BRIGHT_PINK;
 	public static Color LIGHT_PINK;
