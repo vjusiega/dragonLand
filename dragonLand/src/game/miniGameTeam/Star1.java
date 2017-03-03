@@ -56,7 +56,6 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 				setRunning(false);
 				touched = true;
 				game.removeStar(this);
-				System.out.println("A dragon is being removed by a star");
 				GameScreen.tGame.removeDragonToScreen(GameVioletta.vGame.removeDragon());
 			}
 			
