@@ -27,7 +27,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	private Button back;
 	private CurvedButton layerOne;
 	private Button layerTwo;
-	private Button yourScore;
+	private static Button yourScore;
 	private Button coinsWon;
 	private Button scores;
 	private static Button totalCoins;
@@ -35,7 +35,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	private Button help;
 	private Button helpBox;
 	private static ArrayList<Integer> highScores;
-	private ArrayList<Button> buttons;
+	private static ArrayList<Button> buttons;
 	private int tCoins;
 	
 	//fields for help dialog
@@ -50,9 +50,9 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	private ArrayList<NoBorderButton> helparray;
 	
 	//fields for individual button scores
-	private Button score1;
-	private Button score2;
-	private Button score3;
+	private static Button score1;
+	private static Button score2;
+	private static Button score3;
 	
 	
 	
@@ -67,13 +67,13 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		tCoins = DragonLand.coins;
 		buttons = new ArrayList<Button>();
 		highScores = new ArrayList<Integer>();
-		highScores.add(GameScreen.getScore());
+//		highScores.add(GameScreen.getScore());
 
 //		highScores.add(400);
 //		highScores.add(32);
 //		highScores.add(0);
 
-		sortScores(highScores);
+//		sortScores(highScores);
 		//helpBox = new Button()
 		help = new Button(getWidth()-105, getHeight()-75, getWidth()-960, getHeight()-600, "?", DragonLand.DARKER_NUDE, new Action() {
 			@Override
@@ -141,7 +141,9 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	
 	public static void updateOnEnter(){
 		totalCoins.setText("Total Coins: " + DragonLand.coins);
-		highScores.add(GameScreen.getScore());
+		System.out.println(GameScreen.getScore());
+		yourScore.setText("Your Score: " + GameScreen.getScore());
+		//highScores.add(GameScreen.getScore());
 	}
 	
 	public void createHelpDialog(){
@@ -168,7 +170,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		helparray.add(btext4);
 	}
 	
-	public void sortScores(ArrayList<Integer> scores){
+	public static void sortScores(ArrayList<Integer> scores){
 		Comparator comparator = Collections.reverseOrder();
 		Collections.sort(scores,comparator);
 		highScores = scores;
