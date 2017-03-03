@@ -53,6 +53,7 @@ public class GameVioletta implements gameDragonInterface{
 	}
 	
 	public Dragon addDragon(String imgSrc){
+		System.out.println("A dragon is being added");
 		int xPos;
 		int dragonHeight = 100;
 		xPos = screenWidth / 2;
@@ -70,8 +71,8 @@ public class GameVioletta implements gameDragonInterface{
 		int yPos = screenHeight - dragonHeight;
 		
 		Dragon d = new Dragon(xPos, yPos, dragonHeight, dragonHeight, "", 0, imgSrc);
-		//d.setInGame(true);
-		//System.out.println(d.getInGame());
+//		d.setInGame(true);
+//		System.out.println(d.getInGame());
 		
 		AnimatedComponent a = d;
 		setDragonAnimation(a, imgSrc);
@@ -84,6 +85,7 @@ public class GameVioletta implements gameDragonInterface{
 	}
 	
 	public Dragon removeDragon(){
+		System.out.println("A dragon is being removed");
 		if(dragonArray.size() > 0){
 			Dragon deadDragon = dragonArray.get(dragonArray.size() - 1);
 			dragonArray.remove(dragonArray.size() - 1);
@@ -143,6 +145,7 @@ public class GameVioletta implements gameDragonInterface{
 	}
 
 	public static void setDragonAnimation(AnimatedComponent a, String imgSrc){
+		System.out.println("A dragon is being animated");
 		try{
 			ImageIcon icon = new ImageIcon(imgSrc);
 			int numberRow = 3;

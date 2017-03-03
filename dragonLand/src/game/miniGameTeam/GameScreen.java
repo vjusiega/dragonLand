@@ -81,6 +81,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 				remove(d);
 			}
 			GameVioletta.vGame.eraseDragons();
+			System.out.println("A dragon is being erased - end game");
 		}
 
 		if(starArray.size() != 0){
@@ -92,7 +93,10 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	}
 
 	public void startGame(){
-		starArray.clear();
+		score = 0;
+		setScoreDisplay();
+		//starArray.clear();
+		addObject(GameVioletta.vGame.addDragon("img/dragon1.png"));
 		Thread start = new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -202,16 +206,16 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		scoreDisplay.setText("Score: " + score);
 	}
 
-	public void initGame(String imgSrc){
-		score = 0;
-		addObject(GameVioletta.vGame.addDragon(imgSrc));
-	}
+//	public void initGame(String imgSrc){
+//		score = 0;
+//		addObject(GameVioletta.vGame.addDragon(imgSrc));
+//	}
 
-	public void removeDragon(Dragon d){
+	public void removeDragonToScreen(Dragon d){
 		remove(d);
 	}
 
-	public void addDragon(Dragon d){
+	public void addDragonToScreen(Dragon d){
 		addObject(d);
 	}
 }

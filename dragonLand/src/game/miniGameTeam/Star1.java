@@ -49,14 +49,15 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 				GameScreen.setScore(score);
 				GameScreen.setScoreDisplay();
 				if(score == 5 || score == 10 || score == 15){
-					GameScreen.tGame.addDragon(GameVioletta.vGame.addDragon("img/dragon1.png"));
+					GameScreen.tGame.addDragonToScreen(GameVioletta.vGame.addDragon("img/dragon1.png"));
 				}
 			}
 			else if(getY() > GameScreen.getHeight() - 100){
 				setRunning(false);
 				touched = true;
 				game.removeStar(this);
-				GameScreen.tGame.removeDragon(GameVioletta.vGame.removeDragon());
+				System.out.println("A dragon is being removed by a star");
+				GameScreen.tGame.removeDragonToScreen(GameVioletta.vGame.removeDragon());
 			}
 			
 			//used these numbers for demonstration purposes
