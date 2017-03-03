@@ -226,6 +226,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	
 	public static void setRoundScore(int i){
 		highScores.add(roundScore);
+		sortScores(highScores);
 		roundScore=i;
 	}
 	
