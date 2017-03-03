@@ -142,8 +142,8 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	}
 	
 	public static void updateOnEnter(){
-		totalCoins.setText("Total Coins: " + DragonLand.coins);
-		System.out.println(GameScreen.getScore());
+		totalCoins.setText("Total Coins: " + (DragonLand.coins+getCoins(GameScreen.getScore())));
+		DragonLand.coins+=getCoins(GameScreen.getScore());
 		yourScore.setText("Your Score: " + roundScore);
 	}
 	
@@ -235,7 +235,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		}
 	}
 	
-	public int getCoins(int score){
+	public static int getCoins(int score){
 		if(score == 0){
 			return 0;
 		}
