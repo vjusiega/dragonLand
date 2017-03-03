@@ -74,7 +74,7 @@ public class DragonLand extends GUIApplication {
 		HomeScreen.jenCode = new game.mainScreenTeam.HomeJenniber();
 		gameInstructionsScreen = new GameInstructions(getWidth(), getHeight());
 
-		setScreen(homeScreen);
+		setScreen(highscoreScreen);
 
 	}
 	private void initColors() {

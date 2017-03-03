@@ -68,6 +68,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		tCoins = DragonLand.coins;
 		buttons = new ArrayList<Button>();
 		highScores = new ArrayList<Integer>();
+		System.out.println(highScores);
 		roundScore =0;
 //		highScores.add(GameScreen.getScore());
 
@@ -95,10 +96,16 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 			}
 
 		});
+		score1 = new Button(440,265,125,50, "1) --",DragonLand.LIGHT_NUDE,null);
+		score1.setSize(30);
+		score2 = new Button(440,327,125,50,"2) --",DragonLand.LIGHT_NUDE,null);
+		score2.setSize(30);
+		score3 = new Button(440,389,125,50,"3) --",DragonLand.LIGHT_NUDE,null);
+		score3.setSize(30);
 		helpBox = new Button(getWidth()-900, getHeight()-490, getWidth()-200, getHeight()-225, null, DragonLand.BRIGHT_PINK, null);
 		helpBox.setSize(40);
-		setYourScore(new Button(getWidth()-655, getHeight()-467, getWidth()-700, getHeight()-580, "Your score: " + GameScreen.getScore(), DragonLand.DARKER_NUDE, null));
-		getYourScore().setSize(30);
+		yourScore = new Button(getWidth()-655, getHeight()-467, getWidth()-700, getHeight()-580, "Your score: " + GameScreen.getScore(), DragonLand.DARKER_NUDE, null);
+		yourScore.setSize(30);
 		layerOne = new CurvedButton(getWidth()-965,getHeight()-590,getWidth()-75, getHeight()-75,null,DragonLand.LIGHT_NUDE, null);
 		layerTwo = new Button(getWidth()-900, getHeight()-490, getWidth()-200, getHeight()-225, null, DragonLand.BRIGHT_PINK, null);
 		title = new Button((getWidth()/2)-125, getHeight()-575, getWidth()-750, getHeight()-575, "High Scores", DragonLand.DARKER_NUDE, null);
@@ -115,7 +122,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 				viewObjects.remove(score1);
 				viewObjects.remove(score2);
 				viewObjects.remove(score3);
-				getYourScore().setText("Scores Cleared");
+				yourScore.setText("Scores Cleared");
 			}
 		});
 		back = new Button(50,75, 40, 40, "X", DragonLand.DARKER_NUDE, new Action(){	
@@ -129,7 +136,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		viewObjects.add(background);
 		viewObjects.add(layerOne);
 		viewObjects.add(layerTwo);
-		viewObjects.add(getYourScore());
+		viewObjects.add(yourScore);
 		viewObjects.add(title);
 		viewObjects.add(back);
 		viewObjects.add(coinsWon);
@@ -137,14 +144,33 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		viewObjects.add(totalCoins);
 		viewObjects.add(help);
 		viewObjects.add(clearScores);
-		
+		viewObjects.add(score1);
+		viewObjects.add(score2);
+		viewObjects.add(score3);
 	}
 	
 	public static void updateOnEnter(){
+		highScores.add(GameScreen.getScore());
+		System.out.println(highScores);
 		totalCoins.setText("Total Coins: " + (DragonLand.coins+getCoins(GameScreen.getScore())));
 		DragonLand.coins+=getCoins(GameScreen.getScore());
 		yourScore.setText("Your Score: " + roundScore);
 		coinsWon.setText("Coins Won: " + getCoins(GameScreen.getScore()));
+		sortScores(highScores);
+		if(highScores.size() > 3){
+			score1.setText("1) " + highScores.get(2));
+		}
+		if(highScores.size() > 5 && highScores.size() < 12){
+			sortScores(highScores);
+			score1.setText("1) " + highScores.get(2));
+			score2.setText("2) " + highScores.get(6));
+		}
+		if(highScores.size() > 12){
+			sortScores(highScores);
+			score1.setText("1) " + highScores.get(2));
+			score2.setText("2) " + highScores.get(6));
+			score3.setText("3) " + highScores.get(15));
+		}
 	}
 	
 	public void createHelpDialog(){
@@ -242,11 +268,11 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		return (((score*5)/2)+14);
 	}
 
-	public static Button getYourScore() {
-		return yourScore;
-	}
-
-	public static void setYourScore(Button yourScore) {
-		HighScoreScreen.yourScore = yourScore;
-	}
+//	public static Button getYourScore() {
+//		return yourScore;
+//	}
+//
+//	public static void setYourScore(Button yourScore) {
+//		HighScoreScreen.yourScore = yourScore;
+//	}
 }
