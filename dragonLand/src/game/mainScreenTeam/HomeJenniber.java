@@ -6,6 +6,7 @@ package game.mainScreenTeam;
 import java.util.ArrayList;
 
 import game.DragonLand;
+import game.miniGameTeam.GameScreen;
 import game.shopScreen.SellShopZheng;
 import guiPractice.components.Action;
 import guiPractice.components.Visible;
@@ -142,13 +143,14 @@ public class HomeJenniber implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			if(HomeKat.dragonHome.getDragonsOnScreen().size()>0 && hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size())
-			{
-				double probability = .5;
-				if(Math.random()>probability){
-					createHungryThread(getRandDragon());
+			if(!GameScreen.isInMiniGame)
+				if(HomeKat.dragonHome.getDragonsOnScreen().size()>0 && hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size())
+				{
+					double probability = .5;
+					if(Math.random()>probability){
+						createHungryThread(getRandDragon());
+					}
 				}
-			}
 		}
 		
 	}

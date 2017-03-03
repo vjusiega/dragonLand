@@ -41,7 +41,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	private static ArrayList<Star1> starArray;
 	private static int score;
 	public static GameScreen tGame;
-
+	public static boolean isInMiniGame;
 	public GameScreen(int width, int height) {
 		super(width, height);
 		tGame = this;
@@ -64,6 +64,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 				HighScoreScreen.updateOnEnter();
 				DragonLand.game.setScreen(DragonLand.highscoreScreen);
 				stopGame();
+				isInMiniGame = false;
 			}
 		});
 
@@ -96,6 +97,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 
 	public void startGame(){
 		score = 0;
+		isInMiniGame = true;
 		setScoreDisplay();
 		//starArray.clear();
 		addObject(GameVioletta.vGame.addDragon("img/dragon1.png"));
