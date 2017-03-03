@@ -60,8 +60,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		exit = new Button(30, 50, 40, 40, "X", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
-				DragonLand.game.setScreen(DragonLand.highscoreScreen);
 				HighScoreScreen.updateOnEnter();
+				DragonLand.game.setScreen(DragonLand.highscoreScreen);
 				stopGame();
 			}
 		});
@@ -138,6 +138,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 			}
 			addStar();
 		}
+		HighScoreScreen.updateOnEnter();
 		DragonLand.game.setScreen(DragonLand.highscoreScreen);
 	}
 
