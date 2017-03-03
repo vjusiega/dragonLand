@@ -1,21 +1,11 @@
 package game.mainScreenTeam;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
-
 import guiPractice.ClickableScreen;
-import guiPractice.components.Action;
-import guiPractice.components.AnimatedComponent;
-import guiPractice.components.Button;
 import guiPractice.components.Graphic;
-import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
-import guiPractice.sampleGames.MouseFollower;
+
 
 /**
  * @author Kat 

@@ -96,6 +96,7 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 							});
 					addObject(error);
 					
+					
 				}
 			});
 
