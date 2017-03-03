@@ -50,7 +50,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	public void initAllObjects(ArrayList<Visible> view) {
 		//initial score is 0 and it should count the number of stars caught
 		score = 0;
-		time = 2000;
+		time = 2500;
 		starArray = new ArrayList<Star1>();
 
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
@@ -146,13 +146,13 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	public void setTime(){
 		//picked these numbers for demonstration purposes
 		if (score >= 5 && score < 10){
-			time = 1500;
+			time = 2000;
 		}
 		if (score >= 10 && score < 15){
-			time = 1000;
+			time = 1500;
 		}
 		if (score >= 15 && score < 20){
-			time = 500;
+			time = 1000;
 		}
 	}
 
