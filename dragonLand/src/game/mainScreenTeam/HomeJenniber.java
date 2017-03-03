@@ -46,22 +46,6 @@ public class HomeJenniber implements Runnable {
 					Dragon d= HomeKat.dragonHome.getDragonsOnScreen().get(i);
 					if((d.getY()<350 && hungryBox.getX()==d.getX()-25) || hungryBox.getY()==d.getY()+105){
 							d.setHungryBox(false);
-//							Thread waitUntilHungry = new Thread(new Runnable() {
-//								
-//								@Override
-//								public void run() {
-//									// TODO Auto-generated method stub
-//									try {
-//										int sleepingTime = (int)(Math.random()*9000)+1000;
-//										Thread.sleep(20000+sleepingTime);
-//									} catch (InterruptedException e) {
-//										// TODO Auto-generated catch block
-//										e.printStackTrace();
-//									}
-//									createHungryThread(d);
-//								}
-//							});
-//							waitUntilHungry.start();
 					}
 				}
 				
@@ -79,8 +63,6 @@ public class HomeJenniber implements Runnable {
 	public void removeHungryAndDragon(Dragon d, HungryBox hungry) {
 		hungryBoxTimes.remove(hungry);
 		HomeKat.dragonHome.removeHungryDragon(d);
-//		DragonLand.homeScreen.remove(d);
-//		((SellShopZheng)DragonLand.sellScreen).removeDragonsInSellShop(d);
 		DragonLand.homeScreen.remove(hungry);
 	}
 
@@ -89,18 +71,25 @@ public class HomeJenniber implements Runnable {
 			Dragon d = HomeKat.dragonHome.getDragonsOnScreen().get(i);
 			if(d.getHungryBox()){
 				for(int j=0; j<hungryBoxTimes.size(); j++){
-					HungryBox hungry = hungryBoxTimes.get(j);
-					int yCoord = d.getY()+105;
-					if(d.getY()<350){
-						if(hungry.getX()==d.getX()-25 && hungry.getHungryTime()<=0){
-							removeHungryAndDragon(d,hungry);
-						}
+					HungryBox hungryBox = hungryBoxTimes.get(j);
+					if(
+							(
+									(d.getY()<350 && hungryBox.getX()==d.getX()-25) 
+									|| hungryBox.getY()==d.getY()+105
+							) 
+							&& hungryBox.getHungryTime()<=0){
+						removeHungryAndDragon(d,hungryBox);
 					}
-					else{
-						if(hungry.getY()==yCoord && hungry.getHungryTime()<=0){
-							removeHungryAndDragon(d,hungry);
-						}
-					}
+//					if(d.getY()<350){
+//						if(hungryBox.getX()==d.getX()-25 && hungryBox.getHungryTime()<=0){
+//							removeHungryAndDragon(d,hungryBox);
+//						}
+//					}
+//					else{
+//						if(hungryBox.getY()==yCoord && hungryBox.getHungryTime()<=0){
+//							removeHungryAndDragon(d,hungryBox);
+//						}
+//					}
 				}
 			}
 		}
@@ -128,10 +117,9 @@ public class HomeJenniber implements Runnable {
 	@Override
 	public void run() {
 		while(true){
-			//System.out.println(HomeKat.dragonHome.getDragonsOnScreen().size()>0 && hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size());
 			try {
-				int sleepingTime = (int)(Math.random()*5000)+1000;
-				Thread.sleep(2000);
+				int sleepingTime = (int)(Math.random()*4000)+3000;
+				Thread.sleep(sleepingTime);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 
 import game.DragonLand;
 import game.miniGameTeam.NoBorderButton;
+import game.shopScreen.BuyScreenInterface;
 import game.shopScreen.HomeShopScreen;
 import game.shopScreen.SellShopZheng;
 import guiPractice.components.Action;
@@ -267,7 +268,6 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 		locationsX.add(d.getX());
 		locationsY.add(d.getY());
 		//adds dragons
-
 		dragonsOnScreen.remove(d);
 		viewObjects.remove(d);
 		HomeScreen.jenCode.editHungryBoxTimes(d);
@@ -315,7 +315,7 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 		dragonsOnScreen.remove(d);
 		DragonLand.homeScreen.remove(d);
 		((SellShopZheng)DragonLand.sellScreen).removeDragonsInSellShop(d);
-		
+		((BuyScreenInterface)DragonLand.buyScreen).addToDragonsInBuyShop(d);
 	}
 
 	
