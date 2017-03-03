@@ -70,14 +70,6 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		highScores = new ArrayList<Integer>();
 		System.out.println(highScores);
 		roundScore =0;
-//		highScores.add(GameScreen.getScore());
-
-//		highScores.add(400);
-//		highScores.add(32);
-//		highScores.add(0);
-
-//		sortScores(highScores);
-		//helpBox = new Button()
 		help = new Button(getWidth()-105, getHeight()-75, getWidth()-960, getHeight()-600, "?", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
@@ -173,21 +165,6 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 					score3.setText("3) " + highScores.get(2));
 			}
 		}
-		
-//		if(highScores.size() > 3){
-//			score1.setText("1) " + highScores.get(2));
-//		}
-//		if(highScores.size() > 5 && highScores.size() < 12){
-//			sortScores(highScores);
-//			score1.setText("1) " + highScores.get(2));
-//			score2.setText("2) " + highScores.get(6));
-//		}
-//		if(highScores.size() > 12){
-//			sortScores(highScores);
-//			score1.setText("1) " + highScores.get(2));
-//			score2.setText("2) " + highScores.get(6));
-//			score3.setText("3) " + highScores.get(15));
-//		}
 	}
 	
 	public void createHelpDialog(){
