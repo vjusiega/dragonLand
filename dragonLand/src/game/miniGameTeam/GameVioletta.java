@@ -73,12 +73,12 @@ public class GameVioletta implements gameDragonInterface{
 		//d.setInGame(true);
 		//System.out.println(d.getInGame());
 		
-//		AnimatedComponent a = d;
-		setDragonAnimation(d, imgSrc);
+		AnimatedComponent a = d;
+		setDragonAnimation(a, imgSrc);
 		
 		dragonArray.add(d);
-		d.setX(xPos);
-		d.setY(yPos);
+		a.setX(xPos);
+		a.setY(yPos);
 		
 		return d;
 	}
