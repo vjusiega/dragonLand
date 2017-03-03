@@ -37,11 +37,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	private Button highScoreButton;
 	private Graphic background;
 	private int time;
-	//private int numOfStars;
-
 	private static ArrayList<Star1> starArray;
 	private static int score;
-
 	public static GameScreen tGame;
 
 	public GameScreen(int width, int height) {
@@ -72,20 +69,16 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		view.add(exit);
 		view.add(scoreDisplay);
 
-		GameVioletta vGameObject = new GameVioletta();	
-		//initDragonsOnScreen("img/dragon1.png");
+		GameVioletta vGameObject = new GameVioletta();
 	}
 
 	protected void stopGame() {
-
 		GameVioletta.vGame.setPlaying(false);
-
 		ArrayList<Dragon> dragonArray = GameVioletta.vGame.getDragonArray();
 		if(dragonArray.size() != 0){
 			for(Dragon d: dragonArray){
 				remove(d);
 			}
-
 			GameVioletta.vGame.eraseDragons();
 		}
 
@@ -95,8 +88,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 			}
 		}
 		starArray.clear();
-
-		//GameVioletta.vGame.stillPlaying(true);
 	}
 
 	public void startGame(){
@@ -112,14 +103,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 
 	public static ArrayList<Star1> getStarArray(){
 		return starArray;
-	}
-
-	public int randomX(){
-		//80 through getWidth()-175
-		int max = getWidth()-175;
-		int min = 80;
-		int xPos = (int) (Math.random()*(max - min) + min);
-		return xPos;
 	}
 
 	public void addStar(){
@@ -142,7 +125,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		GameVioletta.vGame.setPlaying(true);
 		while(GameVioletta.vGame.getPlaying()){
 			try{
-				//setTime();
+				setTime();
 				Thread.sleep(time);
 			}catch (InterruptedException e){
 				e.printStackTrace();
@@ -150,12 +133,20 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 			addStar();
 		}
 		DragonLand.game.setScreen(DragonLand.highscoreScreen);
-
 	}
 
+	public int randomX(){
+		//80 through getWidth()-175
+		int max = getWidth()-175;
+		int min = 80;
+		int xPos = (int) (Math.random()*(max - min) + min);
+		return xPos;
+	}
+	
 	public void setTime(){
+		//picked these numbers for demonstration purposes
 		if (score >= 5 && score < 10){
-			time = 10;
+			time = 1500;
 		}
 		if (score >= 10 && score < 15){
 			time = 1000;
@@ -211,10 +202,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	}
 
 	public void initGame(String imgSrc){
-		//GameVioletta.vGame.setPlaying(true);
 		score = 0;
 		addObject(GameVioletta.vGame.addDragon(imgSrc));
-//		GameVioletta.vGame.setPlaying(true);
 	}
 
 	public void removeDragon(Dragon d){
