@@ -28,6 +28,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	private CurvedButton layerOne;
 	private Button layerTwo;
 	private static Button yourScore;
+	private static int roundScore;
 	private static Button coinsWon;
 	private Button scores;
 	private static Button totalCoins;
@@ -67,6 +68,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		tCoins = DragonLand.coins;
 		buttons = new ArrayList<Button>();
 		highScores = new ArrayList<Integer>();
+		roundScore =0;
 //		highScores.add(GameScreen.getScore());
 
 //		highScores.add(400);
@@ -139,14 +141,10 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	}
 	
 	public static void updateOnEnter(){
-		yourScore.setText("Your Score: " + GameScreen.getScore());
-		highScores.add(GameScreen.getScore());
+		totalCoins.setText("Total Coins: " + (DragonLand.coins+getCoins(GameScreen.getScore())));
+		System.out.println(GameScreen.getScore());
+		yourScore.setText("Your Score: " + roundScore);
 		coinsWon.setText("Coins Won: " + getCoins(GameScreen.getScore()));
-		System.out.println(highScores);
-		sortScores(highScores);
-		System.out.println(highScores);
-		createButtons();
-		totalCoins.setText("Total Coins: " + (DragonLand.coins + getCoins(GameScreen.getScore())));
 	}
 	
 	public void createHelpDialog(){
@@ -224,6 +222,11 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 			}			
 			return;
 		}
+	}
+	
+	public static void setRoundScore(int i){
+		highScores.add(roundScore);
+		roundScore=i;
 	}
 	
 	public void printButtons(ArrayList<Button> buttons){

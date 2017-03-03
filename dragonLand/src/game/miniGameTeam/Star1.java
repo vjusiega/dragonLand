@@ -68,6 +68,8 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 				setVy(2.5);
 		
 		}else{
+			HighScoreScreen.setRoundScore(GameScreen.getScore());
+			HighScoreScreen.updateOnEnter();
 			game.removeStar(this);
 			setRunning(false);
 		}
