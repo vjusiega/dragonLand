@@ -78,6 +78,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 
 	protected void stopGame() {
 		GameVioletta.vGame.setPlaying(false);
+		isInMiniGame = false;
 		ArrayList<Dragon> dragonArray = GameVioletta.vGame.getDragonArray();
 		if(dragonArray.size() != 0){
 			for(Dragon d: dragonArray){
