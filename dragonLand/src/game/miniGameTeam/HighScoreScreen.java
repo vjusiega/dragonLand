@@ -143,6 +143,8 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		viewObjects.add(scores);
 		viewObjects.add(totalCoins);
 		viewObjects.add(help);
+		createButtons();
+		printButtons(buttons);
 		viewObjects.add(clearScores);
 		viewObjects.add(score1);
 		viewObjects.add(score2);
@@ -203,7 +205,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		highScores = scores;
 	}
 	
-	public static void createButtons(){
+	public void createButtons(){
 		if(highScores.size() == 0){
 			return;
 		}
@@ -252,6 +254,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	
 	public static void setRoundScore(int i){
 		highScores.add(roundScore);
+		sortScores(highScores);
 		roundScore=i;
 	}
 	
@@ -267,12 +270,4 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		}
 		return (((score*5)/2)+14);
 	}
-
-//	public static Button getYourScore() {
-//		return yourScore;
-//	}
-//
-//	public static void setYourScore(Button yourScore) {
-//		HighScoreScreen.yourScore = yourScore;
-//	}
 }
