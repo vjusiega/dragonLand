@@ -22,7 +22,7 @@ import guiPractice.components.Visible;
 //
 /*
  * Rules of the game:
- * 		Player starts off with one dragon
+ * 		Player starts off with one dragon,
  * 		Next dragon is placed on the player's right side
  * 		Next dragon after that is placed on the left
  * 		Max number of extra dragons is two (three in total)
