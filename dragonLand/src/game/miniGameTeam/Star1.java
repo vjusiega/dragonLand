@@ -19,6 +19,7 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 	private GameScreen game;
 	private int dragonXPos;
 	private boolean touched;
+	//private boolean test;
 	/**
 	 * @param x
 	 * @param y
@@ -33,6 +34,7 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 		setVx(0);
 		touched = false; 
 		tStar = this;
+		//test = false;
 	}
 	
 	@Override
@@ -43,17 +45,19 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 			if(getY() >= border && !touched && GameVioletta.vGame.checkStarContact(this)){
 				touched = true;
 				game.removeStar(this);
+				setRunning(false);
 				int score = GameScreen.getScore() + 1;
 				GameScreen.setScore(score);
 				GameScreen.setScoreDisplay();
 				if(score == 5 || score == 10 || score == 15){
-					GameVioletta.vGame.addDragon("img/dragon1.png");
+					GameScreen.tGame.addDragon(GameVioletta.vGame.addDragon("img/dragon1.png"));
 				}
 			}
 			else if(getY() > GameScreen.getHeight() - 100){
+				setRunning(false);
 				touched = true;
 				game.removeStar(this);
-				GameVioletta.vGame.removeDragon();
+				GameScreen.tGame.removeDragon(GameVioletta.vGame.removeDragon());
 			}
 			if(GameScreen.getScore() >= 5 && GameScreen.getScore() < 10)
 				setVy(1);
@@ -62,6 +66,9 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 			if(GameScreen.getScore() >= 15 && GameScreen.getScore() < 20)
 				setVy(2);
 		
+		}else{
+			game.removeStar(this);
+			setRunning(false);
 		}
 		
 		

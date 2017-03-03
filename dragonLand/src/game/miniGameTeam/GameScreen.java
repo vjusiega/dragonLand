@@ -73,7 +73,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		view.add(scoreDisplay);
 		
 		GameVioletta vGameObject = new GameVioletta();
-		viewObjects.add(GameVioletta.vGame.addDragon("img/dragon1.png"));
+		//viewObjects.add(GameVioletta.vGame.addDragon("img/dragon1.png"));
 		//initDragonsOnScreen("img/dragon1.png");
 	}
 	
@@ -95,16 +95,16 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 				remove(s);
 			}
 		}
-		starArray = new ArrayList<Star1>();
+		starArray.clear();
 		
 		//GameVioletta.vGame.stillPlaying(true);
 	}
 
 	public void startGame(){
+		starArray.clear();
 		Thread start = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				GameVioletta.vGame.setPlaying(true);
 				fallingStars();
 			}
 		});
@@ -140,16 +140,17 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	}
 	
 	public void fallingStars(){
-		try{
-			while(GameVioletta.vGame.getPlaying()){
-			//setTime();
-			Thread.sleep(time);
-			addStar();
+		GameVioletta.vGame.setPlaying(true);
+		while(GameVioletta.vGame.getPlaying()){
+			try{
+				//setTime();
+				Thread.sleep(time);
+			}catch (InterruptedException e){
+				e.printStackTrace();
 			}
-			DragonLand.game.setScreen(DragonLand.highscoreScreen);
-		}catch (InterruptedException e){
-			e.printStackTrace();
+			addStar();
 		}
+		DragonLand.game.setScreen(DragonLand.highscoreScreen);
 		
 	}
 	
@@ -168,10 +169,10 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_LEFT){ 
-			GameVioletta.vGame.changeDragonPos(-7);
+			GameVioletta.vGame.changeDragonPos(-10);
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-			GameVioletta.vGame.changeDragonPos(7);
+			GameVioletta.vGame.changeDragonPos(10);
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_UP){
 			addObject(GameVioletta.vGame.addDragon("img/dragon1.png"));
@@ -215,5 +216,13 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		score = 0;
 		addObject(GameVioletta.vGame.addDragon(imgSrc));
 		//GameVioletta.vGame.setPlaying(true);
+	}
+	
+	public void removeDragon(Dragon d){
+		remove(d);
+	}
+
+	public void addDragon(Dragon d){
+		addObject(d);
 	}
 }

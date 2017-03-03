@@ -38,7 +38,7 @@ public class GameVioletta implements gameDragonInterface{
 		vGame = this;
 		dragonArray = new ArrayList<Dragon>();
 		playing = true;
-		addDragon("img/dragon1.png");
+		//addDragon("img/dragon1.png");
 	}
 	
 	private static int screenWidth = DragonLand.miniGameScreen.getWidth();
@@ -49,13 +49,7 @@ public class GameVioletta implements gameDragonInterface{
 	}
 	
 	public void eraseDragons(){
-		int size = dragonArray.size();
-		System.out.println("The size is " + dragonArray.size()+"begin");
-		for(int i = size-1; i>-1; i--){
-			dragonArray.remove(i);
-			//size--;
-		}
-		System.out.println("The size is " + dragonArray.size());
+		dragonArray.clear();
 	}
 	
 	public Dragon addDragon(String imgSrc){
@@ -95,6 +89,8 @@ public class GameVioletta implements gameDragonInterface{
 			dragonArray.remove(dragonArray.size() - 1);
 			if(dragonArray.size() == 0){
 				playing = false;
+				DragonLand.game.setScreen(DragonLand.highscoreScreen);
+				GameScreen.tGame.stopGame();
 			}
 			return(deadDragon);
 		}
