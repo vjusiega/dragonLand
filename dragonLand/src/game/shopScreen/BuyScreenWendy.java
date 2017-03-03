@@ -45,7 +45,7 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 		y = 170;
 		
 		//controlling display of number of dragons in inventory
-		numOfDragons = ((SellShopZheng)DragonLand.sellScreen).getDragonsInSellShop().size();
+		numOfDragons = ((SellScreenInterface)DragonLand.sellScreen).getDragonsInSellShop().size();
 		getDragonAmount().setText(numOfDragons + " / 6 dragons");
 		
 		//dragons on display
@@ -66,7 +66,7 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 				public void act() {
 					if(DragonLand.coins > d.getPrice())
 					{
-						if(((SellShopZheng)DragonLand.sellScreen).getDragonsInSellShop().size() < 6)
+						if(((SellScreenInterface)DragonLand.sellScreen).getDragonsInSellShop().size() < 6)
 						{
 							boughtDragon(d,label);	
 							removeDragons();
@@ -110,7 +110,7 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 			dragonsInShop.add(d);
 		
 		//remove the dragons from array that is already in inventory from Zheng
-		for(Dragon d: ((SellShopZheng)DragonLand.sellScreen).getDragonsInSellShop())
+		for(Dragon d: ((SellScreenInterface)DragonLand.sellScreen).getDragonsInSellShop())
 		{
 			dragonsInShop.remove(d);
 		}
@@ -122,7 +122,7 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 		remove(label);
 		
 		//adding sold dragon to Zheng's array for inventory/selling
-		((SellShopZheng)DragonLand.sellScreen).addToDragonsInSellShop(d);
+		((SellScreenInterface)DragonLand.sellScreen).addToDragonsInSellShop(d);
 		
 		//updating inventory amount
 		numOfDragons ++;
@@ -190,7 +190,7 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 
 	@Override
 	public void updateDragonAmount() {
-		numOfDragons = ((SellShopZheng)DragonLand.sellScreen).getDragonsInSellShop().size();
+		numOfDragons = ((SellScreenInterface)DragonLand.sellScreen).getDragonsInSellShop().size();
 		getDragonAmount().setText(numOfDragons + " / 6 dragons");
 	}
 }
