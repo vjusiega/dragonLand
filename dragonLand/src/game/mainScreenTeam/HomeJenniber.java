@@ -141,6 +141,7 @@ public class HomeJenniber implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			System.out.println(!GameScreen.isInMiniGame);
 			if(!GameScreen.isInMiniGame 
 					&& HomeKat.dragonHome.getDragonsOnScreen().size()>0 
 					&& hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size())

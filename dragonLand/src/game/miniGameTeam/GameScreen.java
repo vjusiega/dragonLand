@@ -64,7 +64,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 				HighScoreScreen.updateOnEnter();
 				DragonLand.game.setScreen(DragonLand.highscoreScreen);
 				stopGame();
-				isInMiniGame = false;
 			}
 		});
 
@@ -78,7 +77,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 
 	protected void stopGame() {
 		GameVioletta.vGame.setPlaying(false);
-		isInMiniGame = false;
 		ArrayList<Dragon> dragonArray = GameVioletta.vGame.getDragonArray();
 		if(dragonArray.size() != 0){
 			for(Dragon d: dragonArray){
@@ -118,8 +116,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	public void addStar(){
 		//adds one star object to the screen and the array
 		int yPos = 0;
-		int starH = 100;
-		int starW = 100;
+		int starH = 65;
+		int starW = 65;
 		Star1 starImage = new Star1(randomX(), yPos, starW, starH, this);
 		starImage.play();
 		starArray.add(starImage);
