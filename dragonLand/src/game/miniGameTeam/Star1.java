@@ -45,7 +45,7 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 				touched = true;
 				game.removeStar(this);
 				setRunning(false);
-				int score = GameScreen.getScore() + 1;
+				int score = GameScreen.getScore() + (GameVioletta.vGame.getDragonArray()).size();
 				GameScreen.setScore(score);
 				GameScreen.setScoreDisplay();
 				if(score == 5 || score == 10 || score == 15){
