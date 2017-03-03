@@ -1,5 +1,6 @@
-package dragonComponents;
+package game.shopScreen;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 import game.DragonLand;
@@ -7,7 +8,9 @@ import guiPractice.components.Component;
 import guiPractice.components.Graphic;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
-
+/*
+ * @author Wendy, Zheng
+ * */
 public class CoinLabel extends Component {
 
 	private static final int TOP_MARGIN = 2;
@@ -19,13 +22,22 @@ public class CoinLabel extends Component {
 	private ShopBackdrop coinBack;
 	private Graphic coin;
 	private TextLabel coinLabel;
+	private Color color;
 	
 	public CoinLabel(int x, int y, int p) {
 		super(x, y, WIDTH, HEIGHT);
+		color = DragonLand.LIGHT_NUDE;
 		coins = p;
 		update();
 	}
-
+	
+	public CoinLabel(int x, int y, int p, Color c) {
+		super(x, y, WIDTH, HEIGHT);
+		color = c;
+		coins = p;
+		update();
+	}
+	
 	@Override
 	public void update(Graphics2D g) {
 		int coinSide = getHeight() - 2 * TOP_MARGIN;
@@ -34,7 +46,7 @@ public class CoinLabel extends Component {
 		int priceWidth = getWidth() - priceX - LEFT_MARGIN;
 		int priceHeight = getHeight() - 2 * TOP_MARGIN;
 		
-		coinBack = new ShopBackdrop(0, 0, WIDTH, HEIGHT, DragonLand.LIGHT_NUDE);
+		coinBack = new ShopBackdrop(0, 0, WIDTH, HEIGHT, color);
 		coinBack.setArc(15);
 		coinLabel = new TextLabel(LEFT_MARGIN * 2,TOP_MARGIN, priceWidth, priceHeight, "Coins: " + coins);
 		coin = new Graphic(LEFT_MARGIN + priceWidth,TOP_MARGIN, coinSide, coinSide, "img/Coin.png");

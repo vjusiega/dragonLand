@@ -1,13 +1,10 @@
-package game;
+package game.shopScreen;
 
 import java.awt.Color;
 import java.util.ArrayList;
 
 import dragonComponents.DragonLabel2;
-import dragonComponents.PriceLabel;
-import dragonComponents.ShopBackdrop;
 import game.DragonLand;
-import game.ShopScreen;
 import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.HomeKat;
 import guiPractice.components.Action;
@@ -25,7 +22,7 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 	private static int startIndex = 0;
 	private static int numOfDragons;
 	private int pageNum;
-
+	private Button error;
 	public BuyScreenWendy(int width, int height) {
 		super(width, height);
 		// TODO Auto-generated constructor stub
@@ -48,7 +45,7 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 		y = 170;
 		
 		//controlling display of number of dragons in inventory
-		numOfDragons = ((SellShopZheng)DragonLand.sellScreen).getDragonsInSellShop().size();
+		numOfDragons = ((SellScreenInterface)DragonLand.sellScreen).getDragonsInSellShop().size();
 		getDragonAmount().setText(numOfDragons + " / 6 dragons");
 		
 		//dragons on display
@@ -69,7 +66,7 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 				public void act() {
 					if(DragonLand.coins > d.getPrice())
 					{
-						if(((SellShopZheng)DragonLand.sellScreen).getDragonsInSellShop().size() < 6)
+						if(((SellScreenInterface)DragonLand.sellScreen).getDragonsInSellShop().size() < 6)
 						{
 							boughtDragon(d,label);	
 							removeDragons();
@@ -77,29 +74,29 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 						}
 						else
 						{
-							//addError("You have already maxed out your inventory. Go sell a dragon before buying another");
+							addError("You have already maxed out your inventory. Go sell a dragon before buying another");
 						}
 					}
 					else
 					{
-						//addError("You do not have enough coins. Go play our minigame to win more coins");
+						addError("You do not have enough coins. Go play our minigame to win more coins");
 						System.out.println("You donot have enough coins. Go play our minigame to win more coins You have " + DragonLand.coins + " coins");
 					}
 				}
 
-//				private void addError(String string) {
-//					Button error = new Button(100,100,850,100,string,new Color(244,215,183),new Action()
-//							{
-//								@Override
-//								public void act() {
-//									// TODO Auto-generated method stub
-//									
-//								}
-//						
-//							});
-//					addObject(error);
-//					
-//				}
+				private void addError(String string) {
+					error = new Button(100,100,850,100,string,new Color(244,215,183),new Action()
+							{
+								@Override
+								public void act() {
+									remove(error);
+									
+								}
+						
+							});
+					addObject(error);
+					
+				}
 			});
 
 			addObject(label);
@@ -113,7 +110,7 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 			dragonsInShop.add(d);
 		
 		//remove the dragons from array that is already in inventory from Zheng
-		for(Dragon d: ((SellShopZheng)DragonLand.sellScreen).getDragonsInSellShop())
+		for(Dragon d: ((SellScreenInterface)DragonLand.sellScreen).getDragonsInSellShop())
 		{
 			dragonsInShop.remove(d);
 		}
@@ -125,7 +122,7 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 		remove(label);
 		
 		//adding sold dragon to Zheng's array for inventory/selling
-		((SellShopZheng)DragonLand.sellScreen).addToDragonsInSellShop(d);
+		((SellScreenInterface)DragonLand.sellScreen).addToDragonsInSellShop(d);
 		
 		//updating inventory amount
 		numOfDragons ++;
@@ -189,6 +186,12 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 		//method for sell shop to add dragon in buy after selling the dragon
 		dragonsInShop.add(dragon);
 		addLabels(viewObjects);
+	}
+
+	@Override
+	public void updateDragonAmount() {
+		numOfDragons = ((SellScreenInterface)DragonLand.sellScreen).getDragonsInSellShop().size();
+		getDragonAmount().setText(numOfDragons + " / 6 dragons");
 	}
 }
 

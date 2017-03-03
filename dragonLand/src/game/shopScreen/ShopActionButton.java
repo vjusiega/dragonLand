@@ -1,4 +1,4 @@
-package dragonComponents;
+package game.shopScreen;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -10,7 +10,9 @@ import java.awt.RenderingHints;
 import game.DragonLand;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
-
+/*
+ * @author Wendy, Zheng
+ * */
 public class ShopActionButton extends Button {
 	
 	private static final int ARC_WIDTH = 15;

@@ -1,11 +1,9 @@
-package game;
+package game.shopScreen;
 
 import java.awt.Color;
 import java.util.ArrayList;
 
-import dragonComponents.ShopActionButton;
-import dragonComponents.ShopBackdrop;
-import dragonComponents.ShopLabel;
+import game.DragonLand;
 import game.mainScreenTeam.HomeKat;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
@@ -17,18 +15,11 @@ import guiPractice.components.Visible;
 public class HomeShopScreen extends ClickableScreen {
 	
 	public Button myButton;
-	/*
-	 * Color of title (224, 102, 102)
-	 * Color of buttons (230,195,147)
-	 * 
-	 * Color of title,catalog in buy screen and sell screen (222,195,166)
-	 * Color of buy/sell button (244,215,183)
-	 */
+	public CoinLabel coins;
+	public ShopLabel dragonAmount;
 	
-
 	public HomeShopScreen(int width, int height) {
 		super(width, height);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -37,7 +28,7 @@ public class HomeShopScreen extends ClickableScreen {
 		int titleWidth = 300;
 		int titleHeight = 50;	
 		
-		int buttonWidth = 120;
+		int buttonWidth = 150;
 		int buttonHeight = 55;
 		int topMargin = 40;
 		
@@ -57,24 +48,26 @@ public class HomeShopScreen extends ClickableScreen {
 		});
 		
 		ShopBackdrop shopBack = new ShopBackdrop(titleX - 30, titleY - 30, titleWidth + 60, shopBackHeight);
-		
 		ShopLabel shopTitle = new ShopLabel(titleX, titleY, titleWidth, titleHeight, "Dragon Shop");
-
+		shopTitle.setSize(28);
 		ShopActionButton buy = new ShopActionButton(getWidth()/2 - buttonWidth/2, shopTopMargin + getHeight()/4, buttonWidth, buttonHeight, "BUY", new Color(230,195,147), new Action(){
 			public void act()
 			{
+				((ShopScreen) DragonLand.buyScreen).updateShopLabels();
 				DragonLand.game.setScreen(DragonLand.buyScreen);
-
 			}
 		});
 		ShopActionButton sell = new ShopActionButton(getWidth()/2 - buttonWidth/2, shopTopMargin + getHeight()/2 - topMargin, buttonWidth, buttonHeight, "SELL", new Color(230,195,147), new Action(){
 			public void act()
 			{
-
+				((ShopScreen) DragonLand.sellScreen).updateShopLabels();
 				DragonLand.game.setScreen(DragonLand.sellScreen);
-
 			}
 		});
+		
+		coins = new CoinLabel(titleX - 20, shopBackHeight + 30, DragonLand.coins, DragonLand.DARKER_NUDE);
+		dragonAmount = new ShopLabel(titleX + CoinLabel.getWdith(), shopBackHeight + 30, CoinLabel.getWdith(), CoinLabel.getHeight2(),"0/6 Dragons", DragonLand.DARKER_NUDE);
+		dragonAmount.setArc(15);
 		
 		visible.add(background);
 		visible.add(shopBack);
@@ -82,5 +75,14 @@ public class HomeShopScreen extends ClickableScreen {
 		visible.add(shopTitle);
 		visible.add(buy);
 		visible.add(sell);
-}
+		visible.add(coins);
+		visible.add(dragonAmount);
+	}
+	
+	public void updateHomeShopLabels()
+	{
+		coins.setCoins();
+		System.out.println(((SellShopZheng) DragonLand.sellScreen).getDragonsInSellShop().size());
+		dragonAmount.setText(((SellShopZheng) DragonLand.sellScreen).getDragonsInSellShop().size() + "/6 Dragons");
+	}
 }

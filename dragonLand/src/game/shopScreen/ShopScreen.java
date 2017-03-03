@@ -1,12 +1,9 @@
-package game;
+package game.shopScreen;
 
 import java.awt.Color;
 import java.util.ArrayList;
 
-import dragonComponents.CoinLabel;
-import dragonComponents.PriceLabel;
-import dragonComponents.ShopBackdrop;
-import dragonComponents.ShopLabel;
+import game.DragonLand;
 import game.mainScreenTeam.Dragon;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
@@ -15,7 +12,9 @@ import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
-
+/*
+ * @author Wendy and Zheng
+ * */
 public abstract class ShopScreen extends ClickableScreen {
 	
 	//private ArrayList<Dragon> dragonList;
@@ -70,7 +69,7 @@ public abstract class ShopScreen extends ClickableScreen {
 		Button exit = new Button(getWidth() - 65,  40, 50, 40, "X", new Color(230,195,147), new Action(){
 			
 			public void act() {
-				// TODO Auto-generated method stub
+				((HomeShopScreen)DragonLand.shopMain).updateHomeShopLabels();
 				DragonLand.game.setScreen(DragonLand.shopMain);
 			}
 		});
@@ -152,5 +151,11 @@ public abstract class ShopScreen extends ClickableScreen {
 		return page;
 	}
 	
-
+	public void updateShopLabels()
+	{
+		coins.setCoins();
+		updateDragonAmount();
+	}
+	
+	public abstract void updateDragonAmount();
 }

@@ -10,8 +10,16 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+
 import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.HomeScreen;
+import game.miniGameTeam.GameInstructions;
+import game.miniGameTeam.GameScreen;
+import game.miniGameTeam.HighScoreScreen;
+import game.shopScreen.BuyScreenWendy;
+import game.shopScreen.HomeShopScreen;
+import game.shopScreen.SellShopZheng;
+
 import guiPractice.GUIApplication;
 import guiPractice.Screen;
 import guiPractice.components.AnimatedComponent;
@@ -23,13 +31,14 @@ import guiPractice.components.AnimatedComponent;
 public class DragonLand extends GUIApplication {
 
 	public static DragonLand game;
-	public static int coins = 2100; 
+	public static int coins = 1500; 
 	public static HomeScreen homeScreen;
 	public static Screen shopMain; // shop 1
 	public static Screen sellScreen; // shop 2
 	public static Screen buyScreen; // shop 3
 	public static Screen highscoreScreen; // high score
-	public static Screen miniGameScreen; // minigame
+	public static GameScreen miniGameScreen; // minigame
+	public static Screen gameInstructionsScreen;
 	public static Screen HelpScreen;
 	public static Color NAVY;
 	public static Color BRIGHT_PINK;
@@ -45,14 +54,7 @@ public class DragonLand extends GUIApplication {
 //		dragonList.add(a);
 //	}
 	public DragonLand() {
-		
-//		Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
-//		int monitorWidth=(int)screenSize.getWidth();
-//		int monitorHeight=(int)screenSize.getHeight();
-//		setSize(WIDTH, HEIGHT);
-//		setLocation((monitorWidth-WIDTH)/2,(monitorHeight-HEIGHT)/2);
-//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		
+
 	}
 
 	/* (non-Javadoc)
@@ -62,16 +64,19 @@ public class DragonLand extends GUIApplication {
 	protected void initScreen() {
 		initColors();
 
+
 		miniGameScreen = new GameScreen(getWidth(),getHeight());
 		shopMain = new HomeShopScreen(getWidth(),getHeight());
 		sellScreen = new SellShopZheng(getWidth(),getHeight());
 		homeScreen = new HomeScreen(getWidth(),getHeight());
 		buyScreen = new BuyScreenWendy(getWidth(),getHeight());
 		highscoreScreen = new HighScoreScreen(getWidth(),getHeight());
+		HomeScreen.jenCode = new game.mainScreenTeam.HomeJenniber();
+		gameInstructionsScreen = new GameInstructions(getWidth(), getHeight());
+
 		setScreen(homeScreen);
 
 	}
-
 	private void initColors() {
 		NAVY = new Color(62,74,99);
 		BRIGHT_PINK = new Color(224,102,102);
@@ -96,9 +101,5 @@ public class DragonLand extends GUIApplication {
 		public int getCoins(){
 			return coins;
 		}
-		
-	public static void beginHunger(){
-		HomeScreen.jenCode = new game.mainScreenTeam.HomeJenniber();		
-	}
 
 }

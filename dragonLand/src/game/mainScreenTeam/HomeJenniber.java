@@ -6,6 +6,7 @@ package game.mainScreenTeam;
 import java.util.ArrayList;
 
 import game.DragonLand;
+import game.shopScreen.SellShopZheng;
 import guiPractice.components.Action;
 import guiPractice.components.Visible;
 
@@ -77,7 +78,9 @@ public class HomeJenniber implements Runnable {
 	
 	public void removeHungryAndDragon(Dragon d, HungryBox hungry) {
 		hungryBoxTimes.remove(hungry);
-		DragonLand.homeScreen.remove(d);
+		HomeKat.dragonHome.removeHungryDragon(d);
+//		DragonLand.homeScreen.remove(d);
+//		((SellShopZheng)DragonLand.sellScreen).removeDragonsInSellShop(d);
 		DragonLand.homeScreen.remove(hungry);
 	}
 
@@ -124,29 +127,34 @@ public class HomeJenniber implements Runnable {
 
 	@Override
 	public void run() {
-		while(HomeKat.dragonHome.getDragonsOnScreen().size()>0 && hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size()){
-			double probability = .5;
-			if(Math.random()>probability){
-				createHungryThread(getRandDragon());
-			}
+		while(true){
+			//System.out.println(HomeKat.dragonHome.getDragonsOnScreen().size()>0 && hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size());
 			try {
 				int sleepingTime = (int)(Math.random()*5000)+1000;
-				Thread.sleep(sleepingTime);
+				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			if(HomeKat.dragonHome.getDragonsOnScreen().size()>0 && hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size())
+			{
+				double probability = 0;
+				if(Math.random()>probability){
+					createHungryThread(getRandDragon());
+				}
+			}
 		}
 		
 	}
-	
-	public void setHungryBoxTimes(HungryBox hungryBox){
-		hungryBoxTimes.remove(hungryBox);
-		DragonLand.homeScreen.remove(hungryBox);
-	}
-	
-	public ArrayList<HungryBox> getHungryBoxTimes(){
-		return hungryBoxTimes; 
+
+	public void editHungryBoxTimes(Dragon d){
+		for(int i=0; i<hungryBoxTimes.size();i++){
+			HungryBox hungryBox= hungryBoxTimes.get(i);
+			if((d.getY()<350 && hungryBox.getX()==d.getX()-25) || hungryBox.getY()==d.getY()+105){
+				hungryBoxTimes.remove(hungryBox);
+				DragonLand.homeScreen.remove(hungryBox);
+			}
+		}
 	}
 }
 

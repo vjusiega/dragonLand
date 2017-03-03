@@ -1,4 +1,6 @@
-package dragonComponents;
+package game.shopScreen;
+
+import java.util.ArrayList;
 
 import game.mainScreenTeam.Dragon;
 
@@ -8,4 +10,5 @@ import game.mainScreenTeam.Dragon;
 
 public interface SellScreenInterface {
 	void addToDragonsInSellShop(Dragon d);
+	ArrayList<Dragon> getDragonsInSellShop();
 }

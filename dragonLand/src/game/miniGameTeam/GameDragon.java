@@ -1,4 +1,4 @@
-package dragonComponents;
+package game.miniGameTeam;
 
 import java.awt.Color;
 import java.awt.Graphics;

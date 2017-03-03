@@ -26,7 +26,7 @@ public class HungryBox extends Button implements Runnable{
 	private static final int W = 150;
 	private static final int H = 50;
 	private static final String TEXT = "Hungry!";
-	private static final int HUNGRY_LIMIT =15;
+	private static final int HUNGRY_LIMIT =20;
 	private int hungryTime;
 	
 	
