@@ -4,14 +4,7 @@
 package game;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.util.ArrayList;
 
-import javax.swing.JFrame;
-
-
-import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.HomeScreen;
 import game.miniGameTeam.GameInstructions;
 import game.miniGameTeam.GameScreen;
@@ -22,7 +15,6 @@ import game.shopScreen.SellShopZheng;
 
 import guiPractice.GUIApplication;
 import guiPractice.Screen;
-import guiPractice.components.AnimatedComponent;
 
 /**
  * @author Kat
@@ -30,6 +22,11 @@ import guiPractice.components.AnimatedComponent;
  */
 public class DragonLand extends GUIApplication {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	public static DragonLand game;
 	public static int coins = 1500; 
 	public static HomeScreen homeScreen;

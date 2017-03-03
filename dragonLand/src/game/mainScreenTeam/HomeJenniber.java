@@ -7,9 +7,7 @@ import java.util.ArrayList;
 
 import game.DragonLand;
 import game.miniGameTeam.GameScreen;
-import game.shopScreen.SellShopZheng;
 import guiPractice.components.Action;
-import guiPractice.components.Visible;
 
 /**
  * @author Jenniber Franco
@@ -143,8 +141,9 @@ public class HomeJenniber implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			if(!GameScreen.isInMiniGame)
-				if(HomeKat.dragonHome.getDragonsOnScreen().size()>0 && hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size())
+			if(!GameScreen.isInMiniGame 
+					&& HomeKat.dragonHome.getDragonsOnScreen().size()>0 
+					&& hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size())
 				{
 					double probability = .5;
 					if(Math.random()>probability){
