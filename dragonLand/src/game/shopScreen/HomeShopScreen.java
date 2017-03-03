@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import game.DragonLand;
 import game.mainScreenTeam.HomeKat;
+import game.miniGameTeam.GameScreen;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
@@ -41,7 +42,7 @@ public class HomeShopScreen extends ClickableScreen {
 		Button exit = new Button(getWidth() - 100,  60, 50, 40, "X", new Color(230,195,147), new Action(){
 			
 			public void act() {
-				
+				GameScreen.isInMiniGame = false;
 				DragonLand.game.setScreen(DragonLand.homeScreen);
 				HomeKat.dragonsOnScreen();
 			}

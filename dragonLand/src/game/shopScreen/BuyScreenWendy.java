@@ -64,7 +64,7 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 			label.setAction( new Action(){
 				
 				public void act() {
-					if(DragonLand.coins > d.getPrice())
+					if(DragonLand.coins >= d.getPrice())
 					{
 						if(((SellScreenInterface)DragonLand.sellScreen).getDragonsInSellShop().size() < 6)
 						{
