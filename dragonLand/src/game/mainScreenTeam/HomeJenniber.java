@@ -54,18 +54,30 @@ public class HomeJenniber implements Runnable {
 			}
 			
 		});
+		//hungryBox is added to hungryBoxTimes and viewObjects
 		hungryBoxTimes.add(hungryBox);
 		DragonLand.homeScreen.addObject(hungryBox);
+		//Thread of hungryBox begins
 		Thread hungry = new Thread(hungryBox);
 		hungry.start();
 	}
 	
+	/**
+	 * When the hungryBox reaches 0, this function is called to remove the hungryBox from
+	 * the hungryBoxTimes and from viewObjects.
+	 * It also calls a method from HomeKat to remove the Dragon that had the hungryBox 
+	 * @param d = Dragon that has the hungryBox
+	 * @param hungry = hungryBox that has already reached 0 or less
+	 */
 	public void removeHungryAndDragon(Dragon d, HungryBox hungry) {
 		hungryBoxTimes.remove(hungry);
 		HomeKat.dragonHome.removeHungryDragon(d);
 		DragonLand.homeScreen.remove(hungry);
 	}
 
+	/**
+	 * Checks the dragons that were bought and are in the homeScreen 
+	 */
 	public void checkRemoveDragon() {
 		for(int i=0; i< HomeKat.dragonHome.getDragonsOnScreen().size();i++){
 			Dragon d = HomeKat.dragonHome.getDragonsOnScreen().get(i);
@@ -74,27 +86,23 @@ public class HomeJenniber implements Runnable {
 					HungryBox hungryBox = hungryBoxTimes.get(j);
 					if(
 							(
-									(d.getY()<350 && hungryBox.getX()==d.getX()-25) 
+									//Checks if the dragon is moving vertically and if it is
+									//it compares the xCoordinates of the dragon and hungryBox
+									(d.getY()<350 && hungryBox.getX()==d.getX()-25)
+									//If dragon is moving horizontally,
+									//it compares the yCoordinates of the dragon and hungryBox
 									|| hungryBox.getY()==d.getY()+105
 							) 
+							//Checks if the hungryBox time is less than 0 to remove
 							&& hungryBox.getHungryTime()<=0){
 						removeHungryAndDragon(d,hungryBox);
 					}
-//					if(d.getY()<350){
-//						if(hungryBox.getX()==d.getX()-25 && hungryBox.getHungryTime()<=0){
-//							removeHungryAndDragon(d,hungryBox);
-//						}
-//					}
-//					else{
-//						if(hungryBox.getY()==yCoord && hungryBox.getHungryTime()<=0){
-//							removeHungryAndDragon(d,hungryBox);
-//						}
-//					}
 				}
 			}
 		}
 	}
 	
+	//Retrieves a random dragon that does not have a hungryBox to set it to have a hungryBox
 	public Dragon getRandDragon(){
 		//Will return a randomly selected dragon from the ones currently being displayed on the HomeScreen
 		int randNum = (int) (Math.random()*HomeKat.dragonHome.getDragonsOnScreen().size());
@@ -106,14 +114,24 @@ public class HomeJenniber implements Runnable {
 		return HomeKat.dragonHome.getDragonsOnScreen().get(randNum);
 	}
 
+	//returns a new HungryBox by setting its position relative to the Dragon d
 	public HungryBox getHungryBox(Dragon d) {
 		int yCoord = d.getY()+105;
+		//Checks if dragon is moving vertically
 		if(d.getY()<350){
 			yCoord+=30;
 		}
 		return new HungryBox(d.getX()-25,yCoord);
 	}
 
+	/**
+	 * Starts as a thread that will sleep for random moments in time 
+	 * from an interval of 3 to 7 seconds.
+	 * It will the check if there any dragon that have been bought.
+	 * If there are dragons bought and there are less hungryBoxes than Dragons,
+	 * 	a hungryThread might be created if Math.random() returns a double>0.5 
+	 * 
+	 */
 	@Override
 	public void run() {
 		while(true){
@@ -126,7 +144,7 @@ public class HomeJenniber implements Runnable {
 			}
 			if(HomeKat.dragonHome.getDragonsOnScreen().size()>0 && hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size())
 			{
-				double probability = 0;
+				double probability = .5;
 				if(Math.random()>probability){
 					createHungryThread(getRandDragon());
 				}
