@@ -60,6 +60,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		exit = new Button(30, 50, 40, 40, "X", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
+				HighScoreScreen.setRoundScore(score);
 				HighScoreScreen.updateOnEnter();
 				DragonLand.game.setScreen(DragonLand.highscoreScreen);
 				stopGame();

@@ -29,7 +29,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	private Button layerTwo;
 	private static Button yourScore;
 	private static int roundScore;
-	private Button coinsWon;
+	private static Button coinsWon;
 	private Button scores;
 	private static Button totalCoins;
 	private Button clearScores;
@@ -142,9 +142,10 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	}
 	
 	public static void updateOnEnter(){
-		totalCoins.setText("Total Coins: " + (DragonLand.coins+getCoins(GameScreen.getScore())));
-		DragonLand.coins+=getCoins(GameScreen.getScore());
+		totalCoins.setText("Total Coins: " + (DragonLand.coins+getCoins(roundScore)));
 		yourScore.setText("Your Score: " + roundScore);
+		coinsWon.setText("Coins Won: "+getCoins(roundScore));
+		DragonLand.coins+=getCoins(roundScore);
 	}
 	
 	public void createHelpDialog(){
