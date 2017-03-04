@@ -171,10 +171,10 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_LEFT){ 
-			GameVioletta.vGame.changeDragonPos(-10);
+			GameVioletta.vGame.changeDragonPos(-18);
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-			GameVioletta.vGame.changeDragonPos(10);
+			GameVioletta.vGame.changeDragonPos(18);
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_UP){
 			addObject(GameVioletta.vGame.addDragon("img/dragon1.png"));
