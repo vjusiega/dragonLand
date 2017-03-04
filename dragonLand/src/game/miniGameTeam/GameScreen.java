@@ -163,6 +163,9 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		if (score >= 15 && score < 20){
 			time = 1000;
 		}
+		if (score >= 20){
+			time = 1000;
+		}
 	}
 
 	@Override
