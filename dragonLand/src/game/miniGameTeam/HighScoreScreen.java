@@ -38,6 +38,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	private static ArrayList<Integer> highScores;
 	private static ArrayList<Button> buttons;
 	private int tCoins;
+	private Button replayGame;
 	
 	//fields for help dialog
 	private String text1;
@@ -70,6 +71,12 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		highScores = new ArrayList<Integer>();
 		System.out.println(highScores);
 		roundScore =0;
+		replayGame = new Button(getWidth()-365, getHeight()-565, getWidth()-850, getHeight()-600, "Replay Game", DragonLand.DARKER_NUDE, new Action(){
+			@Override
+			public void act(){
+				DragonLand.game.setScreen(DragonLand.gameInstructionsScreen);
+			}
+		});
 		help = new Button(getWidth()-105, getHeight()-75, getWidth()-960, getHeight()-600, "?", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
@@ -142,6 +149,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		viewObjects.add(score1);
 		viewObjects.add(score2);
 		viewObjects.add(score3);
+		viewObjects.add(replayGame);
 	}
 	
 	public static void updateOnEnter(){
