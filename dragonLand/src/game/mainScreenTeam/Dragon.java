@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
+
+import game.shopScreen.DragonToShop;
 import guiPractice.components.AnimatedComponent;
 import guiPractice.components.MovingComponent;
 import guiPractice.components.Visible;
@@ -33,8 +35,7 @@ public class Dragon extends AnimatedComponent {
  	private int LEFT=1;
  	private int RIGHT =2;
  	private int DOWN=4;
- 	private int GAME=5;
- 	private double VY= Math.random(); //to randomize speed
+ 	private double VY= Math.random();
  	
 	public Dragon(int x, int y, int w, int h,  String name, int price, String imgSrc) {
 		super(x, y, w, h);
@@ -45,11 +46,7 @@ public class Dragon extends AnimatedComponent {
 		this.hungryBox = false;
 
 	}
-	/*
-	 * set based on the y coordinate given
-	 * tells it how it will move
-	 * called in HomeKat when adding a dragon
-	 */
+
 	public void setY(int y){
 		initialY=y;
 		super.setY(y);
@@ -63,14 +60,11 @@ public class Dragon extends AnimatedComponent {
 				currentFrame=6;
 		}
 	}
-	
 	public void setX(int x){
 		initialX=x;
 		super.setX(x);
 	}
-	/*
-	 * allows for directions to switch 
-	 */
+	
 	public void checkBehaviors() {
 		//System.out.println(direction);
 		if(direction ==UP){
@@ -109,17 +103,8 @@ public class Dragon extends AnimatedComponent {
 				
 			}
 		}
-		if(direction == GAME){
-			setVx(0);
-			setVy(0);
-			if(currentFrame == 6){
-				currentFrame = 0;
-			}
-		}
 	}
-/*
- * getters and setters
- */
+
 	@Override
 	public void drawImage(Graphics2D g) {
 		super.drawImage(g);
@@ -136,9 +121,6 @@ public class Dragon extends AnimatedComponent {
 	public void animationRight(){
 		direction = RIGHT;
 	}
-	public void animationGame(){
-		direction = GAME;
-	}
 	public String getName() {
 		return name;
 	}
@@ -147,10 +129,7 @@ public class Dragon extends AnimatedComponent {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public void setDirection(int dir){
-		this.direction = dir;
-	}
+
 
 	public int getPrice() {
 		return price;
