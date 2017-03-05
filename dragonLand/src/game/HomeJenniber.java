@@ -5,8 +5,6 @@ package game;
 
 import java.util.ArrayList;
 
-import dragonComponents.Dragon;
-import dragonComponents.HungryBox;
 import guiPractice.components.Visible;
 
 /**

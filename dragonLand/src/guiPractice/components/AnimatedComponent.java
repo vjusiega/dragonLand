@@ -21,7 +21,11 @@ public class AnimatedComponent extends MovingComponent{
 		currentFrame = 0;
 		repeat = true;
 	}
-
+	
+	public BufferedImage getFrame(int index){
+		return frame.get(index);
+	}
+	
 	public void setRepeat(boolean repeat){
 		this.repeat = repeat;
 	}
@@ -42,6 +46,8 @@ public class AnimatedComponent extends MovingComponent{
 
 
 	public void drawImage(Graphics2D g) {
+		
+		
 		long currentTime = System.currentTimeMillis();//gets time now
 		//check if it's time to change the frame
 		//and make sure that there are images in the frame list

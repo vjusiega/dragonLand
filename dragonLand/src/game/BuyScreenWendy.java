@@ -2,13 +2,12 @@ package game;
 
 import java.util.ArrayList;
 
-import dragonComponents.Dragon;
-import dragonComponents.DragonLabel;
 import dragonComponents.DragonLabel2;
-import dragonComponents.PriceLabel;
-import dragonComponents.ShopBackdrop;
 import game.DragonLand;
-import game.ShopScreen;
+import game.mainScreenTeam.Dragon;
+import game.mainScreenTeam.DragonLabel;
+import game.mainScreenTeam.HomeKat;
+import game.shopScreen.ShopScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Visible;
 /*

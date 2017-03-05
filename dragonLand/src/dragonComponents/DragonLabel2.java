@@ -4,6 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 import game.DragonLand;
+import game.mainScreenTeam.Dragon;
+import game.shopScreen.PriceLabel;
+import game.shopScreen.ShopActionButton;
+import game.shopScreen.ShopBackdrop;
+import game.shopScreen.ShopLabel;
 import guiPractice.components.Action;
 import guiPractice.components.Clickable;
 import guiPractice.components.Component;
