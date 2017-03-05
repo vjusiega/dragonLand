@@ -176,12 +176,12 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
 			GameVioletta.vGame.changeDragonPos(18);
 		}
-		else if(e.getKeyCode() == KeyEvent.VK_UP){
-			addObject(GameVioletta.vGame.addDragon("img/dragon1.png"));
-		}
-		else if(e.getKeyCode() == KeyEvent.VK_DOWN){
-			remove(GameVioletta.vGame.removeDragon());
-		}
+//		else if(e.getKeyCode() == KeyEvent.VK_UP){
+//			addObject(GameVioletta.vGame.addDragon("img/dragon1.png"));
+//		}
+//		else if(e.getKeyCode() == KeyEvent.VK_DOWN){
+//			remove(GameVioletta.vGame.removeDragon());
+//		}
 	}
 
 	@Override
