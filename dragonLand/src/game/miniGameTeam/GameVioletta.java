@@ -57,7 +57,6 @@ public class GameVioletta implements gameDragonInterface{
 		int random = (int) (Math.random() * 19);
 		imgSrc = "img/dragon" + random + ".png";
 		
-		
 		int xPos;
 		int dragonHeight = 100;
 		xPos = screenWidth / 2;
