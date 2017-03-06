@@ -61,7 +61,7 @@ public class HomeShopScreen extends ClickableScreen {
 		ShopActionButton sell = new ShopActionButton(getWidth()/2 - buttonWidth/2, shopTopMargin + getHeight()/2 - topMargin, buttonWidth, buttonHeight, "SELL", new Color(230,195,147), new Action(){
 			public void act()
 			{
-				((ShopScreen) DragonLand.sellScreen).updateShopLabels();
+				((SellShopZheng) DragonLand.sellScreen).drawDragons();
 				DragonLand.game.setScreen(DragonLand.sellScreen);
 			}
 		});
