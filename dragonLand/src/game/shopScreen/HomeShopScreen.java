@@ -83,7 +83,6 @@ public class HomeShopScreen extends ClickableScreen {
 	public void updateHomeShopLabels()
 	{
 		coins.setCoins();
-		System.out.println(((SellShopZheng) DragonLand.sellScreen).getDragonsInSellShop().size());
 		dragonAmount.setText(((SellShopZheng) DragonLand.sellScreen).getDragonsInSellShop().size() + "/6 Dragons");
 	}
 }
