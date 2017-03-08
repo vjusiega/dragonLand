@@ -43,8 +43,10 @@ public class HomeJenniber implements Runnable {
 			public void act() {
 				for(int i=0; i<HomeKat.dragonHome.getDragonsOnScreen().size();i++){
 					Dragon d= HomeKat.dragonHome.getDragonsOnScreen().get(i);
+					System.out.println("B4 Clicked");
 					if((d.getY()<350 && hungryBox.getX()==d.getX()-25) || hungryBox.getY()==d.getY()+105){
 							d.setHungryBox(false);
+							System.out.println("Clicked");
 					}
 				}
 				
@@ -169,4 +171,3 @@ public class HomeJenniber implements Runnable {
 		DragonLand.homeScreen.remove(hungryBox);
 	}
 }
-

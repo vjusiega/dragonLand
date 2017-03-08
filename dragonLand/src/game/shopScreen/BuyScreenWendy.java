@@ -191,4 +191,3 @@ public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
 		getDragonAmount().setText(numOfDragons + " / 6 dragons");
 	}
 }
-

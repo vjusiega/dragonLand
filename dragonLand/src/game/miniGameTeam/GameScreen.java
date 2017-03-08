@@ -226,4 +226,3 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		addObject(d);
 	}
 }
-

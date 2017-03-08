@@ -102,7 +102,6 @@ public class HomeKat implements DragonArrayInterface {
 			public void act() {
 				viewObjects.remove(this);
 			}});
-		
 		Button help = new Button(width-50-(width*2/100),height-50-(height*2/100),  50,  50,  "?",DragonLand.DARKER_NUDE,  new Action(){
 			@Override
 			public void act() {
