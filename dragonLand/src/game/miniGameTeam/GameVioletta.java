@@ -53,6 +53,9 @@ public class GameVioletta implements gameDragonInterface{
 	}
 	
 	public Dragon addDragon(String imgSrc){
+		int random = (int) (Math.random() * 19);
+		imgSrc = "img/dragon" + random + ".png";
+		
 		int xPos;
 		int dragonHeight = 100;
 		xPos = screenWidth / 2;
@@ -60,7 +63,6 @@ public class GameVioletta implements gameDragonInterface{
 			dragonHeight = (int) (dragonHeight * 0.65);
 			if(dragonArray.size() == 1){
 				xPos = dragonArray.get(0).getX() - dragonHeight;
-				
 			}
 			else{
 				xPos = dragonArray.get(0).getX() + dragonHeight + 25;
@@ -78,8 +80,8 @@ public class GameVioletta implements gameDragonInterface{
 		dragonArray.add(d);
 		d.setX(xPos);
 		d.setY(yPos);
-		
-		d.update();
+		d.setDirection(5);
+		d.play();
 		
 		return d;
 	}
@@ -134,7 +136,7 @@ public class GameVioletta implements gameDragonInterface{
 		int dragonStart = (dragonArray.get(findLeadDragon(-1))).getX();
 		int dragonEnd = ((dragonArray.get(findLeadDragon(1))).getX() + (dragonArray.get(findLeadDragon(1))).getWidth());
 		if((starX > dragonStart && starX < dragonEnd) || (starEnd > dragonStart && starEnd < dragonEnd)){
-			System.out.println("touching");
+
 			return true; 
 			
 		}
@@ -160,7 +162,7 @@ public class GameVioletta implements gameDragonInterface{
 						int y1 = topMargin +h*(i/numberRow);
 						Graphics g = cropped.createGraphics();
 						g.drawImage(icon.getImage(),0,0,w,h,x1,y1,x1+w,y1+h,null);
-						a.addFrame(cropped, 300);
+						a.addFrame(cropped, 200);
 					}
 				}
 			}

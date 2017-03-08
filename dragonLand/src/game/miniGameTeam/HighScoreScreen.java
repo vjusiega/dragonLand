@@ -38,6 +38,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	private static ArrayList<Integer> highScores;
 	private static ArrayList<Button> buttons;
 	private int tCoins;
+	private Button replayGame;
 	
 	//fields for help dialog
 	private String text1;
@@ -68,16 +69,13 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		tCoins = DragonLand.coins;
 		buttons = new ArrayList<Button>();
 		highScores = new ArrayList<Integer>();
-		System.out.println(highScores);
 		roundScore =0;
-//		highScores.add(GameScreen.getScore());
-
-//		highScores.add(400);
-//		highScores.add(32);
-//		highScores.add(0);
-
-//		sortScores(highScores);
-		//helpBox = new Button()
+		replayGame = new Button(getWidth()-365, getHeight()-565, getWidth()-850, getHeight()-600, "Replay Game", DragonLand.DARKER_NUDE, new Action(){
+			@Override
+			public void act(){
+				DragonLand.game.setScreen(DragonLand.gameInstructionsScreen);
+			}
+		});
 		help = new Button(getWidth()-105, getHeight()-75, getWidth()-960, getHeight()-600, "?", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
@@ -129,6 +127,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 
 			@Override
 			public void act() {
+				GameScreen.isNotHome = false;
 				DragonLand.game.setScreen(DragonLand.homeScreen);
 			}
 			
@@ -149,29 +148,28 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		viewObjects.add(score1);
 		viewObjects.add(score2);
 		viewObjects.add(score3);
+		viewObjects.add(replayGame);
 	}
 	
 	public static void updateOnEnter(){
-		highScores.add(GameScreen.getScore());
-		System.out.println(highScores);
+		setRoundScore(GameScreen.getScore());
+		highScores.add(roundScore);
 		totalCoins.setText("Total Coins: " + (DragonLand.coins+getCoins(GameScreen.getScore())));
 		DragonLand.coins+=getCoins(GameScreen.getScore());
 		yourScore.setText("Your Score: " + roundScore);
 		coinsWon.setText("Coins Won: " + getCoins(GameScreen.getScore()));
 		sortScores(highScores);
-		if(highScores.size() > 3){
-			score1.setText("1) " + highScores.get(2));
-		}
-		if(highScores.size() > 5 && highScores.size() < 12){
-			sortScores(highScores);
-			score1.setText("1) " + highScores.get(2));
-			score2.setText("2) " + highScores.get(6));
-		}
-		if(highScores.size() > 12){
-			sortScores(highScores);
-			score1.setText("1) " + highScores.get(2));
-			score2.setText("2) " + highScores.get(6));
-			score3.setText("3) " + highScores.get(15));
+		for(int i = 0; i < 3; i++)
+		{
+			if(i < highScores.size())
+			{
+				if(i == 0)
+					score1.setText("1) " + highScores.get(0));
+				if(i == 1 && highScores.get(1) != 0)
+					score2.setText("2) " + highScores.get(1));
+				if(i == 2 && highScores.get(2) != 0)
+					score3.setText("3) " + highScores.get(2));
+			}
 		}
 	}
 	
@@ -253,8 +251,6 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	}
 	
 	public static void setRoundScore(int i){
-		highScores.add(roundScore);
-		sortScores(highScores);
 		roundScore=i;
 	}
 	

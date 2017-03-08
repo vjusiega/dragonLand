@@ -41,7 +41,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	private static ArrayList<Star1> starArray;
 	private static int score;
 	public static GameScreen tGame;
-
+	public static boolean isNotHome;
 	public GameScreen(int width, int height) {
 		super(width, height);
 		tGame = this;
@@ -96,6 +96,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 
 	public void startGame(){
 		score = 0;
+		time = 2500;
 		setScoreDisplay();
 		//starArray.clear();
 		addObject(GameVioletta.vGame.addDragon("img/dragon1.png"));
@@ -115,8 +116,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	public void addStar(){
 		//adds one star object to the screen and the array
 		int yPos = 0;
-		int starH = 100;
-		int starW = 100;
+		int starH = 65;
+		int starW = 65;
 		Star1 starImage = new Star1(randomX(), yPos, starW, starH, this);
 		starImage.play();
 		starArray.add(starImage);
@@ -162,22 +163,25 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		if (score >= 15 && score < 20){
 			time = 1000;
 		}
+		if (score >= 20){
+			time = 1000;
+		}
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_LEFT){ 
-			GameVioletta.vGame.changeDragonPos(-10);
+			GameVioletta.vGame.changeDragonPos(-18);
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-			GameVioletta.vGame.changeDragonPos(10);
+			GameVioletta.vGame.changeDragonPos(18);
 		}
-		else if(e.getKeyCode() == KeyEvent.VK_UP){
-			addObject(GameVioletta.vGame.addDragon("img/dragon1.png"));
-		}
-		else if(e.getKeyCode() == KeyEvent.VK_DOWN){
-			remove(GameVioletta.vGame.removeDragon());
-		}
+//		else if(e.getKeyCode() == KeyEvent.VK_UP){
+//			addObject(GameVioletta.vGame.addDragon("img/dragon1.png"));
+//		}
+//		else if(e.getKeyCode() == KeyEvent.VK_DOWN){
+//			remove(GameVioletta.vGame.removeDragon());
+//		}
 	}
 
 	@Override

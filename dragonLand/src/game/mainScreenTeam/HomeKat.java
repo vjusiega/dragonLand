@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import game.DragonLand;
+import game.miniGameTeam.GameScreen;
 import game.miniGameTeam.NoBorderButton;
 import game.shopScreen.BuyScreenInterface;
 import game.shopScreen.HomeShopScreen;
@@ -78,6 +79,7 @@ public class HomeKat implements DragonArrayInterface {
 
 			@Override
 			public void act() {
+				GameScreen.isNotHome = true;
 				((HomeShopScreen)DragonLand.shopMain).updateHomeShopLabels();
 				DragonLand.game.setScreen(DragonLand.shopMain);
 			}});
@@ -87,7 +89,7 @@ public class HomeKat implements DragonArrayInterface {
 
 			@Override
 			public void act() {
-				
+				GameScreen.isNotHome = true;
 				DragonLand.game.setScreen(DragonLand.gameInstructionsScreen);
 			}
 		

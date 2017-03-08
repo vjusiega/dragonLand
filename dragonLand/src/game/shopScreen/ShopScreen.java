@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import game.DragonLand;
 import game.mainScreenTeam.Dragon;
+import game.miniGameTeam.GameScreen;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;

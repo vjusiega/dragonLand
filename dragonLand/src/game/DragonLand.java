@@ -30,6 +30,11 @@ import guiPractice.components.AnimatedComponent;
  */
 public class DragonLand extends GUIApplication {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public static DragonLand game;
 	public static int coins = 1500; 
 	public static HomeScreen homeScreen;

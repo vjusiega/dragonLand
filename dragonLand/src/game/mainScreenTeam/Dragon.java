@@ -33,6 +33,7 @@ public class Dragon extends AnimatedComponent {
  	private int LEFT=1;
  	private int RIGHT =2;
  	private int DOWN=4;
+ 	private int GAME=5;
  	private double VY= Math.random(); //to randomize speed
  	
 	public Dragon(int x, int y, int w, int h,  String name, int price, String imgSrc) {
@@ -108,6 +109,13 @@ public class Dragon extends AnimatedComponent {
 				
 			}
 		}
+		if(direction == GAME){
+			setVx(0);
+			setVy(0);
+			if(currentFrame == 6){
+				currentFrame = 0;
+			}
+		}
 	}
 /*
  * getters and setters
@@ -128,6 +136,9 @@ public class Dragon extends AnimatedComponent {
 	public void animationRight(){
 		direction = RIGHT;
 	}
+	public void animationGame(){
+		direction = GAME;
+	}
 	public String getName() {
 		return name;
 	}
@@ -136,7 +147,10 @@ public class Dragon extends AnimatedComponent {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
+	public void setDirection(int dir){
+		this.direction = dir;
+	}
 
 	public int getPrice() {
 		return price;
