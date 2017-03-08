@@ -69,7 +69,6 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		tCoins = DragonLand.coins;
 		buttons = new ArrayList<Button>();
 		highScores = new ArrayList<Integer>();
-		System.out.println(highScores);
 		roundScore =0;
 		replayGame = new Button(getWidth()-365, getHeight()-565, getWidth()-850, getHeight()-600, "Replay Game", DragonLand.DARKER_NUDE, new Action(){
 			@Override
@@ -155,7 +154,6 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	public static void updateOnEnter(){
 		setRoundScore(GameScreen.getScore());
 		highScores.add(roundScore);
-		System.out.println(highScores);
 		totalCoins.setText("Total Coins: " + (DragonLand.coins+getCoins(GameScreen.getScore())));
 		DragonLand.coins+=getCoins(GameScreen.getScore());
 		yourScore.setText("Your Score: " + roundScore);
