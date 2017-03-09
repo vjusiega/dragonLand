@@ -9,11 +9,11 @@ import java.awt.Graphics2D;
 import guiPractice.components.Component;
 
 /**
- * @author Period82.0
+ * @author Veeraj
  *
  */
 public class Background extends Component {
-
+	//creates solid, light blue background
 	/**
 	 * @param x
 	 * @param y
