@@ -36,7 +36,7 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 		touched = false; 
 		tStar = this;
 		test = false;
-		powerUp = 0; 
+		//powerUp = 0; 
 	}
 	
 	@Override
@@ -50,13 +50,13 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 				int score = GameScreen.getScore() + (GameVioletta.vGame.getDragonArray()).size();
 				GameScreen.setScore(score);
 				GameScreen.setScoreDisplay();
-				powerUp++;
-				if(powerUp == 10){
+				GameScreen.tGame.setPowerUp((GameScreen.tGame.getPowerUp() + 1));
+				if(GameScreen.tGame.getPowerUp() == 10){
 					GameScreen.tGame.addDragonToScreen(GameVioletta.vGame.addDragon("img/dragon1.png"));
 				}
 			}
 			else if(getY() > GameScreen.getHeight() - 100){
-				powerUp = 0; 
+				GameScreen.tGame.setPowerUp(0);
 				setRunning(false);
 				touched = true;
 				game.removeStar(this);

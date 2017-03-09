@@ -46,6 +46,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		super(width, height);
 		tGame = this;
 	}
+	private int powerUp;
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> view) {
@@ -53,6 +54,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		score = 0;
 		time = 2500;
 		starArray = new ArrayList<Star1>();
+		powerUp = 0; 
 
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
 		viewObjects.add(background);
@@ -224,5 +226,13 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 
 	public void addDragonToScreen(Dragon d){
 		addObject(d);
+	}
+	
+	public int getPowerUp(){
+		return powerUp;
+	}
+	
+	public void setPowerUp(int x){
+		powerUp = x; 
 	}
 }
