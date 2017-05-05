@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import guiPractice.components.AnimatedComponent;
 import guiPractice.components.MovingComponent;
 import guiPractice.components.Visible;
+import introScreens.WelcomeScreen;
 
 
 
@@ -28,12 +29,20 @@ public class Dragon extends AnimatedComponent {
 	int initialY;
 	boolean hungryBox;
 	
-	
-	private int UP=0;
- 	private int LEFT=1;
- 	private int RIGHT =2;
- 	private int DOWN=4;
- 	private int GAME=5;
+	//main screen functions
+	private int UP = 0;
+ 	private int LEFT = 1;
+ 	private int RIGHT = 2;
+ 	private int DOWN = 4;
+ 	
+ 	//game functions
+ 	private int GAME = 5;
+ 	
+ 	//intro screen functions
+ 	private int INTRO1 = 6;
+ 	private int INTRODOWN = 7;
+ 	private int INTROUP = 8;
+ 	
  	private double VY= Math.random(); //to randomize speed
  	
 	public Dragon(int x, int y, int w, int h,  String name, int price, String imgSrc) {
@@ -73,7 +82,7 @@ public class Dragon extends AnimatedComponent {
 	 */
 	public void checkBehaviors() {
 		//System.out.println(direction);
-		if(direction ==UP){
+		if(direction == UP){
 			setVy(-VY);
 			if(currentFrame==2)
 				currentFrame=0;
@@ -81,7 +90,7 @@ public class Dragon extends AnimatedComponent {
 				direction=DOWN;
 			}
 		}
-		if(direction ==DOWN){
+		if(direction == DOWN){
 			setVy(VY);
 			if(currentFrame==2)
 				currentFrame=0;
@@ -89,7 +98,7 @@ public class Dragon extends AnimatedComponent {
 				direction=UP;
 			}
 		}
-		if(direction ==LEFT){
+		if(direction == LEFT){
 			setVx(-VY);
 			if(currentFrame<3||currentFrame>=5)
 				currentFrame=3;
@@ -99,7 +108,7 @@ public class Dragon extends AnimatedComponent {
 				
 			}
 		}
-		if(direction ==RIGHT){
+		if(direction == RIGHT){
 			setVx(VY);
 			if(currentFrame<6||currentFrame==8)
 				currentFrame=6;
@@ -114,6 +123,36 @@ public class Dragon extends AnimatedComponent {
 			setVy(0);
 			if(currentFrame == 6){
 				currentFrame = 0;
+			}
+		}
+		if(direction == INTRO1){
+			setVx(0);
+			setVy(1);
+			if(currentFrame == 6){
+				currentFrame = 0;
+			}
+			if(getY() >= WelcomeScreen.getDragonY()){
+				direction = INTRODOWN;
+			}
+		}
+		
+		if(direction == INTRODOWN){
+			setVy(0.5);
+			if(currentFrame == 6){
+				currentFrame = 0;
+			}
+			if(getY() >= WelcomeScreen.getDragonY() + 10){
+				direction = INTROUP;
+			}
+		}
+		
+		if(direction == INTROUP){
+			setVy(-0.5);
+			if(currentFrame == 6){
+				currentFrame = 0;
+			}
+			if(getY() <= WelcomeScreen.getDragonY() - 10){
+				direction = INTRODOWN;
 			}
 		}
 	}
