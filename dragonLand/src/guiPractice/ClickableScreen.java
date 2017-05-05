@@ -3,6 +3,7 @@ package guiPractice;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import guiPractice.Screen;
@@ -12,7 +13,7 @@ import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
 import guiPractice.components.Visible;
 
-public abstract class ClickableScreen extends Screen implements MouseListener {
+public abstract class ClickableScreen extends Screen implements MouseListener, MouseMotionListener {
 
 	private ClickableGraphic pika;
 	protected ArrayList<Clickable> clickables;
@@ -85,5 +86,15 @@ public abstract class ClickableScreen extends Screen implements MouseListener {
 
 	public MouseListener getMouseListener(){
 		return this;
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// setX() to e.getX();
 	}
 }
