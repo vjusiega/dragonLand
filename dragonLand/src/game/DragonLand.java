@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-
+import game.EggIncuabtor.IncubatorScreen;
 import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.HomeScreen;
 import game.miniGameTeam.GameInstructions;
@@ -44,6 +44,7 @@ public class DragonLand extends GUIApplication {
 	public static Screen highscoreScreen; // high score
 	public static GameScreen miniGameScreen; // minigame
 	public static Screen gameInstructionsScreen;
+	public static Screen incubator;
 	public static Screen HelpScreen;
 	public static Color NAVY;
 	public static Color BRIGHT_PINK;
@@ -78,6 +79,7 @@ public class DragonLand extends GUIApplication {
 		highscoreScreen = new HighScoreScreen(getWidth(),getHeight());
 		HomeScreen.jenCode = new game.mainScreenTeam.HomeJenniber();
 		gameInstructionsScreen = new GameInstructions(getWidth(), getHeight());
+//		incubator = new IncubatorScreen(viewObjects);
 
 		setScreen(homeScreen);
 
