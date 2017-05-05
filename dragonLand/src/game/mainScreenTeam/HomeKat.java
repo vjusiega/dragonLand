@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import game.DragonLand;
+import game.miniGameTeam.GameScreen;
 import game.miniGameTeam.NoBorderButton;
 import game.shopScreen.BuyScreenInterface;
 import game.shopScreen.HomeShopScreen;
@@ -78,6 +79,7 @@ public class HomeKat implements DragonArrayInterface {
 
 			@Override
 			public void act() {
+				GameScreen.isNotHome = true;
 				((HomeShopScreen)DragonLand.shopMain).updateHomeShopLabels();
 				DragonLand.game.setScreen(DragonLand.shopMain);
 			}});
@@ -87,7 +89,7 @@ public class HomeKat implements DragonArrayInterface {
 
 			@Override
 			public void act() {
-				
+				GameScreen.isNotHome = true;
 				DragonLand.game.setScreen(DragonLand.gameInstructionsScreen);
 			}
 		
@@ -100,7 +102,8 @@ public class HomeKat implements DragonArrayInterface {
 			public void act() {
 				viewObjects.remove(this);
 			}});
-		
+			
+	
 		Button help = new Button(width-50-(width*2/100),height-50-(height*2/100),  50,  50,  "?",DragonLand.DARKER_NUDE,  new Action(){
 			@Override
 			public void act() {

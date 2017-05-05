@@ -22,6 +22,7 @@ import guiPractice.components.Visible;
  */
 public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	
+	//fields for layout
 	private Button title;
 	private Background background;
 	private Button back;
@@ -38,6 +39,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	private static ArrayList<Integer> highScores;
 	private static ArrayList<Button> buttons;
 	private int tCoins;
+	private Button replayGame;
 	
 	//fields for help dialog
 	private String text1;
@@ -63,21 +65,19 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
+		//initializing fields
 		createHelpDialog();
 
 		tCoins = DragonLand.coins;
 		buttons = new ArrayList<Button>();
 		highScores = new ArrayList<Integer>();
-		System.out.println(highScores);
 		roundScore =0;
-//		highScores.add(GameScreen.getScore());
-
-//		highScores.add(400);
-//		highScores.add(32);
-//		highScores.add(0);
-
-//		sortScores(highScores);
-		//helpBox = new Button()
+		replayGame = new Button(getWidth()-365, getHeight()-565, getWidth()-850, getHeight()-600, "Replay Game", DragonLand.DARKER_NUDE, new Action(){
+			@Override
+			public void act(){
+				DragonLand.game.setScreen(DragonLand.gameInstructionsScreen);
+			}
+		});
 		help = new Button(getWidth()-105, getHeight()-75, getWidth()-960, getHeight()-600, "?", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
@@ -119,6 +119,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 			
 			@Override
 			public void act(){
+				//removes all scores from viewObjects as to clear the scores from the display
 				viewObjects.remove(score1);
 				viewObjects.remove(score2);
 				viewObjects.remove(score3);
@@ -126,14 +127,15 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 			}
 		});
 		back = new Button(50,75, 40, 40, "X", DragonLand.DARKER_NUDE, new Action(){	
-
+			//goes back to the home screen
 			@Override
 			public void act() {
-				GameScreen.isInMiniGame = false;
+				GameScreen.isNotHome = false;
 				DragonLand.game.setScreen(DragonLand.homeScreen);
 			}
 			
 		});
+		//elements are added into viewObjects in such an order than they seem layered
 		viewObjects.add(background);
 		viewObjects.add(layerOne);
 		viewObjects.add(layerTwo);
@@ -150,12 +152,13 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		viewObjects.add(score1);
 		viewObjects.add(score2);
 		viewObjects.add(score3);
+		viewObjects.add(replayGame);
 	}
 	
 	public static void updateOnEnter(){
+		//updates the score and coin values everytime the highscore screen is shown
 		setRoundScore(GameScreen.getScore());
 		highScores.add(roundScore);
-		System.out.println(highScores);
 		totalCoins.setText("Total Coins: " + (DragonLand.coins+getCoins(GameScreen.getScore())));
 		DragonLand.coins+=getCoins(GameScreen.getScore());
 		yourScore.setText("Your Score: " + roundScore);
@@ -173,24 +176,10 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 					score3.setText("3) " + highScores.get(2));
 			}
 		}
-		
-//		if(highScores.size() > 3){
-//			score1.setText("1) " + highScores.get(2));
-//		}
-//		if(highScores.size() > 5 && highScores.size() < 12){
-//			sortScores(highScores);
-//			score1.setText("1) " + highScores.get(2));
-//			score2.setText("2) " + highScores.get(6));
-//		}
-//		if(highScores.size() > 12){
-//			sortScores(highScores);
-//			score1.setText("1) " + highScores.get(2));
-//			score2.setText("2) " + highScores.get(6));
-//			score3.setText("3) " + highScores.get(15));
-//		}
 	}
 	
 	public void createHelpDialog(){
+		//creates the text and layout for the help screen
 		helparray = new ArrayList<NoBorderButton>();
 		text1 = "Your top 3 scores will be displayed here";
 		btext1 = new NoBorderButton(getWidth()-870,getHeight()-480,getWidth()-250, getHeight()-540, text1, DragonLand.BRIGHT_PINK,null);
@@ -215,12 +204,14 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	}
 	
 	public static void sortScores(ArrayList<Integer> scores){
+		//sorts high score array in decreasing order
 		Comparator comparator = Collections.reverseOrder();
 		Collections.sort(scores,comparator);
 		highScores = scores;
 	}
 	
 	public void createButtons(){
+		//creates highscore buttons based on the length of highscore array and adds them to button array
 		if(highScores.size() == 0){
 			return;
 		}
@@ -278,6 +269,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	}
 	
 	public static int getCoins(int score){
+		//converts score value into coin value
 		if(score == 0){
 			return 0;
 		}

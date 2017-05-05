@@ -17,6 +17,7 @@ import guiPractice.components.Button;
  */
 public class CurvedButton extends Button {
 
+	//creates a button that is more curved
 	private Color color;
 	
 	public CurvedButton(int x, int y, int w, int h, String text, Color color, Action action) {

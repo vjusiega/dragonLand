@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import game.DragonLand;
 import game.mainScreenTeam.HomeKat;
+import game.miniGameTeam.GameScreen;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
@@ -41,7 +42,7 @@ public class HomeShopScreen extends ClickableScreen {
 		Button exit = new Button(getWidth() - 100,  60, 50, 40, "X", new Color(230,195,147), new Action(){
 			
 			public void act() {
-				
+				GameScreen.isNotHome = false;
 				DragonLand.game.setScreen(DragonLand.homeScreen);
 				HomeKat.dragonsOnScreen();
 			}
@@ -60,7 +61,7 @@ public class HomeShopScreen extends ClickableScreen {
 		ShopActionButton sell = new ShopActionButton(getWidth()/2 - buttonWidth/2, shopTopMargin + getHeight()/2 - topMargin, buttonWidth, buttonHeight, "SELL", new Color(230,195,147), new Action(){
 			public void act()
 			{
-				((ShopScreen) DragonLand.sellScreen).updateShopLabels();
+				((SellShopZheng) DragonLand.sellScreen).drawDragons();
 				DragonLand.game.setScreen(DragonLand.sellScreen);
 			}
 		});
@@ -82,7 +83,6 @@ public class HomeShopScreen extends ClickableScreen {
 	public void updateHomeShopLabels()
 	{
 		coins.setCoins();
-		System.out.println(((SellShopZheng) DragonLand.sellScreen).getDragonsInSellShop().size());
 		dragonAmount.setText(((SellShopZheng) DragonLand.sellScreen).getDragonsInSellShop().size() + "/6 Dragons");
 	}
 }

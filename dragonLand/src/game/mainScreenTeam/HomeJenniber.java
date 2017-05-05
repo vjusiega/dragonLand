@@ -141,7 +141,7 @@ public class HomeJenniber implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			if(!GameScreen.isInMiniGame 
+			if(!GameScreen.isNotHome 
 					&& HomeKat.dragonHome.getDragonsOnScreen().size()>0 
 					&& hungryBoxTimes.size()<HomeKat.dragonHome.getDragonsOnScreen().size())
 				{
@@ -162,6 +162,11 @@ public class HomeJenniber implements Runnable {
 				DragonLand.homeScreen.remove(hungryBox);
 			}
 		}
+	}
+
+	public void removeHungry(HungryBox hungryBox) {
+		hungryBoxTimes.remove(hungryBox);
+		DragonLand.homeScreen.remove(hungryBox);
 	}
 }
 

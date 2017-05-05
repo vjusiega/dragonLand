@@ -20,6 +20,8 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 	private int dragonXPos;
 	private boolean touched;
 	private boolean test;
+	
+	private int powerUp;
 	/**
 	 * @param x
 	 * @param y
@@ -35,6 +37,7 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 		touched = false; 
 		tStar = this;
 		test = false;
+		//powerUp = 0; 
 	}
 	
 	@Override
@@ -45,14 +48,16 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 				touched = true;
 				game.removeStar(this);
 				setRunning(false);
-				int score = GameScreen.getScore() + 1;
+				int score = GameScreen.getScore() + (GameVioletta.vGame.getDragonArray()).size();
 				GameScreen.setScore(score);
 				GameScreen.setScoreDisplay();
-				if(score == 5 || score == 10 || score == 15){
+				GameScreen.tGame.setPowerUp((GameScreen.tGame.getPowerUp() + 1));
+				if(GameScreen.tGame.getPowerUp() == 10){
 					GameScreen.tGame.addDragonToScreen(GameVioletta.vGame.addDragon("img/dragon1.png"));
 				}
 			}
 			else if(getY() > GameScreen.getHeight() - 100){
+				GameScreen.tGame.setPowerUp(0);
 				setRunning(false);
 				touched = true;
 				game.removeStar(this);
@@ -66,7 +71,9 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 				setVy(2);
 			if(GameScreen.getScore() >= 15 && GameScreen.getScore() < 20)
 				setVy(2.5);
-		
+			if(GameScreen.getScore() >= 20){
+				setVy(2.5);
+			}		
 		}else{
 			//HighScoreScreen.setRoundScore(GameScreen.getScore());
 			//HighScoreScreen.updateOnEnter();
