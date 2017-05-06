@@ -128,7 +128,7 @@ public class Dragon extends AnimatedComponent {
 		if(direction == INTRO1){
 			setVx(0);
 			setVy(1);
-			if(currentFrame == 6){
+			if(currentFrame == 2){
 				currentFrame = 0;
 			}
 			if(getY() >= WelcomeScreen.getDragonY()){
@@ -138,7 +138,7 @@ public class Dragon extends AnimatedComponent {
 		
 		if(direction == INTRODOWN){
 			setVy(0.5);
-			if(currentFrame == 6){
+			if(currentFrame == 2){
 				currentFrame = 0;
 			}
 			if(getY() >= WelcomeScreen.getDragonY() + 10){
@@ -148,7 +148,7 @@ public class Dragon extends AnimatedComponent {
 		
 		if(direction == INTROUP){
 			setVy(-0.5);
-			if(currentFrame == 6){
+			if(currentFrame == 2){
 				currentFrame = 0;
 			}
 			if(getY() <= WelcomeScreen.getDragonY() - 10){
