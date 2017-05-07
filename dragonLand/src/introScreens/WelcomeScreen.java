@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import game.DragonLand;
 import game.mainScreenTeam.Dragon;
 import game.miniGameTeam.GameVioletta;
 import guiPractice.ClickableScreen;
@@ -36,8 +37,21 @@ public class WelcomeScreen extends ClickableScreen{
 		GraphicMovingComponent fog = new Fog(0, 5*getHeight()/7, 100, 100, "img/introFog.png", 2, 0);
 		viewObjects.add(fog);
 		
+		//changeScreen();
+		
+		
 	}
 	
+//	private void changeScreen() {
+//		try {
+//			Thread.sleep(10000);
+//			DragonLand.game.setScreen(DragonLand.homeScreen);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
+//		
+//	}
+
 	public Dragon setUpDragons(int drag){
 		String imgSrc = "img/dragon" + drag + ".png";
 		int dragonHeight = getHeight()/8;

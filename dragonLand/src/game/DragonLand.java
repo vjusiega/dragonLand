@@ -84,7 +84,8 @@ public class DragonLand extends GUIApplication {
 		welcomeScreen = new WelcomeScreen(getWidth(), getHeight());
 //		incubator = new IncubatorScreen(viewObjects);
 
-		setScreen(homeScreen);
+		setScreen(welcomeScreen);
+		
 
 	}
 	private void initColors() {
