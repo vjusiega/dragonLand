@@ -19,7 +19,7 @@ public class Dragon extends AnimatedComponent {
 	
 	/**
 	 * @author Kat 
-	 *
+	 * w/ mods by Violetta
 	 */
 	private String name;
 	private int price;
@@ -54,6 +54,22 @@ public class Dragon extends AnimatedComponent {
 		this.hungryBox = false;
 
 	}
+	
+	public Dragon(int x, int y, int w, int h, String imgSrc){
+		super(x, y, w, h);
+		name = "display_only";
+		price = 0; 
+		this.imgSrc = imgSrc;
+		this.hungryBox = false; 
+		setDragonAnimation(this, imgSrc);
+		
+		
+	}
+	
+	public void setCurrentFrame(int frame){
+		currentFrame = frame;
+	}
+	
 	/*
 	 * set based on the y coordinate given
 	 * tells it how it will move
@@ -84,8 +100,8 @@ public class Dragon extends AnimatedComponent {
 		//System.out.println(direction);
 		if(direction == UP){
 			setVy(-VY);
-			if(currentFrame==2)
-				currentFrame=0;
+			if(currentFrame == 2)
+				currentFrame = 0;
 			if((initialY-getY())>30){
 				direction=DOWN;
 			}
@@ -110,8 +126,8 @@ public class Dragon extends AnimatedComponent {
 		}
 		if(direction == RIGHT){
 			setVx(VY);
-			if(currentFrame<6||currentFrame==8)
-				currentFrame=6;
+			if(currentFrame < 6||currentFrame==8)
+				currentFrame = 6;
 			if((getX()-initialX)>30){
 				currentFrame=3;
 				direction=LEFT;
@@ -121,7 +137,7 @@ public class Dragon extends AnimatedComponent {
 		if(direction == GAME){
 			setVx(0);
 			setVy(0);
-			if(currentFrame == 6){
+			if(currentFrame == 2){
 				currentFrame = 0;
 			}
 		}
@@ -216,6 +232,35 @@ public class Dragon extends AnimatedComponent {
 	
 	public void setHungryBox(boolean hungryBox){
 		this.hungryBox = hungryBox; 
+	}
+	
+	public void setDragonAnimation(Dragon d, String imgSrc){
+		AnimatedComponent a = (AnimatedComponent) d;
+		
+		try{
+			ImageIcon icon = new ImageIcon(imgSrc);
+			int numberRow = 3;
+			int rows = 4;
+			int w = 48;
+			int h = 48;
+			for(int i=0; i<numberRow*rows; i++){
+				//declare cropped image
+				BufferedImage cropped = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
+				int leftMargin=0;
+				int topMargin =0 ;
+				int x1 = leftMargin + w*(i%numberRow);
+				int y1=topMargin +h*(i/numberRow);
+				Graphics g = cropped.createGraphics();
+				g.drawImage(icon.getImage(),0,0,w,h,x1,y1,x1+w,y1+h,null);
+				a.addFrame(cropped, 300);
+				if(i==numberRow*rows-1)
+					i++;
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
 	}
 
 }
