@@ -71,13 +71,13 @@ public class GameVioletta implements gameDragonInterface{
 		
 		int yPos = screenHeight - dragonHeight;
 		
-		Dragon d = new Dragon(xPos, yPos, dragonHeight, dragonHeight, "", 0, imgSrc);
+		Dragon d = new Dragon(xPos, yPos, dragonHeight, dragonHeight, imgSrc);
 		
 		d.setDragonAnimation(d, imgSrc);
 		dragonArray.add(d);
 		d.setX(xPos);
 		d.setY(yPos);
-		d.setDirection(5);
+		d.setDirection(0);
 		d.play();
 		d.setCurrentFrame(0);
 		return d;
