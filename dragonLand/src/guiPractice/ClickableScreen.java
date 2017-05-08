@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
+import game.mainScreenTeam.Draggable;
 import guiPractice.Screen;
 import guiPractice.components.Action;
 import guiPractice.components.Clickable;
@@ -17,6 +18,7 @@ public abstract class ClickableScreen extends Screen implements MouseListener, M
 
 	private ClickableGraphic pika;
 	protected ArrayList<Clickable> clickables;
+	protected ArrayList<Draggable> draggables;
 	
 	public ClickableScreen(int width, int height) {
 		super(width, height);
@@ -52,9 +54,13 @@ public abstract class ClickableScreen extends Screen implements MouseListener, M
 	public void initObjects(ArrayList<Visible> viewObjects) {
 		initAllObjects(viewObjects);
 		clickables = new ArrayList<Clickable>();
+		draggables = new ArrayList<Draggable>();
 		for(Visible object: viewObjects){
 			if(object instanceof Clickable){
 				clickables.add((Clickable)object);
+			}
+			else if(object instanceof Draggable){
+				draggables.add((Draggable)object);
 			}
 		}
 
@@ -90,11 +96,18 @@ public abstract class ClickableScreen extends Screen implements MouseListener, M
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
+		for(int i=0; i<draggables.size();i++){
+			Draggable d= (Draggable) draggables.get(i);
+			if(d.isHovered(d.getX(), d.getY())){
+				d.setX(e.getX());
+				d.setY(e.getY());
+			}
+		}
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// setX() to e.getX();
+		
 	}
 }

@@ -11,6 +11,13 @@ public class DragonFood extends Graphic implements Draggable {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public boolean isHovered(int x, int y) {
+		if(x>getX()&&x<(getX()+getWidth())&&y>getY()&&y<(getY()+getHeight()))
+			return true;
+		return false;
+	}
 
+	
 
 }
