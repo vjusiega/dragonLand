@@ -172,11 +172,11 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 		
 		try{
 			ImageIcon icon = new ImageIcon(imgSrc);
-			int numberRow =3 ;
-			int rows =4;
-			int w =48;
+			int numberRow = 3;
+			int rows = 4;
+			int w = 48;
 			int h = 48;
-			for(int i=0;i<numberRow*rows;i++){
+			for(int i=0; i<numberRow*rows; i++){
 				//declare cropped image
 				BufferedImage cropped = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
 				int leftMargin=0;

@@ -23,6 +23,7 @@ import game.shopScreen.SellShopZheng;
 import guiPractice.GUIApplication;
 import guiPractice.Screen;
 import guiPractice.components.AnimatedComponent;
+import introScreens.WelcomeScreen;
 
 /**
  * @author Kat
@@ -51,6 +52,7 @@ public class DragonLand extends GUIApplication {
 	public static Color LIGHT_PINK;
 	public static Color LIGHT_NUDE;
 	public static Color DARKER_NUDE;
+	public static WelcomeScreen welcomeScreen;
 	
 	
 	/**
@@ -79,9 +81,11 @@ public class DragonLand extends GUIApplication {
 		highscoreScreen = new HighScoreScreen(getWidth(),getHeight());
 		HomeScreen.jenCode = new game.mainScreenTeam.HomeJenniber();
 		gameInstructionsScreen = new GameInstructions(getWidth(), getHeight());
+		welcomeScreen = new WelcomeScreen(getWidth(), getHeight());
 //		incubator = new IncubatorScreen(viewObjects);
 
-		setScreen(homeScreen);
+		setScreen(welcomeScreen);
+		
 
 	}
 	private void initColors() {

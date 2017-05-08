@@ -27,7 +27,7 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
 
-		background=new Graphic(0,0,getWidth(),getHeight(),"img/Grassland.png");
+		background=new Graphic(0,0,getWidth(),getHeight(),"img/Grassland.jpg");
 		viewObjects.add(background);
 		HomeKat katCode=new HomeKat(viewObjects, getWidth(), getHeight());
 		
