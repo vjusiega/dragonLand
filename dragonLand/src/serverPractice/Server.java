@@ -35,7 +35,6 @@ public class Server extends JFrame{
 						userText.setText("");
 							//once you send you want the message area to be clear
 							//reset
-						
 					}
 				}
 			);
@@ -148,16 +147,17 @@ public class Server extends JFrame{
 		
 	//close streams and sockets after you are done chatting
 	private void closeCrap(){
-		showMessage("\n Closing connections… \n"); // these type of messages are also like loading messages 
+		showMessage("\n Closing connections \n"); // these type of messages are also like loading messages 
 		ableToType(false); //user cannot type while connections are being closed
 		try{
 			output.close(); //stream closed
 			input.close(); //stream closed
 			connection.close(); //closes the socket i.e. the main connection
-				//if you don’t close things you will waste memory on your server
+				//if you don't close things you will waste memory on your server
 			//this is all you have to do! 
 		}catch(IOException ioException){
 			ioException.printStackTrace();
+		}
 	}
 		
 	//send a message to client (computer that is connected to the server)
@@ -194,7 +194,9 @@ public class Server extends JFrame{
 		//this creates a thread that updates a part of the GUI
 	}
 	
-	//by default, setEditable is set to false because user should not be allowed to type when they are not connected to a stream
+	//by default, setEditable is set to false because user 
+		//should not be allowed to type when they are not 
+		//connected to a stream
 	//let the user type stuff into their box
 	private void ableToType(final boolean tof){
 		//tof = true or false
