@@ -93,8 +93,8 @@ public class Client extends JFrame{
 			try{
 				//now what do you want to happen when you are chatting
 				message = (String) input.readObject();
-				//whatever they are sending through their stream
-				//treat it as a string and store it in the variable message
+					//take whatever they are sending through their stream
+					//treat it as a string and store it in the variable message
 				showMessage("\n" + message);
 			}catch(ClassNotFoundException classNotFoundException){
 				showMessage("\n I don't know that object type.");
@@ -102,5 +102,10 @@ public class Client extends JFrame{
 		}while(!message.equals("SERVER - END"));
 		//as long as the server person doesn't type end, you can 
 		//continue to have a conversation
+			//The reason why it's "SERVER - END" and not just "END"
+			//is because sendMessage is programmed so that every time
+			//you send a message, you send it with the name/username
+			//of whoever is sending it
+			//so the computer receives "username + message"
 	}
 }
