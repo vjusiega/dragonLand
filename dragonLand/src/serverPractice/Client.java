@@ -108,4 +108,65 @@ public class Client extends JFrame{
 			//of whoever is sending it
 			//so the computer receives "username + message"
 	}
+	
+	//close the streams and sockets
+	private void closeCrap(){
+		showMessage("\n closing stuff down");
+		ableToType(false);
+		try{
+			output.close(); //closes output stream
+			input.close();
+			connection.close();
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+	
+	//send messages to server
+	private void sendMessage(String message){
+		try{
+			output.writeObject("CLIENT - " + message);
+			output.flush();
+			showMessage("\nCLIENT - " + message); 
+				//even though you sent to through the stream does not mean that it is shown
+				//makes it show on the GUI
+		}catch(IOException e){
+			chatWindow.append("\n something messed up sending message");
+		}
+	}
+	
+	//updates the GUI (chatwindow)
+	private void showMessage(final String m){
+		SwingUtilities.invokeLater(
+			new Runnable(){
+				public void run(){
+					chatWindow.append(m);
+				}
+			}
+		);
+	}
+	
+	//figure out why is it final
+	//gives user permision to type into the text box
+	private void ableToType(final boolean tof){
+		SwingUtilities.invokeLater(
+			new Runnable(){
+				public void run(){
+					userText.setEditable(tof);
+				}
+			}
+		);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
