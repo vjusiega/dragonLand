@@ -60,7 +60,7 @@ public class WelcomeScreen extends ClickableScreen{
 		if(drag == 1){
 			xPos = getWidth()/4;
 		}else{
-			xPos = (3*getWidth()/4) - dragonWidth;
+			xPos = (3*(getWidth()/4)) - dragonWidth;
 		}
 		
 		int yPos = (-1)*dragonHeight;
