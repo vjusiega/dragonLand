@@ -85,4 +85,22 @@ public class Client extends JFrame{
 		showMessage("\n Streams are now connected \n");
 	}
 	
+	//while chatting with server
+	private void whileChatting() throws IOException{
+		//now connected, make sure the user is able to now type
+		ableToType(true);
+		do{
+			try{
+				//now what do you want to happen when you are chatting
+				message = (String) input.readObject();
+				//whatever they are sending through their stream
+				//treat it as a string and store it in the variable message
+				showMessage("\n" + message);
+			}catch(ClassNotFoundException classNotFoundException){
+				showMessage("\n I don't know that object type.");
+			}
+		}while(!message.equals("SERVER - END"));
+		//as long as the server person doesn't type end, you can 
+		//continue to have a conversation
+	}
 }
