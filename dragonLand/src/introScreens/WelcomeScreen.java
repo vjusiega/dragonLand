@@ -9,8 +9,11 @@ import javax.swing.ImageIcon;
 import game.DragonLand;
 import game.mainScreenTeam.Dragon;
 import game.miniGameTeam.GameVioletta;
+import game.miniGameTeam.HighScoreScreen;
 import guiPractice.ClickableScreen;
+import guiPractice.components.Action;
 import guiPractice.components.AnimatedComponent;
+import guiPractice.components.Button;
 import guiPractice.components.Graphic;
 import guiPractice.components.GraphicMovingComponent;
 import guiPractice.components.Visible;
@@ -33,6 +36,14 @@ public class WelcomeScreen extends ClickableScreen{
 		dragons = new ArrayList<Dragon>();
 		viewObjects.add(setUpDragons(1));
 		viewObjects.add(setUpDragons(3));
+		
+		Button exit = new Button(30, 50, 40, 40, "X", DragonLand.DARKER_NUDE, new Action() {
+			@Override
+			public void act() {
+				DragonLand.game.setScreen(DragonLand.homeScreen);
+			}
+		});
+		viewObjects.add(exit);
 		
 		GraphicMovingComponent fog = new Fog(0, 5*getHeight()/7, 100, 100, "img/introFog.png", 2, 0);
 		viewObjects.add(fog);
