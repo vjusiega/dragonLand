@@ -14,14 +14,15 @@ import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
 import guiPractice.components.Visible;
 
-public abstract class ClickableScreen extends Screen implements MouseListener, MouseMotionListener {
+public abstract class ClickableScreen extends Screen  implements MouseListener, MouseMotionListener  {
 
 	private ClickableGraphic pika;
 	protected ArrayList<Clickable> clickables;
 	protected ArrayList<Draggable> draggables;
-	
+ 
 	public ClickableScreen(int width, int height) {
 		super(width, height);
+		//this.addMouseMotionListener(this);
 		
 	}
 
@@ -32,15 +33,19 @@ public abstract class ClickableScreen extends Screen implements MouseListener, M
 		 if(clickables != null && v instanceof Clickable){
 			 clickables.add((Clickable)v);
 		 }
+		 if(draggables != null && v instanceof Draggable)
+			 draggables.add((Draggable)v);
 	}
 
 	public void remove(Visible v){
 		super.remove(v);
 		clickables.remove(v);
+		draggables.remove(v);
 	} 
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		System.out.println("mouseclicked");
 		for(int i=0; i<clickables.size();i++){
 			Clickable c= clickables.get(i);
 			if(c.getAction() != null && c.isHovered(e.getX(), e.getY())){
@@ -66,6 +71,10 @@ public abstract class ClickableScreen extends Screen implements MouseListener, M
 
 	}
 	
+	public MouseMotionListener getMouseMotionListener(){
+		return this;
+	}
+	
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
@@ -79,35 +88,32 @@ public abstract class ClickableScreen extends Screen implements MouseListener, M
 	}
 
 	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
+	public void mousePressed(MouseEvent e) {
+		
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
+	public void mouseReleased(MouseEvent e) {
+		Draggable d= (Draggable) draggables.get(0);
+		d.setX(d.getOrigX());
+		d.setY(d.getOrigY());
 	}
-
+	@Override
 	public MouseListener getMouseListener(){
 		return this;
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		for(int i=0; i<draggables.size();i++){
-			Draggable d= (Draggable) draggables.get(i);
-			if(d.isHovered(d.getX(), d.getY())){
-				d.setX(e.getX());
-				d.setY(e.getY());
-			}
+		Draggable d= (Draggable) draggables.get(0);
+		if(d.isHovered(e.getX(), e.getY())){
+			d.setX(e.getX() - 37);
+			d.setY(e.getY()-37);
 		}
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// setX() to e.getX();
-		
+		//System.out.println("moved");
 	}
 }
