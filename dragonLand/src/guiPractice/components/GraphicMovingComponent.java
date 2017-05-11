@@ -9,7 +9,6 @@ public abstract class GraphicMovingComponent extends MovingComponent {
 
 	private int x;
 	private int y;
-	private String imageLocation;
 	private BufferedImage image;
 	private String img;
 	private boolean loadedImages;
@@ -23,8 +22,8 @@ public abstract class GraphicMovingComponent extends MovingComponent {
 
 	@Override
 	public void drawImage(Graphics2D g) {
-		Graphic star = new Graphic(0, 0, 100, 100, "img/star.png");
-		g.drawImage(star.getImage(), star.getX(), star.getY(), star.getWidth(), star.getHeight(), null);
+		Graphic image = new Graphic(0, 0, 100, 100, img);
+		g.drawImage(image.getImage(), image.getX(), image.getY(), image.getWidth(), image.getHeight(), null);
 	}
 	
 	public BufferedImage getImage() {

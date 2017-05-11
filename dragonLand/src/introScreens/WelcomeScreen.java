@@ -22,6 +22,7 @@ public class WelcomeScreen extends ClickableScreen{
 	
 	private ArrayList<Dragon> dragons;
 	private Graphic background;
+	private ArrayList<Fog> fogList; 
 
 	public WelcomeScreen(int width, int height) {
 		super(width, height);
@@ -45,23 +46,22 @@ public class WelcomeScreen extends ClickableScreen{
 		});
 		viewObjects.add(exit);
 		
-		GraphicMovingComponent fog = new Fog(0, 5*getHeight()/7, 100, 100, "img/introFog.png", 2, 0);
-		viewObjects.add(fog);
+		fogList = new ArrayList<Fog>();
+		Fog fog; 
+		
+		for(int i = 0; i < 10; i++){
+			fog = new Fog((i*getWidth() / 10), 200, 500, 300, "img/introFog.png", 20);
+			fogList.add(fog);
+			viewObjects.add(fog);
+			fog.setY(fog.generateYPos());
+			fog.play();
+		}
 		
 		//changeScreen();
 		
 		
 	}
-	
-//	private void changeScreen() {
-//		try {
-//			Thread.sleep(10000);
-//			DragonLand.game.setScreen(DragonLand.homeScreen);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
-//		
-//	}
+
 
 	public Dragon setUpDragons(int drag){
 		String imgSrc = "img/dragon" + drag + ".png";

@@ -5,20 +5,29 @@ import guiPractice.components.GraphicMovingComponent;
 
 public class Fog extends GraphicMovingComponent {
 	
-	//this class can be used for any image that is moving.
+	private int heightVariance;
 
-	public Fog(int x, int y, int w, int h, String imageLocation, int vx, int vy) {
+	public Fog(int x, int y, int w, int h, String imageLocation, int heightVariance) {
 		super(x, y, w, h, imageLocation);
-		setVx(vx);
-		setVy(vy);
-		// TODO Auto-generated constructor stub
+		this.heightVariance = heightVariance;
+		setVx(Math.random());
+		setVy(0);
 	}
 
 	@Override
 	public void checkBehaviors() {
 		if(getX() > Screen.getWidth()){
-			setX(0);
+			super.setX(0);
+			setY(generateYPos());
+			setVx(Math.random() * 3);
 		}
+	}
+	
+	public int generateYPos(){
+		int add = (int) (Math.random() * heightVariance);
+		int multiplier = (int) (Math.random() * 2) + 1;
+		
+		return getY() + (add * multiplier);
 	}
 
 }
