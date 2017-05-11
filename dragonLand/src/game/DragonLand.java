@@ -6,6 +6,9 @@ package game;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.io.FileReader;
+import java.io.BufferedReader;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -24,6 +27,7 @@ import guiPractice.GUIApplication;
 import guiPractice.Screen;
 import guiPractice.components.AnimatedComponent;
 import introScreens.WelcomeScreen;
+
 
 /**
  * @author Kat
@@ -61,8 +65,12 @@ public class DragonLand extends GUIApplication {
 //	public static void addDragon(AnimatedComponent a){
 //		dragonList.add(a);
 //	}
-	public DragonLand() {
-
+	public DragonLand(Dragon[] savedDragons) {
+		if(savedDragons != null){
+			
+		}else{
+			
+		}
 	}
 
 	/* (non-Javadoc)
@@ -100,9 +108,17 @@ public class DragonLand extends GUIApplication {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		game = new DragonLand();
+		try{
+			
+			game = new DragonLand(null);
+			Thread go = new Thread(game);
+			go.start();
+		}catch
+		(IOException e){
+		game = new DragonLand(null);
 		Thread go = new Thread(game);
 		go.start();
+		}
 	}
 	
 	//public coin getter + setter
