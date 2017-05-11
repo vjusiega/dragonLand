@@ -31,5 +31,13 @@ public class Fog extends GraphicMovingComponent {
 		
 		return getY() + (add * multiplier);
 	}
+	
+	public double generateRandomSpeed(){
+		double random = Math.random();
+		if(random < 0.5){
+			random = random * 2;
+		}
+		return random;
+	}
 
 }

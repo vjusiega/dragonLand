@@ -22,7 +22,6 @@ public class WelcomeScreen extends ClickableScreen{
 	
 	private ArrayList<Dragon> dragons;
 	private Graphic background;
-	private ArrayList<Fog> fogList; 
 
 	public WelcomeScreen(int width, int height) {
 		super(width, height);
@@ -46,27 +45,19 @@ public class WelcomeScreen extends ClickableScreen{
 		});
 		viewObjects.add(exit);
 		
-		fogList = new ArrayList<Fog>();
+		setUpFog();
+	}
+
+	public void setUpFog(){
 		Fog fog; 
 		
-		for(int i = 0; i < 10; i++){
-			if(i == 0){
-				fog = new Fog(-100, 200, 500, 300, "img/introFog.png", 50);
-			}
-			else{
-				fog = new Fog((i*getWidth() / 10), 200, 500, 300, "img/introFog.png", 50);
-			}
-			fogList.add(fog);
+		for(int i = -10; i < 10; i++){
+			fog = new Fog((i*getWidth() / 10), 200, 500, 300, "img/introFog.png", 50);
 			viewObjects.add(fog);
 			fog.setY(fog.generateYPos());
 			fog.play();
 		}
-		
-		//changeScreen();
-		
-		
 	}
-
 
 	public Dragon setUpDragons(int drag){
 		String imgSrc = "img/dragon" + drag + ".png";
