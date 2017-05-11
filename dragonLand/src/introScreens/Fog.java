@@ -17,9 +17,10 @@ public class Fog extends GraphicMovingComponent {
 	@Override
 	public void checkBehaviors() {
 		if(getX() > Screen.getWidth()){
-			super.setX(0);
+			setX(0);
 			setY(generateYPos());
 			setVx(Math.random() * 3);
+			update();
 		}
 	}
 	
