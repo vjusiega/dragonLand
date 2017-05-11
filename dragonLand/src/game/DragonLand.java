@@ -4,6 +4,7 @@
 package game;
 
 import java.awt.Color;
+import java.awt.Dimension;
 
 import game.mainScreenTeam.HomeScreen;
 import game.miniGameTeam.GameInstructions;
@@ -25,6 +26,9 @@ public class DragonLand extends GUIApplication {
 	/**
 	 * 
 	 */
+	
+	public static final int WIDTH = 1000;
+	public static final int HEIGHT = 640;
 	private static final long serialVersionUID = 1L;
 	
 	public static DragonLand game;
@@ -51,7 +55,7 @@ public class DragonLand extends GUIApplication {
 //		dragonList.add(a);
 //	}
 	public DragonLand() {
-
+		setSize(new Dimension(WIDTH, HEIGHT));
 	}
 
 	/* (non-Javadoc)
@@ -62,14 +66,14 @@ public class DragonLand extends GUIApplication {
 		initColors();
 
 
-		miniGameScreen = new GameScreen(getWidth(),getHeight());
-		shopMain = new HomeShopScreen(getWidth(),getHeight());
-		sellScreen = new SellShopZheng(getWidth(),getHeight());
-		homeScreen = new HomeScreen(getWidth(),getHeight());
-		buyScreen = new BuyScreenWendy(getWidth(),getHeight());
-		highscoreScreen = new HighScoreScreen(getWidth(),getHeight());
+		miniGameScreen = new GameScreen(DragonLand.WIDTH,DragonLand.HEIGHT);
+		shopMain = new HomeShopScreen(DragonLand.WIDTH,DragonLand.HEIGHT);
+		sellScreen = new SellShopZheng(DragonLand.WIDTH,DragonLand.HEIGHT);
+		homeScreen = new HomeScreen(DragonLand.WIDTH,DragonLand.HEIGHT);
+		buyScreen = new BuyScreenWendy(DragonLand.WIDTH,DragonLand.HEIGHT);
+		highscoreScreen = new HighScoreScreen(DragonLand.WIDTH,DragonLand.HEIGHT);
 		HomeScreen.jenCode = new game.mainScreenTeam.HomeJenniber();
-		gameInstructionsScreen = new GameInstructions(getWidth(), getHeight());
+		gameInstructionsScreen = new GameInstructions(DragonLand.WIDTH,DragonLand.HEIGHT);
 
 		setScreen(homeScreen);
 

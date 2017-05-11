@@ -54,7 +54,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		time = 2500;
 		starArray = new ArrayList<Star1>();
 
-		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
+		background = new Graphic(0,0,DragonLand.WIDTH,DragonLand.HEIGHT,"img/forest.jpg");
 		viewObjects.add(background);
 
 		exit = new Button(30, 50, 40, 40, "X", DragonLand.DARKER_NUDE, new Action() {
@@ -67,12 +67,12 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 			}
 		});
 
-		scoreDisplay = new Button(getWidth()-150, 50, 120, 50, "Score: " + score, DragonLand.DARKER_NUDE, null);
+		scoreDisplay = new Button(DragonLand.WIDTH-150, 50, 120, 50, "Score: " + score, DragonLand.DARKER_NUDE, null);
 
 		view.add(exit);
 		view.add(scoreDisplay);
 
-		GameVioletta vGameObject = new GameVioletta();
+//		GameVioletta vGameObject = new GameVioletta();
 	}
 
 	protected void stopGame() {
@@ -146,7 +146,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 
 	public int randomX(){
 		//80 through getWidth()-175
-		int max = getWidth()-175;
+		int max = DragonLand.WIDTH-175;
 		int min = 80;
 		int xPos = (int) (Math.random()*(max - min) + min);
 		return xPos;

@@ -52,7 +52,7 @@ public abstract class ShopScreen extends ClickableScreen {
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
-
+		
 
 		Graphic background=new Graphic(0,0,getWidth(),getHeight(),"img/Grassland.png");
 		int backWidth = getWidth()-100;

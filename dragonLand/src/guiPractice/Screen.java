@@ -1,8 +1,9 @@
 package guiPractice;
 
 import java.awt.Color;
-
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.KeyListener;
@@ -11,31 +12,53 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
+
+import game.DragonLand;
 import guiPractice.components.Visible;
 
-public abstract class Screen {
+public abstract class Screen extends JPanel {
 	
-	private static int width;
-	private static int height;
+	//private static int width;
+	//private static int height;
 	protected ArrayList<Visible> viewObjects;
 	
 	protected BufferedImage image;
 	
 	public Screen(int width, int height){
+		setPreferredSize(new Dimension(width,height));
+		setBackground(Color.red);
 		viewObjects=new ArrayList<Visible>();
-		this.width = width;
-		this.height= height;
+		//this.width = width;
+		//this.height= height;
 		initObjects(viewObjects);
 		initImage();
 		}
 	
+	public int getWidth(){
+		return DragonLand.WIDTH;
+	}
+	
+	public int getHeight(){
+		return DragonLand.HEIGHT;
+	}
+	
 	public abstract void initObjects(ArrayList<Visible> viewObjects2);
 
 	private void initImage() {
-		image=new BufferedImage(width,height,BufferedImage.TYPE_INT_ARGB);
+		image=new BufferedImage(DragonLand.WIDTH,DragonLand.HEIGHT,BufferedImage.TYPE_INT_ARGB);
 		update();	
 	}
 
+//	public void paintComponents(Graphics g){
+//		g.drawImage(getImage(), 0, 0, null);
+//	}
+	
+	public void paint(Graphics g){
+		g.drawImage(getImage(), 0, 0, null);
+	}
+	
+	
 	public void update() {
 		Graphics2D g = image.createGraphics();
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -139,13 +162,13 @@ public abstract class Screen {
 		return null;
 	}
 
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
-	}
+//	public void setWidth(int width) {
+//		this.width = width;
+//	}
+//
+//	public void setHeight(int height) {
+//		this.height = height;
+//	}
 
 	public MouseMotionListener getMouseMotionListener() {
 		return null;
@@ -155,13 +178,13 @@ public abstract class Screen {
 		return null;
 	}
 	
-	public static int getWidth() {
-		return width;
-	}
-
-	public static int getHeight() {
-		return height;
-	}
+//	public int getWidth() {
+//		return width;
+//	}
+//
+//	public int getHeight() {
+//		return height;
+//	}
 
 	public void addObject(Visible v) {
 		viewObjects.add(v);
