@@ -12,15 +12,16 @@ public class Fog extends GraphicMovingComponent {
 		this.heightVariance = heightVariance;
 		setVx(Math.random());
 		setVy(0);
+		setY(generateYPos());
 	}
 
 	@Override
 	public void checkBehaviors() {
 		if(getX() > Screen.getWidth()){
-			setX(0);
+			setX(-1*this.getWidth());
 			setY(generateYPos());
-			setVx(Math.random() * 3);
-			update();
+			setVx(Math.random());
+			//update();
 		}
 	}
 	

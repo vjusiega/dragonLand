@@ -50,7 +50,12 @@ public class WelcomeScreen extends ClickableScreen{
 		Fog fog; 
 		
 		for(int i = 0; i < 10; i++){
-			fog = new Fog((i*getWidth() / 10), 200, 500, 300, "img/introFog.png", 20);
+			if(i == 0){
+				fog = new Fog(-100, 200, 500, 300, "img/introFog.png", 50);
+			}
+			else{
+				fog = new Fog((i*getWidth() / 10), 200, 500, 300, "img/introFog.png", 50);
+			}
 			fogList.add(fog);
 			viewObjects.add(fog);
 			fog.setY(fog.generateYPos());
