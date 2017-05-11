@@ -19,6 +19,7 @@ public abstract class ClickableScreen extends Screen  implements MouseListener, 
 	private ClickableGraphic pika;
 	protected ArrayList<Clickable> clickables;
 	protected ArrayList<Draggable> draggables;
+	private boolean alreadyDragging;
  
 	public ClickableScreen(int width, int height) {
 		super(width, height);
@@ -97,6 +98,7 @@ public abstract class ClickableScreen extends Screen  implements MouseListener, 
 		Draggable d= (Draggable) draggables.get(0);
 		d.setX(d.getOrigX());
 		d.setY(d.getOrigY());
+		alreadyDragging=false;
 	}
 	@Override
 	public MouseListener getMouseListener(){
@@ -106,10 +108,12 @@ public abstract class ClickableScreen extends Screen  implements MouseListener, 
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		Draggable d= (Draggable) draggables.get(0);
-		if(d.isHovered(e.getX(), e.getY())){
+		if(d.isHovered(e.getX(), e.getY()) || alreadyDragging){
+			alreadyDragging = true;
 			d.setX(e.getX() - 37);
-			d.setY(e.getY()-37);
+			d.setY(e.getY() - 37);
 		}
+		
 	}
 
 	@Override
