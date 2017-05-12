@@ -25,7 +25,11 @@ public class Button extends TextLabel implements Clickable{
 		this.action=action;
 		update();
 	}
-
+	public Button(int x, int y, int w, int h, String text, Color color) {
+		super(x, y, w, h, text);
+		this.color=color;
+		update();
+	}
 	public Color getColor() {
 		return color;
 	}

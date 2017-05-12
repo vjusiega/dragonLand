@@ -37,7 +37,7 @@ public class HomeShopScreen extends ClickableScreen {
 		int titleY = shopTopMargin + getHeight()/10;
 		int shopBackHeight = (shopTopMargin + getHeight()/2 + topMargin);
 		
-		Graphic background=new Graphic(0,0,getWidth(),getHeight(),"img/Grassland.png");
+		Graphic background=new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
 		
 		Button exit = new Button(getWidth() - 100,  60, 50, 40, "X", new Color(230,195,147), new Action(){
 			

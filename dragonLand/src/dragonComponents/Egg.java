@@ -3,26 +3,36 @@
  */
 package dragonComponents;
 
-import guiPractice.components.GraphicMovingComponent;
 
 /**
- * @author STUFF
+ * @author Jenniber Franco
  *
  */
-public class Egg extends GraphicMovingComponent{
+public class Egg{
 
 	/**
 	 * 
 	 */
+	private int x;
+	private int y;
+	private int w;
+	private int h;
+	private String link;
+	private int incubationTime;
 	
-	public Egg(int x, int y, int w, int h, String link) {
-		super(x,y,w,h, link);
+	//for the moment parameters will be fields (Add a general movingComponent class later)
+	public Egg(int x, int y, int w, int h, String link, int incTime) {
+		this.x= x;
+		this.y= y;
+		this.w= w;
+		this.h= h;
+		this.link= link;
+		incubationTime = incTime;
 	}
-
-	@Override
-	public void checkBehaviors() {
-		// TODO Auto-generated method stub
-		
+	
+	public int getIncubationTime(){
+		return incubationTime;
 	}
-
+	
+	
 }

@@ -132,6 +132,8 @@ public class HomeKat implements DragonArrayInterface {
 		Button title = new Button((width*2/100),(height*5/100),  350,  50,  "Welcome to Dragon Land!",DragonLand.DARKER_NUDE,  null);
 		title.setSize(26);
 		viewObjects.add(title);
+		DragonFood food = new DragonFood(100, 100, 75, 75, "img/food.png");
+		viewObjects.add(food);
 			
 		
 		makeLocations();

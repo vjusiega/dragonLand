@@ -9,8 +9,11 @@ import javax.swing.ImageIcon;
 import game.DragonLand;
 import game.mainScreenTeam.Dragon;
 import game.miniGameTeam.GameVioletta;
+import game.miniGameTeam.HighScoreScreen;
 import guiPractice.ClickableScreen;
+import guiPractice.components.Action;
 import guiPractice.components.AnimatedComponent;
+import guiPractice.components.Button;
 import guiPractice.components.Graphic;
 import guiPractice.components.GraphicMovingComponent;
 import guiPractice.components.Visible;
@@ -34,23 +37,27 @@ public class WelcomeScreen extends ClickableScreen{
 		viewObjects.add(setUpDragons(1));
 		viewObjects.add(setUpDragons(3));
 		
-		GraphicMovingComponent fog = new Fog(0, 5*getHeight()/7, 100, 100, "img/introFog.png", 2, 0);
-		viewObjects.add(fog);
+		Button exit = new Button(30, 50, 40, 40, "X", DragonLand.DARKER_NUDE, new Action() {
+			@Override
+			public void act() {
+				DragonLand.game.setScreen(DragonLand.homeScreen);
+			}
+		});
+		viewObjects.add(exit);
 		
-		//changeScreen();
-		
-		
+		setUpFog();
 	}
-	
-//	private void changeScreen() {
-//		try {
-//			Thread.sleep(10000);
-//			DragonLand.game.setScreen(DragonLand.homeScreen);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
-//		
-//	}
+
+	public void setUpFog(){
+		Fog fog; 
+		
+		for(int i = -10; i < 10; i++){
+			fog = new Fog((i*getWidth() / 10), 200, 500, 300, "img/introFog.png", 50);
+			viewObjects.add(fog);
+			fog.setY(fog.generateYPos());
+			fog.play();
+		}
+	}
 
 	public Dragon setUpDragons(int drag){
 		String imgSrc = "img/dragon" + drag + ".png";
@@ -60,7 +67,7 @@ public class WelcomeScreen extends ClickableScreen{
 		if(drag == 1){
 			xPos = getWidth()/4;
 		}else{
-			xPos = (3*getWidth()/4) - dragonWidth;
+			xPos = (3*(getWidth()/4)) - dragonWidth;
 		}
 		
 		int yPos = (-1)*dragonHeight;
