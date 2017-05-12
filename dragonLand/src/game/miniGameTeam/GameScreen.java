@@ -100,7 +100,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		time = 2500;
 		setScoreDisplay();
 		//starArray.clear();
-		//addObject(DragonLand.game.getViolettaGame().addDragon("img/dragon1.png"));
+		addObject(DragonLand.game.getViolettaGame().addDragon("img/dragon1.png"));
 		Thread start = new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -174,12 +174,12 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
 			DragonLand.game.getViolettaGame().changeDragonPos(10);
 		}
-		else if(e.getKeyCode() == KeyEvent.VK_UP){
-			addObject(DragonLand.game.getViolettaGame().addDragon("img/dragon1.png"));
-		}
-		else if(e.getKeyCode() == KeyEvent.VK_DOWN){
-			remove(DragonLand.game.getViolettaGame().removeDragon());
-		}
+//		else if(e.getKeyCode() == KeyEvent.VK_UP){
+//			addObject(DragonLand.game.getViolettaGame().addDragon("img/dragon1.png"));
+//		}
+//		else if(e.getKeyCode() == KeyEvent.VK_DOWN){
+//			remove(DragonLand.game.getViolettaGame().removeDragon());
+//		}
 	}
 
 	@Override
