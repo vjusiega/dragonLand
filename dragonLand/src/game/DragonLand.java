@@ -6,11 +6,14 @@ package game;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.io.FileReader;
+import java.io.BufferedReader;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-
+import game.EggIncuabtor.IncubatorScreen;
 import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.HomeScreen;
 import game.miniGameTeam.GameInstructions;
@@ -23,6 +26,8 @@ import game.shopScreen.SellShopZheng;
 import guiPractice.GUIApplication;
 import guiPractice.Screen;
 import guiPractice.components.AnimatedComponent;
+import introScreens.WelcomeScreen;
+
 
 /**
  * @author Kat
@@ -44,12 +49,14 @@ public class DragonLand extends GUIApplication {
 	public static Screen highscoreScreen; // high score
 	public static GameScreen miniGameScreen; // minigame
 	public static Screen gameInstructionsScreen;
+	public static Screen incubator;
 	public static Screen HelpScreen;
 	public static Color NAVY;
 	public static Color BRIGHT_PINK;
 	public static Color LIGHT_PINK;
 	public static Color LIGHT_NUDE;
 	public static Color DARKER_NUDE;
+	public static WelcomeScreen welcomeScreen;
 	
 	
 	/**
@@ -58,8 +65,12 @@ public class DragonLand extends GUIApplication {
 //	public static void addDragon(AnimatedComponent a){
 //		dragonList.add(a);
 //	}
-	public DragonLand() {
-
+	public DragonLand(Dragon[] savedDragons) {
+		if(savedDragons != null){
+			
+		}else{
+			
+		}
 	}
 
 	/* (non-Javadoc)
@@ -78,8 +89,11 @@ public class DragonLand extends GUIApplication {
 		highscoreScreen = new HighScoreScreen(getWidth(),getHeight());
 		HomeScreen.jenCode = new game.mainScreenTeam.HomeJenniber();
 		gameInstructionsScreen = new GameInstructions(getWidth(), getHeight());
+		welcomeScreen = new WelcomeScreen(getWidth(), getHeight());
+//		incubator = new IncubatorScreen(viewObjects);
 
-		setScreen(homeScreen);
+		setScreen(shopMain);
+		
 
 	}
 	private void initColors() {
@@ -94,9 +108,17 @@ public class DragonLand extends GUIApplication {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		game = new DragonLand();
+		try{
+			
+			game = new DragonLand(null);
+			Thread go = new Thread(game);
+			go.start();
+		}catch
+		(IOException e){
+		game = new DragonLand(null);
 		Thread go = new Thread(game);
 		go.start();
+		}
 	}
 	
 	//public coin getter + setter

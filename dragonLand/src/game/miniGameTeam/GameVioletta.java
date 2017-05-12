@@ -71,18 +71,15 @@ public class GameVioletta implements gameDragonInterface{
 		
 		int yPos = screenHeight - dragonHeight;
 		
-		Dragon d = new Dragon(xPos, yPos, dragonHeight, dragonHeight, "", 0, imgSrc);
-//		d.setInGame(true);
-//		System.out.println(d.getInGame());
+		Dragon d = new Dragon(xPos, yPos, dragonHeight, dragonHeight, imgSrc);
 		
-		setDragonAnimation(d, imgSrc);
-		
+		d.setDragonAnimation(d, imgSrc);
 		dragonArray.add(d);
 		d.setX(xPos);
 		d.setY(yPos);
-		d.setDirection(5);
+		d.setDirection(0);
 		d.play();
-		
+		d.setCurrentFrame(0);
 		return d;
 	}
 	
@@ -142,33 +139,6 @@ public class GameVioletta implements gameDragonInterface{
 		}
 		else{
 			return false; 
-		}
-	}
-
-	public static void setDragonAnimation(AnimatedComponent a, String imgSrc){
-		try{
-			ImageIcon icon = new ImageIcon(imgSrc);
-			int numberRow = 3;
-			int rows = 4;
-			int w = 48;
-			int h = 48;
-			for(int j = 0; j < 2; j ++){
-				for(int i = 0; i < numberRow*rows; i++){
-					if(i > 8 && i < 12){
-						BufferedImage cropped = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
-						int leftMargin = 0;
-						int topMargin = 0;
-						int x1 = leftMargin + w*(i%numberRow);
-						int y1 = topMargin +h*(i/numberRow);
-						Graphics g = cropped.createGraphics();
-						g.drawImage(icon.getImage(),0,0,w,h,x1,y1,x1+w,y1+h,null);
-						a.addFrame(cropped, 200);
-					}
-				}
-			}
-		}
-		catch(Exception e){
-			e.printStackTrace();
 		}
 	}
 

@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import guiPractice.components.AnimatedComponent;
 import guiPractice.components.MovingComponent;
 import guiPractice.components.Visible;
+import introScreens.WelcomeScreen;
 
 
 
@@ -18,24 +19,34 @@ public class Dragon extends AnimatedComponent {
 	
 	/**
 	 * @author Kat 
-	 *
+	 * w/ mods by Violetta
 	 */
 	private String name;
 	private int price;
 	private String imgSrc;
-	int direction;
-	int initialX;
-	int initialY;
-	boolean hungryBox;
+	private int direction;
+	private int initialX;
+	private int initialY;
+	private boolean hungryBox;
+	
+	public void setInitialY(int y){
+		initialY = y;
+	}
+	
+	private boolean bouncing;
+	private int bounceDistance; 
 	
 	
-	private int UP=0;
- 	private int LEFT=1;
- 	private int RIGHT =2;
- 	private int DOWN=4;
- 	private int GAME=5;
- 	private double VY= Math.random(); //to randomize speed
+	//main screen functions
+	private int UP = 0;
+ 	private int LEFT = 1;
+ 	private int RIGHT = 2;
+ 	private int DOWN = 4;
  	
+ 	
+ 	private double VY = Math.random(); //to randomize speed
+ 	
+ 	//constructor for dragons on main screen
 	public Dragon(int x, int y, int w, int h,  String name, int price, String imgSrc) {
 		super(x, y, w, h);
 		
@@ -43,8 +54,39 @@ public class Dragon extends AnimatedComponent {
 		this.price=price;
 		this.imgSrc=imgSrc;
 		this.hungryBox = false;
+		bounceDistance = 30; //based on the value Kat had before for her Dragons on main screen
+		bouncing = true; 
 
 	}
+	
+	//display dragon constructor that does not bounce
+	public Dragon(int x, int y, int w, int h, String imgSrc){
+		super(x, y, w, h);
+		name = "display_only";
+		price = 0; 
+		this.imgSrc = imgSrc;
+		this.hungryBox = false; 
+		setDragonAnimation(this, imgSrc);
+		bouncing = false; 
+	}
+	
+	//display dragon constructor that bounces
+	public Dragon(int x, int y, int w, int h, String imgSrc, int bounceDistance, double VY){
+		super(x, y, w, h);
+		name = "display_only";
+		price = 0; 
+		this.imgSrc = imgSrc;
+		this.hungryBox = false; 
+		setDragonAnimation(this, imgSrc);
+		bouncing = true; 
+		this.bounceDistance = bounceDistance; 
+		this.VY = VY;
+	}
+	
+	public void setCurrentFrame(int frame){
+		currentFrame = frame;
+	}
+	
 	/*
 	 * set based on the y coordinate given
 	 * tells it how it will move
@@ -73,47 +115,52 @@ public class Dragon extends AnimatedComponent {
 	 */
 	public void checkBehaviors() {
 		//System.out.println(direction);
-		if(direction ==UP){
-			setVy(-VY);
-			if(currentFrame==2)
-				currentFrame=0;
-			if((initialY-getY())>30){
-				direction=DOWN;
+		if(direction == UP){
+			if(bouncing){
+				setVy(-VY);
+				if((initialY-getY())>bounceDistance){
+					direction=DOWN;
+				}
 			}
-		}
-		if(direction ==DOWN){
-			setVy(VY);
-			if(currentFrame==2)
-				currentFrame=0;
-			if((getY()-initialY)>30){
-				direction=UP;
-			}
-		}
-		if(direction ==LEFT){
-			setVx(-VY);
-			if(currentFrame<3||currentFrame>=5)
-				currentFrame=3;
-			if((initialX-getX())>=30){
-				currentFrame=6;
-				direction=RIGHT;
-				
-			}
-		}
-		if(direction ==RIGHT){
-			setVx(VY);
-			if(currentFrame<6||currentFrame==8)
-				currentFrame=6;
-			if((getX()-initialX)>30){
-				currentFrame=3;
-				direction=LEFT;
-				
-			}
-		}
-		if(direction == GAME){
-			setVx(0);
-			setVy(0);
-			if(currentFrame == 6){
+			if(currentFrame == 2){
 				currentFrame = 0;
+			}
+		}
+		if(direction == DOWN){
+			if(bouncing){
+				setVy(VY);
+				if((getY()-initialY)>bounceDistance){
+					direction=UP;
+				}
+			}
+			if(currentFrame==2){
+				currentFrame=0;
+			}
+		}
+		if(direction == LEFT){
+			if(bouncing){
+				setVx(-VY);
+				if((initialX-getX())>=bounceDistance){
+					currentFrame=6;
+					direction=RIGHT;
+				}
+			}
+			if(currentFrame<3||currentFrame>=5){
+				currentFrame=3;
+			}
+
+		}
+		if(direction == RIGHT){
+			if(bouncing){
+				setVx(VY);
+				if((getX()-initialX)>bounceDistance){
+					currentFrame=3;
+					direction=LEFT;
+					
+				}
+			}
+			if(currentFrame < 6||currentFrame==8){
+				currentFrame = 6;
 			}
 		}
 	}
@@ -136,9 +183,7 @@ public class Dragon extends AnimatedComponent {
 	public void animationRight(){
 		direction = RIGHT;
 	}
-	public void animationGame(){
-		direction = GAME;
-	}
+	
 	public String getName() {
 		return name;
 	}
@@ -177,6 +222,35 @@ public class Dragon extends AnimatedComponent {
 	
 	public void setHungryBox(boolean hungryBox){
 		this.hungryBox = hungryBox; 
+	}
+	
+	public void setDragonAnimation(Dragon d, String imgSrc){
+		AnimatedComponent a = (AnimatedComponent) d;
+		
+		try{
+			ImageIcon icon = new ImageIcon(imgSrc);
+			int numberRow = 3;
+			int rows = 4;
+			int w = 48;
+			int h = 48;
+			for(int i=0; i<numberRow*rows; i++){
+				//declare cropped image
+				BufferedImage cropped = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
+				int leftMargin=0;
+				int topMargin =0 ;
+				int x1 = leftMargin + w*(i%numberRow);
+				int y1=topMargin +h*(i/numberRow);
+				Graphics g = cropped.createGraphics();
+				g.drawImage(icon.getImage(),0,0,w,h,x1,y1,x1+w,y1+h,null);
+				a.addFrame(cropped, 300);
+				if(i==numberRow*rows-1)
+					i++;
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
 	}
 
 }
