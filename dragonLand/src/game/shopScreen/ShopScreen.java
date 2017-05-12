@@ -54,7 +54,7 @@ public abstract class ShopScreen extends ClickableScreen {
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
 
 
-		Graphic background=new Graphic(0,0,getWidth(),getHeight(),"img/Grassland.png");
+		Graphic background=new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.png");
 		int backWidth = getWidth()-100;
 		int backHeight = getHeight()-100;
 		ShopBackdrop back = new ShopBackdrop(SHOP_LEFT_MARGIN, SHOP_TOP_MARGIN,backWidth,backHeight);
