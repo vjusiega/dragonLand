@@ -19,7 +19,7 @@ public abstract class ClickableScreen extends Screen  implements MouseListener, 
 	private ClickableGraphic pika;
 	protected ArrayList<Clickable> clickables;
 	protected ArrayList<Draggable> draggables;
-	private boolean alreadyDragging;
+	protected boolean alreadyDragging;
  
 	public ClickableScreen(int width, int height) {
 		super(width, height);
