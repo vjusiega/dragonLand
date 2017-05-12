@@ -108,6 +108,8 @@ public class DragonLand extends GUIApplication {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		//Will put readFile instead of null value as parameter
+		
 		try{
 			
 			game = new DragonLand(null);
