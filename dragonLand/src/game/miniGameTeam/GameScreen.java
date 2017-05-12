@@ -72,17 +72,18 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		view.add(exit);
 		view.add(scoreDisplay);
 
-//		GameVioletta vGameObject = new GameVioletta();
+		//GameVioletta vGameObject = new GameVioletta();
 	}
 
 	protected void stopGame() {
-		GameVioletta.vGame.setPlaying(false);
-		ArrayList<Dragon> dragonArray = GameVioletta.vGame.getDragonArray();
+		//DragonLand.game.getViolettaGame()
+		DragonLand.game.getViolettaGame().setPlaying(false);
+		ArrayList<Dragon> dragonArray = DragonLand.game.getViolettaGame().getDragonArray();
 		if(dragonArray.size() != 0){
 			for(Dragon d: dragonArray){
 				remove(d);
 			}
-			GameVioletta.vGame.eraseDragons();
+			DragonLand.game.getViolettaGame().eraseDragons();
 			System.out.println("A dragon is being erased - end game");
 		}
 
@@ -99,7 +100,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		time = 2500;
 		setScoreDisplay();
 		//starArray.clear();
-		//addObject(GameVioletta.vGame.addDragon("img/dragon1.png"));
+		//addObject(DragonLand.game.getViolettaGame().addDragon("img/dragon1.png"));
 		Thread start = new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -130,8 +131,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	}
 
 	public void fallingStars(){
-		GameVioletta.vGame.setPlaying(true);
-		while(GameVioletta.vGame.getPlaying()){
+		DragonLand.game.getViolettaGame().setPlaying(true);
+		while(DragonLand.game.getViolettaGame().getPlaying()){
 			try{
 				setTime();
 				Thread.sleep(time);
@@ -168,16 +169,16 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_LEFT){ 
-			GameVioletta.vGame.changeDragonPos(-10);
+			DragonLand.game.getViolettaGame().changeDragonPos(-10);
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-			GameVioletta.vGame.changeDragonPos(10);
+			DragonLand.game.getViolettaGame().changeDragonPos(10);
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_UP){
-			addObject(GameVioletta.vGame.addDragon("img/dragon1.png"));
+			addObject(DragonLand.game.getViolettaGame().addDragon("img/dragon1.png"));
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_DOWN){
-			remove(GameVioletta.vGame.removeDragon());
+			remove(DragonLand.game.getViolettaGame().removeDragon());
 		}
 	}
 
@@ -212,7 +213,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 
 //	public void initGame(String imgSrc){
 //		score = 0;
-//		addObject(GameVioletta.vGame.addDragon(imgSrc));
+//		addObject(DragonLand.game.getViolettaGame().addDragon(imgSrc));
 //	}
 
 	public void removeDragonToScreen(Dragon d){

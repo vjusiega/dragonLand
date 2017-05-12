@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import game.mainScreenTeam.HomeScreen;
 import game.miniGameTeam.GameInstructions;
 import game.miniGameTeam.GameScreen;
+import game.miniGameTeam.GameVioletta;
 import game.miniGameTeam.HighScoreScreen;
 import game.shopScreen.BuyScreenWendy;
 import game.shopScreen.HomeShopScreen;
@@ -46,7 +47,7 @@ public class DragonLand extends GUIApplication {
 	public static Color LIGHT_PINK;
 	public static Color LIGHT_NUDE;
 	public static Color DARKER_NUDE;
-	
+	private GameVioletta vGame;
 	
 	/**
 	 * 
@@ -74,7 +75,7 @@ public class DragonLand extends GUIApplication {
 		highscoreScreen = new HighScoreScreen(DragonLand.WIDTH,DragonLand.HEIGHT);
 		HomeScreen.jenCode = new game.mainScreenTeam.HomeJenniber();
 		gameInstructionsScreen = new GameInstructions(DragonLand.WIDTH,DragonLand.HEIGHT);
-
+		vGame = new GameVioletta();
 		setScreen(homeScreen);
 
 	}
@@ -101,6 +102,10 @@ public class DragonLand extends GUIApplication {
 		}
 		public int getCoins(){
 			return coins;
+		}
+
+		public GameVioletta getViolettaGame() {
+			return vGame;
 		}
 
 }

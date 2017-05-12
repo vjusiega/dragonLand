@@ -67,7 +67,7 @@ public abstract class ShopScreen extends ClickableScreen {
 		ShopLabel shopTitleBack = new ShopLabel(titleX, titleY, titleWidth, titleHeight, "", DragonLand.DARKER_NUDE);
 		shopTitleBack.setArc(25);
 		
-		Button exit = new Button(getWidth() - 65,  40, 50, 40, "X", new Color(230,195,147), new Action(){
+		Button exit = new Button(getWidth() - 65,  40, 50, 50, "X", new Color(230,195,147), new Action(){
 			
 			public void act() {
 				((HomeShopScreen)DragonLand.shopMain).updateHomeShopLabels();
