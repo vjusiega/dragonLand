@@ -45,6 +45,7 @@ public class Dragon extends AnimatedComponent {
  	
  	
  	private double VY = Math.random(); //to randomize speed
+	private HungryBox hungryBoxObj;
  	
  	//constructor for dragons on main screen
 	public Dragon(int x, int y, int w, int h,  String name, int price, String imgSrc) {
@@ -115,6 +116,7 @@ public class Dragon extends AnimatedComponent {
 	 */
 	public void checkBehaviors() {
 		//System.out.println(direction);
+		//if(hungryBox)
 		if(direction == UP){
 			if(bouncing){
 				setVy(-VY);
@@ -253,4 +255,10 @@ public class Dragon extends AnimatedComponent {
 		
 	}
 
+	public void assignHungryBox(HungryBox hungryBoxObj) {
+		this.hungryBoxObj = hungryBoxObj;
+	}
+	public HungryBox getHungryBoxObj(){
+		return hungryBoxObj;
+	}
 }

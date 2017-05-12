@@ -72,7 +72,9 @@ public class DragonLand extends GUIApplication {
 			
 		}
 	}
-
+	public DragonLand() {
+		
+	}
 	/* (non-Javadoc)
 	 * @see guiPractice.GUIApplication#initScreen()
 	 */
@@ -108,17 +110,17 @@ public class DragonLand extends GUIApplication {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		try{
-			
-			game = new DragonLand(null);
-			Thread go = new Thread(game);
-			go.start();
-		}catch
-		(IOException e){
-		game = new DragonLand(null);
+//		try{
+//			
+//			game = new DragonLand(null);
+//			Thread go = new Thread(game);
+//			go.start();
+//		}catch
+//		(IOException e){
+		game = new DragonLand();
 		Thread go = new Thread(game);
 		go.start();
-		}
+		//}
 	}
 	
 	//public coin getter + setter

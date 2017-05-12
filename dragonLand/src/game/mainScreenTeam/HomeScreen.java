@@ -1,5 +1,6 @@
 package game.mainScreenTeam;
 
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import guiPractice.ClickableScreen;
@@ -32,8 +33,26 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 		HomeKat katCode=new HomeKat(viewObjects, getWidth(), getHeight());
 		
 	}
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		Draggable d= (Draggable) draggables.get(0);
+		if(d.isHovered(e.getX(), e.getY()) || alreadyDragging){
+			alreadyDragging = true;
+			d.setX(e.getX() - 37);
+			d.setY(e.getY() - 37);
+		}
+		
+	}
 
-	
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		Draggable d= (Draggable) draggables.get(0);
+		jenCode.checkFeed(e.getX(),e.getY());
+		d.setX(d.getOrigX());
+		d.setY(d.getOrigY());
+		alreadyDragging=false;
+		
+	}
 	@Override
 	public void run() {
 	}

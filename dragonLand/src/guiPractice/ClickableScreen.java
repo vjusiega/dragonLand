@@ -46,7 +46,7 @@ public abstract class ClickableScreen extends Screen  implements MouseListener, 
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("mouseclicked");
+		
 		for(int i=0; i<clickables.size();i++){
 			Clickable c= clickables.get(i);
 			if(c.getAction() != null && c.isHovered(e.getX(), e.getY())){
@@ -95,10 +95,7 @@ public abstract class ClickableScreen extends Screen  implements MouseListener, 
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		Draggable d= (Draggable) draggables.get(0);
-		d.setX(d.getOrigX());
-		d.setY(d.getOrigY());
-		alreadyDragging=false;
+
 	}
 	@Override
 	public MouseListener getMouseListener(){
@@ -107,17 +104,11 @@ public abstract class ClickableScreen extends Screen  implements MouseListener, 
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		Draggable d= (Draggable) draggables.get(0);
-		if(d.isHovered(e.getX(), e.getY()) || alreadyDragging){
-			alreadyDragging = true;
-			d.setX(e.getX() - 37);
-			d.setY(e.getY() - 37);
-		}
-		
+
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		//System.out.println("moved");
+		
 	}
 }

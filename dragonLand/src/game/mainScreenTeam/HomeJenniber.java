@@ -31,28 +31,29 @@ public class HomeJenniber implements Runnable {
 		 * A hungryBox is created for the dragon that has been passed through the parameter
 		 */
 		HungryBox hungryBox = getHungryBox(d);
+		d.assignHungryBox(hungryBox);
 		/**
 		 * When the hungryBox is clicked:
 		 *	The dragon's boolean value of whether it has a hungryBox is set to false
 		 *	The hungryBox is removed from the ArrayList<HungryBox> hungryBoxTimes
 		 *		and it is also removed from the ArrayList<Visible> viewObjects
 		 */
-		hungryBox.setAction(new Action(){
-
-			@Override
-			public void act() {
-				for(int i=0; i<HomeKat.dragonHome.getDragonsOnScreen().size();i++){
-					Dragon d= HomeKat.dragonHome.getDragonsOnScreen().get(i);
-					if((d.getY()<350 && hungryBox.getX()==d.getX()-25) || hungryBox.getY()==d.getY()+105){
-							d.setHungryBox(false);
-					}
-				}
-				
-				hungryBoxTimes.remove(hungryBox);
-				DragonLand.homeScreen.remove(hungryBox);
-			}
-			
-		});
+//		hungryBox.setAction(new Action(){
+//
+//			@Override
+//			public void act() {
+//				for(int i=0; i<HomeKat.dragonHome.getDragonsOnScreen().size();i++){
+//					Dragon d= HomeKat.dragonHome.getDragonsOnScreen().get(i);
+//					if((d.getY()<350 && hungryBox.getX()==d.getX()-25) || hungryBox.getY()==d.getY()+105){
+//							d.setHungryBox(false);
+//					}
+//				}
+//				
+//				hungryBoxTimes.remove(hungryBox);
+//				DragonLand.homeScreen.remove(hungryBox);
+//			}
+//			
+//		});
 		//hungryBox is added to hungryBoxTimes and viewObjects
 		hungryBoxTimes.add(hungryBox);
 		DragonLand.homeScreen.addObject(hungryBox);
@@ -167,5 +168,24 @@ public class HomeJenniber implements Runnable {
 	public void removeHungry(HungryBox hungryBox) {
 		hungryBoxTimes.remove(hungryBox);
 		DragonLand.homeScreen.remove(hungryBox);
+	}
+
+	public void checkFeed(int x, int y) {
+		Dragon fed;
+		System.out.println("went here");
+		for(int i=0; i<HomeKat.dragonHome.getDragonsOnScreen().size();i++){
+			Dragon d= HomeKat.dragonHome.getDragonsOnScreen().get(i);
+			System.out.println(d.getName());
+			System.out.println(" x:"+x+" y " +y);
+			if((x>=d.getX()&&x<=d.getX()+d.getWidth())
+					&&(y>=d.getY()&&y<=d.getY()+d.getHeight())){
+				System.out.println("2");
+					d.setHungryBox(false);
+					fed=d;
+					removeHungry(d.getHungryBoxObj());
+					break;
+			}
+		}
+		
 	}
 }

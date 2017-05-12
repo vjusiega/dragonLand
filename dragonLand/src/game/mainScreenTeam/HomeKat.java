@@ -42,7 +42,7 @@ public class HomeKat implements DragonArrayInterface {
 	private String thelp7;
 	private TextLabel help6;
 	private String thelp6;
-	
+	private static DragonFood food ;
 	public HomeKat(ArrayList<Visible> viewObjects, int width,int height) {
 		//
 		this.viewObjects=viewObjects;
@@ -132,7 +132,7 @@ public class HomeKat implements DragonArrayInterface {
 		Button title = new Button((width*2/100),(height*5/100),  350,  50,  "Welcome to Dragon Land!",DragonLand.DARKER_NUDE,  null);
 		title.setSize(26);
 		viewObjects.add(title);
-		DragonFood food = new DragonFood(100, 100, 75, 75, "img/food.png");
+		food = new DragonFood(100, 100, 75, 75, "img/food.png");
 		viewObjects.add(food);
 			
 		
@@ -141,7 +141,14 @@ public class HomeKat implements DragonArrayInterface {
 		dragonsOnScreen();
 		dragonHome = this;
 		}
-	
+	public static void addBerry(){
+		viewObjects.add(food);
+		
+	}
+	public static void removeBerry(){
+		viewObjects.remove(food);
+		
+	}
 	public static void makeLocations() {
 		
 		locationsX.add(100);
@@ -232,6 +239,8 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 			}
 			if(!exists){
 				addDragon(searchByName(purchased[i]));
+				removeBerry();
+				addBerry();
 			}
 			exists=false;
 		}

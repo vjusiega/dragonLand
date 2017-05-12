@@ -41,7 +41,8 @@ public class HungryBox extends Button implements Runnable{
 	 * @param action
 	 */
 	public HungryBox(int x, int y) {
-		super(x, y, W, H, TEXT+" "+HUNGRY_LIMIT+" sec", DragonLand.DARKER_NUDE,null);
+		//super(x, y, W, H, TEXT+" "+HUNGRY_LIMIT+" sec", DragonLand.DARKER_NUDE,null);
+		super(x, y, W, H, TEXT+" "+HUNGRY_LIMIT+" sec", DragonLand.DARKER_NUDE);
 		hungryTime = HUNGRY_LIMIT;
 		update();
 	}	
