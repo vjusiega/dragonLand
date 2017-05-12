@@ -99,7 +99,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		time = 2500;
 		setScoreDisplay();
 		//starArray.clear();
-		addObject(GameVioletta.vGame.addDragon("img/dragon1.png"));
+		//addObject(GameVioletta.vGame.addDragon("img/dragon1.png"));
 		Thread start = new Thread(new Runnable() {
 			@Override
 			public void run() {
