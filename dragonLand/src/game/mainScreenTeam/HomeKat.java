@@ -157,6 +157,8 @@ public class HomeKat implements DragonArrayInterface {
 		locationsX.add(550);
 		locationsX.add(700);
 		locationsX.add(850);
+		//locationsX.add(850);
+		//locationsX.add(850);
 		
 		locationsY.add(150);
 		locationsY.add(200);
@@ -164,7 +166,8 @@ public class HomeKat implements DragonArrayInterface {
 		locationsY.add(360);
 		locationsY.add(420);
 		locationsY.add(480);
-		
+		//locationsY.add(480);
+		//locationsY.add(480);
 		
 	}
 	/*
@@ -175,7 +178,7 @@ public class HomeKat implements DragonArrayInterface {
 	 */
 public static void addAnimation(int x,int y, String name, int price,String imgSrc) {
 		
-		AnimatedComponent a = new Dragon(x,y,100,100,name, price, imgSrc);
+		AnimatedComponent a = new Dragon(x,y,75,75,name, price, imgSrc);
 		
 		try{
 			ImageIcon icon = new ImageIcon(imgSrc);

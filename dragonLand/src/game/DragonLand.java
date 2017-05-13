@@ -3,6 +3,7 @@
  */
 package game;
 
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -11,6 +12,7 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.util.ArrayList;
 
+
 import javax.swing.JFrame;
 
 import game.EggIncuabtor.IncubatorScreen;
@@ -18,6 +20,7 @@ import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.HomeScreen;
 import game.miniGameTeam.GameInstructions;
 import game.miniGameTeam.GameScreen;
+import game.miniGameTeam.GameVioletta;
 import game.miniGameTeam.HighScoreScreen;
 import game.shopScreen.BuyScreenWendy;
 import game.shopScreen.HomeShopScreen;
@@ -38,6 +41,9 @@ public class DragonLand extends GUIApplication {
 	/**
 	 * 
 	 */
+	
+	public static final int WIDTH = 1000;
+	public static final int HEIGHT = 640;
 	private static final long serialVersionUID = 1L;
 
 	public static DragonLand game;
@@ -56,15 +62,9 @@ public class DragonLand extends GUIApplication {
 	public static Color LIGHT_PINK;
 	public static Color LIGHT_NUDE;
 	public static Color DARKER_NUDE;
-	public static WelcomeScreen welcomeScreen;
-	
-	
-	/**
-	 * 
-	 */
-//	public static void addDragon(AnimatedComponent a){
-//		dragonList.add(a);
-//	}
+	private GameVioletta vGame;
+	public WelcomeScreen welcomeScreen;
+
 	public DragonLand(Dragon[] savedDragons) {
 		if(savedDragons != null){
 			
@@ -72,6 +72,7 @@ public class DragonLand extends GUIApplication {
 			
 		}
 	}
+	
 	public DragonLand() {
 		
 	}
@@ -83,19 +84,18 @@ public class DragonLand extends GUIApplication {
 		initColors();
 
 
-		miniGameScreen = new GameScreen(getWidth(),getHeight());
-		shopMain = new HomeShopScreen(getWidth(),getHeight());
-		sellScreen = new SellShopZheng(getWidth(),getHeight());
-		homeScreen = new HomeScreen(getWidth(),getHeight());
-		buyScreen = new BuyScreenWendy(getWidth(),getHeight());
-		highscoreScreen = new HighScoreScreen(getWidth(),getHeight());
+		miniGameScreen = new GameScreen(DragonLand.WIDTH,DragonLand.HEIGHT);
+		shopMain = new HomeShopScreen(DragonLand.WIDTH,DragonLand.HEIGHT);
+		sellScreen = new SellShopZheng(DragonLand.WIDTH,DragonLand.HEIGHT);
+		homeScreen = new HomeScreen(DragonLand.WIDTH,DragonLand.HEIGHT);
+		buyScreen = new BuyScreenWendy(DragonLand.WIDTH,DragonLand.HEIGHT);
+		highscoreScreen = new HighScoreScreen(DragonLand.WIDTH,DragonLand.HEIGHT);
 		HomeScreen.jenCode = new game.mainScreenTeam.HomeJenniber();
-		gameInstructionsScreen = new GameInstructions(getWidth(), getHeight());
 		welcomeScreen = new WelcomeScreen(getWidth(), getHeight());
 //		incubator = new IncubatorScreen(viewObjects);
-
-		setScreen(shopMain);
-		
+		gameInstructionsScreen = new GameInstructions(DragonLand.WIDTH,DragonLand.HEIGHT);
+		vGame = new GameVioletta();
+		setScreen(welcomeScreen);
 
 	}
 	private void initColors() {
@@ -129,6 +129,10 @@ public class DragonLand extends GUIApplication {
 		}
 		public int getCoins(){
 			return coins;
+		}
+
+		public GameVioletta getViolettaGame() {
+			return vGame;
 		}
 
 }

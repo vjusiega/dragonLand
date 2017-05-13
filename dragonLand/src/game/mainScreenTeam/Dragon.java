@@ -115,8 +115,7 @@ public class Dragon extends AnimatedComponent {
 	 * allows for directions to switch 
 	 */
 	public void checkBehaviors() {
-		//System.out.println(direction);
-		//if(hungryBox)
+		
 		if(direction == UP){
 			if(bouncing){
 				setVy(-VY);

@@ -37,7 +37,7 @@ public class WelcomeScreen extends ClickableScreen{
 		viewObjects.add(setUpDragons(1));
 		viewObjects.add(setUpDragons(3));
 		
-		Button exit = new Button(30, 50, 40, 40, "X", DragonLand.DARKER_NUDE, new Action() {
+		Button exit = new Button(getWidth()-135, getHeight()-60, 120, 50, "Continue...", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
 				DragonLand.game.setScreen(DragonLand.homeScreen);
@@ -83,7 +83,7 @@ public class WelcomeScreen extends ClickableScreen{
 		return d;
 	}
 	
-	public static int getDragonY(){
+	public int getDragonY(){
 		return getHeight()/4;
 	}
 

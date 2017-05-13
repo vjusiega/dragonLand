@@ -59,6 +59,7 @@ public class GameVioletta implements gameDragonInterface{
 		int xPos;
 		int dragonHeight = 100;
 		xPos = screenWidth / 2;
+
 		if(dragonArray.size() >= 1){
 			dragonHeight = (int) (dragonHeight * 0.65);
 			if(dragonArray.size() == 1){

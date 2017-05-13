@@ -1,5 +1,6 @@
 package introScreens;
 
+import game.DragonLand;
 import guiPractice.Screen;
 import guiPractice.components.GraphicMovingComponent;
 
@@ -17,7 +18,7 @@ public class Fog extends GraphicMovingComponent {
 
 	@Override
 	public void checkBehaviors() {
-		if(getX() > Screen.getWidth()){
+		if(getX() > 1000){
 			setX(-1*this.getWidth());
 			setY(generateYPos());
 			setVx(Math.random());

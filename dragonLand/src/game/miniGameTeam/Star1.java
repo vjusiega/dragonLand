@@ -5,6 +5,7 @@ package game.miniGameTeam;
 
 import java.util.Random;
 
+import game.DragonLand;
 import guiPractice.components.GraphicMovingComponent;
 
 
@@ -41,7 +42,7 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 	
 	@Override
 	public void checkBehaviors() {
-		int border = GameScreen.getHeight() - 200;
+		int border = DragonLand.game.getHeight() - 200;
 		if(GameVioletta.vGame.getPlaying()){
 			if(getY() >= border && !touched && GameVioletta.vGame.checkStarContact(this)){
 				touched = true;
@@ -55,8 +56,10 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 					GameScreen.tGame.addDragonToScreen(GameVioletta.vGame.addDragon("img/dragon1.png"));
 				}
 			}
-			else if(getY() > GameScreen.getHeight() - 100){
+
+			else if(getY() > DragonLand.game.getHeight() - 100){
 				GameScreen.tGame.setPowerUp(0);
+
 				setRunning(false);
 				touched = true;
 				game.removeStar(this);

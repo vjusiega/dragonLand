@@ -172,14 +172,11 @@ public class HomeJenniber implements Runnable {
 
 	public void checkFeed(int x, int y) {
 		Dragon fed;
-		System.out.println("went here");
+		
 		for(int i=0; i<HomeKat.dragonHome.getDragonsOnScreen().size();i++){
 			Dragon d= HomeKat.dragonHome.getDragonsOnScreen().get(i);
-			System.out.println(d.getName());
-			System.out.println(" x:"+x+" y " +y);
 			if((x>=d.getX()&&x<=d.getX()+d.getWidth())
 					&&(y>=d.getY()&&y<=d.getY()+d.getHeight())){
-				System.out.println("2");
 					d.setHungryBox(false);
 					fed=d;
 					removeHungry(d.getHungryBoxObj());

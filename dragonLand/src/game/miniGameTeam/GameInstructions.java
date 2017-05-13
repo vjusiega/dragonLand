@@ -49,13 +49,13 @@ public class GameInstructions extends ClickableScreen {
 		//instructionText = new String[6];
 		//initiateText();
 		
-		int startX = (int) (getWidth()*0.15);
-		int textWidth = (int) (getWidth()*0.7);
+		int startX = (int) (DragonLand.WIDTH*0.15);
+		int textWidth = (int) (DragonLand.WIDTH*0.7);
 		
-		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
+		background = new Graphic(0,0,DragonLand.WIDTH,DragonLand.HEIGHT,"img/forest.jpg");
 		viewObjects.add(background);
 		
-		layer = new Button((int) (getWidth()*0.1), (int) (getHeight()*0.1), (int) (getWidth()*0.8),  (int) (getHeight()*0.77), "", DragonLand.DARKER_NUDE, null);
+		layer = new Button((int) (DragonLand.WIDTH*0.1), (int) (DragonLand.HEIGHT*0.1), (int) (DragonLand.WIDTH*0.8),  (int) (DragonLand.HEIGHT*0.77), "", DragonLand.DARKER_NUDE, null);
 		viewObjects.add(layer);
 		
 		title = new NoBorderButton(startX,75,textWidth,50, "Star Catch",DragonLand.DARKER_NUDE,null);
@@ -95,7 +95,7 @@ public class GameInstructions extends ClickableScreen {
 		});
 		viewObjects.add(exit);
 		
-		playButton = new Button((int) (getWidth() * 0.78), (int) (getHeight() * 0.9), (int) (getWidth() * 0.2), 50, "Play", DragonLand.DARKER_NUDE, new Action() {
+		playButton = new Button((int) (DragonLand.WIDTH * 0.78), (int) (DragonLand.HEIGHT * 0.9), (int) (DragonLand.WIDTH * 0.2), 50, "Play", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
 				//GameScreen.tGame.initGame("img/Dragon1.png");
