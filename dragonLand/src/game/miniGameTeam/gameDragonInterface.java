@@ -12,6 +12,8 @@ import game.mainScreenTeam.Dragon;
 
 
 
+
+
 public interface gameDragonInterface {
 	
 	boolean checkStarContact(Star1 star);

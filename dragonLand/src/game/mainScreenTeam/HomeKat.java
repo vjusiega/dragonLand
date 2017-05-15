@@ -1,6 +1,7 @@
 package game.mainScreenTeam;
 
 import java.awt.Graphics;
+import java.awt.Polygon;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -10,6 +11,7 @@ import game.DragonLand;
 import game.miniGameTeam.GameScreen;
 import game.miniGameTeam.NoBorderButton;
 import game.shopScreen.BuyScreenInterface;
+import guiPractice.components.PolygonButton;
 import game.shopScreen.HomeShopScreen;
 import game.shopScreen.SellShopZheng;
 import guiPractice.components.Action;
@@ -85,6 +87,22 @@ public class HomeKat implements DragonArrayInterface {
 			}});
 		viewObjects.add(shop);
 		
+		Polygon p = new Polygon();
+	    p.addPoint(10, 10);
+	    p.addPoint(100, 300);
+	    p.addPoint(300, 300);
+	    p.addPoint(10, 10);
+
+	    PolygonButton btn = new PolygonButton(p, new Action(){
+
+			@Override
+			public void act() {
+				GameScreen.isNotHome = true;
+				DragonLand.game.setScreen(DragonLand.gameInstructionsScreen);
+			}
+		
+		});
+	    viewObjects.add((Visible) btn);
 		Button minigame = new Button(width-110-(width*2/100),(height*5/100)+53,  110,  50,  "Minigame",DragonLand.DARKER_NUDE,  new Action(){
 
 			@Override
