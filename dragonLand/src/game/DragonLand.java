@@ -11,8 +11,10 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.util.ArrayList;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
+import dragonComponents.ReadFile;
 import game.EggIncuabtor.IncubatorScreen;
 import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.HomeScreen;
@@ -57,6 +59,7 @@ public class DragonLand extends GUIApplication {
 	public static Color LIGHT_NUDE;
 	public static Color DARKER_NUDE;
 	public static WelcomeScreen welcomeScreen;
+	static JFileChooser chooser;
 	
 	
 	/**
@@ -65,10 +68,8 @@ public class DragonLand extends GUIApplication {
 //	public static void addDragon(AnimatedComponent a){
 //		dragonList.add(a);
 //	}
-	public DragonLand(Dragon[] savedDragons) {
-		if(savedDragons != null){
-			
-		}else{
+	public DragonLand(String[] strings) {
+		if(strings != null){
 			
 		}
 	}
@@ -108,18 +109,18 @@ public class DragonLand extends GUIApplication {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		//Will put readFile instead of null value as parameter
-		
 		try{
+			ReadFile file = new ReadFile("C:/Users/Student 8/Desktop/test.txt");
+			game = new DragonLand(file.OpenFile());
+			Thread go = new Thread(game);
+			go.start();
+			chooser=new JFileChooser("Pick a saved file");
 			
+		}catch
+		(IOException e){
 			game = new DragonLand(null);
 			Thread go = new Thread(game);
 			go.start();
-		}catch
-		(IOException e){
-		game = new DragonLand(null);
-		Thread go = new Thread(game);
-		go.start();
 		}
 	}
 	

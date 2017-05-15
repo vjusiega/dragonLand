@@ -1,12 +1,17 @@
 package dragonComponents;
 
 import java.io.IOException;
+
+import javax.swing.JFileChooser;
+
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 
 public class ReadFile {
 
+
+	
 	private String path;
 	
 	public ReadFile(String filePath) {
@@ -17,7 +22,7 @@ public class ReadFile {
 		FileReader fr = new FileReader(path);
 		BufferedReader textReader = new BufferedReader(fr);
 		
-		int numOfLines = 3;
+		int numOfLines = readLines();
 		String[] textData= new String[numOfLines];
 		
 		for(int i=0; i<numOfLines;  i++){
@@ -38,6 +43,7 @@ public class ReadFile {
 		while((aLine = bf.readLine())!=null){
 			numOfLines++;
 		}
+		bf.close();
 		
 		return numOfLines;
 	}
