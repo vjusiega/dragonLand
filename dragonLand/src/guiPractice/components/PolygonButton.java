@@ -8,11 +8,13 @@ import java.awt.RenderingHints;
 import java.awt.Stroke;
 import java.awt.image.BufferedImage;
 
-public class PolygonButton  implements Clickable {
+public class PolygonButton extends Component implements Clickable {
 
+	
 	private Polygon shape;
 	private Action action;
 	public PolygonButton(Polygon shape, Action action) {
+		super(0, 0, 0, 0);
 		this.shape = shape;
 		this.action = action;
 		update();
@@ -20,7 +22,7 @@ public class PolygonButton  implements Clickable {
 
 	@Override
 	public boolean isHovered(int x, int y) {
-		return shape.contains(x, y);
+		return shape.contains(x-getX(), y-getY());
 	}
 
 	@Override
@@ -67,10 +69,6 @@ public class PolygonButton  implements Clickable {
 		return false;
 	}
 
-	@Override
-	public void update() {
-
-	}
 
 	public void update(Graphics2D g) {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -81,4 +79,9 @@ public class PolygonButton  implements Clickable {
 		g.setStroke(new BasicStroke((float) thickness));
 		g.draw(shape);
 	}
+
+	//@Override
+//	public void update() {
+//		update(image.create)
+//	}
 }

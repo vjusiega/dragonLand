@@ -102,6 +102,7 @@ public class HomeKat implements DragonArrayInterface {
 			}
 		
 		});
+	    
 	    viewObjects.add((Visible) btn);
 		Button minigame = new Button(width-110-(width*2/100),(height*5/100)+53,  110,  50,  "Minigame",DragonLand.DARKER_NUDE,  new Action(){
 
