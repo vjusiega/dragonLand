@@ -91,7 +91,7 @@ public class DragonLand extends GUIApplication {
 		buyScreen = new BuyScreenWendy(DragonLand.WIDTH,DragonLand.HEIGHT);
 		highscoreScreen = new HighScoreScreen(DragonLand.WIDTH,DragonLand.HEIGHT);
 		HomeScreen.jenCode = new game.mainScreenTeam.HomeJenniber();
-		welcomeScreen = new WelcomeScreen(getWidth(), getHeight());
+		welcomeScreen = new WelcomeScreen(DragonLand.WIDTH, DragonLand.HEIGHT);
 //		incubator = new IncubatorScreen(viewObjects);
 		gameInstructionsScreen = new GameInstructions(DragonLand.WIDTH,DragonLand.HEIGHT);
 		vGame = new GameVioletta();

@@ -6,13 +6,15 @@ import guiPractice.components.GraphicMovingComponent;
 
 public class Fog extends GraphicMovingComponent {
 	
+	private int initialY;
 	private int heightVariance;
 
 	public Fog(int x, int y, int w, int h, String imageLocation, int heightVariance) {
 		super(x, y, w, h, imageLocation);
 		this.heightVariance = heightVariance;
-		setVx(Math.random());
+		setVx(generateRandomSpeed());
 		setVy(0);
+		initialY = y; 
 		setY(generateYPos());
 	}
 
@@ -22,7 +24,6 @@ public class Fog extends GraphicMovingComponent {
 			setX(-1*this.getWidth());
 			setY(generateYPos());
 			setVx(Math.random());
-			//update();
 		}
 	}
 	
@@ -30,13 +31,19 @@ public class Fog extends GraphicMovingComponent {
 		int add = (int) (Math.random() * heightVariance);
 		int multiplier = (int) (Math.random() * 2) + 1;
 		
-		return getY() + (add * multiplier);
+		return initialY + (add * multiplier);
 	}
 	
 	public double generateRandomSpeed(){
 		double random = Math.random();
 		if(random < 0.5){
 			random = random * 2;
+		}
+		if(random < 0.1){
+			random = random * 10; 
+		}
+		if(random > 0.8){
+			random = random / 2;
 		}
 		return random;
 	}

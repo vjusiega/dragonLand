@@ -25,7 +25,6 @@ public class WelcomeScreen extends ClickableScreen{
 
 	public WelcomeScreen(int width, int height) {
 		super(width, height);
-		
 	}
 
 	@Override
@@ -52,7 +51,7 @@ public class WelcomeScreen extends ClickableScreen{
 		Fog fog; 
 		
 		for(int i = -10; i < 10; i++){
-			fog = new Fog((i*getWidth() / 10), 200, 500, 300, "img/introFog.png", 50);
+			fog = new Fog((i*getWidth() / 10), 200, 500, 300, "img/introFog.png", 100);
 			viewObjects.add(fog);
 			fog.setY(fog.generateYPos());
 			fog.play();
