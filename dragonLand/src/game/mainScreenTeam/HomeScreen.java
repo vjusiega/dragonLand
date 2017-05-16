@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Graphic;
 import guiPractice.components.Visible;
+import introScreens.Fog;
 
 
 /**
@@ -30,6 +31,7 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 
 		background=new Graphic(0,0,getWidth(),getHeight(),"img/Grassland.jpg");
 		viewObjects.add(background);
+		setUpFog();
 		HomeKat katCode=new HomeKat(viewObjects, getWidth(), getHeight());
 		
 	}
@@ -43,7 +45,16 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 		}
 		
 	}
-
+	public void setUpFog(){
+		Fog fog; 
+		
+		for(int i = -10; i < 10; i++){
+			fog = new Fog((i*getWidth() / 10), 10, 400, 150, "img/introFog.png", 50);
+			viewObjects.add(fog);
+			fog.setY(fog.generateYPos());
+			fog.play();
+		}
+	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		Draggable d= (Draggable) draggables.get(0);
