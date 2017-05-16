@@ -17,6 +17,7 @@ import game.shopScreen.SellShopZheng;
 import guiPractice.components.Action;
 import guiPractice.components.AnimatedComponent;
 import guiPractice.components.Button;
+import guiPractice.components.Graphic;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
 
@@ -87,13 +88,8 @@ public class HomeKat implements DragonArrayInterface {
 			}});
 		viewObjects.add(shop);
 		
-		Polygon p = new Polygon();
-	    p.addPoint(10, 10);
-	    p.addPoint(100, 300);
-	    p.addPoint(300, 300);
-	    p.addPoint(10, 10);
-
-//	    PolygonButton btn = new PolygonButton(p, new Action(){
+	  
+//		Button minigame = new Button(width-110-(width*2/100),(height*5/100)+53,  110,  50,  "Minigame",DragonLand.DARKER_NUDE,  new Action(){
 //
 //			@Override
 //			public void act() {
@@ -102,18 +98,7 @@ public class HomeKat implements DragonArrayInterface {
 //			}
 //		
 //		});
-	    
-	    //viewObjects.add((Visible) btn);
-		Button minigame = new Button(width-110-(width*2/100),(height*5/100)+53,  110,  50,  "Minigame",DragonLand.DARKER_NUDE,  new Action(){
-
-			@Override
-			public void act() {
-				GameScreen.isNotHome = true;
-				DragonLand.game.setScreen(DragonLand.gameInstructionsScreen);
-			}
-		
-		});
-		viewObjects.add(minigame);
+//		viewObjects.add(minigame);
 		
 		Button helpLayer = new Button((int)(width*0.1),(int)(height*0.1),(int)(width*0.8),(int)(height*0.8),  null,DragonLand.DARKER_NUDE,  new Action(){
 
@@ -153,13 +138,36 @@ public class HomeKat implements DragonArrayInterface {
 		viewObjects.add(title);
 		food = new DragonFood(100, 100, 75, 75, "img/food.png");
 		viewObjects.add(food);
-			
+		
+		Graphic post = new Graphic(10, DragonLand.HEIGHT-290, 1, "img/three_sign.png");
+		viewObjects.add(post);
+		
+		addPostButtons();
 		
 		makeLocations();
 		makeDragons();
 		dragonsOnScreen();
 		dragonHome = this;
 		}
+	private void addPostButtons() {
+		Polygon shopPol = new Polygon();
+		shopPol.addPoint(25, 10);
+		shopPol.addPoint(200, 50);
+		shopPol.addPoint(220, 65);
+		shopPol.addPoint(190, 83);
+		shopPol.addPoint(15, 45);
+		shopPol.addPoint(25, 10);
+
+	    PolygonButton shop = new PolygonButton(10, DragonLand.HEIGHT-270, 230, 100, shopPol, new Action(){
+			@Override
+			public void act() {
+				GameScreen.isNotHome = true;
+				((HomeShopScreen)DragonLand.shopMain).updateHomeShopLabels();
+				DragonLand.game.setScreen(DragonLand.shopMain);
+			}
+		});
+	    viewObjects.add(shop);
+	}
 	public static void addBerry(){
 		viewObjects.add(food);
 		

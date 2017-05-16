@@ -13,8 +13,9 @@ public class PolygonButton extends Component implements Clickable {
 	
 	private Polygon shape;
 	private Action action;
-	public PolygonButton(Polygon shape, Action action) {
-		super(0, 0, 0, 0);
+	
+	public PolygonButton(int x, int y , int w, int h, Polygon shape, Action action) {
+		super(x, y, w, h);
 		this.shape = shape;
 		this.action = action;
 		update();
@@ -35,38 +36,6 @@ public class PolygonButton extends Component implements Clickable {
 	@Override
 	public Action getAction() {
 		return action;
-	}
-
-
-	@Override
-	public BufferedImage getImage() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getX() {
-		return 0;
-	}
-
-	@Override
-	public int getY() {
-		return 0;
-	}
-
-	@Override
-	public int getWidth() {
-		return 0;
-	}
-
-	@Override
-	public int getHeight() {
-		return 0;
-	}
-
-	@Override
-	public boolean isAnimated() {
-		return false;
 	}
 
 
