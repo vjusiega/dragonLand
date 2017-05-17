@@ -4,85 +4,109 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import game.DragonLand;
+import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.HomeKat;
 import game.miniGameTeam.GameScreen;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
+import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
+import introScreens.Fog;
+import introScreens.WelcomeScreen;
 
-public class HomeShopScreen extends ClickableScreen {
-	
-	public Button myButton;
-	public CoinLabel coins;
-	public ShopLabel dragonAmount;
+/*
+ * Violetta
+ */
+public class HomeShopScreen extends ClickableScreen{
+
+	private ArrayList<Dragon> dragons;
+	private Graphic background;
 	
 	public HomeShopScreen(int width, int height) {
 		super(width, height);
 	}
-
+	
 	@Override
-	public void initAllObjects(ArrayList<Visible> visible) {
-		int shopTopMargin = 50;
-		int titleWidth = 300;
-		int titleHeight = 50;	
+	public void initAllObjects(ArrayList<Visible> viewObjects) {
+		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
+		viewObjects.add(background);
 		
-		int buttonWidth = 150;
-		int buttonHeight = 55;
-		int topMargin = 40;
+		dragons = new ArrayList<Dragon>();
+		viewObjects.add(setUpDragons(1));
+		viewObjects.add(setUpDragons(3));
 		
-		int titleX = getWidth()/2 - titleWidth/2;
-		int titleY = shopTopMargin + getHeight()/10;
-		int shopBackHeight = (shopTopMargin + getHeight()/2 + topMargin);
-		
-		Graphic background=new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
-		
-		Button exit = new Button(getWidth() - 100,  60, 50, 40, "X", new Color(230,195,147), new Action(){
-			
-			public void act() {
-				GameScreen.isNotHome = false;
+		ClickableGraphic post = new ClickableGraphic(0, getHeight()-200, 1.0,"img/oneSignLeft.png");
+		post.setAction(new Action(){
+			public void act(){
 				DragonLand.game.setScreen(DragonLand.homeScreen);
-				HomeKat.dragonsOnScreen();
 			}
 		});
 		
-		ShopBackdrop shopBack = new ShopBackdrop(titleX - 30, titleY - 30, titleWidth + 60, shopBackHeight);
-		ShopLabel shopTitle = new ShopLabel(titleX, titleY, titleWidth, titleHeight, "Dragon Shop");
-		shopTitle.setSize(28);
-		ShopActionButton buy = new ShopActionButton(getWidth()/2 - buttonWidth/2, shopTopMargin + getHeight()/4, buttonWidth, buttonHeight, "BUY", new Color(230,195,147), new Action(){
-			public void act()
-			{
-				((ShopScreen) DragonLand.buyScreen).updateShopLabels();
+		setUpFog(post);
+		
+		ClickableGraphic buyBox = new ClickableGraphic(getWidth(), getHeight(), 1.1, "img/whiteBox.png", 0.25, 0.5);
+		buyBox.setAction(new Action(){
+			public void act() {
 				DragonLand.game.setScreen(DragonLand.buyScreen);
 			}
 		});
-		ShopActionButton sell = new ShopActionButton(getWidth()/2 - buttonWidth/2, shopTopMargin + getHeight()/2 - topMargin, buttonWidth, buttonHeight, "SELL", new Color(230,195,147), new Action(){
-			public void act()
-			{
-				((SellShopZheng) DragonLand.sellScreen).drawDragons();
-				DragonLand.game.setScreen(DragonLand.sellScreen);
-			}
-		});
+		viewObjects.add(buyBox);
+		Dragon display = new Dragon(buyBox.getX() - 7, buyBox.getY() + 30, (int) (buyBox.getWidth() *0.70), (int) (buyBox.getHeight() * 0.65), "img/dragon1.png");
+		display.play();
+		viewObjects.add(display);
 		
-		coins = new CoinLabel(titleX - 20, shopBackHeight + 30, DragonLand.coins, DragonLand.DARKER_NUDE);
-		dragonAmount = new ShopLabel(titleX + CoinLabel.getWdith(), shopBackHeight + 30, CoinLabel.getWdith(), CoinLabel.getHeight2(),"0/6 Dragons", DragonLand.DARKER_NUDE);
-		dragonAmount.setArc(15);
 		
-		visible.add(background);
-		visible.add(shopBack);
-		visible.add(exit);
-		visible.add(shopTitle);
-		visible.add(buy);
-		visible.add(sell);
-		visible.add(coins);
-		visible.add(dragonAmount);
+		ClickableGraphic eggBox = new ClickableGraphic(getWidth(), getHeight(), 1.1, "img/whiteBox.png", 0.5, 0.5);
+		ClickableGraphic tradeBox = new ClickableGraphic(getWidth(), getHeight(), 1.1, "img/whiteBox.png", 0.75, 0.5);
+		
+		viewObjects.add(eggBox);
+		viewObjects.add(tradeBox);
 	}
 	
-	public void updateHomeShopLabels()
-	{
-		coins.setCoins();
-		dragonAmount.setText(((SellShopZheng) DragonLand.sellScreen).getDragonsInSellShop().size() + "/6 Dragons");
+	public void setUpFog(ClickableGraphic post){
+		Fog fog; 
+		
+		for(int i = -5; i < 5; i++){
+			fog = new Fog((i*getWidth() / 10), 200, 500, 300, "img/introFog.png", 100);
+			if(i == 3){
+				viewObjects.add(post);
+			}
+			viewObjects.add(fog);
+			fog.setY(fog.generateYPos());
+			fog.play();
+		}
 	}
+	
+	public Dragon setUpDragons(int drag){
+		String imgSrc = "img/dragon" + drag + ".png";
+		int dragonHeight = getHeight()/8;
+		int dragonWidth = (int) (dragonHeight * 0.8);
+		int xPos;
+		if(drag == 1){
+			xPos = getWidth()/4 - dragonWidth;
+		}else{
+			xPos = (3*getWidth()/4) - dragonWidth * 2;
+		}
+		
+		int yPos = (-1)*dragonHeight;
+		Dragon d = new Dragon(xPos, yPos, dragonHeight, dragonWidth, imgSrc, 15, 0.7);
+		dragons.add(d);
+		d.setDragonAnimation(d, imgSrc);
+		d.setX(xPos);
+		d.setY(yPos);
+		d.setInitialY(getHeight()/9);
+		d.setDirection(4);
+		d.play();
+		
+		return d;
+	}
+	
+	public int getDragonY(){
+		return getHeight()/4;
+	}
+
 }
+	

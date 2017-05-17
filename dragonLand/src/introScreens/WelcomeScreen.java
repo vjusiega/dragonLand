@@ -22,6 +22,7 @@ import guiPractice.components.Visible;
 public class WelcomeScreen extends ClickableScreen{
 	
 	private ArrayList<Dragon> dragons;
+	private ArrayList<Fog> fogs;
 	private Graphic background;
 
 	public WelcomeScreen(int width, int height) {
@@ -34,12 +35,14 @@ public class WelcomeScreen extends ClickableScreen{
 		viewObjects.add(background);
 		
 		dragons = new ArrayList<Dragon>();
+		fogs = new ArrayList<Fog>();
 		viewObjects.add(setUpDragons(1));
 		viewObjects.add(setUpDragons(3));
 		
 		ClickableGraphic post = new ClickableGraphic(getWidth()-250, getHeight()-300, 1.0,"img/oneSignLeft.png");
 		post.setAction(new Action(){
 			public void act(){
+				stopThreads();
 				DragonLand.game.setScreen(DragonLand.homeScreen);
 			}
 		});
@@ -66,6 +69,7 @@ public class WelcomeScreen extends ClickableScreen{
 			}
 			viewObjects.add(fog);
 			fog.setY(fog.generateYPos());
+			fogs.add(fog);
 			fog.play();
 		}
 	}
@@ -96,6 +100,15 @@ public class WelcomeScreen extends ClickableScreen{
 	
 	public int getDragonY(){
 		return getHeight()/4;
+	}
+	
+	public void stopThreads() {
+		for(int i = 0; i < dragons.size(); i++){
+			dragons.get(i).setRunning(false);
+		}
+		for(int i = 0; i < fogs.size(); i++){
+			fogs.get(i).setRunning(false);
+		}
 	}
 
 }

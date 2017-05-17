@@ -100,14 +100,15 @@ public class Graphic implements Visible {
 	public void setY(int y) {
 		this.y=y;
 	}
+	
 	@Override
 	public int getWidth() {
-		return image.getHeight();
+		return image.getWidth();
 	}
 
 	@Override
 	public int getHeight() {
-		return image.getWidth();
+		return image.getHeight();
 	}
 
 	@Override

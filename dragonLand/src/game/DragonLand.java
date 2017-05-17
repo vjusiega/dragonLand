@@ -84,16 +84,16 @@ public class DragonLand extends GUIApplication {
 		initColors();
 
 
-		miniGameScreen = new GameScreen(DragonLand.WIDTH,DragonLand.HEIGHT);
-		shopMain = new HomeShopScreen(DragonLand.WIDTH,DragonLand.HEIGHT);
-		sellScreen = new SellShopZheng(DragonLand.WIDTH,DragonLand.HEIGHT);
-		homeScreen = new HomeScreen(DragonLand.WIDTH,DragonLand.HEIGHT);
-		buyScreen = new BuyScreenWendy(DragonLand.WIDTH,DragonLand.HEIGHT);
-		highscoreScreen = new HighScoreScreen(DragonLand.WIDTH,DragonLand.HEIGHT);
+		miniGameScreen = new GameScreen(WIDTH, HEIGHT);
+		shopMain = new HomeShopScreen(WIDTH, HEIGHT);
+		sellScreen = new SellShopZheng(WIDTH, HEIGHT);
+		homeScreen = new HomeScreen(WIDTH, HEIGHT);
+		buyScreen = new BuyScreenWendy(WIDTH, HEIGHT);
+		highscoreScreen = new HighScoreScreen(WIDTH, HEIGHT);
 		HomeScreen.jenCode = new game.mainScreenTeam.HomeJenniber();
-		welcomeScreen = new WelcomeScreen(DragonLand.WIDTH, DragonLand.HEIGHT);
+		welcomeScreen = new WelcomeScreen(WIDTH, HEIGHT);
 //		incubator = new IncubatorScreen(viewObjects);
-		gameInstructionsScreen = new GameInstructions(DragonLand.WIDTH,DragonLand.HEIGHT);
+		gameInstructionsScreen = new GameInstructions(WIDTH, HEIGHT);
 		vGame = new GameVioletta();
 		setScreen(welcomeScreen);
 
