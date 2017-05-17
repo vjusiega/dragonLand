@@ -1,9 +1,12 @@
 package game;
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import game.mainScreenTeam.Dragon;
 
 public class Client extends DragonLand{
 
@@ -15,27 +18,26 @@ public class Client extends DragonLand{
 
 	private ObjectOutputStream output;
 	private ObjectInputStream input;
-	private String message = "";
+	private Dragon otherUsersDragons;
 	private String serverIP;
 		//IP of the person you are talking to 
 	private Socket connection;
 	
-	public Client(String host){
 	
+	public Client(String host){
+		serverIP = host; 
 	}
 
 	//connect to server
 	public void startRunning(){
 		try{
-			connectToServer(); //client is responsible for connecting to the server
+			connectToServer(); 
 			setUpStreams();
 			whileChatting();
 		}catch(EOFException eofException){
 			showMessage("\n Client terminated connection");
-			//this is okay to see because client ended connection
 		}catch(IOException ioException){
 			ioException.printStackTrace();
-				//we don't want to see this. bad
 		}finally{
 			closeCrap();
 		}
@@ -67,14 +69,14 @@ public class Client extends DragonLand{
 		do{
 			try{
 				//now what do you want to happen when you are chatting
-				message = (String) input.readObject();
+				otherUsersDragons = (Dragon) input.readObject();
 					//take whatever they are sending through their stream
 					//treat it as a string and store it in the variable message
-				showMessage("\n" + message);
+				showMessage("\n" + otherUsersDragons);
 			}catch(ClassNotFoundException classNotFoundException){
 				showMessage("\n I don't know that object type.");
 			}
-		}while(!message.equals("SERVER - END"));
+		}while(!otherUsersDragons.equals("SERVER - END"));
 		//as long as the server person doesn't type end, you can 
 		//continue to have a conversation
 			//The reason why it's "SERVER - END" and not just "END"
@@ -132,6 +134,7 @@ public class Client extends DragonLand{
 			}
 		);
 	}
+	
 	
 	
 	

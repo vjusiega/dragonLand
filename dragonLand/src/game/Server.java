@@ -1,6 +1,10 @@
 package game;
 import java.io.*;
 import game.DragonLand;
+import game.dragonTrading.TradingScreen;
+import game.mainScreenTeam.Dragon;
+import guiPractice.Screen;
+
 import java.net.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -19,16 +23,16 @@ public class Server extends DragonLand{
 	}
 	
 	//set up and run the server
-	public void startRunning(){
+	public void startRunning(TradingScreen s){
 		try{
 			server = new ServerSocket(6789, 100); // first number for testing purposes
 			while(true){
 				try{
-					waitForConnection();	
-					setupStreams();
-					whileTrading();
+					waitForConnection(s);	
+					setupStreams(s);
+					whileTrading(s);
 				}catch(EOFException eofException){
-					showMessage("\n Server ended the connection!");
+					s.displayConnectionMessage("\n Server ended the connection!");
 				}finally{
 					closeCrap();
 				}
@@ -39,29 +43,29 @@ public class Server extends DragonLand{
 	}
 
 
-	private void waitForConnection() throws IOException{
-		showMessage("Waiting for someone to connect... \n");
+	private void waitForConnection(TradingScreen s) throws IOException{
+		s.displayConnectionMessage("Waiting for someone to connect... \n");
 		connection = server.accept();
-		showMessage("Now connected to " + connection.getInetAddress().getHostName());
+		s.displayConnectionMessage("Now connected to " + connection.getInetAddress().getHostName());
 	}
 	
-	private void setupStreams() throws IOException {
+	private void setupStreams(TradingScreen s) throws IOException {
 		output = new ObjectOutputStream(connection.getOutputStream());
 		output.flush();
 		input = new ObjectInputStream(connection.getInputStream());
-		showMessage("\n Streams are now setup! \n");
+		s.displayConnectionMessage("\n Streams are now setup! \n");
 	}
 	
-	private void whileTrading() throws IOException{
-		String message = " You are now connected! "; //simple prompt on screen
+	private void whileTrading(TradingScreen s) throws IOException{
+		Dragon message = new Dragon(0,0,0,0, "img/dragon1.png"); //simple prompt on screen
 		sendMessage(message);
 		ableToType(true); 
 		do{
 			try{
 				message = (String) input.readObject(); 
-				showMessage("\n" + message);
+				s.displayConnectionMessage("\n" + message);
 			}catch(ClassNotFoundException classNotFoundException){
-				showMessage("\n hopefully this message never displays");
+				s.displayConnectionMessage("\n hopefully this message never displays");
 			}
 		}while(!message.equals("CLIENT - END")); 
 	}
@@ -89,7 +93,7 @@ public class Server extends DragonLand{
 	}
 		
 	//only displays, does not send
-	private void showMessage(final String text) {
+	private void showMessage(final String text){
 		SwingUtilities.invokeLater(
 				new Runnable(){
 					public void run(){
