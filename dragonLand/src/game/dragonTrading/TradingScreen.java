@@ -13,9 +13,15 @@ import introScreens.Fog;
 public class TradingScreen extends Screen {
 	
 	private Graphic background;
+	private ArrayList<Dragon> myDragons;
+	private ArrayList<Dragon> myDragonsToTrade;
+	private ArrayList<Dragon> theirDragons;
 	
 	public TradingScreen(int width, int height) {
 		super(width, height);
+		myDragons = new ArrayList<Dragon>();
+		myDragonsToTrade = new ArrayList<Dragon>();
+		theirDragons = new ArrayList<Dragon>();
 	}
 
 	@Override
