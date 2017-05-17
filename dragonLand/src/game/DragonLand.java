@@ -23,7 +23,7 @@ import game.miniGameTeam.GameScreen;
 import game.miniGameTeam.GameVioletta;
 import game.miniGameTeam.HighScoreScreen;
 import game.shopScreen.BuyScreenWendy;
-import game.shopScreen.HomeShopScreen;
+import game.shopScreen.ShopSelectionScreen;
 import game.shopScreen.SellShopZheng;
 
 import guiPractice.GUIApplication;
@@ -85,7 +85,7 @@ public class DragonLand extends GUIApplication {
 
 
 		miniGameScreen = new GameScreen(WIDTH, HEIGHT);
-		shopMain = new HomeShopScreen(WIDTH, HEIGHT);
+		shopMain = new ShopSelectionScreen(WIDTH, HEIGHT);
 		sellScreen = new SellShopZheng(WIDTH, HEIGHT);
 		homeScreen = new HomeScreen(WIDTH, HEIGHT);
 		buyScreen = new BuyScreenWendy(WIDTH, HEIGHT);

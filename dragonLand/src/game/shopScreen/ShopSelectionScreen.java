@@ -20,12 +20,12 @@ import introScreens.WelcomeScreen;
 /*
  * Violetta
  */
-public class HomeShopScreen extends ClickableScreen{
+public class ShopSelectionScreen extends ClickableScreen{
 
 	private ArrayList<Dragon> dragons;
 	private Graphic background;
 	
-	public HomeShopScreen(int width, int height) {
+	public ShopSelectionScreen(int width, int height) {
 		super(width, height);
 	}
 	
@@ -38,7 +38,7 @@ public class HomeShopScreen extends ClickableScreen{
 		viewObjects.add(setUpDragons(1));
 		viewObjects.add(setUpDragons(3));
 		
-		ClickableGraphic post = new ClickableGraphic(0, getHeight()-200, 1.0,"img/oneSignLeft.png");
+		ClickableGraphic post = new ClickableGraphic(0, getHeight()-250, 1.0,"img/oneSignLeft.png");
 		post.setAction(new Action(){
 			public void act(){
 				DragonLand.game.setScreen(DragonLand.homeScreen);
@@ -54,12 +54,17 @@ public class HomeShopScreen extends ClickableScreen{
 			}
 		});
 		viewObjects.add(buyBox);
-		Dragon display = new Dragon(buyBox.getX() - 7, buyBox.getY() + 30, (int) (buyBox.getWidth() *0.70), (int) (buyBox.getHeight() * 0.65), "img/dragon1.png");
+		Dragon display = new Dragon(buyBox.getX() - 13, buyBox.getY() + 35, (int) (buyBox.getWidth() *0.70), (int) (buyBox.getHeight() * 0.65), "img/dragon1.png");
 		display.play();
 		viewObjects.add(display);
 		
 		
 		ClickableGraphic eggBox = new ClickableGraphic(getWidth(), getHeight(), 1.1, "img/whiteBox.png", 0.5, 0.5);
+		eggBox.setAction(new Action(){
+			public void act(){
+				DragonLand.game.setScreen(DragonLand.homeScreen);
+			}
+		});
 		ClickableGraphic tradeBox = new ClickableGraphic(getWidth(), getHeight(), 1.1, "img/whiteBox.png", 0.75, 0.5);
 		
 		viewObjects.add(eggBox);

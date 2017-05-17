@@ -12,7 +12,7 @@ import game.miniGameTeam.GameScreen;
 import game.miniGameTeam.NoBorderButton;
 import game.shopScreen.BuyScreenInterface;
 import guiPractice.components.PolygonButton;
-import game.shopScreen.HomeShopScreen;
+import game.shopScreen.ShopSelectionScreen;
 import game.shopScreen.SellShopZheng;
 import guiPractice.components.Action;
 import guiPractice.components.AnimatedComponent;
