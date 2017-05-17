@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
@@ -60,7 +61,7 @@ public class DragonLand extends GUIApplication {
 	public static Color DARKER_NUDE;
 	public static WelcomeScreen welcomeScreen;
 	static JFileChooser chooser;
-	
+	static ReadFile dragonFile;
 	
 	/**
 	 * 
@@ -70,7 +71,9 @@ public class DragonLand extends GUIApplication {
 //	}
 	public DragonLand(String[] strings) {
 		if(strings != null){
-			
+			for(int i=0; i<strings.length;i++){
+				System.out.println(strings[i]);
+			}
 		}
 	}
 
@@ -110,18 +113,36 @@ public class DragonLand extends GUIApplication {
 	 */
 	public static void main(String[] args) {
 		try{
-			ReadFile file = new ReadFile("C:/Users/Student 8/Desktop/test.txt");
-			game = new DragonLand(file.OpenFile());
+//			ReadFile file = new ReadFile("C:/Users/Student 8/Desktop/test.txt");
+			
+			JButton open = new JButton();
+			chooser=new JFileChooser();
+			chooser.setCurrentDirectory(new java.io.File("C:/Users/student 8/Desktop"));
+			chooser.setDialogTitle("Pick a saved file");
+			if(chooser.showOpenDialog(open)== JFileChooser.APPROVE_OPTION){
+				//Open JFileChooser
+			}
+			dragonFile = new ReadFile(chooser.getSelectedFile().getPath());
+			
+			game = new DragonLand(dragonFile.OpenFile());
 			Thread go = new Thread(game);
 			go.start();
-			chooser=new JFileChooser("Pick a saved file");
 			
+			System.out.print(chooser.getSelectedFile().getPath());
 		}catch
 		(IOException e){
 			game = new DragonLand(null);
 			Thread go = new Thread(game);
 			go.start();
 		}
+	}
+	
+	public static void jFileChoose(){
+		JButton open = new JButton();
+		chooser=new JFileChooser("Pick a saved file");
+		chooser.setDialogTitle("Hello World");
+		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+//		System.out.print(chooser.getSelectedFile().getPath());
 	}
 	
 	//public coin getter + setter

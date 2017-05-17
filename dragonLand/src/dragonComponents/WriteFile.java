@@ -17,6 +17,8 @@ public class WriteFile {
 	/**
 	 * 
 	 */
+	private String info;
+	
 	public WriteFile() {
 		// TODO Auto-generated constructor stub
 	}
