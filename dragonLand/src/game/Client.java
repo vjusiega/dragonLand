@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Client extends JFrame{
+public class Client extends DragonLand{
 
 	//this class is for the GUI for the client
 	
@@ -13,12 +13,7 @@ public class Client extends JFrame{
 		//are two completely different programs
 		//on different computers
 
-	private JTextField userText;
-	private JTextArea chatWindow;
 	private ObjectOutputStream output;
-		//output is now from the client.
-		//output isn't always from the server
-		//its just whatever is flowing out from the computer using this program
 	private ObjectInputStream input;
 	private String message = "";
 	private String serverIP;
@@ -26,27 +21,7 @@ public class Client extends JFrame{
 	private Socket connection;
 	
 	public Client(String host){
-		//server is public to everyone
-		//this program sits on personal/private computer
-			//not everyone should be able to access the clientside
-		super("Client"); //this is the title of the box
-		serverIP = host;
-			//this protects the client
-		userText = new JTextField();
-		userText.setEditable(false);
-		userText.addActionListener(
-			new ActionListener(){
-				public void actionPerformed(ActionEvent event){
-					sendMessage(event.getActionCommand());
-					userText.setText("");
-				}
-			}
-		);
-		add(userText, BorderLayout.NORTH);
-		chatWindow = new JTextArea();
-		add(new JScrollPane(chatWindow), BorderLayout.CENTER);
-		setSize(300, 150);
-		setVisible(true);
+	
 	}
 
 	//connect to server
@@ -131,7 +106,7 @@ public class Client extends JFrame{
 				//even though you sent to through the stream does not mean that it is shown
 				//makes it show on the GUI
 		}catch(IOException e){
-			chatWindow.append("\n something messed up sending message");
+			//chatWindow.append("\n something messed up sending message");
 		}
 	}
 	
@@ -140,7 +115,7 @@ public class Client extends JFrame{
 		SwingUtilities.invokeLater(
 			new Runnable(){
 				public void run(){
-					chatWindow.append(m);
+					//chatWindow.append(m);
 				}
 			}
 		);
@@ -152,7 +127,7 @@ public class Client extends JFrame{
 		SwingUtilities.invokeLater(
 			new Runnable(){
 				public void run(){
-					userText.setEditable(tof);
+					//userText.setEditable(tof);
 				}
 			}
 		);
