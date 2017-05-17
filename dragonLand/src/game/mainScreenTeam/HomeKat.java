@@ -46,6 +46,7 @@ public class HomeKat implements DragonArrayInterface {
 	private TextLabel help6;
 	private String thelp6;
 	private static DragonFood food ;
+	private Button helpLayer;
 	public HomeKat(ArrayList<Visible> viewObjects, int width,int height) {
 		//
 		this.viewObjects=viewObjects;
@@ -78,71 +79,50 @@ public class HomeKat implements DragonArrayInterface {
 		help7= new NoBorderButton(130,400,720,35,  thelp7,DragonLand.DARKER_NUDE,null);
 		help7.setSize(20);
 		
-		Button shop = new Button(width-110-(width*2/100),(height*5/100),  110,  50,  "Shop",DragonLand.DARKER_NUDE,  new Action(){
-
-			@Override
-			public void act() {
-				GameScreen.isNotHome = true;
-				((HomeShopScreen)DragonLand.shopMain).updateHomeShopLabels();
-				DragonLand.game.setScreen(DragonLand.shopMain);
-			}});
-		viewObjects.add(shop);
-		
-	  
-//		Button minigame = new Button(width-110-(width*2/100),(height*5/100)+53,  110,  50,  "Minigame",DragonLand.DARKER_NUDE,  new Action(){
-//
-//			@Override
-//			public void act() {
-//				GameScreen.isNotHome = true;
-//				DragonLand.game.setScreen(DragonLand.gameInstructionsScreen);
-//			}
-//		
-//		});
-//		viewObjects.add(minigame);
-		
-		Button helpLayer = new Button((int)(width*0.1),(int)(height*0.1),(int)(width*0.8),(int)(height*0.8),  null,DragonLand.DARKER_NUDE,  new Action(){
+		helpLayer = new Button((int)(width*0.1),(int)(height*0.1),(int)(width*0.8),(int)(height*0.8),  null,DragonLand.DARKER_NUDE,  new Action(){
 
 			@Override
 			public void act() {
 				viewObjects.remove(this);
 			}});
-		Button help = new Button(width-50-(width*2/100),height-50-(height*2/100),  50,  50,  "?",DragonLand.DARKER_NUDE,  new Action(){
-			@Override
-			public void act() {
-					if(viewObjects.contains(helpLayer)){
-						
-						viewObjects.remove(help1);
-						viewObjects.remove(help2);
-						viewObjects.remove(help3);
-						viewObjects.remove(help4);
-						viewObjects.remove(help5);
-						viewObjects.remove(help6);
-						viewObjects.remove(help7);
-						viewObjects.remove(helpLayer);
-					}
-					else{
-						viewObjects.add(helpLayer);	
-						viewObjects.add(help1);
-						viewObjects.add(help2);
-						viewObjects.add(help3);
-						viewObjects.add(help4);
-						viewObjects.add(help5);
-						viewObjects.add(help6);
-						viewObjects.add(help7);
-					}
-			}});
-		
-		viewObjects.add(help);
+//		Button help = new Button(width-50-(width*2/100),height-50-(height*2/100),  50,  50,  "?",DragonLand.DARKER_NUDE,  new Action(){
+//			@Override
+//			public void act() {
+//					if(viewObjects.contains(helpLayer)){
+//						
+//						viewObjects.remove(help1);
+//						viewObjects.remove(help2);
+//						viewObjects.remove(help3);
+//						viewObjects.remove(help4);
+//						viewObjects.remove(help5);
+//						viewObjects.remove(help6);
+//						viewObjects.remove(help7);
+//						viewObjects.remove(helpLayer);
+//					}
+//					else{
+//						viewObjects.add(helpLayer);	
+//						viewObjects.add(help1);
+//						viewObjects.add(help2);
+//						viewObjects.add(help3);
+//						viewObjects.add(help4);
+//						viewObjects.add(help5);
+//						viewObjects.add(help6);
+//						viewObjects.add(help7);
+//					}
+//			}});
+//		
+//		viewObjects.add(help);
 		Button title = new Button((width*2/100),(height*5/100),  350,  50,  "Welcome to Dragon Land!",DragonLand.DARKER_NUDE,  null);
 		title.setSize(26);
 		viewObjects.add(title);
-		food = new DragonFood(100, 100, 75, 75, "img/food.png");
-		viewObjects.add(food);
 		
 		Graphic post = new Graphic(10, DragonLand.HEIGHT-290, 1, "img/three_sign.png");
 		viewObjects.add(post);
-		
+		Graphic helpPost = new Graphic(DragonLand.WIDTH - 130, DragonLand.HEIGHT-100, .6, "img/oneSignRight.png");
+		viewObjects.add(helpPost);
 		addPostButtons();
+		food = new DragonFood(130, DragonLand.HEIGHT-123, 75, 50, "img/food.png");
+		viewObjects.add(food);
 		
 		makeLocations();
 		makeDragons();
@@ -167,6 +147,59 @@ public class HomeKat implements DragonArrayInterface {
 			}
 		});
 	    viewObjects.add(shop);
+	    
+	    Polygon gameButton = new Polygon();
+	    gameButton.addPoint(30, 20);
+	    gameButton.addPoint(205, 45);
+	    gameButton.addPoint(200, 85);
+	    gameButton.addPoint(30, 60);
+	    gameButton.addPoint(12, 40);
+	    gameButton.addPoint(30, 20);
+
+	    PolygonButton gameButtn = new PolygonButton(10, DragonLand.HEIGHT-220, 230, 100, gameButton, new Action(){
+			@Override
+			public void act() {
+				GameScreen.isNotHome = true;
+				DragonLand.game.setScreen(DragonLand.gameInstructionsScreen);
+			}
+		});
+	    viewObjects.add(gameButtn);
+	    
+	    Polygon helpBtn = new Polygon();
+	    helpBtn.addPoint(30, 20);
+	    helpBtn.addPoint(205, 45);
+	    helpBtn.addPoint(200, 85);
+	    helpBtn.addPoint(30, 60);
+	    helpBtn.addPoint(12, 40);
+	    helpBtn.addPoint(30, 20);
+
+	    PolygonButton help = new PolygonButton(DragonLand.WIDTH - 130, DragonLand.HEIGHT-100, 100, 100, helpBtn, new Action(){
+			@Override
+			public void act() {
+				if(viewObjects.contains(helpLayer)){
+					
+					viewObjects.remove(help1);
+					viewObjects.remove(help2);
+					viewObjects.remove(help3);
+					viewObjects.remove(help4);
+					viewObjects.remove(help5);
+					viewObjects.remove(help6);
+					viewObjects.remove(help7);
+					viewObjects.remove(helpLayer);
+				}
+				else{
+					viewObjects.add(helpLayer);	
+					viewObjects.add(help1);
+					viewObjects.add(help2);
+					viewObjects.add(help3);
+					viewObjects.add(help4);
+					viewObjects.add(help5);
+					viewObjects.add(help6);
+					viewObjects.add(help7);
+				}
+			}});
+	    
+	    viewObjects.add(help);
 	}
 	public static void addBerry(){
 		viewObjects.add(food);

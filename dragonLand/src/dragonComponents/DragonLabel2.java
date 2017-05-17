@@ -124,7 +124,8 @@ public class DragonLabel2 extends Component implements Clickable{
 
 	@Override
 	public boolean isHovered(int x, int y) {
-		return x > button.getX() + LABEL_LEFT_MARGIN && x < button.getX() + button.getWidth() + LABEL_LEFT_MARGIN && y > getY() + button.getY() && y < getY() + button.getY() + button.getHeight();
+		return x > button.getX() + LABEL_LEFT_MARGIN && x < button.getX() + button.getWidth() + LABEL_LEFT_MARGIN && y > 25 + getY() + button.getY() && y < getY() + 25 + button.getY()
+		+ button.getHeight();
 	}
 
 	@Override

@@ -49,7 +49,7 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 		Fog fog; 
 		
 		for(int i = -10; i < 10; i++){
-			fog = new Fog((i*getWidth() / 10), 10, 400, 150, "img/introFog.png", 50);
+			fog = new Fog((i*getWidth() / 10), 0, 400, 150, "img/introFog.png", 50);
 			viewObjects.add(fog);
 			fog.setY(fog.generateYPos());
 			fog.play();
