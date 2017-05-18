@@ -19,7 +19,22 @@ import introScreens.Fog;
  * */
 public abstract class ShopScreen extends ClickableScreen {
 	
-	//private ArrayList<Dragon> dragonList;
+	private ArrayList<Dragon> dragonsToBuy;
+	private ArrayList<Dragon> myDragons;
+	
+	public ArrayList<Dragon> getMyDragons(){
+		return myDragons;
+	}
+	
+	public void addToMyDragons(Dragon d){
+		myDragons.add(d);
+	}
+	
+	public void removeFromMyDragons(Dragon d){
+		dragonsToBuy.add(myDragons.remove(d));
+	}
+	
+
 	private Action action;
 	private Graphic background;
 
@@ -35,7 +50,7 @@ public abstract class ShopScreen extends ClickableScreen {
 	public ShopScreen(int width, int height) {
 		super(width, height);
 		update();
-}
+	}
 	
 	public ShopScreen(int width, int height, /*ArrayList<Dragon> dl,*/ Action act) {
 		super(width, height);
@@ -51,7 +66,12 @@ public abstract class ShopScreen extends ClickableScreen {
 		
 		setUpFog();
 		
+		generateInitialDragons();
 		
+	}
+	
+	public void generateInitialDragons(){
+			
 	}
 	
 	public void setUpFog(){
