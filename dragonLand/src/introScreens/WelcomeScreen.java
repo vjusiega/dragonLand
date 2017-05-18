@@ -39,7 +39,7 @@ public class WelcomeScreen extends ClickableScreen{
 		viewObjects.add(setUpDragons(1));
 		viewObjects.add(setUpDragons(3));
 		
-		ClickableGraphic post = new ClickableGraphic(getWidth()-250, getHeight()-300, 1.0,"img/oneSignLeft.png");
+		ClickableGraphic post = new ClickableGraphic(getWidth()-250, getHeight()-200, 1.0,"img/continueSign.png");
 		post.setAction(new Action(){
 			public void act(){
 				stopThreads();

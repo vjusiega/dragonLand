@@ -38,7 +38,7 @@ public class ShopSelectionScreen extends ClickableScreen{
 		viewObjects.add(setUpDragons(1));
 		viewObjects.add(setUpDragons(3));
 		
-		ClickableGraphic post = new ClickableGraphic(0, getHeight()-250, 1.0,"img/oneSignLeft.png");
+		ClickableGraphic post = new ClickableGraphic(0, getHeight()-250, 1.0,"img/backSign.png");
 		post.setAction(new Action(){
 			public void act(){
 				DragonLand.game.setScreen(DragonLand.homeScreen);
@@ -54,9 +54,10 @@ public class ShopSelectionScreen extends ClickableScreen{
 			}
 		});
 		viewObjects.add(buyBox);
-		Dragon display = new Dragon(buyBox.getX() - 13, buyBox.getY() + 35, (int) (buyBox.getWidth() *0.70), (int) (buyBox.getHeight() * 0.65), "img/dragon1.png");
-		display.play();
-		viewObjects.add(display);
+		Dragon displayDragon = new Dragon(0, 0, (int) (buyBox.getWidth() *0.70), (int) (buyBox.getHeight() * 0.65), "img/dragon1.png");
+		displayDragon.centerDragon(buyBox.getX(), buyBox.getX() + buyBox.getWidth(), buyBox.getY(), buyBox.getY() + buyBox.getHeight());
+		displayDragon.play();
+		viewObjects.add(displayDragon);
 		
 		
 		ClickableGraphic eggBox = new ClickableGraphic(getWidth(), getHeight(), 1.1, "img/whiteBox.png", 0.5, 0.5);
@@ -66,10 +67,26 @@ public class ShopSelectionScreen extends ClickableScreen{
 			}
 		});
 		ClickableGraphic tradeBox = new ClickableGraphic(getWidth(), getHeight(), 1.1, "img/tradeBox.png", 0.75, 0.5);
-		
 		viewObjects.add(eggBox);
 		viewObjects.add(tradeBox);
+		
+		Dragon tradeDrag2 = new Dragon(0,0, (int) (tradeBox.getWidth() *0.5), (int) (tradeBox.getHeight() * 0.45), "img/dragon2.png");
+		tradeDrag2.centerDragon(tradeBox.getX() + (tradeBox.getWidth() / 2), tradeBox.getX() + tradeBox.getWidth(), tradeBox.getY(), tradeBox.getY() + (tradeBox.getHeight() /2));
+		tradeDrag2.play();
+		tradeDrag2.setDirection(1);
+		viewObjects.add(tradeDrag2);
+		
+		Dragon tradeDrag1 = new Dragon(0,0, (int) (tradeBox.getWidth() *0.6), (int) (tradeBox.getHeight() * 0.55), "img/dragon6.png");
+		tradeDrag1.centerDragon(tradeBox.getX(), tradeBox.getX() + (int)(tradeBox.getWidth() * 0.75), tradeBox.getY() + (tradeBox.getHeight() /2), tradeBox.getY() + tradeBox.getHeight());
+		tradeDrag1.play();
+		tradeDrag1.setDirection(2);
+		viewObjects.add(tradeDrag1);
+		
+		
+		
 	}
+	
+	
 	
 	public void setUpFog(ClickableGraphic post){
 		Fog fog; 

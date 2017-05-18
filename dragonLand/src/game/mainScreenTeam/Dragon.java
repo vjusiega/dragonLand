@@ -16,6 +16,12 @@ import introScreens.WelcomeScreen;
 
 public class Dragon extends AnimatedComponent {
 
+	public void centerDragon(int firstX, int secX, int firstY, int secY){
+		int xLine = (firstX + secX) / 2; 
+		int yLine = (firstY + secY) / 2; 
+		this.setX(xLine - (this.getWidth() / 2));
+		this.setY(yLine - (this.getHeight() / 2));
+	}
 	
 	/**
 	 * @author Kat 

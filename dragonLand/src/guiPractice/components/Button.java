@@ -12,7 +12,6 @@ import java.awt.Toolkit;
 import game.DragonLand;
 
 
-
 public class Button extends TextLabel implements Clickable{
 	
 	private Color color;
@@ -71,7 +70,7 @@ public class Button extends TextLabel implements Clickable{
 
 	@Override
 	public boolean isHovered(int x, int y) {
-		if(x>getX()&&x<(getX()+getWidth())&&y>getY()&&y<(getY()+getHeight()))
+		if(x>getX()&&x<(getX()+getWidth())&&y>getY()+25&&y<(getY()+getHeight()+25))
 			return true;
 		return false;
 	}

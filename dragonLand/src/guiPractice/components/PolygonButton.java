@@ -15,7 +15,7 @@ public class PolygonButton extends Component implements Clickable {
 	private Action action;
 	
 	public PolygonButton(int x, int y , int w, int h, Polygon shape, Action action) {
-		super(x, y, w, h);
+		super(x, y+25, w, h);
 		this.shape = shape;
 		this.action = action;
 		update();
@@ -46,11 +46,8 @@ public class PolygonButton extends Component implements Clickable {
 		double thickness = 2;
 		Stroke oldStroke = g.getStroke();
 		g.setStroke(new BasicStroke((float) thickness));
-		g.draw(shape);
+		//g.draw(shape);
 	}
 
-	//@Override
-//	public void update() {
-//		update(image.create)
-//	}
+
 }

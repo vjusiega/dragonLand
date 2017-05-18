@@ -34,7 +34,7 @@ public abstract class Component implements Visible {
 	}
 
 	public int getX() {
-		return x+20;
+		return x;
 	}
 
 	public int getY() {
