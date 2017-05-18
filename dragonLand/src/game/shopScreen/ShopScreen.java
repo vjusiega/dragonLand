@@ -19,6 +19,19 @@ import introScreens.Fog;
  * */
 public abstract class ShopScreen extends ClickableScreen {
 	
+	private Action action;
+	private Graphic background;
+
+	
+	private int currentPage = 1;
+	private int totalPages;
+	
+	//make this one final
+	private int dragonsPerPage = 6;
+	
+	
+
+	
 	private ArrayList<Dragon> dragonsToBuy;
 	private ArrayList<Dragon> myDragons;
 	
@@ -30,28 +43,34 @@ public abstract class ShopScreen extends ClickableScreen {
 		myDragons.add(d);
 	}
 	
+	public void removeFromBuyDragons(d){
+		dragonsToBuy.remove(d);
+	}
+	
 	public void removeFromMyDragons(Dragon d){
 		dragonsToBuy.add(myDragons.remove(d));
 	}
 	
+	public String[] getNamesOfPurchased(){
+		String[] output = new String[myDragons.size()];
+		for(int i = 0; i < myDragons.size(); i++){
+			output[i] = myDragons.get(i).getName();
+		}
+		return output;
+	}
+	
+	public void drawDragons(){
+	}
+			
+	
 
-	private Action action;
-	private Graphic background;
-
-	private CoinLabel coins;
-	private int currentPage = 1;
-	private int totalPages = 2;
-	private ShopLabel dragonAmount;
-	private ShopLabel page;
-
-	private ClickableGraphic arrowRight;
-	private ClickableGraphic arrowLeft;
-
+	
 	public ShopScreen(int width, int height) {
 		super(width, height);
 		update();
 	}
 	
+	//what does this do
 	public ShopScreen(int width, int height, /*ArrayList<Dragon> dl,*/ Action act) {
 		super(width, height);
 		//dragonList = dl;
@@ -67,6 +86,9 @@ public abstract class ShopScreen extends ClickableScreen {
 		setUpFog();
 		
 		generateInitialDragons();
+		
+		totalPages = dragonsToBuy.size() / dragonsPerPage;
+		drawDragons();
 		
 	}
 	
