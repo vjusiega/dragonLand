@@ -23,8 +23,8 @@ import game.miniGameTeam.GameInstructions;
 import game.miniGameTeam.GameScreen;
 import game.miniGameTeam.GameVioletta;
 import game.miniGameTeam.HighScoreScreen;
+import game.newShop.ShopSelectionScreen;
 import game.shopScreen.BuyScreenWendy;
-import game.shopScreen.ShopSelectionScreen;
 import game.shopScreen.SellShopZheng;
 
 import guiPractice.GUIApplication;

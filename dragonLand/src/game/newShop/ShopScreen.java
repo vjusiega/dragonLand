@@ -1,4 +1,4 @@
-package game.shopScreen;
+package game.newShop;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -29,43 +29,8 @@ public abstract class ShopScreen extends ClickableScreen {
 	//make this one final
 	private int dragonsPerPage = 6;
 	
-	
-
-	
 	private ArrayList<Dragon> dragonsToBuy;
 	private ArrayList<Dragon> myDragons;
-	
-	public ArrayList<Dragon> getMyDragons(){
-		return myDragons;
-	}
-	
-	public void addToMyDragons(Dragon d){
-		myDragons.add(d);
-	}
-	
-	public void removeFromBuyDragons(Dragon d){
-		dragonsToBuy.remove(d);
-	}
-	
-	public void removeFromMyDragons(Dragon d){
-		myDragons.remove(d);
-		dragonsToBuy.add(d);
-	}
-	
-	public String[] getNamesOfPurchased(){
-		String[] output = new String[myDragons.size()];
-		for(int i = 0; i < myDragons.size(); i++){
-			output[i] = myDragons.get(i).getName();
-		}
-		return output;
-	}
-	
-	public void drawDragons(){
-		
-	}
-			
-	
-
 	
 	public ShopScreen(int width, int height) {
 		super(width, height);
@@ -84,9 +49,6 @@ public abstract class ShopScreen extends ClickableScreen {
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
 		viewObjects.add(background);
-		
-		initiateDragons();
-		
 		setUpFog();
 		
 		generateInitialDragons();
@@ -96,18 +58,24 @@ public abstract class ShopScreen extends ClickableScreen {
 		
 	}
 	
-	public void initiateDragons() {
+	public void generateInitialDragons() {
 		String[] names = new String[] {"Rowdy","Thorn","Mushu","Falcor","Elliot","Puff","Spyro","Sandy",
 				"Scaly","Nessie","Nymph","Sparky","Flambi","Drago","Viper","Moon","Saphira","Scorch","Toothless","Stormfly"};
 		int price=50;
 		for(int i = 0; i < names.length; i++){
-			dragonsToBuy.add(new Dragon())
+			Dragon d = new Dragon(0,0,0,0, names[i], price + (i*50), "img/dragon"+i+".png");
+			dragonsToBuy.add(d);
 		}
-		
 	}
 
-	public void generateInitialDragons(){
+	public void drawDragons(){
+		for(Dragon d: dragonsToBuy){
 			
+		}
+	}
+		
+	public void enterShop(){
+		//should update the shop and return to the first page
 	}
 	
 	public void setUpFog(){
@@ -120,14 +88,37 @@ public abstract class ShopScreen extends ClickableScreen {
 		}
 	}
 	
+	/*
+	 * getters and setters for dragon arrays
+	 */
+		public ArrayList<Dragon> getMyDragons(){
+			return myDragons;
+		}
 	
-	public abstract void addDragonLabels(ArrayList<Visible> viewObjects);
+		public void buyDragon(Dragon d){
+			dragonsToBuy.remove(d);
+			myDragons.add(d);
+		}
+		
+		public void addToMyDragons(Dragon d){
+			myDragons.add(d);
+		}
 	
+		public void removeFromBuyDragons(Dragon d){
+			dragonsToBuy.remove(d);
+		}
 	
-	public void updateShopLabels()
-	{
-		updateDragonAmount();
-	}
+		public void removeFromMyDragons(Dragon d){
+			myDragons.remove(d);
+			dragonsToBuy.add(d);
+		}
 	
-	public abstract void updateDragonAmount();
+		public String[] getNamesOfPurchased(){
+			String[] output = new String[myDragons.size()];
+			for(int i = 0; i < myDragons.size(); i++){
+				output[i] = myDragons.get(i).getName();
+			}
+			return output;
+		}
+	
 }

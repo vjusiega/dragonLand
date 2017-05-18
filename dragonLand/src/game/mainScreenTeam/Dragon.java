@@ -15,13 +15,6 @@ import introScreens.WelcomeScreen;
 
 
 public class Dragon extends AnimatedComponent {
-
-	public void centerDragon(int firstX, int secX, int firstY, int secY){
-		int xLine = (firstX + secX) / 2; 
-		int yLine = (firstY + secY) / 2; 
-		this.setX(xLine - (this.getWidth() / 2));
-		this.setY(yLine - (this.getHeight() / 2));
-	}
 	
 	/**
 	 * @author Kat 
@@ -171,65 +164,65 @@ public class Dragon extends AnimatedComponent {
 			}
 		}
 	}
-/*
- * getters and setters
- */
-	@Override
-	public void drawImage(Graphics2D g) {
-		super.drawImage(g);
-	}
-	public void animationUp(){
-		direction=UP;
-	}
-	public void animationDown(){
-		direction=DOWN;
-	}
-	public void animationLeft(){
-		direction=LEFT;
-	}
-	public void animationRight(){
-		direction = RIGHT;
-	}
+	/*
+	 * getters and setters
+	 */
+		@Override
+		public void drawImage(Graphics2D g) {
+			super.drawImage(g);
+		}
+		public void animationUp(){
+			direction=UP;
+		}
+		public void animationDown(){
+			direction=DOWN;
+		}
+		public void animationLeft(){
+			direction=LEFT;
+		}
+		public void animationRight(){
+			direction = RIGHT;
+		}
+		
+		public String getName() {
+			return name;
+		}
 	
-	public String getName() {
-		return name;
-	}
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
 	
-	public void setDirection(int dir){
-		this.direction = dir;
-	}
-
-	public int getPrice() {
-		return price;
-	}
-
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
-
-	public String getImgSrc() {
-		return imgSrc;
-	}
-
-
-	public void setImgSrc(String imgSrc) {
-		this.imgSrc = imgSrc;
-	}
-
-	public boolean getHungryBox() {
-		return hungryBox;
-	}
+		public void setName(String name) {
+			this.name = name;
+		}
+		
+		public void setDirection(int dir){
+			this.direction = dir;
+		}
 	
-	public void setHungryBox(boolean hungryBox){
-		this.hungryBox = hungryBox; 
-	}
+		public int getPrice() {
+			return price;
+		}
+	
+	
+		public void setPrice(int price) {
+			this.price = price;
+		}
+	
+	
+		public String getImgSrc() {
+			return imgSrc;
+		}
+	
+	
+		public void setImgSrc(String imgSrc) {
+			this.imgSrc = imgSrc;
+		}
+	
+		public boolean getHungryBox() {
+			return hungryBox;
+		}
+		
+		public void setHungryBox(boolean hungryBox){
+			this.hungryBox = hungryBox; 
+		}
 	
 	public void setDragonAnimation(Dragon d, String imgSrc){
 		AnimatedComponent a = (AnimatedComponent) d;
@@ -266,4 +259,18 @@ public class Dragon extends AnimatedComponent {
 	public HungryBox getHungryBoxObj(){
 		return hungryBoxObj;
 	}
+	
+	//positioning
+	//centers a dragon between points, in a box
+		public void centerDragon(int firstX, int secX, int firstY, int secY){
+			int xLine = (firstX + secX) / 2; 
+			int yLine = (firstY + secY) / 2; 
+			this.setX(xLine - (this.getWidth() / 2));
+			this.setY(yLine - (this.getHeight() / 2));
+		}
+		
+		public void placeDragonOnLines(int screenWidth, int screenHeight, double xLine, double yLine){
+			this.setX((int)(screenWidth * xLine) - (this.getWidth() / 2));
+			this.setY((int)(screenHeight * yLine) - (this.getHeight() / 2));
+		}
 }

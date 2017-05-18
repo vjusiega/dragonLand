@@ -1,4 +1,4 @@
-package game.shopScreen;
+package game.newShop;
 
 import java.awt.Color;
 import java.util.ArrayList;
