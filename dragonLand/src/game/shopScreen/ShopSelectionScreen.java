@@ -65,7 +65,7 @@ public class ShopSelectionScreen extends ClickableScreen{
 				DragonLand.game.setScreen(DragonLand.homeScreen);
 			}
 		});
-		ClickableGraphic tradeBox = new ClickableGraphic(getWidth(), getHeight(), 1.1, "img/whiteBox.png", 0.75, 0.5);
+		ClickableGraphic tradeBox = new ClickableGraphic(getWidth(), getHeight(), 1.1, "img/tradeBox.png", 0.75, 0.5);
 		
 		viewObjects.add(eggBox);
 		viewObjects.add(tradeBox);
