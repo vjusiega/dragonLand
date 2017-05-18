@@ -43,12 +43,13 @@ public abstract class ShopScreen extends ClickableScreen {
 		myDragons.add(d);
 	}
 	
-	public void removeFromBuyDragons(d){
+	public void removeFromBuyDragons(Dragon d){
 		dragonsToBuy.remove(d);
 	}
 	
 	public void removeFromMyDragons(Dragon d){
-		dragonsToBuy.add(myDragons.remove(d));
+		myDragons.remove(d);
+		dragonsToBuy.add(d);
 	}
 	
 	public String[] getNamesOfPurchased(){
@@ -60,6 +61,7 @@ public abstract class ShopScreen extends ClickableScreen {
 	}
 	
 	public void drawDragons(){
+		
 	}
 			
 	
@@ -83,6 +85,8 @@ public abstract class ShopScreen extends ClickableScreen {
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
 		viewObjects.add(background);
 		
+		initiateDragons();
+		
 		setUpFog();
 		
 		generateInitialDragons();
@@ -92,6 +96,16 @@ public abstract class ShopScreen extends ClickableScreen {
 		
 	}
 	
+	public void initiateDragons() {
+		String[] names = new String[] {"Rowdy","Thorn","Mushu","Falcor","Elliot","Puff","Spyro","Sandy",
+				"Scaly","Nessie","Nymph","Sparky","Flambi","Drago","Viper","Moon","Saphira","Scorch","Toothless","Stormfly"};
+		int price=50;
+		for(int i = 0; i < names.length; i++){
+			dragonsToBuy.add(new Dragon())
+		}
+		
+	}
+
 	public void generateInitialDragons(){
 			
 	}
@@ -109,34 +123,9 @@ public abstract class ShopScreen extends ClickableScreen {
 	
 	public abstract void addDragonLabels(ArrayList<Visible> viewObjects);
 	
-	public CoinLabel getCoins()
-	{
-		return coins;
-	}
-	
-	public ClickableGraphic getArrowRight()
-	{
-		return arrowRight;
-	}
-	
-	public ClickableGraphic getArrowLeft()
-	{
-		return arrowLeft;
-
-	}
-	
-	public ShopLabel getDragonAmount(){
-		return dragonAmount;
-		
-	}
-	
-	public ShopLabel getPage(){
-		return page;
-	}
 	
 	public void updateShopLabels()
 	{
-		coins.setCoins();
 		updateDragonAmount();
 	}
 	
