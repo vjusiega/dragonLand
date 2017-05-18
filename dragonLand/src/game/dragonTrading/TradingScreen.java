@@ -75,7 +75,6 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 		});
 		fogRun.start();
 		
-		
 		Button b = new Button(100, 100, 100, 100, "connect", Color.BLUE);
 		b.setAction(new Action(){
 			public void act() {
@@ -90,7 +89,7 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 				System.out.println("I am running");
 				
 				Client c = new Client("127.0.0.1");	
-				c.startRunning();
+				c.startRunning(thisScreen);
 				System.out.println("I am runninggg");
 			}			
 		});
@@ -98,14 +97,11 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 		
 	}
 
-
-
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
 		
 	}
-	
 }
 /**
 	your dragons to sell
