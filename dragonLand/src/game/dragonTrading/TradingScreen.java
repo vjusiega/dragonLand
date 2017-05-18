@@ -57,6 +57,7 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
+		myDragons = HomeKat.getDragons();
 		thisScreen = this;
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
 		viewObjects.add(background);
@@ -68,12 +69,12 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 			}
 		});
 		
-		Thread fogRun = new Thread(new Runnable(){
-			public void run(){
-				setUpFog(post);
-			}
-		});
-		fogRun.start();
+//		Thread fogRun = new Thread(new Runnable(){
+//			public void run(){
+//				setUpFog(post);
+//			}
+//		});
+//		fogRun.start();
 		
 		Button b = new Button(100, 100, 100, 100, "connect", Color.BLUE);
 		b.setAction(new Action(){
@@ -94,6 +95,10 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 			}			
 		});
 		viewObjects.add(b);
+		for(Dragon d : myDragons){
+			viewObjects.add(d);
+		}
+	
 		
 	}
 

@@ -392,8 +392,4 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 		((SellShopZheng)DragonLand.sellScreen).removeDragonsInSellShop(d);
 		((BuyScreenInterface)DragonLand.buyScreen).addToDragonsInBuyShop(d);
 	}
-
-	
-
-	
 }
