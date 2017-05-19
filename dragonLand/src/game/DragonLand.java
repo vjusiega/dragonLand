@@ -23,6 +23,7 @@ import game.miniGameTeam.GameInstructions;
 import game.miniGameTeam.GameScreen;
 import game.miniGameTeam.GameVioletta;
 import game.miniGameTeam.HighScoreScreen;
+import game.newShop.ShopScreen;
 import game.newShop.ShopSelectionScreen;
 import game.shopScreen.BuyScreenWendy;
 import game.shopScreen.SellShopZheng;
@@ -65,7 +66,8 @@ public class DragonLand extends GUIApplication {
 	public static Color DARKER_NUDE;
 	private GameVioletta vGame;
 	public WelcomeScreen welcomeScreen;
-	private static Screen tradingScreen;
+	public static Screen tradingScreen;
+	public static Screen newShopScreen;
 
 	public DragonLand(Dragon[] savedDragons) {
 		if(savedDragons != null){
@@ -98,6 +100,7 @@ public class DragonLand extends GUIApplication {
 		gameInstructionsScreen = new GameInstructions(WIDTH, HEIGHT);
 		tradingScreen = new TradingScreen(WIDTH, HEIGHT);
 		vGame = new GameVioletta();
+		newShopScreen = new ShopScreen(WIDTH, HEIGHT);
 		setScreen(welcomeScreen);
 
 	}

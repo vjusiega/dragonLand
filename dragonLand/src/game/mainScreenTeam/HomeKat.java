@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import game.DragonLand;
 import game.miniGameTeam.GameScreen;
 import game.miniGameTeam.NoBorderButton;
+import game.newShop.ShopScreen;
 import game.shopScreen.BuyScreenInterface;
 import guiPractice.components.PolygonButton;
 //import game.shopScreen.HomeShopScreen;
@@ -286,7 +287,7 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 	 * the purchased array is used to retrieve the names of dragon in shop from their label ListArray
 	 */
 	public static void dragonsOnScreen(){
-		String[] purchased =((SellShopZheng)DragonLand.sellScreen).getNamesOfPurchased();
+		String[] purchased = ((ShopScreen)DragonLand.newShopScreen).getNamesOfPurchased();
 		checkToRemove(purchased);
 		addNewDragons(purchased);
 	}

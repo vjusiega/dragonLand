@@ -14,10 +14,8 @@ import guiPractice.components.Graphic;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
 import introScreens.Fog;
-/*
- * @author Wendy and Zheng
- * */
-public abstract class ShopScreen extends ClickableScreen {
+
+public class ShopScreen extends ClickableScreen {
 	
 	private Action action;
 	private Graphic background;
@@ -27,7 +25,7 @@ public abstract class ShopScreen extends ClickableScreen {
 	private int totalPages;
 	
 	//make this one final
-	private int dragonsPerPage = 6;
+	private int dragonsPerPage;
 	
 	private ArrayList<Dragon> dragonsToBuy;
 	private ArrayList<Dragon> myDragons;
@@ -52,6 +50,9 @@ public abstract class ShopScreen extends ClickableScreen {
 		viewObjects.add(background);
 		setUpFog();
 		
+		dragonsPerPage = 6;
+		dragonsToBuy = new ArrayList<Dragon>();
+		myDragons = new ArrayList<Dragon>();
 		generateInitialDragons();
 		
 		totalPages = dragonsToBuy.size() / dragonsPerPage;
@@ -62,7 +63,7 @@ public abstract class ShopScreen extends ClickableScreen {
 				"Scaly","Nessie","Nymph","Sparky","Flambi","Drago","Viper","Moon","Saphira","Scorch","Toothless","Stormfly"};
 		int price=50;
 		for(int i = 0; i < names.length; i++){
-			Dragon d = new Dragon(0,0,0,0, names[i], price + (i*50), "img/dragon"+i+".png");
+			Dragon d = new Dragon(0,0,50,50, names[i], price + (i*50), "img/dragon"+i+".png");
 			dragonsToBuy.add(d);
 		}
 	}
