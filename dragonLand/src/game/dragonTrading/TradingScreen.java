@@ -67,12 +67,12 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 			}
 		});
 		
-//		Thread fogRun = new Thread(new Runnable(){
-//			public void run(){
-//				setUpFog(post);
-//			}
-//		});
-//		fogRun.start();
+		Thread fogRun = new Thread(new Runnable(){
+			public void run(){
+				setUpFog(post);
+			}
+		});
+		fogRun.start();
 		
 		Button b = new Button(100, 100, 100, 100, "connect", Color.BLUE);
 		b.setAction(new Action(){
@@ -87,8 +87,15 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 			
 				System.out.println("I am running");
 				
-				Client c = new Client("127.0.0.1");	
-				c.startRunning(thisScreen);
+				Thread tradeClient = new Thread(new Runnable(){
+					public void run(){
+						Client c = new Client("127.0.0.1");	
+						c.startRunning(thisScreen);
+					}
+				});
+				tradeClient.start();
+				
+				
 				System.out.println("I am runninggg");
 			}			
 		});

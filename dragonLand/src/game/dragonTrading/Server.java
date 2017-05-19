@@ -1,13 +1,16 @@
 package game.dragonTrading;
 import java.io.*;
-import game.DragonLand;
-import game.mainScreenTeam.Dragon;
-import guiPractice.Screen;
+
+
 
 import java.net.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import game.DragonLand;
+import game.mainScreenTeam.Dragon;
+import guiPractice.Screen;
 
 public class Server{
 	
@@ -56,7 +59,7 @@ public class Server{
 	}
 	
 	private void whileTrading(TradingScreen s) throws IOException{
-		Dragon message = new Dragon(0,0,0,0, "img/dragon1.png"); //simple prompt on screen
+		Dragon message = new Dragon(10,10,10,10, "img/dragon1.png"); //simple prompt on screen
 		sendDragon(message);
 //		ableToType(true); 
 		do{
