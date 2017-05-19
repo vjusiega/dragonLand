@@ -63,17 +63,12 @@ public class SellShopZheng extends ShopScreen implements SellScreenInterface, St
 
 	@Override
 	public String[] getNamesOfPurchased() {
-		if(dragonsInSellShop.size() > 0){
-			String[] names = new String[dragonsInSellShop.size()];
-			for(int i = 0; i < dragonsInSellShop.size(); i++){
-				names[i] = dragonsInSellShop.get(i).getName();
-			}
-				
-			return names;
+		String[] names = new String[dragonsInSellShop.size()];
+		for(int i = 0; i < dragonsInSellShop.size(); i++){
+			names[i] = dragonsInSellShop.get(i).getName();
 		}
-		else{
-			return null;
-		}
+			
+		return names;
 	}
 	
 	

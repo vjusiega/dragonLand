@@ -127,7 +127,7 @@ public class HomeKat implements DragonArrayInterface {
 		
 		makeLocations();
 		makeDragons();
-		dragonsOnScreen();
+		//dragonsOnScreen();
 		dragonHome = this;
 		}
 	private void addPostButtons() {
