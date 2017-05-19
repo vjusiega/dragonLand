@@ -1,6 +1,9 @@
 package game.newShop;
 
+import java.awt.Color;
+
 import game.mainScreenTeam.Dragon;
+import guiPractice.components.Action;
 import guiPractice.components.Button;
 import guiPractice.components.ClickableGraphic;
 
@@ -27,10 +30,21 @@ public class ShopDragon {
 		int buttonWidth = (int)(background.getWidth() * 0.8);
 		int buttonHeight = (int)(background.getHeight() * 0.3);
 		int buttonX = (background.getX() + (background.getWidth() / 2)) - (buttonWidth/2);
-		int buttonY = (background.getY() + (int)(background.getWidth() * 0.7) - (buttonHeight/2);
+		int buttonY = (background.getY() + (int)(background.getWidth() * 0.7)) - (buttonHeight/2);
 		
-		buyButton = new Button(screenH, screenH, screenH, screenH, null, null, null);
+		buyButton = new Button(buttonX, buttonY, buttonWidth, buttonHeight, "BUY", Color.BLACK, null);
 	}
 	
+	public Dragon getDragon(){
+		return drag;
+	}
+	
+	public Button getBuyButton(){
+		return buyButton;
+	}
+	
+	public ClickableGraphic getBackdrop(){
+		return background;
+	}
 	
 }

@@ -23,7 +23,7 @@ public abstract class ShopScreen extends ClickableScreen {
 	private Graphic background;
 
 	
-	private int currentPage = 1;
+	private int currentPage;
 	private int totalPages;
 	
 	//make this one final
@@ -47,6 +47,7 @@ public abstract class ShopScreen extends ClickableScreen {
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
+		currentPage = 1; 
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
 		viewObjects.add(background);
 		setUpFog();
@@ -54,8 +55,6 @@ public abstract class ShopScreen extends ClickableScreen {
 		generateInitialDragons();
 		
 		totalPages = dragonsToBuy.size() / dragonsPerPage;
-		drawDragons();
-		
 	}
 	
 	public void generateInitialDragons() {
@@ -69,7 +68,7 @@ public abstract class ShopScreen extends ClickableScreen {
 	}
 
 	public void drawDragons(){
-		for(Dragon d: dragonsToBuy){
+		for(int i = 0; i <= dragonsPerPage; i++){
 			
 		}
 	}
