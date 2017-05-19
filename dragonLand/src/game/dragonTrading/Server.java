@@ -1,7 +1,6 @@
-package game;
+package game.dragonTrading;
 import java.io.*;
 import game.DragonLand;
-import game.dragonTrading.TradingScreen;
 import game.mainScreenTeam.Dragon;
 import guiPractice.Screen;
 

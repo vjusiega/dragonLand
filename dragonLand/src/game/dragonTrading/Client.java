@@ -1,4 +1,4 @@
-package game;
+package game.dragonTrading;
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
@@ -6,7 +6,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import game.dragonTrading.TradingScreen;
 import game.mainScreenTeam.Dragon;
 
 public class Client{

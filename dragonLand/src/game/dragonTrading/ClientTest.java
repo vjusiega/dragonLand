@@ -1,4 +1,4 @@
-package game;
+package game.dragonTrading;
 import javax.swing.JFrame;
 
 public class ClientTest {

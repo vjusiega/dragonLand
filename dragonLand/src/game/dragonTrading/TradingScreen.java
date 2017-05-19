@@ -1,7 +1,5 @@
 package game.dragonTrading;
-import game.Client;
 import game.DragonLand;
-import game.Server;
 import game.mainScreenTeam.*;
 
 import java.awt.Color;
