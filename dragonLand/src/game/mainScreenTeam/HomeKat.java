@@ -1,5 +1,6 @@
 package game.mainScreenTeam;
 
+import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Polygon;
 import java.awt.image.BufferedImage;
@@ -29,6 +30,8 @@ public class HomeKat implements DragonArrayInterface {
 	private static ArrayList<Integer> locationsY=new ArrayList<Integer>();
 	private static ArrayList<Dragon> dragons=new ArrayList<Dragon>(); 
 	private static ArrayList<Dragon> dragonsOnScreen = new ArrayList<Dragon>();
+	private static ArrayList<Integer> setLocationX=new ArrayList<Integer>();
+	private static ArrayList<Integer> setLocationY=new ArrayList<Integer>();
 	private static ArrayList<Visible> viewObjects;
 	//fields for help dialog
 	private NoBorderButton help1;
@@ -50,7 +53,28 @@ public class HomeKat implements DragonArrayInterface {
 	public HomeKat(ArrayList<Visible> viewObjects, int width,int height) {
 		//
 		this.viewObjects=viewObjects;
+		helpLayer(width,height);
 		
+		Button title = new Button((width*2/100),(height*5/100),  350,  50,  "Welcome to Dragon Land!",DragonLand.DARKER_NUDE,  null);
+		title.setSize(26);
+		viewObjects.add(title);
+		
+		Graphic post = new Graphic(10, DragonLand.HEIGHT-270, 1, "img/three_sign.png");
+		viewObjects.add(post);
+		Graphic helpPost = new Graphic(DragonLand.WIDTH - 150, DragonLand.HEIGHT-120, .6, "img/two_sign.png");
+		viewObjects.add(helpPost);
+		
+		addPostButtons();
+		
+		food = new DragonFood(130, DragonLand.HEIGHT-103, 75, 50, "img/food.png");
+		viewObjects.add(food);
+		
+		makeLocations();
+		makeDragons();
+		dragonsOnScreen();
+		dragonHome = this;
+		}
+	private void helpLayer(int width, int height) {
 		thelp1 = "Welcome to Dragon Land!";
 		help1 = new NoBorderButton(300,75,500,50,  thelp1,DragonLand.DARKER_NUDE,null);
 		help1.setSize(30);
@@ -85,50 +109,8 @@ public class HomeKat implements DragonArrayInterface {
 			public void act() {
 				viewObjects.remove(this);
 			}});
-//		Button help = new Button(width-50-(width*2/100),height-50-(height*2/100),  50,  50,  "?",DragonLand.DARKER_NUDE,  new Action(){
-//			@Override
-//			public void act() {
-//					if(viewObjects.contains(helpLayer)){
-//						
-//						viewObjects.remove(help1);
-//						viewObjects.remove(help2);
-//						viewObjects.remove(help3);
-//						viewObjects.remove(help4);
-//						viewObjects.remove(help5);
-//						viewObjects.remove(help6);
-//						viewObjects.remove(help7);
-//						viewObjects.remove(helpLayer);
-//					}
-//					else{
-//						viewObjects.add(helpLayer);	
-//						viewObjects.add(help1);
-//						viewObjects.add(help2);
-//						viewObjects.add(help3);
-//						viewObjects.add(help4);
-//						viewObjects.add(help5);
-//						viewObjects.add(help6);
-//						viewObjects.add(help7);
-//					}
-//			}});
-//		
-//		viewObjects.add(help);
-		Button title = new Button((width*2/100),(height*5/100),  350,  50,  "Welcome to Dragon Land!",DragonLand.DARKER_NUDE,  null);
-		title.setSize(26);
-		viewObjects.add(title);
-		
-		Graphic post = new Graphic(10, DragonLand.HEIGHT-290, 1, "img/three_sign.png");
-		viewObjects.add(post);
-		Graphic helpPost = new Graphic(DragonLand.WIDTH - 130, DragonLand.HEIGHT-100, .6, "img/oneSignRight.png");
-		viewObjects.add(helpPost);
-		addPostButtons();
-		food = new DragonFood(130, DragonLand.HEIGHT-123, 75, 50, "img/food.png");
-		viewObjects.add(food);
-		
-		makeLocations();
-		makeDragons();
-		dragonsOnScreen();
-		dragonHome = this;
-		}
+
+	}
 	private void addPostButtons() {
 		Polygon shopPol = new Polygon();
 		shopPol.addPoint(25, 10);
@@ -138,7 +120,7 @@ public class HomeKat implements DragonArrayInterface {
 		shopPol.addPoint(15, 45);
 		shopPol.addPoint(25, 10);
 
-	    PolygonButton shop = new PolygonButton(10, DragonLand.HEIGHT-270, 230, 100, shopPol, new Action(){
+	    PolygonButton shop = new PolygonButton(10, DragonLand.HEIGHT-250, 230, 100, shopPol, new Action(){
 			@Override
 			public void act() {
 				GameScreen.isNotHome = true;
@@ -156,7 +138,7 @@ public class HomeKat implements DragonArrayInterface {
 	    gameButton.addPoint(12, 40);
 	    gameButton.addPoint(30, 20);
 
-	    PolygonButton gameButtn = new PolygonButton(10, DragonLand.HEIGHT-220, 230, 100, gameButton, new Action(){
+	    PolygonButton gameButtn = new PolygonButton(10, DragonLand.HEIGHT-200, 230, 100, gameButton, new Action(){
 			@Override
 			public void act() {
 				GameScreen.isNotHome = true;
@@ -166,14 +148,14 @@ public class HomeKat implements DragonArrayInterface {
 	    viewObjects.add(gameButtn);
 	    
 	    Polygon helpBtn = new Polygon();
-	    helpBtn.addPoint(30, 20);
-	    helpBtn.addPoint(205, 45);
-	    helpBtn.addPoint(200, 85);
-	    helpBtn.addPoint(30, 60);
+	    helpBtn.addPoint(20, 18);
+	    helpBtn.addPoint(130, 45);
+	    helpBtn.addPoint(135, 50);
+	    helpBtn.addPoint(120, 62);
 	    helpBtn.addPoint(12, 40);
-	    helpBtn.addPoint(30, 20);
+	    helpBtn.addPoint(20, 18);
 
-	    PolygonButton help = new PolygonButton(DragonLand.WIDTH - 130, DragonLand.HEIGHT-100, 100, 100, helpBtn, new Action(){
+	    PolygonButton help = new PolygonButton(DragonLand.WIDTH - 150, DragonLand.HEIGHT-120, 150, 100, helpBtn, new Action(){
 			@Override
 			public void act() {
 				if(viewObjects.contains(helpLayer)){
@@ -200,6 +182,23 @@ public class HomeKat implements DragonArrayInterface {
 			}});
 	    
 	    viewObjects.add(help);
+	    
+	    Polygon exitBtn = new Polygon();
+	    exitBtn.addPoint(20, 18);
+	    exitBtn.addPoint(120, 30);
+	    exitBtn.addPoint(120, 60);
+	    exitBtn.addPoint(20, 35);
+	    exitBtn.addPoint(5, 25);
+	    exitBtn.addPoint(20, 18);
+
+	    PolygonButton exit = new PolygonButton(DragonLand.WIDTH - 150, DragonLand.HEIGHT-80, 150, 100, exitBtn, new Action(){
+			@Override
+			public void act() {
+//				WriteFile();
+				//System.exit(1);
+			}});
+	    
+	    viewObjects.add(exit);
 	}
 	public static void addBerry(){
 		viewObjects.add(food);
@@ -210,24 +209,25 @@ public class HomeKat implements DragonArrayInterface {
 		
 	}
 	public static void makeLocations() {
+		setLocationX.add(50);
+		setLocationX.add(160);
+		setLocationX.add(930);
+		locationsX.add(270);
+		locationsX.add(380);
+		locationsX.add(490);
+		locationsX.add(600);
+		locationsX.add(710);
+		locationsX.add(820);
 		
-		locationsX.add(100);
-		locationsX.add(250);
-		locationsX.add(400);
-		locationsX.add(550);
-		locationsX.add(700);
-		locationsX.add(850);
-		//locationsX.add(850);
-		//locationsX.add(850);
-		
-		locationsY.add(150);
-		locationsY.add(200);
-		locationsY.add(250);
+		setLocationY.add(100);
+		setLocationY.add(200);
+		setLocationY.add(250);
+		locationsY.add(300);
 		locationsY.add(360);
-		locationsY.add(420);
+		locationsY.add(200);
+		locationsY.add(430);
 		locationsY.add(480);
-		//locationsY.add(480);
-		//locationsY.add(480);
+		locationsY.add(375);
 		
 	}
 	/*
@@ -340,8 +340,13 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 	 * then the dragon is removed from onScreen listArray and from  viewObjects
 	 */
 	public static void removeDragon(Dragon d){
+		if(d.getY()==100||d.getY()==200||d.getY()==250){
+			setLocationX.add(d.getX());
+			setLocationY.add(d.getY());
+		}else{
 		locationsX.add(d.getX());
 		locationsY.add(d.getY());
+		}
 		//adds dragons
 		dragonsOnScreen.remove(d);
 		viewObjects.remove(d);
@@ -358,20 +363,22 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 	public static void addDragon(Dragon d){
 		//adds back the available dragon spot in the field
 		
+		
+		if(dragonsOnScreen.size()<=2){
+			d.setX(setLocationX.remove(0));
+			d.setY(setLocationY.remove(0));
+		}else{
 		int randomInt=(int)(Math.random()*locationsX.size());
-		d.setX(locationsX.get(randomInt));
-		locationsX.remove(randomInt);
-		
+		d.setX(locationsX.remove(randomInt));
 		randomInt=(int)(Math.random()*(locationsY.size()));
-		d.setY(locationsY.get(randomInt));
-		locationsY.remove(randomInt);
+		d.setY(locationsY.remove(randomInt));
+		}
 		
-		//adds dragons
 		d.update();
 		d.play();
 		dragonsOnScreen.add(d);
 		viewObjects.add(d);
-//		if(dragonsOnScreen.size()==1)DragonLand.beginHunger();
+
 	}
 
 	public static ArrayList<Dragon> getDragons() {
