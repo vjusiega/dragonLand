@@ -117,7 +117,7 @@ public class DragonLand extends GUIApplication {
 			
 			JButton open = new JButton();
 			chooser=new JFileChooser();
-			chooser.setCurrentDirectory(new java.io.File("C:/Users/student 8/Desktop"));
+//			chooser.setCurrentDirectory(new java.io.File("C:/Users/student 8/Desktop"));
 			chooser.setDialogTitle("Pick a saved file");
 			if(chooser.showOpenDialog(open)== JFileChooser.APPROVE_OPTION){
 				//Open JFileChooser
