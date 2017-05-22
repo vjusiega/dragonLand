@@ -58,10 +58,11 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		starArray = new ArrayList<Star1>();
 		powerUp = 0; 
 
-		background = new Graphic(0,0,DragonLand.WIDTH,DragonLand.HEIGHT,"img/forest.jpg");
+		background = new Graphic(0,0,DragonLand.WIDTH,DragonLand.HEIGHT,"img/sunsetBackground.jpg");
 		//img/sunsetBackground.jpg
 		viewObjects.add(background);
-
+		setUpFog();
+		
 		exit = new Button(30, 50, 40, 40, "X", DragonLand.DARKER_NUDE, new Action() {
 			@Override
 			public void act() {
@@ -181,6 +182,17 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		}
 		if (score >= 20){
 			time = 1250;
+		}
+	}
+	
+	public void setUpFog(){
+		Fog fog; 
+
+		for(int i = -10; i < 10; i++){
+			fog = new Fog((i*getWidth() / 10), 0, 400, 150, "img/introFog.png", 50);
+			viewObjects.add(fog);
+			fog.setY(fog.generateYPos());
+			fog.play();
 		}
 	}
 
