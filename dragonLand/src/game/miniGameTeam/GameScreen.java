@@ -38,6 +38,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	private Button highScoreButton;
 	private Graphic background;
 	private int time;
+	private int count; //num of stars on screen
 	private static ArrayList<Star1> starArray;
 	private static int score;
 	public static GameScreen tGame;
@@ -52,11 +53,13 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	public void initAllObjects(ArrayList<Visible> view) {
 		//initial score is 0 and it should count the number of stars caught
 		score = 0;
+		count = 0;
 		time = 2500;
 		starArray = new ArrayList<Star1>();
 		powerUp = 0; 
 
 		background = new Graphic(0,0,DragonLand.WIDTH,DragonLand.HEIGHT,"img/forest.jpg");
+		//img/sunsetBackground.jpg
 		viewObjects.add(background);
 
 		exit = new Button(30, 50, 40, 40, "X", DragonLand.DARKER_NUDE, new Action() {
@@ -73,7 +76,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 
 		view.add(exit);
 		view.add(scoreDisplay);
-
 		//GameVioletta vGameObject = new GameVioletta();
 	}
 
@@ -105,7 +107,11 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		Thread start = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				fallingStars();
+				try {
+					fallingStars();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 		start.start();
@@ -115,15 +121,23 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		return starArray;
 	}
 
-	public void addStar(){
+	public void addStar() throws InterruptedException{
 		//adds one star object to the screen and the array
 		int yPos = 0;
-		int starH = 65;
-		int starW = 65;
+		int starH = 50;
+		int starW = 50;
 		Star1 starImage = new Star1(randomX(), yPos, starW, starH, this);
 		starImage.play();
-		starArray.add(starImage);
-		addObject(starImage);
+		count++;
+		if (count >= 5){
+			Thread.sleep(1000);
+			starArray.add(starImage);
+			addObject(starImage);
+			count = 0;
+		}else{
+			starArray.add(starImage);
+			addObject(starImage);
+		}	
 	}
 
 	public void removeStar(Star1 star){
@@ -131,7 +145,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		remove(star);
 	}
 
-	public void fallingStars(){
+	public void fallingStars() throws InterruptedException{
 		DragonLand.game.getViolettaGame().setPlaying(true);
 		while(DragonLand.game.getViolettaGame().getPlaying()){
 			try{
@@ -148,8 +162,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 
 	public int randomX(){
 		//80 through getWidth()-175
-		int max = DragonLand.WIDTH-175;
-		int min = 80;
+		int max = DragonLand.WIDTH-225;
+		int min = 125;
 		int xPos = (int) (Math.random()*(max - min) + min);
 		return xPos;
 	}
@@ -160,13 +174,13 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 			time = 2000;
 		}
 		if (score >= 10 && score < 15){
-			time = 1500;
+			time = 1750;
 		}
 		if (score >= 15 && score < 20){
-			time = 1000;
+			time = 1500;
 		}
 		if (score >= 20){
-			time = 1000;
+			time = 1250;
 		}
 	}
 
@@ -177,10 +191,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
 			DragonLand.game.getViolettaGame().changeDragonPos(10);
-
 		}
-
-//		}
 	}
 
 	@Override
