@@ -18,9 +18,10 @@ public class Peer {
 		otherUserIP = IP;
 	}
 	
-	public void StartRunning(){
+	public void startRunning(TradingScreen s){
 		try{
 			server = new ServerSocket(6789, 100);
+			System.out.println("here");
 			while(true){
 				try{
 					waitForConnection(s);	
@@ -29,26 +30,31 @@ public class Peer {
 				}catch(EOFException eofException){
 					s.displayConnectionMessage("\n Server ended the connection!");
 				}finally{
-					closeCrap();
+					closeStuff();
 				}
 			}
-			connect();
 		}catch(IOException e){
-			ioException.printStackTrace();
+			e.printStackTrace();
 		}
 	}
-	
+
+	private void whileTrading(TradingScreen s) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public void waitForConnection(TradingScreen s) throws IOException{
+		System.out.println("connect");
 		s.displayConnectionMessage("Attempting connection... \n");
 		connect();
 		s.displayConnectionMessage("Connected to somebody");
 	}
 	
-	public void connect(){
-		while(connecition == null){
+	public void connect() throws IOException{
+		while(connection == null){
 			connection = server.accept();
 			if(connection == null){
-				connection = new Socket(InetAddress.getByName(serverIP), 6789);
+				connection = new Socket(InetAddress.getByName(otherUserIP), 6789);
 			}
 		}
 	}
