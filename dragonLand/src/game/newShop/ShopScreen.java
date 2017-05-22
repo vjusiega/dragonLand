@@ -29,6 +29,7 @@ public class ShopScreen extends ClickableScreen {
 	
 	private ArrayList<Dragon> dragonsToBuy;
 	private ArrayList<Dragon> myDragons;
+	private ArrayList<Object> dragonsOnDisplay;
 	
 	public ShopScreen(int width, int height) {
 		super(width, height);
@@ -53,9 +54,12 @@ public class ShopScreen extends ClickableScreen {
 		dragonsPerPage = 6;
 		dragonsToBuy = new ArrayList<Dragon>();
 		myDragons = new ArrayList<Dragon>();
+		dragonsOnDisplay = new ArrayList<Object>();
 		generateInitialDragons();
 		
 		totalPages = dragonsToBuy.size() / dragonsPerPage;
+		
+		drawDragons();
 	}
 	
 	public void generateInitialDragons() {
@@ -69,13 +73,55 @@ public class ShopScreen extends ClickableScreen {
 	}
 
 	public void drawDragons(){
-		for(int i = 0; i <= dragonsPerPage; i++){
+		int startDragon;
+		if(currentPage == 1){
+			startDragon = 0; 
+		}else{
+			startDragon = ((currentPage - 1) * 6) - 1; 
+		}
+		
+		for(int i = startDragon; (i < startDragon + 6) || (i < dragonsToBuy.size()); i++){
+			ShopDragon d = new ShopDragon(getDisplayX(startDragon, i), getDisplayY(startDragon, i), getWidth(), getHeight(), dragonsToBuy.get(i));
+			dragonsOnDisplay.add(dragonsToBuy.get(i));
+			
+			viewObjects.add(d.getBackdrop());
+			viewObjects.add(d.getDragon());
+		}
+	}
+	
+	public double getDisplayX(int start, int i){
+		int pos = i - start;
+		if(pos == 0 || pos == 3){
+			return (1/4);
+		}
+		if(pos == 1 || pos == 4){
+			return (1/2);
+		}
+		if(pos == 0 || pos == 3){
+			return (3/4);
+		}
+		else return (1/3);
+	}
+	
+	public double getDisplayY(int start, int i){
+		int pos = i - start;
+		if(i < 3){
+			return (1/3);
+		}
+		else return (2/3);
+	}
+	
+	public void removeDisplayDragon(){
+		for(Object o: dragonsOnDisplay){
+			viewObjects.remove(o);
 			
 		}
 	}
 		
 	public void enterShop(){
 		//should update the shop and return to the first page
+		currentPage = 1;
+		
 	}
 	
 	public void setUpFog(){
