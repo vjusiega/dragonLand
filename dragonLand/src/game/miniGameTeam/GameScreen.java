@@ -124,8 +124,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	public void addStar() throws InterruptedException{
 		//adds one star object to the screen and the array
 		int yPos = 0;
-		int starH = 50;
-		int starW = 50;
+		int starH = 65;
+		int starW = 65;
 		Star1 starImage = new Star1(randomX(), yPos, starW, starH, this);
 		starImage.play();
 		count++;
