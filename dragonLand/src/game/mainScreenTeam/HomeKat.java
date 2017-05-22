@@ -54,11 +54,7 @@ public class HomeKat implements DragonArrayInterface {
 		//
 		this.viewObjects=viewObjects;
 		helpLayer(width,height);
-		
-		Button title = new Button((width*2/100),(height*5/100),  350,  50,  "Welcome to Dragon Land!",DragonLand.DARKER_NUDE,  null);
-		title.setSize(26);
-		viewObjects.add(title);
-		
+	
 		Graphic post = new Graphic(10, DragonLand.HEIGHT-270, 1, "img/three_sign.png");
 		viewObjects.add(post);
 		Graphic helpPost = new Graphic(DragonLand.WIDTH - 150, DragonLand.HEIGHT-120, .6, "img/two_sign.png");
@@ -209,23 +205,23 @@ public class HomeKat implements DragonArrayInterface {
 		
 	}
 	public static void makeLocations() {
-		setLocationX.add(50);
-		setLocationX.add(160);
-		setLocationX.add(930);
+		locationsX.add(50);
+		locationsX.add(160);
+		locationsX.add(800);
 		locationsX.add(270);
 		locationsX.add(380);
 		locationsX.add(490);
-		locationsX.add(600);
+		locationsX.add(580);
 		locationsX.add(710);
-		locationsX.add(820);
+		locationsX.add(890);
 		
-		setLocationY.add(100);
-		setLocationY.add(200);
-		setLocationY.add(250);
-		locationsY.add(300);
-		locationsY.add(360);
+		locationsY.add(100);
 		locationsY.add(200);
-		locationsY.add(430);
+		locationsY.add(190);
+		locationsY.add(530);
+		locationsY.add(300);
+		locationsY.add(400);
+		locationsY.add(170);
 		locationsY.add(480);
 		locationsY.add(375);
 		
@@ -340,13 +336,9 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 	 * then the dragon is removed from onScreen listArray and from  viewObjects
 	 */
 	public static void removeDragon(Dragon d){
-		if(d.getY()==100||d.getY()==200||d.getY()==250){
-			setLocationX.add(d.getX());
-			setLocationY.add(d.getY());
-		}else{
+		
 		locationsX.add(d.getX());
 		locationsY.add(d.getY());
-		}
 		//adds dragons
 		dragonsOnScreen.remove(d);
 		viewObjects.remove(d);
@@ -362,18 +354,11 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 	 */
 	public static void addDragon(Dragon d){
 		//adds back the available dragon spot in the field
-		
-		
-		if(dragonsOnScreen.size()<=2){
-			d.setX(setLocationX.remove(0));
-			d.setY(setLocationY.remove(0));
-		}else{
+
 		int randomInt=(int)(Math.random()*locationsX.size());
 		d.setX(locationsX.remove(randomInt));
-		randomInt=(int)(Math.random()*(locationsY.size()));
 		d.setY(locationsY.remove(randomInt));
-		}
-		
+
 		d.update();
 		d.play();
 		dragonsOnScreen.add(d);

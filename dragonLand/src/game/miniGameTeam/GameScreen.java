@@ -26,6 +26,7 @@ import guiPractice.components.Button;
 import guiPractice.components.Visible;
 //import miniGames.GameDragon;
 //import miniGames.GameVioletta;
+import introScreens.Fog;
 
 /**
  * @author Tamanna Hussain

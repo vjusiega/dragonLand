@@ -55,7 +55,7 @@ public class Dragon extends AnimatedComponent {
 		this.price=price;
 		this.imgSrc=imgSrc;
 		this.hungryBox = false;
-		bounceDistance = 30; //based on the value Kat had before for her Dragons on main screen
+		bounceDistance = 20; //based on the value Kat had before for her Dragons on main screen
 		bouncing = true; 
 
 	}
