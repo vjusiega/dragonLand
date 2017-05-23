@@ -117,11 +117,13 @@ public class HomeJenniber implements Runnable {
 	//returns a new HungryBox by setting its position relative to the Dragon d
 	public HungryBox getHungryBox(Dragon d) {
 		int yCoord = d.getY()+80;
+		int xCoord = d.getX();
 		//Checks if dragon is moving vertically
 		if(d.getY()<350){
-			yCoord+=25;
+			yCoord+=23;
+			xCoord = d.getX()-10;
 		}
-		return new HungryBox(d.getX()-25,yCoord);
+		return new HungryBox(xCoord,yCoord);
 	}
 
 	/**

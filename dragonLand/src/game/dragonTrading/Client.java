@@ -6,16 +6,10 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import game.DragonLand;
 import game.mainScreenTeam.Dragon;
 
-public class Client extends DragonLand{
-
-	//this class is for the GUI for the client
+public class Client{
 	
-	//we need different classes for client and server because these 
-		//are two completely different programs
-		//on different computers
 
 	private ObjectOutputStream output;
 	private ObjectInputStream input;
@@ -30,11 +24,11 @@ public class Client extends DragonLand{
 	}
 
 	//connect to server
-	public void startRunning(){
+	public void startRunning(TradingScreen s){
 		try{
-			connectToServer(); 
-			setUpStreams();
-			whileChatting();
+			connectToServer(s); 
+			setUpStreams(s);
+			whileTrading(s);
 		}catch(EOFException eofException){
 			showMessage("\n Client terminated connection");
 		}catch(IOException ioException){
@@ -46,25 +40,25 @@ public class Client extends DragonLand{
 	}
 	
 	//connect to server
-	private void connectToServer() throws IOException{
-		showMessage("Attempting connection... \n");
+	private void connectToServer(TradingScreen s) throws IOException{
+		s.displayConnectionMessage("Attempting connection... \n");
 		connection = new Socket(InetAddress.getByName(serverIP), 6789); 
 			//first parameter passes in the IP address
 			//6789 is the port number
-		showMessage("Connected to:" + connection.getInetAddress().getHostName());
+		s.displayConnectionMessage("Connected to:" + connection.getInetAddress().getHostName());
 			//we get it from the connection because we are getting it from the server
 	}
 	
 	//set up streams to send and receive messages
-	private void setUpStreams() throws IOException{
+	private void setUpStreams(TradingScreen s) throws IOException{
 		output = new ObjectOutputStream(connection.getOutputStream());
 		output.flush();
 		input = new ObjectInputStream(connection.getInputStream());
-		showMessage("\n Streams are now connected \n");
+		s.displayConnectionMessage("\n Streams are now connected \n");
 	}
 	
 	//while chatting with server
-	private void whileChatting() throws IOException{
+	private void whileTrading(TradingScreen s) throws IOException{
 		//now connected, make sure the user is able to now type
 		ableToType(true);
 		do{
@@ -73,9 +67,9 @@ public class Client extends DragonLand{
 				otherUsersDragons = (Dragon) input.readObject();
 					//take whatever they are sending through their stream
 					//treat it as a string and store it in the variable message
-				showMessage("\n" + otherUsersDragons);
+				s.displayConnectionMessage("\n" + otherUsersDragons);
 			}catch(ClassNotFoundException classNotFoundException){
-				showMessage("\n I don't know that object type.");
+				s.displayConnectionMessage("\n I don't know that object type.");
 			}
 		}while(!otherUsersDragons.equals("SERVER - END"));
 		//as long as the server person doesn't type end, you can 
@@ -101,11 +95,11 @@ public class Client extends DragonLand{
 	}
 	
 	//send messages to server
-	private void sendMessage(String message){
+	private void sendMessage(Dragon d, TradingScreen s){
 		try{
-			output.writeObject("CLIENT - " + message);
+			output.writeObject(d);
 			output.flush();
-			showMessage("\nCLIENT - " + message); 
+			s.displayConnectionMessage("Dragon recieved"); 
 				//even though you sent to through the stream does not mean that it is shown
 				//makes it show on the GUI
 		}catch(IOException e){

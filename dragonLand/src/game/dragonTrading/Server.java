@@ -1,15 +1,18 @@
 package game.dragonTrading;
 import java.io.*;
-import game.DragonLand;
-import game.mainScreenTeam.Dragon;
-import guiPractice.Screen;
+
+
 
 import java.net.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Server extends DragonLand{
+import game.DragonLand;
+import game.mainScreenTeam.Dragon;
+import guiPractice.Screen;
+
+public class Server{
 	
 	private ObjectOutputStream output;
 		//this is what is sent out of the system
@@ -56,13 +59,13 @@ public class Server extends DragonLand{
 	}
 	
 	private void whileTrading(TradingScreen s) throws IOException{
-		Dragon message = new Dragon(0,0,0,0, "img/dragon1.png"); //simple prompt on screen
-		sendMessage(message);
-		ableToType(true); 
+		Dragon message = new Dragon(10,10,10,10, "img/dragon1.png"); //simple prompt on screen
+		sendDragon(message);
+//		ableToType(true); 
 		do{
 			try{
-				message = (String) input.readObject(); 
-				s.displayConnectionMessage("\n" + message);
+				message = (Dragon) input.readObject(); 
+				s.displayConnectionMessage("\n" + "I got a dragon");
 			}catch(ClassNotFoundException classNotFoundException){
 				s.displayConnectionMessage("\n hopefully this message never displays");
 			}
@@ -71,7 +74,7 @@ public class Server extends DragonLand{
 	
 	private void closeCrap(){
 		showMessage("\n Closing connections \n"); 
-		ableToType(false);
+//		ableToType(false);
 		try{
 			output.close();
 			input.close(); 
@@ -81,11 +84,10 @@ public class Server extends DragonLand{
 		}
 	}
 		
-	private void sendMessage(String message){
+	private void sendDragon(Dragon d){
 		try{
-			output.writeObject("SERVER - " + message);
+			output.writeObject(d);
 			output.flush(); 	
-			showMessage("\nSERVER - " + message);
 		}catch(IOException ioException){
 			System.out.println("Weird stuff sent through stream");
 		}
@@ -104,15 +106,15 @@ public class Server extends DragonLand{
 		//this creates a thread that updates a part of the GUI
 	}
 	
-	private void ableToType(final boolean tof){
-		SwingUtilities.invokeLater(
-				new Runnable(){
-					public void run(){
-		
-					}
-				}
-		);
-	}
+//	private void ableToType(final boolean tof){
+//		SwingUtilities.invokeLater(
+//				new Runnable(){
+//					public void run(){
+//		
+//					}
+//				}
+//		);
+//	}
 }
 	
 //server class is done

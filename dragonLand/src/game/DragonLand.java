@@ -49,7 +49,7 @@ public class DragonLand extends GUIApplication {
 	private static final long serialVersionUID = 1L;
 
 	public static DragonLand game;
-	public static int coins = 1500; 
+	public static int coins = 3000; 
 	public static HomeScreen homeScreen;
 	public static Screen shopMain; // shop 1
 	//public static Screen sellScreen; // shop 2

@@ -46,7 +46,7 @@ public class BuyScreenWendy extends OldShopScreen implements BuyScreenInterface{
 		
 		//controlling display of number of dragons in inventory
 		numOfDragons = ((SellScreenInterface)DragonLand.sellScreen).getDragonsInSellShop().size();
-		getDragonAmount().setText(numOfDragons + " / 6 dragons");
+		getDragonAmount().setText(numOfDragons + " / 9 dragons");
 		
 		//dragons on display
 		startIndex = (pageNum - 1) * 3;
@@ -66,7 +66,7 @@ public class BuyScreenWendy extends OldShopScreen implements BuyScreenInterface{
 				public void act() {
 					if(DragonLand.coins >= d.getPrice())
 					{
-						if(((SellScreenInterface)DragonLand.sellScreen).getDragonsInSellShop().size() < 6)
+						if(((SellScreenInterface)DragonLand.sellScreen).getDragonsInSellShop().size() < 9)
 						{
 							boughtDragon(d,label);	
 							removeDragons();

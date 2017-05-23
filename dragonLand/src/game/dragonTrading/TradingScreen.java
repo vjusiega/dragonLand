@@ -48,13 +48,14 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 	}
 	
 	public void displayConnectionMessage(String message){
-		Button b = new Button(500, 200, 100, 100, "", Color.CYAN);
+		Button b = new Button(500, 200, 500, 500, "", Color.CYAN);
 		b.setText(message);
 		addObject(b);
 	}
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
+		myDragons = HomeKat.getDragons();
 		thisScreen = this;
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
 		viewObjects.add(background);
@@ -73,37 +74,52 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 		});
 		fogRun.start();
 		
-		
 		Button b = new Button(100, 100, 100, 100, "connect", Color.BLUE);
 		b.setAction(new Action(){
 			public void act() {
-				Thread trade = new Thread(new Runnable(){
+				Thread peer = new Thread(new Runnable(){
 					public void run(){
-						Server s = new Server();
-						s.startRunning(thisScreen);
+						Peer p = new Peer("127.0.0.1");
+						p.startRunning(thisScreen);
+						
 					}
 				});
-				trade.start();
-			
-				System.out.println("I am running");
-				
-				Client c = new Client("127.0.0.1");	
-				c.startRunning();
-				System.out.println("I am runninggg");
+				peer.run();		
+//				Thread trade = new Thread(new Runnable(){
+//					public void run(){
+//						Server s = new Server();
+//						s.startRunning(thisScreen);
+//					}
+//				});
+//				trade.start();
+//			
+//				System.out.println("I am running");
+//				
+//				Thread tradeClient = new Thread(new Runnable(){
+//					public void run(){
+//						Client c = new Client("127.0.0.1");	
+//						c.startRunning(thisScreen);
+//					}
+//				});
+//				tradeClient.start();
+//				
+//				
+//				System.out.println("I am runninggg");
 			}			
 		});
 		viewObjects.add(b);
+		for(Dragon d : myDragons){
+			viewObjects.add(d);
+		}
+	
 		
 	}
-
-
 
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
 		
 	}
-	
 }
 /**
 	your dragons to sell

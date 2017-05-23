@@ -67,14 +67,14 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 			}
 			
 			//used these numbers for demonstration purposes
-			if(GameScreen.getScore() >= 5 && GameScreen.getScore() < 10)
+			if(GameScreen.getScore() >= 10 && GameScreen.getScore() < 20)
 				setVy(1.5);
-			if(GameScreen.getScore() >= 10 && GameScreen.getScore() < 15)
+			if(GameScreen.getScore() >= 20 && GameScreen.getScore() < 30)
+				setVy(1.75);
+			if(GameScreen.getScore() >= 30 && GameScreen.getScore() < 40)
 				setVy(2);
-			if(GameScreen.getScore() >= 15 && GameScreen.getScore() < 20)
-				setVy(2.5);
-			if(GameScreen.getScore() >= 20){
-				setVy(2.5);
+			if(GameScreen.getScore() >= 40){
+				setVy(2.25);
 			}		
 		}else{
 			//HighScoreScreen.setRoundScore(GameScreen.getScore());
