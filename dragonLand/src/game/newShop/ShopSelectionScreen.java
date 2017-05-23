@@ -38,7 +38,7 @@ public class ShopSelectionScreen extends ClickableScreen{
 		viewObjects.add(setUpDragons(1));
 		viewObjects.add(setUpDragons(3));
 		
-		ClickableGraphic post = new ClickableGraphic(0, getHeight()-250, 1.0,"img/backSign.png");
+		ClickableGraphic post = new ClickableGraphic(0, getHeight()-150, 0.6,"img/backSign.png");
 		post.setAction(new Action(){
 			public void act(){
 				DragonLand.game.setScreen(DragonLand.homeScreen);

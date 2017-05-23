@@ -31,6 +31,7 @@ import game.shopScreen.SellShopZheng;
 import guiPractice.GUIApplication;
 import guiPractice.Screen;
 import guiPractice.components.AnimatedComponent;
+import introScreens.NameScreen;
 import introScreens.WelcomeScreen;
 
 
@@ -69,6 +70,7 @@ public class DragonLand extends GUIApplication {
 	public static Screen tradingScreen;
 	public static Screen newShopScreen;
 	public static Screen shopScreen;
+	public static Screen nameScreen;
 
 	public DragonLand(Dragon[] savedDragons) {
 		if(savedDragons != null){
@@ -102,6 +104,7 @@ public class DragonLand extends GUIApplication {
 		tradingScreen = new TradingScreen(WIDTH, HEIGHT);
 		vGame = new GameVioletta();
 		newShopScreen = new ShopScreen(WIDTH, HEIGHT);
+		nameScreen = new NameScreen(WIDTH, HEIGHT);
 		setScreen(welcomeScreen);
 
 	}

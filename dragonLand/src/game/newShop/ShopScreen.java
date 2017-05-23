@@ -1,6 +1,7 @@
 package game.newShop;
 
 import java.awt.Color;
+import java.awt.Polygon;
 import java.util.ArrayList;
 
 import game.DragonLand;
@@ -11,6 +12,7 @@ import guiPractice.components.Action;
 import guiPractice.components.Button;
 import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
+import guiPractice.components.PolygonButton;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
 import introScreens.Fog;
@@ -51,16 +53,16 @@ public class ShopScreen extends ClickableScreen {
 		viewObjects.add(background);
 		setUpFog();
 		
-		ClickableGraphic post = new ClickableGraphic(0, getHeight()-250, 1.0,"img/backSign.png");
+		ClickableGraphic post = new ClickableGraphic(0, getHeight()-150, 0.6,"img/backSign.png");
 		post.setAction(new Action(){
 			public void act(){
 				DragonLand.game.setScreen(DragonLand.shopMain);
 			}
 		});
 		viewObjects.add(post);
-		
+		addPostButtons();
 		System.out.println(getHeight() - 200);
-		ClickableGraphic nextButton = new ClickableGraphic(getWidth() - 200, getHeight()-250, 1.0, "img/nextPreviousSign.png");
+		ClickableGraphic nextButton = new ClickableGraphic(getWidth() - 150, getHeight()-120, 0.6, "img/nextPreviousSign.png");
 		nextButton.setAction(new Action(){
 			public void act(){
 				currentPage++;
@@ -79,6 +81,40 @@ public class ShopScreen extends ClickableScreen {
 		//drawDragons();
 	}
 	
+	private void addPostButtons() {
+		Polygon forward = new Polygon();
+		forward.addPoint(20, 18);
+		forward.addPoint(130, 45);
+		forward.addPoint(135, 50);
+		forward.addPoint(120, 62);
+		forward.addPoint(12, 40);
+		forward.addPoint(20, 18);
+
+		PolygonButton forwardBtn = new PolygonButton(DragonLand.WIDTH - 150, DragonLand.HEIGHT-120, 150, 100, forward, new Action(){
+			@Override
+			public void act() {
+				//add forward
+			}});
+	    
+	    viewObjects.add(forwardBtn);
+	    
+	    Polygon back = new Polygon();
+	    back.addPoint(20, 18);
+	    back.addPoint(120, 30);
+	    back.addPoint(120, 60);
+	    back.addPoint(20, 35);
+	    back.addPoint(5, 25);
+	    back.addPoint(20, 18);
+
+	    PolygonButton backBtn = new PolygonButton(DragonLand.WIDTH - 150, DragonLand.HEIGHT-80, 150, 100, back, new Action(){
+			@Override
+			public void act() {
+//				violetta put in to move forward
+			}});
+	    
+	    viewObjects.add(backBtn);
+	}
+
 	public void generateInitialDragons() {
 		String[] names = new String[] {"Rowdy","Thorn","Mushu","Falcor","Elliot","Puff","Spyro","Sandy",
 				"Scaly","Nessie","Nymph","Sparky","Flambi","Drago","Viper","Moon","Saphira","Scorch","Toothless","Stormfly"};

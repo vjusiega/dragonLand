@@ -47,14 +47,6 @@ public class WelcomeScreen extends ClickableScreen{
 			}
 		});
 		
-//		Button exit = new Button(getWidth()-135, getHeight()-60, 120, 50, "Continue...", DragonLand.DARKER_NUDE, new Action() {
-//			@Override
-//			public void act() {
-//				DragonLand.game.setScreen(DragonLand.homeScreen);
-//			}
-//		});
-//		viewObjects.add(exit);
-		
 		setUpFog(post);
 	
 	}
