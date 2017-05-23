@@ -233,7 +233,7 @@ public class Dragon extends AnimatedComponent {
 			int numberRow = 3;
 			int rows = 4;
 			int w = 48;
-			int h = 48;
+			int h = 45;
 			for(int i=0; i<numberRow*rows; i++){
 				//declare cropped image
 				BufferedImage cropped = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
