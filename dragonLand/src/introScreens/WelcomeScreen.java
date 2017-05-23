@@ -71,14 +71,19 @@ public class WelcomeScreen extends ClickableScreen{
 		int dragonHeight = getHeight()/8;
 		int dragonWidth = (int) (dragonHeight * 0.8);
 		int xPos;
-		if(drag == 1){
-			xPos = getWidth()/4 - dragonWidth;
-		}else{
-			xPos = (3*getWidth()/4) - dragonWidth * 2;
-		}
+// 		if(drag == 1){
+// 			xPos = getWidth()/4 - dragonWidth;
+// 		}else{
+// 			xPos = (3*getWidth()/4) - dragonWidth * 2;
+// 		}
 		
 		int yPos = (-1)*dragonHeight;
-		Dragon d = new Dragon(xPos, yPos, dragonHeight, dragonWidth, imgSrc, 15, 0.7);
+		Dragon d = new Dragon(0, 0, dragonHeight, dragonWidth, imgSrc, 15, 0.7);
+		if(drag == 1){
+			d.placeDragonOnXLine(getWidth(), 0.33);
+		}else{
+			d.placeDragonOnXLine(getWidth(), 0.66);
+		}
 		dragons.add(d);
 		d.setDragonAnimation(d, imgSrc);
 		d.setX(xPos);
