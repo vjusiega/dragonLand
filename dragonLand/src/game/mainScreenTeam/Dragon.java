@@ -286,4 +286,8 @@ public class Dragon extends AnimatedComponent {
 			this.setX((int)(screenWidth * xLine) - (this.getWidth() / 2));
 			this.setY((int)(screenHeight * yLine) - (this.getHeight() / 2));
 		}
+		
+		public void placeDragonOnXLine(int screenWidth, double xLine){
+			this.setX((int)(screenWidth * xLine) - (this.getWidth() / 2));
+		}
 }
