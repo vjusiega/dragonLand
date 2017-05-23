@@ -282,9 +282,9 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 	 * the purchased array is used to retrieve the names of dragon in shop from their label ListArray
 	 */
 	public static void dragonsOnScreen(){
-		String[] purchased = ((ShopScreen)DragonLand.newShopScreen).getNamesOfPurchased();
-		checkToRemove(purchased);
-		addNewDragons(purchased);
+		//String[] purchased = ((ShopScreen)DragonLand.newShopScreen).getNamesOfPurchased();
+		//checkToRemove(purchased);
+		//addNewDragons(purchased);
 	}
 	/*
 	 * checks to see if any new dragons were purchased and adds to them to the screen

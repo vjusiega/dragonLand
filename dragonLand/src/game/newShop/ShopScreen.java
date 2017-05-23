@@ -59,13 +59,24 @@ public class ShopScreen extends ClickableScreen {
 		});
 		viewObjects.add(post);
 		
+		System.out.println(getHeight() - 200);
+		ClickableGraphic nextButton = new ClickableGraphic(getWidth() - 200, getHeight()-250, 1.0, "img/nextPreviousSign.png");
+		nextButton.setAction(new Action(){
+			public void act(){
+				currentPage++;
+				removeDisplayDragon();
+				drawDragons();
+			}
+		});
+		viewObjects.add(nextButton);
+		
 		dragonsPerPage = 6;
 		dragonsToBuy = new ArrayList<Dragon>();
 		myDragons = new ArrayList<Dragon>();
 		dragonsOnDisplay = new ArrayList<Object>();
 		generateInitialDragons();
 		totalPages = dragonsToBuy.size() / dragonsPerPage;
-		drawDragons();
+		//drawDragons();
 	}
 	
 	public void generateInitialDragons() {
@@ -83,7 +94,7 @@ public class ShopScreen extends ClickableScreen {
 		if(currentPage == 1){
 			startDragon = 0; 
 		}else{
-			startDragon = ((currentPage - 1) * 6) - 1; 
+			startDragon = ((currentPage - 1) * 6); 
 		}
 		
 		for(int i = startDragon; (i < startDragon + 6) && (i < dragonsToBuy.size()); i++){
@@ -95,10 +106,12 @@ public class ShopScreen extends ClickableScreen {
 			
 			Dragon disD = d.getDragon();
 			
-			disD.setDirection(0);
+			
 			disD.setBounce(false);
 			disD.setConstantVY(0.05);
 			disD.play();
+			disD.setDirection(0);
+			disD.setCurrentFrame(0);
 			viewObjects.add(d.getBackdrop());
 			viewObjects.add(disD);
 			dragonsOnDisplay.add(d.getBackdrop());
@@ -123,7 +136,7 @@ public class ShopScreen extends ClickableScreen {
 	
 	public double getDisplayY(int start, int i){
 		int pos = i - start;
-		if(i < 3){
+		if(pos < 3){
 			return 0.333333333;
 		}
 		else return 0.66666666;
@@ -139,6 +152,8 @@ public class ShopScreen extends ClickableScreen {
 	public void enterShop(){
 		//should update the shop and return to the first page
 		currentPage = 1;
+		removeDisplayDragon();
+		drawDragons();
 		
 	}
 	

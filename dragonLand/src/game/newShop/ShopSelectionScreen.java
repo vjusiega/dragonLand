@@ -50,6 +50,7 @@ public class ShopSelectionScreen extends ClickableScreen{
 		ClickableGraphic buyBox = new ClickableGraphic(getWidth(), getHeight(), 1.1, "img/whiteBox.png", 0.25, 0.5);
 		buyBox.setAction(new Action(){
 			public void act() {
+				((ShopScreen)DragonLand.newShopScreen).enterShop();
 				DragonLand.game.setScreen(DragonLand.newShopScreen);
 			}
 		});
