@@ -1,5 +1,7 @@
 package introScreens;
 
+import java.awt.Graphics2D;
+
 import game.DragonLand;
 import guiPractice.Screen;
 import guiPractice.components.GraphicMovingComponent;
@@ -32,6 +34,15 @@ public class Fog extends GraphicMovingComponent {
 		int multiplier = (int) (Math.random() * 2) + 1;
 		
 		return initialY + (add * multiplier);
+	}
+	
+	boolean init;
+	
+	public void drawImage(Graphics2D g){
+		if(!init){
+			super.drawImage(g);
+			init = true;
+		}
 	}
 	
 	public double generateRandomSpeed(){

@@ -47,6 +47,7 @@ public class Peer {
 		System.out.println("connect");
 		s.displayConnectionMessage("Attempting connection... \n");
 		connect();
+		System.out.println("now connected");
 		s.displayConnectionMessage("Connected to somebody");
 	}
 	
@@ -54,7 +55,11 @@ public class Peer {
 		while(connection == null){
 			connection = server.accept();
 			if(connection == null){
-				connection = new Socket(InetAddress.getByName(otherUserIP), 6789);
+				try{
+					connection = new Socket(InetAddress.getByName(otherUserIP), 6789);
+				}catch(IOException e){
+					e.printStackTrace();
+				}
 			}
 		}
 	}

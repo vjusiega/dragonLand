@@ -28,11 +28,14 @@ public class Server{
 	public void startRunning(TradingScreen s){
 		try{
 			server = new ServerSocket(6789, 100); // first number for testing purposes
-			while(true){
+			boolean waiting = true;
+			while(waiting){
 				try{
+					System.out.println("I am starting and I am a server.");
 					waitForConnection(s);	
 					setupStreams(s);
-					whileTrading(s);
+					waiting = false;
+					//whileTrading(s);
 				}catch(EOFException eofException){
 					s.displayConnectionMessage("\n Server ended the connection!");
 				}finally{
@@ -46,9 +49,11 @@ public class Server{
 
 
 	private void waitForConnection(TradingScreen s) throws IOException{
+		System.out.println("I am in method");
 		s.displayConnectionMessage("Waiting for someone to connect... \n");
 		connection = server.accept();
 		s.displayConnectionMessage("Now connected to " + connection.getInetAddress().getHostName());
+
 	}
 	
 	private void setupStreams(TradingScreen s) throws IOException {

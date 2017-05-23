@@ -28,7 +28,7 @@ public class Client{
 		try{
 			connectToServer(s); 
 			setUpStreams(s);
-			whileTrading(s);
+			//whileTrading(s);
 		}catch(EOFException eofException){
 			showMessage("\n Client terminated connection");
 		}catch(IOException ioException){

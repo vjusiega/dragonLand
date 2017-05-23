@@ -65,7 +65,7 @@ public class DragonLand extends GUIApplication {
 	public static Color DARKER_NUDE;
 	private GameVioletta vGame;
 	public WelcomeScreen welcomeScreen;
-	private static Screen tradingScreen;
+	public static TradingScreen tradingScreen;
 
 	public DragonLand(Dragon[] savedDragons) {
 		if(savedDragons != null){
@@ -98,7 +98,7 @@ public class DragonLand extends GUIApplication {
 		gameInstructionsScreen = new GameInstructions(DragonLand.WIDTH,DragonLand.HEIGHT);
 		tradingScreen = new TradingScreen(WIDTH, HEIGHT);
 		vGame = new GameVioletta();
-		setScreen(welcomeScreen);
+		setScreen(tradingScreen);
 
 	}
 	private void initColors() {
