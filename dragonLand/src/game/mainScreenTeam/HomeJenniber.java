@@ -88,10 +88,10 @@ public class HomeJenniber implements Runnable {
 							(
 									//Checks if the dragon is moving vertically and if it is
 									//it compares the xCoordinates of the dragon and hungryBox
-									(d.getY()<350 && hungryBox.getX()==d.getX()-25)
+									(d.getY()<350 && hungryBox.getX()==d.getX()-10)
 									//If dragon is moving horizontally,
 									//it compares the yCoordinates of the dragon and hungryBox
-									|| hungryBox.getY()==d.getY()+105
+									|| hungryBox.getY()==d.getY()+80
 							) 
 							//Checks if the hungryBox time is less than 0 to remove
 							&& hungryBox.getHungryTime()<=0){

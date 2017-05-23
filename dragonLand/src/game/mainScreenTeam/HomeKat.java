@@ -30,8 +30,11 @@ public class HomeKat implements DragonArrayInterface {
 	private static ArrayList<Integer> locationsY=new ArrayList<Integer>();
 	private static ArrayList<Dragon> dragons=new ArrayList<Dragon>(); 
 	private static ArrayList<Dragon> dragonsOnScreen = new ArrayList<Dragon>();
-	private static ArrayList<Integer> setLocationX=new ArrayList<Integer>();
-	private static ArrayList<Integer> setLocationY=new ArrayList<Integer>();
+	
+	public static DragonFood getFood() {
+		return food;
+	}
+
 	private static ArrayList<Visible> viewObjects;
 	//fields for help dialog
 	private NoBorderButton help1;

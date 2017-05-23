@@ -60,10 +60,10 @@ public class HungryBox extends Button implements Runnable{
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		if(hungryTime<=5){
-			g.setColor(DragonLand.LIGHT_PINK);
+			g.setColor(DragonLand.BRIGHT_PINK);
 		}
 		else{
-			g.setColor(DragonLand.DARKER_NUDE);
+			g.setColor(DragonLand.LIGHT_PINK);
 		}
 		double thickness = 2;
 		g.setStroke(new BasicStroke((float) thickness));
@@ -90,7 +90,7 @@ public class HungryBox extends Button implements Runnable{
 	@Override
 	public void run() {
 		try{
-			while(hungryTime>0){
+			while(hungryTime>=0){
 				Thread.sleep(1000);
 				setHungryTime(hungryTime-1);
 				setText("Hungry!"+" "+hungryTime+" sec");
