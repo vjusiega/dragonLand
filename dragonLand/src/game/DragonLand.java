@@ -52,8 +52,8 @@ public class DragonLand extends GUIApplication {
 	public static int coins = 1500; 
 	public static HomeScreen homeScreen;
 	public static Screen shopMain; // shop 1
-	public static Screen sellScreen; // shop 2
-	public static Screen buyScreen; // shop 3
+	//public static Screen sellScreen; // shop 2
+	//public static Screen buyScreen; // shop 3
 	public static Screen highscoreScreen; // high score
 	public static GameScreen miniGameScreen; // minigame
 	public static Screen gameInstructionsScreen;
@@ -68,6 +68,7 @@ public class DragonLand extends GUIApplication {
 	public WelcomeScreen welcomeScreen;
 	public static Screen tradingScreen;
 	public static Screen newShopScreen;
+	public static Screen shopScreen;
 
 	public DragonLand(Dragon[] savedDragons) {
 		if(savedDragons != null){
@@ -90,9 +91,9 @@ public class DragonLand extends GUIApplication {
 
 		miniGameScreen = new GameScreen(WIDTH, HEIGHT);
 		shopMain = new ShopSelectionScreen(WIDTH, HEIGHT);
-		sellScreen = new SellShopZheng(WIDTH, HEIGHT);
+		//sellScreen = new SellShopZheng(WIDTH, HEIGHT);
 		homeScreen = new HomeScreen(WIDTH, HEIGHT);
-		buyScreen = new BuyScreenWendy(WIDTH, HEIGHT);
+		//buyScreen = new BuyScreenWendy(WIDTH, HEIGHT);
 		highscoreScreen = new HighScoreScreen(WIDTH, HEIGHT);
 		HomeScreen.jenCode = new game.mainScreenTeam.HomeJenniber();
 		welcomeScreen = new WelcomeScreen(WIDTH, HEIGHT);

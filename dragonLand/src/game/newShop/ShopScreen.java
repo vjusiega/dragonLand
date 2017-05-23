@@ -51,14 +51,20 @@ public class ShopScreen extends ClickableScreen {
 		viewObjects.add(background);
 		setUpFog();
 		
+		ClickableGraphic post = new ClickableGraphic(0, getHeight()-250, 1.0,"img/backSign.png");
+		post.setAction(new Action(){
+			public void act(){
+				DragonLand.game.setScreen(DragonLand.homeScreen);
+			}
+		});
+		viewObjects.add(post);
+		
 		dragonsPerPage = 6;
 		dragonsToBuy = new ArrayList<Dragon>();
 		myDragons = new ArrayList<Dragon>();
 		dragonsOnDisplay = new ArrayList<Object>();
 		generateInitialDragons();
-		
 		totalPages = dragonsToBuy.size() / dragonsPerPage;
-		
 		drawDragons();
 	}
 	
@@ -80,42 +86,54 @@ public class ShopScreen extends ClickableScreen {
 			startDragon = ((currentPage - 1) * 6) - 1; 
 		}
 		
-		for(int i = startDragon; (i < startDragon + 6) || (i < dragonsToBuy.size()); i++){
+		for(int i = startDragon; (i < startDragon + 6) && (i < dragonsToBuy.size()); i++){
+			System.out.println(getDisplayX(startDragon, i));
 			ShopDragon d = new ShopDragon(getDisplayX(startDragon, i), getDisplayY(startDragon, i), getWidth(), getHeight(), dragonsToBuy.get(i));
+			
+			//ShopDragon d = new ShopDragon(0.5, 0.5, getWidth(), getHeight(), dragonsToBuy.get(i));
 			dragonsOnDisplay.add(dragonsToBuy.get(i));
 			
+			Dragon disD = d.getDragon();
+			
+			disD.setDirection(0);
+			disD.setBounce(false);
+			disD.setConstantVY(0.05);
+			disD.play();
 			viewObjects.add(d.getBackdrop());
-			viewObjects.add(d.getDragon());
+			viewObjects.add(disD);
+			dragonsOnDisplay.add(d.getBackdrop());
+			dragonsOnDisplay.add(disD);
 		}
 	}
+
 	
 	public double getDisplayX(int start, int i){
 		int pos = i - start;
 		if(pos == 0 || pos == 3){
-			return (1/4);
+			return 0.25;
 		}
 		if(pos == 1 || pos == 4){
-			return (1/2);
+			return 0.5;
 		}
-		if(pos == 0 || pos == 3){
-			return (3/4);
+		if(pos == 2 || pos == 5){
+			return 0.75;
 		}
-		else return (1/3);
+		else return 0.333;
 	}
 	
 	public double getDisplayY(int start, int i){
 		int pos = i - start;
 		if(i < 3){
-			return (1/3);
+			return 0.333333333;
 		}
-		else return (2/3);
+		else return 0.66666666;
 	}
 	
 	public void removeDisplayDragon(){
 		for(Object o: dragonsOnDisplay){
 			viewObjects.remove(o);
-			
 		}
+		dragonsOnDisplay.clear();
 	}
 		
 	public void enterShop(){

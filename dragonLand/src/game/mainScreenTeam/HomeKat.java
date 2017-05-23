@@ -390,8 +390,8 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 		//adds dragons
 		dragonsOnScreen.remove(d);
 		DragonLand.homeScreen.remove(d);
-		((SellShopZheng)DragonLand.sellScreen).removeDragonsInSellShop(d);
-		((BuyScreenInterface)DragonLand.buyScreen).addToDragonsInBuyShop(d);
+		//((SellShopZheng)DragonLand.sellScreen).removeDragonsInSellShop(d);
+		//((BuyScreenInterface)DragonLand.buyScreen).addToDragonsInBuyShop(d);
 	}
 
 	

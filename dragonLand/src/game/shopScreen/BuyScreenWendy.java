@@ -7,7 +7,6 @@ import dragonComponents.DragonLabel2;
 import game.DragonLand;
 import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.HomeKat;
-import game.newShop.ShopScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
 import guiPractice.components.Visible;
@@ -15,7 +14,7 @@ import guiPractice.components.Visible;
  * @author Wendy
  * */
 
-public class BuyScreenWendy extends ShopScreen implements BuyScreenInterface{
+public class BuyScreenWendy extends OldShopScreen implements BuyScreenInterface{
 
 	private ArrayList<Dragon> dragonsInShop;
 	private int x; 

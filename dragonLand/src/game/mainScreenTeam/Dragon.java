@@ -43,7 +43,8 @@ public class Dragon extends AnimatedComponent {
  	private int DOWN = 4;
  	
  	
- 	private double VY = Math.random(); //to randomize speed
+ 	private double constantVY;
+ 	private double VY; //to randomize speed
 	private HungryBox hungryBoxObj;
  	
  	//constructor for dragons on main screen
@@ -56,7 +57,7 @@ public class Dragon extends AnimatedComponent {
 		this.hungryBox = false;
 		bounceDistance = 30; //based on the value Kat had before for her Dragons on main screen
 		bouncing = true; 
-
+		this.constantVY = Math.random();
 	}
 	
 	//display dragon constructor that does not bounce
@@ -80,7 +81,7 @@ public class Dragon extends AnimatedComponent {
 		setDragonAnimation(this, imgSrc);
 		bouncing = true; 
 		this.bounceDistance = bounceDistance; 
-		this.VY = VY;
+		this.constantVY = VY;
 	}
 	
 	public void setCurrentFrame(int frame){
@@ -117,7 +118,7 @@ public class Dragon extends AnimatedComponent {
 		
 		if(direction == UP){
 			if(bouncing){
-				setVy(-VY);
+				setVy(-constantVY);
 				if((initialY-getY())>bounceDistance){
 					direction=DOWN;
 				}
@@ -128,7 +129,7 @@ public class Dragon extends AnimatedComponent {
 		}
 		if(direction == DOWN){
 			if(bouncing){
-				setVy(VY);
+				setVy(constantVY);
 				if((getY()-initialY)>bounceDistance){
 					direction=UP;
 				}
@@ -139,7 +140,7 @@ public class Dragon extends AnimatedComponent {
 		}
 		if(direction == LEFT){
 			if(bouncing){
-				setVx(-VY);
+				setVx(-constantVY);
 				if((initialX-getX())>=bounceDistance){
 					currentFrame=6;
 					direction=RIGHT;
@@ -152,7 +153,7 @@ public class Dragon extends AnimatedComponent {
 		}
 		if(direction == RIGHT){
 			if(bouncing){
-				setVx(VY);
+				setVx(constantVY);
 				if((getX()-initialX)>bounceDistance){
 					currentFrame=3;
 					direction=LEFT;
@@ -188,12 +189,16 @@ public class Dragon extends AnimatedComponent {
 			return name;
 		}
 	
+		public void setConstantVY(double in){
+			constantVY = in;
+		}
 	
 		public void setName(String name) {
 			this.name = name;
 		}
 		
 		public void setDirection(int dir){
+			System.out.println("Here");
 			this.direction = dir;
 		}
 	
@@ -222,6 +227,14 @@ public class Dragon extends AnimatedComponent {
 		
 		public void setHungryBox(boolean hungryBox){
 			this.hungryBox = hungryBox; 
+		}
+		
+		public void setBounceDistance(int d){
+			bounceDistance = d; 
+		}
+		
+		public void setBounce(boolean tof){
+			bouncing = tof;
 		}
 	
 	public void setDragonAnimation(Dragon d, String imgSrc){
