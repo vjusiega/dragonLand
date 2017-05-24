@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import game.DragonLand;
 import game.mainScreenTeam.Dragon;
+import game.mainScreenTeam.HomeKat;
 import game.miniGameTeam.GameScreen;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
@@ -51,19 +52,20 @@ public class ShopScreen extends ClickableScreen {
 		currentPage = 1; 
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
 		viewObjects.add(background);
+		
 		setUpFog();
-		
 		Graphic post = new ClickableGraphic(0, getHeight()-150, 0.6,"img/backSign.png");
-		
 		viewObjects.add(post);
+		
 		Graphic nextButton = new ClickableGraphic(getWidth() - 150, getHeight()-120, 0.6, "img/nextPreviousSign.png");
 		viewObjects.add(nextButton);
+		
 		addPostButtons();
 		dragonsPerPage = 6;
-		dragonsToBuy = new ArrayList<Dragon>();
+		dragonsToBuy = HomeKat.getDragons();
 		myDragons = new ArrayList<Dragon>();
 		dragonsOnDisplay = new ArrayList<Object>();
-		generateInitialDragons();
+		//generateInitialDragons();
 		totalPages = dragonsToBuy.size() / dragonsPerPage;
 		if((dragonsToBuy.size() % dragonsPerPage) > 0){
 			totalPages++;
@@ -131,15 +133,15 @@ public class ShopScreen extends ClickableScreen {
 	    
 	}
 
-	public void generateInitialDragons() {
-		String[] names = new String[] {"Rowdy","Thorn","Mushu","Falcor","Elliot","Puff","Spyro","Sandy",
-				"Scaly","Nessie","Nymph","Sparky","Flambi","Drago","Viper","Moon","Saphira","Scorch","Toothless","Stormfly"};
-		int price=50;
-		for(int i = 0; i < names.length; i++){
-			Dragon d = new Dragon(0,0,50,50, names[i], price + (i*50), "img/dragon"+i+".png");
-			dragonsToBuy.add(d);
-		}
-	}
+//	public void generateInitialDragons() {
+//		String[] names = new String[] {"Rowdy","Thorn","Mushu","Falcor","Elliot","Puff","Spyro","Sandy",
+//				"Scaly","Nessie","Nymph","Sparky","Flambi","Drago","Viper","Moon","Saphira","Scorch","Toothless","Stormfly"};
+//		int price=50;
+//		for(int i = 0; i < names.length; i++){
+//			Dragon d = new Dragon(0,0,50,50, names[i], price + (i*50), "img/dragon"+i+".png");
+//			dragonsToBuy.add(d);
+//		}
+//	}
 
 	public void drawDragons(){
 		int startDragon;
