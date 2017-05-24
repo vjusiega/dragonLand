@@ -20,10 +20,10 @@ public class WriteFile {
 	/**
 	 * 
 	 */
-	private String info;
+	private static String info;
 	
-	public WriteFile() {
-//		this.info = info;
+	public WriteFile(String info) {
+		this.info = info;
 	}
 
 	public static void main(String[] args) {
@@ -31,15 +31,15 @@ public class WriteFile {
 		
 		try{
 			//will be replaced later with method to make string holding data
-			String stuff = "string sdsadas";
 			
-			File file = getSaveLocation();//new File("C:/Users/Student 8/Desktop/test.txt");
+			File file = getSaveLocation();
+			//new File("C:/Users/Student 8/Desktop/test.txt");
 			
 			if(!file.exists())file.createNewFile();
 			
 			FileWriter fw = new FileWriter(file);
 			bw = new BufferedWriter(fw);
-			bw.write(stuff);
+			bw.write(info);
 			
 			System.out.println("File written Successfully");
 			
@@ -58,24 +58,21 @@ public class WriteFile {
 	
 	private static File getSaveLocation() {
 		JButton open = new JButton();
-		JFileChooser chooser=new JFileChooser();
-		chooser.setDialogTitle("Choose a file to save data.");
+		JFileChooser chooser = new JFileChooser();
+		chooser.setCurrentDirectory(new java.io.File("."));
 		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		chooser.setDialogTitle("Choose a directory to save data.");
+		chooser.setAcceptAllFileFilterUsed(false);
 		if(chooser.showOpenDialog(open)== JFileChooser.APPROVE_OPTION){
 			//Open JFileChooser
+			System.out.println("getCurrentDirectory(): "+chooser.getCurrentDirectory());
+			System.out.println("getSelectedFile() : "+chooser.getSelectedFile());
+			
 			return chooser.getSelectedFile();
+		}else{
+			System.out.println("No File Selected");
+			return null;
 		}
-		return null;
-		
-		
-//		JFileChooser chooser = new JFileChooser();
-//		   chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);  
-//		   int result = chooser.showSaveDialog(this);
-//
-//		   if (result == chooser.APPROVE_OPTION) { 
-//		      return chooser.getSelectedFile();
-//		   } else {
-//		      return null;
 		   
 	}
 
