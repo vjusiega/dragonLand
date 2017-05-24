@@ -67,28 +67,13 @@ public class ShopSelectionScreen extends ClickableScreen{
 				DragonLand.game.setScreen(DragonLand.homeScreen);
 			}
 		});
-		ClickableGraphic tradeBox = new ClickableGraphic(getWidth(), getHeight(), 1.1, "img/tradeBox.png", 0.75, 0.5);
 		viewObjects.add(eggBox);
-		viewObjects.add(tradeBox);
 		
-		Dragon tradeDrag2 = new Dragon(0,0, (int) (tradeBox.getWidth() *0.5), (int) (tradeBox.getHeight() * 0.45), "img/dragon2.png");
-		tradeDrag2.centerDragon(tradeBox.getX() + (tradeBox.getWidth() / 2), tradeBox.getX() + tradeBox.getWidth(), tradeBox.getY(), tradeBox.getY() + (tradeBox.getHeight() /2));
-		tradeDrag2.play();
-		tradeDrag2.setDirection(1);
-		viewObjects.add(tradeDrag2);
-		
-		Dragon tradeDrag1 = new Dragon(0,0, (int) (tradeBox.getWidth() *0.6), (int) (tradeBox.getHeight() * 0.55), "img/dragon6.png");
-		tradeDrag1.centerDragon(tradeBox.getX(), tradeBox.getX() + (int)(tradeBox.getWidth() * 0.75), tradeBox.getY() + (tradeBox.getHeight() /2), tradeBox.getY() + tradeBox.getHeight());
-		tradeDrag1.play();
-		tradeDrag1.setDirection(2);
-		viewObjects.add(tradeDrag1);
-		
-		
+		setUpTradeBoxAnimation();
 		
 	}
 	
-	
-	
+
 	public void setUpFog(ClickableGraphic post){
 		Fog fog; 
 		
@@ -129,6 +114,29 @@ public class ShopSelectionScreen extends ClickableScreen{
 	
 	public int getDragonY(){
 		return getHeight()/4;
+	}
+	
+	public void setUpTradeBoxAnimation() {
+		ClickableGraphic tradeBox = new ClickableGraphic(getWidth(), getHeight(), 1.1, "img/tradeBox.png", 0.75, 0.5);
+		tradeBox.setAction(new Action(){
+			public void act(){
+				DragonLand.game.setScreen(DragonLand.tradingScreen);
+			}
+		});
+		viewObjects.add(tradeBox);
+		
+		Dragon tradeDrag2 = new Dragon(0,0, (int) (tradeBox.getWidth() *0.5), (int) (tradeBox.getHeight() * 0.45), "img/dragon2.png");
+		tradeDrag2.centerDragon(tradeBox.getX() + (tradeBox.getWidth() / 2), tradeBox.getX() + tradeBox.getWidth(), tradeBox.getY(), tradeBox.getY() + (tradeBox.getHeight() /2));
+		tradeDrag2.play();
+		tradeDrag2.setDirection(1);
+		viewObjects.add(tradeDrag2);
+		
+		Dragon tradeDrag1 = new Dragon(0,0, (int) (tradeBox.getWidth() *0.6), (int) (tradeBox.getHeight() * 0.55), "img/dragon6.png");
+		tradeDrag1.centerDragon(tradeBox.getX(), tradeBox.getX() + (int)(tradeBox.getWidth() * 0.75), tradeBox.getY() + (tradeBox.getHeight() /2), tradeBox.getY() + tradeBox.getHeight());
+		tradeDrag1.play();
+		tradeDrag1.setDirection(2);
+		viewObjects.add(tradeDrag1);
+		
 	}
 
 }

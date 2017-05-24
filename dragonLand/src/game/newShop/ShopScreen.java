@@ -61,15 +61,8 @@ public class ShopScreen extends ClickableScreen {
 		});
 		viewObjects.add(post);
 		addPostButtons();
-		System.out.println(getHeight() - 200);
+		
 		ClickableGraphic nextButton = new ClickableGraphic(getWidth() - 150, getHeight()-120, 0.6, "img/nextPreviousSign.png");
-		nextButton.setAction(new Action(){
-			public void act(){
-				currentPage++;
-				removeDisplayDragon();
-				drawDragons();
-			}
-		});
 		viewObjects.add(nextButton);
 		
 		dragonsPerPage = 6;
@@ -78,6 +71,9 @@ public class ShopScreen extends ClickableScreen {
 		dragonsOnDisplay = new ArrayList<Object>();
 		generateInitialDragons();
 		totalPages = dragonsToBuy.size() / dragonsPerPage;
+		if((dragonsToBuy.size() % dragonsPerPage) > 0){
+			totalPages++;
+		}
 		//drawDragons();
 	}
 	
@@ -93,7 +89,11 @@ public class ShopScreen extends ClickableScreen {
 		PolygonButton forwardBtn = new PolygonButton(DragonLand.WIDTH - 150, DragonLand.HEIGHT-120, 150, 100, forward, new Action(){
 			@Override
 			public void act() {
-				//add forward
+				if(currentPage < totalPages){
+					currentPage++;
+					removeDisplayDragon();
+					drawDragons();
+				}
 			}});
 	    
 	    viewObjects.add(forwardBtn);
@@ -109,7 +109,11 @@ public class ShopScreen extends ClickableScreen {
 	    PolygonButton backBtn = new PolygonButton(DragonLand.WIDTH - 150, DragonLand.HEIGHT-80, 150, 100, back, new Action(){
 			@Override
 			public void act() {
-//				violetta put in to move forward
+				if(currentPage > 1){
+					currentPage--;
+					removeDisplayDragon();
+					drawDragons();
+				}
 			}});
 	    
 	    viewObjects.add(backBtn);
@@ -134,20 +138,29 @@ public class ShopScreen extends ClickableScreen {
 		}
 		
 		for(int i = startDragon; (i < startDragon + 6) && (i < dragonsToBuy.size()); i++){
-			System.out.println(getDisplayX(startDragon, i));
 			ShopDragon d = new ShopDragon(getDisplayX(startDragon, i), getDisplayY(startDragon, i), getWidth(), getHeight(), dragonsToBuy.get(i));
 			
 			//ShopDragon d = new ShopDragon(0.5, 0.5, getWidth(), getHeight(), dragonsToBuy.get(i));
 			dragonsOnDisplay.add(dragonsToBuy.get(i));
 			
-			Dragon disD = d.getDragon();
+			//some dragon setups
+				Dragon disD = d.getDragon();
+				disD.setBounce(false);
+				disD.setConstantVY(0.05);
+				disD.play();
+				disD.setDirection(0);
+				disD.setCurrentFrame(0);
 			
+			//button setups
+				//ClickableGraphic button = d.getBackdrop();
+				d.getBackdrop().setAction(new Action(){
+					public void act() {
+						System.out.println("I am acting");
+						buyDragon(disD);
+						drawDragons();
+					}
+				});
 			
-			disD.setBounce(false);
-			disD.setConstantVY(0.05);
-			disD.play();
-			disD.setDirection(0);
-			disD.setCurrentFrame(0);
 			viewObjects.add(d.getBackdrop());
 			viewObjects.add(disD);
 			dragonsOnDisplay.add(d.getBackdrop());

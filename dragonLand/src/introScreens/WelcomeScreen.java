@@ -80,13 +80,13 @@ public class WelcomeScreen extends ClickableScreen{
 		int yPos = (-1)*dragonHeight;
 		Dragon d = new Dragon(0, 0, dragonHeight, dragonWidth, imgSrc, 15, 0.7);
 		if(drag == 1){
-			d.placeDragonOnXLine(getWidth(), 0.33);
+			d.placeDragonOnXLine(getWidth(), 0.25);
 		}else{
-			d.placeDragonOnXLine(getWidth(), 0.66);
+			d.placeDragonOnXLine(getWidth(), 0.75);
 		}
 		dragons.add(d);
 		d.setDragonAnimation(d, imgSrc);
-		d.setX(xPos);
+		//d.setX(xPos);
 		d.setY(yPos);
 		d.setInitialY(getHeight()/4);
 		d.setDirection(4);

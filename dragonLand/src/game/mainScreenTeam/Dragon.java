@@ -198,7 +198,6 @@ public class Dragon extends AnimatedComponent {
 		}
 		
 		public void setDirection(int dir){
-			System.out.println("Here");
 			this.direction = dir;
 		}
 	
