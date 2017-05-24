@@ -107,8 +107,6 @@ public class Server{
 					}
 				}
 		);
-		//allows us to update only the chatwindow and not the entire GUI
-		//this creates a thread that updates a part of the GUI
 	}
 	
 //	private void ableToType(final boolean tof){
@@ -121,5 +119,3 @@ public class Server{
 //		);
 //	}
 }
-	
-//server class is done

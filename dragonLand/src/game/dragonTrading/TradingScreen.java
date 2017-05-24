@@ -30,8 +30,6 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 		myDragonsToTrade = new ArrayList<Dragon>();
 		theirDragons = new ArrayList<Dragon>(); 
 	}
-
-	
 	
 	public void setUpFog(ClickableGraphic post){
 		Fog fog; 
@@ -60,15 +58,14 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
 		viewObjects.add(background);
 		
-		ClickableGraphic post = new ClickableGraphic(0, getHeight()-300, 1.0,"img/oneSignLeft.png");
-		post.setAction(new Action(){
-			public void act(){
-				DragonLand.game.setScreen(DragonLand.homeScreen);
-			}
-		});
-		
-		setUpFog(post);
-		
+//		ClickableGraphic post = new ClickableGraphic(0, getHeight()-300, 1.0,"img/oneSignLeft.png");
+//		post.setAction(new Action(){
+//			public void act(){
+//				DragonLand.game.setScreen(DragonLand.homeScreen);
+//			}
+//		});
+//		
+//		setUpFog(post);
 		
 		Button b = new Button(100, 100, 100, 100, "server", Color.BLUE);
 		b.setAction(new Action(){
