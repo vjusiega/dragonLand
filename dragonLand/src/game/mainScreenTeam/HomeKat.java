@@ -191,7 +191,7 @@ public class HomeKat implements DragonArrayInterface {
 			@Override
 			public void act() {
 //				WriteFile();
-				//System.exit(1);
+				System.exit(1);
 			}});
 	    
 	    viewObjects.add(exit);
@@ -358,7 +358,6 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 		int randomInt=(int)(Math.random()*locationsX.size());
 		d.setX(locationsX.remove(randomInt));
 		d.setY(locationsY.remove(randomInt));
-
 		d.update();
 		d.play();
 		dragonsOnScreen.add(d);

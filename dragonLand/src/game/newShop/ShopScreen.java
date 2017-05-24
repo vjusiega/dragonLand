@@ -53,18 +53,12 @@ public class ShopScreen extends ClickableScreen {
 		viewObjects.add(background);
 		setUpFog();
 		
-		ClickableGraphic post = new ClickableGraphic(0, getHeight()-150, 0.6,"img/backSign.png");
-		post.setAction(new Action(){
-			public void act(){
-				DragonLand.game.setScreen(DragonLand.shopMain);
-			}
-		});
+		Graphic post = new ClickableGraphic(0, getHeight()-150, 0.6,"img/backSign.png");
+		
 		viewObjects.add(post);
-		addPostButtons();
-		
-		ClickableGraphic nextButton = new ClickableGraphic(getWidth() - 150, getHeight()-120, 0.6, "img/nextPreviousSign.png");
+		Graphic nextButton = new ClickableGraphic(getWidth() - 150, getHeight()-120, 0.6, "img/nextPreviousSign.png");
 		viewObjects.add(nextButton);
-		
+		addPostButtons();
 		dragonsPerPage = 6;
 		dragonsToBuy = new ArrayList<Dragon>();
 		myDragons = new ArrayList<Dragon>();
@@ -98,15 +92,15 @@ public class ShopScreen extends ClickableScreen {
 	    
 	    viewObjects.add(forwardBtn);
 	    
-	    Polygon back = new Polygon();
-	    back.addPoint(20, 18);
-	    back.addPoint(120, 30);
-	    back.addPoint(120, 60);
-	    back.addPoint(20, 35);
-	    back.addPoint(5, 25);
-	    back.addPoint(20, 18);
+	    Polygon previous = new Polygon();
+	    previous.addPoint(20, 18);
+	    previous.addPoint(120, 30);
+	    previous.addPoint(120, 60);
+	    previous.addPoint(20, 35);
+	    previous.addPoint(5, 25);
+	    previous.addPoint(20, 18);
 
-	    PolygonButton backBtn = new PolygonButton(DragonLand.WIDTH - 150, DragonLand.HEIGHT-80, 150, 100, back, new Action(){
+	    PolygonButton previousBtn = new PolygonButton(DragonLand.WIDTH - 150, DragonLand.HEIGHT-80, 150, 100, previous, new Action(){
 			@Override
 			public void act() {
 				if(currentPage > 1){
@@ -116,7 +110,25 @@ public class ShopScreen extends ClickableScreen {
 				}
 			}});
 	    
+	    viewObjects.add(previousBtn);
+	    
+	    Polygon back = new Polygon();
+	    back.addPoint(20, 18);
+	    back.addPoint(120, 30);
+	    back.addPoint(120, 60);
+	    back.addPoint(20, 35);
+	    back.addPoint(5, 25);
+	    back.addPoint(20, 18);
+
+	    PolygonButton backBtn = new PolygonButton( 0, DragonLand.HEIGHT-110, 150, 100, back, new Action(){
+			@Override
+			public void act() {
+				DragonLand.game.setScreen(DragonLand.shopMain);
+			}});
+	    
 	    viewObjects.add(backBtn);
+	    
+	    
 	}
 
 	public void generateInitialDragons() {

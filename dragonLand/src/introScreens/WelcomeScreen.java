@@ -1,6 +1,7 @@
 package introScreens;
 
 import java.awt.Graphics;
+import java.awt.Polygon;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -8,6 +9,7 @@ import javax.swing.ImageIcon;
 
 import game.DragonLand;
 import game.mainScreenTeam.Dragon;
+import game.miniGameTeam.GameScreen;
 import game.miniGameTeam.GameVioletta;
 import game.miniGameTeam.HighScoreScreen;
 import guiPractice.ClickableScreen;
@@ -17,6 +19,7 @@ import guiPractice.components.Button;
 import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
 import guiPractice.components.GraphicMovingComponent;
+import guiPractice.components.PolygonButton;
 import guiPractice.components.Visible;
 
 public class WelcomeScreen extends ClickableScreen{
@@ -39,19 +42,28 @@ public class WelcomeScreen extends ClickableScreen{
 		viewObjects.add(setUpDragons(1));
 		viewObjects.add(setUpDragons(3));
 		
-		ClickableGraphic post = new ClickableGraphic(getWidth()-250, getHeight()-200, 1.0,"img/continueSign.png");
-		post.setAction(new Action(){
-			public void act(){
+		Graphic post = new ClickableGraphic(getWidth()-250, getHeight()-200, 1.0,"img/continueSign.png");
+		
+		setUpFog(post);
+		Polygon next = new Polygon();
+		next.addPoint(25, 10);
+		next.addPoint(200, 50);
+		next.addPoint(220, 65);
+		next.addPoint(190, 83);
+		next.addPoint(20, 55);
+		next.addPoint(25, 10);
+
+	    PolygonButton nextBtn = new PolygonButton(DragonLand.WIDTH-250, DragonLand.HEIGHT-185, 230, 100, next, new Action(){
+			@Override
+			public void act() {
 				stopThreads();
 				DragonLand.game.setScreen(DragonLand.homeScreen);
 			}
 		});
-		
-		setUpFog(post);
-	
+	    viewObjects.add(nextBtn);
 	}
 
-	public void setUpFog(ClickableGraphic post){
+	public void setUpFog(Graphic post){
 		Fog fog; 
 		
 		for(int i = -10; i < 10; i++){

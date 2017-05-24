@@ -1,6 +1,7 @@
 package game.newShop;
 
 import java.awt.Color;
+import java.awt.Polygon;
 import java.util.ArrayList;
 
 import game.DragonLand;
@@ -12,6 +13,7 @@ import guiPractice.components.Action;
 import guiPractice.components.Button;
 import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
+import guiPractice.components.PolygonButton;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
 import introScreens.Fog;
@@ -38,14 +40,24 @@ public class ShopSelectionScreen extends ClickableScreen{
 		viewObjects.add(setUpDragons(1));
 		viewObjects.add(setUpDragons(3));
 		
-		ClickableGraphic post = new ClickableGraphic(0, getHeight()-150, 0.6,"img/backSign.png");
-		post.setAction(new Action(){
-			public void act(){
-				DragonLand.game.setScreen(DragonLand.homeScreen);
-			}
-		});
-		
+		Graphic post = new ClickableGraphic(0, getHeight()-150, 0.6,"img/backSign.png");
 		setUpFog(post);
+		Polygon back = new Polygon();
+	    back.addPoint(20, 18);
+	    back.addPoint(120, 30);
+	    back.addPoint(120, 60);
+	    back.addPoint(20, 35);
+	    back.addPoint(5, 25);
+	    back.addPoint(20, 18);
+
+	    PolygonButton backBtn = new PolygonButton( 0, DragonLand.HEIGHT-110, 150, 100, back, new Action(){
+			@Override
+			public void act() {
+				DragonLand.game.setScreen(DragonLand.homeScreen);
+			}});
+	    
+	    viewObjects.add(backBtn);
+		
 		
 		ClickableGraphic buyBox = new ClickableGraphic(getWidth(), getHeight(), 1.1, "img/whiteBox.png", 0.25, 0.5);
 		buyBox.setAction(new Action(){
@@ -74,7 +86,7 @@ public class ShopSelectionScreen extends ClickableScreen{
 	}
 	
 
-	public void setUpFog(ClickableGraphic post){
+	public void setUpFog(Graphic post){
 		Fog fog; 
 		
 		for(int i = -5; i < 5; i++){
