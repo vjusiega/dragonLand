@@ -57,7 +57,7 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 		thisScreen = this;
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
 		viewObjects.add(background);
-		
+		setUpFog();
 //		ClickableGraphic post = new ClickableGraphic(0, getHeight()-300, 1.0,"img/oneSignLeft.png");
 //		post.setAction(new Action(){
 //			public void act(){
@@ -108,6 +108,17 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 //		}
 	
 		
+	}
+	
+	public void setUpFog(){
+		Fog fog; 
+		
+		for(int i = -10; i < 10; i++){
+			fog = new Fog((i*getWidth() / 10), 200, 500, 300, "img/introFog.png", 100);
+			viewObjects.add(fog);
+			fog.setY(fog.generateYPos());
+			fog.play();
+		}
 	}
 
 	@Override
