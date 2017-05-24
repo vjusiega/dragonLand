@@ -74,6 +74,7 @@ public class ShopSelectionScreen extends ClickableScreen{
 		
 		
 		ClickableGraphic eggBox = new ClickableGraphic(getWidth(), getHeight(), 1.1, "img/whiteBox.png", 0.5, 0.5);
+		
 		eggBox.setAction(new Action(){
 			public void act(){
 				DragonLand.game.setScreen(DragonLand.homeScreen);

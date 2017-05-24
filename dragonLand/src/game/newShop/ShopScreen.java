@@ -235,7 +235,7 @@ public class ShopScreen extends ClickableScreen {
 	 */
 		public Dragon findInList(Dragon dFind, ArrayList<Dragon> array){
 			for(Dragon d: array){
-				if(d.getName() == fFind.getName()){
+				if(d.getName() == dFind.getName()){
 					return d;
 				}
 			}
@@ -278,6 +278,7 @@ public class ShopScreen extends ClickableScreen {
 			}
 			else{
 				System.out.println("could not remove from my dragons");
+			}
 		}
 	
 		public String[] getNamesOfPurchased(){
