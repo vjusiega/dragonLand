@@ -36,6 +36,14 @@ public class ShopDragon {
 		int buttonY = (background.getY() + (int)(background.getWidth() * 0.7)) - (buttonHeight/2);
 		
 		buyButton = new Button(buttonX, buttonY, buttonWidth, buttonHeight, "BUY", Color.BLACK, null);
+		buyButton.setAction(new Action(){
+			public void act(){
+				System.out.println("I am acting");
+				((ShopScreen)DragonLand.newShopScreen).buyDragon(drag);
+				((ShopScreen)DragonLand.newShopScreen).drawDragons();
+			}
+		});
+			
 	}
 	
 	public Dragon getDragon(){
