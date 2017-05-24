@@ -103,7 +103,9 @@ public class DragonLand extends GUIApplication {
 		gameInstructionsScreen = new GameInstructions(WIDTH, HEIGHT);
 		tradingScreen = new TradingScreen(WIDTH, HEIGHT);
 		vGame = new GameVioletta();
-		newShopScreen = new ShopScreen(WIDTH, HEIGHT);
+		newShopScreen = new ShopScreen(WIDTH, HEIGHT); 
+			//IN ORDER FOR IT TO WORK
+			//shopScreen must be created before homescreen
 		nameScreen = new NameScreen(WIDTH, HEIGHT);
 		setScreen(welcomeScreen);
 
