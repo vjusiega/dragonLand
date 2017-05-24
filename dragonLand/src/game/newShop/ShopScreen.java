@@ -167,13 +167,13 @@ public class ShopScreen extends ClickableScreen {
 			
 			//button setups
 				//ClickableGraphic button = d.getBackdrop();
-				d.getBackdrop().setAction(new Action(){
-					public void act() {
-						System.out.println("I am acting");
-						buyDragon(disD);
-						drawDragons();
-					}
-				});
+// 				d.getBackdrop().setAction(new Action(){
+// 					public void act() {
+// 						System.out.println("I am acting");
+// 						buyDragon(disD);
+// 						drawDragons();
+// 					}
+// 				});
 			
 			viewObjects.add(d.getBackdrop());
 			viewObjects.add(disD);
@@ -233,13 +233,28 @@ public class ShopScreen extends ClickableScreen {
 	/*
 	 * getters and setters for dragon arrays
 	 */
+		public Dragon findInList(Dragon dFind, ArrayList<Dragon> array){
+			for(Dragon d: array){
+				if(d.getName() == fFind.getName()){
+					return d;
+				}
+			}
+			return null; 
+		}
+	
 		public ArrayList<Dragon> getMyDragons(){
 			return myDragons;
 		}
 	
 		public void buyDragon(Dragon d){
-			dragonsToBuy.remove(d);
-			myDragons.add(d);
+			Dragon found = findInList(d, dragonsToBuy);
+			if(found != null){
+				dragonsToBuy.remove(found);
+				myDragons.add(found);
+			}
+			else{
+				System.out.println("Could not buy dragon");
+			}
 		}
 		
 		public void addToMyDragons(Dragon d){
@@ -247,12 +262,22 @@ public class ShopScreen extends ClickableScreen {
 		}
 	
 		public void removeFromBuyDragons(Dragon d){
-			dragonsToBuy.remove(d);
+			Dragon found = findInList(d, dragonsToBuy);
+			if(found != null){
+				dragonsToBuy.remove(found);
+			}else{
+				System.out.println("dragon cannot be removed");
+			}
 		}
 	
 		public void removeFromMyDragons(Dragon d){
-			myDragons.remove(d);
-			dragonsToBuy.add(d);
+			Dragon found = findInList(d, myDragons);
+			if(found != null){
+				myDragons.remove(d);
+				dragonsToBuy.add(d);
+			}
+			else{
+				System.out.println("could not remove from my dragons");
 		}
 	
 		public String[] getNamesOfPurchased(){
