@@ -180,7 +180,7 @@ public class HomeJenniber implements Runnable {
 			Dragon d= HomeKat.dragonHome.getDragonsOnScreen().get(i);
 			if((x>=d.getX()&&x<=d.getX()+d.getWidth())
 					&&(y>=d.getY()&&y<=d.getY()+d.getHeight())){
-					Sound.EAT.play();
+					PlayRandomSound();
 					d.setHungryBox(false);
 					fed=d;
 					removeHungry(d.getHungryBoxObj());
@@ -188,5 +188,19 @@ public class HomeJenniber implements Runnable {
 			}
 		}
 		
+	}
+
+	private void PlayRandomSound() {
+		int r = (int)(Math.random()*5)+1;
+		if(r==1)
+			Sound.EAT1.play();
+		else if(r==2)
+			Sound.EAT2.play();
+		else if(r==3)
+			Sound.EAT3.play();
+		else if(r==4)
+			Sound.EAT4.play();
+		else if(r==5)
+			Sound.EAT5.play();
 	}
 }

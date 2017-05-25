@@ -59,7 +59,7 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		Draggable d= (Draggable) draggables.get(0);
-		jenCode.checkFeed(katCode.getFood().getX(),katCode.getFood().getY());
+		jenCode.checkFeed(katCode.getFood().getX()+(int)(katCode.getFood().getWidth()/2),katCode.getFood().getY()+(int)(katCode.getFood().getHeight()/2));
 		d.setX(d.getOrigX());
 		d.setY(d.getOrigY());
 		alreadyDragging=false;
