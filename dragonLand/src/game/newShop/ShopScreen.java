@@ -175,6 +175,7 @@ public class ShopScreen extends ClickableScreen {
 // 					}
 // 				});
 			
+			System.out.println("printin");
 			viewObjects.add(d.getBackdrop());
 			viewObjects.add(disD);
 			dragonsOnDisplay.add(d.getBackdrop());

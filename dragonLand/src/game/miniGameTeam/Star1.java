@@ -52,7 +52,7 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 				GameScreen.setScore(score);
 				GameScreen.setScoreDisplay();
 				GameScreen.tGame.setPowerUp((GameScreen.tGame.getPowerUp() + 1));
-				if(GameScreen.tGame.getPowerUp() == 10){
+				if(GameScreen.tGame.getPowerUp() % 10 == 0){
 					GameScreen.tGame.addDragonToScreen(GameVioletta.vGame.addDragon("img/dragon1.png"));
 				}
 			}
@@ -68,13 +68,13 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 			
 			//used these numbers for demonstration purposes
 			if(GameScreen.getScore() >= 10 && GameScreen.getScore() < 20)
-				setVy(1.5);
+				setVy(1.2);
 			if(GameScreen.getScore() >= 20 && GameScreen.getScore() < 30)
-				setVy(1.75);
+				setVy(1.4);
 			if(GameScreen.getScore() >= 30 && GameScreen.getScore() < 40)
-				setVy(2);
+				setVy(1.6);
 			if(GameScreen.getScore() >= 40){
-				setVy(2.25);
+				setVy(1.8);
 			}		
 		}else{
 			//HighScoreScreen.setRoundScore(GameScreen.getScore());

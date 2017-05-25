@@ -16,7 +16,16 @@ public class ShopDragon {
 
 	public ShopDragon(double xLine, double yLine, int screenW, int screenH, Dragon d){
 		background = new ClickableGraphic(screenW, screenH, 1.0, "img/whiteBox.png", xLine, yLine);
-		setUpButton();
+		background.setAction(new Action(){
+
+			@Override
+			public void act() {
+				System.out.println("I am acting");
+				
+			}
+			
+		});
+		//setUpButton();
 		//set up dragon for display
 		drag = d; 
 		
@@ -24,7 +33,6 @@ public class ShopDragon {
 		drag.setHeight((int)(background.getHeight() * 0.65));
 		drag.placeDragonOnLines(screenW, screenH, xLine, yLine);
 		drag.setDragonAnimation(d, d.getImgSrc());
-		System.out.println("setupbtn");
 		
 	}
 	
@@ -53,10 +61,6 @@ public class ShopDragon {
 		return drag;
 	}
 	
-//	public Button getBuyButton(){
-//		return buyButton;
-//	}
-//	
 	public ClickableGraphic getBackdrop(){
 		return background;
 	}

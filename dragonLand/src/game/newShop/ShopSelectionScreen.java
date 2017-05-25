@@ -104,19 +104,17 @@ public class ShopSelectionScreen extends ClickableScreen{
 	public Dragon setUpDragons(int drag){
 		String imgSrc = "img/dragon" + drag + ".png";
 		int dragonHeight = getHeight()/8;
-		int dragonWidth = (int) (dragonHeight * 0.8);
-		int xPos;
-		if(drag == 1){
-			xPos = getWidth()/4 - dragonWidth;
-		}else{
-			xPos = (3*getWidth()/4) - dragonWidth * 2;
-		}
-		
+		int dragonWidth = (int) (dragonHeight );
 		int yPos = (-1)*dragonHeight;
-		Dragon d = new Dragon(xPos, yPos, dragonHeight, dragonWidth, imgSrc, 15, 0.7);
+		Dragon d = new Dragon(0, 0, dragonWidth, dragonHeight, imgSrc, 15, 0.7);
 		dragons.add(d);
 		d.setDragonAnimation(d, imgSrc);
-		d.setX(xPos);
+		if(drag == 1){
+			d.placeDragonOnXLine(getWidth(), 0.25);
+		}
+		if(drag == 3){
+			d.placeDragonOnXLine(getWidth(), 0.75);
+		}
 		d.setY(yPos);
 		d.setInitialY(getHeight()/9);
 		d.setDirection(4);
