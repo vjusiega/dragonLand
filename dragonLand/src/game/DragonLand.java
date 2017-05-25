@@ -76,7 +76,7 @@ public class DragonLand extends GUIApplication {
 	}
 	
 	public DragonLand() {
-		
+		Sound.AMBIANCE.loop();
 	}
 	/* (non-Javadoc)
 	 * @see guiPractice.GUIApplication#initScreen()
@@ -98,7 +98,7 @@ public class DragonLand extends GUIApplication {
 		gameInstructionsScreen = new GameInstructions(DragonLand.WIDTH,DragonLand.HEIGHT);
 		tradingScreen = new TradingScreen(WIDTH, HEIGHT);
 		vGame = new GameVioletta();
-		setScreen(tradingScreen);
+		setScreen(welcomeScreen);
 
 	}
 	private void initColors() {

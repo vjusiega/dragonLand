@@ -6,6 +6,7 @@ package game.mainScreenTeam;
 import java.util.ArrayList;
 
 import game.DragonLand;
+import game.Sound;
 import game.miniGameTeam.GameScreen;
 import guiPractice.components.Action;
 
@@ -179,6 +180,7 @@ public class HomeJenniber implements Runnable {
 			Dragon d= HomeKat.dragonHome.getDragonsOnScreen().get(i);
 			if((x>=d.getX()&&x<=d.getX()+d.getWidth())
 					&&(y>=d.getY()&&y<=d.getY()+d.getHeight())){
+					Sound.EAT.play();
 					d.setHungryBox(false);
 					fed=d;
 					removeHungry(d.getHungryBoxObj());

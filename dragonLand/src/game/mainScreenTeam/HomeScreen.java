@@ -3,6 +3,7 @@ package game.mainScreenTeam;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import game.Sound;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Graphic;
 import guiPractice.components.Visible;
@@ -62,6 +63,7 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 		d.setX(d.getOrigX());
 		d.setY(d.getOrigY());
 		alreadyDragging=false;
+		
 		
 	}
 	@Override
