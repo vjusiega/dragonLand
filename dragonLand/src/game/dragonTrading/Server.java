@@ -1,16 +1,15 @@
 package game.dragonTrading;
 import java.io.*;
-
-
-
 import java.net.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import guiPractice.components.Button;
 
 import game.DragonLand;
 import game.mainScreenTeam.Dragon;
 import guiPractice.Screen;
+import guiPractice.components.Action;
 
 public class Server{
 	
@@ -24,6 +23,21 @@ public class Server{
 	public Server() {
 	}
 	
+	public void startTrading(TradingScreen s){
+		Button b = new Button(300, 250, 100, 100, "Trade", Color.green);
+		b.setAction(new Action(){
+			public void act() {
+				try {
+					whileTrading(s);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		s.addObject(b);
+	}
+	
 	//set up and run the server
 	public void startRunning(TradingScreen s){
 		try{
@@ -34,6 +48,7 @@ public class Server{
 					System.out.println("I am starting and I am a server.");
 					waitForConnection(s);	
 					setupStreams(s);
+					startTrading(s);
 					waiting = false;
 					//whileTrading(s);
 				}catch(EOFException eofException){
@@ -64,12 +79,13 @@ public class Server{
 	}
 	
 	private void whileTrading(TradingScreen s) throws IOException{
-		Dragon message = new Dragon(10,10,10,10, "img/dragon1.png"); //simple prompt on screen
+		String message = "Sparky"; //simple prompt on screen
 		sendDragon(message);
+		System.out.println("I'm here with sparky");
 //		ableToType(true); 
 		do{
 			try{
-				message = (Dragon) input.readObject(); 
+				message = (String) input.readObject(); 
 				s.displayConnectionMessage("\n" + "I got a dragon");
 			}catch(ClassNotFoundException classNotFoundException){
 				s.displayConnectionMessage("\n hopefully this message never displays");
@@ -89,11 +105,12 @@ public class Server{
 		}
 	}
 		
-	private void sendDragon(Dragon d){
+	private void sendDragon(String d){
 		try{
 			output.writeObject(d);
 			output.flush(); 	
-		}catch(IOException ioException){
+		}catch(Exception ioException){
+			ioException.printStackTrace();
 			System.out.println("Weird stuff sent through stream");
 		}
 	}
