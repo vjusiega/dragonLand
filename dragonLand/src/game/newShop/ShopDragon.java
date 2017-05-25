@@ -48,7 +48,7 @@ public class ShopDragon {
 		background.setAction(new Action(){
 			
 			public void act(){
-				System.out.println("I am acting");
+				//System.out.println("I am acting");
 				//((ShopScreen)DragonLand.newShopScreen).buyDragon(drag);
 				//((ShopScreen)DragonLand.newShopScreen).drawDragons();
 			}

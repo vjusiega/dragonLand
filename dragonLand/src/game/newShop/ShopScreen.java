@@ -167,12 +167,8 @@ public class ShopScreen extends ClickableScreen {
 // 					}
 // 				});
 		
-			System.out.println("printin");
-			viewObjects.add(d.getBackdrop());
-			System.out.println("view" + viewObjects.size()+ " click" + clickables.size());
-			System.out.println("box"+d.getBackdrop().getX() +""+d.getBackdrop().getY());
-			System.out.println(d.getBackdrop() instanceof Clickable);
-			viewObjects.add(disD);
+			addObject(d.getBackdrop());
+			addObject(disD);
 			dragonsOnDisplay.add(d.getBackdrop());
 			dragonsOnDisplay.add(disD);
 			
