@@ -96,7 +96,7 @@ public class HomeKat implements DragonArrayInterface {
 		help6.setSize(20);
 
 		thelp7 = "Keep trying to beat your score. Have fun taking care of your dragons.";
-		help7= new NoBorderButton(130,400,720,35,  thelp7,DragonLand.DARKER_NUDE,null);
+		help7= new NoBorderButton(130,400,720,35,  thelp7,DragonLand.LIGHT_PINK,null);
 		help7.setSize(20);
 		
 		helpLayer = new Button((int)(width*0.1),(int)(height*0.1),(int)(width*0.8),(int)(height*0.8),  null,DragonLand.DARKER_NUDE,  new Action(){
