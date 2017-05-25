@@ -1,5 +1,7 @@
 package introScreens;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.Graphics;
 import java.awt.Polygon;
 import java.awt.image.BufferedImage;
@@ -8,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import game.DragonLand;
+import game.Sound;
 import game.mainScreenTeam.Dragon;
 import game.miniGameTeam.GameScreen;
 import game.miniGameTeam.GameVioletta;
@@ -30,11 +33,13 @@ public class WelcomeScreen extends ClickableScreen{
 
 	public WelcomeScreen(int width, int height) {
 		super(width, height);
+		Sound.BACK_SOUND.loop();
+
 	}
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
-		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
+			background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
 		viewObjects.add(background);
 		
 		dragons = new ArrayList<Dragon>();

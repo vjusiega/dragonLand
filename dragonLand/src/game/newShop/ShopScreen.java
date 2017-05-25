@@ -2,6 +2,7 @@ package game.newShop;
 
 import java.awt.Color;
 import java.awt.Polygon;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import game.DragonLand;
@@ -11,6 +12,7 @@ import game.miniGameTeam.GameScreen;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
+import guiPractice.components.Clickable;
 import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
 import guiPractice.components.PolygonButton;
@@ -54,10 +56,10 @@ public class ShopScreen extends ClickableScreen {
 		viewObjects.add(background);
 		
 		setUpFog();
-		Graphic post = new ClickableGraphic(0, getHeight()-150, 0.6,"img/backSign.png");
+		Graphic post = new Graphic(0, getHeight()-150, 0.6,"img/backSign.png");
 		viewObjects.add(post);
 		
-		Graphic nextButton = new ClickableGraphic(getWidth() - 150, getHeight()-120, 0.6, "img/nextPreviousSign.png");
+		Graphic nextButton = new Graphic(getWidth() - 150, getHeight()-120, 0.6, "img/nextPreviousSign.png");
 		viewObjects.add(nextButton);
 		
 		addPostButtons();
@@ -133,16 +135,6 @@ public class ShopScreen extends ClickableScreen {
 	    
 	}
 
-//	public void generateInitialDragons() {
-//		String[] names = new String[] {"Rowdy","Thorn","Mushu","Falcor","Elliot","Puff","Spyro","Sandy",
-//				"Scaly","Nessie","Nymph","Sparky","Flambi","Drago","Viper","Moon","Saphira","Scorch","Toothless","Stormfly"};
-//		int price=50;
-//		for(int i = 0; i < names.length; i++){
-//			Dragon d = new Dragon(0,0,50,50, names[i], price + (i*50), "img/dragon"+i+".png");
-//			dragonsToBuy.add(d);
-//		}
-//	}
-
 	public void drawDragons(){
 		int startDragon;
 		if(currentPage == 1){
@@ -166,7 +158,7 @@ public class ShopScreen extends ClickableScreen {
 				disD.setCurrentFrame(0);
 			
 			//button setups
-				//ClickableGraphic button = d.getBackdrop();
+//				ClickableGraphic button = d.getBackdrop();
 // 				d.getBackdrop().setAction(new Action(){
 // 					public void act() {
 // 						System.out.println("I am acting");
@@ -174,16 +166,30 @@ public class ShopScreen extends ClickableScreen {
 // 						drawDragons();
 // 					}
 // 				});
-			
+		
 			System.out.println("printin");
 			viewObjects.add(d.getBackdrop());
+			System.out.println("view" + viewObjects.size()+ " click" + clickables.size());
+			System.out.println("box"+d.getBackdrop().getX() +""+d.getBackdrop().getY());
+			System.out.println(d.getBackdrop() instanceof Clickable);
 			viewObjects.add(disD);
 			dragonsOnDisplay.add(d.getBackdrop());
 			dragonsOnDisplay.add(disD);
+			
 		}
 	}
 
-	
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		System.out.println("df"+clickables.size());
+		for(int i=0; i<clickables.size();i++){
+			Clickable c= clickables.get(i);
+			if(c.getAction() != null && c.isHovered(e.getX(), e.getY())){
+				c.act();
+				break;
+			}
+		}
+	}
 	public double getDisplayX(int start, int i){
 		int pos = i - start;
 		if(pos == 0 || pos == 3){

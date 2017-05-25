@@ -22,13 +22,21 @@ public class ClickableGraphic extends Graphic implements Clickable {
 	
 	public ClickableGraphic(int screenWidth, int screenHeight, double scale, String imageLocation, double xLine, double yLine){
 		super(0, 0, scale, imageLocation);
+		
+		
 		setX((int)(screenWidth*xLine) - (getWidth()/2));
 		setY((int)(screenHeight*yLine) - (getHeight()/2));
+		System.out.println("when create x:"+ getX()+"y: " + getY());
 	}
-
+	public ClickableGraphic(int screenWidth, int screenHeight, double scale, String imageLocation, double xLine, double yLine, Action action){
+		super(0, 0, scale, imageLocation);
+		setX((int)(screenWidth*xLine) - (getWidth()/2));
+		setY((int)(screenHeight*yLine) - (getHeight()/2));
+		this.action = action;
+	}
 	@Override
 	public boolean isHovered(int x, int y) {
-		return x>getX()&&y>getY()&&x<getX()+getWidth()&&y<getY()+getHeight();
+		return (x>getX()&&y>getY()&&x<getX()+getWidth()&&y<getY()+getHeight());
 	}
 
 	@Override
