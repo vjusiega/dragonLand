@@ -57,6 +57,8 @@ public class WriteFile {
 	}
 	
 	private static File getSaveLocation() {
+		File file = null;
+		
 		JButton open = new JButton();
 		JFileChooser chooser = new JFileChooser();
 		chooser.setCurrentDirectory(new java.io.File("."));
@@ -65,14 +67,12 @@ public class WriteFile {
 		chooser.setAcceptAllFileFilterUsed(false);
 		if(chooser.showOpenDialog(open)== JFileChooser.APPROVE_OPTION){
 			//Open JFileChooser
+			file= chooser.getSelectedFile();
 			System.out.println("getCurrentDirectory(): "+chooser.getCurrentDirectory());
 			System.out.println("getSelectedFile() : "+chooser.getSelectedFile());
-			
-			return chooser.getSelectedFile();
-		}else{
-			System.out.println("No File Selected");
-			return null;
 		}
+		
+		return file;
 		   
 	}
 
