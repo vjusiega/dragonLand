@@ -11,6 +11,7 @@ public class Sound {
 	public static final AudioClip EAT3 = Applet.newAudioClip(Sound.class.getResource("DragonEat3.wav"));
 	public static final AudioClip EAT4 = Applet.newAudioClip(Sound.class.getResource("eat1.wav"));
 	public static final AudioClip EAT5 = Applet.newAudioClip(Sound.class.getResource("eat2.wav"));
-	public static final AudioClip CLICK = Applet.newAudioClip(Sound.class.getResource("click1.wav"));
+	public static final AudioClip CLICK = Applet.newAudioClip(Sound.class.getResource("click.wav"));
+	public static final AudioClip BOUGHT = Applet.newAudioClip(Sound.class.getResource("Purchase.wav"));
 	
 }

@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import game.DragonLand;
+import game.Sound;
 import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.HomeKat;
 import game.miniGameTeam.GameScreen;
@@ -262,6 +263,7 @@ public class ShopScreen extends ClickableScreen {
 		public void buyDragon(Dragon d){
 			Dragon found = findInList(d, dragonsToBuy);
 			if(found != null){
+				Sound.BOUGHT.play();
 				myDragons.add(found);
 				dragonsToBuy.remove(found);
 			}

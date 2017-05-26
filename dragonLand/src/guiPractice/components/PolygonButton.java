@@ -32,7 +32,7 @@ public class PolygonButton extends Component implements Clickable {
 	public void act() {
 		if(action != null){
 			action.act();
-			//Sound.CLICK.play();
+			Sound.CLICK.play();
 		}
 	}
 
