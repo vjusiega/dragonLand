@@ -76,34 +76,34 @@ public class HomeKat implements DragonArrayInterface {
 		}
 	private void helpLayer(int width, int height) {
 		thelp1 = "Welcome to Dragon Land!";
-		help1 = new NoBorderButton(300,75,500,50,  thelp1,DragonLand.DARKER_NUDE,null);
+		help1 = new NoBorderButton(300,75,500,50,  thelp1,DragonLand.LIGHT_PINK,null);
 		help1.setSize(30);
 		
 		thelp2 = "This is your dragon pet land. Living here you can have up to 6";
-		help2 = new NoBorderButton(130,150,720,35,  thelp2,DragonLand.DARKER_NUDE,null);
+		help2 = new NoBorderButton(130,150,720,35,  thelp2,DragonLand.LIGHT_PINK,null);
 		help2.setSize(20);
 		
 		thelp3 = "dragons. Be careful, when you see your dragons are hungry, quickly ";
-		help3 = new NoBorderButton(130,200,720,35,  thelp3,DragonLand.DARKER_NUDE,null);
+		help3 = new NoBorderButton(130,200,720,35,  thelp3,DragonLand.LIGHT_PINK,null);
 		help3.setSize(20);
 		
 		thelp4 = "click the 'Hungry' button or the dragon will fly away back to the store. ";
-		help4 = new NoBorderButton(130,250,720,35,  thelp4,DragonLand.DARKER_NUDE,null);
+		help4 = new NoBorderButton(130,250,720,35,  thelp4,DragonLand.LIGHT_PINK,null);
 		help4.setSize(20);
 		
 		thelp5 = "To buy these dragons, visit the shop and check them out. Now as";
-		help5 = new NoBorderButton(130,300,720,35,  thelp5,DragonLand.DARKER_NUDE,null);
+		help5 = new NoBorderButton(130,300,720,35,  thelp5,DragonLand.LIGHT_PINK,null);
 		help5.setSize(20);
 		
 		thelp6 = "you notice you need coins to shop, so play the minigame to earn more.";
-		help6 = new NoBorderButton(130,350,740,35,  thelp6,DragonLand.DARKER_NUDE,null);
+		help6 = new NoBorderButton(130,350,740,35,  thelp6,DragonLand.LIGHT_PINK,null);
 		help6.setSize(20);
 
 		thelp7 = "Keep trying to beat your score. Have fun taking care of your dragons.";
 		help7= new NoBorderButton(130,400,720,35,  thelp7,DragonLand.LIGHT_PINK,null);
 		help7.setSize(20);
 		
-		helpLayer = new Button((int)(width*0.1),(int)(height*0.1),(int)(width*0.8),(int)(height*0.8),  null,DragonLand.DARKER_NUDE,  new Action(){
+		helpLayer = new Button((int)(width*0.1),(int)(height*0.1),(int)(width*0.8),(int)(height*0.8),  null,DragonLand.LIGHT_PINK,  new Action(){
 
 			@Override
 			public void act() {

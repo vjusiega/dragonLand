@@ -41,8 +41,8 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 		Draggable d= (Draggable) draggables.get(0);
 		if(d.isHovered(e.getX(), e.getY()) || alreadyDragging){
 			alreadyDragging = true;
-			d.setX(e.getX() - 37);
-			d.setY(e.getY() - 37);
+			d.setX(e.getX() - 35);
+			d.setY(e.getY() - 55);
 		}
 		
 	}

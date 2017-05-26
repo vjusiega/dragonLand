@@ -18,4 +18,6 @@ public interface Draggable {
 	public int getOrigX();
 
 	public int getOrigY();
+
+	
 }
