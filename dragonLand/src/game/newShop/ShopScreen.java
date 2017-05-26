@@ -70,12 +70,6 @@ public class ShopScreen extends ClickableScreen {
 		
 		myDragons = new ArrayList<Dragon>();
 		dragonsOnDisplay = new ArrayList<Object>();
-//		dragonsToBuy = HomeKat.getDragons();
-//		totalPages = dragonsToBuy.size() / dragonsPerPage;
-//		if((dragonsToBuy.size() % dragonsPerPage) > 0){
-//			totalPages++;
-//		}
-		//drawDragons();
 		 q = 0;
 	}
 	
@@ -182,6 +176,25 @@ public class ShopScreen extends ClickableScreen {
 			if(c.getAction() != null && c.isHovered(e.getX(), e.getY())){
 				c.act();
 				break;
+			}
+		}
+	}
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		for(int i = 0; i < dragonsOnDisplay.size()-1 ; i++){
+			//TextLabel name = new TextLabel(((ClickableGraphic) dragonsOnDisplay.get(i)).getX(), ((ClickableGraphic) dragonsOnDisplay.get(i)).getY(),
+					//((ClickableGraphic) dragonsOnDisplay.get(i)).getWidth(), ((ClickableGraphic) dragonsOnDisplay.get(i)).getHeight(), ((Dragon) dragonsOnDisplay.get(i+1)).getName());
+			
+			if(dragonsOnDisplay.get(i) instanceof ClickableGraphic &&
+					((ClickableGraphic) dragonsOnDisplay.get(i)).isHovered(e.getX(), e.getY())){
+				remove((Visible)dragonsOnDisplay.get(i+1));
+				//addObject(name);
+			}
+			else if(dragonsOnDisplay.get(i) instanceof ClickableGraphic && !viewObjects.contains(dragonsOnDisplay.get(i+1))&&
+					!((ClickableGraphic) dragonsOnDisplay.get(i)).isHovered(e.getX(), e.getY())){
+				addObject((Visible)dragonsOnDisplay.get(i+1));
+				//if(viewObjects.contains(name))
+					//remove(name);
 			}
 		}
 	}
