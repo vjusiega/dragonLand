@@ -1,19 +1,23 @@
 package game.dragonTrading;
 import java.io.*;
+
 import java.net.*;
 import java.util.ArrayList;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import game.DragonLand;
 import game.mainScreenTeam.Dragon;
+import guiPractice.components.Action;
+import guiPractice.components.Button;
 
 public class Client{
 	
 
 	private ObjectOutputStream output;
 	private ObjectInputStream input;
-	private Dragon otherUsersDragons;
+	private String otherUsersDragons;
 	private String serverIP;
 		//IP of the person you are talking to 
 	private Socket connection;
@@ -23,12 +27,28 @@ public class Client{
 		serverIP = host; 
 	}
 
+	public void startTrading(TradingScreen s){
+		Button b = new Button(300, 250, 100, 100, "Trade", Color.green);
+		b.setAction(new Action(){
+			public void act() {
+				try {
+					whileTrading(s);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		s.addObject(b);
+	}
+	
 	//connect to server
 	public void startRunning(TradingScreen s){
 		try{
 			connectToServer(s); 
 			setUpStreams(s);
-			whileTrading(s);
+			startTrading(s);
+			//whileTrading(s);
 		}catch(EOFException eofException){
 			showMessage("\n Client terminated connection");
 		}catch(IOException ioException){
@@ -60,31 +80,23 @@ public class Client{
 	//while chatting with server
 	private void whileTrading(TradingScreen s) throws IOException{
 		//now connected, make sure the user is able to now type
-		ableToType(true);
+		//ableToType(true);
 		do{
 			try{
-				//now what do you want to happen when you are chatting
-				otherUsersDragons = (Dragon) input.readObject();
-					//take whatever they are sending through their stream
-					//treat it as a string and store it in the variable message
+				System.out.println("waiting for dragon -client");
+				otherUsersDragons = (String) input.readObject();
+				System.out.println("recieved dragon -client");
 				s.displayConnectionMessage("\n" + otherUsersDragons);
 			}catch(ClassNotFoundException classNotFoundException){
 				s.displayConnectionMessage("\n I don't know that object type.");
 			}
 		}while(!otherUsersDragons.equals("SERVER - END"));
-		//as long as the server person doesn't type end, you can 
-		//continue to have a conversation
-			//The reason why it's "SERVER - END" and not just "END"
-			//is because sendMessage is programmed so that every time
-			//you send a message, you send it with the name/username
-			//of whoever is sending it
-			//so the computer receives "username + message"
 	}
 	
 	//close the streams and sockets
 	private void closeCrap(){
 		showMessage("\n closing stuff down");
-		ableToType(false);
+		//ableToType(false);
 		try{
 			output.close(); //closes output stream
 			input.close();
@@ -95,7 +107,7 @@ public class Client{
 	}
 	
 	//send messages to server
-	private void sendMessage(Dragon d, TradingScreen s){
+	private void sendMessage(String d, TradingScreen s){
 		try{
 			output.writeObject(d);
 			output.flush();
@@ -129,17 +141,5 @@ public class Client{
 			}
 		);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

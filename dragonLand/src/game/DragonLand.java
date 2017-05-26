@@ -66,10 +66,13 @@ public class DragonLand extends GUIApplication {
 	public static Color DARKER_NUDE;
 	private GameVioletta vGame;
 	public WelcomeScreen welcomeScreen;
-	public static Screen tradingScreen;
+
 	public static Screen newShopScreen;
 	public static Screen shopScreen;
 	public static Screen nameScreen;
+
+	public static TradingScreen tradingScreen;
+
 
 	public DragonLand(Dragon[] savedDragons) {
 		if(savedDragons != null){
@@ -80,7 +83,8 @@ public class DragonLand extends GUIApplication {
 	}
 	
 	public DragonLand() {
-		
+		Sound.AMBIANCE.loop();
+		//
 	}
 	/* (non-Javadoc)
 	 * @see guiPractice.GUIApplication#initScreen()
@@ -96,15 +100,12 @@ public class DragonLand extends GUIApplication {
 		homeScreen = new HomeScreen(WIDTH, HEIGHT);
 		highscoreScreen = new HighScoreScreen(WIDTH, HEIGHT);
 		HomeScreen.jenCode = new game.mainScreenTeam.HomeJenniber();
-		welcomeScreen = new WelcomeScreen(WIDTH, HEIGHT);
+
+		welcomeScreen = new WelcomeScreen(DragonLand.WIDTH, DragonLand.HEIGHT);
 //		incubator = new IncubatorScreen(viewObjects);
-		gameInstructionsScreen = new GameInstructions(WIDTH, HEIGHT);
+		gameInstructionsScreen = new GameInstructions(DragonLand.WIDTH,DragonLand.HEIGHT);
 		tradingScreen = new TradingScreen(WIDTH, HEIGHT);
 		vGame = new GameVioletta();
-		
-			//IN ORDER FOR IT TO WORK
-			//shopScreen must be created before homescreen
-		nameScreen = new NameScreen(WIDTH, HEIGHT);
 		setScreen(welcomeScreen);
 
 	}

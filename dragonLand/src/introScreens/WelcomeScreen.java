@@ -33,7 +33,7 @@ public class WelcomeScreen extends ClickableScreen{
 
 	public WelcomeScreen(int width, int height) {
 		super(width, height);
-		Sound.BACK_SOUND.loop();
+		Sound.AMBIANCE.loop();
 
 	}
 

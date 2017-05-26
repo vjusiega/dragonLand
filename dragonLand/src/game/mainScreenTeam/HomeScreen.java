@@ -3,6 +3,7 @@ package game.mainScreenTeam;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import game.Sound;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Graphic;
 import guiPractice.components.Visible;
@@ -18,7 +19,7 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 
 	private Graphic background;
 	public static HomeJenniber jenCode;
-
+	public HomeKat katCode;
 	public HomeScreen(int width, int height) {
 		super(width, height);
 		Thread play = new Thread(this);
@@ -32,7 +33,7 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 		background=new Graphic(0,0,getWidth(),getHeight(),"img/anotherLand.jpg");
 		viewObjects.add(background);
 		setUpFog();
-		HomeKat katCode=new HomeKat(viewObjects, getWidth(), getHeight());
+		 katCode=new HomeKat(viewObjects, getWidth(), getHeight());
 		
 	}
 	@Override
@@ -58,10 +59,11 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		Draggable d= (Draggable) draggables.get(0);
-		jenCode.checkFeed(e.getX(),e.getY());
+		jenCode.checkFeed(katCode.getFood().getX()+(int)(katCode.getFood().getWidth()/2),katCode.getFood().getY()+(int)(katCode.getFood().getHeight()/2));
 		d.setX(d.getOrigX());
 		d.setY(d.getOrigY());
 		alreadyDragging=false;
+		
 		
 	}
 	@Override

@@ -1,5 +1,6 @@
 package game.dragonTrading;
 import game.DragonLand;
+
 import game.mainScreenTeam.*;
 
 import java.awt.Color;
@@ -30,8 +31,6 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 		myDragonsToTrade = new ArrayList<Dragon>();
 		theirDragons = new ArrayList<Dragon>(); 
 	}
-
-	
 	
 	public void setUpFog(ClickableGraphic post){
 		Fog fog; 
@@ -48,7 +47,7 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 	}
 	
 	public void displayConnectionMessage(String message){
-		Button b = new Button(500, 200, 500, 500, "", Color.CYAN);
+		Button b = new Button(500, 200, 300, 300, "", Color.CYAN);
 		b.setText(message);
 		addObject(b);
 	}
@@ -59,60 +58,68 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 		thisScreen = this;
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
 		viewObjects.add(background);
+		setUpFog();
+//		ClickableGraphic post = new ClickableGraphic(0, getHeight()-300, 1.0,"img/oneSignLeft.png");
+//		post.setAction(new Action(){
+//			public void act(){
+//				DragonLand.game.setScreen(DragonLand.homeScreen);
+//			}
+//		});
+//		
+//		setUpFog(post);
 		
-		ClickableGraphic post = new ClickableGraphic(0, getHeight()-300, 1.0,"img/oneSignLeft.png");
-		post.setAction(new Action(){
-			public void act(){
-				DragonLand.game.setScreen(DragonLand.homeScreen);
-			}
-		});
-		
-		Thread fogRun = new Thread(new Runnable(){
-			public void run(){
-				setUpFog(post);
-			}
-		});
-		fogRun.start();
-		
-		Button b = new Button(100, 100, 100, 100, "connect", Color.BLUE);
+		Button b = new Button(100, 100, 100, 100, "server", Color.BLUE);
 		b.setAction(new Action(){
 			public void act() {
-				Thread peer = new Thread(new Runnable(){
+				Thread Server = new Thread(new Runnable(){
 					public void run(){
-						Peer p = new Peer("127.0.0.1");
-						p.startRunning(thisScreen);
-						
+						Server s = new Server();
+						s.startRunning(thisScreen);
 					}
 				});
-				peer.run();		
-//				Thread trade = new Thread(new Runnable(){
-//					public void run(){
-//						Server s = new Server();
-//						s.startRunning(thisScreen);
-//					}
-//				});
-//				trade.start();
-//			
-//				System.out.println("I am running");
-//				
-//				Thread tradeClient = new Thread(new Runnable(){
-//					public void run(){
-//						Client c = new Client("127.0.0.1");	
-//						c.startRunning(thisScreen);
-//					}
-//				});
-//				tradeClient.start();
-//				
-//				
-//				System.out.println("I am runninggg");
-			}			
+				Server.run();	
+			}
 		});
+		
+//		b.setAction(new Action(){
+//			public void act(){
+//				Server s = new Server();
+//				s.startRunning(thisScreen);
+//			}
+//		});
+		
+		Button client = new Button(300, 300, 100, 100, "client", Color.pink);
+		client.setAction(new Action(){
+			public void act(){
+				Thread tradeClient = new Thread(new Runnable(){
+					public void run(){
+						Client c = new Client("127.0.0.1");	
+						c.startRunning(thisScreen);
+					}
+				});
+				tradeClient.run();
+			}
+		});
+		
 		viewObjects.add(b);
-		for(Dragon d : myDragons){
-			viewObjects.add(d);
-		}
+		viewObjects.add(client);
+		
+//		for(Dragon d : myDragons){
+//			viewObjects.add(d);
+//		}
 	
 		
+	}
+	
+	public void setUpFog(){
+		Fog fog; 
+		
+		for(int i = -10; i < 10; i++){
+			fog = new Fog((i*getWidth() / 10), 200, 500, 300, "img/introFog.png", 100);
+			viewObjects.add(fog);
+			fog.setY(fog.generateYPos());
+			fog.play();
+		}
 	}
 
 	@Override

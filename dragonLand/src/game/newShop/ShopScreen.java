@@ -33,9 +33,10 @@ public class ShopScreen extends ClickableScreen {
 	//make this one final
 	private int dragonsPerPage;
 	
-	private ArrayList<Dragon> dragonsToBuy;
+	private ArrayList<Dragon> dragonsToBuy = new ArrayList<Dragon>();
 	private ArrayList<Dragon> myDragons;
 	private ArrayList<Object> dragonsOnDisplay;
+	private int q;
 	
 	public ShopScreen(int width, int height) {
 		super(width, height);
@@ -45,7 +46,6 @@ public class ShopScreen extends ClickableScreen {
 	//what does this do
 	public ShopScreen(int width, int height, /*ArrayList<Dragon> dl,*/ Action act) {
 		super(width, height);
-		//dragonList = dl;
 		action = act;
 		update();
 	}
@@ -65,15 +65,17 @@ public class ShopScreen extends ClickableScreen {
 		
 		addPostButtons();
 		dragonsPerPage = 6;
-		dragonsToBuy = HomeKat.getDragons();
+		
+		
 		myDragons = new ArrayList<Dragon>();
 		dragonsOnDisplay = new ArrayList<Object>();
-		//generateInitialDragons();
-		totalPages = dragonsToBuy.size() / dragonsPerPage;
-		if((dragonsToBuy.size() % dragonsPerPage) > 0){
-			totalPages++;
-		}
+//		dragonsToBuy = HomeKat.getDragons();
+//		totalPages = dragonsToBuy.size() / dragonsPerPage;
+//		if((dragonsToBuy.size() % dragonsPerPage) > 0){
+//			totalPages++;
+//		}
 		//drawDragons();
+		 q = 0;
 	}
 	
 	private void addPostButtons() {
@@ -145,7 +147,12 @@ public class ShopScreen extends ClickableScreen {
 			startDragon = ((currentPage - 1) * 6); 
 		}
 		for(int i = startDragon; (i < startDragon + 6) && (i < dragonsToBuy.size()); i++){
-			ShopDragon d = new ShopDragon(getDisplayX(startDragon, i), getDisplayY(startDragon, i), getWidth(), getHeight(), dragonsToBuy.get(i));
+			Dragon temp = dragonsToBuy.get(i);
+
+			Dragon temp2 = new Dragon(temp.getX(), temp.getY(), temp.getWidth(), temp.getHeight(), temp.getName(),temp.getPrice(),temp.getImgSrc());
+			temp2.setDragonAnimation(temp2, temp.getImgSrc());
+			
+			ShopDragon d = new ShopDragon(getDisplayX(startDragon, i), getDisplayY(startDragon, i), getWidth(), getHeight(), temp2);
 		
 			//dragonsOnDisplay.add(dragonsToBuy.get(i));
 			//some dragon setups
@@ -210,6 +217,17 @@ public class ShopScreen extends ClickableScreen {
 		
 	public void enterShop(){
 		//should update the shop and return to the first page
+		if(q==0){
+			ArrayList<Dragon> temp = HomeKat.getDragons();
+			for(int i = 0; i<temp.size();i++){
+				dragonsToBuy.add(i,temp.get(i));
+			}
+			totalPages = dragonsToBuy.size() / dragonsPerPage;
+			if((dragonsToBuy.size() % dragonsPerPage) > 0){
+				totalPages++;
+			}
+			q++;
+		}
 		currentPage = 1;
 		removeDisplayDragon();
 		drawDragons();
@@ -245,8 +263,8 @@ public class ShopScreen extends ClickableScreen {
 		public void buyDragon(Dragon d){
 			Dragon found = findInList(d, dragonsToBuy);
 			if(found != null){
-				dragonsToBuy.remove(found);
 				myDragons.add(found);
+				dragonsToBuy.remove(found);
 			}
 		}
 		

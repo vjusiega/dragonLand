@@ -31,8 +31,11 @@ public class HomeKat implements DragonArrayInterface {
 	private static ArrayList<Integer> locationsY=new ArrayList<Integer>();
 	private static ArrayList<Dragon> dragons=new ArrayList<Dragon>(); 
 	private static ArrayList<Dragon> dragonsOnScreen = new ArrayList<Dragon>();
-	private static ArrayList<Integer> setLocationX=new ArrayList<Integer>();
-	private static ArrayList<Integer> setLocationY=new ArrayList<Integer>();
+	
+	public static DragonFood getFood() {
+		return food;
+	}
+
 	private static ArrayList<Visible> viewObjects;
 	//fields for help dialog
 	private NoBorderButton help1;
@@ -299,12 +302,10 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 		boolean exists = false;
 		for(int i=0;i<purchased.length;i++){
 			for(int j=0;j<dragonsOnScreen.size();j++){
-				if(purchased[i]==dragonsOnScreen.get(j).getName())
+				if(purchased[i].equals(dragonsOnScreen.get(j).getName()))
 					exists=true;
 			}
 			if(!exists){
-				System.out.print(purchased[i]);
-				//System.out.println(searchByName(purchased[i]));
 				addDragon(searchByName(purchased[i]));
 				removeBerry();
 				addBerry();
@@ -321,10 +322,12 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 		}
 		return null;
 	}
+	
 	/*
 	 * checks to see if any dragons were sold
 	 * and removes them
 	 */
+	
 	private static void checkToRemove(String[] purchased) {
 		for(int i=0;i<dragonsOnScreen.size();i++){
 			boolean exist = false;
@@ -364,9 +367,9 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 		//adds back the available dragon spot in the field
 
 		int randomInt=(int)(Math.random()*locationsX.size());
-		//System.out.println("length is " + locationsX.size() + " int"+randomInt  + d.getName());
 		d.setX(locationsX.remove(randomInt));
 		d.setY(locationsY.remove(randomInt));
+
 		d.update();
 		d.play();
 		dragonsOnScreen.add(d);

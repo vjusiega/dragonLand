@@ -6,6 +6,7 @@ package game.mainScreenTeam;
 import java.util.ArrayList;
 
 import game.DragonLand;
+import game.Sound;
 import game.miniGameTeam.GameScreen;
 import guiPractice.components.Action;
 
@@ -88,10 +89,10 @@ public class HomeJenniber implements Runnable {
 							(
 									//Checks if the dragon is moving vertically and if it is
 									//it compares the xCoordinates of the dragon and hungryBox
-									(d.getY()<350 && hungryBox.getX()==d.getX()-25)
+									(d.getY()<350 && hungryBox.getX()==d.getX()-10)
 									//If dragon is moving horizontally,
 									//it compares the yCoordinates of the dragon and hungryBox
-									|| hungryBox.getY()==d.getY()+105
+									|| hungryBox.getY()==d.getY()+80
 							) 
 							//Checks if the hungryBox time is less than 0 to remove
 							&& hungryBox.getHungryTime()<=0){
@@ -179,6 +180,7 @@ public class HomeJenniber implements Runnable {
 			Dragon d= HomeKat.dragonHome.getDragonsOnScreen().get(i);
 			if((x>=d.getX()&&x<=d.getX()+d.getWidth())
 					&&(y>=d.getY()&&y<=d.getY()+d.getHeight())){
+					PlayRandomSound();
 					d.setHungryBox(false);
 					fed=d;
 					removeHungry(d.getHungryBoxObj());
@@ -186,5 +188,19 @@ public class HomeJenniber implements Runnable {
 			}
 		}
 		
+	}
+
+	private void PlayRandomSound() {
+		int r = (int)(Math.random()*5)+1;
+		if(r==1)
+			Sound.EAT1.play();
+		else if(r==2)
+			Sound.EAT2.play();
+		else if(r==3)
+			Sound.EAT3.play();
+		else if(r==4)
+			Sound.EAT4.play();
+		else if(r==5)
+			Sound.EAT5.play();
 	}
 }

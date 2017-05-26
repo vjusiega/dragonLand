@@ -10,6 +10,7 @@ import java.awt.Stroke;
 import java.awt.Toolkit;
 
 import game.DragonLand;
+import game.Sound;
 
 
 public class Button extends TextLabel implements Clickable{
@@ -78,7 +79,8 @@ public class Button extends TextLabel implements Clickable{
 	@Override
 	public void act() {
 		if(action!=null){
-			action.act();			
+			action.act();
+			//Sound.CLICK.play();
 		}
 	}
 

@@ -8,6 +8,8 @@ import java.awt.RenderingHints;
 import java.awt.Stroke;
 import java.awt.image.BufferedImage;
 
+import game.Sound;
+
 public class PolygonButton extends Component implements Clickable {
 
 	
@@ -30,6 +32,7 @@ public class PolygonButton extends Component implements Clickable {
 	public void act() {
 		if(action != null){
 			action.act();
+			//Sound.CLICK.play();
 		}
 	}
 
