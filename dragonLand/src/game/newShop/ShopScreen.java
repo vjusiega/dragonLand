@@ -1,6 +1,7 @@
 package game.newShop;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Polygon;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -137,49 +138,40 @@ public class ShopScreen extends ClickableScreen {
 
 	public void drawDragons(){
 		int startDragon;
+		removeDisplayDragon();
 		if(currentPage == 1){
 			startDragon = 0; 
 		}else{
 			startDragon = ((currentPage - 1) * 6); 
 		}
-		
 		for(int i = startDragon; (i < startDragon + 6) && (i < dragonsToBuy.size()); i++){
 			ShopDragon d = new ShopDragon(getDisplayX(startDragon, i), getDisplayY(startDragon, i), getWidth(), getHeight(), dragonsToBuy.get(i));
-			
-			//ShopDragon d = new ShopDragon(0.5, 0.5, getWidth(), getHeight(), dragonsToBuy.get(i));
-			dragonsOnDisplay.add(dragonsToBuy.get(i));
-			
+		
+			//dragonsOnDisplay.add(dragonsToBuy.get(i));
 			//some dragon setups
 				Dragon disD = d.getDragon();
+				
 				disD.setBounce(false);
 				disD.setConstantVY(0.05);
 				disD.play();
 				disD.setDirection(0);
 				disD.setCurrentFrame(0);
 			
-			//button setups
-//				ClickableGraphic button = d.getBackdrop();
-// 				d.getBackdrop().setAction(new Action(){
-// 					public void act() {
-// 						System.out.println("I am acting");
-// 						buyDragon(disD);
-// 						drawDragons();
-// 					}
-// 				});
 		
-			addObject(d.getBackdrop());
-			addObject(disD);
-			dragonsOnDisplay.add(d.getBackdrop());
-			dragonsOnDisplay.add(disD);
+				addObject(d.getBackdrop());
+				addObject(disD);
+				dragonsOnDisplay.add(d.getBackdrop());
+				dragonsOnDisplay.add(disD);
 			
 		}
+		
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("df"+clickables.size());
+		
 		for(int i=0; i<clickables.size();i++){
-			Clickable c= clickables.get(i);
+			Clickable c = clickables.get(i);
 			if(c.getAction() != null && c.isHovered(e.getX(), e.getY())){
 				c.act();
 				break;
@@ -209,8 +201,9 @@ public class ShopScreen extends ClickableScreen {
 	}
 	
 	public void removeDisplayDragon(){
+		
 		for(Object o: dragonsOnDisplay){
-			viewObjects.remove(o);
+			remove((Visible) o);
 		}
 		dragonsOnDisplay.clear();
 	}
@@ -255,9 +248,6 @@ public class ShopScreen extends ClickableScreen {
 				dragonsToBuy.remove(found);
 				myDragons.add(found);
 			}
-			else{
-				System.out.println("Could not buy dragon");
-			}
 		}
 		
 		public void addToMyDragons(Dragon d){
@@ -268,8 +258,6 @@ public class ShopScreen extends ClickableScreen {
 			Dragon found = findInList(d, dragonsToBuy);
 			if(found != null){
 				dragonsToBuy.remove(found);
-			}else{
-				System.out.println("dragon cannot be removed");
 			}
 		}
 	
@@ -278,9 +266,6 @@ public class ShopScreen extends ClickableScreen {
 			if(found != null){
 				myDragons.remove(d);
 				dragonsToBuy.add(d);
-			}
-			else{
-				System.out.println("could not remove from my dragons");
 			}
 		}
 	

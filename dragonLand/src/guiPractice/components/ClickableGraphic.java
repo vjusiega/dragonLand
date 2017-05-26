@@ -26,7 +26,6 @@ public class ClickableGraphic extends Graphic implements Clickable {
 		
 		setX((int)(screenWidth*xLine) - (getWidth()/2));
 		setY((int)(screenHeight*yLine) - (getHeight()/2));
-		System.out.println("when create x:"+ getX()+"y: " + getY());
 	}
 	public ClickableGraphic(int screenWidth, int screenHeight, double scale, String imageLocation, double xLine, double yLine, Action action){
 		super(0, 0, scale, imageLocation);

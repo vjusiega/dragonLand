@@ -18,9 +18,7 @@ import game.DragonLand;
 import guiPractice.components.Visible;
 
 public abstract class Screen extends JPanel {
-	
-	//private static int width;
-	//private static int height;
+
 	protected ArrayList<Visible> viewObjects;
 	
 	protected BufferedImage image;
