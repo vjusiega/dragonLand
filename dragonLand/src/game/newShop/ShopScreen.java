@@ -148,7 +148,6 @@ public class ShopScreen extends ClickableScreen {
 		}
 		for(int i = startDragon; (i < startDragon + 6) && (i < dragonsToBuy.size()); i++){
 			Dragon temp = dragonsToBuy.get(i);
-
 			Dragon temp2 = new Dragon(temp.getX(), temp.getY(), temp.getWidth(), temp.getHeight(), temp.getName(),temp.getPrice(),temp.getImgSrc());
 			temp2.setDragonAnimation(temp2, temp.getImgSrc());
 			
