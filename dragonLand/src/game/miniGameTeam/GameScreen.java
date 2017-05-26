@@ -60,7 +60,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		starArray = new ArrayList<Star1>();
 		powerUp = 0; 
 
-		background = new Graphic(0,0,DragonLand.WIDTH,DragonLand.HEIGHT,"img/mountains.jpg");
+		background = new Graphic(0,0,DragonLand.WIDTH,DragonLand.HEIGHT,"img/mountains2.jpg");
 		//img/sunsetBackground.jpg
 		viewObjects.add(background);
 		setUpFog();

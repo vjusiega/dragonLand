@@ -17,6 +17,7 @@ import guiPractice.components.Button;
 import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
 import guiPractice.components.Visible;
+import introScreens.Fog;
 
 public class GameInstructions extends ClickableScreen {
 
@@ -28,6 +29,7 @@ public class GameInstructions extends ClickableScreen {
 	//private Button title;
 	private Button instructions;
 	private String[] instructionText;
+	private ArrayList<Fog> fogs;
 	
 	private int sequenceNumber;
 	
@@ -54,9 +56,19 @@ public class GameInstructions extends ClickableScreen {
 		
 		int startX = (int) (DragonLand.WIDTH*0.15);
 		int textWidth = (int) (DragonLand.WIDTH*0.7);
-		
-		background = new Graphic(0,0,DragonLand.WIDTH,DragonLand.HEIGHT,"img/forest.jpg");
+		fogs = new ArrayList<Fog>();
+		background = new Graphic(0,0,DragonLand.WIDTH,DragonLand.HEIGHT,"img/sunsetBackground.jpg");
 		viewObjects.add(background);
+		
+		ClickableGraphic playPost = new ClickableGraphic(getWidth()-250, getHeight()-200, 1.0,"img/continueSign.png");
+		playPost.setAction(new Action(){
+			public void act(){
+				DragonLand.game.setScreen(DragonLand.miniGameScreen);
+				DragonLand.miniGameScreen.startGame();
+			}
+		});
+
+		setUpFog(playPost);
 		
 		layer = new Button((int) (DragonLand.WIDTH*0.1), (int) (DragonLand.HEIGHT*0.1), (int) (DragonLand.WIDTH*0.8),  (int) (DragonLand.HEIGHT*0.77), "", DragonLand.LIGHT_PINK, null);
 		viewObjects.add(layer);
@@ -89,24 +101,8 @@ public class GameInstructions extends ClickableScreen {
 		text6.setSize(25);
 		viewObjects.add(text6);
 		
-		exit = new Button(30, 50, 50, 50, "X", DragonLand.LIGHT_PINK, new Action() {
-			@Override
-			public void act() {
-				DragonLand.game.setScreen(DragonLand.homeScreen);
-				GameScreen.isNotHome=false;
-			}
-		});
-		viewObjects.add(exit);
 		
-		ClickableGraphic playPost = new ClickableGraphic(getWidth()-250, getHeight()-200, 1.0,"img/oneSignRight.png");
-		playPost.setAction(new Action(){
-			public void act(){
-				DragonLand.game.setScreen(DragonLand.miniGameScreen);
-				DragonLand.miniGameScreen.startGame();
-			}
-		});
 		
-		viewObjects.add(playPost);
 		
 //		playButton = new Button((int) (DragonLand.WIDTH * 0.78), (int) (DragonLand.HEIGHT * 0.9), (int) (DragonLand.WIDTH * 0.2), 50, "Play", DragonLand.LIGHT_PINK, new Action() {
 //			@Override
@@ -120,6 +116,20 @@ public class GameInstructions extends ClickableScreen {
 //		viewObjects.add(playButton);		
 	}
 
-
+	public void setUpFog(Graphic post){
+		Fog fog; 
+		
+		for(int i = -10; i < 10; i++){
+			fog = new Fog((i*getWidth() / 10), 200, 500, 300, "img/introFog.png", 100);
+			if(i == 8){
+				viewObjects.add(post);
+			}
+			viewObjects.add(fog);
+			fog.setY(fog.generateYPos());
+			fogs.add(fog);
+			fog.play();
+		}
+	}
+	
 
 }
