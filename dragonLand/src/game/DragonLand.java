@@ -72,6 +72,7 @@ public class DragonLand extends GUIApplication {
 	public static Screen nameScreen;
 
 	public static TradingScreen tradingScreen;
+	public static Screen incubatorScreen;
 
 
 	public DragonLand(Dragon[] savedDragons) {
@@ -101,12 +102,13 @@ public class DragonLand extends GUIApplication {
 		highscoreScreen = new HighScoreScreen(WIDTH, HEIGHT);
 		HomeScreen.jenCode = new game.mainScreenTeam.HomeJenniber();
 
-		welcomeScreen = new WelcomeScreen(DragonLand.WIDTH, DragonLand.HEIGHT);
+		welcomeScreen = new WelcomeScreen(WIDTH, HEIGHT);
 //		incubator = new IncubatorScreen(viewObjects);
-		gameInstructionsScreen = new GameInstructions(DragonLand.WIDTH,DragonLand.HEIGHT);
+		gameInstructionsScreen = new GameInstructions(WIDTH, HEIGHT);
 		tradingScreen = new TradingScreen(WIDTH, HEIGHT);
 		vGame = new GameVioletta();
-		setScreen(shopMain);
+		incubatorScreen = new IncubatorScreen(WIDTH, HEIGHT);
+		setScreen(welcomeScreen);
 
 	}
 	private void initColors() {

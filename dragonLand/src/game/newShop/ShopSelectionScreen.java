@@ -79,7 +79,7 @@ public class ShopSelectionScreen extends ClickableScreen{
 		
 		eggBox.setAction(new Action(){
 			public void act(){
-				DragonLand.game.setScreen(DragonLand.homeScreen);
+				DragonLand.game.setScreen(DragonLand.incubatorScreen);
 			}
 		});
 		viewObjects.add(eggBox);
