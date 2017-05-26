@@ -288,10 +288,6 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 	public static void dragonsOnScreen(){
 		
 		String[] purchased = ((ShopScreen) DragonLand.newShopScreen).getNamesOfPurchased();
-		for(int i = 0; i< purchased.length;i++){
-			System.out.println(purchased[i]);
-		}
-
 		checkToRemove(purchased);
 		addNewDragons(purchased);
 	}

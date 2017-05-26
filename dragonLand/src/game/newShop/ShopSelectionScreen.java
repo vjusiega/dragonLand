@@ -54,6 +54,7 @@ public class ShopSelectionScreen extends ClickableScreen{
 			@Override
 			public void act() {
 				HomeKat.dragonsOnScreen();
+				GameScreen.isNotHome = false;
 				DragonLand.game.setScreen(DragonLand.homeScreen);
 			}});
 	    
