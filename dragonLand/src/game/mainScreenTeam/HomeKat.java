@@ -11,16 +11,17 @@ import javax.swing.ImageIcon;
 import game.DragonLand;
 import game.miniGameTeam.GameScreen;
 import game.miniGameTeam.NoBorderButton;
-import game.shopScreen.BuyScreenInterface;
+
 import guiPractice.components.PolygonButton;
-import game.shopScreen.SellShopZheng;
+import game.newShop.ShopScreen;
 import guiPractice.components.Action;
 import guiPractice.components.AnimatedComponent;
 import guiPractice.components.Button;
 import guiPractice.components.Graphic;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
-import game.newShop.*;
+import game.newShop.ShopScreen;
+import game.newShop.ShopSelectionScreen;
 
 
 public class HomeKat implements DragonArrayInterface {
@@ -282,9 +283,14 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 	 * the purchased array is used to retrieve the names of dragon in shop from their label ListArray
 	 */
 	public static void dragonsOnScreen(){
-//	String[] purchased = ((ShopScreen)DragonLand.newShopScreen).getNamesOfPurchased();
-//		checkToRemove(purchased);
-//		addNewDragons(purchased);
+		
+		String[] purchased = ((ShopScreen) DragonLand.newShopScreen).getNamesOfPurchased();
+		for(int i = 0; i< purchased.length;i++){
+			System.out.println(purchased[i]);
+		}
+
+		checkToRemove(purchased);
+		addNewDragons(purchased);
 	}
 	/*
 	 * checks to see if any new dragons were purchased and adds to them to the screen
@@ -297,6 +303,8 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 					exists=true;
 			}
 			if(!exists){
+				System.out.print(purchased[i]);
+				//System.out.println(searchByName(purchased[i]));
 				addDragon(searchByName(purchased[i]));
 				removeBerry();
 				addBerry();
@@ -356,6 +364,7 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 		//adds back the available dragon spot in the field
 
 		int randomInt=(int)(Math.random()*locationsX.size());
+		//System.out.println("length is " + locationsX.size() + " int"+randomInt  + d.getName());
 		d.setX(locationsX.remove(randomInt));
 		d.setY(locationsY.remove(randomInt));
 		d.update();

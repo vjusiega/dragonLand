@@ -269,7 +269,7 @@ public class ShopScreen extends ClickableScreen {
 			}
 		}
 	
-		public String[] getNamesOfPurchased(){
+		public  String[] getNamesOfPurchased(){
 			String[] output = new String[myDragons.size()];
 			for(int i = 0; i < myDragons.size(); i++){
 				output[i] = myDragons.get(i).getName();

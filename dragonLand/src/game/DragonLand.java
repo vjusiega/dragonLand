@@ -25,8 +25,7 @@ import game.miniGameTeam.GameVioletta;
 import game.miniGameTeam.HighScoreScreen;
 import game.newShop.ShopScreen;
 import game.newShop.ShopSelectionScreen;
-import game.shopScreen.BuyScreenWendy;
-import game.shopScreen.SellShopZheng;
+
 
 import guiPractice.GUIApplication;
 import guiPractice.Screen;
@@ -93,9 +92,8 @@ public class DragonLand extends GUIApplication {
 
 		miniGameScreen = new GameScreen(WIDTH, HEIGHT);
 		shopMain = new ShopSelectionScreen(WIDTH, HEIGHT);
-		//sellScreen = new SellShopZheng(WIDTH, HEIGHT);
+		newShopScreen = new ShopScreen(WIDTH, HEIGHT); 
 		homeScreen = new HomeScreen(WIDTH, HEIGHT);
-		//buyScreen = new BuyScreenWendy(WIDTH, HEIGHT);
 		highscoreScreen = new HighScoreScreen(WIDTH, HEIGHT);
 		HomeScreen.jenCode = new game.mainScreenTeam.HomeJenniber();
 		welcomeScreen = new WelcomeScreen(WIDTH, HEIGHT);
@@ -103,7 +101,7 @@ public class DragonLand extends GUIApplication {
 		gameInstructionsScreen = new GameInstructions(WIDTH, HEIGHT);
 		tradingScreen = new TradingScreen(WIDTH, HEIGHT);
 		vGame = new GameVioletta();
-		newShopScreen = new ShopScreen(WIDTH, HEIGHT); 
+		
 			//IN ORDER FOR IT TO WORK
 			//shopScreen must be created before homescreen
 		nameScreen = new NameScreen(WIDTH, HEIGHT);

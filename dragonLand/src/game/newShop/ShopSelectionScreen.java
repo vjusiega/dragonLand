@@ -53,6 +53,7 @@ public class ShopSelectionScreen extends ClickableScreen{
 	    PolygonButton backBtn = new PolygonButton( 0, DragonLand.HEIGHT-110, 150, 100, back, new Action(){
 			@Override
 			public void act() {
+				HomeKat.dragonsOnScreen();
 				DragonLand.game.setScreen(DragonLand.homeScreen);
 			}});
 	    
