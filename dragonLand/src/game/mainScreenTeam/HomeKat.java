@@ -61,7 +61,7 @@ public class HomeKat implements DragonArrayInterface {
 	
 		Graphic post = new Graphic(10, DragonLand.HEIGHT-270, 1, "img/three_sign.png");
 		viewObjects.add(post);
-		Graphic helpPost = new Graphic(DragonLand.WIDTH - 150, DragonLand.HEIGHT-120, .6, "img/two_sign.png");
+		Graphic helpPost = new Graphic(DragonLand.WIDTH - 150, DragonLand.HEIGHT-120, .6, "img/helpSaveSign.png");
 		viewObjects.add(helpPost);
 		
 		addPostButtons();

@@ -1,12 +1,15 @@
 package game.miniGameTeam;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Polygon;
 import java.awt.event.KeyEvent;
 
 import java.awt.event.KeyListener;
 
 import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
+import guiPractice.components.PolygonButton;
 import guiPractice.components.TextLabel;
 
 import java.awt.event.MouseEvent;
@@ -34,8 +37,7 @@ import introScreens.Fog;
  */
 public class GameScreen extends ClickableScreen implements KeyListener {
 
-	private Button exit;
-	private static Button scoreDisplay;
+	private static Graphic scoreDisplay;
 	private Button highScoreButton;
 	private Graphic background;
 	private int time;
@@ -64,22 +66,39 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		//img/sunsetBackground.jpg
 		viewObjects.add(background);
 		setUpFog();
+		setUpBackButton();
+	
+		scoreDisplay = new Graphic(DragonLand.WIDTH-200, 50, 220, 70, "img/StraightOneSign.png");
+		view.add(scoreDisplay);
 		
-		exit = new Button(30, 50, 40, 40, "X", DragonLand.DARKER_NUDE, new Action() {
+		
+		//SO ANNOYING
+		TextLabel scoreText = new TextLabel(DragonLand.WIDTH-150, 30, 100, 100, score + " Points");
+		scoreText.setColor(DragonLand.LIGHT_PINK);
+		scoreText.setSize(30);
+		viewObjects.add(scoreText);
+		
+		
+		//GameVioletta vGameObject = new GameVioletta();
+	}
+
+	private void setUpBackButton() {
+		Polygon back = new Polygon();
+	    back.addPoint(20, 18);
+	    back.addPoint(120, 30);
+	    back.addPoint(120, 60);
+	    back.addPoint(20, 35);
+	    back.addPoint(5, 25);
+	    back.addPoint(20, 18);
+	    Graphic post = new Graphic(0, getHeight()-150, 0.6,"img/backSign.png");
+	    addObject(post);
+		PolygonButton backBtn = new PolygonButton( 0, DragonLand.HEIGHT-110, 150, 100, back, new Action(){
 			@Override
 			public void act() {
-				HighScoreScreen.setRoundScore(score);
-				HighScoreScreen.updateOnEnter();
-				DragonLand.game.setScreen(DragonLand.highscoreScreen);
-				stopGame();
-			}
-		});
-
-		scoreDisplay = new Button(DragonLand.WIDTH-150, 50, 120, 50, "Score: " + score, DragonLand.DARKER_NUDE, null);
-
-		view.add(exit);
-		view.add(scoreDisplay);
-		//GameVioletta vGameObject = new GameVioletta();
+				DragonLand.game.setScreen(DragonLand.shopMain);
+			}});
+		addObject(backBtn);
+		
 	}
 
 	protected void stopGame() {
@@ -234,7 +253,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	}
 
 	public static void setScoreDisplay(){
-		scoreDisplay.setText("Score: " + score);
+		//scoreDisplay.setText("Score: " + score);
 	}
 
 //	public void initGame(String imgSrc){
