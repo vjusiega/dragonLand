@@ -190,8 +190,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	public void setUpFog(){
 		Fog fog; 
 
-		for(int i = -10; i < 10; i++){
-			fog = new Fog((i*getWidth() / 10), 0, 550, 300, "img/introFog.png", 50);
+		for(int i = -2; i < 2; i++){
+			fog = new Fog((i*getWidth() / 4), 0, 550, 300, "img/introFog.png", 50);
 			viewObjects.add(fog);
 			fog.setY(fog.generateYPos());
 			fog.play();

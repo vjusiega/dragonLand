@@ -32,7 +32,7 @@ public class ShopDragon {
 			
 			public void act(){
 				((ShopScreen)DragonLand.newShopScreen).buyDragon(drag);
-				((ShopScreen)DragonLand.newShopScreen).drawDragons();
+				((ShopScreen)DragonLand.newShopScreen).drawDragons(null);
 			}
 		});
 		

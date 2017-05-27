@@ -54,7 +54,7 @@ public class Server{
 				}catch(EOFException eofException){
 					s.displayConnectionMessage("\n Server ended the connection!");
 				}finally{
-					closeCrap();
+					closeCrap(s);
 				}
 			}
 		}catch(IOException ioException){
@@ -93,8 +93,8 @@ public class Server{
 		}while(!message.equals("CLIENT - END")); 
 	}
 	
-	private void closeCrap(){
-		showMessage("\n Closing connections \n"); 
+	private void closeCrap(TradingScreen s){
+		s.displayConnectionMessage("\n Closing connections \n"); 
 //		ableToType(false);
 		try{
 			output.close();
@@ -114,26 +114,6 @@ public class Server{
 			System.out.println("Weird stuff sent through stream");
 		}
 	}
-		
-	//only displays, does not send
-	private void showMessage(final String text){
-		SwingUtilities.invokeLater(
-				new Runnable(){
-					public void run(){
-//						chatWindow.append(text); //adds a message to the end of the document and then updates chatWindow
-					}
-				}
-		);
-	}
-	
-//	private void ableToType(final boolean tof){
-//		SwingUtilities.invokeLater(
-//				new Runnable(){
-//					public void run(){
-//		
-//					}
-//				}
-//		);
-//	}
+
 }
 

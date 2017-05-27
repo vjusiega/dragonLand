@@ -27,20 +27,6 @@ public class Client{
 		serverIP = host; 
 	}
 
-	public void startTrading(TradingScreen s){
-		Button b = new Button(300, 250, 100, 100, "Trade", Color.green);
-		b.setAction(new Action(){
-			public void act() {
-				try {
-					whileTrading(s);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
-		s.addObject(b);
-	}
 	
 	//connect to server
 	public void startRunning(TradingScreen s){
@@ -50,13 +36,27 @@ public class Client{
 			startTrading(s);
 			//whileTrading(s);
 		}catch(EOFException eofException){
-			showMessage("\n Client terminated connection");
+			s.displayConnectionMessage("\n Client terminated connection");
 		}catch(IOException ioException){
 			ioException.printStackTrace();
 		}finally{
-			closeCrap();
+			closeCrap(s);
 		}
 		
+	}
+	
+	public void startTrading(TradingScreen s){
+		Button b = new Button(300, 250, 100, 100, "Trade", Color.green);
+		b.setAction(new Action(){
+			public void act() {
+				try {
+					whileTrading(s);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		s.addObject(b);
 	}
 	
 	//connect to server
@@ -94,9 +94,10 @@ public class Client{
 	}
 	
 	//close the streams and sockets
-	private void closeCrap(){
-		showMessage("\n closing stuff down");
+	private void closeCrap(TradingScreen s){
+		s.displayConnectionMessage("\n closing stuff down");
 		//ableToType(false);
+		System.out.println("I am closing");
 		try{
 			output.close(); //closes output stream
 			input.close();
@@ -117,29 +118,6 @@ public class Client{
 		}catch(IOException e){
 			//chatWindow.append("\n something messed up sending message");
 		}
-	}
-	
-	//updates the GUI (chatwindow)
-	private void showMessage(final String m){
-		SwingUtilities.invokeLater(
-			new Runnable(){
-				public void run(){
-					//chatWindow.append(m);
-				}
-			}
-		);
-	}
-	
-	//figure out why is it final
-	//gives user permision to type into the text box
-	private void ableToType(final boolean tof){
-		SwingUtilities.invokeLater(
-			new Runnable(){
-				public void run(){
-					//userText.setEditable(tof);
-				}
-			}
-		);
 	}
 	
 }

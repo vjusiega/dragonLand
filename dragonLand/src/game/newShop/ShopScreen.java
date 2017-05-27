@@ -26,7 +26,7 @@ public class ShopScreen extends ClickableScreen {
 	
 	private Action action;
 	private Graphic background;
-
+	private boolean shop;
 	
 	private int currentPage;
 	private int totalPages;
@@ -53,6 +53,7 @@ public class ShopScreen extends ClickableScreen {
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
+		shop = true; 
 		currentPage = 1; 
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
 		viewObjects.add(background);
@@ -70,7 +71,7 @@ public class ShopScreen extends ClickableScreen {
 		
 		myDragons = new ArrayList<Dragon>();
 		dragonsOnDisplay = new ArrayList<Object>();
-		 q = 0;
+		q = 0;
 	}
 	
 	private void addPostButtons() {
@@ -88,7 +89,11 @@ public class ShopScreen extends ClickableScreen {
 				if(currentPage < totalPages){
 					currentPage++;
 					removeDisplayDragon();
-					drawDragons();
+					if(shop){
+						drawDragons(dragonsToBuy);
+					}else{
+						drawDragons(myDragons);
+					}
 				}
 			}});
 	    
@@ -108,7 +113,11 @@ public class ShopScreen extends ClickableScreen {
 				if(currentPage > 1){
 					currentPage--;
 					removeDisplayDragon();
-					drawDragons();
+					if(shop){
+						drawDragons(dragonsToBuy);
+					}else{
+						drawDragons(myDragons);
+					}
 				}
 			}});
 	    
@@ -133,16 +142,19 @@ public class ShopScreen extends ClickableScreen {
 	    
 	}
 
-	public void drawDragons(){
+	public void drawDragons(ArrayList<Dragon> array){
 		int startDragon;
+		if(array == null){
+			array = dragonsToBuy;
+		}
 		removeDisplayDragon();
 		if(currentPage == 1){
 			startDragon = 0; 
 		}else{
 			startDragon = ((currentPage - 1) * 6); 
 		}
-		for(int i = startDragon; (i < startDragon + 6) && (i < dragonsToBuy.size()); i++){
-			Dragon temp = dragonsToBuy.get(i);
+		for(int i = startDragon; (i < startDragon + 6) && (i < array.size()); i++){
+			Dragon temp = array.get(i);
 			Dragon temp2 = new Dragon(temp.getX(), temp.getY(), temp.getWidth(), temp.getHeight(), temp.getName(),temp.getPrice(),temp.getImgSrc());
 			temp2.setDragonAnimation(temp2, temp.getImgSrc());
 			
@@ -243,8 +255,7 @@ public class ShopScreen extends ClickableScreen {
 		}
 		currentPage = 1;
 		removeDisplayDragon();
-		drawDragons();
-		
+		drawDragons(dragonsToBuy);
 	}
 	
 	public void setUpFog(){
