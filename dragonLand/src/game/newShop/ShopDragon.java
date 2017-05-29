@@ -22,7 +22,7 @@ public class ShopDragon {
 		drag.setHeight((int)(background.getHeight() * 0.65));
 		drag.placeDragonOnLines(screenW, screenH, xLine, yLine);
 		drag.setDragonAnimation(d, d.getImgSrc());
-		setUpButton();
+		//setUpButton();
 		
 	}
 	
@@ -39,7 +39,6 @@ public class ShopDragon {
 	}
 	
 	public Dragon getDragon(){
-		
 		return drag;
 	}
 	
