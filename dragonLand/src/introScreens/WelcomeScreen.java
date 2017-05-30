@@ -39,13 +39,22 @@ public class WelcomeScreen extends ClickableScreen{
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
-			background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
+		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
 		viewObjects.add(background);
+		
+		Banner b = new Banner(0, -171, 600, 171, "img/dragonLandBanner.png");
+		b.setBannerHeight((getHeight() / 4) - 100); 
+		//b.setWidth(700);
+		//b.setHeight(200);
+		b.setX((getWidth() / 2) - (b.getWidth() / 2)); 
+		b.play();
+		viewObjects.add(b);
 		
 		dragons = new ArrayList<Dragon>();
 		fogs = new ArrayList<Fog>();
 		viewObjects.add(setUpDragons(1));
 		viewObjects.add(setUpDragons(3));
+
 		
 		Graphic post = new ClickableGraphic(getWidth()-250, getHeight()-200, 1.0,"img/continueSign.png");
 		
@@ -85,8 +94,8 @@ public class WelcomeScreen extends ClickableScreen{
 
 	public Dragon setUpDragons(int drag){
 		String imgSrc = "img/dragon" + drag + ".png";
-		int dragonHeight = getHeight()/8;
-		int dragonWidth = (int) (dragonHeight * 0.8);
+		int dragonHeight = getHeight()/6;
+		int dragonWidth = (int) (dragonHeight * 0.75);
 		int xPos;
 // 		if(drag == 1){
 // 			xPos = getWidth()/4 - dragonWidth;
@@ -105,7 +114,7 @@ public class WelcomeScreen extends ClickableScreen{
 		d.setDragonAnimation(d, imgSrc);
 		//d.setX(xPos);
 		d.setY(yPos);
-		d.setInitialY(getHeight()/4);
+		d.setInitialY((getHeight()/4) - 75);
 		d.setDirection(4);
 		d.play();
 		

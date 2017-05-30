@@ -22,7 +22,7 @@ public class ShopDragon {
 		drag.setHeight((int)(background.getHeight() * 0.65));
 		drag.placeDragonOnLines(screenW, screenH, xLine, yLine);
 		drag.setDragonAnimation(d, d.getImgSrc());
-		setUpButton();
+		//setUpButton();
 		
 	}
 	
@@ -32,14 +32,13 @@ public class ShopDragon {
 			
 			public void act(){
 				((ShopScreen)DragonLand.newShopScreen).buyDragon(drag);
-				((ShopScreen)DragonLand.newShopScreen).drawDragons();
+				((ShopScreen)DragonLand.newShopScreen).drawDragons(null);
 			}
 		});
 		
 	}
 	
 	public Dragon getDragon(){
-		
 		return drag;
 	}
 	

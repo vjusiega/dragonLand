@@ -9,6 +9,7 @@ import java.util.List;
 
 import game.DragonLand;
 import game.Sound;
+import game.dragonTrading.TradingScreen;
 import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.HomeKat;
 import game.miniGameTeam.GameScreen;
@@ -27,7 +28,8 @@ public class ShopScreen extends ClickableScreen {
 	
 	private Action action;
 	private Graphic background;
-
+	private boolean shop;
+	private boolean trade;
 	
 	private int currentPage;
 	private int totalPages;
@@ -40,6 +42,7 @@ public class ShopScreen extends ClickableScreen {
 	private ArrayList<TextLabel> labels = new ArrayList<TextLabel>();
 	private ArrayList<Object> dragonsOnDisplay;
 	private int q;
+	private ClickableGraphic buySellButton;
 	
 	public ShopScreen(int width, int height) {
 		super(width, height);
@@ -55,6 +58,7 @@ public class ShopScreen extends ClickableScreen {
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
+		shop = true; 
 		currentPage = 1; 
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
 		viewObjects.add(background);
@@ -66,13 +70,25 @@ public class ShopScreen extends ClickableScreen {
 		Graphic nextButton = new Graphic(getWidth() - 150, getHeight()-120, 0.6, "img/nextPreviousSign.png");
 		viewObjects.add(nextButton);
 		
+		Graphic coinDisplay = new Graphic(DragonLand.WIDTH-155, 50, 175, 50, "img/StraightOneSign.png");
+		viewObjects.add(coinDisplay);
+		Graphic coin = new Graphic(DragonLand.WIDTH-35, 63, 25, 25, "img/Coin.png");
+		viewObjects.add(coin);
+		
+		buySellButton = new ClickableGraphic(DragonLand.WIDTH-155, 50, 175, 50, "img/StraightOneSign.png");
+		buySellButton.setAction(new Action(){
+			public void act(){
+				
+			}
+		});
+		
 		addPostButtons();
 		dragonsPerPage = 6;
 		
 		
 		myDragons = new ArrayList<Dragon>();
 		dragonsOnDisplay = new ArrayList<Object>();
-		 q = 0;
+		q = 0;
 	}
 	
 	private void addPostButtons() {
@@ -90,7 +106,11 @@ public class ShopScreen extends ClickableScreen {
 				if(currentPage < totalPages){
 					currentPage++;
 					removeDisplayDragon();
-					drawDragons();
+					if(shop){
+						drawDragons(dragonsToBuy);
+					}else{
+						drawDragons(myDragons);
+					}
 				}
 			}});
 	    
@@ -110,7 +130,11 @@ public class ShopScreen extends ClickableScreen {
 				if(currentPage > 1){
 					currentPage--;
 					removeDisplayDragon();
-					drawDragons();
+					if(shop){
+						drawDragons(dragonsToBuy);
+					}else{
+						drawDragons(myDragons);
+					}
 				}
 			}});
 	    
@@ -135,16 +159,19 @@ public class ShopScreen extends ClickableScreen {
 	    
 	}
 
-	public void drawDragons(){
+	public void drawDragons(ArrayList<Dragon> array){
 		int startDragon;
+		if(array == null){
+			array = dragonsToBuy;
+		}
 		removeDisplayDragon();
 		if(currentPage == 1){
 			startDragon = 0; 
 		}else{
 			startDragon = ((currentPage - 1) * 6); 
 		}
-		for(int i = startDragon; (i < startDragon + 6) && (i < dragonsToBuy.size()); i++){
-			Dragon temp = dragonsToBuy.get(i);
+		for(int i = startDragon; (i < startDragon + 6) && (i < array.size()); i++){
+			Dragon temp = array.get(i);
 			Dragon temp2 = new Dragon(temp.getX(), temp.getY(), temp.getWidth(), temp.getHeight(), temp.getName(),temp.getPrice(),temp.getImgSrc());
 			temp2.setDragonAnimation(temp2, temp.getImgSrc());
 			
@@ -159,6 +186,32 @@ public class ShopScreen extends ClickableScreen {
 				disD.play();
 				disD.setDirection(0);
 				disD.setCurrentFrame(0);
+				
+				if(trade){
+					d.getBackdrop().setAction(new Action(){
+						public void act(){
+							DragonLand.game.setScreen(DragonLand.tradingScreen);
+							((TradingScreen)DragonLand.tradingScreen).setMyDragon(disD);
+							((ShopScreen)DragonLand.newShopScreen).setTrade(false);
+							((ShopScreen)DragonLand.newShopScreen).addObject(buySellButton);
+						}
+					});
+				}
+				else if(shop){
+					d.getBackdrop().setAction(new Action(){
+						public void act(){
+							((ShopScreen)DragonLand.newShopScreen).buyDragon(disD);
+							((ShopScreen)DragonLand.newShopScreen).drawDragons(null);
+						}
+					});
+				}else{
+					d.getBackdrop().setAction(new Action(){
+						public void act(){
+							((ShopScreen)DragonLand.newShopScreen).sellDragon(disD);
+							((ShopScreen)DragonLand.newShopScreen).drawDragons(null);
+						}
+					});
+				}
 			
 		
 				addObject(d.getBackdrop());
@@ -239,6 +292,7 @@ public class ShopScreen extends ClickableScreen {
 		
 	public void enterShop(){
 		//should update the shop and return to the first page
+		trade = false; 
 		if(q==0){
 			ArrayList<Dragon> temp = HomeKat.getDragons();
 			for(int i = 0; i<temp.size();i++){
@@ -250,10 +304,16 @@ public class ShopScreen extends ClickableScreen {
 			}
 			q++;
 		}
+		shop = true;
 		currentPage = 1;
 		removeDisplayDragon();
-		drawDragons();
-		
+		drawDragons(dragonsToBuy);
+	}
+	
+	public void enterTradeSelection(){
+		trade = true;
+		drawDragons(myDragons);
+		remove(buySellButton);
 	}
 	
 	public void setUpFog(){
@@ -302,7 +362,7 @@ public class ShopScreen extends ClickableScreen {
 			}
 		}
 	
-		public void removeFromMyDragons(Dragon d){
+		public void sellDragon(Dragon d){
 			Dragon found = findInList(d, myDragons);
 			if(found != null){
 				myDragons.remove(d);
@@ -316,6 +376,10 @@ public class ShopScreen extends ClickableScreen {
 				output[i] = myDragons.get(i).getName();
 			}
 			return output;
+		}
+		
+		public void setTrade(boolean b){
+			trade = b;
 		}
 	
 }

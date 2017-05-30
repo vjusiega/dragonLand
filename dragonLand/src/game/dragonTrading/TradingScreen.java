@@ -20,14 +20,13 @@ import introScreens.Fog;
 public class TradingScreen extends ClickableScreen implements Runnable{
 	
 	private Graphic background;
-	private ArrayList<Dragon> myDragons;
+	private Dragon myDragon;
 	private ArrayList<Dragon> myDragonsToTrade;
 	private ArrayList<Dragon> theirDragons;
 	private TradingScreen thisScreen; 
 	
 	public TradingScreen(int width, int height) {
 		super(width, height);
-		myDragons = new ArrayList<Dragon>();
 		myDragonsToTrade = new ArrayList<Dragon>();
 		theirDragons = new ArrayList<Dragon>(); 
 	}
@@ -46,6 +45,10 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 		}
 	}
 	
+	public void setMyDragon(Dragon d){
+		myDragon = d;
+	}
+	
 	public void displayConnectionMessage(String message){
 		Button b = new Button(500, 200, 300, 300, "", Color.CYAN);
 		b.setText(message);
@@ -54,7 +57,7 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
-		myDragons = HomeKat.getDragons();
+		//myDragons = HomeKat.getDragons();
 		thisScreen = this;
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
 		viewObjects.add(background);
@@ -127,7 +130,12 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 		// TODO Auto-generated method stub
 		
 	}
+
+	public Dragon getMyDragon(){
+		return myDragon;
+	}
 }
+
 /**
 	your dragons to sell
 	

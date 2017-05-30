@@ -8,6 +8,7 @@ public class Egg extends GraphicMovingComponent {
 	private String name;
 	private int incubationTime;
 	private boolean incubating;
+	private String imgSrc;
 	
 	public Egg(int x, int y, int w, int h, String imageLocation, String name, int price, int time) {
 		super(x, y, w, h, imageLocation);
@@ -15,6 +16,15 @@ public class Egg extends GraphicMovingComponent {
 		this.incubating = false;
 		this.price = price;
 		this.incubationTime = time; 
+		this.imgSrc = imageLocation;
+	}
+	
+	public int getTime(){
+		return incubationTime;
+	}
+	
+	public String getImgSrc(){
+		return imgSrc;
 	}
 
 	public int getPrice() {
@@ -53,6 +63,11 @@ public class Egg extends GraphicMovingComponent {
 	public void checkBehaviors() {
 		// TODO Auto-generated method stub
 
+	}
+	
+	public void placeOnLines(double xLine, double yLine, int sWidth, int sHeight){
+		setX((int)(sWidth * xLine) - (getWidth()/2));
+		setY((int)(sHeight * yLine) - (getHeight()/2));
 	}
 
 }

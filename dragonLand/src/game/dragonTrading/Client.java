@@ -27,6 +27,24 @@ public class Client{
 		serverIP = host; 
 	}
 
+	
+	//connect to server
+	public void startRunning(TradingScreen s){
+		try{
+			connectToServer(s); 
+			setUpStreams(s);
+//			startTrading(s);
+			whileTrading(s);
+		}catch(EOFException eofException){
+			s.displayConnectionMessage("\n Client terminated connection");
+		}catch(IOException ioException){
+			ioException.printStackTrace();
+		}finally{
+			closeCrap(s);
+		}
+		
+	}
+	
 	public void startTrading(TradingScreen s){
 		Button b = new Button(300, 250, 100, 100, "Trade", Color.green);
 		b.setAction(new Action(){
@@ -34,29 +52,11 @@ public class Client{
 				try {
 					whileTrading(s);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		});
 		s.addObject(b);
-	}
-	
-	//connect to server
-	public void startRunning(TradingScreen s){
-		try{
-			connectToServer(s); 
-			setUpStreams(s);
-			startTrading(s);
-			//whileTrading(s);
-		}catch(EOFException eofException){
-			showMessage("\n Client terminated connection");
-		}catch(IOException ioException){
-			ioException.printStackTrace();
-		}finally{
-			closeCrap();
-		}
-		
 	}
 	
 	//connect to server
@@ -85,18 +85,32 @@ public class Client{
 			try{
 				System.out.println("waiting for dragon -client");
 				otherUsersDragons = (String) input.readObject();
+				System.out.println(otherUsersDragons);
 				System.out.println("recieved dragon -client");
 				s.displayConnectionMessage("\n" + otherUsersDragons);
 			}catch(ClassNotFoundException classNotFoundException){
 				s.displayConnectionMessage("\n I don't know that object type.");
 			}
 		}while(!otherUsersDragons.equals("SERVER - END"));
+		
+		
+		String message = s.getMyDragon().getImgSrc(); //simple prompt on screen
+		sendDragon(message);
+		do{
+			try{
+				message = (String) input.readObject(); 
+				s.displayConnectionMessage("\n" + "I got a dragon");
+			}catch(ClassNotFoundException classNotFoundException){
+				s.displayConnectionMessage("\n hopefully this message never displays");
+			}
+		}while(!message.equals("CLIENT - END")); 
 	}
 	
 	//close the streams and sockets
-	private void closeCrap(){
-		showMessage("\n closing stuff down");
+	private void closeCrap(TradingScreen s){
+		s.displayConnectionMessage("\n closing stuff down");
 		//ableToType(false);
+		System.out.println("I am closing");
 		try{
 			output.close(); //closes output stream
 			input.close();
@@ -119,27 +133,14 @@ public class Client{
 		}
 	}
 	
-	//updates the GUI (chatwindow)
-	private void showMessage(final String m){
-		SwingUtilities.invokeLater(
-			new Runnable(){
-				public void run(){
-					//chatWindow.append(m);
-				}
-			}
-		);
-	}
-	
-	//figure out why is it final
-	//gives user permision to type into the text box
-	private void ableToType(final boolean tof){
-		SwingUtilities.invokeLater(
-			new Runnable(){
-				public void run(){
-					//userText.setEditable(tof);
-				}
-			}
-		);
+	private void sendDragon(String d){
+		try{
+			output.writeObject(d);
+			output.flush(); 	
+		}catch(Exception ioException){
+			ioException.printStackTrace();
+			System.out.println("Weird stuff sent through stream");
+		}
 	}
 	
 }

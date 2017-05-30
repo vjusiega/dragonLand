@@ -18,24 +18,27 @@ public class Server{
 	private ObjectInputStream input;
 	private ServerSocket server;
 	private Socket connection;
+	private String otherUsersDragons;
 	
 	//constructor
 	public Server() {
 	}
 	
 	public void startTrading(TradingScreen s){
-		Button b = new Button(300, 250, 100, 100, "Trade", Color.green);
-		b.setAction(new Action(){
-			public void act() {
-				try {
-					whileTrading(s);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
-		s.addObject(b);
+		
+		
+//		Button b = new Button(300, 250, 100, 100, "Trade", Color.green);
+//		b.setAction(new Action(){
+//			public void act() {
+//				try {
+//					whileTrading(s);
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//		s.addObject(b);
 	}
 	
 	//set up and run the server
@@ -48,13 +51,14 @@ public class Server{
 					System.out.println("I am starting and I am a server.");
 					waitForConnection(s);	
 					setupStreams(s);
-					startTrading(s);
+					//startTrading(s);
+					whileTrading(s);
 					waiting = false;
 					//whileTrading(s);
 				}catch(EOFException eofException){
 					s.displayConnectionMessage("\n Server ended the connection!");
 				}finally{
-					closeCrap();
+					closeCrap(s);
 				}
 			}
 		}catch(IOException ioException){
@@ -79,22 +83,36 @@ public class Server{
 	}
 	
 	private void whileTrading(TradingScreen s) throws IOException{
-		String message = "Sparky"; //simple prompt on screen
+		String message = s.getMyDragon().getImgSrc(); //simple prompt on screen
 		sendDragon(message);
-		System.out.println("I'm here with sparky");
 //		ableToType(true); 
 		do{
 			try{
 				message = (String) input.readObject(); 
 				s.displayConnectionMessage("\n" + "I got a dragon");
+				sendDragon("SERVER - END");
 			}catch(ClassNotFoundException classNotFoundException){
 				s.displayConnectionMessage("\n hopefully this message never displays");
 			}
 		}while(!message.equals("CLIENT - END")); 
+		
+		
+		System.out.println("next step");
+		do{
+			try{
+				System.out.println("waiting for dragon -client");
+				otherUsersDragons = (String) input.readObject();
+				System.out.println(otherUsersDragons);
+				System.out.println("recieved dragon -client");
+				s.displayConnectionMessage("\n" + otherUsersDragons);
+			}catch(ClassNotFoundException classNotFoundException){
+				s.displayConnectionMessage("\n I don't know that object type.");
+			}
+		}while(!otherUsersDragons.equals("SERVER - END"));
 	}
 	
-	private void closeCrap(){
-		showMessage("\n Closing connections \n"); 
+	private void closeCrap(TradingScreen s){
+		s.displayConnectionMessage("\n Closing connections \n"); 
 //		ableToType(false);
 		try{
 			output.close();
@@ -114,26 +132,6 @@ public class Server{
 			System.out.println("Weird stuff sent through stream");
 		}
 	}
-		
-	//only displays, does not send
-	private void showMessage(final String text){
-		SwingUtilities.invokeLater(
-				new Runnable(){
-					public void run(){
-//						chatWindow.append(text); //adds a message to the end of the document and then updates chatWindow
-					}
-				}
-		);
-	}
-	
-//	private void ableToType(final boolean tof){
-//		SwingUtilities.invokeLater(
-//				new Runnable(){
-//					public void run(){
-//		
-//					}
-//				}
-//		);
-//	}
+
 }
 

@@ -12,6 +12,7 @@ public class TextLabel extends Component {
 	private String text;
 	private String font;
 	private int size;
+	private Color color;
 	
 	public TextLabel(int x, int y, int w, int h,String text) {
 		super(x, y, w, h);
@@ -19,6 +20,10 @@ public class TextLabel extends Component {
 		font="AppleMyungjo";
 		size=20;
 		update();
+	}
+	
+	public void setColor(Color s){
+		color = s; 
 	}
 
 	public void setText(String s){
@@ -50,9 +55,9 @@ public class TextLabel extends Component {
 	public void update(Graphics2D g) {
 		g=clear();
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setColor(Color.BLACK);
+		g.setColor(color);
 		if(text!=null){
-			g.setColor(DragonLand.NAVY);
+			g.setColor(color);
 			g.setFont(new Font("Dialog",Font.BOLD,getSize()));
 			g.drawString(text, 4, getHeight()-5);
 		}
