@@ -33,8 +33,8 @@ public class Client{
 		try{
 			connectToServer(s); 
 			setUpStreams(s);
-			startTrading(s);
-			//whileTrading(s);
+//			startTrading(s);
+			whileTrading(s);
 		}catch(EOFException eofException){
 			s.displayConnectionMessage("\n Client terminated connection");
 		}catch(IOException ioException){
@@ -85,12 +85,25 @@ public class Client{
 			try{
 				System.out.println("waiting for dragon -client");
 				otherUsersDragons = (String) input.readObject();
+				System.out.println(otherUsersDragons);
 				System.out.println("recieved dragon -client");
 				s.displayConnectionMessage("\n" + otherUsersDragons);
 			}catch(ClassNotFoundException classNotFoundException){
 				s.displayConnectionMessage("\n I don't know that object type.");
 			}
 		}while(!otherUsersDragons.equals("SERVER - END"));
+		
+		
+		String message = s.getMyDragon().getImgSrc(); //simple prompt on screen
+		sendDragon(message);
+		do{
+			try{
+				message = (String) input.readObject(); 
+				s.displayConnectionMessage("\n" + "I got a dragon");
+			}catch(ClassNotFoundException classNotFoundException){
+				s.displayConnectionMessage("\n hopefully this message never displays");
+			}
+		}while(!message.equals("CLIENT - END")); 
 	}
 	
 	//close the streams and sockets
@@ -117,6 +130,16 @@ public class Client{
 				//makes it show on the GUI
 		}catch(IOException e){
 			//chatWindow.append("\n something messed up sending message");
+		}
+	}
+	
+	private void sendDragon(String d){
+		try{
+			output.writeObject(d);
+			output.flush(); 	
+		}catch(Exception ioException){
+			ioException.printStackTrace();
+			System.out.println("Weird stuff sent through stream");
 		}
 	}
 	

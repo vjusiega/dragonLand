@@ -130,7 +130,12 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 		// TODO Auto-generated method stub
 		
 	}
+
+	public Dragon getMyDragon(){
+		return myDragon;
+	}
 }
+
 /**
 	your dragons to sell
 	

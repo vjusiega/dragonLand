@@ -18,24 +18,27 @@ public class Server{
 	private ObjectInputStream input;
 	private ServerSocket server;
 	private Socket connection;
+	private String otherUsersDragons;
 	
 	//constructor
 	public Server() {
 	}
 	
 	public void startTrading(TradingScreen s){
-		Button b = new Button(300, 250, 100, 100, "Trade", Color.green);
-		b.setAction(new Action(){
-			public void act() {
-				try {
-					whileTrading(s);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
-		s.addObject(b);
+		
+		
+//		Button b = new Button(300, 250, 100, 100, "Trade", Color.green);
+//		b.setAction(new Action(){
+//			public void act() {
+//				try {
+//					whileTrading(s);
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//		s.addObject(b);
 	}
 	
 	//set up and run the server
@@ -48,7 +51,8 @@ public class Server{
 					System.out.println("I am starting and I am a server.");
 					waitForConnection(s);	
 					setupStreams(s);
-					startTrading(s);
+					//startTrading(s);
+					whileTrading(s);
 					waiting = false;
 					//whileTrading(s);
 				}catch(EOFException eofException){
@@ -79,18 +83,32 @@ public class Server{
 	}
 	
 	private void whileTrading(TradingScreen s) throws IOException{
-		String message = "Sparky"; //simple prompt on screen
+		String message = s.getMyDragon().getImgSrc(); //simple prompt on screen
 		sendDragon(message);
-		System.out.println("I'm here with sparky");
 //		ableToType(true); 
 		do{
 			try{
 				message = (String) input.readObject(); 
 				s.displayConnectionMessage("\n" + "I got a dragon");
+				sendDragon("SERVER - END");
 			}catch(ClassNotFoundException classNotFoundException){
 				s.displayConnectionMessage("\n hopefully this message never displays");
 			}
 		}while(!message.equals("CLIENT - END")); 
+		
+		
+		System.out.println("next step");
+		do{
+			try{
+				System.out.println("waiting for dragon -client");
+				otherUsersDragons = (String) input.readObject();
+				System.out.println(otherUsersDragons);
+				System.out.println("recieved dragon -client");
+				s.displayConnectionMessage("\n" + otherUsersDragons);
+			}catch(ClassNotFoundException classNotFoundException){
+				s.displayConnectionMessage("\n I don't know that object type.");
+			}
+		}while(!otherUsersDragons.equals("SERVER - END"));
 	}
 	
 	private void closeCrap(TradingScreen s){
