@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Polygon;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 import game.DragonLand;
 import game.Sound;
@@ -36,6 +37,7 @@ public class ShopScreen extends ClickableScreen {
 	
 	private ArrayList<Dragon> dragonsToBuy = new ArrayList<Dragon>();
 	private ArrayList<Dragon> myDragons;
+	private ArrayList<TextLabel> labels = new ArrayList<TextLabel>();
 	private ArrayList<Object> dragonsOnDisplay;
 	private int q;
 	
@@ -164,6 +166,15 @@ public class ShopScreen extends ClickableScreen {
 				dragonsOnDisplay.add(d.getBackdrop());
 				dragonsOnDisplay.add(disD);
 			
+				int xcoord = (d.getBackdrop()).getX();
+				int ycoord = (d.getBackdrop()).getY();
+				int width = (d.getBackdrop()).getWidth();
+				int height = (d.getBackdrop()).getHeight();
+				String name = disD.getName();
+				TextLabel nameL = new TextLabel( xcoord+10, ycoord , width , 50, "  Name: "+ name );
+				nameL.setSize(16);
+				labels.add(nameL);
+				
 		}
 		
 	}
@@ -181,20 +192,18 @@ public class ShopScreen extends ClickableScreen {
 	}
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		for(int i = 0; i < dragonsOnDisplay.size()-1 ; i++){
-			//TextLabel name = new TextLabel(((ClickableGraphic) dragonsOnDisplay.get(i)).getX(), ((ClickableGraphic) dragonsOnDisplay.get(i)).getY(),
-					//((ClickableGraphic) dragonsOnDisplay.get(i)).getWidth(), ((ClickableGraphic) dragonsOnDisplay.get(i)).getHeight(), ((Dragon) dragonsOnDisplay.get(i+1)).getName());
+		for(int i = 0; i < dragonsOnDisplay.size()-1 ; i+=2){
+		
 			
 			if(dragonsOnDisplay.get(i) instanceof ClickableGraphic &&
 					((ClickableGraphic) dragonsOnDisplay.get(i)).isHovered(e.getX(), e.getY())){
 				remove((Visible)dragonsOnDisplay.get(i+1));
-				//addObject(name);
+				addObject(labels.get(i/2));
 			}
 			else if(dragonsOnDisplay.get(i) instanceof ClickableGraphic && !viewObjects.contains(dragonsOnDisplay.get(i+1))&&
 					!((ClickableGraphic) dragonsOnDisplay.get(i)).isHovered(e.getX(), e.getY())){
 				addObject((Visible)dragonsOnDisplay.get(i+1));
-				//if(viewObjects.contains(name))
-					//remove(name);
+				remove(labels.get(i/2));
 			}
 		}
 	}
