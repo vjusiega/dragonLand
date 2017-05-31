@@ -113,7 +113,7 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 			public void act(){
 				Thread tradeClient = new Thread(new Runnable(){
 					public void run(){
-						Client c = new Client("127.0.0.1");	
+						Client c = new Client("2600:1017:b404:ff23:85c5:9da2:f7d:5a9f");	
 						c.startRunning(thisScreen);
 					}
 				});
