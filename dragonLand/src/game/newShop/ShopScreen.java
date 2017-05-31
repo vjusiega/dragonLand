@@ -301,7 +301,6 @@ public class ShopScreen extends ClickableScreen {
 		//for first time u enter shop and everything initializes
 		if(shopEnteredFirstTime){
 			ArrayList<Dragon> temp = HomeKat.getDragons();
-			
 			for(int i = 0; i<temp.size();i++)
 				dragonsToBuy.add(i,temp.get(i));
 			
