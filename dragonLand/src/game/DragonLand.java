@@ -108,7 +108,7 @@ public class DragonLand extends GUIApplication {
 		tradingScreen = new TradingScreen(WIDTH, HEIGHT);
 		vGame = new GameVioletta();
 		incubatorScreen = new IncubatorScreen(WIDTH, HEIGHT);
-		setScreen(shopMain);
+		setScreen(welcomeScreen);
 
 	}
 	private void initColors() {
