@@ -170,6 +170,10 @@ public class ShopScreen extends ClickableScreen {
 		}else{
 			startDragon = ((currentPage - 1) * 6); 
 		}
+		for(int i = 0; i < labels.size(); i++){
+			remove(labels.get(i));
+		}
+			labels.clear();
 		for(int i = startDragon; (i < startDragon + 6) && (i < array.size()); i++){
 			Dragon temp = array.get(i);
 			Dragon temp2 = new Dragon(temp.getX(), temp.getY(), temp.getWidth(), temp.getHeight(), temp.getName(),temp.getPrice(),temp.getImgSrc());
@@ -246,12 +250,13 @@ public class ShopScreen extends ClickableScreen {
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		for(int i = 0; i < dragonsOnDisplay.size()-1 ; i+=2){
-		
 			
-			if(dragonsOnDisplay.get(i) instanceof ClickableGraphic &&
-					((ClickableGraphic) dragonsOnDisplay.get(i)).isHovered(e.getX(), e.getY())){
+			if(((ClickableGraphic) dragonsOnDisplay.get(i)).isHovered(e.getX(), e.getY())
+					&& !viewObjects.contains(labels.get(i/2))){
 				remove((Visible)dragonsOnDisplay.get(i+1));
 				addObject(labels.get(i/2));
+				
+				
 			}
 			else if(dragonsOnDisplay.get(i) instanceof ClickableGraphic && !viewObjects.contains(dragonsOnDisplay.get(i+1))&&
 					!((ClickableGraphic) dragonsOnDisplay.get(i)).isHovered(e.getX(), e.getY())){
@@ -260,6 +265,13 @@ public class ShopScreen extends ClickableScreen {
 			}
 		}
 	}
+	private boolean exists(Visible v) {
+		for (int i=0; i< viewObjects.size(); i++){
+			
+		}
+		return false;
+	}
+
 	public double getDisplayX(int start, int i){
 		int pos = i - start;
 		if(pos == 0 || pos == 3){

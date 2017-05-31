@@ -19,6 +19,7 @@ public class TextLabel extends Component {
 		this.text=text;
 		font="AppleMyungjo";
 		size=20;
+		color = Color.black;
 		update();
 	}
 	
