@@ -62,7 +62,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		starArray = new ArrayList<Star1>();
 		powerUp = 0; 
 
-		background = new Graphic(0,0,DragonLand.WIDTH,DragonLand.HEIGHT,"img/mountains2.jpg");
+		background = new Graphic(0,0,DragonLand.WIDTH,DragonLand.HEIGHT,"img/sunsetBackground.jpg");
 		//img/sunsetBackground.jpg
 		viewObjects.add(background);
 		setUpFog();
@@ -210,8 +210,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	public void setUpFog(){
 		Fog fog; 
 
-		for(int i = -2; i < 2; i++){
-			fog = new Fog((i*getWidth() / 4), 0, 550, 300, "img/introFog.png", 50);
+		for(int i = -7; i < 7; i++){
+			fog = new Fog((i*getWidth() / 10), 200, 500, 300, "img/introFog.png", 100);
 			viewObjects.add(fog);
 			fog.setY(fog.generateYPos());
 			fog.play();
