@@ -21,18 +21,21 @@ public class WriteFile {
 	 * 
 	 */
 	private static String info;
+	private static String fileName;
 	
-	public WriteFile(String info) {
+	public WriteFile(String info, String fileName) {
 		this.info = info;
+		this.fileName = fileName+".txt";
 	}
 
 	public static void main(String[] args) {
 		BufferedWriter bw = null;
+		File file = getSaveLocation();
 		
 		try{
+			bw = new BufferedWriter(new FileWriter(file));
 			//will be replaced later with method to make string holding data
 			
-			File file = getSaveLocation();
 			//new File("C:/Users/Student 8/Desktop/test.txt");
 			
 			if(!file.exists())file.createNewFile();
@@ -58,6 +61,13 @@ public class WriteFile {
 	
 	private static File getSaveLocation() {
 		File file = null;
+		
+		JButton open = new JButton();
+		final JFileChooser chooser = new JFileChooser();
+		int returnVal = chooser.showSaveDialog(open);
+		if(returnVal == JFileChooser.APPROVE_OPTION){
+			file = chooser.getSelectedFile();
+		}
 		
 //		JButton open = new JButton();
 //		JFileChooser chooser = new JFileChooser();
