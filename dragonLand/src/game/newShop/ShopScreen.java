@@ -295,9 +295,11 @@ public class ShopScreen extends ClickableScreen {
 		//for first time u enter shop and everything initializes
 		if(shopEnteredFirstTime){
 			ArrayList<Dragon> temp = HomeKat.getDragons();
-			for(int i = 0; i<temp.size();i++)
+			for(int i = 0; i<temp.size();i++){
 				dragonsToBuy.add(i,temp.get(i));
-			
+				temp.set(i, null);
+			}
+			temp.clear();
 			updateNumberOfPages(dragonsToBuy);
 
 			//to not initialize again
@@ -372,6 +374,7 @@ public class ShopScreen extends ClickableScreen {
 			if(found != null){
 				myDragons.add(found);
 				dragonsToBuy.remove(found);
+				System.out.print("bought");
 			}
 		}
 		
@@ -387,11 +390,13 @@ public class ShopScreen extends ClickableScreen {
 	
 		public void sellDragon(Dragon d){
 			Dragon found = findInList(d, myDragons);
-			System.out.println("Dragon is null" + (found == null));
+			
+			//System.out.println("Dragon is null" + (found == null));
 			if(found != null){
+				System.out.println("sold");
 				myDragons.remove(found);
 				addDragonToPosition(found, dragonsToBuy);
-				dragonsToBuy.add(found);
+				//dragonsToBuy.add(found);
 			}
 		}
 		
