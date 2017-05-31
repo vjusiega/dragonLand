@@ -43,15 +43,16 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	private int time;
 	private int count; //num of stars on screen
 	private static ArrayList<Star1> starArray;
+	private static ArrayList<PowerUp> powerUpArray;
 	private static int score;
 	public static GameScreen tGame;
 	public static boolean isNotHome;
+	private int powerUp = 0;
 	
 	public GameScreen(int width, int height) {
 		super(width, height);
 		tGame = this;
 	}
-	private int powerUp;
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> view) {
@@ -59,8 +60,9 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		score = 0;
 		count = 0;
 		time = 2500;
+		powerUp = 0;
 		starArray = new ArrayList<Star1>();
-		powerUp = 0; 
+		powerUpArray = new ArrayList<PowerUp>();
 
 		background = new Graphic(0,0,DragonLand.WIDTH,DragonLand.HEIGHT,"img/sunsetBackground.jpg");
 		//img/sunsetBackground.jpg
