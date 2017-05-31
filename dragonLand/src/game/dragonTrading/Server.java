@@ -84,23 +84,24 @@ public class Server{
 	
 	private void whileTrading(TradingScreen s) throws IOException{
 		String message = s.getMyDragon().getImgSrc(); 
+		System.out.println("about to send");
 		sendDragon(message);
-		
+		System.out.println(message);
 		//gets info 
-				String inputDrag = "";
-				boolean done = false;
-				do{
-					try{
-						inputDrag = (String) input.readObject();
-						s.setTheirDragon(inputDrag);
-						sendDragon("done");
-						done = true;
-					}catch(ClassNotFoundException classNotFoundException){
-						s.displayConnectionMessage("\n I don't know that object type.");
-					}
-				}while(!done);
-				
-		
+		String inputDrag = "";
+		boolean done = false;
+		do{
+			try{
+				System.out.println("here");
+				inputDrag = (String) input.readObject();
+				s.setTheirDragon(inputDrag);
+				System.out.println(inputDrag);
+				sendDragon("done");
+				done = true;
+			}catch(ClassNotFoundException classNotFoundException){
+				s.displayConnectionMessage("\n I don't know that object type.");
+			}
+		}while(!done);		
 	}
 	
 	private void closeCrap(TradingScreen s){
