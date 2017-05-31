@@ -34,6 +34,7 @@ public class Client{
 			setUpStreams(s);
 //			startTrading(s);
 			whileTrading(s);
+			s.trade();
 		}catch(EOFException eofException){
 			s.displayConnectionMessage("\n Client terminated connection");
 		}catch(IOException ioException){
