@@ -17,7 +17,6 @@ public class Client{
 
 	private ObjectOutputStream output;
 	private ObjectInputStream input;
-	private String otherUsersDragons;
 	private String serverIP;
 		//IP of the person you are talking to 
 	private Socket connection;
@@ -45,19 +44,6 @@ public class Client{
 		
 	}
 	
-	public void startTrading(TradingScreen s){
-		Button b = new Button(300, 250, 100, 100, "Trade", Color.green);
-		b.setAction(new Action(){
-			public void act() {
-				try {
-					whileTrading(s);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		s.addObject(b);
-	}
 	
 	//connect to server
 	private void connectToServer(TradingScreen s) throws IOException{
@@ -79,31 +65,24 @@ public class Client{
 	
 	//while chatting with server
 	private void whileTrading(TradingScreen s) throws IOException{
-		//now connected, make sure the user is able to now type
-		//ableToType(true);
-		do{
-			try{
-				System.out.println("waiting for dragon -client");
-				otherUsersDragons = (String) input.readObject();
-				System.out.println(otherUsersDragons);
-				System.out.println("recieved dragon -client");
-				s.displayConnectionMessage("\n" + otherUsersDragons);
-			}catch(ClassNotFoundException classNotFoundException){
-				s.displayConnectionMessage("\n I don't know that object type.");
-			}
-		}while(!otherUsersDragons.equals("SERVER - END"));
 		
+		//gets info 
+				String inputDrag = "";
+				boolean done = false;
+				do{
+					try{
+						inputDrag = (String) input.readObject();
+						s.setTheirDragon(inputDrag);
+						done = true;
+					}catch(ClassNotFoundException classNotFoundException){
+						s.displayConnectionMessage("\n I don't know that object type.");
+					}
+				}while(!done);
 		
-		String message = s.getMyDragon().getImgSrc(); //simple prompt on screen
+		//sends info
+		String message = s.getMyDragon().getImgSrc(); 
 		sendDragon(message);
-		do{
-			try{
-				message = (String) input.readObject(); 
-				s.displayConnectionMessage("\n" + "I got a dragon");
-			}catch(ClassNotFoundException classNotFoundException){
-				s.displayConnectionMessage("\n hopefully this message never displays");
-			}
-		}while(!message.equals("CLIENT - END")); 
+	
 	}
 	
 	//close the streams and sockets

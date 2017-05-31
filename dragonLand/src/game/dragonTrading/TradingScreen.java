@@ -21,9 +21,14 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 	
 	private Graphic background;
 	private Dragon myDragon;
+	private Dragon theirDragon;
 	private ArrayList<Dragon> myDragonsToTrade;
 	private ArrayList<Dragon> theirDragons;
 	private TradingScreen thisScreen; 
+	
+	public void setTheirDragon(String imgSrc){
+		
+	}
 	
 	public TradingScreen(int width, int height) {
 		super(width, height);

@@ -59,21 +59,17 @@ public class GameInstructions extends ClickableScreen {
 		fogs = new ArrayList<Fog>();
 		background = new Graphic(0,0,DragonLand.WIDTH,DragonLand.HEIGHT,"img/sunsetBackground.jpg");
 		viewObjects.add(background);
-		
-		ClickableGraphic playPost = new ClickableGraphic(getWidth()-250, getHeight()-200, 1.0,"img/continueSign.png");
-		playPost.setAction(new Action(){
-			public void act(){
-				DragonLand.game.setScreen(DragonLand.miniGameScreen);
-				DragonLand.miniGameScreen.startGame();
-			}
-		});
 
-		setUpFog(playPost);
+		setUpFog();
 		
-		layer = new Button((int) (DragonLand.WIDTH*0.1), (int) (DragonLand.HEIGHT*0.1), (int) (DragonLand.WIDTH*0.8),  (int) (DragonLand.HEIGHT*0.77), "", DragonLand.LIGHT_PINK, null);
-		viewObjects.add(layer);
+//		layer = new Button((int) (DragonLand.WIDTH*0.1), (int) (DragonLand.HEIGHT*0.1), (int) (DragonLand.WIDTH*0.8),  (int) (DragonLand.HEIGHT*0.77), "", DragonLand.LIGHT_PINK, null);
+//		viewObjects.add(layer);
 		
-		title = new NoBorderButton(startX,75,textWidth,50, "Star Catch",DragonLand.LIGHT_PINK,null);
+		Graphic back = new Graphic((int) (DragonLand.WIDTH*0.1), (int) (DragonLand.HEIGHT*0.1), (int) (DragonLand.WIDTH*0.8),  (int) (DragonLand.HEIGHT*0.77), "img/opacityPink.png");
+		viewObjects.add(back);
+		
+		
+		title = new NoBorderButton(startX,75,textWidth,50, "Star Catch",null,null);
 		title.setSize(40);
 		viewObjects.add(title);
 		
@@ -102,7 +98,14 @@ public class GameInstructions extends ClickableScreen {
 		viewObjects.add(text6);
 		
 		
-		
+		ClickableGraphic playPost = new ClickableGraphic(getWidth()-250, getHeight()-200, 1.0,"img/continueSign.png");
+		playPost.setAction(new Action(){
+			public void act(){
+				DragonLand.game.setScreen(DragonLand.miniGameScreen);
+				DragonLand.miniGameScreen.startGame();
+			}
+		});
+		viewObjects.add(playPost);
 		
 //		playButton = new Button((int) (DragonLand.WIDTH * 0.78), (int) (DragonLand.HEIGHT * 0.9), (int) (DragonLand.WIDTH * 0.2), 50, "Play", DragonLand.LIGHT_PINK, new Action() {
 //			@Override
@@ -116,14 +119,11 @@ public class GameInstructions extends ClickableScreen {
 //		viewObjects.add(playButton);		
 	}
 
-	public void setUpFog(Graphic post){
+	public void setUpFog(){
 		Fog fog; 
 		
 		for(int i = -10; i < 10; i++){
 			fog = new Fog((i*getWidth() / 10), 200, 500, 300, "img/introFog.png", 100);
-			if(i == 8){
-				viewObjects.add(post);
-			}
 			viewObjects.add(fog);
 			fog.setY(fog.generateYPos());
 			fogs.add(fog);

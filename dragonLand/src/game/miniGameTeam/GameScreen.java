@@ -96,6 +96,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 			@Override
 			public void act() {
 				DragonLand.game.setScreen(DragonLand.homeScreen);
+				stopGame();
 			}});
 		addObject(backBtn);
 		
