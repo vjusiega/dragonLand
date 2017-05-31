@@ -200,6 +200,7 @@ public class ShopScreen extends ClickableScreen {
 				else if(shop){
 					d.getBackdrop().setAction(new Action(){
 						public void act(){
+							Sound.BOUGHT.play();
 							((ShopScreen)DragonLand.newShopScreen).buyDragon(disD);
 							((ShopScreen)DragonLand.newShopScreen).drawDragons(null);
 						}
@@ -207,6 +208,7 @@ public class ShopScreen extends ClickableScreen {
 				}else{
 					d.getBackdrop().setAction(new Action(){
 						public void act(){
+							Sound.BOUGHT.play();
 							((ShopScreen)DragonLand.newShopScreen).sellDragon(disD);
 							((ShopScreen)DragonLand.newShopScreen).drawDragons(null);
 						}
@@ -345,7 +347,6 @@ public class ShopScreen extends ClickableScreen {
 		public void buyDragon(Dragon d){
 			Dragon found = findInList(d, dragonsToBuy);
 			if(found != null){
-				Sound.BOUGHT.play();
 				myDragons.add(found);
 				dragonsToBuy.remove(found);
 			}

@@ -60,6 +60,11 @@ public class Dragon extends AnimatedComponent {
 		this.constantVY = Math.random();
 	}
 	
+	public Dragon(String name){
+		super(0,0,10,10);
+		this.name = name;
+	}
+	
 	//display dragon constructor that does not bounce
 	public Dragon(int x, int y, int w, int h, String imgSrc){
 		super(x, y, w, h);
