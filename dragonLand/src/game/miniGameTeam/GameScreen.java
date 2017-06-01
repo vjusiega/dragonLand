@@ -149,16 +149,16 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		int starW = 65;
 		Star1 starImage = new Star1(randomX(), yPos, starW, starH, this);
 		starImage.play();
-//		count++;
-//		if (count >= 5){
-//			Thread.sleep(1000);
-//			starArray.add(starImage);
-//			addObject(starImage);
-//			count = 0;
-//		}else{
+		count++;
+		if (count >= 5){
+			Thread.sleep(1000);
 			starArray.add(starImage);
 			addObject(starImage);
-//		}	
+			count = 0;
+		}else{
+			starArray.add(starImage);
+			addObject(starImage);
+		}	
 	}
 	
 	public void removeStar(Star1 star){
