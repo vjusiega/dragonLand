@@ -15,6 +15,7 @@ import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
 import guiPractice.components.Visible;
+import introScreens.Banner;
 
 /**
  * @author Veeraj
@@ -137,6 +138,11 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		});
 		//elements are added into viewObjects in such an order than they seem layered
 		viewObjects.add(background);
+		
+		Banner b = new Banner(0, 50, 600, 171, "img/highScoreBanner.png");
+		b.setX((getWidth() / 2) - (b.getWidth() / 2)); 
+		viewObjects.add(b);
+		
 		viewObjects.add(layerOne);
 		viewObjects.add(layerTwo);
 		viewObjects.add(yourScore);

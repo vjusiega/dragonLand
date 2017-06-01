@@ -84,7 +84,7 @@ public class DragonLand extends GUIApplication {
 	}
 	
 	public DragonLand() {
-		Sound.AMBIANCE.loop();
+		//Sound.AMBIANCE.loop();
 				//
 	}
 	/* (non-Javadoc)

@@ -30,66 +30,70 @@ public class ShopScreen extends ClickableScreen {
 	private Graphic background;
 	private boolean shop;
 	private boolean trade;
-	
 	private int currentPage;
 	private int totalPages;
+	
+	private int maxDragons;
 	
 	//make this one final
 	private int dragonsPerPage;
 	
 	private ArrayList<Dragon> dragonsToBuy = new ArrayList<Dragon>();
-	private ArrayList<Dragon> myDragons;
-	private ArrayList<TextLabel> labels = new ArrayList<TextLabel>();
-	private ArrayList<Object> dragonsOnDisplay;
-	private int q;
-	private ClickableGraphic buySellButton;
+	private ArrayList<Dragon> myDragons = new ArrayList<Dragon>();
+	private ArrayList<TextLabel> nameLabels = new ArrayList<TextLabel>();
+	private ArrayList<TextLabel> priceLabels = new ArrayList<TextLabel>();
+	private ArrayList<Object> dragonsOnDisplay = new ArrayList<Object>();
+	private boolean shopEnteredFirstTime = true;
+	private ClickableGraphic toggleButtonBuy;
+	private ClickableGraphic toggleButtonSell;
+	protected boolean sell;
 	
 	public ShopScreen(int width, int height) {
 		super(width, height);
 		update();
 	}
-	
-	//what does this do
-	public ShopScreen(int width, int height, /*ArrayList<Dragon> dl,*/ Action act) {
-		super(width, height);
-		action = act;
-		update();
-	}
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
+		maxDragons = 9; 
 		shop = true; 
 		currentPage = 1; 
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
 		viewObjects.add(background);
 		
 		setUpFog();
+		//adding all buttons
 		Graphic post = new Graphic(0, getHeight()-150, 0.6,"img/backSign.png");
 		viewObjects.add(post);
-		
 		Graphic nextButton = new Graphic(getWidth() - 150, getHeight()-120, 0.6, "img/nextPreviousSign.png");
 		viewObjects.add(nextButton);
 		
-		Graphic coinDisplay = new Graphic(DragonLand.WIDTH-155, 50, 175, 50, "img/StraightOneSign.png");
+		
+		Graphic coinDisplay = new Graphic(DragonLand.WIDTH-155, 100, 175, 50, "img/StraightOneSign.png");
 		viewObjects.add(coinDisplay);
-		Graphic coin = new Graphic(DragonLand.WIDTH-35, 63, 25, 25, "img/Coin.png");
+		Graphic coin = new Graphic(DragonLand.WIDTH-35, 113, 25, 25, "img/Coin.png");
 		viewObjects.add(coin);
 		
-		buySellButton = new ClickableGraphic(DragonLand.WIDTH-155, 50, 175, 50, "img/StraightOneSign.png");
-		buySellButton.setAction(new Action(){
+		toggleButtonBuy = new ClickableGraphic(DragonLand.WIDTH-155, 50, 175, 50, "img/buySellToggleBuy.png");
+		toggleButtonBuy.setAction(new Action(){
 			public void act(){
-				
+				remove(toggleButtonBuy);
+				enterSell();
+			}
+		});
+		
+		toggleButtonSell = new ClickableGraphic(DragonLand.WIDTH-155, 50, 175, 50, "img/buySellToggleSell.png");
+		toggleButtonSell.setAction(new Action(){
+			public void act(){
+				remove(toggleButtonSell);
+				enterShop();
 			}
 		});
 		
 		addPostButtons();
 		dragonsPerPage = 6;
-		
-		
-		myDragons = new ArrayList<Dragon>();
-		dragonsOnDisplay = new ArrayList<Object>();
-		q = 0;
 	}
+
 	
 	private void addPostButtons() {
 		Polygon forward = new Polygon();
@@ -106,16 +110,14 @@ public class ShopScreen extends ClickableScreen {
 				if(currentPage < totalPages){
 					currentPage++;
 					removeDisplayDragon();
-					if(shop){
-						drawDragons(dragonsToBuy);
-					}else{
+					if(trade || !shop){
 						drawDragons(myDragons);
 					}
-				}
-			}});
-	    
-	    viewObjects.add(forwardBtn);
-	    
+					else if(shop)
+						drawDragons(dragonsToBuy);
+						
+				}}});
+
 	    Polygon previous = new Polygon();
 	    previous.addPoint(20, 18);
 	    previous.addPoint(120, 30);
@@ -130,16 +132,14 @@ public class ShopScreen extends ClickableScreen {
 				if(currentPage > 1){
 					currentPage--;
 					removeDisplayDragon();
-					if(shop){
-						drawDragons(dragonsToBuy);
-					}else{
+					if(trade || !shop){
 						drawDragons(myDragons);
 					}
-				}
-			}});
-	    
-	    viewObjects.add(previousBtn);
-	    
+					else if(shop)
+						drawDragons(dragonsToBuy);
+						
+				}}});
+
 	    Polygon back = new Polygon();
 	    back.addPoint(20, 18);
 	    back.addPoint(120, 30);
@@ -151,36 +151,45 @@ public class ShopScreen extends ClickableScreen {
 	    PolygonButton backBtn = new PolygonButton( 0, DragonLand.HEIGHT-110, 150, 100, back, new Action(){
 			@Override
 			public void act() {
+				if(!shop){
+					shop = true;
+					remove(toggleButtonSell);
+				}else{
+					remove(toggleButtonBuy);
+				}
 				DragonLand.game.setScreen(DragonLand.shopMain);
 			}});
 	    
+	    viewObjects.add(forwardBtn);
+	    viewObjects.add(previousBtn);
 	    viewObjects.add(backBtn);
 	    
 	    
 	}
 
 	public void drawDragons(ArrayList<Dragon> array){
-		int startDragon;
-		if(array == null){
-			array = dragonsToBuy;
-		}
 		removeDisplayDragon();
-		if(currentPage == 1){
+		int startDragon;
+		if(currentPage == 1)
 			startDragon = 0; 
-		}else{
+		else
 			startDragon = ((currentPage - 1) * 6); 
+		
+		for(int i = 0; i < nameLabels.size(); i++){
+			remove(nameLabels.get(i));
+			remove(priceLabels.get(i));
 		}
+		nameLabels.clear();
+		priceLabels.clear();
+		
 		for(int i = startDragon; (i < startDragon + 6) && (i < array.size()); i++){
 			Dragon temp = array.get(i);
 			Dragon temp2 = new Dragon(temp.getX(), temp.getY(), temp.getWidth(), temp.getHeight(), temp.getName(),temp.getPrice(),temp.getImgSrc());
 			temp2.setDragonAnimation(temp2, temp.getImgSrc());
-			
 			ShopDragon d = new ShopDragon(getDisplayX(startDragon, i), getDisplayY(startDragon, i), getWidth(), getHeight(), temp2);
 		
-			//dragonsOnDisplay.add(dragonsToBuy.get(i));
 			//some dragon setups
 				Dragon disD = d.getDragon();
-				
 				disD.setBounce(false);
 				disD.setConstantVY(0.05);
 				disD.play();
@@ -192,44 +201,53 @@ public class ShopScreen extends ClickableScreen {
 						public void act(){
 							DragonLand.game.setScreen(DragonLand.tradingScreen);
 							((TradingScreen)DragonLand.tradingScreen).setMyDragon(disD);
-							((ShopScreen)DragonLand.newShopScreen).setTrade(false);
-							((ShopScreen)DragonLand.newShopScreen).addObject(buySellButton);
-						}
-					});
+							setTrade(false);
+							addObject(toggleButtonBuy);
+						}});
 				}
 				else if(shop){
 					d.getBackdrop().setAction(new Action(){
 						public void act(){
-							((ShopScreen)DragonLand.newShopScreen).buyDragon(disD);
-							((ShopScreen)DragonLand.newShopScreen).drawDragons(null);
-						}
-					});
-				}else{
+							Sound.BOUGHT.play();
+							buyDragon(disD);
+							updateNumberOfPages(dragonsToBuy);
+							drawDragons(dragonsToBuy);
+						}});
+				}
+				else{
 					d.getBackdrop().setAction(new Action(){
 						public void act(){
-							((ShopScreen)DragonLand.newShopScreen).sellDragon(disD);
-							((ShopScreen)DragonLand.newShopScreen).drawDragons(null);
-						}
-					});
+							Sound.BOUGHT.play();
+							sellDragon(disD);
+							updateNumberOfPages(myDragons);
+							drawDragons(myDragons);
+						}});
 				}
-			
-		
 				addObject(d.getBackdrop());
 				addObject(disD);
 				dragonsOnDisplay.add(d.getBackdrop());
 				dragonsOnDisplay.add(disD);
 			
-				int xcoord = (d.getBackdrop()).getX();
+				int xcoord = (d.getBackdrop()).getX(); 
 				int ycoord = (d.getBackdrop()).getY();
 				int width = (d.getBackdrop()).getWidth();
 				int height = (d.getBackdrop()).getHeight();
 				String name = disD.getName();
+				int price = disD.getPrice();
 				TextLabel nameL = new TextLabel( xcoord+10, ycoord , width , 50, "  Name: "+ name );
+				TextLabel priceL = new TextLabel( xcoord+10, ycoord+25 , width , 50, "  Price: $"+ price );
+				priceL.setSize(16);
 				nameL.setSize(16);
-				labels.add(nameL);
-				
+				nameLabels.add(nameL);
+				priceLabels.add(priceL);
 		}
+	}
+	
+	public void removeDisplayDragon(){
+		for(Object o: dragonsOnDisplay)
+			remove((Visible) o);
 		
+		dragonsOnDisplay.clear();
 	}
 
 	@Override
@@ -246,74 +264,91 @@ public class ShopScreen extends ClickableScreen {
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		for(int i = 0; i < dragonsOnDisplay.size()-1 ; i+=2){
-		
 			
-			if(dragonsOnDisplay.get(i) instanceof ClickableGraphic &&
-					((ClickableGraphic) dragonsOnDisplay.get(i)).isHovered(e.getX(), e.getY())){
+			if(((ClickableGraphic) dragonsOnDisplay.get(i)).isHovered(e.getX(), e.getY()) && !viewObjects.contains(nameLabels.get(i/2))){
 				remove((Visible)dragonsOnDisplay.get(i+1));
-				addObject(labels.get(i/2));
+				addObject(nameLabels.get(i/2));
+				addObject(priceLabels.get(i/2));
 			}
-			else if(dragonsOnDisplay.get(i) instanceof ClickableGraphic && !viewObjects.contains(dragonsOnDisplay.get(i+1))&&
-					!((ClickableGraphic) dragonsOnDisplay.get(i)).isHovered(e.getX(), e.getY())){
+			else if(!viewObjects.contains(dragonsOnDisplay.get(i+1)) && !((ClickableGraphic) dragonsOnDisplay.get(i)).isHovered(e.getX(), e.getY())){
 				addObject((Visible)dragonsOnDisplay.get(i+1));
-				remove(labels.get(i/2));
+				remove(nameLabels.get(i/2));
+				remove(priceLabels.get(i/2));
 			}
 		}
 	}
+
 	public double getDisplayX(int start, int i){
 		int pos = i - start;
-		if(pos == 0 || pos == 3){
+		if(pos == 0 || pos == 3)
 			return 0.25;
-		}
-		if(pos == 1 || pos == 4){
+		if(pos == 1 || pos == 4)
 			return 0.5;
-		}
-		if(pos == 2 || pos == 5){
+		if(pos == 2 || pos == 5)
 			return 0.75;
-		}
 		else return 0.333;
 	}
-	
 	public double getDisplayY(int start, int i){
 		int pos = i - start;
-		if(pos < 3){
+		if(pos < 3)
 			return 0.333333333;
-		}
 		else return 0.66666666;
 	}
 	
-	public void removeDisplayDragon(){
-		
-		for(Object o: dragonsOnDisplay){
-			remove((Visible) o);
-		}
-		dragonsOnDisplay.clear();
-	}
+	
 		
 	public void enterShop(){
 		//should update the shop and return to the first page
 		trade = false; 
-		if(q==0){
+		//for first time u enter shop and everything initializes
+		if(shopEnteredFirstTime){
 			ArrayList<Dragon> temp = HomeKat.getDragons();
 			for(int i = 0; i<temp.size();i++){
 				dragonsToBuy.add(i,temp.get(i));
+			
 			}
-			totalPages = dragonsToBuy.size() / dragonsPerPage;
-			if((dragonsToBuy.size() % dragonsPerPage) > 0){
-				totalPages++;
-			}
-			q++;
+			updateNumberOfPages(dragonsToBuy);
+
+			//to not initialize again
+			shopEnteredFirstTime = false;
 		}
 		shop = true;
 		currentPage = 1;
-		removeDisplayDragon();
+		addObject(toggleButtonBuy);
+		updateNumberOfPages(dragonsToBuy);
 		drawDragons(dragonsToBuy);
+	}
+	
+	public void enterSell(){
+		shop = false; 
+		currentPage = 1;
+		addObject(toggleButtonSell);
+		updateNumberOfPages(myDragons);
+		drawDragons(myDragons);
+			/*
+			 * Need an if statement to show text if no dragons have been bought
+			 */
 	}
 	
 	public void enterTradeSelection(){
 		trade = true;
+		currentPage = 1; 
+		updateNumberOfPages(myDragons);
 		drawDragons(myDragons);
-		remove(buySellButton);
+		remove(toggleButtonBuy);
+			/*
+			 * Need an if statement to show text if no dragons have been bought
+			 */
+	}
+	
+	public void updateNumberOfPages(ArrayList<Dragon> array){
+		totalPages = array.size() / dragonsPerPage;
+		if((array.size() % dragonsPerPage) != 0){
+			totalPages++;
+		}
+		if(currentPage > totalPages && totalPages > 1){
+			currentPage--;
+		}
 	}
 	
 	public void setUpFog(){
@@ -331,9 +366,8 @@ public class ShopScreen extends ClickableScreen {
 	 */
 		public Dragon findInList(Dragon dFind, ArrayList<Dragon> array){
 			for(Dragon d: array){
-				if(d.getName() == dFind.getName()){
+				if(d.getName() == dFind.getName())
 					return d;
-				}
 			}
 			return null; 
 		}
@@ -342,44 +376,68 @@ public class ShopScreen extends ClickableScreen {
 			return myDragons;
 		}
 	
+		
+		//official method to buy a dragon for money
 		public void buyDragon(Dragon d){
 			Dragon found = findInList(d, dragonsToBuy);
 			if(found != null){
-				Sound.BOUGHT.play();
-				myDragons.add(found);
-				dragonsToBuy.remove(found);
+				if(myDragons.size() >= maxDragons){
+					System.out.println("Too many dragons");
+					//show message that you cannot buy more dragons
+				}
+				else if(DragonLand.coins < found.getPrice()){
+					System.out.println("Not enough money");
+					//show message that you don't have enough money
+				}else{
+					System.out.println("you originally had " + DragonLand.coins);
+					DragonLand.coins -= found.getPrice();
+					System.out.println("the dragon cost " +  found.getPrice() + " you now have " + DragonLand.coins);
+					myDragons.add(found);
+					dragonsToBuy.remove(found);
+				}
 			}
 		}
 		
-		public void addToMyDragons(Dragon d){
-			myDragons.add(d);
+		public void addToBuyDragons(Dragon d){
+			dragonsToBuy.add(d);
 		}
 	
-		public void removeFromBuyDragons(Dragon d){
-			Dragon found = findInList(d, dragonsToBuy);
-			if(found != null){
-				dragonsToBuy.remove(found);
-			}
+		public void removeFromMyDragons(Dragon d){
+			Dragon found = findInList(d, myDragons);
+			if(found != null)
+				myDragons.remove(found);
 		}
 	
 		public void sellDragon(Dragon d){
 			Dragon found = findInList(d, myDragons);
 			if(found != null){
-				myDragons.remove(d);
-				dragonsToBuy.add(d);
+				myDragons.remove(found);
+				addDragonToPosition(found, dragonsToBuy);
+			}
+		}
+		
+		public void addDragonToPosition(Dragon d, ArrayList<Dragon> array){
+			boolean placed = false;
+			for(int i = 0; i < array.size(); i++){
+				if(!placed && array.get(i).getPrice() > d.getPrice()){
+					array.add(i, d);
+					placed = true;
+				}
+			}
+			if(!placed){
+				array.add(d);
 			}
 		}
 	
 		public  String[] getNamesOfPurchased(){
 			String[] output = new String[myDragons.size()];
-			for(int i = 0; i < myDragons.size(); i++){
+			for(int i = 0; i < myDragons.size(); i++)
 				output[i] = myDragons.get(i).getName();
-			}
 			return output;
 		}
 		
 		public void setTrade(boolean b){
 			trade = b;
 		}
-	
+		
 }

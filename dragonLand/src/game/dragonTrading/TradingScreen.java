@@ -2,8 +2,10 @@ package game.dragonTrading;
 import game.DragonLand;
 
 import game.mainScreenTeam.*;
+import game.newShop.ShopScreen;
 
 import java.awt.Color;
+import java.awt.Polygon;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -14,6 +16,7 @@ import guiPractice.components.Action;
 import guiPractice.components.Button;
 import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
+import guiPractice.components.PolygonButton;
 import guiPractice.components.Visible;
 import introScreens.Fog;
 
@@ -21,9 +24,14 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 	
 	private Graphic background;
 	private Dragon myDragon;
+	private String theirDragon;
 	private ArrayList<Dragon> myDragonsToTrade;
 	private ArrayList<Dragon> theirDragons;
 	private TradingScreen thisScreen; 
+	
+	public void setTheirDragon(String name){
+		theirDragon = name;
+	}
 	
 	public TradingScreen(int width, int height) {
 		super(width, height);
@@ -71,6 +79,15 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 //		
 //		setUpFog(post);
 		
+		
+		ClickableGraphic backBtn = new ClickableGraphic(0, DragonLand.HEIGHT-110, 150, 100, "img/backSign.png");
+		backBtn.setAction(new Action(){
+			public void act(){
+				DragonLand.game.setScreen(DragonLand.shopMain);
+			}
+		});
+		viewObjects.add(backBtn);
+		
 		Button b = new Button(100, 100, 100, 100, "server", Color.BLUE);
 		b.setAction(new Action(){
 			public void act() {
@@ -111,6 +128,7 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 //			viewObjects.add(d);
 //		}
 	
+	
 		
 	}
 	
@@ -133,6 +151,13 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 
 	public Dragon getMyDragon(){
 		return myDragon;
+	}
+	
+	public void trade(){
+		System.out.println("This is happening");
+		((ShopScreen)DragonLand.newShopScreen).sellDragon(myDragon);
+		Dragon temp = new Dragon(theirDragon);
+		((ShopScreen)DragonLand.newShopScreen).buyDragon(temp);
 	}
 }
 
