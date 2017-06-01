@@ -65,7 +65,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		powerUpArray = new ArrayList<PowerUp>();
 
 		background = new Graphic(0,0,DragonLand.WIDTH,DragonLand.HEIGHT,"img/sunsetBackground.jpg");
-		//img/sunsetBackground.jpg
 		viewObjects.add(background);
 		setUpFog();
 		setUpBackButton();
@@ -73,15 +72,10 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		scoreDisplay = new Graphic(DragonLand.WIDTH-200, 50, 220, 70, "img/StraightOneSign.png");
 		view.add(scoreDisplay);
 		
-		
-		//SO ANNOYING
 		TextLabel scoreText = new TextLabel(DragonLand.WIDTH-150, 30, 100, 100, score + " Points");
 		scoreText.setColor(DragonLand.LIGHT_PINK);
 		scoreText.setSize(30);
 		viewObjects.add(scoreText);
-		
-		
-		//GameVioletta vGameObject = new GameVioletta();
 	}
 
 	private void setUpBackButton() {
@@ -105,7 +99,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	}
 
 	protected void stopGame() {
-		//DragonLand.game.getViolettaGame()
 		DragonLand.game.getViolettaGame().setPlaying(false);
 		ArrayList<Dragon> dragonArray = DragonLand.game.getViolettaGame().getDragonArray();
 		if(dragonArray.size() != 0){
@@ -145,7 +138,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	public static ArrayList<Star1> getStarArray(){
 		return starArray;
 	}
-
+	
 	public void addStar() throws InterruptedException{
 		//adds one star object to the screen and the array
 		int yPos = 0;
@@ -164,27 +157,12 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 			addObject(starImage);
 		}	
 	}
-
+	
 	public void removeStar(Star1 star){
 		starArray.remove(star);
 		remove(star);
 	}
-
-	public void fallingStars() throws InterruptedException{
-		DragonLand.game.getViolettaGame().setPlaying(true);
-		while(DragonLand.game.getViolettaGame().getPlaying()){
-			try{
-				setTime();
-				Thread.sleep(time);
-			}catch (InterruptedException e){
-				e.printStackTrace();
-			}
-			addStar();
-		}
-		HighScoreScreen.updateOnEnter();
-		DragonLand.game.setScreen(DragonLand.highscoreScreen);
-	}
-
+	
 	public int randomX(){
 		//80 through getWidth()-175
 		int max = DragonLand.WIDTH-225;
@@ -207,6 +185,50 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		if (score >= 20){
 			time = 1250;
 		}
+	}
+
+	/*
+	public static ArrayList<PowerUp> getPowerUpArray(){
+		return powerUpArray;
+	}
+
+	public void addPowerUp(){
+		int yPos = 0;
+		int berryH = 65;
+		int berryW = 65;
+		PowerUp powerUpImage = new PowerUp(randomX(), yPos, berryH, berryW, this);
+		powerUpImage.play();
+		
+		int max = 10;
+		int min = 1;
+		int randomNum = (int) (Math.random()*(max - min) + min);
+		if (randomNum % 0){
+			powerUpArray.add(powerUpImage);
+			addObject(powerUpImage);
+		}	
+	}
+	
+	public void removePowerUp(PowerUp powerUp){
+		powerUpArray.remove(powerUp);
+		remove(powerUp);
+	}
+	
+	*/
+
+	public void fallingStars() throws InterruptedException{
+		DragonLand.game.getViolettaGame().setPlaying(true);
+		while(DragonLand.game.getViolettaGame().getPlaying()){
+			try{
+				setTime();
+				Thread.sleep(time);
+			}catch (InterruptedException e){
+				e.printStackTrace();
+			}
+			addStar();
+			//addPowerUp();
+		}
+		HighScoreScreen.updateOnEnter();
+		DragonLand.game.setScreen(DragonLand.highscoreScreen);
 	}
 	
 	public void setUpFog(){
@@ -258,12 +280,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	public static void setScoreDisplay(){
 		//scoreDisplay.setText("Score: " + score);
 	}
-
-//	public void initGame(String imgSrc){
-//		score = 0;
-//		addObject(DragonLand.game.getViolettaGame().addDragon(imgSrc));
-//	}
-
+	
 	public void removeDragonToScreen(Dragon d){
 		remove(d);
 	}
