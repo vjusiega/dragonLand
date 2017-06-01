@@ -37,14 +37,4 @@ public class PowerUp extends GraphicMovingComponent {
 			game.removePowerUp(this);
 		}
 	}
-
-	@Override
-	public int powerUpStartPos() {
-		return this.getX();
-	}
-
-	@Override
-	public int powerUpEndPos() {
-		return this.getX() + this.getWidth();
-	}
 }
