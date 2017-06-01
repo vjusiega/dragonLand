@@ -33,6 +33,8 @@ public class ShopScreen extends ClickableScreen {
 	private int currentPage;
 	private int totalPages;
 	
+	private int maxDragons;
+	
 	//make this one final
 	private int dragonsPerPage;
 	
@@ -46,7 +48,6 @@ public class ShopScreen extends ClickableScreen {
 	private ClickableGraphic toggleButtonSell;
 	protected boolean sell;
 	
-	
 	public ShopScreen(int width, int height) {
 		super(width, height);
 		update();
@@ -54,6 +55,7 @@ public class ShopScreen extends ClickableScreen {
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
+		maxDragons = 9; 
 		shop = true; 
 		currentPage = 1; 
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
@@ -75,22 +77,18 @@ public class ShopScreen extends ClickableScreen {
 		toggleButtonBuy = new ClickableGraphic(DragonLand.WIDTH-155, 50, 175, 50, "img/buySellToggleBuy.png");
 		toggleButtonBuy.setAction(new Action(){
 			public void act(){
-				enterSell();
 				remove(toggleButtonBuy);
-				addObject(toggleButtonSell);
+				enterSell();
 			}
 		});
 		
 		toggleButtonSell = new ClickableGraphic(DragonLand.WIDTH-155, 50, 175, 50, "img/buySellToggleSell.png");
 		toggleButtonSell.setAction(new Action(){
 			public void act(){
-				enterShop();
 				remove(toggleButtonSell);
-				addObject(toggleButtonBuy);
+				enterShop();
 			}
 		});
-		
-		viewObjects.add(toggleButtonBuy);
 		
 		addPostButtons();
 		dragonsPerPage = 6;
@@ -155,8 +153,9 @@ public class ShopScreen extends ClickableScreen {
 			public void act() {
 				if(!shop){
 					shop = true;
-					viewObjects.remove(this);
-					viewObjects.add(toggleButtonBuy);
+					remove(toggleButtonSell);
+				}else{
+					remove(toggleButtonBuy);
 				}
 				DragonLand.game.setScreen(DragonLand.shopMain);
 			}});
@@ -315,6 +314,7 @@ public class ShopScreen extends ClickableScreen {
 		}
 		shop = true;
 		currentPage = 1;
+		addObject(toggleButtonBuy);
 		updateNumberOfPages(dragonsToBuy);
 		drawDragons(dragonsToBuy);
 	}
@@ -322,6 +322,7 @@ public class ShopScreen extends ClickableScreen {
 	public void enterSell(){
 		shop = false; 
 		currentPage = 1;
+		addObject(toggleButtonSell);
 		updateNumberOfPages(myDragons);
 		drawDragons(myDragons);
 			/*
@@ -375,11 +376,25 @@ public class ShopScreen extends ClickableScreen {
 			return myDragons;
 		}
 	
+		
+		//official method to buy a dragon for money
 		public void buyDragon(Dragon d){
 			Dragon found = findInList(d, dragonsToBuy);
 			if(found != null){
-				myDragons.add(found);
-				dragonsToBuy.remove(found);
+				if(myDragons.size() >= maxDragons){
+					System.out.println("Too many dragons");
+					//show message that you cannot buy more dragons
+				}
+				else if(DragonLand.coins < found.getPrice()){
+					System.out.println("Not enough money");
+					//show message that you don't have enough money
+				}else{
+					System.out.println("you originally had " + DragonLand.coins);
+					DragonLand.coins -= found.getPrice();
+					System.out.println("the dragon cost " +  found.getPrice() + " you now have " + DragonLand.coins);
+					myDragons.add(found);
+					dragonsToBuy.remove(found);
+				}
 			}
 		}
 		
