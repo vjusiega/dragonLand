@@ -11,7 +11,7 @@ public class PowerUp extends GraphicMovingComponent {
 	
 	public PowerUp(int x, int y, int w, int h, GameScreen game) {
 		super(x, y, w, h, "img/strawberry.png");
-		setVy(1);
+		setVy(1.5);
 		this.game = game;
 		setVx(0);
 		touched = false; 
