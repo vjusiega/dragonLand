@@ -141,7 +141,6 @@ public class GameVioletta implements gameDragonInterface{
 		}
 	}
 	
-	/*
 	public boolean checkPowerUpContact(PowerUp powerUp){
 		int powerUpX = powerUp.getX();
 		int berryWidth = powerUp.getWidth();
@@ -155,7 +154,6 @@ public class GameVioletta implements gameDragonInterface{
 			return false; 
 		}
 	}
-	*/
 
 	public boolean getPlaying() {
 		return playing;

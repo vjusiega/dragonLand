@@ -1,5 +1,6 @@
 package game.miniGameTeam;
 
+import game.DragonLand;
 import guiPractice.components.GraphicMovingComponent;
 
 public class PowerUp extends GraphicMovingComponent {
@@ -10,7 +11,7 @@ public class PowerUp extends GraphicMovingComponent {
 	private int dragonXPos;
 	
 	public PowerUp(int x, int y, int w, int h, GameScreen game) {
-		super(x, y, w, h, "img/strawberry.png");
+		super(x, y, w, h, "img/berry.png");
 		setVy(1.5);
 		this.game = game;
 		setVx(0);
@@ -26,12 +27,14 @@ public class PowerUp extends GraphicMovingComponent {
 				touched = true;
 				game.removePowerUp(this);
 				long time = System.currentTimeMillis();
-				long end = time + 15000;
+				long end = time + 10000;
 				while(System.currentTimeMillis() < end) {
-					//change the speed of dragon from (-10) to (-20)
+					GameScreen.setSpeedLeft(-20);
+					GameScreen.setSpeedRight(20);
 				}
-				//change the speed back to norma;
 			}
+			GameScreen.setSpeedLeft(-10);
+			GameScreen.setSpeedRight(10);
 		}			
 		else{
 			game.removePowerUp(this);

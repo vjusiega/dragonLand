@@ -48,6 +48,9 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	public static GameScreen tGame;
 	public static boolean isNotHome;
 	private int powerUp = 0;
+	private static int speedLeft;
+	private static int speedRight;
+	
 	
 	public GameScreen(int width, int height) {
 		super(width, height);
@@ -146,16 +149,16 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		int starW = 65;
 		Star1 starImage = new Star1(randomX(), yPos, starW, starH, this);
 		starImage.play();
-		count++;
-		if (count >= 5){
-			Thread.sleep(1000);
+//		count++;
+//		if (count >= 5){
+//			Thread.sleep(1000);
+//			starArray.add(starImage);
+//			addObject(starImage);
+//			count = 0;
+//		}else{
 			starArray.add(starImage);
 			addObject(starImage);
-			count = 0;
-		}else{
-			starArray.add(starImage);
-			addObject(starImage);
-		}	
+//		}	
 	}
 	
 	public void removeStar(Star1 star){
@@ -187,7 +190,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		}
 	}
 
-	/*
 	public static ArrayList<PowerUp> getPowerUpArray(){
 		return powerUpArray;
 	}
@@ -199,10 +201,11 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		PowerUp powerUpImage = new PowerUp(randomX(), yPos, berryH, berryW, this);
 		powerUpImage.play();
 		
-		int max = 10;
-		int min = 1;
-		int randomNum = (int) (Math.random()*(max - min) + min);
-		if (randomNum % 0){
+//		int max = 10;
+//		int min = 1;
+//		int randomNum = (int) (Math.random()*(max - min) + min);
+		
+		if (starArray.size() == 20){
 			powerUpArray.add(powerUpImage);
 			addObject(powerUpImage);
 		}	
@@ -212,8 +215,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		powerUpArray.remove(powerUp);
 		remove(powerUp);
 	}
-	
-	*/
 
 	public void fallingStars() throws InterruptedException{
 		DragonLand.game.getViolettaGame().setPlaying(true);
@@ -244,11 +245,14 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		speedLeft = -10;
+		speedRight = 10;
+		
 		if(e.getKeyCode() == KeyEvent.VK_LEFT){ 
-			DragonLand.game.getViolettaGame().changeDragonPos(-10);
+			DragonLand.game.getViolettaGame().changeDragonPos(speedLeft);
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-			DragonLand.game.getViolettaGame().changeDragonPos(10);
+			DragonLand.game.getViolettaGame().changeDragonPos(speedRight);
 		}
 	}
 
@@ -263,6 +267,22 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	@Override
 	public KeyListener getKeyListener(){
 		return this;
+	}
+	
+	public static void setSpeedLeft(int x){
+		speedLeft = x;
+	}
+	
+	public static int getSpeedLeft(){
+		return speedLeft;
+	}
+	
+	public static void setSpeedRight(int x){
+		speedRight = x;
+	}
+	
+	public static int getSpeedRight(){
+		return speedRight;
 	}
 
 	/*
