@@ -140,6 +140,22 @@ public class GameVioletta implements gameDragonInterface{
 			return false; 
 		}
 	}
+	
+	/*
+	public boolean checkPowerUpContact(PowerUp powerUp){
+		int powerUpX = powerUp.getX();
+		int berryWidth = powerUp.getWidth();
+		int berryEnd = powerUpX + berryWidth;
+		int dragonStart = (dragonArray.get(findLeadDragon(-1))).getX();
+		int dragonEnd = ((dragonArray.get(findLeadDragon(1))).getX() + (dragonArray.get(findLeadDragon(1))).getWidth());
+		if((powerUpX > dragonStart && powerUpX < dragonEnd) || (berryEnd > dragonStart && berryEnd < dragonEnd)){
+			return true; 
+		}
+		else{
+			return false; 
+		}
+	}
+	*/
 
 	public boolean getPlaying() {
 		return playing;
