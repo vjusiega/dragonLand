@@ -50,7 +50,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	private int powerUp = 0;
 	private static int speedLeft;
 	private static int speedRight;
-	
+	private int[] coords = new int[10];
+	private int n = 0;
 	
 	public GameScreen(int width, int height) {
 		super(width, height);
@@ -130,6 +131,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 			public void run() {
 				try {
 					fallingStars();
+					fallingBerries();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -171,6 +173,20 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		int max = DragonLand.WIDTH-225;
 		int min = 125;
 		int xPos = (int) (Math.random()*(max - min) + min);
+// 		for(int i = n; i < coords.length; i++){
+// 			coords[i] = xPos;
+// 			n++;
+// 			while(true){
+// 				if((i > 0) && (Math.abs(coords[i] - coords[i+1]) < 10)){
+// 					xPos = (int) (Math.random()*(max - min) + min);
+// 					coords[i] = xPos;
+// 				}
+// 			}
+// 			if(coords.length == 10){
+// 				coords = [];
+// 				n = 0;
+// 			}
+// 		}
 		return xPos;
 	}
 	
@@ -196,8 +212,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 
 	public void addPowerUp(){
 		int yPos = 0;
-		int berryH = 65;
-		int berryW = 65;
+		int berryH = 60;
+		int berryW = 60;
 		PowerUp powerUpImage = new PowerUp(randomX(), yPos, berryH, berryW, this);
 		powerUpImage.play();
 		
@@ -205,7 +221,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 //		int min = 1;
 //		int randomNum = (int) (Math.random()*(max - min) + min);
 		
-		if (starArray.size() == 20){
+		if (count % 20 == 0){
 			powerUpArray.add(powerUpImage);
 			addObject(powerUpImage);
 		}	
@@ -226,10 +242,20 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 				e.printStackTrace();
 			}
 			addStar();
-			addPowerUp();
 		}
 		HighScoreScreen.updateOnEnter();
 		DragonLand.game.setScreen(DragonLand.highscoreScreen);
+	}
+	
+	public void fallingBerries() throws InterruptedException{
+		DragonLand.game.getViolettaGame().setPlaying(true);
+		while(DragonLand.game.getViolettaGame().getPlaying()){
+			try{
+				addPowerUp();
+			}catch (InterruptedException e){
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public void setUpFog(){
