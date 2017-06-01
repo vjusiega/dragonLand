@@ -306,9 +306,8 @@ public class ShopScreen extends ClickableScreen {
 			ArrayList<Dragon> temp = HomeKat.getDragons();
 			for(int i = 0; i<temp.size();i++){
 				dragonsToBuy.add(i,temp.get(i));
-				temp.set(i, null);
+			
 			}
-			temp.clear();
 			updateNumberOfPages(dragonsToBuy);
 
 			//to not initialize again

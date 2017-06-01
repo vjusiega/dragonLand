@@ -312,6 +312,7 @@ public static void addAnimation(int x,int y, String name, int price,String imgSr
 	//returns the dragon with the specific name from the dragon listArray
 		//does not need a null exception because in accordance with code above, name will never be null
 	private static Dragon searchByName(String name) {
+		
 		for(Dragon d: dragons){
 			if(d.getName().equals(name))
 				return d;
