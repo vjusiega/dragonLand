@@ -33,7 +33,7 @@ public class WelcomeScreen extends ClickableScreen{
 
 	public WelcomeScreen(int width, int height) {
 		super(width, height);
-		Sound.AMBIANCE.loop();
+		//Sound.AMBIANCE.loop();
 
 	}
 
@@ -44,8 +44,6 @@ public class WelcomeScreen extends ClickableScreen{
 		
 		Banner b = new Banner(0, -171, 600, 171, "img/dragonLandBanner.png");
 		b.setBannerHeight((getHeight() / 4) - 100); 
-		//b.setWidth(700);
-		//b.setHeight(200);
 		b.setX((getWidth() / 2) - (b.getWidth() / 2)); 
 		b.play();
 		viewObjects.add(b);

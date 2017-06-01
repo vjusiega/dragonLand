@@ -42,7 +42,8 @@ public class ShopScreen extends ClickableScreen {
 	private ArrayList<TextLabel> priceLabels = new ArrayList<TextLabel>();
 	private ArrayList<Object> dragonsOnDisplay = new ArrayList<Object>();
 	private boolean shopEnteredFirstTime = true;
-	private ClickableGraphic buySellButton;
+	private ClickableGraphic toggleButtonBuy;
+	private ClickableGraphic toggleButtonSell;
 	protected boolean sell;
 	
 	
@@ -64,35 +65,37 @@ public class ShopScreen extends ClickableScreen {
 		viewObjects.add(post);
 		Graphic nextButton = new Graphic(getWidth() - 150, getHeight()-120, 0.6, "img/nextPreviousSign.png");
 		viewObjects.add(nextButton);
-		Graphic coinDisplay = new Graphic(DragonLand.WIDTH-155, 50, 175, 50, "img/StraightOneSign.png");
+		
+		
+		Graphic coinDisplay = new Graphic(DragonLand.WIDTH-155, 100, 175, 50, "img/StraightOneSign.png");
 		viewObjects.add(coinDisplay);
-		Graphic coin = new Graphic(DragonLand.WIDTH-35, 63, 25, 25, "img/Coin.png");
+		Graphic coin = new Graphic(DragonLand.WIDTH-35, 113, 25, 25, "img/Coin.png");
 		viewObjects.add(coin);
 		
-		buySellButton = new ClickableGraphic(DragonLand.WIDTH-155, 150, 175, 50, "img/StraightOneSign.png");
-		toggleBuySellButton();
-		viewObjects.add(buySellButton);
+		toggleButtonBuy = new ClickableGraphic(DragonLand.WIDTH-155, 50, 175, 50, "img/buySellToggleBuy.png");
+		toggleButtonBuy.setAction(new Action(){
+			public void act(){
+				enterSell();
+				remove(toggleButtonBuy);
+				addObject(toggleButtonSell);
+			}
+		});
 		
+		toggleButtonSell = new ClickableGraphic(DragonLand.WIDTH-155, 50, 175, 50, "img/buySellToggleSell.png");
+		toggleButtonSell.setAction(new Action(){
+			public void act(){
+				enterShop();
+				remove(toggleButtonSell);
+				addObject(toggleButtonBuy);
+			}
+		});
+		
+		viewObjects.add(toggleButtonBuy);
 		
 		addPostButtons();
 		dragonsPerPage = 6;
 	}
-	
-	public void toggleBuySellButton(){
-		if(shop){
-			buySellButton.setAction(new Action(){
-				public void act(){
-					enterSell();
-				}
-			});
-		}else{
-			buySellButton.setAction(new Action(){
-				public void act(){
-					enterShop();
-				}
-			});
-		}
-	}
+
 	
 	private void addPostButtons() {
 		Polygon forward = new Polygon();
@@ -150,6 +153,11 @@ public class ShopScreen extends ClickableScreen {
 	    PolygonButton backBtn = new PolygonButton( 0, DragonLand.HEIGHT-110, 150, 100, back, new Action(){
 			@Override
 			public void act() {
+				if(!shop){
+					shop = true;
+					viewObjects.remove(this);
+					viewObjects.add(toggleButtonBuy);
+				}
 				DragonLand.game.setScreen(DragonLand.shopMain);
 			}});
 	    
@@ -195,7 +203,7 @@ public class ShopScreen extends ClickableScreen {
 							DragonLand.game.setScreen(DragonLand.tradingScreen);
 							((TradingScreen)DragonLand.tradingScreen).setMyDragon(disD);
 							setTrade(false);
-							addObject(buySellButton);
+							addObject(toggleButtonBuy);
 						}});
 				}
 				else if(shop){
@@ -235,6 +243,7 @@ public class ShopScreen extends ClickableScreen {
 				priceLabels.add(priceL);
 		}
 	}
+	
 	public void removeDisplayDragon(){
 		for(Object o: dragonsOnDisplay)
 			remove((Visible) o);
@@ -308,14 +317,12 @@ public class ShopScreen extends ClickableScreen {
 		shop = true;
 		currentPage = 1;
 		updateNumberOfPages(dragonsToBuy);
-		toggleBuySellButton();
 		drawDragons(dragonsToBuy);
 	}
 	
 	public void enterSell(){
 		shop = false; 
 		currentPage = 1;
-		toggleBuySellButton();
 		updateNumberOfPages(myDragons);
 		drawDragons(myDragons);
 			/*
@@ -328,7 +335,7 @@ public class ShopScreen extends ClickableScreen {
 		currentPage = 1; 
 		updateNumberOfPages(myDragons);
 		drawDragons(myDragons);
-		remove(buySellButton);
+		remove(toggleButtonBuy);
 			/*
 			 * Need an if statement to show text if no dragons have been bought
 			 */
@@ -374,7 +381,6 @@ public class ShopScreen extends ClickableScreen {
 			if(found != null){
 				myDragons.add(found);
 				dragonsToBuy.remove(found);
-				System.out.print("bought");
 			}
 		}
 		
@@ -390,23 +396,21 @@ public class ShopScreen extends ClickableScreen {
 	
 		public void sellDragon(Dragon d){
 			Dragon found = findInList(d, myDragons);
-			
-			//System.out.println("Dragon is null" + (found == null));
 			if(found != null){
-				System.out.println("sold");
 				myDragons.remove(found);
 				addDragonToPosition(found, dragonsToBuy);
-				//dragonsToBuy.add(found);
 			}
 		}
 		
 		public void addDragonToPosition(Dragon d, ArrayList<Dragon> array){
-			//insertion "sort"
+			boolean placed = false;
 			for(int i = 0; i < array.size(); i++){
-				if(array.get(i).getPrice() > d.getPrice()){
+				if(!placed && array.get(i).getPrice() > d.getPrice()){
 					array.add(i, d);
-					return;
+					placed = true;
 				}
+			}
+			if(!placed){
 				array.add(d);
 			}
 		}
@@ -422,5 +426,4 @@ public class ShopScreen extends ClickableScreen {
 			trade = b;
 		}
 		
-	
 }

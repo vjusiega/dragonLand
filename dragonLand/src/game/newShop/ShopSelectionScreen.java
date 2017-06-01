@@ -16,6 +16,7 @@ import guiPractice.components.Graphic;
 import guiPractice.components.PolygonButton;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
+import introScreens.Banner;
 import introScreens.Fog;
 import introScreens.WelcomeScreen;
 
@@ -36,9 +37,13 @@ public class ShopSelectionScreen extends ClickableScreen{
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
 		viewObjects.add(background);
 		
-		dragons = new ArrayList<Dragon>();
-		viewObjects.add(setUpDragons(1));
-		viewObjects.add(setUpDragons(3));
+		Banner b = new Banner(0, 50, 600, 171, "img/shopBanner.png");
+		b.setX((getWidth() / 2) - (b.getWidth() / 2)); 
+		viewObjects.add(b);
+		
+//		dragons = new ArrayList<Dragon>();
+//		viewObjects.add(setUpDragons(1));
+//		viewObjects.add(setUpDragons(3));
 		
 		Graphic post = new ClickableGraphic(0, getHeight()-150, 0.6,"img/backSign.png");
 		setUpFog(post);
@@ -107,7 +112,7 @@ public class ShopSelectionScreen extends ClickableScreen{
 		String imgSrc = "img/dragon" + drag + ".png";
 		int dragonHeight = getHeight()/8;
 		int dragonWidth = (int) (dragonHeight );
-		int yPos = (-1)*dragonHeight;
+		//int yPos = (-1)*dragonHeight;
 		Dragon d = new Dragon(0, 0, dragonWidth, dragonHeight, imgSrc, 15, 0.7);
 		dragons.add(d);
 		d.setDragonAnimation(d, imgSrc);
@@ -117,7 +122,7 @@ public class ShopSelectionScreen extends ClickableScreen{
 		if(drag == 3){
 			d.placeDragonOnXLine(getWidth(), 0.75);
 		}
-		d.setY(yPos);
+		d.setY(getHeight()/9);
 		d.setInitialY(getHeight()/9);
 		d.setDirection(4);
 		d.play();

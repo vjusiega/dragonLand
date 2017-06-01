@@ -51,10 +51,8 @@ public class Server{
 					System.out.println("I am starting and I am a server.");
 					waitForConnection(s);	
 					setupStreams(s);
-					//startTrading(s);
 					whileTrading(s);
 					waiting = false;
-					//whileTrading(s);
 				}catch(EOFException eofException){
 					s.displayConnectionMessage("\n Server ended the connection!");
 				}finally{
@@ -84,9 +82,10 @@ public class Server{
 	
 	private void whileTrading(TradingScreen s) throws IOException{
 		String message = s.getMyDragon().getImgSrc(); 
-		System.out.println("about to send");
+		System.out.println("about to send " + message);
 		sendDragon(message);
-		System.out.println(message);
+		
+		
 		//gets info 
 		String inputDrag = "";
 		boolean done = false;
