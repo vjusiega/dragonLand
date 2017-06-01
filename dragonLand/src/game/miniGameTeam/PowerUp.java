@@ -10,18 +10,41 @@ public class PowerUp extends GraphicMovingComponent {
 	private int dragonXPos;
 	
 	public PowerUp(int x, int y, int w, int h, GameScreen game) {
-		super(x, y, w, h, "");
+		super(x, y, w, h, "img/strawberry.png");
 		setVy(1);
 		this.game = game;
 		setVx(0);
 		touched = false; 
 		
 	}
-
+	
 	@Override
 	public void checkBehaviors() {
-		// TODO Auto-generated method stub
-
+		int border = DragonLand.game.getHeight() - 200;
+		if(GameVioletta.vGame.getPlaying()){
+			if(getY() >= border && !touched && GameVioletta.vGame.checkPowerUpContact(this)){
+				touched = true;
+				game.removePowerUp(this);
+				long time = System.currentTimeMillis();
+				long end = time + 15000;
+				while(System.currentTimeMillis() < end) {
+					//change the speed of dragon from (-10) to (-20)
+				}
+				//change the speed back to norma;
+			}
+		}			
+		else{
+			game.removePowerUp(this);
+		}
 	}
 
+	@Override
+	public int powerUpStartPos() {
+		return this.getX();
+	}
+
+	@Override
+	public int powerUpEndPos() {
+		return this.getX() + this.getWidth();
+	}
 }
