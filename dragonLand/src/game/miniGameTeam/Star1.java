@@ -43,7 +43,7 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 	
 	@Override
 	public void checkBehaviors() {
-		int border = DragonLand.game.getHeight() - 200;
+		int border = DragonLand.game.getHeight() - 195;
 		if(GameVioletta.vGame.getPlaying()){
 			if(getY() >= border && !touched && GameVioletta.vGame.checkStarContact(this)){
 				touched = true;
