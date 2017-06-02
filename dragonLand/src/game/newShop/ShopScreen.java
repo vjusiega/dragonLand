@@ -199,8 +199,9 @@ public class ShopScreen extends ClickableScreen {
 				if(trade){
 					d.getBackdrop().setAction(new Action(){
 						public void act(){
-							DragonLand.game.setScreen(DragonLand.tradingScreen);
 							((TradingScreen)DragonLand.tradingScreen).setMyDragon(disD);
+							//((TradingScreen)DragonLand.tradingScreen).enterTrade();
+							DragonLand.game.setScreen(DragonLand.tradingScreen);
 							setTrade(false);
 							addObject(toggleButtonBuy);
 						}});
