@@ -244,7 +244,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 			}
 			addStar();
 		}
-		HighScoreScreen.updateOnEnter();
+		HighScore.updateOnEnter();
 		DragonLand.game.setScreen(DragonLand.highscoreScreen);
 	}
 	

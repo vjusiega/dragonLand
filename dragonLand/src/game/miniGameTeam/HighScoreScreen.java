@@ -14,6 +14,7 @@ import game.DragonLand;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
+import guiPractice.components.Graphic;
 import guiPractice.components.Visible;
 import introScreens.Banner;
 
@@ -25,7 +26,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	
 	//fields for layout
 	private Button title;
-	private Background background;
+	private Graphic background;
 	private Button back;
 	private CurvedButton layerOne;
 	private Button layerTwo;
@@ -111,7 +112,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 		layerTwo = new Button(getWidth()-900, getHeight()-490, getWidth()-200, getHeight()-225, null, DragonLand.BRIGHT_PINK, null);
 		title = new Button((getWidth()/2)-125, getHeight()-575, getWidth()-750, getHeight()-575, "High Scores", DragonLand.DARKER_NUDE, null);
 		title.setSize(40);
-		background = new Background(0,0, getWidth(), getHeight());
+		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
 		coinsWon = new Button(getWidth()-655, getHeight()-170, getWidth()-700, getHeight()-580, "Coins Won: " + getCoins(GameScreen.getScore()), DragonLand.DARKER_NUDE, null);
 		coinsWon.setSize(30);
 		scores = new Button(getWidth()-705,getHeight()-388,getWidth()-600,getHeight()-440,null, DragonLand.DARKER_NUDE,null);
