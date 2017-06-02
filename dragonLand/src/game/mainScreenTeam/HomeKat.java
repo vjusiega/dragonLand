@@ -54,6 +54,7 @@ public class HomeKat implements DragonArrayInterface {
 	private String thelp6;
 	private static DragonFood food ;
 	private Button helpLayer;
+	private boolean show;
 	public HomeKat(ArrayList<Visible> viewObjects, int width,int height) {
 		//
 		this.viewObjects=viewObjects;
@@ -158,6 +159,7 @@ public class HomeKat implements DragonArrayInterface {
 	    PolygonButton help = new PolygonButton(DragonLand.WIDTH - 150, DragonLand.HEIGHT-120, 150, 100, helpBtn, new Action(){
 			@Override
 			public void act() {
+				
 				if(viewObjects.contains(helpLayer)){
 					
 					viewObjects.remove(help1);

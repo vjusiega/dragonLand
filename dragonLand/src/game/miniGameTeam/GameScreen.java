@@ -95,8 +95,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		PolygonButton backBtn = new PolygonButton( 0, DragonLand.HEIGHT-110, 150, 100, back, new Action(){
 			@Override
 			public void act() {
-				DragonLand.game.setScreen(DragonLand.homeScreen);
 				stopGame();
+				DragonLand.game.setScreen(DragonLand.highscoreScreen);
 			}});
 		addObject(backBtn);
 		
