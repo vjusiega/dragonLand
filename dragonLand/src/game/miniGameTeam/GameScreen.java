@@ -52,6 +52,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	private static int speedRight;
 	private int[] coords = new int[10];
 	private int n = 0;
+	private TextLabel scoreText;
 	
 	public GameScreen(int width, int height) {
 		super(width, height);
@@ -76,8 +77,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		scoreDisplay = new Graphic(DragonLand.WIDTH-200, 50, 220, 70, "img/StraightOneSign.png");
 		view.add(scoreDisplay);
 		
-		TextLabel scoreText = new TextLabel(DragonLand.WIDTH-150, 30, 100, 100, score + " Points");
-		scoreText.setColor(DragonLand.LIGHT_PINK);
+		scoreText = new TextLabel(DragonLand.WIDTH-175, 30, 200, 70, score + " Points");
+		scoreText.setColor(DragonLand.TEXT_PINK);
 		scoreText.setSize(30);
 		viewObjects.add(scoreText);
 	}
@@ -250,11 +251,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	public void fallingBerries() throws InterruptedException{
 		DragonLand.game.getViolettaGame().setPlaying(true);
 		while(DragonLand.game.getViolettaGame().getPlaying()){
-			try{
-				addPowerUp();
-			}catch (InterruptedException e){
-				e.printStackTrace();
-			}
+			addPowerUp();
 		}
 	}
 	
@@ -315,7 +312,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	 * Getter and setter for score
 	 */
 
-	public static void setScore(int x){
+	public void setScore(int x){
 		score = x;
 	}
 
@@ -323,8 +320,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		return score; 
 	}
 
-	public static void setScoreDisplay(){
-		//scoreDisplay.setText("Score: " + score);
+	public void setScoreDisplay(){
+		scoreText.setText("Score: " + score);
 	}
 	
 	public void removeDragonToScreen(Dragon d){

@@ -45,25 +45,23 @@ public class Server{
 	public void startRunning(TradingScreen s){
 		try{
 			server = new ServerSocket(6789, 100); // first number for testing purposes
-			boolean waiting = true;
-			while(waiting){
-				try{
-					System.out.println("I am starting and I am a server.");
-					waitForConnection(s);	
-					setupStreams(s);
-					whileTrading(s);
-					waiting = false;
-				}catch(EOFException eofException){
-					s.displayConnectionMessage("\n Server ended the connection!");
-				}finally{
-					closeCrap(s);
-				}
+			try{
+				System.out.println("I am starting and I am a server.");
+				waitForConnection(s);	
+				setupStreams(s);
+				whileTrading(s);
+				s.trade();
+			}catch(EOFException eofException){
+				s.displayConnectionMessage("\n Server ended the connection!");
+			}finally{
+				closeCrap(s);
 			}
+			
 		}catch(IOException ioException){
 			ioException.printStackTrace();
 		}
 	}
-
+	
 
 	private void waitForConnection(TradingScreen s) throws IOException{
 		System.out.println("I am in method");
@@ -81,10 +79,9 @@ public class Server{
 	}
 	
 	private void whileTrading(TradingScreen s) throws IOException{
-		String message = s.getMyDragon().getImgSrc(); 
+		String message = s.getMyDragon().getName(); 
 		System.out.println("about to send " + message);
 		sendDragon(message);
-		
 		
 		//gets info 
 		String inputDrag = "";

@@ -154,10 +154,12 @@ public class TradingScreen extends ClickableScreen implements Runnable{
 	}
 	
 	public void trade(){
-		System.out.println("This is happening");
-		((ShopScreen)DragonLand.newShopScreen).sellDragon(myDragon);
+		System.out.println("This is happening " + theirDragon);
 		Dragon temp = new Dragon(theirDragon);
-		((ShopScreen)DragonLand.newShopScreen).buyDragon(temp);
+		System.out.println(temp.getName());
+		((ShopScreen)DragonLand.newShopScreen).trade(myDragon, temp);
+//		Dragon temp = new Dragon(theirDragon);
+//		((ShopScreen)DragonLand.newShopScreen).buyDragon(temp);
 	}
 }
 

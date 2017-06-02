@@ -66,6 +66,7 @@ public class DragonLand extends GUIApplication {
 	public static Color DARKER_NUDE;
 	private GameVioletta vGame;
 	public WelcomeScreen welcomeScreen;
+	public static Color TEXT_PINK;
 
 	public static Screen newShopScreen;
 	public static Screen shopScreen;
@@ -117,6 +118,7 @@ public class DragonLand extends GUIApplication {
 		LIGHT_PINK = new Color(248,186,182);
 		LIGHT_NUDE = new Color(244,215,183);
 		DARKER_NUDE = new Color(230,195,147);
+		TEXT_PINK = new Color(255,218,238);
 	}
 
 	/**

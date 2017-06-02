@@ -80,7 +80,7 @@ public class Client{
 				}while(!done);
 		
 		//sends info
-		String message = s.getMyDragon().getImgSrc(); 
+		String message = s.getMyDragon().getName(); 
 		sendDragon(message);
 	
 	}

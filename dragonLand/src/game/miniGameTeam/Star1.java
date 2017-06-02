@@ -6,6 +6,7 @@ package game.miniGameTeam;
 import java.util.Random;
 
 import game.DragonLand;
+import game.dragonTrading.TradingScreen;
 import guiPractice.components.GraphicMovingComponent;
 
 
@@ -49,8 +50,10 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 				game.removeStar(this);
 				setRunning(false);
 				int score = GameScreen.getScore() + (GameVioletta.vGame.getDragonArray()).size();
-				GameScreen.setScore(score);
-				GameScreen.setScoreDisplay();
+				
+				((GameScreen)DragonLand.miniGameScreen).setScore(score);
+				((GameScreen)DragonLand.miniGameScreen).setScoreDisplay();
+				
 				GameScreen.tGame.setPowerUp((GameScreen.tGame.getPowerUp() + 1));
 				if(GameScreen.tGame.getPowerUp() % 10 == 0){
 					GameScreen.tGame.addDragonToScreen(GameVioletta.vGame.addDragon("img/dragon1.png"));

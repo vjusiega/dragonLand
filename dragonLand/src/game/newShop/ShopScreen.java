@@ -366,7 +366,7 @@ public class ShopScreen extends ClickableScreen {
 	 */
 		public Dragon findInList(Dragon dFind, ArrayList<Dragon> array){
 			for(Dragon d: array){
-				if(d.getName() == dFind.getName())
+				if(d.getName().equals(dFind.getName()))
 					return d;
 			}
 			return null; 
@@ -438,6 +438,17 @@ public class ShopScreen extends ClickableScreen {
 		
 		public void setTrade(boolean b){
 			trade = b;
+		}
+		
+		public void trade(Dragon myDragon, Dragon theirDragon){
+			//puts myDragon back in the shop
+				Dragon mine = findInList(myDragon, myDragons);
+				myDragons.remove(mine);
+				addDragonToPosition(mine, dragonsToBuy);
+			//adds dragon
+				Dragon theirs = findInList(theirDragon, dragonsToBuy);	
+				dragonsToBuy.remove(theirs);
+				myDragons.add(theirs);
 		}
 		
 }
