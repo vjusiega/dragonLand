@@ -50,7 +50,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	private int powerUp = 0;
 	private static int speedLeft;
 	private static int speedRight;
-	private int[] coords = new int[10];
 	private int n = 0;
 	private TextLabel scoreText;
 	
@@ -125,14 +124,12 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		score = 0;
 		time = 2500;
 		setScoreDisplay();
-		//starArray.clear();
 		addObject(DragonLand.game.getViolettaGame().addDragon("img/dragon1.png"));
 		Thread start = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				try {
 					fallingStars();
-					fallingBerries();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -151,16 +148,18 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		int starH = 65;
 		int starW = 65;
 		Star1 starImage = new Star1(randomX(), yPos, starW, starH, this);
-		starImage.play();
 		count++;
-		if (count >= 5){
-			Thread.sleep(1000);
+		n++;
+		if (count == 2){
+			Thread.sleep(2000);
 			starArray.add(starImage);
 			addObject(starImage);
+			starImage.play();
 			count = 0;
 		}else{
 			starArray.add(starImage);
 			addObject(starImage);
+			starImage.play();
 		}	
 	}
 	
@@ -174,20 +173,6 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		int max = DragonLand.WIDTH-225;
 		int min = 125;
 		int xPos = (int) (Math.random()*(max - min) + min);
-// 		for(int i = n; i < coords.length; i++){
-// 			coords[i] = xPos;
-// 			n++;
-// 			while(true){
-// 				if((i > 0) && (Math.abs(coords[i] - coords[i+1]) < 10)){
-// 					xPos = (int) (Math.random()*(max - min) + min);
-// 					coords[i] = xPos;
-// 				}
-// 			}
-// 			if(coords.length == 10){
-// 				coords = [];
-// 				n = 0;
-// 			}
-// 		}
 		return xPos;
 	}
 	
@@ -216,15 +201,12 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		int berryH = 60;
 		int berryW = 60;
 		PowerUp powerUpImage = new PowerUp(randomX(), yPos, berryH, berryW, this);
-		powerUpImage.play();
 		
-//		int max = 10;
-//		int min = 1;
-//		int randomNum = (int) (Math.random()*(max - min) + min);
-		
-		if (count % 20 == 0){
+		if (n % 20 == 0){
 			powerUpArray.add(powerUpImage);
 			addObject(powerUpImage);
+			powerUpImage.play();
+			n = 0;
 		}	
 	}
 	
@@ -243,21 +225,14 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 				e.printStackTrace();
 			}
 			addStar();
+			addPowerUp();
 		}
 		HighScoreScreen.updateOnEnter();
 		DragonLand.game.setScreen(DragonLand.highscoreScreen);
 	}
-	
-	public void fallingBerries() throws InterruptedException{
-		DragonLand.game.getViolettaGame().setPlaying(true);
-		while(DragonLand.game.getViolettaGame().getPlaying()){
-			addPowerUp();
-		}
-	}
-	
+
 	public void setUpFog(){
 		Fog fog; 
-
 		for(int i = -7; i < 7; i++){
 			fog = new Fog((i*getWidth() / 10), 200, 500, 300, "img/introFog.png", 100);
 			viewObjects.add(fog);
