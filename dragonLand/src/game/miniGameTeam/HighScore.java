@@ -56,7 +56,7 @@ public class HighScore extends ClickableScreen implements MouseListener {
 				totalCoins.setText("Total Coins: " + (DragonLand.coins+getCoins(GameScreen.getScore())));
 				DragonLand.coins+=getCoins(GameScreen.getScore());
 				yourScore.setText("Your Score: " + roundScore);
-				coinsWon.setText("Coins Won: " + getCoins(GameScreen.getScore()));
+				//coinsWon.setText("Coins Won: " + getCoins(GameScreen.getScore()));
 				sortScores(highScores);
 				for(int i = 0; i < 3; i++)
 				{
