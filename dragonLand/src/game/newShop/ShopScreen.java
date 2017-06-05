@@ -47,6 +47,7 @@ public class ShopScreen extends ClickableScreen {
 	private ClickableGraphic toggleButtonBuy;
 	private ClickableGraphic toggleButtonSell;
 	protected boolean sell;
+	private ArrayList<Graphic> actionLabels = new ArrayList<Graphic>();
 	
 	public ShopScreen(int width, int height) {
 		super(width, height);
@@ -178,9 +179,11 @@ public class ShopScreen extends ClickableScreen {
 		for(int i = 0; i < nameLabels.size(); i++){
 			remove(nameLabels.get(i));
 			remove(priceLabels.get(i));
+			remove(actionLabels.get(i));
 		}
 		nameLabels.clear();
 		priceLabels.clear();
+		actionLabels.clear();
 		
 		for(int i = startDragon; (i < startDragon + 6) && (i < array.size()); i++){
 			Dragon temp = array.get(i);
@@ -200,7 +203,6 @@ public class ShopScreen extends ClickableScreen {
 					d.getBackdrop().setAction(new Action(){
 						public void act(){
 							((TradingScreen)DragonLand.tradingScreen).setMyDragon(disD);
-							//((TradingScreen)DragonLand.tradingScreen).enterTrade();
 							DragonLand.game.setScreen(DragonLand.tradingScreen);
 							setTrade(false);
 							addObject(toggleButtonBuy);
@@ -235,12 +237,25 @@ public class ShopScreen extends ClickableScreen {
 				int height = (d.getBackdrop()).getHeight();
 				String name = disD.getName();
 				int price = disD.getPrice();
-				TextLabel nameL = new TextLabel( xcoord+10, ycoord , width , 50, "  Name: "+ name );
-				TextLabel priceL = new TextLabel( xcoord+10, ycoord+25 , width , 50, "  Price: $"+ price );
+				TextLabel nameL = new TextLabel( xcoord + 10, ycoord , width , 50, "  Name: "+ name );
+				TextLabel priceL = new TextLabel( xcoord + 10, ycoord + 25 , width , 50, "  Price: $"+ price );
+				String labelSrc = new String("");
+				if(shop)
+					labelSrc = "img/buyButton.png";
+				else if(trade)
+					labelSrc = "img/buyButton.png";
+				else if(!shop)
+					labelSrc = "img/sellButton.png";
+					
+				
+				Graphic buySellTrade = new Graphic(xcoord + 40, ycoord +  100, 75, 40, labelSrc);
 				priceL.setSize(16);
 				nameL.setSize(16);
 				nameLabels.add(nameL);
 				priceLabels.add(priceL);
+				actionLabels.add(buySellTrade);
+				
+				
 		}
 	}
 	
@@ -270,11 +285,14 @@ public class ShopScreen extends ClickableScreen {
 				remove((Visible)dragonsOnDisplay.get(i+1));
 				addObject(nameLabels.get(i/2));
 				addObject(priceLabels.get(i/2));
+				addObject(actionLabels.get(i/2));
+				
 			}
 			else if(!viewObjects.contains(dragonsOnDisplay.get(i+1)) && !((ClickableGraphic) dragonsOnDisplay.get(i)).isHovered(e.getX(), e.getY())){
 				addObject((Visible)dragonsOnDisplay.get(i+1));
 				remove(nameLabels.get(i/2));
 				remove(priceLabels.get(i/2));
+				remove(actionLabels.get(i/2));
 			}
 		}
 	}
