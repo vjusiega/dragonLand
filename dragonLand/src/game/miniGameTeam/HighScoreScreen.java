@@ -98,7 +98,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 			}
 
 		});
-		score1 = new Button(440,265,125,50, "1) --",DragonLand.LIGHT_NUDE,null);
+		score1 = new Button(440,265,125,50, "1) -",DragonLand.LIGHT_NUDE,null);
 		score1.setSize(30);
 		score2 = new Button(440,327,125,50,"2) --",DragonLand.LIGHT_NUDE,null);
 		score2.setSize(30);
