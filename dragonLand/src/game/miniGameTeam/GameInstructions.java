@@ -32,24 +32,19 @@ public class GameInstructions extends ClickableScreen {
 
 	private Graphic background;
 	private static TextLabel title;
-	private static TextLabel instructions;
-	private String[] instructionText;
+	private static TextLabel text1;
+	private static TextLabel text2;
+	private static TextLabel text3;
+	private static TextLabel text4;
+	private static TextLabel text5;
+	private static TextLabel text6;
 	private ArrayList<Fog> fogs;
 	
 	private int sequenceNumber;
 	
 	private Button next;
 	private Button playButton;
-	//private Button playGame;
 	private Button exit;
-	
-//	private NoBorderButton title;
-	private NoBorderButton text1;
-	private NoBorderButton text2;
-	private NoBorderButton text3;
-	private NoBorderButton text4;
-	private NoBorderButton text5;
-	private NoBorderButton text6;
 	
 	private Button layer;
 		
@@ -66,23 +61,54 @@ public class GameInstructions extends ClickableScreen {
 		Graphic back = new Graphic((int) (DragonLand.WIDTH*0.1), (int) (DragonLand.HEIGHT*0.1), (int) (DragonLand.WIDTH*0.8),  (int) (DragonLand.HEIGHT*0.77), "img/opacityPink.png");
 		viewObjects.add(back);
 		
-		
 		title = new TextLabel((int) (DragonLand.WIDTH/2 - 100), (int) (DragonLand.HEIGHT*0.15), (int) (DragonLand.WIDTH*0.8),  50, "hello");
-		instructions = new TextLabel((int) (DragonLand.WIDTH*0.15), (int) (DragonLand.HEIGHT*0.1), (int) (DragonLand.WIDTH*0.8), 150, "lalalla");
 		title.setText("Star Catch");
 		title.setColor(Color.white);
 		title.setSize(40);
-		instructions.setText("Welcome to the feeding ground!"
-				+ "Here your hungry dragon will eat the falling stars"
-				+ "Stars are the best source of nutrients for dragons"
-				+ "The more stars you earn the more coins you get"
-				+ "Don't let a star fall or you lose a life"
-				+ "Have fun!");
-		
-		instructions.setColor(Color.white);
-		instructions.setSize(25);
 		viewObjects.add(title);
-		viewObjects.add(instructions);
+		
+		text1 = new TextLabel((int) (DragonLand.WIDTH/2 - 50), (int) (DragonLand.HEIGHT*0.1), 
+				      (int) (DragonLand.WIDTH*0.8), 150, "");
+		text1.setText("Welcome to the feeding ground!");
+		text1.setColor(Color.white);
+		text1.setSize(25);		
+		viewObjects.add(text1);
+		
+		text2 = new TextLabel((int) (DragonLand.WIDTH/2 - 50), (int) (DragonLand.HEIGHT*0.1), 
+				      (int) (DragonLand.WIDTH*0.8), 150, "");
+		text2.setText("Here your hungry dragon will eat the falling stars");
+		text2.setColor(Color.white);
+		text2.setSize(25);		
+		viewObjects.add(text2);
+		
+		text3 = new TextLabel((int) (DragonLand.WIDTH/2 - 50), (int) (DragonLand.HEIGHT*0.1), 
+				      (int) (DragonLand.WIDTH*0.8), 150, "");
+		text3.setText("Stars are the best source of nutrients for dragons");
+		text3.setColor(Color.white);
+		text3.setSize(25);		
+		viewObjects.add(text3);
+		
+		text4 = new TextLabel((int) (DragonLand.WIDTH/2 - 50), (int) (DragonLand.HEIGHT*0.1), 
+				      (int) (DragonLand.WIDTH*0.8), 150, "");
+		text4.setText("The more stars you earn the more coins you get");
+		text4.setColor(Color.white);
+		text4.setSize(25);	
+		viewObjects.add(text4);
+		
+		text5 = new TextLabel((int) (DragonLand.WIDTH/2 - 50), (int) (DragonLand.HEIGHT*0.1), 
+				      (int) (DragonLand.WIDTH*0.8), 150, "");
+		text5.setText("Don't let a star fall or you lose a life");
+		text5.setColor(Color.white);
+		text5.setSize(25);	
+		viewObjects.add(text5);
+		
+		text6 = new TextLabel((int) (DragonLand.WIDTH/2 - 100), (int) (DragonLand.HEIGHT*0.1), 
+				      (int) (DragonLand.WIDTH*0.8), 150, "");
+		text6.setText("Have fun!");
+		text6.setColor(Color.white);
+		text6.setSize(25);
+		viewObjects.add(text6);
+		
 		ClickableGraphic playPost = new ClickableGraphic(getWidth()-250, getHeight()-200, 1.0,"img/continueSign.png");
 		playPost.setAction(new Action(){
 			public void act(){
@@ -94,16 +120,6 @@ public class GameInstructions extends ClickableScreen {
 	}
 	
 	public void updateOnEnter() {
-//		title.setText("Star Catch");
-//		title.setSize(40);
-//		title.setColor(Color.white);
-//		instructions.setText("Welcome to the feeding ground! Here your hungry dragon will eat the falling stars \n"
-//				+ "*Stars are the best source of nutrients for dragons* \n"
-//				+ "The more stars you earn the more coins you get \n"
-//				+ "Don't let a star fall or you lose a life \n"
-//				+ "Have fun!");
-//		instructions.setSize(25);
-//		instructions.setColor(Color.white);
 	}
 
 	public void setUpFog(){
