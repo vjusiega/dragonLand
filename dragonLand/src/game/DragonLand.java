@@ -5,15 +5,11 @@ package game;
 
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.io.IOException;
-import java.io.FileReader;
-import java.io.BufferedReader;
 import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import dragonComponents.ReadFile;
 import game.EggIncuabtor.IncubatorScreen;
 import game.dragonTrading.TradingScreen;
@@ -29,8 +25,6 @@ import game.newShop.ShopSelectionScreen;
 
 import guiPractice.GUIApplication;
 import guiPractice.Screen;
-import guiPractice.components.AnimatedComponent;
-import introScreens.NameScreen;
 import introScreens.WelcomeScreen;
 
 
@@ -86,8 +80,14 @@ public class DragonLand extends GUIApplication {
 //	}
 	public DragonLand(String[] strings) {
 		if(strings != null){
-			for(int i=0; i<strings.length;i++){
-				System.out.println(strings[i]);
+			ArrayList<Dragon> myDragons = new ArrayList<Dragon>();
+			ArrayList<Dragon> dragons = new ArrayList<Dragon>();
+			ArrayList<Dragon> dragonsToBuy = new ArrayList<Dragon>();
+			int x=0;
+			
+			for(int i=0; i<strings.length; i++){
+				String[] str = strings[i].split("''");
+				
 			}
 		}
 	}
@@ -158,13 +158,13 @@ public class DragonLand extends GUIApplication {
 		}
 	}
 	
-	public static void jFileChoose(){
-		JButton open = new JButton();
-		chooser=new JFileChooser("Pick a saved file");
-		chooser.setDialogTitle("Hello World");
-		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-//		System.out.print(chooser.getSelectedFile().getPath());
-	}
+//	public static void jFileChoose(){
+//		JButton open = new JButton();
+//		chooser=new JFileChooser("Pick a saved file");
+//		chooser.setDialogTitle("Hello World");
+//		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+////		System.out.print(chooser.getSelectedFile().getPath());
+//	}
 	
 	//public coin getter + setter
 		public void setCoins(int x){
