@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import game.EggIncuabtor.IncubatorScreen;
+import game.dragonTrading.NewTradingScreen;
 import game.dragonTrading.TradingScreen;
 import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.HomeScreen;
@@ -71,6 +72,7 @@ public class DragonLand extends GUIApplication {
 	public static Screen newShopScreen;
 	public static Screen shopScreen;
 	public static Screen nameScreen;
+	public static Screen newTradingScreen;
 
 	public static TradingScreen tradingScreen;
 	public static Screen incubatorScreen;
@@ -109,6 +111,7 @@ public class DragonLand extends GUIApplication {
 		tradingScreen = new TradingScreen(WIDTH, HEIGHT);
 		vGame = new GameVioletta();
 		incubatorScreen = new IncubatorScreen(WIDTH, HEIGHT);
+		newTradingScreen = new NewTradingScreen(WIDTH, HEIGHT);
 		setScreen(welcomeScreen);
 
 	}

@@ -69,10 +69,16 @@ public class WelcomeScreen extends ClickableScreen{
 			@Override
 			public void act() {
 				stopThreads();
+				clearObjects();
 				DragonLand.game.setScreen(DragonLand.homeScreen);
 			}
 		});
 	    viewObjects.add(nextBtn);
+	}
+	
+	public void clearObjects(){
+		dragons.clear();
+		fogs.clear();
 	}
 
 	public void setUpFog(Graphic post){
