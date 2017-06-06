@@ -1,7 +1,6 @@
 package game.EggIncuabtor;
 
-import javax.swing.Action;
-
+import guiPractice.components.Action;
 //import guiPractice.components.Action;
 import game.DragonLand;
 import game.mainScreenTeam.Dragon;
@@ -17,7 +16,7 @@ public class BuyEgg {
 
 	public BuyEgg(double xLine, double yLine, int screenW, int screenH, Egg e){
 		background = new ClickableGraphic(screenW, screenH, 1.0, "img/whiteBox.png", xLine, yLine);
-		//setUpButton();
+		setUpButton();
 		this.e = e;
 		e.placeOnLines(xLine, yLine, screenW, screenH);
 		
@@ -31,13 +30,12 @@ public class BuyEgg {
 		return e;
 	}
 
-//	public void setUpButton(){
-//		background.setAction(new Action(){	
-//			public void act(){
-//				((ShopScreen)DragonLand.newShopScreen).buyDragon(drag);
-//				((ShopScreen)DragonLand.newShopScreen).drawDragons();
-//			}
-//		});
-//	}
+	public void setUpButton(){
+		background.setAction(new Action(){	
+			public void act(){
+					((IncubatorScreen) DragonLand.incubatorScreen).addEggToIncubator(e);
+				}
+		});
+	}
 	
 }

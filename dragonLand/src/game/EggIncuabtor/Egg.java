@@ -1,24 +1,38 @@
 package game.EggIncuabtor;
 
+import java.awt.Graphics2D;
+
 import guiPractice.components.GraphicMovingComponent;
 
 public class Egg extends GraphicMovingComponent {
 
 	private int price;
-	private String name;
+	private String category;
 	private int incubationTime;
 	private boolean incubating;
 	private String imgSrc;
+	private long timeEnteredIncubation;
 	
-	public Egg(int x, int y, int w, int h, String imageLocation, String name, int price, int time) {
+	public Egg(int x, int y, int w, int h, String imageLocation, String category, int price, int time) {
 		super(x, y, w, h, imageLocation);
-		this.name = name;
+		this.category = category;
 		this.incubating = false;
 		this.price = price;
 		this.incubationTime = time; 
-		this.imgSrc = imageLocation;
+		this.imgSrc = imageLocation;	
 	}
+
 	
+	public long getTimeEnteredIncubation() {
+		return timeEnteredIncubation;
+	}
+
+
+	public void setTimeEnteredIncubation(long timeEnteredIncubation) {
+		this.timeEnteredIncubation = timeEnteredIncubation;
+	}
+
+
 	public int getTime(){
 		return incubationTime;
 	}
@@ -35,12 +49,12 @@ public class Egg extends GraphicMovingComponent {
 		this.price = price;
 	}
 
-	public String getName() {
-		return name;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public int getIncubationTime() {
@@ -59,10 +73,28 @@ public class Egg extends GraphicMovingComponent {
 		this.incubating = incubating;
 	}
 
+	private boolean shiftRight = true;
+	private boolean shake = true;
+	private int countShake =(int) Math.random()*10;
+	//finetransform
 	@Override
 	public void checkBehaviors() {
-		// TODO Auto-generated method stub
-
+		if(!shake){
+		}
+		else{
+			if(shiftRight){
+				setX(getX()+5);
+				shiftRight = false;
+			}
+			else{
+				setX(getX()-5);
+				shiftRight = true;
+			}
+		}
+		if(countShake%20 == 0)
+			shake = !shake;
+		
+		countShake++;
 	}
 	
 	public void placeOnLines(double xLine, double yLine, int sWidth, int sHeight){
