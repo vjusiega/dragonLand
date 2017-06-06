@@ -50,7 +50,7 @@ public class HighScore extends ClickableScreen implements MouseListener {
 	}
 
 	public static void updateOnEnter() {
-<<<<<<< HEAD
+
 		//updates the score and coin values every time the high score screen is shown
 				
 		//setRoundScore(GameScreen.getScore());
@@ -72,7 +72,7 @@ public class HighScore extends ClickableScreen implements MouseListener {
 					score3.setText("3) " + highScores.get(2));
 			}
 		}
-=======
+
 		//updates the score and coin values everytime the highscore screen is shown
 				setRoundScore(GameScreen.getScore());
 				highScores.add(roundScore);
@@ -93,7 +93,7 @@ public class HighScore extends ClickableScreen implements MouseListener {
 							score3.setText("3) " + highScores.get(2));
 					}
 				}
->>>>>>> branch 'demo2.0' of https://github.com/katsemenova/dragonLand.git
+
 	}
 
 	private static void sortScores() {

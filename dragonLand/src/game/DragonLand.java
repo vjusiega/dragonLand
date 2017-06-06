@@ -6,10 +6,13 @@ package game;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.File;
 import java.util.ArrayList;
 
 
@@ -30,6 +33,7 @@ import game.newShop.ShopSelectionScreen;
 import guiPractice.GUIApplication;
 import guiPractice.Screen;
 import guiPractice.components.AnimatedComponent;
+import guiPractice.components.Component;
 import introScreens.NameScreen;
 import introScreens.WelcomeScreen;
 
@@ -67,7 +71,7 @@ public class DragonLand extends GUIApplication {
 	private GameVioletta vGame;
 	public WelcomeScreen welcomeScreen;
 	public static Color TEXT_PINK;
-
+	public static float fontSize;
 	public static Screen newShopScreen;
 	public static Screen shopScreen;
 	public static Screen nameScreen;
@@ -77,6 +81,7 @@ public class DragonLand extends GUIApplication {
 
 
 	public DragonLand(Dragon[] savedDragons) {
+
 		if(savedDragons != null){
 			
 		}else{
@@ -86,15 +91,29 @@ public class DragonLand extends GUIApplication {
 	
 	public DragonLand() {
 		//Sound.AMBIANCE.loop();
-				//
+
+
+		
 	}
 	/* (non-Javadoc)
 	 * @see guiPractice.GUIApplication#initScreen()
 	 */
 	@Override
 	protected void initScreen() {
+		
 		initColors();
-
+		try {
+			File fontFile = new File("fonts/RockSalt.ttf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+			Font baseFont=font.deriveFont(16f);
+			Component.setBaseFont(baseFont);
+		} catch (FontFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		miniGameScreen = new GameScreen(WIDTH, HEIGHT);
 		shopMain = new ShopSelectionScreen(WIDTH, HEIGHT);
@@ -150,4 +169,7 @@ public class DragonLand extends GUIApplication {
 			return vGame;
 		}
 
+		public void setFontSize(int fontSize){
+			this.fontSize= fontSize;
+		}
 }

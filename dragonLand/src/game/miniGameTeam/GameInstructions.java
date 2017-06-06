@@ -2,10 +2,8 @@ package game.miniGameTeam;
 
 import java.awt.Color;
 
-
 /**
- * @author Violetta Jusiega
-
+ * @author Violetta Jusiega and Tamanna Hussain
  *
  */
 
@@ -18,6 +16,7 @@ import guiPractice.components.Action;
 import guiPractice.components.Button;
 import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
+import guiPractice.components.TextArea;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
 import introScreens.Fog;
@@ -30,6 +29,7 @@ public class GameInstructions extends ClickableScreen {
 		super(width, height);
 	}
 
+	private static TextArea instructions;
 	private Graphic background;
 	private static TextLabel title;
 	private static TextLabel text1;
@@ -58,51 +58,64 @@ public class GameInstructions extends ClickableScreen {
 		viewObjects.add(background);
 		setUpFog();
 		
-		Graphic back = new Graphic((int) (DragonLand.WIDTH*0.1), (int) (DragonLand.HEIGHT*0.1), (int) (DragonLand.WIDTH*0.8),  (int) (DragonLand.HEIGHT*0.77), "img/opacityPink.png");
+		Graphic back = new Graphic((int) (DragonLand.WIDTH*0.1), (int) (DragonLand.HEIGHT*0.1), (int) (DragonLand.WIDTH*0.8),  (int) (DragonLand.HEIGHT*0.65), "img/opacityPink.png");
 		viewObjects.add(back);
 		
-		title = new TextLabel((int) (DragonLand.WIDTH/2 - 100), (int) (DragonLand.HEIGHT*0.15), (int) (DragonLand.WIDTH*0.8),  50, "hello");
+		title = new TextLabel((int) (DragonLand.WIDTH/2 - 125), (int) (DragonLand.HEIGHT*0.15 + 15), (int) (DragonLand.WIDTH*0.8),  50, "hello");
 		title.setText("Star Catch");
 		title.setColor(Color.white);
-		title.setSize(40);
+		title.setSize(40);	
 		viewObjects.add(title);
+		/*
+		instructions = new TextArea((int) (DragonLand.WIDTH/2 - 290), (int) (DragonLand.HEIGHT*0.1 + 100), 
+				      (int) (DragonLand.WIDTH*0.6), 260, "");
+		instructions.setText("Welcome to the feeding ground! "
+				+ "Here your hungry dragon will eat the falling stars. "
+				+ "Stars are the best source of nutrients for dragons. "
+				+ "The more stars you earn the more coins you get. "
+				+ "Don't let a star fall or you lose a life! "
+				+ "Have fun!");
+		instructions.setColor(Color.white);
+		instructions.setSize(16);		
+		viewObjects.add(instructions);
+		*/
 		
-		text1 = new TextLabel((int) (DragonLand.WIDTH/2 - 50), (int) (DragonLand.HEIGHT*0.1), 
+		text1 = new TextLabel((int) (DragonLand.WIDTH/2 - 180), (int) (DragonLand.HEIGHT*0.1 - 15), 
 				      (int) (DragonLand.WIDTH*0.8), 150, "");
 		text1.setText("Welcome to the feeding ground!");
 		text1.setColor(Color.white);
-		text1.setSize(25);		
+		text1.setSize(16);		
 		viewObjects.add(text1);
 		
-		text2 = new TextLabel((int) (DragonLand.WIDTH/2 - 50), (int) (DragonLand.HEIGHT*0.1), 
+		text2 = new TextLabel((int) (DragonLand.WIDTH/2 - 295), (int) (DragonLand.HEIGHT*0.1 + 30), 
 				      (int) (DragonLand.WIDTH*0.8), 150, "");
-		text2.setText("Here your hungry dragon will eat the falling stars");
+		text2.setText("Here your hungry dragon will eat the falling stars.");
 		text2.setColor(Color.white);
-		text2.setSize(25);		
+		text2.setSize(16);		
 		viewObjects.add(text2);
 		
-		text3 = new TextLabel((int) (DragonLand.WIDTH/2 - 50), (int) (DragonLand.HEIGHT*0.1), 
+		text3 = new TextLabel((int) (DragonLand.WIDTH/2 - 300), (int) (DragonLand.HEIGHT*0.1 + 75), 
 				      (int) (DragonLand.WIDTH*0.8), 150, "");
-		text3.setText("Stars are the best source of nutrients for dragons");
+		text3.setText("Stars are the best source of nutrients for dragons.");
 		text3.setColor(Color.white);
-		text3.setSize(25);		
+		text3.setSize(16);		
 		viewObjects.add(text3);
 		
-		text4 = new TextLabel((int) (DragonLand.WIDTH/2 - 50), (int) (DragonLand.HEIGHT*0.1), 
+		text4 = new TextLabel((int) (DragonLand.WIDTH/2 - 285), (int) (DragonLand.HEIGHT*0.1 + 115), 
 				      (int) (DragonLand.WIDTH*0.8), 150, "");
-		text4.setText("The more stars you earn the more coins you get");
+		text4.setText("The more stars you earn the more coins you get.");
 		text4.setColor(Color.white);
-		text4.setSize(25);	
+		text4.setSize(16);	
 		viewObjects.add(text4);
 		
-		text5 = new TextLabel((int) (DragonLand.WIDTH/2 - 50), (int) (DragonLand.HEIGHT*0.1), 
+		text5 = new TextLabel((int) (DragonLand.WIDTH/2 - 225), (int) (DragonLand.HEIGHT*0.1 + 155), 
 				      (int) (DragonLand.WIDTH*0.8), 150, "");
-		text5.setText("Don't let a star fall or you lose a life");
+		text5.setText("Don't let a star fall or you lose a life!");
 		text5.setColor(Color.white);
-		text5.setSize(25);	
+		text5.setSize(16);	
 		viewObjects.add(text5);
 		
-		text6 = new TextLabel((int) (DragonLand.WIDTH/2 - 100), (int) (DragonLand.HEIGHT*0.1), 
+		text6 = new TextLabel((int) (DragonLand.WIDTH/2 - 50), (int) (DragonLand.HEIGHT*0.1 + 195), 
 				      (int) (DragonLand.WIDTH*0.8), 150, "");
 		text6.setText("Have fun!");
 		text6.setColor(Color.white);
