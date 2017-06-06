@@ -22,10 +22,12 @@ public class Fog extends GraphicMovingComponent {
 
 	@Override
 	public void checkBehaviors() {
-		if(getX() > 1000){
-			setX(-1*this.getWidth());
-			setY(generateYPos());
-			setVx(Math.random());
+		if(running){
+			if(getX() > 1000){
+				setX(-1*this.getWidth());
+				setY(generateYPos());
+				setVx(Math.random());
+			}
 		}
 	}
 	
