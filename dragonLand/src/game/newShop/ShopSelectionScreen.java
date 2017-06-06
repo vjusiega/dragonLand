@@ -108,28 +108,6 @@ public class ShopSelectionScreen extends ClickableScreen{
 		}
 	}
 	
-	public Dragon setUpDragons(int drag){
-		String imgSrc = "img/dragon" + drag + ".png";
-		int dragonHeight = getHeight()/8;
-		int dragonWidth = (int) (dragonHeight );
-		//int yPos = (-1)*dragonHeight;
-		Dragon d = new Dragon(0, 0, dragonWidth, dragonHeight, imgSrc, 15, 0.7);
-		dragons.add(d);
-		d.setDragonAnimation(d, imgSrc);
-		if(drag == 1){
-			d.placeDragonOnXLine(getWidth(), 0.25);
-		}
-		if(drag == 3){
-			d.placeDragonOnXLine(getWidth(), 0.75);
-		}
-		d.setY(getHeight()/9);
-		d.setInitialY(getHeight()/9);
-		d.setDirection(4);
-		d.play();
-		
-		return d;
-	}
-	
 	public int getDragonY(){
 		return getHeight()/4;
 	}
@@ -150,7 +128,7 @@ public class ShopSelectionScreen extends ClickableScreen{
 		tradeDrag2.setDirection(1);
 		viewObjects.add(tradeDrag2);
 		
-		Dragon tradeDrag1 = new Dragon(0,0, (int) (tradeBox.getWidth() *0.6), (int) (tradeBox.getHeight() * 0.55), "img/dragon6.png");
+		Dragon tradeDrag1 = new Dragon(0,0, (int) (tradeBox.getWidth() *0.6), (int) (tradeBox.getHeight() * 0.55), "img/dragon9.png");
 		tradeDrag1.centerDragon(tradeBox.getX(), tradeBox.getX() + (int)(tradeBox.getWidth() * 0.75), tradeBox.getY() + (tradeBox.getHeight() /2), tradeBox.getY() + tradeBox.getHeight());
 		tradeDrag1.play();
 		tradeDrag1.setDirection(2);

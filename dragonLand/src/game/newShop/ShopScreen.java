@@ -240,9 +240,9 @@ public class ShopScreen extends ClickableScreen {
 				TextLabel nameL = new TextLabel( xcoord + 10, ycoord , width , 50, "  Name: "+ name );
 				TextLabel priceL = new TextLabel( xcoord + 10, ycoord + 25 , width , 50, "  Price: $"+ price );
 				String labelSrc = new String("");
-				if(shop)
-					labelSrc = "img/buyButton.png";
-				else if(trade)
+				if(trade)
+					labelSrc = "img/tradeButton.png";
+				else if(shop)
 					labelSrc = "img/buyButton.png";
 				else if(!shop)
 					labelSrc = "img/sellButton.png";
