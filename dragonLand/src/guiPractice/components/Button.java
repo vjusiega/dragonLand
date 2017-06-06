@@ -51,7 +51,7 @@ public class Button extends TextLabel implements Clickable{
 		g.setColor(DragonLand.NAVY);
 		g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 35, 25);
 		
-		g.setFont(new Font("Dialog",Font.BOLD,getSize()));
+		g.setFont(font);
 		FontMetrics fm = g.getFontMetrics();
 		
 		if(getText()!= null){

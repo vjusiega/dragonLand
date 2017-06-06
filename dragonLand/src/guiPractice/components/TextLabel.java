@@ -10,14 +10,14 @@ import game.DragonLand;
 public class TextLabel extends Component {
 
 	private String text;
-	private String font;
-	private int size;
+	protected Font font;
+	private float size;
 	private Color color;
 	
 	public TextLabel(int x, int y, int w, int h,String text) {
 		super(x, y, w, h);
 		this.text=text;
-		font="AppleMyungjo";
+		font=getFont();
 		size=20;
 		color = Color.black;
 		update();
@@ -36,30 +36,30 @@ public class TextLabel extends Component {
 		return text;
 	}
 
-	public String getFont() {
-		return font;
+
+
+	public void setFont(Font font) {
+		this.font = font;
 	}
 
-	public int getSize() {
+	public float getSize() {
 		return size;
 	}
 
-	public void setSize(int size){
+	public void setSize(float size){
 		this.size=size;
+		font=font.deriveFont(size);
 		update();
 	}
 
-	public void setFont(String font){
-		this.font=font;
-		update();
-	}
+
 	public void update(Graphics2D g) {
 		g=clear();
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setColor(color);
 		if(text!=null){
 			g.setColor(color);
-			g.setFont(new Font("Dialog",Font.BOLD,getSize()));
+			g.setFont(font);
 			g.drawString(text, 4, getHeight()-5);
 		}
 	}

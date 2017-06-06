@@ -22,7 +22,11 @@ import guiPractice.components.Graphic;
 import guiPractice.components.PolygonButton;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
+import introScreens.Banner;
 import introScreens.Fog;
+import game.dragonTrading.*;
+
+//fog adjustments made
 
 public class ShopScreen extends ClickableScreen {
 	
@@ -48,6 +52,9 @@ public class ShopScreen extends ClickableScreen {
 	private ClickableGraphic toggleButtonSell;
 	protected boolean sell;
 	private ArrayList<Graphic> actionLabels = new ArrayList<Graphic>();
+	private Banner tradeBanner;
+	private TextLabel coinText;
+	private ArrayList<Fog> fogs; 
 	
 	public ShopScreen(int width, int height) {
 		super(width, height);
@@ -56,11 +63,15 @@ public class ShopScreen extends ClickableScreen {
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
+		fogs = new ArrayList<Fog>();
 		maxDragons = 9; 
 		shop = true; 
 		currentPage = 1; 
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
 		viewObjects.add(background);
+		
+		tradeBanner = new Banner(0, 0, 600, 171, "img/shopBanner.png");
+		//tradeBanner.setX((getWidth() / 2) - (tradeBanner.getWidth() / 2)); 
 		
 		setUpFog();
 		//adding all buttons
@@ -74,6 +85,10 @@ public class ShopScreen extends ClickableScreen {
 		viewObjects.add(coinDisplay);
 		Graphic coin = new Graphic(DragonLand.WIDTH-35, 113, 25, 25, "img/Coin.png");
 		viewObjects.add(coin);
+		coinText = new TextLabel(DragonLand.WIDTH-110, 107, 175, 30, "" + DragonLand.coins);
+		coinText.setColor(DragonLand.TEXT_PINK);
+		coinText.setSize(25);
+		viewObjects.add(coinText);
 		
 		toggleButtonBuy = new ClickableGraphic(DragonLand.WIDTH-155, 50, 175, 50, "img/buySellToggleBuy.png");
 		toggleButtonBuy.setAction(new Action(){
@@ -152,12 +167,16 @@ public class ShopScreen extends ClickableScreen {
 	    PolygonButton backBtn = new PolygonButton( 0, DragonLand.HEIGHT-110, 150, 100, back, new Action(){
 			@Override
 			public void act() {
+				if(trade){
+					remove(tradeBanner);
+				}
 				if(!shop){
 					shop = true;
 					remove(toggleButtonSell);
 				}else{
 					remove(toggleButtonBuy);
 				}
+				stopFog();
 				DragonLand.game.setScreen(DragonLand.shopMain);
 			}});
 	    
@@ -202,10 +221,11 @@ public class ShopScreen extends ClickableScreen {
 				if(trade){
 					d.getBackdrop().setAction(new Action(){
 						public void act(){
-							((TradingScreen)DragonLand.tradingScreen).setMyDragon(disD);
-							DragonLand.game.setScreen(DragonLand.tradingScreen);
+							((NewTradingScreen)DragonLand.newTradingScreen).enterTrade(disD);
+							DragonLand.game.setScreen(DragonLand.newTradingScreen);
 							setTrade(false);
 							addObject(toggleButtonBuy);
+							stopFog();
 						}});
 				}
 				else if(shop){
@@ -213,6 +233,7 @@ public class ShopScreen extends ClickableScreen {
 						public void act(){
 							Sound.BOUGHT.play();
 							buyDragon(disD);
+							coinText.setText("" + DragonLand.coins);
 							updateNumberOfPages(dragonsToBuy);
 							drawDragons(dragonsToBuy);
 						}});
@@ -222,6 +243,7 @@ public class ShopScreen extends ClickableScreen {
 						public void act(){
 							Sound.BOUGHT.play();
 							sellDragon(disD);
+							coinText.setText("" + DragonLand.coins);
 							updateNumberOfPages(myDragons);
 							drawDragons(myDragons);
 						}});
@@ -319,6 +341,7 @@ public class ShopScreen extends ClickableScreen {
 	public void enterShop(){
 		//should update the shop and return to the first page
 		trade = false; 
+		startFog();
 		//for first time u enter shop and everything initializes
 		if(shopEnteredFirstTime){
 			ArrayList<Dragon> temp = HomeKat.getDragons();
@@ -351,7 +374,9 @@ public class ShopScreen extends ClickableScreen {
 	
 	public void enterTradeSelection(){
 		trade = true;
+		startFog();
 		currentPage = 1; 
+		addObject(tradeBanner);
 		updateNumberOfPages(myDragons);
 		drawDragons(myDragons);
 		remove(toggleButtonBuy);
@@ -468,6 +493,18 @@ public class ShopScreen extends ClickableScreen {
 				Dragon theirs = findInList(theirDragon, dragonsToBuy);	
 				dragonsToBuy.remove(theirs);
 				myDragons.add(theirs);
+		}
+		
+		public void stopFog(){
+			for(Fog f: fogs){
+				f.setRunning(false);
+			}
+		}
+		
+		public void startFog(){
+			for(Fog f: fogs){
+				f.setRunning(false);
+			}
 		}
 		
 }
