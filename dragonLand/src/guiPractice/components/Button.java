@@ -10,7 +10,7 @@ import java.awt.Stroke;
 import java.awt.Toolkit;
 
 import game.DragonLand;
-
+import game.Sound;
 
 
 public class Button extends TextLabel implements Clickable{
@@ -25,7 +25,11 @@ public class Button extends TextLabel implements Clickable{
 		this.action=action;
 		update();
 	}
-
+	public Button(int x, int y, int w, int h, String text, Color color) {
+		super(x, y, w, h, text);
+		this.color=color;
+		update();
+	}
 	public Color getColor() {
 		return color;
 	}
@@ -67,7 +71,7 @@ public class Button extends TextLabel implements Clickable{
 
 	@Override
 	public boolean isHovered(int x, int y) {
-		if(x>getX()&&x<(getX()+getWidth())&&y>getY()&&y<(getY()+getHeight()))
+		if(x>getX()&&x<(getX()+getWidth())&&y>getY()+25&&y<(getY()+getHeight()+25))
 			return true;
 		return false;
 	}
@@ -75,7 +79,8 @@ public class Button extends TextLabel implements Clickable{
 	@Override
 	public void act() {
 		if(action!=null){
-			action.act();			
+			action.act();
+			//Sound.CLICK.play();
 		}
 	}
 

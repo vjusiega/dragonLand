@@ -59,6 +59,7 @@ public class GameVioletta implements gameDragonInterface{
 		int xPos;
 		int dragonHeight = 100;
 		xPos = screenWidth / 2;
+
 		if(dragonArray.size() >= 1){
 			dragonHeight = (int) (dragonHeight * 0.65);
 			if(dragonArray.size() == 1){
@@ -133,9 +134,21 @@ public class GameVioletta implements gameDragonInterface{
 		int dragonStart = (dragonArray.get(findLeadDragon(-1))).getX();
 		int dragonEnd = ((dragonArray.get(findLeadDragon(1))).getX() + (dragonArray.get(findLeadDragon(1))).getWidth());
 		if((starX > dragonStart && starX < dragonEnd) || (starEnd > dragonStart && starEnd < dragonEnd)){
-
 			return true; 
-			
+		}
+		else{
+			return false; 
+		}
+	}
+	
+	public boolean checkPowerUpContact(PowerUp powerUp){
+		int powerUpX = powerUp.getX();
+		int berryWidth = powerUp.getWidth();
+		int berryEnd = powerUpX + berryWidth;
+		int dragonStart = (dragonArray.get(findLeadDragon(-1))).getX();
+		int dragonEnd = ((dragonArray.get(findLeadDragon(1))).getX() + (dragonArray.get(findLeadDragon(1))).getWidth());
+		if((powerUpX > dragonStart && powerUpX < dragonEnd) || (berryEnd > dragonStart && berryEnd < dragonEnd)){
+			return true; 
 		}
 		else{
 			return false; 

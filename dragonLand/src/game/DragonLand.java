@@ -3,6 +3,7 @@
  */
 package game;
 
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -10,25 +11,26 @@ import java.io.IOException;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.util.ArrayList;
-
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-
 import dragonComponents.ReadFile;
 import game.EggIncuabtor.IncubatorScreen;
+import game.dragonTrading.TradingScreen;
 import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.HomeScreen;
 import game.miniGameTeam.GameInstructions;
 import game.miniGameTeam.GameScreen;
+import game.miniGameTeam.GameVioletta;
 import game.miniGameTeam.HighScoreScreen;
-import game.shopScreen.BuyScreenWendy;
-import game.shopScreen.HomeShopScreen;
-import game.shopScreen.SellShopZheng;
+import game.newShop.ShopScreen;
+import game.newShop.ShopSelectionScreen;
+
 
 import guiPractice.GUIApplication;
 import guiPractice.Screen;
 import guiPractice.components.AnimatedComponent;
+import introScreens.NameScreen;
 import introScreens.WelcomeScreen;
 
 
@@ -41,14 +43,17 @@ public class DragonLand extends GUIApplication {
 	/**
 	 * 
 	 */
+	
+	public static final int WIDTH = 1000;
+	public static final int HEIGHT = 640;
 	private static final long serialVersionUID = 1L;
 
 	public static DragonLand game;
-	public static int coins = 1500; 
+	public static int coins = 3000; 
 	public static HomeScreen homeScreen;
 	public static Screen shopMain; // shop 1
-	public static Screen sellScreen; // shop 2
-	public static Screen buyScreen; // shop 3
+	//public static Screen sellScreen; // shop 2
+	//public static Screen buyScreen; // shop 3
 	public static Screen highscoreScreen; // high score
 	public static GameScreen miniGameScreen; // minigame
 	public static Screen gameInstructionsScreen;
@@ -59,7 +64,17 @@ public class DragonLand extends GUIApplication {
 	public static Color LIGHT_PINK;
 	public static Color LIGHT_NUDE;
 	public static Color DARKER_NUDE;
-	public static WelcomeScreen welcomeScreen;
+	
+	private GameVioletta vGame;
+	public WelcomeScreen welcomeScreen;
+	public static Color TEXT_PINK;
+
+	public static Screen newShopScreen;
+	public static Screen shopScreen;
+	public static Screen nameScreen;
+
+	public static TradingScreen tradingScreen;
+	public static Screen incubatorScreen;
 	static JFileChooser chooser;
 	static ReadFile dragonFile;
 	
@@ -76,7 +91,11 @@ public class DragonLand extends GUIApplication {
 			}
 		}
 	}
-
+	
+	public DragonLand() {
+		//Sound.AMBIANCE.loop();
+				//
+	}
 	/* (non-Javadoc)
 	 * @see guiPractice.GUIApplication#initScreen()
 	 */
@@ -85,19 +104,20 @@ public class DragonLand extends GUIApplication {
 		initColors();
 
 
-		miniGameScreen = new GameScreen(getWidth(),getHeight());
-		shopMain = new HomeShopScreen(getWidth(),getHeight());
-		sellScreen = new SellShopZheng(getWidth(),getHeight());
-		homeScreen = new HomeScreen(getWidth(),getHeight());
-		buyScreen = new BuyScreenWendy(getWidth(),getHeight());
-		highscoreScreen = new HighScoreScreen(getWidth(),getHeight());
+		miniGameScreen = new GameScreen(WIDTH, HEIGHT);
+		shopMain = new ShopSelectionScreen(WIDTH, HEIGHT);
+		newShopScreen = new ShopScreen(WIDTH, HEIGHT); 
+		homeScreen = new HomeScreen(WIDTH, HEIGHT);
+		highscoreScreen = new HighScoreScreen(WIDTH, HEIGHT);
 		HomeScreen.jenCode = new game.mainScreenTeam.HomeJenniber();
-		gameInstructionsScreen = new GameInstructions(getWidth(), getHeight());
-		welcomeScreen = new WelcomeScreen(getWidth(), getHeight());
-//		incubator = new IncubatorScreen(viewObjects);
 
-		setScreen(shopMain);
-		
+		welcomeScreen = new WelcomeScreen(WIDTH, HEIGHT);
+//		incubator = new IncubatorScreen(viewObjects);
+		gameInstructionsScreen = new GameInstructions(WIDTH, HEIGHT);
+		tradingScreen = new TradingScreen(WIDTH, HEIGHT);
+		vGame = new GameVioletta();
+		incubatorScreen = new IncubatorScreen(WIDTH, HEIGHT);
+		setScreen(welcomeScreen);
 
 	}
 	private void initColors() {
@@ -106,6 +126,7 @@ public class DragonLand extends GUIApplication {
 		LIGHT_PINK = new Color(248,186,182);
 		LIGHT_NUDE = new Color(244,215,183);
 		DARKER_NUDE = new Color(230,195,147);
+		TEXT_PINK = new Color(255,218,238);
 	}
 
 	/**
@@ -151,6 +172,10 @@ public class DragonLand extends GUIApplication {
 		}
 		public int getCoins(){
 			return coins;
+		}
+
+		public GameVioletta getViolettaGame() {
+			return vGame;
 		}
 
 }

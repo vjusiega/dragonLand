@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
+import game.mainScreenTeam.Draggable;
 import guiPractice.Screen;
 import guiPractice.components.Action;
 import guiPractice.components.Clickable;
@@ -13,13 +14,16 @@ import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
 import guiPractice.components.Visible;
 
-public abstract class ClickableScreen extends Screen implements MouseListener, MouseMotionListener {
+public abstract class ClickableScreen extends Screen  implements MouseListener, MouseMotionListener  {
 
 	private ClickableGraphic pika;
 	protected ArrayList<Clickable> clickables;
-	
+	protected ArrayList<Draggable> draggables;
+	protected boolean alreadyDragging;
+ 
 	public ClickableScreen(int width, int height) {
 		super(width, height);
+		//this.addMouseMotionListener(this);
 		
 	}
 
@@ -30,15 +34,19 @@ public abstract class ClickableScreen extends Screen implements MouseListener, M
 		 if(clickables != null && v instanceof Clickable){
 			 clickables.add((Clickable)v);
 		 }
+		 if(draggables != null && v instanceof Draggable)
+			 draggables.add((Draggable)v);
 	}
 
 	public void remove(Visible v){
 		super.remove(v);
 		clickables.remove(v);
+		draggables.remove(v);
 	} 
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
 		for(int i=0; i<clickables.size();i++){
 			Clickable c= clickables.get(i);
 			if(c.getAction() != null && c.isHovered(e.getX(), e.getY())){
@@ -52,12 +60,20 @@ public abstract class ClickableScreen extends Screen implements MouseListener, M
 	public void initObjects(ArrayList<Visible> viewObjects) {
 		initAllObjects(viewObjects);
 		clickables = new ArrayList<Clickable>();
+		draggables = new ArrayList<Draggable>();
 		for(Visible object: viewObjects){
 			if(object instanceof Clickable){
 				clickables.add((Clickable)object);
 			}
+			else if(object instanceof Draggable){
+				draggables.add((Draggable)object);
+			}
 		}
 
+	}
+	
+	public MouseMotionListener getMouseMotionListener(){
+		return this;
 	}
 	
 	@Override
@@ -73,28 +89,26 @@ public abstract class ClickableScreen extends Screen implements MouseListener, M
 	}
 
 	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
+	public void mousePressed(MouseEvent e) {
+		
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+	public void mouseReleased(MouseEvent e) {
 
 	}
-
+	@Override
 	public MouseListener getMouseListener(){
 		return this;
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// setX() to e.getX();
+		
 	}
 }

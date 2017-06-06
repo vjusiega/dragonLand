@@ -51,9 +51,9 @@ public abstract class GUIApplication extends JFrame implements Runnable{
 		}
 	}
 
-	public void paint(Graphics g){
-		g.drawImage(getCurrentScreen().getImage(), 0, 0, null);
-	}
+//	public void paint(Graphics g){
+//		g.drawImage(getCurrentScreen().getImage(), 0, 0, null);
+//	}
 
 	public void run(){
 		while(true){
@@ -73,6 +73,7 @@ public abstract class GUIApplication extends JFrame implements Runnable{
 	}
 	public void setCurrentScreen(Screen currentScreen) {
 		this.currentScreen = currentScreen;
+		setContentPane(currentScreen);
 	}
 
 }

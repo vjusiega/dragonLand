@@ -44,6 +44,10 @@ public abstract class Component implements Visible {
 	public int getWidth() {	
 		return w;
 	}
+	
+	public void setWidth(int w){
+		this.w = w;
+	}
 
 	public void setX(int x) {
 		this.x = x;
@@ -53,6 +57,10 @@ public abstract class Component implements Visible {
 	}
 	public int getHeight() {
 		return h;
+	}
+	
+	public void setHeight(int h){
+		this.h = h;
 	}
 	public boolean isAnimated(){
 		return false;

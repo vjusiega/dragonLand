@@ -6,6 +6,7 @@ package game.mainScreenTeam;
 import java.util.ArrayList;
 
 import game.DragonLand;
+import game.Sound;
 import game.miniGameTeam.GameScreen;
 import guiPractice.components.Action;
 
@@ -31,28 +32,31 @@ public class HomeJenniber implements Runnable {
 		 * A hungryBox is created for the dragon that has been passed through the parameter
 		 */
 		HungryBox hungryBox = getHungryBox(d);
+		d.assignHungryBox(hungryBox);
+		
 		/**
 		 * When the hungryBox is clicked:
 		 *	The dragon's boolean value of whether it has a hungryBox is set to false
 		 *	The hungryBox is removed from the ArrayList<HungryBox> hungryBoxTimes
 		 *		and it is also removed from the ArrayList<Visible> viewObjects
 		 */
-		hungryBox.setAction(new Action(){
-
-			@Override
-			public void act() {
-				for(int i=0; i<HomeKat.dragonHome.getDragonsOnScreen().size();i++){
-					Dragon d= HomeKat.dragonHome.getDragonsOnScreen().get(i);
-					if((d.getY()<350 && hungryBox.getX()==d.getX()-25) || hungryBox.getY()==d.getY()+105){
-							d.setHungryBox(false);
-					}
-				}
-				
-				hungryBoxTimes.remove(hungryBox);
-				DragonLand.homeScreen.remove(hungryBox);
-			}
-			
-		});
+		//DO NOT NEED NOT A BUTTON ANYMORE
+//		hungryBox.setAction(new Action(){
+//
+//			@Override
+//			public void act() {
+//				for(int i=0; i<HomeKat.dragonHome.getDragonsOnScreen().size();i++){
+//					Dragon d= HomeKat.dragonHome.getDragonsOnScreen().get(i);
+//					if((d.getY()<350 && hungryBox.getX()==d.getX()-25) || hungryBox.getY()==d.getY()+105){
+//							d.setHungryBox(false);
+//					}
+//				}
+//				
+//				hungryBoxTimes.remove(hungryBox);
+//				DragonLand.homeScreen.remove(hungryBox);
+//			}
+//			
+//		});
 		//hungryBox is added to hungryBoxTimes and viewObjects
 		hungryBoxTimes.add(hungryBox);
 		DragonLand.homeScreen.addObject(hungryBox);
@@ -87,10 +91,10 @@ public class HomeJenniber implements Runnable {
 							(
 									//Checks if the dragon is moving vertically and if it is
 									//it compares the xCoordinates of the dragon and hungryBox
-									(d.getY()<350 && hungryBox.getX()==d.getX()-25)
+									(d.getY()<350 && hungryBox.getX()==d.getX()-10)
 									//If dragon is moving horizontally,
 									//it compares the yCoordinates of the dragon and hungryBox
-									|| hungryBox.getY()==d.getY()+105
+									|| hungryBox.getY()==d.getY()+80
 							) 
 							//Checks if the hungryBox time is less than 0 to remove
 							&& hungryBox.getHungryTime()<=0){
@@ -115,12 +119,14 @@ public class HomeJenniber implements Runnable {
 
 	//returns a new HungryBox by setting its position relative to the Dragon d
 	public HungryBox getHungryBox(Dragon d) {
-		int yCoord = d.getY()+105;
+		int yCoord = d.getY()+80;
+		int xCoord = d.getX();
 		//Checks if dragon is moving vertically
 		if(d.getY()<350){
-			yCoord+=30;
+			yCoord+=23;
+			xCoord = d.getX()-10;
 		}
-		return new HungryBox(d.getX()-25,yCoord);
+		return new HungryBox(xCoord,yCoord);
 	}
 
 	/**
@@ -167,5 +173,36 @@ public class HomeJenniber implements Runnable {
 	public void removeHungry(HungryBox hungryBox) {
 		hungryBoxTimes.remove(hungryBox);
 		DragonLand.homeScreen.remove(hungryBox);
+	}
+
+	public void checkFeed(int x, int y) {
+		Dragon fed;
+		
+		for(int i=0; i<HomeKat.dragonHome.getDragonsOnScreen().size();i++){
+			Dragon d= HomeKat.dragonHome.getDragonsOnScreen().get(i);
+			if((x>=d.getX()&&x<=d.getX()+d.getWidth())
+					&&(y>=d.getY()&&y<=d.getY()+d.getHeight())){
+					PlayRandomSound();
+					d.setHungryBox(false);
+					fed=d;
+					removeHungry(d.getHungryBoxObj());
+					break;
+			}
+		}
+		
+	}
+
+	private void PlayRandomSound() {
+		int r = (int)(Math.random()*5)+1;
+		if(r==1)
+			Sound.EAT1.play();
+		else if(r==2)
+			Sound.EAT2.play();
+		else if(r==3)
+			Sound.EAT3.play();
+		else if(r==4)
+			Sound.EAT4.play();
+		else if(r==5)
+			Sound.EAT5.play();
 	}
 }

@@ -1,7 +1,11 @@
 package game.miniGameTeam;
 
+import java.awt.Color;
+
+
 /**
  * @author Violetta Jusiega
+
  *
  */
 
@@ -12,101 +16,121 @@ import game.DragonLand;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
+import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
+import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
+import introScreens.Fog;
 
 public class GameInstructions extends ClickableScreen {
+
+	private static final long serialVersionUID = 1L;
 
 	public GameInstructions(int width, int height) {
 		super(width, height);
 	}
 
 	private Graphic background;
-	//private Button title;
-	private Button instructions;
-	private String[] instructionText;
+	private static TextLabel title;
+	private static TextLabel text1;
+	private static TextLabel text2;
+	private static TextLabel text3;
+	private static TextLabel text4;
+	private static TextLabel text5;
+	private static TextLabel text6;
+	private ArrayList<Fog> fogs;
 	
 	private int sequenceNumber;
 	
 	private Button next;
 	private Button playButton;
-	//private Button playGame;
 	private Button exit;
-	
-	private NoBorderButton title;
-	private NoBorderButton text1;
-	private NoBorderButton text2;
-	private NoBorderButton text3;
-	private NoBorderButton text4;
-	private NoBorderButton text5;
-	private NoBorderButton text6;
 	
 	private Button layer;
 		
 	@Override
-	public void initAllObjects(ArrayList<Visible> viewObjects) {
-		//sequenceNumber = 0;
-		//instructionText = new String[6];
-		//initiateText();
+	public void initAllObjects(ArrayList<Visible> viewObjects) {		
+		int startX = (int) (DragonLand.WIDTH*0.15);
+		int textWidth = (int) (DragonLand.WIDTH*0.7);
 		
-		int startX = (int) (getWidth()*0.15);
-		int textWidth = (int) (getWidth()*0.7);
-		
-		background = new Graphic(0,0,getWidth(),getHeight(),"img/forest.jpg");
+		fogs = new ArrayList<Fog>();
+		background = new Graphic(0,0,DragonLand.WIDTH,DragonLand.HEIGHT,"img/sunsetBackground.jpg");
 		viewObjects.add(background);
+		setUpFog();
 		
-		layer = new Button((int) (getWidth()*0.1), (int) (getHeight()*0.1), (int) (getWidth()*0.8),  (int) (getHeight()*0.77), "", DragonLand.DARKER_NUDE, null);
-		viewObjects.add(layer);
+		Graphic back = new Graphic((int) (DragonLand.WIDTH*0.1), (int) (DragonLand.HEIGHT*0.1), (int) (DragonLand.WIDTH*0.8),  (int) (DragonLand.HEIGHT*0.77), "img/opacityPink.png");
+		viewObjects.add(back);
 		
-		title = new NoBorderButton(startX,75,textWidth,50, "Star Catch",DragonLand.DARKER_NUDE,null);
+		title = new TextLabel((int) (DragonLand.WIDTH/2 - 100), (int) (DragonLand.HEIGHT*0.15), (int) (DragonLand.WIDTH*0.8),  50, "hello");
+		title.setText("Star Catch");
+		title.setColor(Color.white);
 		title.setSize(40);
 		viewObjects.add(title);
 		
-		text1 = new NoBorderButton(startX,150,textWidth,50, "Welcome to the feeding ground",DragonLand.DARKER_NUDE,null);
-		text1.setSize(25);
+		text1 = new TextLabel((int) (DragonLand.WIDTH/2 - 50), (int) (DragonLand.HEIGHT*0.1), 
+				      (int) (DragonLand.WIDTH*0.8), 150, "");
+		text1.setText("Welcome to the feeding ground!");
+		text1.setColor(Color.white);
+		text1.setSize(25);		
 		viewObjects.add(text1);
 		
-		text2 = new NoBorderButton(startX,200,textWidth,50, "Here your hungry dragon will eat the falling stars",DragonLand.DARKER_NUDE,null);
-		text2.setSize(25);
+		text2 = new TextLabel((int) (DragonLand.WIDTH/2 - 50), (int) (DragonLand.HEIGHT*0.1), 
+				      (int) (DragonLand.WIDTH*0.8), 150, "");
+		text2.setText("Here your hungry dragon will eat the falling stars");
+		text2.setColor(Color.white);
+		text2.setSize(25);		
 		viewObjects.add(text2);
 		
-		text3 = new NoBorderButton(startX,250,textWidth,50, "*Stars are the best source of nutrients for dragons*",DragonLand.DARKER_NUDE,null);
-		text3.setSize(25);
+		text3 = new TextLabel((int) (DragonLand.WIDTH/2 - 50), (int) (DragonLand.HEIGHT*0.1), 
+				      (int) (DragonLand.WIDTH*0.8), 150, "");
+		text3.setText("Stars are the best source of nutrients for dragons");
+		text3.setColor(Color.white);
+		text3.setSize(25);		
 		viewObjects.add(text3);
 		
-		text4 = new NoBorderButton(startX,300,textWidth,50, "The more stars you earn the more coins you get",DragonLand.DARKER_NUDE,null);
-		text4.setSize(25);
+		text4 = new TextLabel((int) (DragonLand.WIDTH/2 - 50), (int) (DragonLand.HEIGHT*0.1), 
+				      (int) (DragonLand.WIDTH*0.8), 150, "");
+		text4.setText("The more stars you earn the more coins you get");
+		text4.setColor(Color.white);
+		text4.setSize(25);	
 		viewObjects.add(text4);
 		
-		text5 = new NoBorderButton(startX,350,textWidth,50, "Don't let a star fall or you lose a life",DragonLand.DARKER_NUDE,null);
-		text5.setSize(25);
+		text5 = new TextLabel((int) (DragonLand.WIDTH/2 - 50), (int) (DragonLand.HEIGHT*0.1), 
+				      (int) (DragonLand.WIDTH*0.8), 150, "");
+		text5.setText("Don't let a star fall or you lose a life");
+		text5.setColor(Color.white);
+		text5.setSize(25);	
 		viewObjects.add(text5);
 		
-		text6 = new NoBorderButton(startX,400,textWidth,50, "Have fun!",DragonLand.DARKER_NUDE,null);
+		text6 = new TextLabel((int) (DragonLand.WIDTH/2 - 100), (int) (DragonLand.HEIGHT*0.1), 
+				      (int) (DragonLand.WIDTH*0.8), 150, "");
+		text6.setText("Have fun!");
+		text6.setColor(Color.white);
 		text6.setSize(25);
 		viewObjects.add(text6);
 		
-		exit = new Button(30, 50, 50, 50, "X", DragonLand.DARKER_NUDE, new Action() {
-			@Override
-			public void act() {
-				DragonLand.game.setScreen(DragonLand.homeScreen);
-				GameScreen.isNotHome=false;
-			}
-		});
-		viewObjects.add(exit);
-		
-		playButton = new Button((int) (getWidth() * 0.78), (int) (getHeight() * 0.9), (int) (getWidth() * 0.2), 50, "Play", DragonLand.DARKER_NUDE, new Action() {
-			@Override
-			public void act() {
-				//GameScreen.tGame.initGame("img/Dragon1.png");
+		ClickableGraphic playPost = new ClickableGraphic(getWidth()-250, getHeight()-200, 1.0,"img/continueSign.png");
+		playPost.setAction(new Action(){
+			public void act(){
 				DragonLand.game.setScreen(DragonLand.miniGameScreen);
 				DragonLand.miniGameScreen.startGame();
 			}
 		});
-		
-		viewObjects.add(playButton);		
+		viewObjects.add(playPost);
+	}
+	
+	public void updateOnEnter() {
 	}
 
-
-
+	public void setUpFog(){
+		Fog fog; 
+		
+		for(int i = -10; i < 10; i++){
+			fog = new Fog((i*getWidth() / 10), 200, 500, 300, "img/introFog.png", 100);
+			viewObjects.add(fog);
+			fog.setY(fog.generateYPos());
+			fogs.add(fog);
+			fog.play();
+		}
+	}
 }

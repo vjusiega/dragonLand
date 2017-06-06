@@ -11,7 +11,7 @@ import guiPractice.components.Visible;
 /*
  * @author Zheng
  * */
-public class SellShopZheng extends ShopScreen implements SellScreenInterface, StoreSellInterfaceK{
+public class SellShopZheng extends OldShopScreen implements SellScreenInterface, StoreSellInterfaceK{
 	
 	private ArrayList<Dragon> dragonsInSellShop;
 	private int pageNumber;

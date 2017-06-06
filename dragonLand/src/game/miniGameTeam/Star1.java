@@ -5,6 +5,8 @@ package game.miniGameTeam;
 
 import java.util.Random;
 
+import game.DragonLand;
+import game.dragonTrading.TradingScreen;
 import guiPractice.components.GraphicMovingComponent;
 
 
@@ -41,22 +43,26 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 	
 	@Override
 	public void checkBehaviors() {
-		int border = GameScreen.getHeight() - 200;
+		int border = DragonLand.game.getHeight() - 195;
 		if(GameVioletta.vGame.getPlaying()){
 			if(getY() >= border && !touched && GameVioletta.vGame.checkStarContact(this)){
 				touched = true;
 				game.removeStar(this);
 				setRunning(false);
 				int score = GameScreen.getScore() + (GameVioletta.vGame.getDragonArray()).size();
-				GameScreen.setScore(score);
-				GameScreen.setScoreDisplay();
+				
+				((GameScreen)DragonLand.miniGameScreen).setScore(score);
+				((GameScreen)DragonLand.miniGameScreen).setScoreDisplay();
+				
 				GameScreen.tGame.setPowerUp((GameScreen.tGame.getPowerUp() + 1));
-				if(GameScreen.tGame.getPowerUp() == 10){
+				if(GameScreen.tGame.getPowerUp() % 10 == 0){
 					GameScreen.tGame.addDragonToScreen(GameVioletta.vGame.addDragon("img/dragon1.png"));
 				}
 			}
-			else if(getY() > GameScreen.getHeight() - 100){
+
+			else if(getY() > DragonLand.game.getHeight() - 100){
 				GameScreen.tGame.setPowerUp(0);
+
 				setRunning(false);
 				touched = true;
 				game.removeStar(this);
@@ -64,14 +70,14 @@ public class Star1 extends GraphicMovingComponent implements StarInterface{
 			}
 			
 			//used these numbers for demonstration purposes
-			if(GameScreen.getScore() >= 5 && GameScreen.getScore() < 10)
-				setVy(1.5);
-			if(GameScreen.getScore() >= 10 && GameScreen.getScore() < 15)
-				setVy(2);
-			if(GameScreen.getScore() >= 15 && GameScreen.getScore() < 20)
-				setVy(2.5);
-			if(GameScreen.getScore() >= 20){
-				setVy(2.5);
+			if(GameScreen.getScore() >= 10 && GameScreen.getScore() < 20)
+				setVy(1.2);
+			if(GameScreen.getScore() >= 20 && GameScreen.getScore() < 30)
+				setVy(1.4);
+			if(GameScreen.getScore() >= 30 && GameScreen.getScore() < 40)
+				setVy(1.6);
+			if(GameScreen.getScore() >= 40){
+				setVy(1.8);
 			}		
 		}else{
 			//HighScoreScreen.setRoundScore(GameScreen.getScore());
