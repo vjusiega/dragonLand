@@ -396,6 +396,18 @@ public class ShopScreen extends ClickableScreen {
 		}
 	
 		
+		public ArrayList<Dragon> getDragonsToBuy() {
+			return dragonsToBuy;
+		}
+
+		public void setDragonsToBuy(ArrayList<Dragon> dragonsToBuy) {
+			this.dragonsToBuy = dragonsToBuy;
+		}
+
+		public void setMyDragons(ArrayList<Dragon> myDragons) {
+			this.myDragons = myDragons;
+		}
+
 		//official method to buy a dragon for money
 		public void buyDragon(Dragon d){
 			Dragon found = findInList(d, dragonsToBuy);
