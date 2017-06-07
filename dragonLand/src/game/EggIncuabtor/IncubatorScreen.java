@@ -34,6 +34,9 @@ public class IncubatorScreen extends ClickableScreen {
 	private ArrayList<Graphic> actionLabels ;
 	private ArrayList<Incubator> incubators;
 	private ArrayList<Object> incubatorsOnDisplay;
+	private Graphic dragonError;
+	private Graphic coinError;
+	
 	public IncubatorScreen(int width, int height) {
 		super(width, height);
 		// TODO Auto-generated constructor stub
@@ -69,22 +72,23 @@ public class IncubatorScreen extends ClickableScreen {
 		addPostButtons();
 		setUpIncubators();
 		drawEggs();
-		fillIncubator();
+		setUpErrorSigns();
+		//fillIncubator();
 	}
 	
-	private void fillIncubator() {
-		//for(int i = 0; )
-	}
+//	private void fillIncubator() {
+//		for(int i = 0; i<3; i++){
+//			if(incubators.)
+//		}
+//	}
 
 	private void setUpIncubators() {
-		System.out.println("dd");
 		for(int i=0; i<3;i++){
 			Incubator inc = new Incubator(0,0, 100, 100, "img/incubator.png", null);;
 			//adds incubators
 			incubators.add(inc);
 			IncubatorBox box = new IncubatorBox(getDisplayX(0, i), 0.333333333, getWidth(), getHeight(), inc);
 			addObject(box.getBackdrop());
-			System.out.println(viewObjects.contains(box.getBackdrop()));
 			addObject(box.getIncubator());
 
 		}
@@ -96,7 +100,23 @@ public class IncubatorScreen extends ClickableScreen {
 			eggsToBuy.add(new Egg(0, 0, 100, 100, "img/egg"+i+".png", category[i-1], 100*i, 10*i));
 		}
 	}
-	
+	public void setUpErrorSigns(){
+		dragonError = new Graphic(0, 15, "img/tooManyDragonsErrorSign.png");
+		dragonError.setX((getWidth() / 2) - (dragonError.getWidth() / 2)); 
+		coinError = new Graphic(0, 15, "img/notEnoughCoinsError.png");
+		coinError.setX((getWidth() / 2) - (coinError.getWidth() / 2)); 
+	}
+	public void addDragonError(){
+		addObject(dragonError);
+	}
+	public void removeDragonError(){
+		remove(dragonError);
+	}
+	public void addCoinError(){
+		addObject(coinError);
+		
+		//remove(coinError);
+	}
 	public void drawEggs(){
 		clearEggsFromScreen();
 
@@ -117,12 +137,12 @@ public class IncubatorScreen extends ClickableScreen {
 			int width = (e.getBackdrop()).getWidth();
 			String category = e.getEgg().getCategory();
 			int price = e.getEgg().getPrice();
-			TextLabel categoryL = new TextLabel( xcoord + 3, ycoord , width , 50, "  Category: "+ category );
-			TextLabel priceL = new TextLabel( xcoord + 3, ycoord + 25 , width , 50, "  Price: $"+ price );
+			TextLabel categoryL = new TextLabel( xcoord , ycoord , width , 50, "  Category: "+ category );
+			TextLabel priceL = new TextLabel( xcoord + 1, ycoord + 25 , width , 50, "  Price: $"+ price );
 			String labelSrc = new String("");
 			Graphic buySellTrade = new Graphic(xcoord + 40, ycoord +  100, 75, 40, "img/buyButton.png");
-			priceL.setSize(16);
-			categoryL.setSize(12);
+			priceL.setSize(15);
+			categoryL.setSize(11);
 			categoryLabels.add(categoryL);
 		 	priceLabels.add(priceL);
 			actionLabels.add(buySellTrade);
@@ -179,8 +199,15 @@ public class IncubatorScreen extends ClickableScreen {
 	public void addEggToIncubator(Egg e){
 		for(int i = 0; i< incubators.size() ; i++){
 			if(!incubators.get(i).isBusy()){
-				//incubators.get(i).addEgg(e);
+
 				eggsIncubating.add(e);
+				Egg eggLocation = new Egg(incubators.get(i).getX()+20, incubators.get(i).getY()+20,
+						50, 50, e.getImgSrc(), e.getCategory(), e.getPrice(), e.getIncubationTime());
+				incubators.get(i).addEgg(eggLocation);
+				Thread eggShake = new Thread(eggLocation);
+				eggLocation.setTimeEnteredIncubation(System.currentTimeMillis());
+				eggLocation.setIncubating(true);
+				eggShake.start();
 				drawEggs();
 				break;
 			}

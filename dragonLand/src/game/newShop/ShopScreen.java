@@ -272,8 +272,8 @@ public class ShopScreen extends ClickableScreen {
 				int height = (d.getBackdrop()).getHeight();
 				String name = disD.getName();
 				int price = disD.getPrice();
-				TextLabel nameL = new TextLabel( xcoord + 10, ycoord , width , 50, "  Name: "+ name );
-				TextLabel priceL = new TextLabel( xcoord + 10, ycoord + 25 , width , 50, "  Price: $"+ price );
+				TextLabel nameL = new TextLabel( xcoord +1, ycoord , width , 50, "  Name: "+ name );
+				TextLabel priceL = new TextLabel( xcoord + 1, ycoord + 25 , width , 50, "  Price: $"+ price );
 				String labelSrc = new String("");
 				if(trade)
 					labelSrc = "img/tradeButton.png";
@@ -442,7 +442,6 @@ public class ShopScreen extends ClickableScreen {
 					if(!error){
 						error = true;
 						addObject(dragonError);
-						jkdwkf
 					}
 					System.out.println("Too many dragons");
 					//show message that you cannot buy more dragons
@@ -451,9 +450,9 @@ public class ShopScreen extends ClickableScreen {
 					System.out.println("Not enough money");
 					//show message that you don't have enough money
 				}else{
-					System.out.println("you originally had " + DragonLand.coins);
+					//System.out.println("you originally had " + DragonLand.coins);
 					DragonLand.coins -= found.getPrice();
-					System.out.println("the dragon cost " +  found.getPrice() + " you now have " + DragonLand.coins);
+					//System.out.println("the dragon cost " +  found.getPrice() + " you now have " + DragonLand.coins);
 					myDragons.add(found);
 					dragonsToBuy.remove(found);
 				}

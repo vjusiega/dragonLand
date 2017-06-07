@@ -33,9 +33,15 @@ public class BuyEgg {
 	public void setUpButton(){
 		background.setAction(new Action(){	
 			public void act(){
+				int size = ((ShopScreen) DragonLand.newShopScreen).getMyDragons().size();
+				if (size+1<=9 && DragonLand.coins - e.getPrice()>=0){
 					((IncubatorScreen) DragonLand.incubatorScreen).addEggToIncubator(e);
+					DragonLand.coins -= e.getPrice();
 				}
-		});
+				else {
+					((IncubatorScreen) DragonLand.incubatorScreen).addDragonError();
+				}
+				
+			}});
 	}
-	
 }
