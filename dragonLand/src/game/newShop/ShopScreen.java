@@ -52,13 +52,23 @@ public class ShopScreen extends ClickableScreen {
 	private ClickableGraphic toggleButtonSell;
 	protected boolean sell;
 	private ArrayList<Graphic> actionLabels = new ArrayList<Graphic>();
-	private Banner tradeBanner;
+	private Graphic tradeBanner;
 	private TextLabel coinText;
 	private ArrayList<Fog> fogs; 
+	private Graphic dragonError;
+	private Graphic coinError;
+	private boolean error;
 	
 	public ShopScreen(int width, int height) {
 		super(width, height);
 		update();
+	}
+	
+	public void setUpErrorSigns(){
+		dragonError = new Graphic(0, 15, "img/tooManyDragonsErrorSign.png");
+		dragonError.setX((getWidth() / 2) - (dragonError.getWidth() / 2)); 
+		coinError = new Graphic(0, 15, "img/notEnoughCoinsError.png");
+		coinError.setX((getWidth() / 2) - (coinError.getWidth() / 2)); 
 	}
 
 	@Override
@@ -70,8 +80,11 @@ public class ShopScreen extends ClickableScreen {
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
 		viewObjects.add(background);
 		
-		tradeBanner = new Banner(0, 0, 600, 171, "img/shopBanner.png");
-		//tradeBanner.setX((getWidth() / 2) - (tradeBanner.getWidth() / 2)); 
+		error = false; 
+		setUpErrorSigns();
+		
+		tradeBanner = new Graphic(0, 15, "img/tradeInstructionsSign.png");
+		tradeBanner.setX((getWidth() / 2) - (tradeBanner.getWidth() / 2)); 
 		
 		setUpFog();
 		//adding all buttons
@@ -426,6 +439,11 @@ public class ShopScreen extends ClickableScreen {
 			Dragon found = findInList(d, dragonsToBuy);
 			if(found != null){
 				if(myDragons.size() >= maxDragons){
+					if(!error){
+						error = true;
+						addObject(dragonError);
+						jkdwkf
+					}
 					System.out.println("Too many dragons");
 					//show message that you cannot buy more dragons
 				}
