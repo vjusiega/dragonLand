@@ -273,8 +273,8 @@ public class ShopScreen extends ClickableScreen {
 				int height = (d.getBackdrop()).getHeight();
 				String name = disD.getName();
 				int price = disD.getPrice();
-				TextLabel nameL = new TextLabel( xcoord + 10, ycoord , width , 50, "  Name: "+ name );
-				TextLabel priceL = new TextLabel( xcoord + 10, ycoord + 25 , width , 50, "  Price: $"+ price );
+				TextLabel nameL = new TextLabel( xcoord +1, ycoord , width , 50, "  Name: "+ name );
+				TextLabel priceL = new TextLabel( xcoord + 1, ycoord + 25 , width , 50, "  Price: $"+ price );
 				String labelSrc = new String("");
 				if(trade)
 					labelSrc = "img/tradeButton.png";
@@ -491,6 +491,7 @@ public class ShopScreen extends ClickableScreen {
 		public void sellDragon(Dragon d){
 			Dragon found = findInList(d, myDragons);
 			if(found != null){
+				DragonLand.coins += found.getPrice();
 				myDragons.remove(found);
 				addDragonToPosition(found, dragonsToBuy);
 			}
@@ -540,6 +541,16 @@ public class ShopScreen extends ClickableScreen {
 		public void startFog(){
 			for(Fog f: fogs){
 				f.setRunning(false);
+			}
+		}
+		
+		public void hatchEgg(int rarityLevel){
+			if(rarityLevel == 1){
+				
+			}else if(rarityLevel == 2){
+				
+			}else if(rarityLevel == 3){
+				
 			}
 		}
 		

@@ -74,7 +74,6 @@ public class DragonLand extends GUIApplication {
 	public static Color TEXT_PINK;
 	public static float fontSize;
 	public static Screen newShopScreen;
-	public static Screen shopScreen;
 	public static Screen nameScreen;
 	public static Screen newTradingScreen;
 
@@ -125,14 +124,13 @@ public class DragonLand extends GUIApplication {
 		HomeScreen.jenCode = new game.mainScreenTeam.HomeJenniber();
 
 		welcomeScreen = new WelcomeScreen(WIDTH, HEIGHT);
-//		incubator = new IncubatorScreen(viewObjects);
 		gameInstructionsScreen = new GameInstructions(WIDTH, HEIGHT);
 		tradingScreen = new TradingScreen(WIDTH, HEIGHT);
 		vGame = new GameVioletta();
 
 		incubatorScreen = new IncubatorScreen(WIDTH, HEIGHT);
 		newTradingScreen = new NewTradingScreen(WIDTH, HEIGHT);
-		setScreen(welcomeScreen);
+		setScreen(shopMain);
 
 	}
 	private void initColors() {

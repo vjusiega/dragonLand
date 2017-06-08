@@ -1,5 +1,6 @@
 package game.EggIncuabtor;
 
+import game.DragonLand;
 import guiPractice.components.ClickableGraphic;
 
 public class Incubator  extends ClickableGraphic{
@@ -25,8 +26,8 @@ public class Incubator  extends ClickableGraphic{
 	
 
 	public void addEgg(Egg e){
-		System.out.println("adding egg into incubator");
 		egg = e;
+		DragonLand.incubatorScreen.addObject(e);
 		busy = true;
 		//incubationTime = egg.getTime();
 		//timePutIn = System.currentTimeMillis();
@@ -36,6 +37,7 @@ public class Incubator  extends ClickableGraphic{
 		egg = null;
 		busy = false;
 	}
+	
 	public  void placeOnLines(double xLine, double yLine, int sWidth, int sHeight) {
 		setX((int)(sWidth * xLine) - (getWidth()/2));
 		setY((int)(sHeight * yLine) - (getHeight()/2));

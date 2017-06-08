@@ -122,13 +122,13 @@ public class ShopSelectionScreen extends ClickableScreen{
 		});
 		viewObjects.add(tradeBox);
 		
-		Dragon tradeDrag2 = new Dragon(0,0, (int) (tradeBox.getWidth() *0.5), (int) (tradeBox.getHeight() * 0.45), "img/dragon2.png");
+		Dragon tradeDrag2 = new Dragon(0,0, (int) (tradeBox.getWidth() *0.5), (int) (tradeBox.getHeight() * 0.45), "img/dragon3.png");
 		tradeDrag2.centerDragon(tradeBox.getX() + (tradeBox.getWidth() / 2), tradeBox.getX() + tradeBox.getWidth(), tradeBox.getY(), tradeBox.getY() + (tradeBox.getHeight() /2));
 		tradeDrag2.play();
 		tradeDrag2.setDirection(1);
 		viewObjects.add(tradeDrag2);
 		
-		Dragon tradeDrag1 = new Dragon(0,0, (int) (tradeBox.getWidth() *0.6), (int) (tradeBox.getHeight() * 0.55), "img/dragon9.png");
+		Dragon tradeDrag1 = new Dragon(0,0, (int) (tradeBox.getWidth() *0.6), (int) (tradeBox.getHeight() * 0.55), "img/dragon4.png");
 		tradeDrag1.centerDragon(tradeBox.getX(), tradeBox.getX() + (int)(tradeBox.getWidth() * 0.75), tradeBox.getY() + (tradeBox.getHeight() /2), tradeBox.getY() + tradeBox.getHeight());
 		tradeDrag1.play();
 		tradeDrag1.setDirection(2);

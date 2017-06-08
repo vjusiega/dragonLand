@@ -1,8 +1,11 @@
 package game.EggIncuabtor;
 
+import java.awt.Font;
 import java.awt.Graphics2D;
 
+import game.DragonLand;
 import guiPractice.components.GraphicMovingComponent;
+import guiPractice.components.TextLabel;
 
 public class Egg extends GraphicMovingComponent {
 
@@ -12,6 +15,8 @@ public class Egg extends GraphicMovingComponent {
 	private boolean incubating;
 	private String imgSrc;
 	private long timeEnteredIncubation;
+	private long currentTime;
+	private TextLabel timer;
 	
 	public Egg(int x, int y, int w, int h, String imageLocation, String category, int price, int time) {
 		super(x, y, w, h, imageLocation);
@@ -20,6 +25,9 @@ public class Egg extends GraphicMovingComponent {
 		this.price = price;
 		this.incubationTime = time; 
 		this.imgSrc = imageLocation;	
+		timer = new TextLabel(x-39, y+75, 500, 30, "Time Left: ");
+		//timer.setFont();
+		//timer.setSize(1);
 	}
 
 	
@@ -71,6 +79,15 @@ public class Egg extends GraphicMovingComponent {
 
 	public void setIncubating(boolean incubating) {
 		this.incubating = incubating;
+		if(incubating)
+			DragonLand.incubatorScreen.addObject(timer);
+		if(!incubating)
+			DragonLand.incubatorScreen.remove(timer);
+		currentTime = System.currentTimeMillis();
+		
+		int timeLeft = (int) (incubationTime - (currentTime - timeEnteredIncubation )/1000);
+		timer.setText("Time Left: "+ timeLeft);
+
 	}
 
 	private boolean shiftRight = true;
@@ -79,9 +96,18 @@ public class Egg extends GraphicMovingComponent {
 	//finetransform
 	@Override
 	public void checkBehaviors() {
-		if(!shake){
-		}
+		currentTime = System.currentTimeMillis();
+		
+		if(incubating && ((int)((currentTime - timeEnteredIncubation)/1000) > incubationTime))
+			System.out.println("hatch");
+		
 		else{
+			int timeLeft = (int) (incubationTime - (currentTime - timeEnteredIncubation )/1000);
+			timer.setText("Time Left: "+ timeLeft+"s");	
+			
+		}
+		
+		if(shake){
 			if(shiftRight){
 				setX(getX()+5);
 				shiftRight = false;
@@ -94,6 +120,9 @@ public class Egg extends GraphicMovingComponent {
 		if(countShake%20 == 0)
 			shake = !shake;
 		
+		if(incubating){
+					
+		}
 		countShake++;
 	}
 	
