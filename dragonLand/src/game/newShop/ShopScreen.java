@@ -59,6 +59,8 @@ public class ShopScreen extends ClickableScreen {
 	private Graphic dragonError;
 	private Graphic coinError;
 	private boolean error;
+	private Graphic buySign;
+	private Graphic sellSign;
 	
 	public ShopScreen(int width, int height) {
 		super(width, height);
@@ -70,6 +72,10 @@ public class ShopScreen extends ClickableScreen {
 		dragonError.setX((getWidth() / 2) - (dragonError.getWidth() / 2)); 
 		coinError = new Graphic(0, 15, "img/notEnoughCoinsError.png");
 		coinError.setX((getWidth() / 2) - (coinError.getWidth() / 2)); 
+		buySign = new Graphic(0, 15, "img/buySign2.png");
+		buySign.setX((getWidth() / 2) - (buySign.getWidth() / 2)); 
+		sellSign = new Graphic(0, 15, "img/sellSign2.png");
+		sellSign.setX((getWidth() / 2) - (sellSign.getWidth() / 2)); 
 	}
 
 	@Override
@@ -99,7 +105,7 @@ public class ShopScreen extends ClickableScreen {
 		viewObjects.add(coinDisplay);
 		Graphic coin = new Graphic(DragonLand.WIDTH-35, 113, 25, 25, "img/Coin.png");
 		viewObjects.add(coin);
-		coinText = new TextLabel(DragonLand.WIDTH-110, 107, 175, 30, "" + DragonLand.coins);
+		coinText = new TextLabel(DragonLand.WIDTH-135, 107, 175, 30, "" + DragonLand.coins);
 		coinText.setColor(DragonLand.TEXT_PINK);
 		coinText.setSize(25);
 		viewObjects.add(coinText);
@@ -108,6 +114,7 @@ public class ShopScreen extends ClickableScreen {
 		toggleButtonBuy.setAction(new Action(){
 			public void act(){
 				remove(toggleButtonBuy);
+				remove(buySign);
 				enterSell();
 			}
 		});
@@ -116,6 +123,7 @@ public class ShopScreen extends ClickableScreen {
 		toggleButtonSell.setAction(new Action(){
 			public void act(){
 				remove(toggleButtonSell);
+				remove(sellSign);
 				enterShop();
 			}
 		});
@@ -187,8 +195,10 @@ public class ShopScreen extends ClickableScreen {
 				if(!shop){
 					shop = true;
 					remove(toggleButtonSell);
+					remove(sellSign);
 				}else{
 					remove(toggleButtonBuy);
+					remove(buySign);
 				}
 				stopFog();
 				DragonLand.game.setScreen(DragonLand.shopMain);
@@ -354,6 +364,7 @@ public class ShopScreen extends ClickableScreen {
 		
 	public void enterShop(){
 		//should update the shop and return to the first page
+		coinText.setText("" + DragonLand.coins);
 		trade = false; 
 		startFog();
 		//for first time u enter shop and everything initializes
@@ -367,6 +378,7 @@ public class ShopScreen extends ClickableScreen {
 		shop = true;
 		currentPage = 1;
 		addObject(toggleButtonBuy);
+		addObject(buySign);
 		updateNumberOfPages(dragonsToBuy);
 		drawDragons(dragonsToBuy);
 	}
@@ -384,6 +396,7 @@ public class ShopScreen extends ClickableScreen {
 		shop = false; 
 		currentPage = 1;
 		addObject(toggleButtonSell);
+		addObject(sellSign);
 		updateNumberOfPages(myDragons);
 		drawDragons(myDragons);
 			/*

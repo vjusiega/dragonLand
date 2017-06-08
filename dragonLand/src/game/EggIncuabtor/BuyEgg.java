@@ -39,13 +39,13 @@ public class BuyEgg {
 				if (size+1<=9 && DragonLand.coins - e.getPrice()>=0){
 					((IncubatorScreen) DragonLand.incubatorScreen).addEggToIncubator(e);
 					DragonLand.coins -= e.getPrice();
+					((IncubatorScreen) DragonLand.incubatorScreen).updateCoins();
 					Sound.BOUGHT.play();
 				}	
 				else if(size+1>=9)
 					((IncubatorScreen) DragonLand.incubatorScreen).addDragonError();
-				else if(DragonLand.coins - e.getPrice() <= 0)
+				else if(DragonLand.coins - e.getPrice() < 0)
 					((IncubatorScreen) DragonLand.incubatorScreen).addCoinError();
-				
 			}});
 	}
 }
