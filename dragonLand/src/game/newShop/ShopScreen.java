@@ -24,6 +24,7 @@ import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
 import introScreens.Banner;
 import introScreens.Fog;
+import game.newShop.ErrorMessage;
 import game.dragonTrading.*;
 
 //fog adjustments made
@@ -193,9 +194,9 @@ public class ShopScreen extends ClickableScreen {
 				DragonLand.game.setScreen(DragonLand.shopMain);
 			}});
 	    
-	    viewObjects.add(forwardBtn);
-	    viewObjects.add(previousBtn);
-	    viewObjects.add(backBtn);
+	    addObject(forwardBtn);
+	    addObject(previousBtn);
+	    addObject(backBtn);
 	    
 	    
 	}
@@ -412,7 +413,7 @@ public class ShopScreen extends ClickableScreen {
 		Fog fog; 
 		for(int i = -10; i < 10; i++){
 			fog = new Fog((i*getWidth() / 10), 200, 500, 300, "img/introFog.png", 100);
-			viewObjects.add(fog);
+			addObject(fog);
 			fog.setY(fog.generateYPos());
 			fog.play();
 		}
@@ -442,14 +443,31 @@ public class ShopScreen extends ClickableScreen {
 					if(!error){
 						error = true;
 						addObject(dragonError);
-						jkdwkf
+						Thread start = new Thread(new Runnable() {
+							@Override
+							public void run() {
+								ErrorMessage e = new ErrorMessage(dragonError, viewObjects);
+								e.run();
+								error = false; 
+							}
+						});
+						start.start();
 					}
-					System.out.println("Too many dragons");
-					//show message that you cannot buy more dragons
 				}
 				else if(DragonLand.coins < found.getPrice()){
-					System.out.println("Not enough money");
-					//show message that you don't have enough money
+					if(!error){
+						error = true;
+						addObject(coinError);
+						Thread start = new Thread(new Runnable() {
+							@Override
+							public void run() {
+								ErrorMessage e = new ErrorMessage(coinError, viewObjects);
+								e.run();
+								error = false; 
+							}
+						});
+						start.start();
+					}
 				}else{
 					System.out.println("you originally had " + DragonLand.coins);
 					DragonLand.coins -= found.getPrice();
