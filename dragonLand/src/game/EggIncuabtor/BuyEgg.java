@@ -3,6 +3,7 @@ package game.EggIncuabtor;
 import guiPractice.components.Action;
 //import guiPractice.components.Action;
 import game.DragonLand;
+import game.Sound;
 import game.mainScreenTeam.Dragon;
 import game.newShop.ShopScreen;
 import guiPractice.components.ClickableGraphic;
@@ -19,7 +20,7 @@ public class BuyEgg {
 		setUpButton();
 		this.e = e;
 		e.placeOnLines(xLine, yLine, screenW, screenH);
-		
+		e.setInitialX(e.getX());
 	}
 	
 	public ClickableGraphic getBackdrop(){
@@ -29,18 +30,21 @@ public class BuyEgg {
 	public Egg getEgg(){
 		return e;
 	}
-
+	
 	public void setUpButton(){
 		background.setAction(new Action(){	
 			public void act(){
 				int size = ((ShopScreen) DragonLand.newShopScreen).getMyDragons().size();
+				
 				if (size+1<=9 && DragonLand.coins - e.getPrice()>=0){
 					((IncubatorScreen) DragonLand.incubatorScreen).addEggToIncubator(e);
 					DragonLand.coins -= e.getPrice();
-				}
-				else {
+					Sound.BOUGHT.play();
+				}	
+				else if(size+1>=9)
 					((IncubatorScreen) DragonLand.incubatorScreen).addDragonError();
-				}
+				else if(DragonLand.coins - e.getPrice() <= 0)
+					((IncubatorScreen) DragonLand.incubatorScreen).addCoinError();
 				
 			}});
 	}

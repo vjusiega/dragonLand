@@ -5,6 +5,7 @@ import java.awt.Polygon;
 import java.util.ArrayList;
 
 import game.DragonLand;
+import game.EggIncuabtor.Egg;
 import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.HomeKat;
 import game.miniGameTeam.GameScreen;
@@ -40,11 +41,7 @@ public class ShopSelectionScreen extends ClickableScreen{
 		Banner b = new Banner(0, 50, 600, 171, "img/shopBanner.png");
 		b.setX((getWidth() / 2) - (b.getWidth() / 2)); 
 		viewObjects.add(b);
-		
-//		dragons = new ArrayList<Dragon>();
-//		viewObjects.add(setUpDragons(1));
-//		viewObjects.add(setUpDragons(3));
-		
+
 		Graphic post = new ClickableGraphic(0, getHeight()-150, 0.6,"img/backSign.png");
 		setUpFog(post);
 		Polygon back = new Polygon();
@@ -88,7 +85,11 @@ public class ShopSelectionScreen extends ClickableScreen{
 			}
 		});
 		viewObjects.add(eggBox);
-		
+		Egg egg = new Egg(440, 255, 125, 125, "img/egg2.png", "", 1, 1);
+		viewObjects.add(egg);
+		egg.setInitialX(egg.getX());
+		Thread moveEgg = new Thread(egg);
+		moveEgg.start();
 		setUpTradeBoxAnimation();
 		
 	}

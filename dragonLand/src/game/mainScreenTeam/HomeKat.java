@@ -74,6 +74,7 @@ public class HomeKat implements DragonArrayInterface {
 		makeDragons();
 		dragonsOnScreen();
 		dragonHome = this;
+		((ShopScreen) DragonLand.newShopScreen).initDragons();
 		}
 	private void helpLayer(int width, int height) {
 		thelp1 = "Welcome to Dragon Land!";

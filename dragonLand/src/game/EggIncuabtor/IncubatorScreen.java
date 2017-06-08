@@ -15,6 +15,7 @@ import guiPractice.components.Action;
 import guiPractice.components.Clickable;
 import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
+import guiPractice.components.MovingComponent;
 import guiPractice.components.PolygonButton;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
@@ -34,8 +35,10 @@ public class IncubatorScreen extends ClickableScreen {
 	private ArrayList<Graphic> actionLabels ;
 	private ArrayList<Incubator> incubators;
 	private ArrayList<Object> incubatorsOnDisplay;
+	
 	private Graphic dragonError;
 	private Graphic coinError;
+	private Graphic incubatorFullError;
 	
 	public IncubatorScreen(int width, int height) {
 		super(width, height);
@@ -73,15 +76,9 @@ public class IncubatorScreen extends ClickableScreen {
 		setUpIncubators();
 		drawEggs();
 		setUpErrorSigns();
-		//fillIncubator();
+		
 	}
 	
-//	private void fillIncubator() {
-//		for(int i = 0; i<3; i++){
-//			if(incubators.)
-//		}
-//	}
-
 	private void setUpIncubators() {
 		for(int i=0; i<3;i++){
 			Incubator inc = new Incubator(0,0, 100, 100, "img/incubator.png", null);;
@@ -100,29 +97,14 @@ public class IncubatorScreen extends ClickableScreen {
 			eggsToBuy.add(new Egg(0, 0, 100, 100, "img/egg"+i+".png", category[i-1], 100*i, 10*i));
 		}
 	}
-	public void setUpErrorSigns(){
-		dragonError = new Graphic(0, 15, "img/tooManyDragonsErrorSign.png");
-		dragonError.setX((getWidth() / 2) - (dragonError.getWidth() / 2)); 
-		coinError = new Graphic(0, 15, "img/notEnoughCoinsError.png");
-		coinError.setX((getWidth() / 2) - (coinError.getWidth() / 2)); 
-	}
-	public void addDragonError(){
-		addObject(dragonError);
-	}
-	public void removeDragonError(){
-		remove(dragonError);
-	}
-	public void addCoinError(){
-		addObject(coinError);
-		
-		//remove(coinError);
-	}
+	
 	public void drawEggs(){
 		clearEggsFromScreen();
 
 		for(int i = 0; i < 3; i++){
 			//adds eggs to buy
 			Egg temp = eggsToBuy.get(i);
+			//temp.setInitialX(x);
 			BuyEgg e = new BuyEgg(getDisplayX(0, i), 0.66666666, getWidth(), getHeight(), temp);
 			addObject(e.getBackdrop());
 			addObject(e.getEgg());
@@ -139,7 +121,6 @@ public class IncubatorScreen extends ClickableScreen {
 			int price = e.getEgg().getPrice();
 			TextLabel categoryL = new TextLabel( xcoord , ycoord , width , 50, "  Category: "+ category );
 			TextLabel priceL = new TextLabel( xcoord + 1, ycoord + 25 , width , 50, "  Price: $"+ price );
-			String labelSrc = new String("");
 			Graphic buySellTrade = new Graphic(xcoord + 40, ycoord +  100, 75, 40, "img/buyButton.png");
 			priceL.setSize(15);
 			categoryL.setSize(11);
@@ -172,15 +153,12 @@ public class IncubatorScreen extends ClickableScreen {
 
 	public double getDisplayX(int startEgg, int i) {
 		int pos = i - startEgg;
-		if(pos == 0){
+		if(pos == 0)
 			return 0.25;
-		}
-		if(pos == 1){
+		if(pos == 1)
 			return 0.5;
-		}
-		if(pos == 2){
+		if(pos == 2)
 			return 0.75;
-		}
 		else return 0.333;
 	}
 
@@ -200,15 +178,30 @@ public class IncubatorScreen extends ClickableScreen {
 		for(int i = 0; i< incubators.size() ; i++){
 			if(!incubators.get(i).isBusy()){
 
-				eggsIncubating.add(e);
-				Egg eggLocation = new Egg(incubators.get(i).getX()+20, incubators.get(i).getY()+20,
+				Egg eggLocation = new Egg(incubators.get(i).getX()+23, incubators.get(i).getY()+20,
 						50, 50, e.getImgSrc(), e.getCategory(), e.getPrice(), e.getIncubationTime());
+				eggLocation.setInitialX(eggLocation.getX());
 				incubators.get(i).addEgg(eggLocation);
 				Thread eggShake = new Thread(eggLocation);
-				eggLocation.setTimeEnteredIncubation(System.currentTimeMillis());
+				
+				if(eggLocation.getTimeEnteredIncubation() == 0){
+					eggsIncubating.add(eggLocation);
+					eggLocation.setTimeEnteredIncubation(System.currentTimeMillis());
+				}
 				eggLocation.setIncubating(true);
 				eggShake.start();
 				drawEggs();
+				break;
+			}else if(i==2)
+				addIncubatorFullError();
+		}
+		
+	}
+		public void removeEggFromIncubator(Egg e){
+		for(int i = 0; i< incubators.size() ; i++){
+			if(incubators.get(i).getEgg() != null && incubators.get(i).getEgg().equals(e)){
+				incubators.get(i).removeEgg(e);
+				eggsIncubating.remove(e);
 				break;
 			}
 		}
@@ -251,9 +244,36 @@ public class IncubatorScreen extends ClickableScreen {
 			if(c.getAction() != null && c.isHovered(e.getX(), e.getY())){
 				c.act();
 				break;
-			}
-		}
+			}}
 	}
+	public void setUpErrorSigns(){
+		dragonError = new Graphic(0, 15, "img/tooManyDragonsErrorSign.png");
+		dragonError.setX((getWidth() / 2) - (dragonError.getWidth() / 2)); 
+		coinError = new Graphic(0, 15, "img/notEnoughCoinsError.png");
+		coinError.setX((getWidth() / 2) - (coinError.getWidth() / 2)); 
+		///change source
+		incubatorFullError = new Graphic(0, 15, "img/notEnoughCoinsError.png");
+		incubatorFullError.setX((getWidth() / 2) - (coinError.getWidth() / 2)); 
+	}
+	public void addDragonError(){
+		addObject(dragonError);
+	}
+	public void removeDragonError(){
+		remove(dragonError);
+	}
+	public void addCoinError(){
+		addObject(coinError);
+	}
+	public void removeCoinError(){
+		remove(coinError);
+	}
+	public void addIncubatorFullError() {
+		addObject(incubatorFullError);
+	}
+	public void removeIncubatorFullError() {
+		remove(incubatorFullError);
+	}
+
 
 
 }

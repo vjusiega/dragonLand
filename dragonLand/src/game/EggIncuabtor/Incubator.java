@@ -23,15 +23,11 @@ public class Incubator  extends ClickableGraphic{
 	public void setBusy(boolean busy) {
 		this.busy = busy;
 	}
-	
 
 	public void addEgg(Egg e){
 		egg = e;
 		DragonLand.incubatorScreen.addObject(e);
 		busy = true;
-		//incubationTime = egg.getTime();
-		//timePutIn = System.currentTimeMillis();
-		//timeLeft = egg.getTime() ;
 	}
 	public void removeEgg(Egg e){
 		egg = null;

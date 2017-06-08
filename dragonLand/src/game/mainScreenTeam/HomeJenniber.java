@@ -41,22 +41,7 @@ public class HomeJenniber implements Runnable {
 		 *		and it is also removed from the ArrayList<Visible> viewObjects
 		 */
 		//DO NOT NEED NOT A BUTTON ANYMORE
-//		hungryBox.setAction(new Action(){
-//
-//			@Override
-//			public void act() {
-//				for(int i=0; i<HomeKat.dragonHome.getDragonsOnScreen().size();i++){
-//					Dragon d= HomeKat.dragonHome.getDragonsOnScreen().get(i);
-//					if((d.getY()<350 && hungryBox.getX()==d.getX()-25) || hungryBox.getY()==d.getY()+105){
-//							d.setHungryBox(false);
-//					}
-//				}
-//				
-//				hungryBoxTimes.remove(hungryBox);
-//				DragonLand.homeScreen.remove(hungryBox);
-//			}
-//			
-//		});
+//		
 		//hungryBox is added to hungryBoxTimes and viewObjects
 		hungryBoxTimes.add(hungryBox);
 		DragonLand.homeScreen.addObject(hungryBox);

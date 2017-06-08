@@ -358,11 +358,7 @@ public class ShopScreen extends ClickableScreen {
 		startFog();
 		//for first time u enter shop and everything initializes
 		if(shopEnteredFirstTime){
-			ArrayList<Dragon> temp = HomeKat.getDragons();
-			for(int i = 0; i<temp.size();i++){
-				dragonsToBuy.add(i,temp.get(i));
-			
-			}
+			initDragons();
 			updateNumberOfPages(dragonsToBuy);
 
 			//to not initialize again
@@ -375,6 +371,15 @@ public class ShopScreen extends ClickableScreen {
 		drawDragons(dragonsToBuy);
 	}
 	
+	public void initDragons() {
+		ArrayList<Dragon> temp = HomeKat.getDragons();
+		for(int i = 0; i<temp.size();i++){
+			dragonsToBuy.add(i,temp.get(i));
+		
+		}
+		shopEnteredFirstTime=false;
+	}
+
 	public void enterSell(){
 		shop = false; 
 		currentPage = 1;
@@ -544,14 +549,24 @@ public class ShopScreen extends ClickableScreen {
 			}
 		}
 		
-		public void hatchEgg(int rarityLevel){
-			if(rarityLevel == 1){
-				
-			}else if(rarityLevel == 2){
-				
-			}else if(rarityLevel == 3){
-				
+		public void hatchEgg(String rarity){
+		
+			int secOne = (int) (dragonsToBuy.size()/3);
+			int secTwo = (int) (dragonsToBuy.size()/3)+dragonsToBuy.size()/3+ dragonsToBuy.size()%3;
+			int secThree = (int) (dragonsToBuy.size()/3) + dragonsToBuy.size()/3*2 ;
+			int idx;
+			if(rarity.equals("Common")){
+				int multiplier = secOne;
+				 idx = (int) (Math.random()*multiplier); 
+			}else if(rarity.equals("Rare")){
+				int multiplier = secTwo-secOne;
+				 idx = (int) (Math.random()*multiplier + secOne);
+			}else{
+				int multiplier = secThree - secTwo; 
+				 idx = (int) (Math.random()*multiplier + secTwo);
 			}
+			
+			myDragons.add(dragonsToBuy.remove(idx));
 		}
 		
 }
