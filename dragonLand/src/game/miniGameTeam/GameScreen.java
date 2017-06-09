@@ -243,8 +243,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		speedLeft = -10;
-		speedRight = 10;
+		speedLeft = -15;
+		speedRight = 15;
 		
 		if(e.getKeyCode() == KeyEvent.VK_LEFT){ 
 			DragonLand.game.getViolettaGame().changeDragonPos(speedLeft);

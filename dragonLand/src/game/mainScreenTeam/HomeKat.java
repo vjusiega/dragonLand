@@ -50,6 +50,8 @@ public class HomeKat implements DragonArrayInterface {
 	private String thelp5;
 	private NoBorderButton help7;
 	private String thelp7;
+	private NoBorderButton help8;
+	private String thelp8;
 	private TextLabel help6;
 	private String thelp6;
 	private static DragonFood food ;
@@ -78,8 +80,8 @@ public class HomeKat implements DragonArrayInterface {
 		}
 	private void helpLayer(int width, int height) {
 		thelp1 = "Welcome to Dragon Land!";
-		help1 = new NoBorderButton(300,75,500,50,  thelp1,DragonLand.LIGHT_PINK,null);
-		help1.setSize(30);
+		help1 = new NoBorderButton(275,75,500,50,  thelp1,DragonLand.LIGHT_PINK,null);
+		help1.setSize(25);
 		
 		thelp2 = "This is your dragon pet land. Living here you can have up to 6";
 		help2 = new NoBorderButton(130,150,720,35,  thelp2,DragonLand.LIGHT_PINK,null);
@@ -102,8 +104,12 @@ public class HomeKat implements DragonArrayInterface {
 		help6.setSize(20);
 
 		thelp7 = "Keep trying to beat your score. Have fun taking care of your dragons.";
-		help7= new NoBorderButton(130,400,720,35,  thelp7,DragonLand.LIGHT_PINK,null);
+		help7= new NoBorderButton(130,400,720,55,  thelp7,DragonLand.LIGHT_PINK,null);
 		help7.setSize(20);
+		
+		thelp8 = "Have fun taking care of your dragons.";
+		help8= new NoBorderButton(130,450,720,55,  thelp8,DragonLand.LIGHT_PINK,null);
+		help8.setSize(20);
 		
 		helpLayer = new Button((int)(width*0.1),(int)(height*0.1),(int)(width*0.8),(int)(height*0.8),  null,DragonLand.LIGHT_PINK,  new Action(){
 
@@ -170,6 +176,7 @@ public class HomeKat implements DragonArrayInterface {
 					viewObjects.remove(help5);
 					viewObjects.remove(help6);
 					viewObjects.remove(help7);
+					viewObjects.remove(help8);
 					viewObjects.remove(helpLayer);
 				}
 				else{
@@ -181,6 +188,7 @@ public class HomeKat implements DragonArrayInterface {
 					viewObjects.add(help5);
 					viewObjects.add(help6);
 					viewObjects.add(help7);
+					viewObjects.add(help8);
 				}
 			}});
 	    
