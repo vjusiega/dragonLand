@@ -37,7 +37,7 @@ public class NewTradingScreen extends ClickableScreen implements Runnable{
 		Graphic background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
 		viewObjects.add(background);
 		
-		Banner b = new Banner(0, 50, 600, 171, "img/shopBanner.png");
+		Banner b = new Banner(0, 50, 600, 171, "img/tradeBanner.png");
 		b.setX((getWidth() / 2) - (b.getWidth() / 2)); 
 		viewObjects.add(b);
 	}
@@ -48,7 +48,7 @@ public class NewTradingScreen extends ClickableScreen implements Runnable{
 	}
 
 	public void drawMyDragon(){
-		ClickableGraphic background = new ClickableGraphic(getWidth(), getHeight(), 1.0, "img/whiteBox.png", 0.333, 0.5);
+		ClickableGraphic background = new ClickableGraphic(getWidth(), getHeight(), 1.0, "img/whiteBox.png", 0.25, 0.5);
 		addObject(background);
 		
 		myDragon.setWidth((int)(background.getWidth() * 0.7));
@@ -56,7 +56,9 @@ public class NewTradingScreen extends ClickableScreen implements Runnable{
 		myDragon.placeDragonOnLines(getWidth(), getHeight(), 0.25, 0.5);
 		addObject(myDragon);
 		
-		myPost = new Graphic(myDragon.getX(), myDragon.getY() + myDragon.getHeight(), background.getWidth(), 50, "img/straightOneSign.png");
+		myPost = new Graphic(myDragon.getX() - 27, myDragon.getY() + myDragon.getHeight() + 10, background.getWidth(), 50, "img/blankNoWay.png");
+		
+		
 		myDragonsName = new TextLabel(myDragon.getX(), myDragon.getY() + myDragon.getHeight(), background.getWidth(), 50, "" + myDragon.getName()); 
 		myDragonsName.setColor(DragonLand.TEXT_PINK);
 		myDragonsName.setSize(25);

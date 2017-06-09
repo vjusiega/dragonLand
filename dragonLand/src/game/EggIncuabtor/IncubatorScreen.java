@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import game.DragonLand;
 import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.HomeKat;
+import game.newShop.ErrorMessage;
 import game.newShop.ShopDragon;
 import guiPractice.ClickableScreen;
 import guiPractice.Screen;
@@ -39,6 +40,12 @@ public class IncubatorScreen extends ClickableScreen {
 	private Graphic dragonError;
 	private Graphic coinError;
 	private Graphic incubatorFullError;
+	private TextLabel coinText;
+	private boolean error; 
+	
+	public void updateCoins(){
+		coinText.setText("" + DragonLand.coins);
+	}
 	
 	public IncubatorScreen(int width, int height) {
 		super(width, height);
@@ -54,6 +61,7 @@ public class IncubatorScreen extends ClickableScreen {
 	
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects){
+		error = false; 
 		incubators = new ArrayList<Incubator>();
 		categoryLabels = new ArrayList<TextLabel>();
 		actionLabels = new ArrayList<Graphic>();
@@ -76,6 +84,19 @@ public class IncubatorScreen extends ClickableScreen {
 		setUpIncubators();
 		drawEggs();
 		setUpErrorSigns();
+		
+		Graphic incubatorSign = new Graphic(0, 15, "img/incubatorSign2.png");
+		incubatorSign.setX((getWidth() / 2) - (incubatorSign.getWidth() / 2)); 
+		viewObjects.add(incubatorSign);
+		
+		Graphic coinDisplay = new Graphic(DragonLand.WIDTH-155, 100, 175, 50, "img/StraightOneSign.png");
+		viewObjects.add(coinDisplay);
+		Graphic coin = new Graphic(DragonLand.WIDTH-35, 113, 25, 25, "img/Coin.png");
+		viewObjects.add(coin);
+		coinText = new TextLabel(DragonLand.WIDTH-135, 107, 175, 30, "" + DragonLand.coins);
+		coinText.setColor(DragonLand.TEXT_PINK);
+		coinText.setSize(25);
+		viewObjects.add(coinText);
 		
 	}
 	
@@ -171,13 +192,12 @@ public class IncubatorScreen extends ClickableScreen {
 		itemsOnDisplay.clear();
 		categoryLabels.clear();
 		priceLabels.clear();
-		
-	
 	}
+	
 	public void addEggToIncubator(Egg e){
 		for(int i = 0; i< incubators.size() ; i++){
 			if(!incubators.get(i).isBusy()){
-
+				
 				Egg eggLocation = new Egg(incubators.get(i).getX()+23, incubators.get(i).getY()+20,
 						50, 50, e.getImgSrc(), e.getCategory(), e.getPrice(), e.getIncubationTime());
 				eggLocation.setInitialX(eggLocation.getX());
@@ -192,12 +212,22 @@ public class IncubatorScreen extends ClickableScreen {
 				eggShake.start();
 				drawEggs();
 				break;
-			}else if(i==2)
-				addIncubatorFullError();
-		}
-		
+			}else if(i==2 && !error){
+				addObject(incubatorFullError);
+				Thread start = new Thread(new Runnable() {
+					@Override
+					public void run() {
+						ErrorMessage e = new ErrorMessage(incubatorFullError, viewObjects);
+						e.run();
+						error = false; 
+					}
+				});
+				start.start();
+			}
+		}	
 	}
-		public void removeEggFromIncubator(Egg e){
+	
+	public void removeEggFromIncubator(Egg e){
 		for(int i = 0; i< incubators.size() ; i++){
 			if(incubators.get(i).getEgg() != null && incubators.get(i).getEgg().equals(e)){
 				incubators.get(i).removeEgg(e);
@@ -206,6 +236,7 @@ public class IncubatorScreen extends ClickableScreen {
 			}
 		}
 	}
+		
 	public void setUpFog(){
 		Fog fog; 
 		for(int i = -10; i < 10; i++){
@@ -217,7 +248,6 @@ public class IncubatorScreen extends ClickableScreen {
 	}
 	
 	private void addPostButtons() {
-		
 	    Polygon back = new Polygon();
 	    back.addPoint(20, 18);
 	    back.addPoint(120, 30);
@@ -231,14 +261,11 @@ public class IncubatorScreen extends ClickableScreen {
 			public void act() {
 				DragonLand.game.setScreen(DragonLand.shopMain);
 			}});
-	    
 	    viewObjects.add(backBtn);
-	    
-	    
 	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
 		for(int i=0; i<clickables.size();i++){
 			Clickable c = clickables.get(i);
 			if(c.getAction() != null && c.isHovered(e.getX(), e.getY())){
@@ -251,29 +278,39 @@ public class IncubatorScreen extends ClickableScreen {
 		dragonError.setX((getWidth() / 2) - (dragonError.getWidth() / 2)); 
 		coinError = new Graphic(0, 15, "img/notEnoughCoinsError.png");
 		coinError.setX((getWidth() / 2) - (coinError.getWidth() / 2)); 
-		///change source
-		incubatorFullError = new Graphic(0, 15, "img/notEnoughCoinsError.png");
+		incubatorFullError = new Graphic(0, 15, "img/incubatorError.png");
 		incubatorFullError.setX((getWidth() / 2) - (coinError.getWidth() / 2)); 
 	}
+	
 	public void addDragonError(){
-		addObject(dragonError);
+		if(!error){
+			error = true;
+			addObject(dragonError);
+			Thread start = new Thread(new Runnable() {
+				@Override
+				public void run() {
+					ErrorMessage e = new ErrorMessage(dragonError, viewObjects);
+					e.run();
+					error = false; 
+				}
+			});
+			start.start();
+		}
 	}
-	public void removeDragonError(){
-		remove(dragonError);
-	}
+	
 	public void addCoinError(){
-		addObject(coinError);
+		if(!error){
+			error = true;
+			addObject(coinError);
+			Thread start = new Thread(new Runnable() {
+				@Override
+				public void run() {
+					ErrorMessage e = new ErrorMessage(coinError, viewObjects);
+					e.run();
+					error = false; 
+				}
+			});
+			start.start();
+		}
 	}
-	public void removeCoinError(){
-		remove(coinError);
-	}
-	public void addIncubatorFullError() {
-		addObject(incubatorFullError);
-	}
-	public void removeIncubatorFullError() {
-		remove(incubatorFullError);
-	}
-
-
-
 }

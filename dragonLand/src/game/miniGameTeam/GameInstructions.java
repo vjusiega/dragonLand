@@ -19,6 +19,7 @@ import guiPractice.components.Graphic;
 import guiPractice.components.TextArea;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
+import introScreens.Banner;
 import introScreens.Fog;
 
 public class GameInstructions extends ClickableScreen {
@@ -58,14 +59,15 @@ public class GameInstructions extends ClickableScreen {
 		viewObjects.add(background);
 		setUpFog();
 		
-		Graphic back = new Graphic((int) (DragonLand.WIDTH*0.1), (int) (DragonLand.HEIGHT*0.1), (int) (DragonLand.WIDTH*0.8),  (int) (DragonLand.HEIGHT*0.65), "img/opacityPink.png");
-		viewObjects.add(back);
+		//Graphic back = new Graphic((int) (DragonLand.WIDTH*0.1), (int) (DragonLand.HEIGHT*0.2), (int) (DragonLand.WIDTH*0.8),  (int) (DragonLand.HEIGHT*0.65), "img/opacityPink.png");
+		//Graphic back = new Graphic((int) (DragonLand.WIDTH*0.1), 25, (int) (DragonLand.WIDTH*0.8),  (int) (DragonLand.HEIGHT * 0.9), "img/opacityPink.png");
+
+		//viewObjects.add(back);
 		
-		title = new TextLabel((int) (DragonLand.WIDTH/2 - 125), (int) (DragonLand.HEIGHT*0.15 + 15), (int) (DragonLand.WIDTH*0.8),  50, "hello");
-		title.setText("Star Catch");
-		title.setColor(Color.white);
-		title.setSize(40);	
-		viewObjects.add(title);
+		Banner b = new Banner(0, 50, 600, 171, "img/gameBanner.png");
+		b.setX((getWidth() / 2) - (b.getWidth() / 2)); 
+		viewObjects.add(b);
+		
 		/*
 		instructions = new TextArea((int) (DragonLand.WIDTH/2 - 290), (int) (DragonLand.HEIGHT*0.1 + 100), 
 				      (int) (DragonLand.WIDTH*0.6), 260, "");
@@ -80,8 +82,7 @@ public class GameInstructions extends ClickableScreen {
 		viewObjects.add(instructions);
 		*/
 		
-		text1 = new TextLabel((int) (DragonLand.WIDTH/2 - 180), (int) (DragonLand.HEIGHT*0.1 - 15), 
-				      (int) (DragonLand.WIDTH*0.8), 150, "");
+		text1 = new TextLabel((int) (DragonLand.WIDTH/2 - 180), (int) (DragonLand.HEIGHT*0.1 - 15), (int) (DragonLand.WIDTH*0.8), 150, "");
 		text1.setText("Welcome to the feeding ground!");
 		text1.setColor(Color.white);
 		text1.setSize(16);		
