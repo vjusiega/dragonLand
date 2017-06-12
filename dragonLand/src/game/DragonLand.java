@@ -14,6 +14,7 @@ import dragonComponents.ReadFile;
 import game.EggIncuabtor.IncubatorScreen;
 import game.dragonTrading.TradingScreen;
 import game.mainScreenTeam.Dragon;
+import game.mainScreenTeam.HomeKat;
 import game.mainScreenTeam.HomeScreen;
 import game.miniGameTeam.GameInstructions;
 import game.miniGameTeam.GameScreen;
@@ -80,18 +81,43 @@ public class DragonLand extends GUIApplication {
 //	}
 	public DragonLand(String[] strings) {
 		if(strings != null){
-			ArrayList<Dragon> myDragons = new ArrayList<Dragon>();
-			ArrayList<Dragon> dragons = new ArrayList<Dragon>();
+			ArrayList<Dragon> myDragons = new ArrayList<Dragon>();//from
+			ArrayList<Dragon> dragons = HomeKat.getDragons();
 			ArrayList<Dragon> dragonsToBuy = new ArrayList<Dragon>();
+//			ArrayList<Egg> eggsIncubating = new ArrayList<Egg>();
 			int x=0;
 			
 			for(int i=0; i<strings.length; i++){
+				if(strings[i].indexOf("--")>=0){
+					x=i;
+					break;
+				}
 				String[] str = strings[i].split("''");
-				
+				myDragons.add(new Dragon(0,0,75,75,str[0],Integer.parseInt(str[1]),str[2]));
 			}
+			((ShopScreen)newShopScreen).setMyDragons(myDragons);
+			
+			for(int i=0;i<dragons.size();i++){
+				 if(!dragonBought(dragons.get(i))){
+					 dragonsToBuy.add(dragons.get(i));
+				 }
+			}
+			
+			
+		}
+		else{
+			
 		}
 	}
 	
+	private boolean dragonBought(Dragon dragon) {
+		for(int i=0;i<((ShopScreen) newShopScreen).getMyDragons().size();i++){
+			Dragon d = ((ShopScreen) newShopScreen).getMyDragons().get(i);
+			if(d.getName().equals(dragon))return true;
+		}
+		return false;
+	}
+
 	public DragonLand() {
 		//Sound.AMBIANCE.loop();
 				//
