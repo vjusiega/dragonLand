@@ -304,7 +304,9 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	}
 
 	public void addDragonToScreen(Dragon d){
-		addObject(d);
+		if(d != null){
+			addObject(d);
+		}
 	}
 	
 	public int getPowerUp(){
