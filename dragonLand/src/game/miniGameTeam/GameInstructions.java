@@ -1,6 +1,7 @@
 package game.miniGameTeam;
 
 import java.awt.Color;
+import java.awt.Polygon;
 
 /**
  * @author Violetta Jusiega and Tamanna Hussain
@@ -16,6 +17,7 @@ import guiPractice.components.Action;
 import guiPractice.components.Button;
 import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
+import guiPractice.components.PolygonButton;
 import guiPractice.components.TextArea;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
@@ -122,17 +124,61 @@ public class GameInstructions extends ClickableScreen {
 		text6.setColor(Color.white);
 		text6.setSize(25);
 		viewObjects.add(text6);
-		
-		ClickableGraphic playPost = new ClickableGraphic(getWidth()-250, getHeight()-200, 1.0,"img/continueSign.png");
-		playPost.setAction(new Action(){
-			public void act(){
+		Graphic playPost = new ClickableGraphic(DragonLand.WIDTH - 150, DragonLand.HEIGHT-120, .6,"img/continueSign.png");
+//		playPost.setAction(new Action(){
+//			public void act(){
+//				DragonLand.game.setScreen(DragonLand.miniGameScreen);
+//				DragonLand.miniGameScreen.startGame();
+//			}
+//		});
+		viewObjects.add(playPost);
+		Graphic post = new Graphic(0, getHeight()-150, 0.6,"img/backSign.png");
+		viewObjects.add(post);
+		addPostButtons();
+	}
+	private void addPostButtons() {
+	    Polygon back = new Polygon();
+	    back.addPoint(20, 18);
+	    back.addPoint(120, 30);
+	    back.addPoint(120, 60);
+	    back.addPoint(20, 35);
+	    back.addPoint(5, 25);
+	    back.addPoint(20, 18);
+
+	    PolygonButton backBtn = new PolygonButton( 0, DragonLand.HEIGHT-110, 150, 100, back, new Action(){
+			@Override
+			public void act() {
+				DragonLand.game.setScreen(DragonLand.homeScreen);
+			}});
+	    viewObjects.add(backBtn);
+	    
+	    Polygon helpBtn = new Polygon();
+	    helpBtn.addPoint(20, 18);
+	    helpBtn.addPoint(130, 45);
+	    helpBtn.addPoint(135, 50);
+	    helpBtn.addPoint(120, 62);
+	    helpBtn.addPoint(12, 40);
+	    helpBtn.addPoint(20, 18);
+
+	    PolygonButton cont = new PolygonButton(DragonLand.WIDTH - 150, DragonLand.HEIGHT-120, 150, 100, helpBtn, new Action(){
+			@Override
+			public void act() {
 				DragonLand.game.setScreen(DragonLand.miniGameScreen);
 				DragonLand.miniGameScreen.startGame();
-			}
-		});
-		viewObjects.add(playPost);
+			
+				}
+			});
+//	    PolygonButton continue = new PolygonButton(DragonLand.WIDTH - 150, DragonLand.HEIGHT-120, 150, 100, helpBtn, new Action(){
+//			@Override
+//			public void act() {
+//				DragonLand.game.setScreen(DragonLand.miniGameScreen);
+//				DragonLand.miniGameScreen.startGame();
+//			
+//				}
+//			});
+	    
+	   viewObjects.add(cont);
 	}
-	
 	public void updateOnEnter() {
 	}
 

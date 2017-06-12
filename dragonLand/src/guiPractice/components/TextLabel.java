@@ -23,6 +23,14 @@ public class TextLabel extends Component {
 		update();
 	}
 	
+	public TextLabel(int x, int y, int w, int h,String text,Color color) {
+		super(x, y, w, h);
+		this.text=text;
+		font=getFont();
+		size=20;
+		color = color;
+		update();
+	}
 	public void setColor(Color s){
 		color = s; 
 	}

@@ -45,6 +45,8 @@ public class Egg extends GraphicMovingComponent {
 			DragonLand.incubatorScreen.remove(timer);
 			DragonLand.incubatorScreen.remove(this);
 			((IncubatorScreen) DragonLand.incubatorScreen).removeEggFromIncubator(this);
+			String name = ((ShopScreen) DragonLand.newShopScreen).getHatchedName();
+			((IncubatorScreen) DragonLand.incubatorScreen).placeAlert(name);
 		}
 		currentTime = System.currentTimeMillis();
 		
@@ -61,6 +63,7 @@ public class Egg extends GraphicMovingComponent {
 		//hatch check
 		if(incubating && ((int)((currentTime - timeEnteredIncubation)/1000) > incubationTime)){
 			((ShopScreen) DragonLand.newShopScreen).hatchEgg(category);
+			
 			setIncubating(false);
 			this.setRunning(false);
 		}

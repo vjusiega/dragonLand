@@ -13,6 +13,7 @@ import game.newShop.ShopDragon;
 import guiPractice.ClickableScreen;
 import guiPractice.Screen;
 import guiPractice.components.Action;
+import guiPractice.components.Button;
 import guiPractice.components.Clickable;
 import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
@@ -312,5 +313,25 @@ public class IncubatorScreen extends ClickableScreen {
 			});
 			start.start();
 		}
+	}
+
+	public void placeAlert(String name) {
+		Graphic g = new Graphic(DragonLand.WIDTH/2-125, DragonLand.HEIGHT/2-30, 250, 60, "img/blankNoWay.png");
+		TextLabel b = new TextLabel(DragonLand.WIDTH/2-90, DragonLand.HEIGHT/2-40, 250, 50, name+" hatched!", DragonLand.TEXT_PINK);
+		addObject(g);
+		addObject(b);
+		Thread start = new Thread(new Runnable(){
+			public void run(){
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				remove(b);
+				remove(g);
+			}
+		});
+		start.start();
 	}
 }

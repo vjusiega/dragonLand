@@ -61,6 +61,7 @@ public class ShopScreen extends ClickableScreen {
 	private boolean error;
 	private Graphic buySign;
 	private Graphic sellSign;
+	private Dragon hatchedDragon;
 	
 	public ShopScreen(int width, int height) {
 		super(width, height);
@@ -576,8 +577,15 @@ public class ShopScreen extends ClickableScreen {
 				int multiplier = secThree - secTwo; 
 				 idx = (int) (Math.random()*multiplier + secTwo);
 			}
-			
-			myDragons.add(dragonsToBuy.remove(idx));
+			Dragon d = dragonsToBuy.remove(idx);
+			myDragons.add(d);
+			setHatchedDragon(d);
+		}
+		public void setHatchedDragon(Dragon d){
+			hatchedDragon = d;
+		}
+		public String getHatchedName(){
+			return hatchedDragon.getName();
 		}
 		
 		public ArrayList<Dragon> getDragonsToBuy(){
