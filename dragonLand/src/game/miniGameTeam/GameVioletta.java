@@ -53,35 +53,38 @@ public class GameVioletta implements gameDragonInterface{
 	}
 	
 	public Dragon addDragon(String imgSrc){
-		int random = (int) (Math.random() * 19);
-		imgSrc = "img/dragon" + random + ".png";
-		
-		int xPos;
-		int dragonHeight = 100;
-		xPos = screenWidth / 2;
-
-		if(dragonArray.size() >= 1){
-			dragonHeight = (int) (dragonHeight * 0.65);
-			if(dragonArray.size() == 1){
-				xPos = dragonArray.get(0).getX() - dragonHeight;
+		if(dragonArray.size() < 3){
+			int random = (int) (Math.random() * 19);
+			imgSrc = "img/dragon" + random + ".png";
+			
+			int xPos;
+			int dragonHeight = 100;
+			xPos = screenWidth / 2;
+	
+			if(dragonArray.size() >= 1){
+				dragonHeight = (int) (dragonHeight * 0.65);
+				if(dragonArray.size() == 1){
+					xPos = dragonArray.get(0).getX() - dragonHeight;
+				}
+				else{
+					xPos = dragonArray.get(0).getX() + dragonHeight + 25;
+				}
 			}
-			else{
-				xPos = dragonArray.get(0).getX() + dragonHeight + 25;
-			}
+			
+			int yPos = screenHeight - dragonHeight;
+			
+			Dragon d = new Dragon(xPos, yPos, dragonHeight, dragonHeight, imgSrc);
+			
+			d.setDragonAnimation(d, imgSrc);
+			dragonArray.add(d);
+			d.setX(xPos);
+			d.setY(yPos);
+			d.setDirection(0);
+			d.play();
+			d.setCurrentFrame(0);
+			return d;
 		}
-		
-		int yPos = screenHeight - dragonHeight;
-		
-		Dragon d = new Dragon(xPos, yPos, dragonHeight, dragonHeight, imgSrc);
-		
-		d.setDragonAnimation(d, imgSrc);
-		dragonArray.add(d);
-		d.setX(xPos);
-		d.setY(yPos);
-		d.setDirection(0);
-		d.play();
-		d.setCurrentFrame(0);
-		return d;
+		return null;
 	}
 	
 	public Dragon removeDragon(){
