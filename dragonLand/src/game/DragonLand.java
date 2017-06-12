@@ -26,6 +26,7 @@ import game.mainScreenTeam.HomeScreen;
 import game.miniGameTeam.GameInstructions;
 import game.miniGameTeam.GameScreen;
 import game.miniGameTeam.GameVioletta;
+import game.miniGameTeam.HighScore;
 import game.miniGameTeam.HighScoreScreen;
 import game.newShop.ShopScreen;
 import game.newShop.ShopSelectionScreen;
@@ -120,7 +121,7 @@ public class DragonLand extends GUIApplication {
 		shopMain = new ShopSelectionScreen(WIDTH, HEIGHT);
 		newShopScreen = new ShopScreen(WIDTH, HEIGHT); 
 		homeScreen = new HomeScreen(WIDTH, HEIGHT);
-		highscoreScreen = new HighScoreScreen(WIDTH, HEIGHT);
+		highscoreScreen = new HighScore(WIDTH, HEIGHT);
 		HomeScreen.jenCode = new game.mainScreenTeam.HomeJenniber();
 
 		welcomeScreen = new WelcomeScreen(WIDTH, HEIGHT);

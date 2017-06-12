@@ -30,7 +30,7 @@ public class HighScore extends ClickableScreen implements MouseListener {
 	private static TextLabel score1;
 	private static TextLabel score2;
 	private static TextLabel score3;
-	
+	private TextLabel coinText;
 	
 	public HighScore(int width, int height){
 		super(width,height);
@@ -41,15 +41,30 @@ public class HighScore extends ClickableScreen implements MouseListener {
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
 		highScores = new ArrayList<Integer>();
+		coinsWon = new TextLabel(0, 0, 100, 100, "img/opacityPink.jpg");
+		yourScore = new TextLabel(0, 0, 100, 100, "img/opacityPink.jpg");
 		
-		Banner b = new Banner(0, 50, 600, 171, "img/highScoreBanner.png");
+		Graphic coinDisplay = new Graphic(DragonLand.WIDTH-155, 100, 175, 50, "img/StraightOneSign.png");
+		
+		Graphic coin = new Graphic(DragonLand.WIDTH-35, 113, 25, 25, "img/Coin.png");
+	
+		coinText = new TextLabel(DragonLand.WIDTH-135, 107, 175, 30, "" + DragonLand.coins);
+		coinText.setColor(DragonLand.TEXT_PINK);
+		coinText.setSize(25);
+		
+		Banner b = new Banner(0, 0, 600, 171, "img/highScoreBanner.png");
 		b.setX((getWidth() / 2) - (b.getWidth() / 2)); 
 		
-		viewObjects.add(b);;
 		viewObjects.add(background);
+		viewObjects.add(coinText);
+		viewObjects.add(b);
+		viewObjects.add(coinDisplay);
+		viewObjects.add(coin);
+		viewObjects.add(coinsWon);
+		viewObjects.add(yourScore);
+		
 	}
 
-<<<<<<< HEAD
 	public static void updateOnEnter() {
 
 		//updates the score and coin values every time the high score screen is shown
@@ -57,10 +72,10 @@ public class HighScore extends ClickableScreen implements MouseListener {
 		//setRoundScore(GameScreen.getScore());
 		highScores.add(GameScreen.getScore());
 		totalCoins.setText("Total Coins: " + (DragonLand.coins+getCoins(GameScreen.getScore())));
-		DragonLand.coins+=getCoins(GameScreen.getScore());
+		DragonLand.coins += getCoins(GameScreen.getScore());
 		yourScore.setText("Your Score: " + roundScore);
 		coinsWon.setText("Coins Won: " + getCoins(GameScreen.getScore()));
-		sortScores();
+		sortScores(highScores);
 		for(int i = 0; i < 3; i++)
 		{
 			if(i < highScores.size())
@@ -73,39 +88,13 @@ public class HighScore extends ClickableScreen implements MouseListener {
 					score3.setText("3) " + highScores.get(2));
 			}
 		}
-
-=======
-	public static void updateOnEnter() {
->>>>>>> branch 'demo2.0' of https://github.com/katsemenova/dragonLand.git
-		//updates the score and coin values everytime the highscore screen is shown
-				setRoundScore(GameScreen.getScore());
-				highScores.add(roundScore);
-				totalCoins.setText("Total Coins: " + (DragonLand.coins+getCoins(GameScreen.getScore())));
-				DragonLand.coins+=getCoins(GameScreen.getScore());
-				yourScore.setText("Your Score: " + roundScore);
-				//coinsWon.setText("Coins Won: " + getCoins(GameScreen.getScore()));
-				sortScores(highScores);
-				for(int i = 0; i < 3; i++)
-				{
-					if(i < highScores.size())
-					{
-						if(i == 0)
-							score1.setText("1) " + highScores.get(0));
-						if(i == 1 && highScores.get(1) != 0)
-							score2.setText("2) " + highScores.get(1));
-						if(i == 2 && highScores.get(2) != 0)
-							score3.setText("3) " + highScores.get(2));
-					}
-				}
-
 	}
-
 	
-	
-	//EDIT!!!
-	private static void sortScores(ArrayList<Integer> scores) {
+	public static void sortScores(ArrayList<Integer> scores){
 		//sorts high score array in decreasing order
-		Collections.sort(scores,Collections.reverseOrder());
+		Comparator comparator = Collections.reverseOrder();
+		Collections.sort(scores,comparator);
+		highScores = scores;
 	}
 
 	private static int getCoins(int score) {
