@@ -31,6 +31,9 @@ public class Dragon extends AnimatedComponent {
 	public void setInitialY(int y){
 		initialY = y;
 	}
+	public void setInitialX(int x){
+		initialX = x;
+	}
 	
 	private boolean bouncing;
 	private int bounceDistance; 

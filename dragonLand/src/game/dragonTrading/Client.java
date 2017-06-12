@@ -28,43 +28,43 @@ public class Client{
 
 	
 	//connect to server
-	public void startRunning(TradingScreen s){
+	public void startRunning(NewTradingScreen thisScreen){
 		try{
-			connectToServer(s); 
-			setUpStreams(s);
+			connectToServer(thisScreen); 
+			setUpStreams(thisScreen);
 //			startTrading(s);
-			whileTrading(s);
-			s.trade();
+			whileTrading(thisScreen);
+			thisScreen.trade();
 		}catch(EOFException eofException){
-			s.displayConnectionMessage("\n Client terminated connection");
+			thisScreen.displayConnectionMessage("\n Client terminated connection");
 		}catch(IOException ioException){
 			ioException.printStackTrace();
 		}finally{
-			closeCrap(s);
+			closeCrap(thisScreen);
 		}
 		
 	}
 	
 	//connect to server
-	private void connectToServer(TradingScreen s) throws IOException{
-		s.displayConnectionMessage("Attempting connection... \n");
+	private void connectToServer(NewTradingScreen thisScreen) throws IOException{
+		thisScreen.displayConnectionMessage("Attempting connection... \n");
 		connection = new Socket(InetAddress.getByName(serverIP), 6789); 
 			//first parameter passes in the IP address
 			//6789 is the port number
-		s.displayConnectionMessage("Connected to:" + connection.getInetAddress().getHostName());
+		thisScreen.displayConnectionMessage("Connected to:" + connection.getInetAddress().getHostName());
 			//we get it from the connection because we are getting it from the server
 	}
 	
 	//set up streams to send and receive messages
-	private void setUpStreams(TradingScreen s) throws IOException{
+	private void setUpStreams(NewTradingScreen thisScreen) throws IOException{
 		output = new ObjectOutputStream(connection.getOutputStream());
 		output.flush();
 		input = new ObjectInputStream(connection.getInputStream());
-		s.displayConnectionMessage("\n Streams are now connected \n");
+		thisScreen.displayConnectionMessage("\n Streams are now connected \n");
 	}
 	
 	//while chatting with server
-	private void whileTrading(TradingScreen s) throws IOException{
+	private void whileTrading(NewTradingScreen thisScreen) throws IOException{
 		
 		//gets info 
 				String inputDrag = "";
@@ -72,22 +72,22 @@ public class Client{
 				do{
 					try{
 						inputDrag = (String) input.readObject();
-						s.setTheirDragon(inputDrag);
+						thisScreen.setTheirDragon(inputDrag);
 						done = true;
 					}catch(ClassNotFoundException classNotFoundException){
-						s.displayConnectionMessage("\n I don't know that object type.");
+						thisScreen.displayConnectionMessage("\n I don't know that object type.");
 					}
 				}while(!done);
 		
 		//sends info
-		String message = s.getMyDragon().getName(); 
+		String message = thisScreen.getMyDragon().getName(); 
 		sendDragon(message);
 	
 	}
 	
 	//close the streams and sockets
-	private void closeCrap(TradingScreen s){
-		s.displayConnectionMessage("\n closing stuff down");
+	private void closeCrap(NewTradingScreen thisScreen){
+		thisScreen.displayConnectionMessage("\n closing stuff down");
 		//ableToType(false);
 		System.out.println("I am closing");
 		try{

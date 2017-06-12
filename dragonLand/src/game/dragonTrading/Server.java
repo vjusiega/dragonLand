@@ -24,37 +24,20 @@ public class Server{
 	public Server() {
 	}
 	
-	public void startTrading(TradingScreen s){
-		
-		
-//		Button b = new Button(300, 250, 100, 100, "Trade", Color.green);
-//		b.setAction(new Action(){
-//			public void act() {
-//				try {
-//					whileTrading(s);
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//		s.addObject(b);
-	}
-	
 	//set up and run the server
-	public void startRunning(TradingScreen s){
+	public void startRunning(NewTradingScreen thisScreen){
 		try{
 			server = new ServerSocket(6789, 100); // first number for testing purposes
 			try{
 				System.out.println("I am starting and I am a server.");
-				waitForConnection(s);	
-				setupStreams(s);
-				whileTrading(s);
-				s.trade();
+				waitForConnection(thisScreen);	
+				setupStreams(thisScreen);
+				whileTrading(thisScreen);
+				thisScreen.trade();
 			}catch(EOFException eofException){
-				s.displayConnectionMessage("\n Server ended the connection!");
+				thisScreen.displayConnectionMessage("\n Server ended the connection!");
 			}finally{
-				closeCrap(s);
+				closeCrap(thisScreen);
 			}
 			
 		}catch(IOException ioException){
@@ -63,23 +46,23 @@ public class Server{
 	}
 	
 
-	private void waitForConnection(TradingScreen s) throws IOException{
+	private void waitForConnection(NewTradingScreen thisScreen) throws IOException{
 		System.out.println("I am in method");
-		s.displayConnectionMessage("Waiting for someone to connect... \n");
+		thisScreen.displayConnectionMessage("Waiting for someone to connect... \n");
 		connection = server.accept();
-		s.displayConnectionMessage("Now connected to " + connection.getInetAddress().getHostName());
+		thisScreen.displayConnectionMessage("Now connected to " + connection.getInetAddress().getHostName());
 
 	}
 	
-	private void setupStreams(TradingScreen s) throws IOException {
+	private void setupStreams(NewTradingScreen thisScreen) throws IOException {
 		output = new ObjectOutputStream(connection.getOutputStream());
 		output.flush();
 		input = new ObjectInputStream(connection.getInputStream());
-		s.displayConnectionMessage("\n Streams are now setup! \n");
+		thisScreen.displayConnectionMessage("\n Streams are now setup! \n");
 	}
 	
-	private void whileTrading(TradingScreen s) throws IOException{
-		String message = s.getMyDragon().getName(); 
+	private void whileTrading(NewTradingScreen thisScreen) throws IOException{
+		String message = thisScreen.getMyDragon().getName(); 
 		System.out.println("about to send " + message);
 		sendDragon(message);
 		
@@ -90,18 +73,18 @@ public class Server{
 			try{
 				System.out.println("here");
 				inputDrag = (String) input.readObject();
-				s.setTheirDragon(inputDrag);
+				thisScreen.setTheirDragon(inputDrag);
 				System.out.println(inputDrag);
 				sendDragon("done");
 				done = true;
 			}catch(ClassNotFoundException classNotFoundException){
-				s.displayConnectionMessage("\n I don't know that object type.");
+				thisScreen.displayConnectionMessage("\n I don't know that object type.");
 			}
 		}while(!done);		
 	}
 	
-	private void closeCrap(TradingScreen s){
-		s.displayConnectionMessage("\n Closing connections \n"); 
+	private void closeCrap(NewTradingScreen thisScreen){
+		thisScreen.displayConnectionMessage("\n Closing connections \n"); 
 //		ableToType(false);
 		try{
 			output.close();

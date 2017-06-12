@@ -326,7 +326,6 @@ public class ShopScreen extends ClickableScreen {
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		for(int i = 0; i < dragonsOnDisplay.size()-1 ; i+=2){
-			
 			if(((ClickableGraphic) dragonsOnDisplay.get(i)).isHovered(e.getX(), e.getY()) && !viewObjects.contains(nameLabels.get(i/2))){
 				remove((Visible)dragonsOnDisplay.get(i+1));
 				addObject(nameLabels.get(i/2));
@@ -451,7 +450,6 @@ public class ShopScreen extends ClickableScreen {
 		public ArrayList<Dragon> getMyDragons(){
 			return myDragons;
 		}
-	
 		
 		//official method to buy a dragon for money
 		public void buyDragon(Dragon d){
@@ -580,6 +578,10 @@ public class ShopScreen extends ClickableScreen {
 			}
 			
 			myDragons.add(dragonsToBuy.remove(idx));
+		}
+		
+		public ArrayList<Dragon> getDragonsToBuy(){
+			return dragonsToBuy;
 		}
 		
 }
