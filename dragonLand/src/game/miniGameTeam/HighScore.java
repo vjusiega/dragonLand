@@ -16,15 +16,20 @@ import guiPractice.components.Visible;
 import introScreens.Banner;
 /**
  * 
- * @author Jenniber
+ * @author Tamanna
  *
  */
 public class HighScore extends ClickableScreen implements MouseListener {
 	
 	private Graphic background;
+	
+	private static TextLabel back;
+	private static TextLabel replayGame;
+	
 	private static ArrayList<Integer> highScores;
-	private static int roundScore;
+		
 	private static TextLabel yourScore;
+	private static int roundScore;	
 	private static TextLabel coinsWon;
 	private static TextLabel totalCoins;
 	private static TextLabel score1;
@@ -34,32 +39,31 @@ public class HighScore extends ClickableScreen implements MouseListener {
 	
 	public HighScore(int width, int height){
 		super(width,height);
-		
 	}
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
 		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
+		
 		highScores = new ArrayList<Integer>();
-		coinsWon = new TextLabel(0, 0, 100, 100, "img/opacityPink.jpg");
-		yourScore = new TextLabel(0, 0, 100, 100, "img/opacityPink.jpg");
+		coinsWon = new TextLabel(200, 200, 300, 300, "img/opacityPink.jpg");
+		yourScore = new TextLabel(500, 500, 300, 300, "img/opacityPink.jpg");
 		
-		Graphic coinDisplay = new Graphic(DragonLand.WIDTH-155, 100, 175, 50, "img/StraightOneSign.png");
-		
-		Graphic coin = new Graphic(DragonLand.WIDTH-35, 113, 25, 25, "img/Coin.png");
-	
+		Graphic coinDisplay = new Graphic(DragonLand.WIDTH-155, 100, 175, 50, "img/StraightOneSign.png");		
+		Graphic coin = new Graphic(DragonLand.WIDTH-35, 113, 25, 25, "img/Coin.png");	
 		coinText = new TextLabel(DragonLand.WIDTH-135, 107, 175, 30, "" + DragonLand.coins);
+		System.out.println("coins: " + DragonLand.coins);
 		coinText.setColor(DragonLand.TEXT_PINK);
 		coinText.setSize(25);
 		
 		Banner b = new Banner(0, 0, 600, 171, "img/highScoreBanner.png");
 		b.setX((getWidth() / 2) - (b.getWidth() / 2)); 
 		
-		viewObjects.add(background);
-		viewObjects.add(coinText);
+		viewObjects.add(background);	
 		viewObjects.add(b);
 		viewObjects.add(coinDisplay);
-		viewObjects.add(coin);
+		viewObjects.add(coin); 
+		viewObjects.add(coinText);
 		viewObjects.add(coinsWon);
 		viewObjects.add(yourScore);
 		
