@@ -59,14 +59,23 @@ public class HighScore extends ClickableScreen implements MouseListener {
 		Banner b = new Banner(0, 0, 600, 171, "img/highScoreBanner.png");
 		b.setX((getWidth() / 2) - (b.getWidth() / 2)); 
 		
-		viewObjects.add(background);	
+		score1 = TextLabel(200, 300, 200, 350, "img/opacityPink.jpg");	
+		coinText.setSize(25);
+		score2 = TextLabel(200, 350, 200, 350, "img/opacityPink.jpg"); 
+		coinText.setSize(25);					
+		score3 = TextLabel(200, 400, 200, 350, "img/opacityPink.jpg");
+		coinText.setSize(25);
+		
+		viewObjects.add(background);
 		viewObjects.add(b);
 		viewObjects.add(coinDisplay);
 		viewObjects.add(coin); 
 		viewObjects.add(coinText);
 		viewObjects.add(coinsWon);
 		viewObjects.add(yourScore);
-		
+		viewObjects.add(score1);
+		viewObjects.add(score2);
+		viewObjects.add(score3);
 	}
 
 	public static void updateOnEnter() {
@@ -111,5 +120,4 @@ public class HighScore extends ClickableScreen implements MouseListener {
 	private static void setRoundScore(int score) {
 		roundScore = score;
 	}
-
 }
