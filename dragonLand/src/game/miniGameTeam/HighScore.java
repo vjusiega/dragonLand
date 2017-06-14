@@ -8,6 +8,7 @@ import java.util.Comparator;
 
 import dragonComponents.Background;
 import game.DragonLand;
+import game.mainScreenTeam.Dragon;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
@@ -27,7 +28,7 @@ import introScreens.Fog;
 public class HighScore extends ClickableScreen implements MouseListener {
 	
 	private ArrayList<Fog> fogs;
-	
+	private ArrayList<Dragon> dragons;
 	private Graphic background;
 	private Graphic score;
 	private Graphic coins;
@@ -37,8 +38,6 @@ public class HighScore extends ClickableScreen implements MouseListener {
 	
 	private static ArrayList<Integer> highScores;
 		
-	private static TextLabel ys;
-	private static TextLabel cw;
 	private static TextArea yourScore;
 	private static int roundScore;	
 	private static TextLabel coinsWon;
@@ -107,7 +106,6 @@ public class HighScore extends ClickableScreen implements MouseListener {
 		score3.setSize(25);
 		viewObjects.add(score3);
 		
-		
 		Graphic playPost = new ClickableGraphic(DragonLand.WIDTH - 150, DragonLand.HEIGHT-120, .6,"img/continueSign.png");
 		viewObjects.add(playPost);
 		Graphic post = new Graphic(0, getHeight()-150, 0.6,"img/backSign.png");
@@ -147,6 +145,9 @@ public class HighScore extends ClickableScreen implements MouseListener {
 		});	    
 	    viewObjects.add(cont);
 		
+	    dragons = new ArrayList<Dragon>();
+		viewObjects.add(setUpDragons(10));
+		viewObjects.add(setUpDragons(2));
 	}
 
 	public static void updateOnEnter() {
@@ -199,5 +200,32 @@ public class HighScore extends ClickableScreen implements MouseListener {
 			fog.setY(fog.generateYPos());
 			fog.play();
 		}
+	}
+	
+	public Dragon setUpDragons(int num){
+		String imgSrc = "img/dragon" + num + ".png";
+		int dragonHeight = getHeight()/6;
+		int dragonWidth = (int) (dragonHeight * 0.75);
+		int xPos;
+		int yPos = (-1)*dragonHeight;
+		
+		if(num == 10){
+ 			xPos = 10;
+ 		}else{
+ 			xPos = coins.getX() + 175;
+ 		}
+		Dragon d = new Dragon(xPos, 225, dragonHeight, dragonWidth, imgSrc, 15, 0.7);
+
+		dragons.add(d);
+		d.setDragonAnimation(d, imgSrc);
+		d.setInitialY(225);
+		d.setDirection(4);
+		d.play();
+		
+		return d;
+	}
+	
+	public int getDragonY(){
+		return getHeight()/4;
 	}
 }

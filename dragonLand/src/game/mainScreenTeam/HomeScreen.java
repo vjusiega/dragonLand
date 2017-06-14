@@ -33,7 +33,7 @@ public class HomeScreen extends ClickableScreen implements Runnable{
 		background=new Graphic(0,0,getWidth(),getHeight(),"img/anotherLand.jpg");
 		viewObjects.add(background);
 		setUpFog();
-		 katCode=new HomeKat(viewObjects, getWidth(), getHeight());
+		katCode=new HomeKat(viewObjects, getWidth(), getHeight());
 		
 	}
 	@Override
