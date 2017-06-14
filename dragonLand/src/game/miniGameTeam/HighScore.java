@@ -73,6 +73,7 @@ public class HighScore extends ClickableScreen implements MouseListener {
 		});	    
 	    viewObjects.add(backBtn);
 	    
+	    //needs to be changed to a replay post
 	    Polygon helpBtn = new Polygon();
 	    helpBtn.addPoint(20, 18);
 	    helpBtn.addPoint(130, 45);
@@ -93,10 +94,12 @@ public class HighScore extends ClickableScreen implements MouseListener {
 		score = new Graphic(85, 250, 200, 150, "img/opacityPink.png");		
 		viewObjects.add(score);
 		yourScore = new TextArea(score.getX()+30, score.getY(), 200, 150, "");
+		yourScore.setText("Your Score: ");
 		viewObjects.add(yourScore);
 		
 		coins = new Graphic(getWidth()/2 + 200, 250, 200, 150, "img/opacityPink.png");
 		coinsWon = new TextLabel(coins.getX()+35, coins.getY()-100, 200, 150, "");
+		coinsWon.setText("Coins Won: ");
 		viewObjects.add(coins);
 		viewObjects.add(coinsWon);
 		
@@ -105,45 +108,31 @@ public class HighScore extends ClickableScreen implements MouseListener {
 		coinText = new TextLabel(DragonLand.WIDTH-135, 107, 175, 30, "" + DragonLand.coins);
 		coinText.setColor(DragonLand.TEXT_PINK);
 		coinText.setSize(20);
-		coinText.setSize(25);
-		
-		Banner b = new Banner(0, 0, 600, 171, "img/highScoreBanner.png");
-		b.setX((getWidth() / 2) - (b.getWidth() / 2)); 
-		
-		score1 = new TextLabel(200, 300, 200, 350, "img/opacityPink.jpg");	
-		coinText.setSize(25);
-		score2 = new TextLabel(200, 350, 200, 350, "img/opacityPink.jpg"); 
-		coinText.setSize(25);					
-		score3 = new TextLabel(200, 400, 200, 350, "img/opacityPink.jpg");
-		coinText.setSize(25);
-		
-		viewObjects.add(background);
-		viewObjects.add(b);
 		viewObjects.add(coinDisplay);
 		viewObjects.add(coin);
 		viewObjects.add(coinText);
 		
 		Banner banner = new Banner(0, 25, 600, 171, "img/highScoreBanner.png");
-		banner.setX((getWidth() / 2) - (b.getWidth() / 2)); 
+		banner.setX((getWidth() / 2) - (banner.getWidth() / 2)); 
 		viewObjects.add(banner);
 		
 		scoreOne = new Graphic(getWidth()/2 - 200, 185, 395, 100, "img/opacityPink.png");
 		viewObjects.add(scoreOne);
-		score1 = new TextLabel(200, 300, 200, 350, "1.");
+		score1 = new TextLabel(getWidth()/2 - 150, 150, 395, 100, "");
 		score1.setText("1)");
 		score1.setSize(25);
 		viewObjects.add(score1);
 		
 		scoreTwo = new Graphic(getWidth()/2 - 200, 320, 395, 100, "img/opacityPink.png");
 		viewObjects.add(scoreTwo);
-		score2 = new TextLabel(200, 350, 200, 350, "2."); 
+		score2 = new TextLabel(getWidth()/2 - 150, 280, 395, 100, ""); 
 		score2.setText("2)");
 		score2.setSize(25);					
 		viewObjects.add(score2);
 		
 		scoreThree = new Graphic(getWidth()/2 - 200, 455, 395, 100, "img/opacityPink.png");
 		viewObjects.add(scoreThree);
-		score3 = new TextLabel(200, 400, 200, 350, "3.");
+		score3 = new TextLabel(getWidth()/2 - 150, 420, 395, 100, "");
 		score3.setText("3)");
 		score3.setSize(25);
 		viewObjects.add(score3);
