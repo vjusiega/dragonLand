@@ -11,6 +11,7 @@ import game.DragonLand;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
+import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
 import guiPractice.components.PolygonButton;
 import guiPractice.components.TextArea;
@@ -36,6 +37,8 @@ public class HighScore extends ClickableScreen implements MouseListener {
 	
 	private static ArrayList<Integer> highScores;
 		
+	private static TextLabel ys;
+	private static TextLabel cw;
 	private static TextArea yourScore;
 	private static int roundScore;	
 	private static TextLabel coinsWon;
@@ -56,6 +59,59 @@ public class HighScore extends ClickableScreen implements MouseListener {
 		
 		fogs = new ArrayList<Fog>();
 		setUpFog();
+		
+		score = new Graphic(15, 270, 285, 110, "img/opacityPink.png");		
+		viewObjects.add(score);
+		yourScore = new TextArea(score.getX()+30, score.getY()+15, 285, 115, "");
+		yourScore.setSize(20);
+		viewObjects.add(yourScore);
+		
+		coins = new Graphic(getWidth()/2 + 200, 270, 270, 110, "img/opacityPink.png");
+		coinsWon = new TextLabel(coins.getX()+35, coins.getY()-50, 300, 115, "");
+		coinsWon.setText("Coins Won: ");
+		coinsWon.setSize(20);
+		viewObjects.add(coins);
+		viewObjects.add(coinsWon);
+		
+		Graphic coinDisplay = new Graphic(DragonLand.WIDTH-155, 100, 175, 50, "img/StraightOneSign.png");		
+		Graphic coin = new Graphic(DragonLand.WIDTH-35, 113, 25, 25, "img/Coin.png");	
+		coinText = new TextLabel(DragonLand.WIDTH-135, 107, 175, 30, "" + DragonLand.coins);
+		coinText.setColor(DragonLand.TEXT_PINK);
+		coinText.setSize(20);
+		viewObjects.add(coinDisplay);
+		viewObjects.add(coin);
+		viewObjects.add(coinText);
+		
+		Banner banner = new Banner(0, 25, 600, 171, "img/highScoreBanner.png");
+		banner.setX((getWidth() / 2) - (banner.getWidth() / 2)); 
+		viewObjects.add(banner);
+		
+		scoreOne = new Graphic(getWidth()/2 - 200, 185, 395, 100, "img/opacityPink.png");
+		viewObjects.add(scoreOne);
+		score1 = new TextLabel(getWidth()/2 - 150, 150, 395, 100, "");
+		score1.setText("1)");
+		score1.setSize(25);
+		viewObjects.add(score1);
+		
+		scoreTwo = new Graphic(getWidth()/2 - 200, 320, 395, 100, "img/opacityPink.png");
+		viewObjects.add(scoreTwo);
+		score2 = new TextLabel(getWidth()/2 - 150, 275, 395, 110, ""); 
+		score2.setText("2)");
+		score2.setSize(25);					
+		viewObjects.add(score2);
+		
+		scoreThree = new Graphic(getWidth()/2 - 200, 455, 395, 100, "img/opacityPink.png");
+		viewObjects.add(scoreThree);
+		score3 = new TextLabel(getWidth()/2 - 150, 415, 395, 110, "");
+		score3.setText("3)");
+		score3.setSize(25);
+		viewObjects.add(score3);
+		
+		
+		Graphic playPost = new ClickableGraphic(DragonLand.WIDTH - 150, DragonLand.HEIGHT-120, .6,"img/continueSign.png");
+		viewObjects.add(playPost);
+		Graphic post = new Graphic(0, getHeight()-150, 0.6,"img/backSign.png");
+		viewObjects.add(post);
 		
 		Polygon back = new Polygon();
 	    back.addPoint(20, 18);
@@ -90,52 +146,6 @@ public class HighScore extends ClickableScreen implements MouseListener {
 				}
 		});	    
 	    viewObjects.add(cont);
-		
-		score = new Graphic(85, 250, 200, 150, "img/opacityPink.png");		
-		viewObjects.add(score);
-		yourScore = new TextArea(score.getX()+30, score.getY(), 200, 150, "");
-		yourScore.setText("Your Score: ");
-		viewObjects.add(yourScore);
-		
-		coins = new Graphic(getWidth()/2 + 200, 250, 200, 150, "img/opacityPink.png");
-		coinsWon = new TextLabel(coins.getX()+35, coins.getY()-100, 200, 150, "");
-		coinsWon.setText("Coins Won: ");
-		viewObjects.add(coins);
-		viewObjects.add(coinsWon);
-		
-		Graphic coinDisplay = new Graphic(DragonLand.WIDTH-155, 100, 175, 50, "img/StraightOneSign.png");		
-		Graphic coin = new Graphic(DragonLand.WIDTH-35, 113, 25, 25, "img/Coin.png");	
-		coinText = new TextLabel(DragonLand.WIDTH-135, 107, 175, 30, "" + DragonLand.coins);
-		coinText.setColor(DragonLand.TEXT_PINK);
-		coinText.setSize(20);
-		viewObjects.add(coinDisplay);
-		viewObjects.add(coin);
-		viewObjects.add(coinText);
-		
-		Banner banner = new Banner(0, 25, 600, 171, "img/highScoreBanner.png");
-		banner.setX((getWidth() / 2) - (banner.getWidth() / 2)); 
-		viewObjects.add(banner);
-		
-		scoreOne = new Graphic(getWidth()/2 - 200, 185, 395, 100, "img/opacityPink.png");
-		viewObjects.add(scoreOne);
-		score1 = new TextLabel(getWidth()/2 - 150, 150, 395, 100, "");
-		score1.setText("1)");
-		score1.setSize(25);
-		viewObjects.add(score1);
-		
-		scoreTwo = new Graphic(getWidth()/2 - 200, 320, 395, 100, "img/opacityPink.png");
-		viewObjects.add(scoreTwo);
-		score2 = new TextLabel(getWidth()/2 - 150, 280, 395, 100, ""); 
-		score2.setText("2)");
-		score2.setSize(25);					
-		viewObjects.add(score2);
-		
-		scoreThree = new Graphic(getWidth()/2 - 200, 455, 395, 100, "img/opacityPink.png");
-		viewObjects.add(scoreThree);
-		score3 = new TextLabel(getWidth()/2 - 150, 420, 395, 100, "");
-		score3.setText("3)");
-		score3.setSize(25);
-		viewObjects.add(score3);
 		
 	}
 
