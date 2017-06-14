@@ -136,6 +136,7 @@ public class GameInstructions extends ClickableScreen {
 		viewObjects.add(post);
 		addPostButtons();
 	}
+	
 	private void addPostButtons() {
 	    Polygon back = new Polygon();
 	    back.addPoint(20, 18);
@@ -149,7 +150,9 @@ public class GameInstructions extends ClickableScreen {
 			@Override
 			public void act() {
 				DragonLand.game.setScreen(DragonLand.homeScreen);
-			}});
+			}
+		});
+	    
 	    viewObjects.add(backBtn);
 	    
 	    Polygon helpBtn = new Polygon();
@@ -165,17 +168,8 @@ public class GameInstructions extends ClickableScreen {
 			public void act() {
 				DragonLand.game.setScreen(DragonLand.miniGameScreen);
 				DragonLand.miniGameScreen.startGame();
-			
-				}
-			});
-//	    PolygonButton continue = new PolygonButton(DragonLand.WIDTH - 150, DragonLand.HEIGHT-120, 150, 100, helpBtn, new Action(){
-//			@Override
-//			public void act() {
-//				DragonLand.game.setScreen(DragonLand.miniGameScreen);
-//				DragonLand.miniGameScreen.startGame();
-//			
-//				}
-//			});
+			}
+		});
 	    
 	   viewObjects.add(cont);
 	}

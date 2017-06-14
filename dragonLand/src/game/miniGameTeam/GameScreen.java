@@ -78,7 +78,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		
 		scoreText = new TextLabel(DragonLand.WIDTH-175, 30, 200, 70, score + " Points");
 		scoreText.setColor(DragonLand.TEXT_PINK);
-		scoreText.setSize(25);
+		scoreText.setSize(20);
 		viewObjects.add(scoreText);
 	}
 
