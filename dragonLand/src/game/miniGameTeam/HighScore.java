@@ -104,7 +104,24 @@ public class HighScore extends ClickableScreen implements MouseListener {
 		Graphic coin = new Graphic(DragonLand.WIDTH-35, 113, 25, 25, "img/Coin.png");	
 		coinText = new TextLabel(DragonLand.WIDTH-135, 107, 175, 30, "" + DragonLand.coins);
 		coinText.setColor(DragonLand.TEXT_PINK);
+<<<<<<< HEAD
 		coinText.setSize(20);
+=======
+		coinText.setSize(25);
+		
+		Banner b = new Banner(0, 0, 600, 171, "img/highScoreBanner.png");
+		b.setX((getWidth() / 2) - (b.getWidth() / 2)); 
+		
+		score1 = new TextLabel(200, 300, 200, 350, "img/opacityPink.jpg");	
+		coinText.setSize(25);
+		score2 = new TextLabel(200, 350, 200, 350, "img/opacityPink.jpg"); 
+		coinText.setSize(25);					
+		score3 = new TextLabel(200, 400, 200, 350, "img/opacityPink.jpg");
+		coinText.setSize(25);
+		
+		viewObjects.add(background);
+		viewObjects.add(b);
+>>>>>>> branch 'demo2.0' of https://github.com/katsemenova/dragonLand.git
 		viewObjects.add(coinDisplay);
 		viewObjects.add(coin);
 		viewObjects.add(coinText);
