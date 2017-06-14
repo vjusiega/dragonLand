@@ -2,14 +2,15 @@ package dragonComponents;
 
 import java.util.ArrayList;
 
+import game.EggIncuabtor.Egg;
 import game.mainScreenTeam.Dragon;
 
 public class saveDragons {
 
 	private String TOP_LINE = "Name''Price''Img Src";
-	private String NEW_LINE = "\n";
+	private String NEW_LINE = System.getProperty("line.separator");
 	
-	public saveDragons(ArrayList<Dragon> myDragons, ArrayList<Egg> incubating, String fileName) {
+	public saveDragons(ArrayList<Dragon> myDragons, Egg[] incubating, String fileName) {
 		String dragonText = createDragon(myDragons, incubating);
 		WriteFile dragon = new WriteFile(dragonText, fileName);
 	}
@@ -20,14 +21,14 @@ public class saveDragons {
 	//dragonsToBuy Array - dragons in shop
 	//dragons in HomeKat - full array
 	
-	public String createDragon(ArrayList<Dragon> myDragons, ArrayList<Dragon> dragons){
+	public String createDragon(ArrayList<Dragon> myDragons, Egg[] incubating){
 		String dragonText = TOP_LINE + NEW_LINE;
 		for(int i=0; i<myDragons.size();i++){
 			Dragon d = myDragons.get(i);
 			dragonText += d.getName()+"''"+d.getPrice()+"''"+d.getImgSrc()+NEW_LINE;
 		}
 		dragonText+= "--"+NEW_LINE;
-		for(int i=0; i<dragons.size();i++){
+		for(int i=0; i<incubating.length;i++){
 			Dragon d = myDragons.get(i);
 			dragonText += d.getName()+"''"+d.getPrice()+"''"+d.getImgSrc()+NEW_LINE;
 		}
