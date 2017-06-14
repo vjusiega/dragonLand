@@ -59,11 +59,11 @@ public class HighScore extends ClickableScreen implements MouseListener {
 		Banner b = new Banner(0, 0, 600, 171, "img/highScoreBanner.png");
 		b.setX((getWidth() / 2) - (b.getWidth() / 2)); 
 		
-		score1 = TextLabel(200, 300, 200, 350, "img/opacityPink.jpg");	
+		score1 = new TextLabel(200, 300, 200, 350, "img/opacityPink.jpg");	
 		coinText.setSize(25);
-		score2 = TextLabel(200, 350, 200, 350, "img/opacityPink.jpg"); 
+		score2 = new TextLabel(200, 350, 200, 350, "img/opacityPink.jpg"); 
 		coinText.setSize(25);					
-		score3 = TextLabel(200, 400, 200, 350, "img/opacityPink.jpg");
+		score3 = new TextLabel(200, 400, 200, 350, "img/opacityPink.jpg");
 		coinText.setSize(25);
 		
 		viewObjects.add(background);

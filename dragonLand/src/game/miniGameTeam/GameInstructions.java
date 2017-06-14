@@ -70,6 +70,8 @@ public class GameInstructions extends ClickableScreen {
 		b.setX((getWidth() / 2) - (b.getWidth() / 2)); 
 		viewObjects.add(b);
 		
+		Graphic wood = new Graphic((int) (DragonLand.WIDTH*0.15), (int) (DragonLand.HEIGHT*0.3), (int) (DragonLand.WIDTH*0.7),  (int) (DragonLand.HEIGHT*0.5), "img/blankWoodBack4.png");
+		viewObjects.add(wood);
 		/*
 		instructions = new TextArea((int) (DragonLand.WIDTH/2 - 290), (int) (DragonLand.HEIGHT*0.1 + 100), 
 				      (int) (DragonLand.WIDTH*0.6), 260, "");
@@ -84,44 +86,47 @@ public class GameInstructions extends ClickableScreen {
 		viewObjects.add(instructions);
 		*/
 		
-		text1 = new TextLabel((int) (DragonLand.WIDTH/2 - 180), (int) (DragonLand.HEIGHT*0.1 - 15), (int) (DragonLand.WIDTH*0.8), 150, "");
+		int x = -37;
+		int y = -47;
+		
+		text1 = new TextLabel((int) (DragonLand.WIDTH/2 - 180 - x), (int) (DragonLand.HEIGHT*0.1 - 15 - y), (int) (DragonLand.WIDTH*0.8), 150, "");
 		text1.setText("Welcome to the feeding ground!");
-		text1.setColor(Color.white);
+		text1.setColor(DragonLand.TEXT_PINK);
 		text1.setSize(16);		
 		viewObjects.add(text1);
 		
-		text2 = new TextLabel((int) (DragonLand.WIDTH/2 - 295), (int) (DragonLand.HEIGHT*0.1 + 30), 
+		text2 = new TextLabel((int) (DragonLand.WIDTH/2 - 295 - x), (int) (DragonLand.HEIGHT*0.1 + 30 - y), 
 				      (int) (DragonLand.WIDTH*0.8), 150, "");
 		text2.setText("Here your hungry dragon will eat the falling stars.");
-		text2.setColor(Color.white);
+		text2.setColor(DragonLand.TEXT_PINK);
 		text2.setSize(16);		
 		viewObjects.add(text2);
 		
-		text3 = new TextLabel((int) (DragonLand.WIDTH/2 - 300), (int) (DragonLand.HEIGHT*0.1 + 75), 
+		text3 = new TextLabel((int) (DragonLand.WIDTH/2 - 300 - x), (int) (DragonLand.HEIGHT*0.1 + 75 - y), 
 				      (int) (DragonLand.WIDTH*0.8), 150, "");
 		text3.setText("Stars are the best source of nutrients for dragons.");
-		text3.setColor(Color.white);
+		text3.setColor(DragonLand.TEXT_PINK);
 		text3.setSize(16);		
 		viewObjects.add(text3);
 		
-		text4 = new TextLabel((int) (DragonLand.WIDTH/2 - 285), (int) (DragonLand.HEIGHT*0.1 + 115), 
+		text4 = new TextLabel((int) (DragonLand.WIDTH/2 - 285 - x), (int) (DragonLand.HEIGHT*0.1 + 120 - y), 
 				      (int) (DragonLand.WIDTH*0.8), 150, "");
 		text4.setText("The more stars you earn the more coins you get.");
-		text4.setColor(Color.white);
+		text4.setColor(DragonLand.TEXT_PINK);
 		text4.setSize(16);	
 		viewObjects.add(text4);
 		
-		text5 = new TextLabel((int) (DragonLand.WIDTH/2 - 225), (int) (DragonLand.HEIGHT*0.1 + 155), 
+		text5 = new TextLabel((int) (DragonLand.WIDTH/2 - 225 - x), (int) (DragonLand.HEIGHT*0.1 + 165 - y), 
 				      (int) (DragonLand.WIDTH*0.8), 150, "");
 		text5.setText("Don't let a star fall or you lose a life!");
-		text5.setColor(Color.white);
+		text5.setColor(DragonLand.TEXT_PINK);
 		text5.setSize(16);	
 		viewObjects.add(text5);
 		
-		text6 = new TextLabel((int) (DragonLand.WIDTH/2 - 50), (int) (DragonLand.HEIGHT*0.1 + 195), 
+		text6 = new TextLabel((int) (DragonLand.WIDTH/2 - 100 - x), (int) (DragonLand.HEIGHT*0.1 + 210 - y), 
 				      (int) (DragonLand.WIDTH*0.8), 150, "");
 		text6.setText("Have fun!");
-		text6.setColor(Color.white);
+		text6.setColor(DragonLand.TEXT_PINK);
 		text6.setSize(25);
 		viewObjects.add(text6);
 		Graphic playPost = new ClickableGraphic(DragonLand.WIDTH - 150, DragonLand.HEIGHT-120, .6,"img/continueSign.png");
