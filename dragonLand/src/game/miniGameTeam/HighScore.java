@@ -65,7 +65,7 @@ public class HighScore extends ClickableScreen implements MouseListener {
 	    back.addPoint(5, 25);
 	    back.addPoint(20, 18);
 
-	    PolygonButton backBtn = new PolygonButton( 0, DragonLand.HEIGHT-110, 150, 100, back, new Action(){
+	    PolygonButton backBtn = new PolygonButton(0, DragonLand.HEIGHT-110, 150, 100, back, new Action(){
 			@Override
 			public void act() {
 				DragonLand.game.setScreen(DragonLand.homeScreen);
@@ -104,9 +104,7 @@ public class HighScore extends ClickableScreen implements MouseListener {
 		Graphic coin = new Graphic(DragonLand.WIDTH-35, 113, 25, 25, "img/Coin.png");	
 		coinText = new TextLabel(DragonLand.WIDTH-135, 107, 175, 30, "" + DragonLand.coins);
 		coinText.setColor(DragonLand.TEXT_PINK);
-<<<<<<< HEAD
 		coinText.setSize(20);
-=======
 		coinText.setSize(25);
 		
 		Banner b = new Banner(0, 0, 600, 171, "img/highScoreBanner.png");
@@ -121,14 +119,13 @@ public class HighScore extends ClickableScreen implements MouseListener {
 		
 		viewObjects.add(background);
 		viewObjects.add(b);
->>>>>>> branch 'demo2.0' of https://github.com/katsemenova/dragonLand.git
 		viewObjects.add(coinDisplay);
 		viewObjects.add(coin);
 		viewObjects.add(coinText);
 		
-		Banner b = new Banner(0, 25, 600, 171, "img/highScoreBanner.png");
-		b.setX((getWidth() / 2) - (b.getWidth() / 2)); 
-		viewObjects.add(b);
+		Banner banner = new Banner(0, 25, 600, 171, "img/highScoreBanner.png");
+		banner.setX((getWidth() / 2) - (b.getWidth() / 2)); 
+		viewObjects.add(banner);
 		
 		scoreOne = new Graphic(getWidth()/2 - 200, 185, 395, 100, "img/opacityPink.png");
 		viewObjects.add(scoreOne);
@@ -203,11 +200,5 @@ public class HighScore extends ClickableScreen implements MouseListener {
 			fog.setY(fog.generateYPos());
 			fog.play();
 		}
-	}
-	
-	public void replayGame(){
-		
-		
-		
 	}
 }
