@@ -22,7 +22,7 @@ import introScreens.Banner;
 import introScreens.Fog;
 /**
  * 
- * @author Tamanna
+ * @author Tamanna Hussain
  *
  */
 public class HighScore extends ClickableScreen implements MouseListener {

@@ -1,6 +1,7 @@
 package introScreens;
 
 import java.applet.Applet;
+
 import java.applet.AudioClip;
 import java.awt.Graphics;
 import java.awt.Polygon;
