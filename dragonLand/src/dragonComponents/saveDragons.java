@@ -9,8 +9,8 @@ public class saveDragons {
 	private String TOP_LINE = "Name''Price''Img Src";
 	private String NEW_LINE = "\n";
 	
-	public saveDragons(ArrayList<Dragon> myDragons, ArrayList<Dragon> dragons, String fileName) {
-		String dragonText = createDragon(myDragons, dragons);
+	public saveDragons(ArrayList<Dragon> myDragons, ArrayList<Egg> incubating, String fileName) {
+		String dragonText = createDragon(myDragons, incubating);
 		WriteFile dragon = new WriteFile(dragonText, fileName);
 	}
 //name, price, img src

@@ -102,10 +102,9 @@ public class DragonLand extends GUIApplication {
 					 dragonsToBuy.add(dragons.get(i));
 				 }
 			}
+			((ShopScreen)newShopScreen).setDragonsToBuy(myDragons);
 			
 			
-		}
-		else{
 			
 		}
 	}
