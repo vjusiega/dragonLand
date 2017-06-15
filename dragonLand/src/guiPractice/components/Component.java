@@ -1,5 +1,6 @@
 package guiPractice.components;
 
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
@@ -10,6 +11,17 @@ public abstract class Component implements Visible {
 	private int w;
 	private int h;
 	private BufferedImage image;
+	
+	public static Font font = new Font("Times New Roman", Font.PLAIN, 12);
+	
+	public Font getFont(){
+		return font;
+	}
+	
+	public static void setBaseFont(Font fontf){
+		System.out.println("Font created");
+		font = fontf; 
+	}
 	
 	public Component(int x, int y, int w, int h){
 		this.x=x;

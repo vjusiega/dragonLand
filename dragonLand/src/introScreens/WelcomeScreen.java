@@ -1,6 +1,7 @@
 package introScreens;
 
 import java.applet.Applet;
+
 import java.applet.AudioClip;
 import java.awt.Graphics;
 import java.awt.Polygon;
@@ -69,10 +70,16 @@ public class WelcomeScreen extends ClickableScreen{
 			@Override
 			public void act() {
 				stopThreads();
+				clearObjects();
 				DragonLand.game.setScreen(DragonLand.homeScreen);
 			}
 		});
 	    viewObjects.add(nextBtn);
+	}
+	
+	public void clearObjects(){
+		dragons.clear();
+		fogs.clear();
 	}
 
 	public void setUpFog(Graphic post){

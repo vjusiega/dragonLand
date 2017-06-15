@@ -1,5 +1,6 @@
 package game.miniGameTeam;
 
+import java.awt.Polygon;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,78 +8,177 @@ import java.util.Comparator;
 
 import dragonComponents.Background;
 import game.DragonLand;
+import game.mainScreenTeam.Dragon;
 import guiPractice.ClickableScreen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
+import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
+import guiPractice.components.PolygonButton;
+import guiPractice.components.TextArea;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
 import introScreens.Banner;
+import introScreens.Fog;
 /**
  * 
- * @author Jenniber
+ * @author Tamanna Hussain
  *
  */
 public class HighScore extends ClickableScreen implements MouseListener {
 	
+	private ArrayList<Fog> fogs;
+	private ArrayList<Dragon> dragons;
 	private Graphic background;
+	private Graphic score;
+	private Graphic coins;
+	private Graphic scoreOne;
+	private Graphic scoreTwo;
+	private Graphic scoreThree;
+	
 	private static ArrayList<Integer> highScores;
-	private static int roundScore;
-	private static TextLabel yourScore;
+		
+	private static TextArea yourScore;
+	private static int roundScore;	
 	private static TextLabel coinsWon;
-	private static TextLabel totalCoins;
 	private static TextLabel score1;
 	private static TextLabel score2;
 	private static TextLabel score3;
-	
+	private TextLabel coinText;
 	
 	public HighScore(int width, int height){
 		super(width,height);
-		
 	}
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
-		background = new Graphic(0,0,getWidth(),getHeight(),"img/sunsetBackground.jpg");
 		highScores = new ArrayList<Integer>();
-		
-		Banner b = new Banner(0, 50, 600, 171, "img/highScoreBanner.png");
-		b.setX((getWidth() / 2) - (b.getWidth() / 2)); 
-		
-		viewObjects.add(b);;
+		background = new Graphic(0, 0, getWidth(), getHeight(),"img/sunsetBackground.jpg");
 		viewObjects.add(background);
+		
+		fogs = new ArrayList<Fog>();
+		setUpFog();
+		
+		score = new Graphic(15, 270, 285, 110, "img/opacityPink.png");		
+		viewObjects.add(score);
+		yourScore = new TextArea(score.getX()+30, score.getY()+15, 285, 115, "");
+		yourScore.setSize(20);
+		viewObjects.add(yourScore);
+		
+		coins = new Graphic(getWidth()/2 + 200, 270, 270, 110, "img/opacityPink.png");
+		coinsWon = new TextLabel(coins.getX()+35, coins.getY()-50, 300, 115, "");
+		coinsWon.setText("Coins Won: ");
+		coinsWon.setSize(20);
+		viewObjects.add(coins);
+		viewObjects.add(coinsWon);
+		
+		Graphic coinDisplay = new Graphic(DragonLand.WIDTH-155, 100, 175, 50, "img/StraightOneSign.png");		
+		Graphic coin = new Graphic(DragonLand.WIDTH-35, 113, 25, 25, "img/Coin.png");	
+		coinText = new TextLabel(DragonLand.WIDTH-135, 107, 175, 30, "" + DragonLand.coins);
+		coinText.setColor(DragonLand.TEXT_PINK);
+		coinText.setSize(20);
+		viewObjects.add(coinDisplay);
+		viewObjects.add(coin);
+		viewObjects.add(coinText);
+		
+		Banner banner = new Banner(0, 25, 600, 171, "img/highScoreBanner.png");
+		banner.setX((getWidth() / 2) - (banner.getWidth() / 2)); 
+		viewObjects.add(banner);
+		
+		scoreOne = new Graphic(getWidth()/2 - 200, 185, 395, 100, "img/opacityPink.png");
+		viewObjects.add(scoreOne);
+		score1 = new TextLabel(getWidth()/2 - 150, 150, 395, 100, "");
+		score1.setText("1)");
+		score1.setSize(25);
+		viewObjects.add(score1);
+		
+		scoreTwo = new Graphic(getWidth()/2 - 200, 320, 395, 100, "img/opacityPink.png");
+		viewObjects.add(scoreTwo);
+		score2 = new TextLabel(getWidth()/2 - 150, 275, 395, 110, ""); 
+		score2.setText("2)");
+		score2.setSize(25);					
+		viewObjects.add(score2);
+		
+		scoreThree = new Graphic(getWidth()/2 - 200, 455, 395, 100, "img/opacityPink.png");
+		viewObjects.add(scoreThree);
+		score3 = new TextLabel(getWidth()/2 - 150, 415, 395, 110, "");
+		score3.setText("3)");
+		score3.setSize(25);
+		viewObjects.add(score3);
+		
+		Graphic playPost = new ClickableGraphic(DragonLand.WIDTH - 150, DragonLand.HEIGHT-120, .6,"img/continueSign.png");
+		viewObjects.add(playPost);
+		Graphic post = new Graphic(0, getHeight()-150, 0.6,"img/backSign.png");
+		viewObjects.add(post);
+		
+		Polygon back = new Polygon();
+	    back.addPoint(20, 18);
+	    back.addPoint(120, 30);
+	    back.addPoint(120, 60);
+	    back.addPoint(20, 35);
+	    back.addPoint(5, 25);
+	    back.addPoint(20, 18);
+
+	    PolygonButton backBtn = new PolygonButton(0, DragonLand.HEIGHT-110, 150, 100, back, new Action(){
+			@Override
+			public void act() {
+				DragonLand.game.setScreen(DragonLand.homeScreen);
+			}
+		});	    
+	    viewObjects.add(backBtn);
+	    
+	    //needs to be changed to a replay post
+	    Polygon helpBtn = new Polygon();
+	    helpBtn.addPoint(20, 18);
+	    helpBtn.addPoint(130, 45);
+	    helpBtn.addPoint(135, 50);
+	    helpBtn.addPoint(120, 62);
+	    helpBtn.addPoint(12, 40);
+	    helpBtn.addPoint(20, 18);
+
+	    PolygonButton cont = new PolygonButton(DragonLand.WIDTH - 150, DragonLand.HEIGHT-120, 150, 100, helpBtn, new Action(){
+			@Override
+			public void act() {
+					DragonLand.game.setScreen(DragonLand.miniGameScreen);
+					DragonLand.miniGameScreen.startGame();
+				}
+		});	    
+	    viewObjects.add(cont);
+		
+	    dragons = new ArrayList<Dragon>();
+		viewObjects.add(setUpDragons(10));
+		viewObjects.add(setUpDragons(2));
 	}
 
 	public static void updateOnEnter() {
-		//updates the score and coin values everytime the highscore screen is shown
-				setRoundScore(GameScreen.getScore());
-				highScores.add(roundScore);
-				totalCoins.setText("Total Coins: " + (DragonLand.coins+getCoins(GameScreen.getScore())));
-				DragonLand.coins+=getCoins(GameScreen.getScore());
-				yourScore.setText("Your Score: " + roundScore);
-				//coinsWon.setText("Coins Won: " + getCoins(GameScreen.getScore()));
-				sortScores(highScores);
-				for(int i = 0; i < 3; i++)
-				{
-					if(i < highScores.size())
-					{
-						if(i == 0)
-							score1.setText("1) " + highScores.get(0));
-						if(i == 1 && highScores.get(1) != 0)
-							score2.setText("2) " + highScores.get(1));
-						if(i == 2 && highScores.get(2) != 0)
-							score3.setText("3) " + highScores.get(2));
-					}
-				}
 
+		//updates the score and coin values every time the high score screen is shown
+				
+		setRoundScore(GameScreen.getScore());
+		highScores.add(GameScreen.getScore());
+		DragonLand.coins += getCoins(GameScreen.getScore());
+		yourScore.setText("Your Score: " + roundScore);
+		coinsWon.setText("Coins Won: " + getCoins(GameScreen.getScore()));
+		sortScores(highScores);
+		for(int i = 0; i < 3; i++)
+		{
+			if(i < highScores.size())
+			{
+				if(i == 0)
+					score1.setText("1) " + highScores.get(0));
+				if(i == 1 && highScores.get(1) != 0)
+					score2.setText("2) " + highScores.get(1));
+				if(i == 2 && highScores.get(2) != 0)
+					score3.setText("3) " + highScores.get(2));
+			}
+		}
 	}
-
 	
-	
-	//EDIT!!!
-	private static void sortScores(ArrayList<Integer> scores) {
+	public static void sortScores(ArrayList<Integer> scores){
 		//sorts high score array in decreasing order
-		Collections.sort(scores,Collections.reverseOrder());
+		Comparator comparator = Collections.reverseOrder();
+		Collections.sort(scores,comparator);
+		highScores = scores;
 	}
 
 	private static int getCoins(int score) {
@@ -91,5 +191,41 @@ public class HighScore extends ClickableScreen implements MouseListener {
 	private static void setRoundScore(int score) {
 		roundScore = score;
 	}
+	
+	public void setUpFog(){
+		Fog fog; 
+		for(int i = -10; i < 10; i++){
+			fog = new Fog((i*getWidth() / 10), 200, 500, 300, "img/introFog.png", 100);
+			addObject(fog);
+			fog.setY(fog.generateYPos());
+			fog.play();
+		}
+	}
+	
+	public Dragon setUpDragons(int num){
+		String imgSrc = "img/dragon" + num + ".png";
+		int dragonHeight = getHeight()/6;
+		int dragonWidth = (int) (dragonHeight * 0.75);
+		int xPos;
+		int yPos = (-1)*dragonHeight;
+		
+		if(num == 10){
+ 			xPos = 10;
+ 		}else{
+ 			xPos = coins.getX() + 175;
+ 		}
+		Dragon d = new Dragon(xPos, 225, dragonHeight, dragonWidth, imgSrc, 15, 0.7);
 
+		dragons.add(d);
+		d.setDragonAnimation(d, imgSrc);
+		d.setInitialY(225);
+		d.setDirection(4);
+		d.play();
+		
+		return d;
+	}
+	
+	public int getDragonY(){
+		return getHeight()/4;
+	}
 }

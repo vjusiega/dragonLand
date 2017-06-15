@@ -72,7 +72,7 @@ public class HungryBox extends Button implements Runnable{
 		g.setColor(DragonLand.NAVY);
 		g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 35, 25);
 		
-		g.setFont(new Font("Dialog",Font.BOLD,getSize()/2));
+		//g.setFont(new Font("Dialog",Font.BOLD,getSize()/2));
 		FontMetrics fm = g.getFontMetrics();
 		
 		if(getText()!= null){

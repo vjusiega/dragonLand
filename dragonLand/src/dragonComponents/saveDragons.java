@@ -10,7 +10,7 @@ public class saveDragons {
 	private String TOP_LINE = "Name''Price''Img Src";
 	private String NEW_LINE = System.getProperty("line.separator");
 	
-	public saveDragons(ArrayList<Dragon> myDragons, Egg[] incubating, String fileName) {
+	public saveDragons(ArrayList<Dragon> myDragons, ArrayList<Egg> incubating, String fileName) {
 		String dragonText = createDragon(myDragons, incubating);
 		WriteFile dragon = new WriteFile(dragonText, fileName);
 	}
@@ -21,16 +21,16 @@ public class saveDragons {
 	//dragonsToBuy Array - dragons in shop
 	//dragons in HomeKat - full array
 	
-	public String createDragon(ArrayList<Dragon> myDragons, Egg[] incubating){
+	public String createDragon(ArrayList<Dragon> myDragons, ArrayList<Egg> incubating){
 		String dragonText = TOP_LINE + NEW_LINE;
 		for(int i=0; myDragons!=null && i<myDragons.size();i++){
 			Dragon d = myDragons.get(i);
 			dragonText += d.getName()+"''"+d.getPrice()+"''"+d.getImgSrc()+NEW_LINE;
 		}
 		dragonText+= "--"+NEW_LINE;
-		for(int j=0; incubating!=null&&j<incubating.length;j++){
-			Egg e = incubating[j];
-			dragonText += e.getImgSrc()+"''"+e.getName()+"''"+e.getPrice()+"''"+e.getIncubationTime()+"''"+e.getTime()+NEW_LINE;
+		for(int j=0; incubating!=null && j<incubating.size();j++){
+			Egg e = incubating.get(j);
+			dragonText += e.getImgSrc()+"''"+e.getCategory()+"''"+e.getPrice()+"''"+e.getIncubationTime()+"''"+e.getTime()+NEW_LINE;
 		}
 		return dragonText;
 	}

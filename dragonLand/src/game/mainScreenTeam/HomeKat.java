@@ -20,6 +20,7 @@ import game.newShop.ShopScreen;
 import guiPractice.components.Action;
 import guiPractice.components.AnimatedComponent;
 import guiPractice.components.Button;
+import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
@@ -41,26 +42,29 @@ public class HomeKat implements DragonArrayInterface {
 
 	private static ArrayList<Visible> viewObjects;
 	//fields for help dialog
-	private NoBorderButton help1;
+	private TextLabel help1;
 	private String thelp1;
-	private NoBorderButton help2;
+	private TextLabel help2;
 	private String thelp2;
-	private NoBorderButton help3;
+	private TextLabel help3;
 	private String thelp3;
-	private NoBorderButton help4;
+	private TextLabel help4;
 	private String thelp4;
-	private NoBorderButton help5;
+	private TextLabel help5;
 	private String thelp5;
-	private NoBorderButton help7;
+	private TextLabel help7;
 	private String thelp7;
+	private TextLabel help8;
+	private String thelp8;
 	private TextLabel help6;
 	private String thelp6;
 	private static DragonFood food ;
-	private Button helpLayer;
+	private ClickableGraphic helpLayer;
 	private boolean show;
+	
 	public HomeKat(ArrayList<Visible> viewObjects, int width,int height) {
 		//
-		this.viewObjects=viewObjects;
+		this.viewObjects = viewObjects;
 		helpLayer(width,height);
 	
 		Graphic post = new Graphic(10, DragonLand.HEIGHT-270, 1, "img/three_sign.png");
@@ -77,42 +81,51 @@ public class HomeKat implements DragonArrayInterface {
 		makeDragons();
 		dragonsOnScreen();
 		dragonHome = this;
-		}
+		((ShopScreen) DragonLand.newShopScreen).initDragons();
+	}
+	
 	private void helpLayer(int width, int height) {
 		thelp1 = "Welcome to Dragon Land!";
-		help1 = new NoBorderButton(300,75,500,50,  thelp1,DragonLand.LIGHT_PINK,null);
-		help1.setSize(30);
+		help1 = new TextLabel((DragonLand.WIDTH/2) - 200, 75, 500, 50, thelp1);
+		help1.setColor(DragonLand.TEXT_PINK);
+		help1.setSize(25);
 		
-		thelp2 = "This is your dragon pet land. Living here you can have up to 6";
-		help2 = new NoBorderButton(130,150,720,35,  thelp2,DragonLand.LIGHT_PINK,null);
+		thelp2 = "This is your dragon pet land. Living here you can have up to";
+		help2 = new TextLabel(155, 150, 720, 35,thelp2);
+		help2.setColor(DragonLand.TEXT_PINK);
 		help2.setSize(20);
 		
-		thelp3 = "dragons. Be careful, when you see your dragons are hungry, quickly ";
-		help3 = new NoBorderButton(130,200,720,35,  thelp3,DragonLand.LIGHT_PINK,null);
+		thelp3 = "6 dragons. When you see your dragons are hungry, quickly ";
+		help3 = new TextLabel(155, 200, 720, 35, thelp3);
+		help3.setColor(DragonLand.TEXT_PINK);
 		help3.setSize(20);
 		
-		thelp4 = "click the 'Hungry' button or the dragon will fly away back to the store. ";
-		help4 = new NoBorderButton(130,250,720,35,  thelp4,DragonLand.LIGHT_PINK,null);
+		thelp4 = "click the 'Hungry' button or the dragon will fly away to";
+		help4 = new TextLabel(155, 250, 720, 35, thelp4);
+		help4.setColor(DragonLand.TEXT_PINK);
 		help4.setSize(20);
 		
-		thelp5 = "To buy these dragons, visit the shop and check them out. Now as";
-		help5 = new NoBorderButton(130,300,720,35,  thelp5,DragonLand.LIGHT_PINK,null);
+		thelp5 = "the store. To buy, sell, and trade dragons, visit the shop.";
+		help5 = new TextLabel(155, 300, 720, 35, thelp5);
+		help5.setColor(DragonLand.TEXT_PINK);
 		help5.setSize(20);
 		
-		thelp6 = "you notice you need coins to shop, so play the minigame to earn more.";
-		help6 = new NoBorderButton(130,350,740,35,  thelp6,DragonLand.LIGHT_PINK,null);
+		thelp6 = "You need coins to shop, so play the minigame to earn more.";
+		help6 = new TextLabel(155, 350, 740, 35, thelp6);
+		help6.setColor(DragonLand.TEXT_PINK);
 		help6.setSize(20);
 
-		thelp7 = "Keep trying to beat your score. Have fun taking care of your dragons.";
-		help7= new NoBorderButton(130,400,720,35,  thelp7,DragonLand.LIGHT_PINK,null);
-		help7.setSize(20);
+//		thelp7 = "Keep trying to beat your score. Have fun taking care of your dragons.";
+//		help7= new TextLabel(155, 400, 720, 55, thelp7);
+//		help7.setColor(DragonLand.TEXT_PINK);
+//		help7.setSize(20);
 		
-		helpLayer = new Button((int)(width*0.1),(int)(height*0.1),(int)(width*0.8),(int)(height*0.8),  null,DragonLand.LIGHT_PINK,  new Action(){
-
-			@Override
-			public void act() {
-				viewObjects.remove(this);
-			}});
+		thelp8 = "Have fun taking care of your dragons.";
+		help8= new TextLabel((DragonLand.WIDTH/2) - 280, 410, 720, 55, thelp8);
+		help8.setColor(DragonLand.TEXT_PINK);
+		help8.setSize(25);
+		
+		helpLayer = new ClickableGraphic((int)(width*0.05),(int)(height*0.05),(int)(width*0.9),(int)(height*0.8), "img/blankWoodBack4.png");
 
 	}
 	private void addPostButtons() {
@@ -171,7 +184,8 @@ public class HomeKat implements DragonArrayInterface {
 					viewObjects.remove(help4);
 					viewObjects.remove(help5);
 					viewObjects.remove(help6);
-					viewObjects.remove(help7);
+					//viewObjects.remove(help7);
+					viewObjects.remove(help8);
 					viewObjects.remove(helpLayer);
 				}
 				else{
@@ -182,7 +196,8 @@ public class HomeKat implements DragonArrayInterface {
 					viewObjects.add(help4);
 					viewObjects.add(help5);
 					viewObjects.add(help6);
-					viewObjects.add(help7);
+					//viewObjects.add(help7);
+					viewObjects.add(help8);
 				}
 			}});
 	    
@@ -200,7 +215,7 @@ public class HomeKat implements DragonArrayInterface {
 			@Override
 			public void act() {
 				ArrayList<Dragon> myDragons = ((ShopScreen)DragonLand.newShopScreen).getMyDragons();
-				Egg[] e = ((IncubatorScreen)DragonLand.incubatorScreen).getEggsIncubating();
+				ArrayList<Egg> e = ((IncubatorScreen)DragonLand.incubatorScreen).getEggsIncubating();
 				saveDragons d = new saveDragons(myDragons,e,"DragonLandSave");
 				System.exit(1);
 			}});

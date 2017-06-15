@@ -78,7 +78,7 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 		
 		scoreText = new TextLabel(DragonLand.WIDTH-175, 30, 200, 70, score + " Points");
 		scoreText.setColor(DragonLand.TEXT_PINK);
-		scoreText.setSize(30);
+		scoreText.setSize(20);
 		viewObjects.add(scoreText);
 	}
 
@@ -243,8 +243,8 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		speedLeft = -10;
-		speedRight = 10;
+		speedLeft = -15;
+		speedRight = 15;
 		
 		if(e.getKeyCode() == KeyEvent.VK_LEFT){ 
 			DragonLand.game.getViolettaGame().changeDragonPos(speedLeft);
@@ -304,7 +304,9 @@ public class GameScreen extends ClickableScreen implements KeyListener {
 	}
 
 	public void addDragonToScreen(Dragon d){
-		addObject(d);
+		if(d != null){
+			addObject(d);
+		}
 	}
 	
 	public int getPowerUp(){

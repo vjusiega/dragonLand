@@ -35,7 +35,7 @@ public class ClickableGraphic extends Graphic implements Clickable {
 	}
 	@Override
 	public boolean isHovered(int x, int y) {
-		return (x>getX()&&y>getY()&&x<getX()+getWidth()&&y<getY()+getHeight());
+		return (x>getX()&&y>getY()+25&&x<getX()+getWidth()&&y<getY()+25+getHeight());
 	}
 
 	@Override

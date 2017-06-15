@@ -5,6 +5,7 @@ import java.awt.Polygon;
 import java.util.ArrayList;
 
 import game.DragonLand;
+import game.EggIncuabtor.Egg;
 import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.HomeKat;
 import game.miniGameTeam.GameScreen;
@@ -40,11 +41,7 @@ public class ShopSelectionScreen extends ClickableScreen{
 		Banner b = new Banner(0, 50, 600, 171, "img/shopBanner.png");
 		b.setX((getWidth() / 2) - (b.getWidth() / 2)); 
 		viewObjects.add(b);
-		
-//		dragons = new ArrayList<Dragon>();
-//		viewObjects.add(setUpDragons(1));
-//		viewObjects.add(setUpDragons(3));
-		
+
 		Graphic post = new ClickableGraphic(0, getHeight()-150, 0.6,"img/backSign.png");
 		setUpFog(post);
 		Polygon back = new Polygon();
@@ -88,7 +85,11 @@ public class ShopSelectionScreen extends ClickableScreen{
 			}
 		});
 		viewObjects.add(eggBox);
-		
+		Egg egg = new Egg(440, 255, 125, 125, "img/egg2.png", "", 1, 1);
+		viewObjects.add(egg);
+		egg.setInitialX(egg.getX());
+		Thread moveEgg = new Thread(egg);
+		moveEgg.start();
 		setUpTradeBoxAnimation();
 		
 	}
@@ -122,13 +123,13 @@ public class ShopSelectionScreen extends ClickableScreen{
 		});
 		viewObjects.add(tradeBox);
 		
-		Dragon tradeDrag2 = new Dragon(0,0, (int) (tradeBox.getWidth() *0.5), (int) (tradeBox.getHeight() * 0.45), "img/dragon2.png");
+		Dragon tradeDrag2 = new Dragon(0,0, (int) (tradeBox.getWidth() *0.5), (int) (tradeBox.getHeight() * 0.45), "img/dragon3.png");
 		tradeDrag2.centerDragon(tradeBox.getX() + (tradeBox.getWidth() / 2), tradeBox.getX() + tradeBox.getWidth(), tradeBox.getY(), tradeBox.getY() + (tradeBox.getHeight() /2));
 		tradeDrag2.play();
 		tradeDrag2.setDirection(1);
 		viewObjects.add(tradeDrag2);
 		
-		Dragon tradeDrag1 = new Dragon(0,0, (int) (tradeBox.getWidth() *0.6), (int) (tradeBox.getHeight() * 0.55), "img/dragon9.png");
+		Dragon tradeDrag1 = new Dragon(0,0, (int) (tradeBox.getWidth() *0.6), (int) (tradeBox.getHeight() * 0.55), "img/dragon4.png");
 		tradeDrag1.centerDragon(tradeBox.getX(), tradeBox.getX() + (int)(tradeBox.getWidth() * 0.75), tradeBox.getY() + (tradeBox.getHeight() /2), tradeBox.getY() + tradeBox.getHeight());
 		tradeDrag1.play();
 		tradeDrag1.setDirection(2);

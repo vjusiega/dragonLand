@@ -163,7 +163,7 @@ public class HighScoreScreen extends ClickableScreen implements MouseListener{
 	}
 	
 	public static void updateOnEnter(){
-		//updates the score and coin values everytime the highscore screen is shown
+		//updates the score and coin values every time the highscore screen is shown
 		setRoundScore(GameScreen.getScore());
 		highScores.add(roundScore);
 		totalCoins.setText("Total Coins: " + (DragonLand.coins+getCoins(GameScreen.getScore())));

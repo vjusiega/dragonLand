@@ -65,6 +65,22 @@ public abstract class MovingComponent extends Component
 		drawImage(g);
 	}
 	
+	public double getPosx() {
+		return posx;
+	}
+
+	public void setPosx(double posx) {
+		this.posx = posx;
+	}
+
+	public double getPosy() {
+		return posy;
+	}
+
+	public void setPosy(double posy) {
+		this.posy = posy;
+	}
+
 	public abstract void drawImage(Graphics2D g);
 
 	public void setX(int x){

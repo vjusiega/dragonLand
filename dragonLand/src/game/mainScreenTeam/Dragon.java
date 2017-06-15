@@ -31,6 +31,9 @@ public class Dragon extends AnimatedComponent {
 	public void setInitialY(int y){
 		initialY = y;
 	}
+	public void setInitialX(int x){
+		initialX = x;
+	}
 	
 	private boolean bouncing;
 	private int bounceDistance; 
@@ -120,53 +123,54 @@ public class Dragon extends AnimatedComponent {
 	 * allows for directions to switch 
 	 */
 	public void checkBehaviors() {
-		
-		if(direction == UP){
-			if(bouncing){
-				setVy(-constantVY);
-				if((initialY-getY())>bounceDistance){
-					direction=DOWN;
+		if(running){
+			if(direction == UP){
+				if(bouncing){
+					setVy(-constantVY);
+					if((initialY-getY())>bounceDistance){
+						direction=DOWN;
+					}
+				}
+				if(currentFrame == 2){
+					currentFrame = 0;
 				}
 			}
-			if(currentFrame == 2){
-				currentFrame = 0;
-			}
-		}
-		if(direction == DOWN){
-			if(bouncing){
-				setVy(constantVY);
-				if((getY()-initialY)>bounceDistance){
-					direction=UP;
+			if(direction == DOWN){
+				if(bouncing){
+					setVy(constantVY);
+					if((getY()-initialY)>bounceDistance){
+						direction=UP;
+					}
+				}
+				if(currentFrame==2){
+					currentFrame=0;
 				}
 			}
-			if(currentFrame==2){
-				currentFrame=0;
-			}
-		}
-		if(direction == LEFT){
-			if(bouncing){
-				setVx(-constantVY);
-				if((initialX-getX())>=bounceDistance){
-					currentFrame=6;
-					direction=RIGHT;
+			if(direction == LEFT){
+				if(bouncing){
+					setVx(-constantVY);
+					if((initialX-getX())>=bounceDistance){
+						currentFrame=6;
+						direction=RIGHT;
+					}
 				}
-			}
-			if(currentFrame<3||currentFrame>=5){
-				currentFrame=3;
-			}
-
-		}
-		if(direction == RIGHT){
-			if(bouncing){
-				setVx(constantVY);
-				if((getX()-initialX)>bounceDistance){
+				if(currentFrame<3||currentFrame>=5){
 					currentFrame=3;
-					direction=LEFT;
-					
 				}
+
 			}
-			if(currentFrame < 6||currentFrame==8){
-				currentFrame = 6;
+			if(direction == RIGHT){
+				if(bouncing){
+					setVx(constantVY);
+					if((getX()-initialX)>bounceDistance){
+						currentFrame=3;
+						direction=LEFT;
+						
+					}
+				}
+				if(currentFrame < 6||currentFrame==8){
+					currentFrame = 6;
+				}
 			}
 		}
 	}
@@ -249,7 +253,7 @@ public class Dragon extends AnimatedComponent {
 			int numberRow = 3;
 			int rows = 4;
 			int w = 48;
-			int h = 45;
+			int h = 48;
 			for(int i=0; i<numberRow*rows; i++){
 				//declare cropped image
 				BufferedImage cropped = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
