@@ -22,7 +22,7 @@ public class saveDragons {
 	//dragons in HomeKat - full array
 	
 	public String createDragon(ArrayList<Dragon> myDragons, ArrayList<Egg> incubating){
-		String dragonText = TOP_LINE + NEW_LINE;
+		String dragonText = "";
 		for(int i=0; myDragons!=null && i<myDragons.size();i++){
 			Dragon d = myDragons.get(i);
 			dragonText += d.getName()+"''"+d.getPrice()+"''"+d.getImgSrc()+NEW_LINE;
@@ -32,6 +32,7 @@ public class saveDragons {
 			Egg e = incubating.get(j);
 			dragonText += e.getImgSrc()+"''"+e.getCategory()+"''"+e.getPrice()+"''"+e.getIncubationTime()+"''"+e.getTime()+NEW_LINE;
 		}
+		System.out.println(dragonText);
 		return dragonText;
 	}
 }
