@@ -93,6 +93,7 @@ public class DragonLand extends GUIApplication {
 //		dragonList.add(a);
 //	}
 	public DragonLand(String[] strings) {
+		Sound.AMBIANCE.loop();
 		if(strings != null){
 			ArrayList<Dragon> myDragons = new ArrayList<Dragon>();//from
 			ArrayList<Dragon> dragons = HomeKat.getDragons();

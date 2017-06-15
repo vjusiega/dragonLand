@@ -116,7 +116,7 @@ public class IncubatorScreen extends ClickableScreen {
 	public void setUpEggs(){
 		String[] category= {"Common","Rare","Legendary"};
 		for (int i = 1; i <4; i++){
-			eggsToBuy.add(new Egg(0, 0, 100, 100, "img/egg"+i+".png", category[i-1], 100*i, 10*i));
+			eggsToBuy.add(new Egg(0, 0, 100, 100, "img/egg"+i+".png", category[i-1], 100*i, 60*i));
 		}
 	}
 	
