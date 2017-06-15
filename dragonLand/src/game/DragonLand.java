@@ -93,7 +93,6 @@ public class DragonLand extends GUIApplication {
 //		dragonList.add(a);
 //	}
 	public DragonLand(String[] strings) {
-		Sound.AMBIANCE.loop();
 		if(strings != null){
 			ArrayList<Dragon> myDragons = new ArrayList<Dragon>();//from
 			ArrayList<Dragon> dragons = HomeKat.getDragons();
@@ -112,31 +111,31 @@ public class DragonLand extends GUIApplication {
 			}
 			((ShopScreen)newShopScreen).setMyDragons(myDragons);
 			
-			
 			for(int i=0;i<dragons.size();i++){
 				 if(!dragonBought(dragons.get(i))){
 					 dragonsToBuy.add(dragons.get(i));
 				 }
 			}
-			((ShopScreen)newShopScreen).setDragonsToBuy(myDragons);
-			int j=0;
+			((ShopScreen)newShopScreen).setDragonsToBuy(dragonsToBuy);
 			for(int i=x+1;i<strings.length;i++){
 					String[] str1 = strings[i].split("''");
-					eggsIncubating.set(j, new Egg(0,0,100,100,str1[0],str1[1],
-							Integer.parseInt(str1[2]),Integer.parseInt(str1[3])));
-					j++;
+					Egg e= new Egg(0,0,100,100,str1[0],str1[1],Integer.parseInt(str1[2]),Integer.parseInt(str1[3]),Long.parseLong(str1[4]));
+					eggsIncubating.add(e);
+					((IncubatorScreen)incubatorScreen).addEggToIncubator(e);
 			}
 			((IncubatorScreen)incubatorScreen).setEggsIncubating(eggsIncubating);
 			HomeKat.dragonsOnScreen();
 			GameScreen.isNotHome = false;
-			//((IncubatorScreen)incubatorScreen).addEggToIncubatorFromSave();
+			((ShopScreen)newShopScreen).setEnteredFirstTime(false);
+			((ShopScreen)newShopScreen).drawDragons(dragonsToBuy);
 		}
+		Sound.AMBIANCE.loop();
 	}
 	
 	private boolean dragonBought(Dragon dragon) {
 		for(int i=0;i<((ShopScreen) newShopScreen).getMyDragons().size();i++){
 			Dragon d = ((ShopScreen) newShopScreen).getMyDragons().get(i);
-			if(d.getName().equals(dragon))return true;
+			if(d.getName().equals(dragon.getName()))return true;
 		}
 		return false;
 	}
@@ -198,11 +197,9 @@ public class DragonLand extends GUIApplication {
 	 */
 	public static void main(String[] args) {
 		try{
-//			ReadFile file = new ReadFile("C:/Users/Student 8/Desktop/test.txt");
 			
 			JButton open = new JButton();
 			chooser=new JFileChooser();
-//			chooser.setCurrentDirectory(new java.io.File("C:/Users/student 8/Desktop"));
 			chooser.setDialogTitle("Pick a saved file");
 			if(chooser.showOpenDialog(open)== JFileChooser.APPROVE_OPTION){
 				//Open JFileChooser
@@ -217,8 +214,6 @@ public class DragonLand extends GUIApplication {
 				game = new DragonLand(dragonFile.OpenFile());
 				Thread go = new Thread(game);
 				go.start();
-				
-				System.out.print(chooser.getSelectedFile().getPath());
 			}
 		}catch
 		(IOException e){

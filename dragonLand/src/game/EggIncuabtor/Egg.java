@@ -37,7 +37,7 @@ public class Egg extends GraphicMovingComponent {
 		timer = new TextLabel(x-39, y+75, 500, 30, "Time Left: ");
 	}
 	//forloading
-	public Egg(int x, int y, int w, int h, String imageLocation, String category, int price, int time, int timeEntered) {
+	public Egg(int x, int y, int w, int h, String imageLocation, String category, int price, int time, long l) {
 		super(x, y, w, h, imageLocation);
 		this.category = category;
 		this.incubating = true;
@@ -45,7 +45,7 @@ public class Egg extends GraphicMovingComponent {
 		this.incubationTime = time; 
 		this.imgSrc = imageLocation;	
 		timer = new TextLabel(x-39, y+75, 500, 30, "Time Left: ");
-		timeEnteredIncubation = timeEntered;
+		timeEnteredIncubation = l;
 	}
 
 	public void setIncubating(boolean incubating) {

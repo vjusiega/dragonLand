@@ -597,5 +597,9 @@ public class ShopScreen extends ClickableScreen {
 		public String getHatchedName(){
 			return hatchedDragon.getName();
 		}
+
+		public void setEnteredFirstTime(boolean b) {
+			shopEnteredFirstTime = b;
+		}
 		
 }
