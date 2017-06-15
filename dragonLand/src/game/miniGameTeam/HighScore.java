@@ -1,5 +1,6 @@
 package game.miniGameTeam;
 
+import java.awt.Color;
 import java.awt.Polygon;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -59,15 +60,16 @@ public class HighScore extends ClickableScreen implements MouseListener {
 		fogs = new ArrayList<Fog>();
 		setUpFog();
 		
-		score = new Graphic(15, 270, 285, 110, "img/opacityPink.png");		
+		score = new Graphic(15, 270, 285, 110, "img/opacityPink2.png");		
 		viewObjects.add(score);
 		yourScore = new TextArea(score.getX()+30, score.getY()+15, 285, 115, "");
 		yourScore.setSize(20);
 		viewObjects.add(yourScore);
 		
-		coins = new Graphic(getWidth()/2 + 200, 270, 270, 110, "img/opacityPink.png");
+		coins = new Graphic(getWidth()/2 + 200, 270, 270, 110, "img/opacityPink2.png");
 		coinsWon = new TextLabel(coins.getX()+35, coins.getY()-50, 300, 115, "");
 		coinsWon.setText("Coins Won: ");
+		//coinsWon.setColor(Color.white);
 		coinsWon.setSize(20);
 		viewObjects.add(coins);
 		viewObjects.add(coinsWon);
@@ -85,28 +87,28 @@ public class HighScore extends ClickableScreen implements MouseListener {
 		banner.setX((getWidth() / 2) - (banner.getWidth() / 2)); 
 		viewObjects.add(banner);
 		
-		scoreOne = new Graphic(getWidth()/2 - 200, 185, 395, 100, "img/opacityPink.png");
+		scoreOne = new Graphic(getWidth()/2 - 200, 185, 395, 100, "img/opacityPink2.png");
 		viewObjects.add(scoreOne);
 		score1 = new TextLabel(getWidth()/2 - 150, 150, 395, 100, "");
 		score1.setText("1)");
 		score1.setSize(25);
 		viewObjects.add(score1);
 		
-		scoreTwo = new Graphic(getWidth()/2 - 200, 320, 395, 100, "img/opacityPink.png");
+		scoreTwo = new Graphic(getWidth()/2 - 200, 320, 395, 100, "img/opacityPink2.png");
 		viewObjects.add(scoreTwo);
 		score2 = new TextLabel(getWidth()/2 - 150, 275, 395, 110, ""); 
 		score2.setText("2)");
 		score2.setSize(25);					
 		viewObjects.add(score2);
 		
-		scoreThree = new Graphic(getWidth()/2 - 200, 455, 395, 100, "img/opacityPink.png");
+		scoreThree = new Graphic(getWidth()/2 - 200, 455, 395, 100, "img/opacityPink2.png");
 		viewObjects.add(scoreThree);
 		score3 = new TextLabel(getWidth()/2 - 150, 415, 395, 110, "");
 		score3.setText("3)");
 		score3.setSize(25);
 		viewObjects.add(score3);
 		
-		Graphic playPost = new ClickableGraphic(DragonLand.WIDTH - 150, DragonLand.HEIGHT-120, .6,"img/continueSign.png");
+		Graphic playPost = new ClickableGraphic(DragonLand.WIDTH - 150, DragonLand.HEIGHT-120, .6,"img/replaySign.png");
 		viewObjects.add(playPost);
 		Graphic post = new Graphic(0, getHeight()-150, 0.6,"img/backSign.png");
 		viewObjects.add(post);
@@ -159,6 +161,7 @@ public class HighScore extends ClickableScreen implements MouseListener {
 		DragonLand.coins += getCoins(GameScreen.getScore());
 		coinText.setText(""+DragonLand.coins);
 		yourScore.setText("Your Score: " + roundScore);
+		yourScore.setSize(20);
 		coinsWon.setText("Coins Won: " + getCoins(GameScreen.getScore()));
 		sortScores(highScores);
 		for(int i = 0; i < 3; i++)
@@ -206,7 +209,7 @@ public class HighScore extends ClickableScreen implements MouseListener {
 	public Dragon setUpDragons(int num){
 		String imgSrc = "img/dragon" + num + ".png";
 		int dragonHeight = getHeight()/6;
-		int dragonWidth = (int) (dragonHeight * 0.75);
+		int dragonWidth = (int) (dragonHeight * 0.85);
 		int xPos;
 		int yPos = (-1)*dragonHeight;
 		

@@ -63,6 +63,13 @@ public class Dragon extends AnimatedComponent {
 		this.constantVY = Math.random();
 	}
 	
+	public Dragon(String name, String imgSrc){
+		super(0,0,10,10);
+		this.name = name;
+		this.imgSrc = imgSrc;
+		setDragonAnimation(this, imgSrc);
+	}
+	
 	public Dragon(String name){
 		super(0,0,10,10);
 		this.name = name;

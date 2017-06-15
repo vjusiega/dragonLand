@@ -34,6 +34,9 @@ public class NewTradingScreen extends ClickableScreen implements Runnable{
 		private Graphic myPost;
 		private TextLabel myDragonsName;
 		
+		private Graphic mySign;
+		private Graphic theirSign;
+		
 		//private Graphic theirPost;
 		//private TextLabel theirDragonNameDisplay;
 		
@@ -42,7 +45,7 @@ public class NewTradingScreen extends ClickableScreen implements Runnable{
 		
 		private NewTradingScreen thisScreen; 
 		
-		private Button whatHappen;
+		//private Button whatHappen;
 		
 		private ArrayList<Visible> removableObjects;
 
@@ -79,9 +82,9 @@ public class NewTradingScreen extends ClickableScreen implements Runnable{
 			}});
 	    viewObjects.add(backBtn);
 		
-		whatHappen = new Button((int)(getWidth() * 0.4), (int)(getHeight() * 0.4), 100, 100, "", Color.white);
-		viewObjects.add(whatHappen);
-		
+//		whatHappen = new Button((int)(getWidth() * 0.4), (int)(getHeight() * 0.4), 100, 100, "", Color.white);
+//		viewObjects.add(whatHappen);
+//		
 		serverButton = new ClickableGraphic((int)(getWidth() * 0.6), (int)(getHeight() * 0.4), 1.0, "img/serverSign.png");
 		serverButton.setAction(new Action(){
 			public void act(){
@@ -134,6 +137,11 @@ public class NewTradingScreen extends ClickableScreen implements Runnable{
 		addObject(myDragon);
 		removableObjects.add(myDragon);
 		
+		mySign = new ClickableGraphic(myDragon.getX() - 27 - 10, myDragon.getY() - 70, background.getWidth() + 20 , 50 + 20, "img/yourDragonSign.png");
+		addObject(mySign);
+		removableObjects.add(mySign);
+		
+		
 		myPost = new Graphic(myDragon.getX() - 27, myDragon.getY() + myDragon.getHeight() + 10, background.getWidth(), 50, "img/blankNoWay.png");
 		
 		myDragonsName = new TextLabel(myDragon.getX(), myDragon.getY() + myDragon.getHeight(), background.getWidth(), 50, "" + myDragon.getName()); 
@@ -145,7 +153,8 @@ public class NewTradingScreen extends ClickableScreen implements Runnable{
 		removableObjects.add(myDragonsName);
 	}
 	
-	public void drawTheirDragon(Dragon d){
+	public void drawTheirDragon(Dragon drag){
+		Dragon d = new Dragon(drag.getName(), drag.getImgSrc()); 
 		ClickableGraphic background = new ClickableGraphic(getWidth(), getHeight(), 1.0, "img/whiteBox.png", 0.75, 0.5);
 		removableObjects.add(background);
 		addObject(background);
@@ -156,7 +165,12 @@ public class NewTradingScreen extends ClickableScreen implements Runnable{
 		d.setBounce(false);
 		d.play();
 		addObject(d);
+		System.out.println(viewObjects.contains(d));
 		removableObjects.add(d);
+		
+		theirSign = new ClickableGraphic(d.getX() - 27 - 10, d.getY() - 70, background.getWidth() + 20 , 50 + 20 , "img/theirDragonSign.png");
+		addObject(theirSign);
+		removableObjects.add(theirSign);
 		
 		Graphic theirPost = new Graphic(d.getX() - 27, d.getY() + d.getHeight() + 10, background.getWidth(), 50, "img/blankNoWay.png");
 		TextLabel theirDragonNameDisplay = new TextLabel(d.getX(), d.getY() + d.getHeight(), background.getWidth(), 50, "" + d.getName()); 
@@ -179,16 +193,29 @@ public class NewTradingScreen extends ClickableScreen implements Runnable{
 		theirDragon = ((ShopScreen)DragonLand.newShopScreen).findInList(theirDragon, ((ShopScreen)DragonLand.newShopScreen).getDragonsToBuy());
 		drawTheirDragon(theirDragon);
 		((ShopScreen)DragonLand.newShopScreen).trade(myDragon, theirDragon);
-		remove(whatHappen);
+		//remove(whatHappen);
+		addUpdateSign();
 		dragonsSwitchSpots();
 	}
 	
 	public void dragonsSwitchSpots(){
 		//myDragon.setI
 	}
+	
+	public void addUpdateSign(){
+		Graphic sign = new Graphic((int) (DragonLand.WIDTH*0.20), (int) (DragonLand.HEIGHT*0.75), (int) (DragonLand.WIDTH*0.6),  (int) (DragonLand.HEIGHT*0.15), "img/blankBig.png");
+		viewObjects.add(sign);
+		removableObjects.add(sign);
+		
+		TextLabel tradeSuccessfully = new TextLabel((int) (DragonLand.WIDTH*0.33), (int) (DragonLand.HEIGHT*0.76), (int) (DragonLand.WIDTH*0.6),  50, "You traded " + myDragon.getName() + " for " + myDragon.getName());
+		tradeSuccessfully.setColor(DragonLand.TEXT_PINK);
+		tradeSuccessfully.setSize(20);
+		viewObjects.add(tradeSuccessfully);
+		removableObjects.add(tradeSuccessfully);
+	}
 
 	public void displayConnectionMessage(String string) {
-		whatHappen.setText(string);
+		//whatHappen.setText(string);
 		
 	}
 

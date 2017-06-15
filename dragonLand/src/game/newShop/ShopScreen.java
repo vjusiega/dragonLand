@@ -58,6 +58,7 @@ public class ShopScreen extends ClickableScreen {
 	private ArrayList<Fog> fogs; 
 	private Graphic dragonError;
 	private Graphic coinError;
+	private Graphic tradeError;
 	private boolean error;
 	private Graphic buySign;
 	private Graphic sellSign;
@@ -73,6 +74,8 @@ public class ShopScreen extends ClickableScreen {
 		dragonError.setX((getWidth() / 2) - (dragonError.getWidth() / 2)); 
 		coinError = new Graphic(0, 15, "img/notEnoughCoinsError.png");
 		coinError.setX((getWidth() / 2) - (coinError.getWidth() / 2)); 
+		tradeError = new Graphic(0, 15, "img/tradeError.png");
+		tradeError.setX((getWidth() / 2) - (tradeError.getWidth() / 2)); 
 		buySign = new Graphic(0, 15, "img/buySign2.png");
 		buySign.setX((getWidth() / 2) - (buySign.getWidth() / 2)); 
 		sellSign = new Graphic(0, 15, "img/sellSign2.png");
@@ -191,7 +194,11 @@ public class ShopScreen extends ClickableScreen {
 			@Override
 			public void act() {
 				if(trade){
-					remove(tradeBanner);
+					if(myDragons.size() == 0){
+						remove(tradeError);
+					}else{
+						remove(tradeBanner);
+					}
 				}
 				if(!shop){
 					shop = true;
@@ -407,8 +414,12 @@ public class ShopScreen extends ClickableScreen {
 	public void enterTradeSelection(){
 		trade = true;
 		startFog();
-		currentPage = 1; 
-		addObject(tradeBanner);
+		currentPage = 1;
+		if(myDragons.size() == 0){
+			addObject(tradeError);
+		}else{
+			addObject(tradeBanner);
+		}
 		updateNumberOfPages(myDragons);
 		drawDragons(myDragons);
 		remove(toggleButtonBuy);
