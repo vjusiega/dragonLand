@@ -32,6 +32,7 @@ public class saveDragons {
 			Egg e = incubating.get(j);
 			dragonText += e.getImgSrc()+"''"+e.getCategory()+"''"+e.getPrice()+"''"+e.getIncubationTime()+"''"+e.getTime()+NEW_LINE;
 		}
+		
 		System.out.println(dragonText);
 		return dragonText;
 	}
