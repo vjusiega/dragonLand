@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import dragonComponents.ReadFile;
+import game.EggIncuabtor.Egg;
 import game.EggIncuabtor.IncubatorScreen;
 import game.dragonTrading.TradingScreen;
 import game.mainScreenTeam.Dragon;
@@ -84,7 +85,7 @@ public class DragonLand extends GUIApplication {
 			ArrayList<Dragon> myDragons = new ArrayList<Dragon>();//from
 			ArrayList<Dragon> dragons = HomeKat.getDragons();
 			ArrayList<Dragon> dragonsToBuy = new ArrayList<Dragon>();
-//			ArrayList<Egg> eggsIncubating = new ArrayList<Egg>();
+			Egg[] eggsIncubating = new Egg[3];
 			int x=0;
 			
 			for(int i=0; i<strings.length; i++){
@@ -103,8 +104,15 @@ public class DragonLand extends GUIApplication {
 				 }
 			}
 			((ShopScreen)newShopScreen).setDragonsToBuy(myDragons);
-			
-			
+			int j=0;
+			for(int i=x+1;i<strings.length;i++){
+				if(j<3){
+					String[] str1 = strings[i].split("''");
+					eggsIncubating[j]= new Egg(0,0,100,100,str1[0],str1[1],Integer.parseInt(str1[2]),Integer.parseInt(str1[3]));
+					j++;
+				}
+			}
+			((IncubatorScreen)incubatorScreen).setEggsIncubating(eggsIncubating);
 			
 		}
 	}

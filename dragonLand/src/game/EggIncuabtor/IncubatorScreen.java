@@ -190,4 +190,10 @@ public class IncubatorScreen extends Screen {
 	    
 	}
 
+	public void setEggsIncubating(Egg[] arr){
+		for(int i=0;i<eggsIncubating.length;i++){
+			eggsIncubating[i]=arr[i];
+		}
+	}
+	
 }

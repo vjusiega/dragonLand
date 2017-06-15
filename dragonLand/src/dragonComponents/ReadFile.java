@@ -9,8 +9,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 
 public class ReadFile {
-
-
 	
 	private String path;
 	

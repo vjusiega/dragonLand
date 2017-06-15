@@ -29,11 +29,9 @@ public class saveDragons {
 		}
 		dragonText+= "--"+NEW_LINE;
 		for(int i=0; i<incubating.length;i++){
-			Dragon d = myDragons.get(i);
-			dragonText += d.getName()+"''"+d.getPrice()+"''"+d.getImgSrc()+NEW_LINE;
+			Egg e = incubating[i];
+			dragonText += e.getImgSrc()+"''"+e.getName()+"''"+e.getPrice()+e.getIncubationTime()+e.getTime()+NEW_LINE;
 		}
-		
 		return dragonText;
 	}
-
 }

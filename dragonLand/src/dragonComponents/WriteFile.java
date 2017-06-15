@@ -34,9 +34,6 @@ public class WriteFile {
 		
 		try{
 			bw = new BufferedWriter(new FileWriter(file));
-			//will be replaced later with method to make string holding data
-			
-			//new File("C:/Users/Student 8/Desktop/test.txt");
 			
 			if(!file.exists())file.createNewFile();
 			
