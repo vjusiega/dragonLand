@@ -9,7 +9,6 @@ import java.util.List;
 
 import game.DragonLand;
 import game.Sound;
-import game.dragonTrading.TradingScreen;
 import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.HomeKat;
 import game.miniGameTeam.GameScreen;

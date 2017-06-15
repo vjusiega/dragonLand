@@ -5,6 +5,7 @@ import java.awt.Polygon;
 import java.util.ArrayList;
 
 import game.DragonLand;
+import game.Sound;
 import game.EggIncuabtor.Egg;
 import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.HomeKat;
@@ -66,6 +67,7 @@ public class ShopSelectionScreen extends ClickableScreen{
 		ClickableGraphic buyBox = new ClickableGraphic(getWidth(), getHeight(), 1.1, "img/whiteBox.png", 0.25, 0.5);
 		buyBox.setAction(new Action(){
 			public void act() {
+				Sound.CLICK.play();
 				((ShopScreen)DragonLand.newShopScreen).enterShop();
 				DragonLand.game.setScreen(DragonLand.newShopScreen);
 			}
@@ -81,6 +83,7 @@ public class ShopSelectionScreen extends ClickableScreen{
 		
 		eggBox.setAction(new Action(){
 			public void act(){
+				Sound.CLICK.play();
 				DragonLand.game.setScreen(DragonLand.incubatorScreen);
 			}
 		});
@@ -117,6 +120,7 @@ public class ShopSelectionScreen extends ClickableScreen{
 		ClickableGraphic tradeBox = new ClickableGraphic(getWidth(), getHeight(), 1.1, "img/tradeBox.png", 0.75, 0.5);
 		tradeBox.setAction(new Action(){
 			public void act(){
+				Sound.CLICK.play();
 				((ShopScreen)DragonLand.newShopScreen).enterTradeSelection();
 				DragonLand.game.setScreen(DragonLand.newShopScreen);
 			}

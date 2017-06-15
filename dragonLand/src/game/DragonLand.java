@@ -21,7 +21,6 @@ import dragonComponents.ReadFile;
 import game.EggIncuabtor.Egg;
 import game.EggIncuabtor.IncubatorScreen;
 import game.dragonTrading.NewTradingScreen;
-import game.dragonTrading.TradingScreen;
 import game.mainScreenTeam.Dragon;
 import game.mainScreenTeam.HomeKat;
 import game.mainScreenTeam.HomeScreen;
@@ -81,7 +80,6 @@ public class DragonLand extends GUIApplication {
 	public static Screen newShopScreen;
 	public static Screen nameScreen;
 	public static Screen newTradingScreen;
-	public static TradingScreen tradingScreen;
 	public static Screen incubatorScreen;
 	static JFileChooser chooser;
 	static ReadFile dragonFile;
@@ -93,6 +91,7 @@ public class DragonLand extends GUIApplication {
 //		dragonList.add(a);
 //	}
 	public DragonLand(String[] strings) {
+		Sound.AMBIANCE.loop();
 		if(strings != null){
 			ArrayList<Dragon> myDragons = new ArrayList<Dragon>();//from
 			ArrayList<Dragon> dragons = HomeKat.getDragons();
@@ -172,12 +171,11 @@ public class DragonLand extends GUIApplication {
 
 		welcomeScreen = new WelcomeScreen(WIDTH, HEIGHT);
 		gameInstructionsScreen = new GameInstructions(WIDTH, HEIGHT);
-		tradingScreen = new TradingScreen(WIDTH, HEIGHT);
 		vGame = new GameVioletta();
 
 		incubatorScreen = new IncubatorScreen(WIDTH, HEIGHT);
 		newTradingScreen = new NewTradingScreen(WIDTH, HEIGHT);
-		setScreen(homeScreen);
+		setScreen(welcomeScreen);
 
 	}
 	private void initColors() {
