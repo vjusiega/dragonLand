@@ -30,12 +30,8 @@ public class saveDragons {
 		dragonText+= "--"+NEW_LINE;
 		for(int j=0; incubating!=null && j<incubating.size();j++){
 			Egg e = incubating.get(j);
-			String s = e.getImgSrc()+"''"+e.getCategory()+"''"+e.getPrice()+"''"+e.getIncubationTime()+"''"+e.getTimeEnteredIncubation()+NEW_LINE;
-			dragonText += e.getImgSrc()+"''"+e.getCategory()+"''"+e.getPrice()+"''"+e.getIncubationTime()+"''"+e.getTimeEnteredIncubation()+NEW_LINE;
-			System.out.println(s);
+			dragonText += e.getImgSrc()+"''"+e.getCategory()+"''"+e.getPrice()+"''"+e.getIncubationTime()+"''"+e.getTimeEnteredIncubation()+NEW_LINE;	
 		}
-		
-		System.out.println(dragonText);
 		return dragonText;
 	}
 }
