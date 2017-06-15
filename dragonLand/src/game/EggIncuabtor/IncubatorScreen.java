@@ -96,7 +96,7 @@ public class IncubatorScreen extends ClickableScreen {
 		viewObjects.add(coin);
 		coinText = new TextLabel(DragonLand.WIDTH-135, 107, 175, 30, "" + DragonLand.coins);
 		coinText.setColor(DragonLand.TEXT_PINK);
-		coinText.setSize(25);
+		coinText.setSize(20);
 		viewObjects.add(coinText);
 		
 	}
@@ -116,7 +116,7 @@ public class IncubatorScreen extends ClickableScreen {
 	public void setUpEggs(){
 		String[] category= {"Common","Rare","Legendary"};
 		for (int i = 1; i <4; i++){
-			eggsToBuy.add(new Egg(0, 0, 100, 100, "img/egg"+i+".png", category[i-1], 100*i, 10*i));
+			eggsToBuy.add(new Egg(0, 0, 100, 100, "img/egg"+i+".png", category[i-1], 100*i, 60*i));
 		}
 	}
 	

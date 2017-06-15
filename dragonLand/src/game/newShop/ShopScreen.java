@@ -108,7 +108,7 @@ public class ShopScreen extends ClickableScreen {
 		viewObjects.add(coin);
 		coinText = new TextLabel(DragonLand.WIDTH-135, 107, 175, 30, "" + DragonLand.coins);
 		coinText.setColor(DragonLand.TEXT_PINK);
-		coinText.setSize(25);
+		coinText.setSize(20);
 		viewObjects.add(coinText);
 		
 		toggleButtonBuy = new ClickableGraphic(DragonLand.WIDTH-155, 50, 175, 50, "img/buySellToggleBuy.png");
@@ -498,9 +498,7 @@ public class ShopScreen extends ClickableScreen {
 						start.start();
 					}
 				}else{
-					System.out.println("you originally had " + DragonLand.coins);
 					DragonLand.coins -= found.getPrice();
-					System.out.println("the dragon cost " +  found.getPrice() + " you now have " + DragonLand.coins);
 					myDragons.add(found);
 					dragonsToBuy.remove(found);
 				}

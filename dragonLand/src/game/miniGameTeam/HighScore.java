@@ -44,7 +44,7 @@ public class HighScore extends ClickableScreen implements MouseListener {
 	private static TextLabel score1;
 	private static TextLabel score2;
 	private static TextLabel score3;
-	private TextLabel coinText;
+	private static TextLabel coinText;
 	
 	public HighScore(int width, int height){
 		super(width,height);
@@ -157,6 +157,7 @@ public class HighScore extends ClickableScreen implements MouseListener {
 		setRoundScore(GameScreen.getScore());
 		highScores.add(GameScreen.getScore());
 		DragonLand.coins += getCoins(GameScreen.getScore());
+		coinText.setText(""+DragonLand.coins);
 		yourScore.setText("Your Score: " + roundScore);
 		coinsWon.setText("Coins Won: " + getCoins(GameScreen.getScore()));
 		sortScores(highScores);
