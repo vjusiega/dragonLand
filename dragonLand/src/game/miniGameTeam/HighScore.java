@@ -69,7 +69,7 @@ public class HighScore extends ClickableScreen implements MouseListener {
 		coins = new Graphic(getWidth()/2 + 200, 270, 270, 110, "img/opacityPink2.png");
 		coinsWon = new TextLabel(coins.getX()+35, coins.getY()-50, 300, 115, "");
 		coinsWon.setText("Coins Won: ");
-		coinsWon.setColor(Color.white);
+		//coinsWon.setColor(Color.white);
 		coinsWon.setSize(20);
 		viewObjects.add(coins);
 		viewObjects.add(coinsWon);
@@ -160,6 +160,7 @@ public class HighScore extends ClickableScreen implements MouseListener {
 		highScores.add(GameScreen.getScore());
 		DragonLand.coins += getCoins(GameScreen.getScore());
 		yourScore.setText("Your Score: " + roundScore);
+		yourScore.setSize(20);
 		coinsWon.setText("Coins Won: " + getCoins(GameScreen.getScore()));
 		sortScores(highScores);
 		for(int i = 0; i < 3; i++)
