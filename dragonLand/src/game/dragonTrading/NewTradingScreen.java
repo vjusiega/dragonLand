@@ -104,7 +104,7 @@ public class NewTradingScreen extends ClickableScreen implements Runnable{
 			public void act(){
 				Thread Client = new Thread(new Runnable(){
 					public void run(){
-						Client c = new Client("172.20.10.2");
+						Client c = new Client("172.20.10.6");
 						c.startRunning(thisScreen);
 					}
 				});
