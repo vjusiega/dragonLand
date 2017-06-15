@@ -407,7 +407,8 @@ public class ShopScreen extends ClickableScreen {
 	public void enterTradeSelection(){
 		trade = true;
 		startFog();
-		currentPage = 1; 
+		currentPage = 1;
+		if()
 		addObject(tradeBanner);
 		updateNumberOfPages(myDragons);
 		drawDragons(myDragons);
