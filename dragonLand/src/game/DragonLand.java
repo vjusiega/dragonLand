@@ -111,6 +111,7 @@ public class DragonLand extends GUIApplication {
 			}
 			((ShopScreen)newShopScreen).setMyDragons(myDragons);
 			
+			
 			for(int i=0;i<dragons.size();i++){
 				 if(!dragonBought(dragons.get(i))){
 					 dragonsToBuy.add(dragons.get(i));
@@ -125,7 +126,9 @@ public class DragonLand extends GUIApplication {
 					j++;
 			}
 			((IncubatorScreen)incubatorScreen).setEggsIncubating(eggsIncubating);
-			
+			HomeKat.dragonsOnScreen();
+			GameScreen.isNotHome = false;
+			//((IncubatorScreen)incubatorScreen).addEggToIncubatorFromSave();
 		}
 	}
 	

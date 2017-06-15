@@ -7,7 +7,7 @@ import game.mainScreenTeam.Dragon;
 
 public class saveDragons {
 
-	private String TOP_LINE = "Name''Price''Img Src";
+	private String TOP_LINE = "Name''Price''Img Src";//used for reference
 	private String NEW_LINE = System.getProperty("line.separator");
 	
 	public saveDragons(ArrayList<Dragon> myDragons, ArrayList<Egg> incubating, String fileName) {
