@@ -201,6 +201,7 @@ public class IncubatorScreen extends ClickableScreen {
 				
 				Egg eggLocation = new Egg(incubators.get(i).getX()+23, incubators.get(i).getY()+20,
 						50, 50, e.getImgSrc(), e.getCategory(), e.getPrice(), e.getIncubationTime());
+				eggLocation.setTimeEnteredIncubation(e.getTimeEnteredIncubation());
 				eggLocation.setInitialX(eggLocation.getX());
 				incubators.get(i).addEgg(eggLocation);
 				Thread eggShake = new Thread(eggLocation);
