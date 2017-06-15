@@ -23,14 +23,14 @@ public class saveDragons {
 	
 	public String createDragon(ArrayList<Dragon> myDragons, Egg[] incubating){
 		String dragonText = TOP_LINE + NEW_LINE;
-		for(int i=0; i<myDragons.size();i++){
+		for(int i=0; myDragons!=null && i<myDragons.size();i++){
 			Dragon d = myDragons.get(i);
 			dragonText += d.getName()+"''"+d.getPrice()+"''"+d.getImgSrc()+NEW_LINE;
 		}
 		dragonText+= "--"+NEW_LINE;
-		for(int i=0; i<incubating.length;i++){
-			Egg e = incubating[i];
-			dragonText += e.getImgSrc()+"''"+e.getName()+"''"+e.getPrice()+e.getIncubationTime()+e.getTime()+NEW_LINE;
+		for(int j=0; incubating!=null&&j<incubating.length;j++){
+			Egg e = incubating[j];
+			dragonText += e.getImgSrc()+"''"+e.getName()+"''"+e.getPrice()+"''"+e.getIncubationTime()+"''"+e.getTime()+NEW_LINE;
 		}
 		return dragonText;
 	}

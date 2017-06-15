@@ -8,7 +8,10 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import dragonComponents.saveDragons;
 import game.DragonLand;
+import game.EggIncuabtor.Egg;
+import game.EggIncuabtor.IncubatorScreen;
 import game.miniGameTeam.GameScreen;
 import game.miniGameTeam.NoBorderButton;
 
@@ -196,7 +199,9 @@ public class HomeKat implements DragonArrayInterface {
 	    PolygonButton exit = new PolygonButton(DragonLand.WIDTH - 150, DragonLand.HEIGHT-80, 150, 100, exitBtn, new Action(){
 			@Override
 			public void act() {
-//				WriteFile();
+				ArrayList<Dragon> myDragons = ((ShopScreen)DragonLand.newShopScreen).getMyDragons();
+				Egg[] e = ((IncubatorScreen)DragonLand.incubatorScreen).getEggsIncubating();
+				saveDragons d = new saveDragons(myDragons,e,"DragonLandSave");
 				System.exit(1);
 			}});
 	    

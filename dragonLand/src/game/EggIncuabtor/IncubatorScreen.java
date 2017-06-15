@@ -195,5 +195,7 @@ public class IncubatorScreen extends Screen {
 			eggsIncubating[i]=arr[i];
 		}
 	}
-	
+	public Egg[] getEggsIncubating(){
+		return eggsIncubating;
+	}
 }

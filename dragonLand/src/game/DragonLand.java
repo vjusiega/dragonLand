@@ -176,18 +176,21 @@ public class DragonLand extends GUIApplication {
 			if(chooser.showOpenDialog(open)== JFileChooser.APPROVE_OPTION){
 				//Open JFileChooser
 			}
-			dragonFile = new ReadFile(chooser.getSelectedFile().getPath());
-			
-			game = new DragonLand(dragonFile.OpenFile());
-			Thread go = new Thread(game);
-			go.start();
-			
-			System.out.print(chooser.getSelectedFile().getPath());
+			if(chooser.getSelectedFile()==null){
+				game = new DragonLand(null);
+				Thread go = new Thread(game);
+				go.start();
+			}else{
+
+				dragonFile = new ReadFile(chooser.getSelectedFile().getPath());
+				game = new DragonLand(dragonFile.OpenFile());
+				Thread go = new Thread(game);
+				go.start();
+				
+				System.out.print(chooser.getSelectedFile().getPath());
+			}
 		}catch
 		(IOException e){
-			game = new DragonLand(null);
-			Thread go = new Thread(game);
-			go.start();
 		}
 	}
 	
