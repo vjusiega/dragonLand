@@ -42,7 +42,7 @@ public class NewTradingScreen extends ClickableScreen implements Runnable{
 		
 		private NewTradingScreen thisScreen; 
 		
-		private Button whatHappen;
+		//private Button whatHappen;
 		
 		private ArrayList<Visible> removableObjects;
 
@@ -79,9 +79,9 @@ public class NewTradingScreen extends ClickableScreen implements Runnable{
 			}});
 	    viewObjects.add(backBtn);
 		
-		whatHappen = new Button((int)(getWidth() * 0.4), (int)(getHeight() * 0.4), 100, 100, "", Color.white);
-		viewObjects.add(whatHappen);
-		
+//		whatHappen = new Button((int)(getWidth() * 0.4), (int)(getHeight() * 0.4), 100, 100, "", Color.white);
+//		viewObjects.add(whatHappen);
+//		
 		serverButton = new ClickableGraphic((int)(getWidth() * 0.6), (int)(getHeight() * 0.4), 1.0, "img/serverSign.png");
 		serverButton.setAction(new Action(){
 			public void act(){
@@ -101,7 +101,7 @@ public class NewTradingScreen extends ClickableScreen implements Runnable{
 			public void act(){
 				Thread Client = new Thread(new Runnable(){
 					public void run(){
-						Client c = new Client("172.20.10.2");
+						Client c = new Client("127.0.0.1");
 						c.startRunning(thisScreen);
 					}
 				});
@@ -145,7 +145,8 @@ public class NewTradingScreen extends ClickableScreen implements Runnable{
 		removableObjects.add(myDragonsName);
 	}
 	
-	public void drawTheirDragon(Dragon d){
+	public void drawTheirDragon(Dragon drag){
+		Dragon d = new Dragon(drag.getName(), drag.getImgSrc()); 
 		ClickableGraphic background = new ClickableGraphic(getWidth(), getHeight(), 1.0, "img/whiteBox.png", 0.75, 0.5);
 		removableObjects.add(background);
 		addObject(background);
@@ -156,6 +157,7 @@ public class NewTradingScreen extends ClickableScreen implements Runnable{
 		d.setBounce(false);
 		d.play();
 		addObject(d);
+		System.out.println(viewObjects.contains(d));
 		removableObjects.add(d);
 		
 		Graphic theirPost = new Graphic(d.getX() - 27, d.getY() + d.getHeight() + 10, background.getWidth(), 50, "img/blankNoWay.png");
@@ -179,7 +181,7 @@ public class NewTradingScreen extends ClickableScreen implements Runnable{
 		theirDragon = ((ShopScreen)DragonLand.newShopScreen).findInList(theirDragon, ((ShopScreen)DragonLand.newShopScreen).getDragonsToBuy());
 		drawTheirDragon(theirDragon);
 		((ShopScreen)DragonLand.newShopScreen).trade(myDragon, theirDragon);
-		remove(whatHappen);
+		//remove(whatHappen);
 		dragonsSwitchSpots();
 	}
 	
@@ -188,7 +190,7 @@ public class NewTradingScreen extends ClickableScreen implements Runnable{
 	}
 
 	public void displayConnectionMessage(String string) {
-		whatHappen.setText(string);
+		//whatHappen.setText(string);
 		
 	}
 
